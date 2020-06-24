@@ -1,0 +1,16 @@
+*.idea
+node_modules/
+.vscode
+.history
+.log
+*.gzip
+components/Upload/uploads/*
+!components/Upload/uploads/README.markdown
+.stylelintcache
+test/unit/coverage
+examples/dist
+.DS_Store
+.DS_Store?
+lib/
+yarn*
+

@@ -1,0 +1,18 @@
+[
+    {
+        "lang": "zh-CN",
+        "header": {
+            "design": "设计",
+            "components": "组件",
+            "theme": ["深色","明亮"]
+        }
+    },
+    {
+        "lang": "en-US",
+        "header": {
+            "design": "design",
+            "components": "components",
+            "theme": ["dark","light"]
+        }
+    }
+]

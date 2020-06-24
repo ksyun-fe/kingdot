@@ -1,0 +1,47 @@
+{
+    "zh-CN": [
+        {
+            "name": "开发指南"
+        },
+        {
+            "path": "/installation",
+            "name": "安装"
+        },
+        {
+            "path": "/start",
+            "name": "快速上手"
+        },
+        {
+            "path": "/i18n",
+            "name": "国际化"
+        },
+        
+        {
+            "name": "组件"
+        },
+        {
+            "path": "/button",
+            "name": "按钮"
+        }
+    ],
+    "en-US": [
+        {
+            "name": "Development"
+        },
+        {
+            "path": "/installation",
+            "name": "Installation"
+        },
+        {
+            "path": "/i18n",
+            "name": "Internationalization"
+        },
+        {
+            "name": "Components"
+        },
+        {
+            "path": "/button",
+            "name": "Button"
+        }
+    ]
+}

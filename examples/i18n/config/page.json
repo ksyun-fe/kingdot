@@ -1,0 +1,120 @@
+[
+    {
+        "lang": "zh-CN",
+        "page": {
+            "index": {
+                "1": "服务于企业级产品的设计体系，基于确定和自然的设计价值观上的模块化解决方案，让设计者和开发者专注于更好的用户体验设计。",
+                "2": "开始使用"
+            },
+            "design": {
+                "1": "设计原则",
+                "2": "颜色",
+                "3": "更新日志"
+            },
+            "lang": {
+                "1": "设计原则",
+                "2": "king Dot 使用基本设计要素统一风格，专注于用户体验和交互，建立稳定、灵活的设计，为使用者解决设计问题。",
+                "3": "清晰",
+                "4": "设计表达：对设计的表达明确清晰，让用户快速理解进行使用。",
+                "5": "颜色对比：突出颜色视觉效果，在视觉交互上面更具有可读性。比如成功消息会使用淡绿色表示，更符合用户的逻辑。",
+                "6":"效率",
+                "7":"流程简化：简洁直观的流程的帮助用户提高效率，就有更多时间做有价值的事。",
+                "8":"智能帮助：帮助用户更智能、更高效的工作。",
+                "9":"一致",
+                "10":"行为一致：在与人机交互、按钮反馈、功能行为等充分为用户把关，体验和理解用户的行为习惯，减少用户学习成本。",
+                "11":"界面一致：产品中对功能、元素、结构保持一致的设计。比如按钮、边距、颜色等会重复出现，加强一致性。",
+                "12":"生活一致：设计中最重要的视觉，对布局，色彩，图标，应该保持和自然生活中一致，降低用户认证的成本。创造出更贴近生活的产品体验。",
+                "13":"交互",
+                "14":"视觉交互：颜色是非常主观的一样事物，某种颜色表现的含义不一样，可以选择自己喜欢的风格主题。",
+                "15":"页面反馈：在操作某个功能时，观察页面的变化。及时反馈当前功能状态。"
+            },
+            "color": {
+                "1": "颜色",
+                "2": "颜色作为一种感知性的设计语言，在表达设计目标时起到强化作用。因此在定义一系列色值的同时，更重要的是对他们在实际页面和情景中的使用方法进行标准化定义。",
+                "3": [{
+                        "title":"品牌色",
+                        "text":"用于贯穿整体设计的主要颜色风格。品牌色主要体现在关键行动点及操作状态、重要信息高亮等场景。"
+                    },
+                    {
+                        "title":"状态色",
+                        "text":"用于反馈给用户状态的颜色。"
+                    },
+                    {
+                        "title":"中性色",
+                        "text":"用于文本、标题、信息。"
+                    },
+                    {
+                        "title":"背景色",
+                        "text":"用于内容、表头背景。" 
+                    }]
+            },
+            "updatelog": {
+                "1": "更新日志",
+                "2": "v1.1",
+                "3": "新增1",
+                "4": "修改2"
+            },
+            "component": {}
+        }
+    },
+    {
+        "lang": "en-US",
+        "page": {
+            "index": {
+                "1": "The design system serving the enterprise level products, based on the modular solution of the determined and natural design values, enables designers and developers to focus on better user experience design",
+                "2": "get start"
+            },
+            "design": {
+                "1": "Design Principles",
+                "2": "color",
+                "3": "update logs"
+            },
+            "lang": {
+                "1": "Design Principles",
+                "2": "King Dot uses the unified style of basic design elements, focuses on user experience and interaction, establishes stable and flexible design, and solves design problems for users.",
+                "3": "Clarity",
+                "4": "Design expression: the expression of design is clear and clear, so that users can quickly understand and use it.",
+                "5": "Color contrast: highlight the visual effect of color, which is more readable in visual interaction. For example, the success message will be indicated in light green, which is more in line with the user's logic. ",
+                "6":"Efficiency",
+                "7":"Process simplification: simple and intuitive processes help users improve efficiency, so they have more time to do valuable things.",
+                "8":"Intelligent help: help users work smarter and more efficiently.",
+                "9":"Consistent",
+                "10":"Consistent behavior: fully check the user's behavior with human-computer interaction, button feedback, functional behavior, experience and understand the user's behavior habits, and reduce the user's learning cost.",
+                "11":"Consistent interface: consistent design of functions, elements and structures in the product. For example, buttons, margins, colors, etc. will appear repeatedly to enhance consistency.",
+                "12":"Consistent life: the most important vision in the design should be consistent with the natural life in terms of layout, color and icon, so as to reduce the cost of user authentication. Create a product experience closer to life. ",
+                "13":"Interaction",
+                "14":"Visual interaction: color is a very subjective thing, and the meaning of a certain color is different. You can choose your favorite style theme.",
+                "15":"Page feedback: when operating a function, observe the change of the page. Timely feedback the current function status."
+            },
+            "color": {
+                "1": "Color",
+                "2": "As a perceptual design language, color plays an important role in expressing design goals. Therefore, while defining a series of color values, it is more important to standardize their usage methods in actual pages and scenarios.",
+                "3": [
+                    {
+                        "title":"primay",
+                        "text":"main color styles throughout the overall design. Brand color is mainly reflected in key action points, operation status, important information highlights and other scenes."
+                    },
+                    {
+                        "title":"status colours",
+                        "text":"used to identify status."
+                    },
+                    {
+                        "title":"Neutral",
+                        "text":"for text, background, and borders."
+                    },
+                    {
+                        "title":"background color",
+                        "text":"used to identify status."
+                    }
+                ]
+            },
+            "updatelog": {
+                "1": "update log",
+                "2": "v1.1",
+                "3": "add",
+                "4": "add"
+            },
+            "component": {}
+        }
+    }
+]

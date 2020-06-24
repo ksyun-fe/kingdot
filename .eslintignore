@@ -1,0 +1,12 @@
+/src/styles
+*.sh
+node_modules
+lib
+examples/dist
+coverage
+*.md
+*.styl
+*.stylus
+*.woff
+*.ttf
+test
