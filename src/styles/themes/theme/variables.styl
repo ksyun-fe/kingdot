@@ -11,10 +11,10 @@ $-rem := 12
 *******************************/
 
 $-red := #EF4E76
-$-blue := #000
+$-blue := #557DFC
 $-green := #38C482
 $-yellow := #FF9A42
-$-grey := #4C4C4C
+// $-grey := #4C4C4C
 
 // $-black := #262626
 $-light-black := #4C4C4C
@@ -30,6 +30,7 @@ $-line-height := 1
 $-font-family := 'PingFangSC-Regular,Microsoft YaHei,微软雅黑,Arial,sans-serif' !important
 $-font-size := 14px
 $-font-base-size := 12px
+
 $-title-color := #262626
 $-text-default-color := #4C4C4C
 //输出主题start
@@ -80,7 +81,7 @@ $-small-font-size := 12px
 $-small-padding := 5px 8px
 
 // $-mini-height := 26px
-$-mini-font-size := 12px
+// $-mini-font-size := 12px
 // $-mini-padding := 10px
 
 // the gutter between icon and text
@@ -93,8 +94,6 @@ $-border-radius := 4px
 
 $-max-z-index := 9999
 
-$-line-height := 1
-
 $-shape-round := 40px
 $-shape-circle := 50%
 
@@ -102,7 +101,7 @@ $-shape-circle := 50%
             Headers
 *******************************/
 
-$-header-font-family := $-font-family
+$-header-font-family := 'PingFangSC-Medium' !important
 $-header-margin := 0
 $-header-font-weight := bold
 $-h1 := 36px
@@ -119,7 +118,7 @@ $-link-color := $-blue
 $-link-underline := none
 $-link-hover-color := palette($-link-color, -1)
 $-link-hover-underline := $-link-underline
-$-link-font-family := PingFangSC-Regular
+$-link-font-family := $-font-family
 
 /******************************
             Code
@@ -160,8 +159,6 @@ $-btn-disabled-color := $-border-base-color
 $-btn-disabled-bg-color := $-disabled-bg-color
 $-btn-disabled-border-color := $-disabled-border-color
 
-$-btn-line-height := $-line-height
-
 //btn default
 $-btn-default-border-color := $-border-base-color
 $-btn-default-bg := #fff
@@ -173,7 +170,7 @@ $-btn-warning-color := $-warning-color
 $-btn-danger-color := $-danger-color
 //border
 $-btn-border-radius := $-border-radius
-$-btn-border-color := $-border-color
+$-btn-border-color := $-border-base-color
 $-btn-default-border-style := solid
 $-btn-dashed-border-style := dashed
 //shape
@@ -200,3 +197,30 @@ $-btn-small-font-size := $-font-base-size
 
 //icon
 $-btn-icon-text-gutter := $-icon-text-gutter
+
+
+/******************************
+        Switch
+*******************************/
+$-switch-active-bg := linear-gradient(90deg, #F8334C 0%, #4E284D 100%)
+$-switch-inactive-bg := #525C77
+$-switch-disabled-bg := #2D354D
+$-switch-disabled-font-color := #4F576E
+$-switch-font-size := 12px
+$-switch-border-width := 2px
+$-switch-size-list = mini, small, default, large
+
+$-switch-mini-width := 24px
+$-switch-small-width := 36px
+$-switch-default-width := 48px
+$-switch-large-width := 60px
+
+$-switch-mini-height := 14px
+$-switch-small-height := 18px
+$-switch-default-height := 24px
+$-switch-large-height := 30px
+
+$-switch-mini-border-radius := $-switch-mini-height
+$-switch-small-border-radius := $-switch-small-height
+$-switch-default-border-radius := $-switch-default-height
+$-switch-large-border-radius := $-switch-large-height

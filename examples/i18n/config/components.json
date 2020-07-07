@@ -22,6 +22,10 @@
         {
             "path": "/button",
             "name": "按钮"
+        },
+        {
+            "path": "/switch",
+            "name": "开关"
         }
     ],
     "en-US": [
@@ -42,6 +46,10 @@
         {
             "path": "/button",
             "name": "Button"
+        },
+        {
+            "path": "/switch",
+            "name": "switch"
         }
     ]
 }
