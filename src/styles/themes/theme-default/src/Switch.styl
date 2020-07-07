@@ -18,7 +18,6 @@
         border-color $-switch-disabled-bg
     &.kd-switch-checked
         background $-switch-active-bg
-
 .kd-switch-checked.kd-switch-disabled
     border-color $-switch-active-bg
 
@@ -54,13 +53,19 @@ for size in $-switch-size-list
             position absolute
             left 0
             box-sizing border-box
+<<<<<<< HEAD
             width lookup('$-switch-' + size + '-height') - (2 * $-switch-border-width)
             height lookup('$-switch-' + size + '-height') - (2 * $-switch-border-width)
+=======
+            width lookup('$-switch-' + size + '-height') - 4px
+            height lookup('$-switch-' + size + '-height') - 4px
+>>>>>>> feat(switch): switch基本开发完成
             background-color #fff
             border-radius 50%
             transition all .3s ease-in-out
             &.checked
                 left 100%
+<<<<<<< HEAD
                 margin-left -(lookup('$-switch-' + size + '-height') - $-switch-border-width)
 
 .kd-switch-checked
@@ -71,3 +76,6 @@ for size in $-switch-size-list
         top 0
     .kd-switch-round.checked
         left 100%
+=======
+                margin-left -(lookup('$-switch-' + size + '-height') - 4px)
+>>>>>>> feat(switch): switch基本开发完成

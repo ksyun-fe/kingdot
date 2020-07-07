@@ -20,7 +20,7 @@ const install = (Vue) => {
 };
 export default {
     version: undefined,
-    install: install,
+    install,
     Button,
     ButtonGroup,
     Input,
