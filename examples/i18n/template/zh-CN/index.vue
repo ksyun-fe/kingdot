@@ -4,7 +4,7 @@
             class="container"
     >
         <div class="panel">
-            <h1>King Design</h1>
+            <h1>King Dot</h1>
             <p class="desc">
                 服务于企业级产品的设计体系，基于确定和自然的设计价值观上的模块化解决方案，让设计者和开发者专注于更好的用户体验设计。
             </p>
