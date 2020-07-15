@@ -43,7 +43,6 @@
     </div>
 </template>
 <script>
-
     export default {
         name: 'KdSwitch',
         props: {
@@ -60,19 +59,17 @@
                 default: false
             },
             width: {
-                type: [Number, String],
-                default: 0
+                type: [String, Number]
             },
             height: {
-                type: [Number, String],
-                default: 0
+                type: [String, Number]
             },
             activeValue: {
-                type: [Boolean, String, Number],
+                type: [String, Number, Boolean],
                 default: true
             },
             inactiveValue: {
-                type: [Boolean, String, Number],
+                type: [String, Number, Boolean],
                 default: false
             },
             activeText: {
@@ -143,7 +140,7 @@
                     roundStyle.borderRadius = `${(this.height - 4) / 2}px`;
                 }
                 if (this.switchValue === this.activeValue) {
-                    roundStyle.marginLeft = `-${this.height - 4}px`;
+                    roundStyle.marginLeft = `-${this.height - 2}px`;
                 }
                 return roundStyle;
             }
