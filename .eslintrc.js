@@ -253,6 +253,7 @@ module.exports = {
         "vue/mustache-interpolation-spacing": [2, "always"],
         "vue/no-spaces-around-equal-signs-in-attribute": [2],
         "vue/prop-name-casing": [2, "camelCase"],
+        'vue/require-default-prop': 0,
         'vue/require-prop-types': 2,
         "vue/component-tags-order": [2, {
             "order": ["template", "script", "style"]
