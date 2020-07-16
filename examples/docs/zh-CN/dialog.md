@@ -1,0 +1,212 @@
+### 基础用法
+:::demo #基础用法 Dialog主要有3种类型：默认弹窗、message类弹窗、提示弹窗。
+
+```html
+<template>
+    <div>
+        <Button @click="openDialog">点击打开默认Dialog</Button>
+        <Dialog v-model="showDialog"></Dialog>
+    </div>
+</template>
+<script>
+    export default {
+        data(){
+            return{
+                showDialog:false
+            }
+        },
+        methods:{
+            openDialog(){
+                this.showDialog = true;
+            }
+        }
+    }
+</script>
+```
+
+:::
+### 按钮使用
+:::demo #Dialog使用 message类弹窗、提示弹窗的使用方法。
+
+```html
+<template>
+    <div>
+        <div class='row'>
+            <Button @click="openMessageDialog">message类Dialog</Button>
+            <Button @click="openMessageDialogNoFooter">message类无底部Dialog</Button>
+            <Button @click="openMessageConfirmDialog">message类二次确认无标题类型Dialog</Button>
+            <Button @click="openMessageConfirmTitleDialog">message类二次确认有标题类型Dialog</Button>
+        </div>
+        <div class='row'>
+            <Button @click="openTipsDialog">提示类Dialog</Button>
+            <Button @click="openDialog">自定义body类Dialog</Button>
+        </div>
+        <Dialog v-model="showMessageDialog"
+                type="message"
+                :showTitle="false" 
+                icon="iconzhengque"
+                iconColor="#38c482"
+                iconTitle="操作成功"
+                :additionalTips="additionalTips"></Dialog>
+        <Dialog v-model="showMessageDialog_noBottom"
+                type="message"
+                :showTitle="false" 
+                icon="iconzhengque"
+                iconColor="#38c482"
+                iconTitle="操作成功"
+                :additionalTips="additionalTips"
+                :showFooter="false"></Dialog>
+        <Dialog v-model="showMessageDialog_confirm"
+                type="message"
+                :showTitle="false" 
+                icon="iconcuowu"
+                iconColor="#ff4e76"
+                :confirmTips="confirmTips">
+                
+            <div slot="footer">
+                <Button type="primary" @click="()=>{showMessageDialog_confirm=false}">确定</Button>
+            </div>
+        </Dialog>
+        <Dialog v-model="showMessageDialog_confirmTitle"
+                type="message"
+                :showTitle="false" 
+                icon="iconcuowu"
+                iconColor="#ff4e76"
+                :confirmTips="confirmTips"
+                :confirmTitle="confirmTitle">
+            <!-- <div slot="footer">
+                <Button type="primary" @click="()=>{showMessageDialog_confirmTitle=false}">确定</Button>
+            </div> -->
+        </Dialog>
+
+        <Dialog v-model="showTipsDialog" 
+                type="tips" 
+                :showTitle="false" 
+                icon="iconzhengque"
+                iconColor="#38c482"
+                tipsTitle="这是一条成功通知信息"
+                tipsMessage="提示信息"
+                ></Dialog>
+         <Dialog title="创建提醒" v-model="showDialog">
+            <p style="text-align:left">该任务暂未创建tensorboard</p>
+            <p style="text-align:left; color:red">是否要创建？</p>
+         </Dialog>
+    </div>
+</template>
+<script>
+    export default {
+        data(){
+            return{
+                showMessageDialog:false,
+                additionalTips:'附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。',
+                showMessageDialog_noBottom:false,
+                confirmTips:'还可以自定义底部哟！！！',
+                showMessageDialog_confirm:false,
+                confirmTitle:'二次确认标题',
+                showMessageDialog_confirmTitle:false,
+
+                //提示类
+                showTipsDialog:false,
+                showDialog:false,
+            }
+        },
+        methods:{
+            openMessageDialog(){
+                this.showMessageDialog = true;
+            },
+            openMessageDialogNoFooter(){
+                this.showMessageDialog_noBottom = true
+            },
+            openMessageConfirmDialog(){
+                this.showMessageDialog_confirm = true
+            },
+            openMessageConfirmTitleDialog(){
+                this.showMessageDialog_confirmTitle = true;
+            },
+            openTipsDialog(){
+                this.showTipsDialog = true;
+            },
+            openDialog(){
+                this.showDialog = true
+            }
+        }
+    }
+</script>
+```
+
+:::
+### 内容部分增加滚动
+:::demo #增加滚动的Dialog使用 该属性需结合height一起使用。设置一定的高度，超出部分增加滚动
+```html
+<template>
+    <div>
+        <Button @click="openMessageDialog">增加滚动的Dialog</Button>
+        <Dialog title="创建提醒" v-model="showDialog" height="200" :isScroll="true">
+            <div>
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+                附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
+            </div>
+         </Dialog>
+    </div>
+</template>
+<script>
+    export default {
+        data(){
+            return {
+                showDialog:false
+            }
+        },
+        methods:{
+            openMessageDialog(){
+                this.showDialog = true
+            }
+        }
+    }
+</script>
+```
+:::
+
+### 属性 {.component__content}
+| 属性      | 说明    | 类型      | 可选值       | 默认值   |
+|---------- |-------- |---------- |-------------  |-------- |
+| value     | dialog的显示与隐藏   | string    | false/true | false
+| modal     | 是否显示遮罩层   | Boolean    | true/false |     true    |
+| title  | 标题   | String  |     —     |    -   |
+| showTitle  |  是否显示标题  | Boolean  |     true/false     |    true   |
+| showClose  | 是否显示关闭按钮   | Boolean  |     true/false    |    true   |
+| showFooter  | 是否显示底部   | Boolean  |     true/false     |    true   |
+| type  | 类型   | String  |     default/message/tips     |    default   |
+| icon  | 图标类名 type为message，tips   | string  |     —     |    —   |
+| iconType | 图标类型 |  String      | success/failed/warning/info | - |
+| iconTitle | 图标名称 | String |  - | - |
+| showIcon | 是否显示图标  Boolean | - | - |
+| additionalTips | 附加提示，type为message | String | - | - |
+| confirmTitle | 二次确认的标题，type为message | String | - | - |
+| confirmTips | 二次确认的附加消息，type为message | String | - | - |
+| tipsTitle | 图标的标题 | String | - | - |
+| tipsMessage | 附加信息 | String | - | - |
+| clickModalToClose| 点击遮罩，关闭对话框 | Boolean | true/false | false |
+| width | 宽度 | String/Number | - |-|
+| center | 是否对头部和底部采用居中布局 | Boolean | true/false | false |
+| isScroll | dialog的内容部分，是否滚动，需与height结合使用 | Boolean | true/false | false|
+| height | 内容部分高度 | String/Number | - |-|
+| disableOk | 确认按钮是否禁用 | Boolean | true/false | false |
+
+### 事件 {.component__content}
+| 事件名 | 说明|
+|---------- |-------- |
+| cancel | dialog取消按钮回调 | 
+| ok | dialog确认按钮回调|
+
+### 方法 {.component__content}
+| 方法 | 说明|
+|---------- |-------- |
+| showLoading | 展示加载图标 | 
+| hideLoading | 隐藏加载图标 |

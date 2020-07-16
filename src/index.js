@@ -1,11 +1,13 @@
 import Button from '../components/Button/index.js';
 import ButtonGroup from '../components/ButtonGroup/index.js';
+import Dialog from '../components/Dialog/index.js';
 import Message from '../components/Message/index.js';
 import Spin from '../components/Spin/index.js';
 
 const components = [
     Button,
     ButtonGroup,
+    Dialog,
     Message,
     Spin
 ];
@@ -21,6 +23,7 @@ export default {
     install: install,
     Button,
     ButtonGroup,
+    Dialog,
     Message,
     Spin
 };
