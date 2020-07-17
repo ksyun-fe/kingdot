@@ -38,7 +38,7 @@
         >
             <slot/>
         </span>
-        <span>{{ translate('button.confirm') }}</span>
+        <!-- <span>{{ translate('button.confirm') }}</span> -->
     </button>
 </template>
 

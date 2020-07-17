@@ -1,0 +1,193 @@
+.kd-steps-container
+    display flex
+    flex-wrap nowrap
+    width 100%
+    background-color $-steps-container-background-color
+    padding  20px
+    &.kd-steps-container-vertical
+         flex-flow column
+    .kd-step
+        flex-basis 50%
+        &:last-child
+            flex-basis auto
+            flex-shrink 0
+            flex-grow 0
+        &:last-of-type
+            flex 0 0 auto
+.kd-step
+    position relative
+    height auto
+    float left
+    .kd-step-wrap
+        overflow hidden
+    .kd-step-head
+        height auto
+        float left
+        flex 1
+    .kd-step-index
+        display inline-block
+        width 32px
+        height 32px
+        margin 0 8px
+        border-radius 50%
+        text-align center
+        line-height 29px
+        &.kd-step-index-small,&.kd-step-index-simple
+            width 26px
+            height 26px
+            line-height 22px
+        &.kd-step-index-default
+            border 1px solid $-step-index-default-border-color
+            color $-step-index-default-color
+        &.kd-step-index-active
+            border $-step-index-active-border-color
+            background $-step-index-active-background-color
+            color  #ffff
+        &.kd-step-index-done
+            border $-step-index-done-border-color
+            background $-step-index-done-background-color
+            color $-step-index-done-color
+        &.kd-step-index-icon
+            border 0 none
+            background transparent
+            color $-step-index-icon-color
+        .kd-step-icon
+            display inline-block
+            margin-top -4px
+            font-size 26px
+            vertical-align middle
+            &.kd-step-icon-active
+                color $-step-icon-active-color
+            &.kd-step-icon-done
+                color $-step-icon-done-color
+    .kd-step-spot
+        display inline-block
+        width 6px
+        height 6px
+        border-radius 50%   
+        &.kd-step-spot-default
+            background $-step-spot-default-background-color
+        &.kd-step-spot-active
+            width 8px
+            height 8px
+            background-color $-step-spot-active-background-color
+        &.kd-step-spot-done
+            background-color $-step-spot-done-background-color
+    .kd-step-spot-line
+        display inline-block
+        width 14px
+        height 14px 
+        border-radius 50% 
+        border 1px solid $-step-spot-line-border-color
+        background-color $-step-spot-line-background-color
+        text-align center
+        line-height 10px
+    .kd-step-line
+        display flex
+        flex 1
+        height 1px
+        background-color $-step-line-background-color
+        transform translate(0px,16px)
+        // margin-top 16px
+        &.kd-step-line-spot
+            transform translate(0px,9px)
+            // margin-top 9px
+        &.kd-step-line-active
+            animation changeColor 1s ease-in-out infinite
+    .kd-step-content
+        width auto
+        margin-right 8px
+        float left
+    .kd-step-title
+        flex 1
+        line-height: 1px
+        font-family PingFangSC-Regular
+        font-size 16px
+        color $-step-title-color 
+        &.kd-step-title-active
+            color $-step-title-active-color
+    .kd-step-description
+        max-width 140px
+        margin 0
+        font-family PingFangSC-Regular
+        font-size 14px
+        color $-step-description-color
+        text-align left
+        line-height 20px
+        &.kd-step-description-active
+            color $-step-description-active-color
+        &.kd-step-description-title
+            margin-left 51px
+    .kd-step-description-vertical-small
+        font-size 12px
+.kd-step
+    &.kd-step-simple
+        position relative
+        display inline-block
+        height 40px
+        text-align center
+        background-color $-step-simple-background-color
+        &:last-child
+            flex-basis 20%
+        &:not(:last-child)
+            &:after
+                position: absolute;
+                top: 0;
+                right: 10px;
+                content: ' ';
+                width: 0;
+                height: 0;
+                border: 20px solid $-step-simple-border-color;
+                border-left: 10px solid $-step-simple-background-color;
+    &.kd-step-simple+.kd-step-simple
+        &:before
+            position: absolute;
+            top: 0;
+            left: -31px;
+            content: ' ';
+            width: 0;
+            height: 0;   
+            border: 20px solid $-step-simple-background-color;
+            border-left: 10px solid transparent;
+.kd-step-simple
+    .kd-step-head
+        height 40px
+        float none
+        line-height 40px
+    .kd-step-title-simple
+        display inline-block
+        height 40px
+        line-height 40px
+.kd-steps-container-vertical
+    height 100%
+    .kd-step-wrap
+        display flex
+        height 100%
+        flex-flow column
+        .kd-step-head
+            flex 0 0 auto
+        .kd-step-index
+            margin 8px
+    .kd-step-content
+        display inline-block
+        flex 0 0 auto
+    .kd-step-line-vertical
+        width 1px
+        flex 1
+        background-color $-step-line-background-color
+        transform: translate(25px, 0px);
+    .kd-step-description-vertical
+        margin-top -8px
+        margin-left 50px !important
+    .kd-step-description-vertical-notitle
+        top 16px
+    .kd-step-description-vertical-small
+        left -6px
+@keyframes changeColor {
+    0%{
+        background-color $-step-line-active-background-color
+    }
+    100%{
+        background-color $-step-line-active-background-color
+    }
+}
