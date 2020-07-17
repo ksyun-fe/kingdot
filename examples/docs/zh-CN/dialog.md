@@ -5,19 +5,24 @@
 <template>
     <div>
         <Button @click="openDialog">点击打开默认Dialog</Button>
-        <Dialog v-model="showDialog"></Dialog>
+        <Dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800"></Dialog>
     </div>
 </template>
 <script>
     export default {
         data(){
             return{
-                showDialog:false
+                showDialog:false,
+                disableOk:false
             }
         },
         methods:{
             openDialog(){
                 this.showDialog = true;
+            },
+            OK(dialog){
+                dialog.showLoading()
+                this.disableOk = true
             }
         }
     }
@@ -32,35 +37,34 @@
 <template>
     <div>
         <div class='row'>
-            <Button @click="openMessageDialog">message类Dialog</Button>
-            <Button @click="openMessageDialogNoFooter">message类无底部Dialog</Button>
-            <Button @click="openMessageConfirmDialog">message类二次确认无标题类型Dialog</Button>
-            <Button @click="openMessageConfirmTitleDialog">message类二次确认有标题类型Dialog</Button>
+            <Button @click="openMessageDialog">提示信息居中Dialog</Button>
+            <Button @click="openMessageDialogNoFooter">提示信息居中无底部Dialog</Button>
+            <Button @click="openMessageConfirmDialog">二次确认无标题类型Dialog</Button>
+            <Button @click="openMessageConfirmTitleDialog">二次确认有标题类型Dialog</Button>
         </div>
         <div class='row'>
-            <Button @click="openTipsDialog">提示类Dialog</Button>
+            <Button @click="openTipsDialog">提示类不居中Dialog</Button>
             <Button @click="openDialog">自定义body类Dialog</Button>
         </div>
         <Dialog v-model="showMessageDialog"
-                type="message"
+                type="tips"
                 :showTitle="false" 
-                icon="iconzhengque"
-                iconColor="#38c482"
-                iconTitle="操作成功"
-                :additionalTips="additionalTips"></Dialog>
+                icon="success"
+                tipsTitle="操作成功"
+                :tipsMessage="additionalTips"
+                :tipsIsCenter="true"></Dialog>
         <Dialog v-model="showMessageDialog_noBottom"
-                type="message"
+                type="tips"
                 :showTitle="false" 
-                icon="iconzhengque"
-                iconColor="#38c482"
-                iconTitle="操作成功"
-                :additionalTips="additionalTips"
-                :showFooter="false"></Dialog>
+                icon="warning"
+                tipsTitle="操作成功"
+                :tipsMessage="additionalTips"
+                :showFooter="false"
+                :tipsIsCenter="true"></Dialog>
         <Dialog v-model="showMessageDialog_confirm"
-                type="message"
+                type="confirm"
                 :showTitle="false" 
-                icon="iconcuowu"
-                iconColor="#ff4e76"
+                icon="failed"
                 :confirmTips="confirmTips">
                 
             <div slot="footer">
@@ -68,10 +72,9 @@
             </div>
         </Dialog>
         <Dialog v-model="showMessageDialog_confirmTitle"
-                type="message"
+                type="confirm"
                 :showTitle="false" 
-                icon="iconcuowu"
-                iconColor="#ff4e76"
+                icon="failed"
                 :confirmTips="confirmTips"
                 :confirmTitle="confirmTitle">
             <!-- <div slot="footer">
@@ -82,8 +85,7 @@
         <Dialog v-model="showTipsDialog" 
                 type="tips" 
                 :showTitle="false" 
-                icon="iconzhengque"
-                iconColor="#38c482"
+                icon="success"
                 tipsTitle="这是一条成功通知信息"
                 tipsMessage="提示信息"
                 ></Dialog>
@@ -176,28 +178,26 @@
 ### 属性 {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| value     | dialog的显示与隐藏   | string    | false/true | false
-| modal     | 是否显示遮罩层   | Boolean    | true/false |     true    |
+| value     | dialog的显示与隐藏   | string    | false/true | false |
 | title  | 标题   | String  |     —     |    -   |
 | showTitle  |  是否显示标题  | Boolean  |     true/false     |    true   |
+| modal     | 是否显示遮罩层   | Boolean    | true/false |     true    |
 | showClose  | 是否显示关闭按钮   | Boolean  |     true/false    |    true   |
 | showFooter  | 是否显示底部   | Boolean  |     true/false     |    true   |
 | type  | 类型   | String  |     default/message/tips     |    default   |
 | icon  | 图标类名 type为message，tips   | string  |     —     |    —   |
-| iconType | 图标类型 |  String      | success/failed/warning/info | - |
-| iconTitle | 图标名称 | String |  - | - |
-| showIcon | 是否显示图标  Boolean | - | - |
-| additionalTips | 附加提示，type为message | String | - | - |
+| width | 宽度 | String/Number | - |-|
+| height | 内容部分高度 | String/Number | - |-|
+| isScroll | dialog的内容部分，是否滚动，需与height结合使用 | Boolean | true/false | false|
+| center | 是否对头部和底部采用居中布局 | Boolean | true/false | false |
+| clickModalToClose| 点击遮罩，关闭对话框 | Boolean | true/false | false |
+| cancelText | 取消按钮的文案 | String | - | 取消 |
+| okText | 确认按钮的文案 | String | - | 确认 |
+| disableOk | 确认按钮是否禁用 | Boolean | true/false | false |
 | confirmTitle | 二次确认的标题，type为message | String | - | - |
 | confirmTips | 二次确认的附加消息，type为message | String | - | - |
 | tipsTitle | 图标的标题 | String | - | - |
 | tipsMessage | 附加信息 | String | - | - |
-| clickModalToClose| 点击遮罩，关闭对话框 | Boolean | true/false | false |
-| width | 宽度 | String/Number | - |-|
-| center | 是否对头部和底部采用居中布局 | Boolean | true/false | false |
-| isScroll | dialog的内容部分，是否滚动，需与height结合使用 | Boolean | true/false | false|
-| height | 内容部分高度 | String/Number | - |-|
-| disableOk | 确认按钮是否禁用 | Boolean | true/false | false |
 
 ### 事件 {.component__content}
 | 事件名 | 说明|

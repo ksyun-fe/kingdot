@@ -4,6 +4,7 @@
             class="kd-dialog-container"
             :data-transfer="transfer"
     >
+        <!-- 遮罩层 -->
         <transition name="kd-dialog-mask">
             <div
                     v-if="visible && modal"
@@ -13,8 +14,6 @@
         </transition>
         <transition
                 name="kd-dialog-fade"
-                @after-enter="afterEnter"
-                @after-leave="afterLeave"
         >
             <div
                     v-if="visible"
@@ -27,6 +26,7 @@
                             { transform: `translate(${marginLeftUnit},${marginTopUnit})` },
                         ]"
                 >
+                    <!-- dialog header部分 -->
                     <div
                             :class="[
                                 'kd-dialog-header',
@@ -37,12 +37,14 @@
                             ]"
                             @mousedown="mousedown($event)"
                     >
+                        <!-- 标题 -->
                         <slot
                                 v-if="showTitle"
                                 name="title"
                         >
                             <span class="kd-dialog-title">{{ title }}</span>
                         </slot>
+                        <!-- 关闭按钮 -->
                         <i
                                 v-if="showClose"
                                 class="kd-dialog-icon kdicon iconguanbi"
@@ -53,6 +55,7 @@
                                 class="kd-dialog-line"
                         ></div>
                     </div>
+                    <!-- 常规内容区域 -->
                     <div
                             v-if="type == 'default'"
                             class="kd-dialog-body"
@@ -60,8 +63,9 @@
                     >
                         <slot>我是内容区域</slot>
                     </div>
+                    <!-- 二次确认类内容区域 -->
                     <div
-                            v-if="type == 'message'"
+                            v-if="type == 'confirm'"
                             class="kd-dialog-body"
                     >
                         <slot>
@@ -70,29 +74,19 @@
                                     class="kd-icon-section"
                             >
                                 <i
-                                        :class="['kd-dialog-icon-size-message', 'kdicon', icon]"
+                                        :class="['kd-dialog-icon-size-confirm', 'kdicon', iconClass]"
                                         :style="{ color: iconColor }"
                                 ></i>
                             </span>
-                            <p
-                                    v-if="iconTitle != ''"
-                                    class="kd-dialog-icon-title"
-                            >
-                                {{ iconTitle }}
-                            </p>
-                            <p
-                                    v-if="additionalTips != ''"
-                                    class="kd-dialog-message"
-                            >
-                                {{ additionalTips }}
-                            </p>
                             <p class="kd-dialog-confirm-title">{{ confirmTitle }}</p>
                             <p class="kd-dialog-confirm-tips">{{ confirmTips }}</p>
                         </slot>
                     </div>
+                    <!-- 提示类内容区域 -->
                     <div
                             v-if="type == 'tips'"
                             class="kd-dialog-body kd-dialog-tips-body"
+                            :class="{ 'kd-dialog-tips-body-center': tipsIsCenter }"
                     >
                         <slot>
                             <span
@@ -100,14 +94,28 @@
                                     class="kd-icon-section kd-dailog-tips-icon"
                             >
                                 <i
-                                        :class="['kd-dialog-icon-size-tips', 'kdicon', icon]"
+                                        :class="[
+                                            'kd-dialog-icon-size-tips',
+                                            'kdicon',
+                                            iconClass,
+                                            { 'kd-dialog-icon-size-tips-center': tipsIsCenter },
+                                        ]"
                                         :style="{ color: iconColor }"
                                 ></i>
                             </span>
-                            <span class="kd-dialog-tips-title">{{ tipsTitle }}</span>
-                            <p class="kd-dialog-tips-message">{{ tipsMessage }}</p>
+                            <span
+                                    class="kd-dialog-tips-title"
+                                    :class="{ 'kd-dialog-tips-title-center': tipsIsCenter }"
+                            >{{ tipsTitle }}</span>
+                            <p
+                                    class="kd-dialog-tips-message"
+                                    :class="{ 'kd-dialog-tips-message-center': tipsIsCenter }"
+                            >
+                                {{ tipsMessage }}
+                            </p>
                         </slot>
                     </div>
+                    <!-- dialog footer部分 -->
                     <div
                             :class="{
                                 'kd-dialog-footer': true,
@@ -161,7 +169,12 @@
         name: 'Dialog',
         directives: { transferDom },
         props: {
-            // Dialog 的标题，也可通过具名 slot （见下表）传入
+            // v-model绑定，控制dialog显示与隐藏
+            value: {
+                type: Boolean,
+                default: false
+            },
+            // Dialog 的标题，也可通过具名 slot
             title: {
                 type: String,
                 default: '标题'
@@ -181,7 +194,7 @@
                 type: Boolean,
                 default: true
             },
-            // show-close    是否显示关闭按钮
+            // 是否显示关闭按钮
             showClose: {
                 type: Boolean,
                 default: true
@@ -189,36 +202,19 @@
             // dialog 类型
             type: {
                 type: String,
-                default: 'default' // default,message,tips
+                default: 'default' // default,confirm,tips
             },
-            // additionalTips 附加提示  type为message
-            additionalTips: {
-                type: String,
-                default: ''
-            },
-            // dialog message
-            message: {
-                type: String,
-                default: ''
-            },
+            // icon类型
             icon: {
                 type: String,
                 default: '' // success,failed,warning,info
             },
-            iconTitle: {
-                type: String,
-                default: ''
-            },
-            iconColor: {
-                type: String,
-                default: ''
-            },
-            // 二次确认标题
+            // 二次确认标题 type:confirm
             confirmTitle: {
                 type: String,
                 default: ''
             },
-            // 二次确认提示文字
+            // 二次确认提示文字 type:confirm
             confirmTips: {
                 type: String,
                 default: ''
@@ -226,11 +222,15 @@
             // tipsTitle  type为tips
             tipsTitle: {
                 type: String,
-                default: ''
+                default: '成功'
             },
             tipsMessage: {
                 type: String,
                 default: ''
+            },
+            tipsIsCenter: {
+                type: Boolean,
+                default: false
             },
             // width    Dialog 的宽度
             width: {
@@ -250,11 +250,7 @@
                 type: Boolean,
                 default: false
             },
-            //
-            value: {
-                type: Boolean,
-                default: false
-            },
+
             // 点击遮罩层关闭dialog
             clickModalToClose: {
                 type: Boolean,
@@ -279,8 +275,7 @@
             // 确认按钮是否禁用
             disableOk: {
                 type: Boolean,
-                default: false,
-                required: false
+                default: false
             },
             transfer: {
                 type: Boolean,
@@ -296,11 +291,25 @@
             return {
                 visible: this.value,
                 mask: this.modal,
-                selfDisableOk: true,
+                selfDisableOk: false,
                 closed: false,
                 marginTop: 0,
                 marginLeft: 0,
-                originData: { marginTop: 0, marginLeft: 0 }
+                originData: { marginTop: 0, marginLeft: 0 },
+                iconClass_obj: {
+                    success: 'iconzhengque',
+                    failed: 'iconcuowu',
+                    warning: 'iconjinggao',
+                    info: 'iconinfo'
+                },
+                iconColor_obj: {
+                    success: '#38C482',
+                    failed: '#EF4E76',
+                    warning: '#FF9A42',
+                    info: '#547DFC'
+                },
+                iconColor: '',
+                iconClass: ''
             };
         },
 
@@ -346,6 +355,11 @@
                 this.$emit('input', newValue);
             }
         },
+
+        created() {
+            this.iconClass = this.iconClass_obj[this.icon] || 'iconzhengque';
+            this.iconColor = this.iconColor_obj[this.icon] || '#38C482';
+        },
         // 销毁前移除dom
         destroyed() {
             // if appendToBody is true, remove DOM node after destroy
@@ -353,8 +367,8 @@
                 this.$el.parentNode.removeChild(this.$el);
             }
         },
-
         methods: {
+            // 确认按钮的回调，默认关闭dialogue
             _ok() {
                 if (this.disableOk) return;
                 const callback = this.ok;
@@ -366,7 +380,7 @@
                     this.$emit('ok');
                 }
             },
-            // 关闭Dialog
+            // 取消按钮回调 关闭Dialog
             close(flag) {
                 const callback = this.cancel;
                 if (typeof callback === 'function' && flag) {
@@ -389,13 +403,7 @@
                 if (!this.clickModalToClose) return;
                 this.close();
             },
-            afterEnter() {
-                this.$emit('opened');
-            },
-            afterLeave() {
-                this.$emit('closed');
-            },
-
+            // dialog可以移动相关计算
             drag(startPoint, endPoint) {
                 animationFrame(() => {
                     this.marginTop = endPoint.y - startPoint.y + this.originData.marginTop;
