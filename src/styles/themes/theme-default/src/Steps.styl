@@ -31,7 +31,7 @@
         margin 0 8px
         border-radius 50%
         text-align center
-        line-height 29px
+        line-height 28px
         &.kd-step-index-small,&.kd-step-index-simple
             width 26px
             height 26px
@@ -47,6 +47,22 @@
             border $-step-index-done-border-color
             background $-step-index-done-background-color
             color $-step-index-done-color
+        &.kd-step-custom-status-error
+            border $-step-custom-status-error-border-color
+            background $-step-custom-status-error-background-color
+            color $-step-custom-status-error-color
+        &.kd-step-custom-status-wait
+            border 1px solid $-step-index-default-border-color
+            color $-step-index-default-color
+            background $-step-custom-status-wait-background-color
+        &.kd-step-custom-status-finished
+            border $-step-index-active-border-color
+            background $-step-index-active-background-color
+            color  #fff
+        &.kd-step-custom-status-active
+            border $-step-index-active-border-color
+            background $-step-index-active-background-color
+            color  #ffff
         &.kd-step-index-icon
             border 0 none
             background transparent

@@ -17,11 +17,11 @@
         props: {
             value: {
                 type: [String, Number],
-                default: 0
+                default: 1
             },
             type: {
                 type: String,
-                default: 'line' // line，simple,spot若为simple，description/direction/space失效
+                default: 'default' // default，simple,spot若为simple，description/direction/space失效
             },
             position: {
                 type: String,
@@ -38,17 +38,13 @@
             width: {
                 type: [Number, String]
             },
-            center: {
-                type: Boolean,
-                default: true
-            },
             finishStatus: {
                 type: String,
-                default: 'success' // success,failed,figure
+                default: 'finished' // error,wait,finished,active
             },
             currentStatus: {
                 type: String,
-                default: 'figure' // success,failed,figure
+                default: 'active' // error,wait,finished,active
             }
         },
         data() {
@@ -74,14 +70,14 @@
         },
         methods: {
             resetDirection() {
-                if (this.type != 'line') {
+                if (this.type != 'default') {
                     this.orientation = 'level';
                 }
             },
             stepsStyle() {
                 const style = {};
                 if (this.width) {
-                    style.width = this.width + 'px';
+                    style.width = Number(this.width) + 'px';
                     window.getComputedStyle(this.$el).width = this.width + 'px';
                 }
                 return style;
@@ -97,7 +93,7 @@
                 const precent = 100;
                 const lastChildWidth = precent / childNum + '%';
                 const parent = this.$el;
-                if (this.type == 'line' && this.direction == 'vertical') {
+                if (this.type == 'default' && this.direction == 'vertical') {
                     Array.from(parent.children)[childNum - 1].style[
                         'max-height'
                     ] = lastChildWidth;

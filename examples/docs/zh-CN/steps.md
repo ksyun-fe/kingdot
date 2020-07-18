@@ -8,7 +8,7 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1" type="spot" style="margin-bottom:20px">
+        <Steps v-model="stepIndex1" type="spot">
             <Step title="步骤一" ></Step>
             <Step title="步骤二" ></Step>
             <Step title="步骤三" ></Step>
@@ -26,7 +26,7 @@
         },
         methods:{
             _next(){
-                this.stepIndex1 = this.stepIndex1+1;
+                this.stepIndex1 = this.stepIndex1<=4 ? this.stepIndex1+1:1;
             }
         }
     }
@@ -38,27 +38,43 @@
 :::demo #基础用法 有状态的步骤条
 ```html
 <template>
+<div>
     <div>
-        <Steps v-model="stepIndex1" style="margin-bottom:20px">
-            <Step title="步骤一"></Step>
-            <Step title="步骤二"></Step>
-            <Step title="步骤三"></Step>
+        <Steps v-model="stepIndex1" finishStatus='finished'>
+            <Step title="步骤一" status="wait"></Step>
+            <Step title="步骤二" status="error"></Step>
+            <Step title="步骤三" status="active"></Step>
             <Step title="完成"></Step>
         </Steps>
         <Button @click="_next">下一步</Button>
     </div>
+    <div>
+        <Steps v-model="stepIndex2">
+            <Step title="步骤一" ></Step>
+            <Step title="步骤二" ></Step>
+            <Step title="步骤三" ></Step>
+            <Step title="完成"></Step>
+        </Steps>
+        <Button @click="_next1">下一步</Button>
+    </div>
+</div>
 </template>
 <script>
     export default {
         data(){
             return{
                 stepIndex1:2,
+                stepIndex2:2,
                 description:'这里是描述文案，超出折行显示'
             }
         },
         methods:{
             _next(){
-                this.stepIndex1 = this.stepIndex1+1;
+                this.stepIndex1 = this.stepIndex1<=4 ? this.stepIndex1+1:1;
+                
+            },
+            _next1(){
+                this.stepIndex2 = this.stepIndex2<=4 ? this.stepIndex2+1:1;
             }
         }
     }
@@ -71,7 +87,13 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1" style="margin-bottom:20px">
+        <Steps v-model="stepIndex1">
+            <Step title="步骤一" :description="description"></Step>
+            <Step title="步骤二" :description="description"></Step>
+            <Step title="步骤三" :description="description"></Step>
+            <Step title="完成" :description="description"></Step>
+        </Steps>
+        <Steps v-model="stepIndex1" position="bottom">
             <Step title="步骤一" :description="description"></Step>
             <Step title="步骤二" :description="description"></Step>
             <Step title="步骤三" :description="description"></Step>
@@ -90,7 +112,7 @@
         },
         methods:{
             _next(){
-                this.stepIndex1 = this.stepIndex1+1;
+                this.stepIndex1 = this.stepIndex1<=4 ? this.stepIndex1+1:1;
             }
         }
     }
@@ -103,7 +125,7 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1" style="margin-bottom:20px">
+        <Steps v-model="stepIndex1">
             <Step title="步骤一" icon="iconshijian"></Step>
             <Step title="步骤二" icon="iconshangchuanwenjian_wenjiantubiao"></Step>
             <Step title="步骤三" icon="icondaohangcaidan_morenbutton"></Step>
@@ -120,7 +142,7 @@
         },
         methods:{
             _next(){
-                this.stepIndex1 = this.stepIndex1+1;
+                this.stepIndex1 = this.stepIndex1<=3 ? this.stepIndex1+1:1;
             }
         }
     }
@@ -133,12 +155,12 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1" type='simple' style="margin-bottom:20px">
+        <Steps v-model="stepIndex1" type='simple'>
             <Step title="步骤一" icon="iconshijian"></Step>
             <Step title="步骤二" icon="iconshangchuanwenjian_wenjiantubiao"></Step>
             <Step title="步骤三" icon="icondaohangcaidan_morenbutton"></Step>
         </Steps>
-        <Steps v-model="stepIndex1" type='simple' style="margin-bottom:20px">
+        <Steps v-model="stepIndex1" type='simple'>
             <Step title="步骤一" ></Step>
             <Step title="步骤二" ></Step>
             <Step title="步骤三" ></Step>
@@ -155,7 +177,7 @@
         },
         methods:{
             _next(){
-                this.stepIndex1 = this.stepIndex1+1;
+                this.stepIndex1 = this.stepIndex1<=3 ? this.stepIndex1+1:1;
             }
         }
     }
@@ -164,7 +186,7 @@
 :::
 #### 竖时的步骤条
 >
-:::demo #基础用法 竖时的步骤条,其父元素一定要设置高度
+:::demo #基础用法 竖式的步骤条,其父元素一定要设置高度
 ```html
 <template>
     <div>
@@ -188,7 +210,7 @@
         },
         methods:{
             _next(){
-                this.stepIndex1 = this.stepIndex1+1;
+                this.stepIndex1 = this.stepIndex1<=3 ? this.stepIndex1+1:1;
             }
         }
     }
@@ -200,11 +222,19 @@
 ### Step属性 {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| value     | 当前激活的步骤   | string/Number    | 0 |
 | title     | 标题   | string    | - |     —    |
 | description  | 描述   | String  |     —     |    -   |
-| position  | 标题和描述的位置   | string  |     bottom/right   |    right   |
 | icon  | 自定义图标的类   | String  |     —     |    -   |
-| shape  | 圆形按钮   | string  |     circle / round     |    —   |
-| loading  | 设置加载中状态   | boolean  |    —      |    false   |
-| icon  | 图标类名   | string  |     —     |    —   |
+| status  | 当前步骤的状态   | string  |     wait/finished/error / active     |    —   |
+
+### Step属性 {.component__content}
+| 属性       | 说明              | 类型          | 可选值       | 默认值   |
+|---------- |------------------|---------------|---------------|-------- |
+| value     | 当前激活的步骤,v-model绑定     | string/Number  |    _          | 1       |
+| type      |  steps的类型      | String         | default/simple/spot | default |
+| direction |  steps的整体方向   | String         | level/vertical  | level |
+| position  | 控制step标题和描述的位置 ｜ String   | bottom/right  | right   |
+| width     | steps的宽度       | Sring/Number |  -            |  -       |
+| size      | step的大小        ｜ String      | default/small | default   |
+| finishStatus | 已完成步骤的状态 | String      | wait/finished/error/active | finished |
+|currentStatus  | 当前激活步骤的状态 | String  | wait/finished/error/active | active |
