@@ -47,7 +47,7 @@
                         <!-- 关闭按钮 -->
                         <i
                                 v-if="showClose"
-                                class="kd-dialog-icon kdicon iconguanbi"
+                                class="kd-dialog-icon iconguanbi"
                                 @click.stop="close"
                         ></i>
                         <div
@@ -74,7 +74,7 @@
                                     class="kd-icon-section"
                             >
                                 <i
-                                        :class="['kd-dialog-icon-size-confirm', 'kdicon', iconClass]"
+                                        :class="['kd-dialog-icon-size-confirm', iconClass]"
                                         :style="{ color: iconColor }"
                                 ></i>
                             </span>
@@ -96,7 +96,6 @@
                                 <i
                                         :class="[
                                             'kd-dialog-icon-size-tips',
-                                            'kdicon',
                                             iconClass,
                                             { 'kd-dialog-icon-size-tips-center': tipsIsCenter },
                                         ]"
@@ -297,10 +296,10 @@
                 marginLeft: 0,
                 originData: { marginTop: 0, marginLeft: 0 },
                 iconClass_obj: {
-                    success: 'iconzhengque',
-                    failed: 'iconcuowu',
-                    warning: 'iconjinggao',
-                    info: 'iconinfo'
+                    success: 'iconzhengque_danchuang',
+                    failed: 'iconcuowu_danchuang',
+                    warning: 'iconjinggao_danchuang',
+                    info: 'iconxinxi_danchuang'
                 },
                 iconColor_obj: {
                     success: '#38C482',
