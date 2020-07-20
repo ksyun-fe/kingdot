@@ -4,7 +4,7 @@
             class="container"
     >
         <div class="panel">
-            <h1>King Design</h1>
+            <h1>King Dot</h1>
             <p class="desc">
                 <%= 1 >
             </p>
