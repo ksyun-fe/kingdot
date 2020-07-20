@@ -15,13 +15,16 @@
             "path": "/i18n",
             "name": "国际化"
         },
-        
         {
             "name": "组件"
         },
         {
             "path": "/button",
             "name": "按钮"
+        },
+        {
+            "path": "/radio",
+            "name": "Radio 单选框"
         }
     ],
     "en-US": [
@@ -42,6 +45,10 @@
         {
             "path": "/button",
             "name": "Button"
+        },
+        {
+            "path": "/radio",
+            "name": "Radio"
         }
     ]
 }
