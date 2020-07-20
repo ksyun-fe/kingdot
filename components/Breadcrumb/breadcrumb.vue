@@ -17,7 +17,7 @@
             },
             separatorClass: {
                 type: String,
-                default: 'iconchuansuokuang_anniu1'
+                default: 'iconmianbaoxie_xianxing'
             }
         },
         data() {
