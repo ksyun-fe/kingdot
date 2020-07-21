@@ -117,7 +117,7 @@
             margin 18px 0
         p
             margin 0
-            line-height 25px
+            line-height 20px
         .color-wrap-flex
             display flex
             justify-content flex-start
