@@ -10,6 +10,8 @@
     <div>
         <Radio :true-value="1" v-model="valueFirst" @change="change">radio</Radio>
         <Radio :true-value="2" v-model="valueFirst">radio</Radio>
+        <Radio :true-value="3" v-model="valueFirst" :disabled="true">radio</Radio>
+        <Radio :true-value="1" v-model="valueFirst" :disabled="true">radio</Radio>
     </div>
 </template>
 <script>
@@ -39,8 +41,7 @@
 
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |:---------- |:-------- |:---------- |:-------------  |:-------- |
-| disabled     | 是否禁用   | Boolean    |     *     |    false     |
-| value     | 单选框的取值，用于v-model进行双向绑定   | *    |    |        |
-| trueValue  |   单选框选中后的值   | *  |     —     |       |
-| name  |   原生 name 属性   | string / number  |     —     |       |
-| label  |   Radio 的 value   | string  |     —     |       |
+| disabled     | 是否禁用   | Boolean    |     true / false     |    false     |
+| value     | 单选框的取值，用于v-model进行双向绑定   | Boolean / String / Number    |  —  |    —    |
+| trueValue  |   单选框选中后的值   | Boolean / String / Number  |     —     |   —    |
+| name  |   原生 name 属性   | String / Number  |     —     |    —    |

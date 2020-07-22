@@ -23,7 +23,6 @@
 </template>
 
 <script>
-    // import Lang from 'src/mixin/lang.js';
     export default {
         name: 'Radio',
         props: {
@@ -44,11 +43,7 @@
             }
         },
         data() {
-            var classNameObj = {
-                'kd-radio': true
-            };
             return {
-                classNameObj,
                 radioValue: ''
             };
         },
