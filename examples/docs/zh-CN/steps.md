@@ -126,9 +126,9 @@
 <template>
     <div>
         <Steps v-model="stepIndex1">
-            <Step title="步骤一" icon="iconshijian"></Step>
-            <Step title="步骤二" icon="iconshangchuanwenjian_wenjiantubiao"></Step>
-            <Step title="步骤三" icon="icondaohangcaidan_morenbutton"></Step>
+            <Step title="步骤一" icon="kd-icon-upload-file"></Step>
+            <Step title="步骤二" icon="kd-icon-menu-more"></Step>
+            <Step title="步骤三" icon="kd-icon-success-circle"></Step>
         </Steps>
         <Button @click="_next">下一步</Button>
     </div>
@@ -156,9 +156,9 @@
 <template>
     <div>
         <Steps v-model="stepIndex1" type='simple'>
-            <Step title="步骤一" icon="iconshijian"></Step>
-            <Step title="步骤二" icon="iconshangchuanwenjian_wenjiantubiao"></Step>
-            <Step title="步骤三" icon="icondaohangcaidan_morenbutton"></Step>
+            <Step title="步骤一" icon="kd-icon-upload-file"></Step>
+            <Step title="步骤二" icon="kd-icon-menu-more"></Step>
+            <Step title="步骤三" icon="kd-icon-success-circle"></Step>
         </Steps>
         <Steps v-model="stepIndex1" type='simple'>
             <Step title="步骤一" ></Step>
@@ -227,7 +227,7 @@
 | icon  | 自定义图标的类   | String  |     —     |    -   |
 | status  | 当前步骤的状态   | string  |     wait/finished/error / active     |    —   |
 
-### Step属性 {.component__content}
+### Steps属性 {.component__content}
 | 属性       | 说明              | 类型          | 可选值       | 默认值   |
 |---------- |------------------|---------------|---------------|-------- |
 | value     | 当前激活的步骤,v-model绑定     | string/Number  |    _          | 1       |

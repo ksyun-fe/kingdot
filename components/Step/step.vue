@@ -24,14 +24,14 @@
                     >
                         <i
                                 v-if="icon == '' && _status == 'finished'"
-                                class="iconzhengque_tubiaoji kdicon"
+                                class="kd-icon-success"
                         ></i>
                         <span
                                 v-if="icon == '' && _status != 'error' && _status != 'finished'"
                         >{{ index }}</span>
                         <i
                                 v-if="icon == '' && _status == 'error'"
-                                class="iconcuowu_tubiaoji kdicon"
+                                class="kd-icon-error"
                         ></i>
                         <i
                                 v-if="icon != ''"
@@ -85,7 +85,6 @@
             >
                 {{ description }}
             </p>
-            <!--  -->
             <div
                     v-if="position == 'left' && type == 'default' && direction == 'level'"
                     class="kd-step-content"
