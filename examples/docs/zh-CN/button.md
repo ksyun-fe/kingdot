@@ -92,7 +92,7 @@
         <Button icon='iconmoren_xinzeng' shape='circle'></Button>
         <Button type='primary' icon='iconmoren_xinzeng' shape='circle'></Button>
         <Button type='primary' icon='iconmoren_xinzeng' shape='round'>按钮</Button>
-        <Button type='primary' shape='round'>按钮</Button> 
+        <Button type='primary' shape='round'>按钮</Button>
     </div>
 </template>
 ```
