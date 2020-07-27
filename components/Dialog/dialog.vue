@@ -47,7 +47,7 @@
                         <!-- 关闭按钮 -->
                         <i
                                 v-if="showClose"
-                                class="kd-dialog-icon iconguanbi"
+                                class="kd-dialog-icon kd-icon-close"
                                 @click.stop="close"
                         ></i>
                         <div
@@ -296,10 +296,10 @@
                 marginLeft: 0,
                 originData: { marginTop: 0, marginLeft: 0 },
                 iconClass_obj: {
-                    success: 'iconzhengque_danchuang',
-                    failed: 'iconcuowu_danchuang',
-                    warning: 'iconjinggao_danchuang',
-                    info: 'iconxinxi_danchuang'
+                    success: 'kd-icon-success-solid',
+                    failed: 'kd-icon-error-solid',
+                    warning: 'kd-icon-warning-solid',
+                    info: 'kd-icon-message-solid'
                 },
                 iconColor_obj: {
                     success: '#38C482',
