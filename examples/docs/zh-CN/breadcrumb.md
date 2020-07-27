@@ -44,7 +44,7 @@
         </Breadcrumb>
         </div>
         <div style="margin-top:20px">
-         <Breadcrumb separatorClass="iconriqixuanzeqi_xiayige">
+         <Breadcrumb separatorClass="kd-icon-video-play">
             <BreadcrumbItem to="/">一级菜单</BreadcrumbItem>
             <BreadcrumbItem href="/">二级菜单</BreadcrumbItem>
             <BreadcrumbItem>三级菜单</BreadcrumbItem>
