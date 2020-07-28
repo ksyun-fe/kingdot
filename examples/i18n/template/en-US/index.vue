@@ -4,7 +4,7 @@
             class="container"
     >
         <div class="panel">
-            <h1>King Design</h1>
+            <h1>King Dot</h1>
             <p class="desc">
                 The design system serving the enterprise level products, based on the modular solution of the determined and natural design values, enables designers and developers to focus on better user experience design
             </p>
