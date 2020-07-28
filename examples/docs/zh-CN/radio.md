@@ -8,8 +8,9 @@
 ```html
 <template>
     <div>
-        <Radio :true-value="1" v-model="valueFirst" @change="change">radio</Radio>
+        <Radio :true-value="1" v-model="valueFirst" @change="change" size="small">radio</Radio>
         <Radio :true-value="2" v-model="valueFirst">radio</Radio>
+        <Radio :true-value="3" v-model="valueFirst" size="large">radio</Radio>
         <Radio :true-value="3" v-model="valueFirst" :disabled="true">radio</Radio>
         <Radio :true-value="1" v-model="valueFirst" :disabled="true">radio</Radio>
     </div>

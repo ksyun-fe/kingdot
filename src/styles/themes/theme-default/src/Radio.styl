@@ -3,31 +3,32 @@
 .kd-radio
     display inline-block
     cursor pointer
-    .kd-radio-wrapper
-        display inline-block
-        width $-radio-width
-        height $-radio-width
-        vertical-align middle
-        border 1px solid $-radio-border-color
-        border-radius 50%
-        transition all $-transition
-        position relative
-        background $-radio-bg-color
-        // inner
-        &:before
-            content ""
-            display block
-            position absolute
-            width $-radio-inner-width
-            height $-radio-inner-width
-            top 50%
-            left 50%
-            margin-left s('-%s', $-radio-inner-width / 2)
-            margin-top @margin-left
+    for size in $-radio-size-types
+        .kd-radio-{size}-wrapper
+            width lookup('$-radio-' + size + '-width')
+            height lookup('$-radio-' + size + '-width')
+            display inline-block
+            vertical-align middle
+            border 1px solid $-radio-border-color
             border-radius 50%
-            background-color $-radio-checked-color
-            transform scale(0)
             transition all $-transition
+            position relative
+            background $-radio-bg-color
+            // inner
+            &:before
+                content ""
+                display block
+                position absolute
+                width lookup('$-radio-' + size + '-inner-width')
+                height lookup('$-radio-' + size + '-inner-width')
+                top 50%
+                left 50%
+                // margin-left s('-%s', ('$-radio-' + size + '-inner-width') / 2)
+                margin-top @margin-left
+                border-radius 50%
+                background-color $-radio-checked-color
+                transform scale(0)
+                transition all $-transition
 
     .kd-radio-input
         width 100%
@@ -42,22 +43,25 @@
 
     // checked
     &.kd-radio-checked
-        .kd-radio-wrapper
-            border-color $-radio-checked-color
-            &:before
-                transform scale(1)
+        for size in $-radio-size-types
+            .kd-radio-{size}-wrapper
+                border-color $-radio-checked-color
+                &:before
+                    transform scale(1)
     // focus
     &:focus
         outline none
-        .kd-radio-wrapper
-            border-color $-radio-checked-color
+        for size in $-radio-size-types
+            .kd-radio-{size}-wrapper
+                border-color $-radio-checked-color
 
     // disabled
     &.kd-radio-disabled
         color $-radio-disabled-color
         cursor not-allowed
-        .kd-radio-wrapper
-            border-color $-radio-disabled-border-color
-            background $-radio-disabled-bg-color
-            &:before
-                background $-radio-disabled-inner-color
+        for size in $-radio-size-types
+            .kd-radio-{size}-wrapper
+                border-color $-radio-disabled-border-color
+                background $-radio-disabled-bg-color
+                &:before
+                    background $-radio-disabled-inner-color

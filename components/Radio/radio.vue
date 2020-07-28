@@ -3,7 +3,7 @@
             :class="['kd-radio',{'kd-radio-checked': checked,'kd-radio-disabled':disabled}]"
     >
         <span
-                class="kd-radio-wrapper"
+                :class="`kd-radio-${size}-wrapper`"
                 @click="clickSelf"
         >
             <input
@@ -26,6 +26,10 @@
     export default {
         name: 'Radio',
         props: {
+            size: {
+                type: String,
+                default: 'default'
+            },
             disabled: {
                 type: Boolean,
                 default: false
