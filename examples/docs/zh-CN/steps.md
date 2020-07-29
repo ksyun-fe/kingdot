@@ -44,7 +44,7 @@
             <Step title="步骤一" status="wait"></Step>
             <Step title="步骤二" status="error"></Step>
             <Step title="步骤三" status="active"></Step>
-            <Step title="完成"></Step>
+            <Step title="完成完成完成完成"></Step>
         </Steps>
         <Button @click="_next">下一步</Button>
     </div>
@@ -53,7 +53,7 @@
             <Step title="步骤一" ></Step>
             <Step title="步骤二" ></Step>
             <Step title="步骤三" ></Step>
-            <Step title="完成"></Step>
+            <Step title="完成完成完成完成"></Step>
         </Steps>
         <Button @click="_next1">下一步</Button>
     </div>
