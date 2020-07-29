@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "16201701",
+      "name": "arrow-left",
+      "font_class": "arrow-left",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
       "icon_id": "16016708",
       "name": "面包屑_线性",
       "font_class": "arrow-right",
