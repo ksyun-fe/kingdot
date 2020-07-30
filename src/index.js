@@ -2,14 +2,12 @@ import Button from '../components/Button/index.js';
 import ButtonGroup from '../components/ButtonGroup/index.js';
 import Message from '../components/Message/index.js';
 import Radio from '../components/Radio/index.js';
-import Spin from '../components/Spin/index.js';
 
 const components = [
     Button,
     ButtonGroup,
     Message,
-    Radio,
-    Spin
+    Radio
 ];
 
 const install = (Vue) => {
@@ -24,6 +22,5 @@ export default {
     Button,
     ButtonGroup,
     Message,
-    Radio,
-    Spin
+    Radio
 };

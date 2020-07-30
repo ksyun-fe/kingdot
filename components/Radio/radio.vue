@@ -1,11 +1,16 @@
 <template>
     <label
-            :class="['kd-radio',{'kd-radio-checked': checked,'kd-radio-disabled':disabled}]"
+            :class="[
+                'kd-radio',
+                {
+                    'kd-radio-checked': checked,
+                    'kd-radio-disabled': disabled,
+                    'kd-radio-type': showType
+                }
+            ]"
     >
-        <span
-                :class="`kd-radio-${size}-wrapper`"
-                @click="clickSelf"
-        >
+        <!-- 按钮 -->
+        <span class="kd-radio-wrapper">
             <input
                     ref="input"
                     type="radio"
@@ -14,8 +19,10 @@
                     :name="name"
                     :disabled="disabled"
                     tabindex="-1"
+                    @click="clickSelf"
             >
         </span>
+        <!-- 文本 -->
         <span class="kd-radio-text">
             <slot></slot>
         </span>
@@ -26,10 +33,12 @@
     export default {
         name: 'Radio',
         props: {
-            size: {
+            // 排列类型
+            type: {
                 type: String,
-                default: 'default'
+                default: 'horizontal'
             },
+            // 是否禁用
             disabled: {
                 type: Boolean,
                 default: false
@@ -37,10 +46,12 @@
             name: {
                 type: String
             },
+            // 正确的值
             trueValue: {
                 type: [Boolean, String, Number],
                 default: ''
             },
+            // 传入的值
             value: {
                 type: [Boolean, String, Number],
                 default: ''
@@ -52,8 +63,13 @@
             };
         },
         computed: {
+            // 是否已选择
             checked() {
                 return this.trueValue === this.radioValue;
+            },
+            // 展示类型
+            showType() {
+                return this.type === 'vertical';
             }
         },
         watch: {
@@ -68,6 +84,7 @@
             }
         },
         methods: {
+            // 点击事件
             clickSelf() {
                 if (this.disabled) return;
                 this.$emit('input', this.trueValue);
