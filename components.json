@@ -3,7 +3,6 @@
     "BreadcrumbItem": "./components/BreadcrumbItem/index.vue",
     "Button": "./components/Button/index.vue",
     "ButtonGroup": "./components/ButtonGroup/index.vue",
-    "Dialog": "./components/Dialog/index.vue",
     "Message": "./components/Message/index.vue",
     "Spin": "./components/Spin/index.vue"
 }

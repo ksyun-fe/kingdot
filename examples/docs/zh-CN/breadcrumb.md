@@ -45,7 +45,7 @@
         </div>
         <div style="margin-top:20px">
          <Breadcrumb separatorClass="kd-icon-video-play">
-            <BreadcrumbItem to="/">一级菜单</BreadcrumbItem>
+            <BreadcrumbItem to="/" href="#/zh-CN/component/button">一级菜单</BreadcrumbItem>
             <BreadcrumbItem href="/">二级菜单</BreadcrumbItem>
             <BreadcrumbItem>三级菜单</BreadcrumbItem>
         </Breadcrumb>
@@ -66,5 +66,5 @@
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 |  to       |路由跳转对象，同 vue-router 的 to| String/Function/Object | - | - |
-| href     |  跳转链接  ，同a标签的href  | String | - |- |
+| href     |  跳转链接  ，同a标签的href,优先级大于to  | String | - |- |
 | replace | 在使用 to 进行路由跳转时，启用 replace 将不会向 history 添加新记录 | Boolean | - |false
