@@ -9,6 +9,7 @@ const languages = {
     html: 'xml',
     css: 'css'
 };
+const demoTitleReg = /^demo\s+#(.*?)\s*?##(.+)$/;
 md.use(markdownItAttrs, {
     leftDelimiter: '{',
     rightDelimiter: '}',
@@ -51,7 +52,7 @@ md.use(container, 'demo', {
     },
     render: function (tokens, idx) {
         const token = tokens[idx];
-        const m = token.info.trim().match(/^demo\s+#([^\s]*)\s+(.+)$/);
+        const m = token.info.trim().match(demoTitleReg);
         if (tokens[idx].nesting === 1 && m) {
             return `<component-demo class="title">
                         <template slot="title">${m[1].trim()}</template>
