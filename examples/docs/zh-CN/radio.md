@@ -75,8 +75,13 @@
 
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |:---------- |:-------- |:---------- |:-------------  |:-------- |
-| disabled     | 是否禁用   | Boolean    |     true / false     |    false     |
 | value     | 单选框的取值，用于v-model进行双向绑定   | Boolean / String / Number    |  —  |    —    |
 | trueValue  |   单选框选中后的值   | Boolean / String / Number  |     —     |   —    |
-| name  |   原生 name 属性   | String / Number  |     —     |    —    |
+| disabled     | 是否禁用   | Boolean    |     true / false     |    false     |
 | type  |   定义radio的排列方式：垂直、水平   | String  |     "vertical" / "horizontal"    |    "vertical"    |
+
+### 事件 {.component__content}
+
+| 时间名称      | 说明    | 回调参数      |
+|:---------- |:-------- |:---------- |
+| change     | 绑定值变化时触发的事件   | 选中的 Radio 值   |
