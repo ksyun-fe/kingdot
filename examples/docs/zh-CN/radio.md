@@ -41,28 +41,68 @@
 
 ### 垂直排列
 
-:::demo #用法 通过`type`属性设置排列方式。默认值为`horizontal`。
+:::demo #用法 通过`type`属性设置排列方式，垂直方向为`vertical`。默认值为`horizontal`。
 
 ```html
 <template>
     <div>
         <Radio
             :true-value="v"
-            v-model="horValue"
-            v-for="(v,k) in horValueList"
+            v-model="radioValue"
+            v-for="(v,k) in radioValueList"
             :key="k"
             type="vertical"
-        >radio</Radio>
+        >{{v}}</Radio>
 
-        <div class="red">选择的数据是：{{ horValue }}</div>
+        <div class="red">选择的数据是：{{ radioValue }}</div>
     </div>
 </template>
 <script>
     export default  {
         data() {
             return {
-                horValue:1,
-                horValueList: [1,2,3]
+                radioValue:'北京',
+                radioValueList: ['北京','上海','深圳']
+            }
+        }
+    }
+</script>
+```
+
+:::
+
+### 多行展示
+
+:::demo #说明 外层元素宽度有限制时，水平方向和垂直方向文字过多时展示效果。
+
+```html
+<template>
+    <div>
+        <div style="width:280px;border-bottom:1px dashed #ccc;padding-bottom:20px">
+            <Radio
+                :true-value="v"
+                v-model="horValue"
+                v-for="(v,k) in horValueList"
+                :key="k"
+            >{{v}}</Radio>
+        </div>
+        <div style="width:280px;">
+            <Radio
+                :true-value="v"
+                v-model="horValue"
+                v-for="(v,k) in horValueList"
+                :key="k"
+                type="vertical"
+            >{{v}}</Radio>
+        </div>
+    </div>
+</template>
+<script>
+    export default  {
+        data() {
+            return {
+                horValue:'北京',
+                horValueList: ['外层元素宽度有限制时，文字过多时的展示效果','北京','上海']
             }
         }
     }
@@ -78,7 +118,7 @@
 | value     | 单选框的取值，用于v-model进行双向绑定   | Boolean / String / Number    |  —  |    —    |
 | trueValue  |   单选框选中后的值   | Boolean / String / Number  |     —     |   —    |
 | disabled     | 是否禁用   | Boolean    |     true / false     |    false     |
-| type  |   定义radio的排列方式：垂直、水平   | String  |     "vertical" / "horizontal"    |    "vertical"    |
+| type  |   定义radio的排列方式：垂直、水平   | String  |     "vertical" / "horizontal"    |    "horizontal"    |
 
 ### 事件 {.component__content}
 

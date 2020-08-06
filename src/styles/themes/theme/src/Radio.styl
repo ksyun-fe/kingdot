@@ -1,9 +1,8 @@
 @import "../variables.styl";
 
 .kd-radio
-    display inline-block
+    display inline-flex
     cursor pointer
-    white-space nowrap
     .kd-radio-wrapper
         width $-radio-width
         height $-radio-width
@@ -14,6 +13,7 @@
         transition all $-transition
         position relative
         background $-radio-bg-color
+        flex 0 0 auto
         // inner
         &:before
             content ""
@@ -41,8 +41,9 @@
         display inline-block
         margin-left $-radio-text-margin-left
         font-size 14px
-        white-space nowrap
         color $-radio-text-color
+        flex 0 1 auto
+        line-height 16px
     // checked
     &.kd-radio-checked
         .kd-radio-wrapper
@@ -62,5 +63,5 @@
         .kd-radio-text
             color $-radio-disabled-color
     &.kd-radio-type
-        display block
+        display flex
         padding 4px 0
