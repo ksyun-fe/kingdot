@@ -24,8 +24,8 @@
             "name": "按钮"
         },
         {
-            "path": "/switch",
-            "name": "开关"
+            "path": "/input",
+            "name": "输入框"
         }
     ],
     "en-US": [
@@ -48,8 +48,8 @@
             "name": "Button"
         },
         {
-            "path": "/switch",
-            "name": "switch"
+            "path": "/input",
+            "name": "Input"
         }
     ]
 }
