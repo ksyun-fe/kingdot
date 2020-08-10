@@ -1,0 +1,82 @@
+.kd-input
+    display inline-block
+    width $-input-default-width
+    vertical-align middle
+    .kd-wrapper
+        display inline-block
+        width 100%
+        position relative
+    .kd-inner
+        display inline-block
+        position relative
+        width 100%
+        outline none
+        border $-input-border
+        border-radius $-input-border-radius
+        background-color $-input-bg-color
+        transition border $transition, background $transition, box-shadow $-transition
+        &:focus
+            border $-input-focus-border
+            z-index 1
+    .kd-prefix
+    .kd-suffix
+        position absolute
+        top 50%
+        transform translateY(-50%)
+        z-index 2
+
+    &.kd-input-group
+        display table
+        .kd-prepend
+        .kd-append
+            display table-cell
+            padding 0 $-input-pend-padding-horizontal
+            width: 1px
+            color $-input-pend-color
+            vertical-align middle
+            border $-input-border
+            text-align center
+        .kd-prepend
+            border-right none
+            white-space nowrap
+            border-radius $-input-prepend-radius
+        .kd-append
+            border-left none
+            white-space nowrap
+            border-radius $-input-append-radius
+        .kd-inner
+            border-radius 0
+
+    &.kd-input-disabled
+        color $-input-disabled-color
+        cursor not-allowed
+        .kd-inner
+            color $-input-disabled-color
+            border-color $-input-disabled-border-color
+            background-color $-input-disabled-background-color
+            cursor not-allowed
+
+    .kd-textarea
+        padding $-input-textarea
+        height auto
+        line-height 1.5
+
+    for size in $-input-size-list
+        &.kd-input-{size}
+            font-size lookup('$-input-' + size + '-font-size')
+            .kd-inner
+                height lookup('$-input-' + size + '-inner-height')
+                line-height lookup('$-input-' + size + '-inner-height')
+                font-size lookup('$-input-' + size + '-font-size')
+                padding 0 lookup('$-input-' + size + '-padding-left-right')
+        &.kd-with-prefix.kd-input-{size}
+            .kd-inner
+                padding-left lookup('$-input-' + size + '-prefix-padding-left')
+        &.kd-with-suffix.kd-input-{size}
+        &.kd-with-suffix.kd-input-{size}
+            .kd-inner
+                padding-right lookup('$-input-' + size + '-suffix-padding-right')
+        .kd-prefix
+            left lookup('$-input-' + size + '-padding-left-right')
+        .kd-suffix
+            right lookup('$-input-' + size + '-padding-left-right')
