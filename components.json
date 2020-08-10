@@ -5,4 +5,5 @@
     "Message": "./components/Message/index.vue",
     "Spin": "./components/Spin/index.vue",
     "Switch": "./components/Switch/index.vue"
+
 }

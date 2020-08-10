@@ -1,58 +1,31 @@
 const path = require('path');
-// const { getOptions } = require('loader-utils');
-const vueTemplateCompiler = require('vue-template-compiler');
-
+const qs = require('querystring');
 const md = require('./md.js');
-
-const parseDemoComponent = (content, loaderContext) => {
-    const tempReg = /<(template)>([\s\S]*?)<\/\1>/;
-
-    if (!tempReg.test(content)) {
-        content = `<template>${content}</template>`;
-    }
-
-    const sfc = vueTemplateCompiler.parseComponent(content);
-
-    if (sfc.error && sfc.error.length) {
-        sfc.error.forEach(e => {
-            console.log(e);
-        });
-    }
-    sfc.script = sfc.script || {content: '{}'};
-
-    return sfc;
-};
+const parse = require('./parse.js');
 
 module.exports = function (source) {
-    // let option = getOptions(this);
-    const fileName = path.parse(this.resourcePath).name;
-    let code = md.render(source);
-    const demoComponents = code.match(/<(demo-content)>[\s\S]*?<\/\1>/g);
-    const components = [];
-
-    if (demoComponents) {
-        demoComponents.forEach((c, index) => {
-            const sfc = parseDemoComponent(c.replace(/<(demo-content)>([\s\S]*)<\/\1>/, '$2'), this);
-            const name = `${fileName}-demo-${index}`;
-
-            components.push(
-                `'${name}': {
-                    template: \`${sfc.template.content}\`,
-                    ...${sfc.script.content.replace(/export\s+default/, '').trim()}
-                }`
-            );
-            code = code.replace(c, `<${name}/>`);
-        });
+    const html = md.render(source);
+    const {
+        resourcePath,
+        resourceQuery
+    } = this;
+    const fileName = path.parse(resourcePath).name;
+    const query = qs.parse(resourceQuery.slice(1));
+    const descriptor = parse({
+        fileName,
+        template: `<div>${html}</div>`,
+        parsers: [{
+            flag: 'demo-content',
+            ctor: (c, index) => {
+                return `${fileName}_demo_${index}`;
+            }
+        }],
+        resourcePath
+    });
+    let sfc;
+    if (query.md != null) {
+        sfc = descriptor.sfcMap[query.cid];
+        return this.callback(null, sfc.content);
     }
-
-    return `
-            <template>
-                <div>${code}</div>
-            </template>
-            <script>
-                export default {
-                    components: {${components.join(',')}}
-                }
-            </script>
-    `;
+    this.callback(null, descriptor.code);
 };
