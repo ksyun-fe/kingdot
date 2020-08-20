@@ -7,7 +7,9 @@ import Switch from '../components/Switch/index.js';
 const components = [
     Button,
     ButtonGroup,
-    Message
+    Input,
+    Message,
+    Switch
 ];
 
 const install = (Vue) => {
@@ -21,5 +23,7 @@ export default {
     install: install,
     Button,
     ButtonGroup,
-    Message
+    Input,
+    Message,
+    Switch
 };
