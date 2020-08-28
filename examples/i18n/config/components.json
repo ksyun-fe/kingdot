@@ -22,6 +22,10 @@
         {
             "path": "/button",
             "name": "按钮"
+        },
+        {
+            "path": "/layout",
+            "name": "layout"
         }
     ],
     "en-US": [

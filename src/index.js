@@ -1,10 +1,14 @@
 import Button from '../components/Button/index.js';
 import ButtonGroup from '../components/ButtonGroup/index.js';
+import Col from '../components/Col/index.js';
 import Message from '../components/Message/index.js';
+import Row from '../components/Row/index.js';
 
 const components = [
     Button,
     ButtonGroup,
+    Col,
+    Row,
     Message
 ];
 
@@ -19,5 +23,7 @@ export default {
     install: install,
     Button,
     ButtonGroup,
+    Col,
+    Row,
     Message
 };

@@ -1,5 +1,7 @@
 {
     "Button": "./components/Button/index.vue",
     "ButtonGroup": "./components/ButtonGroup/index.vue",
+    "Col": "./components/Col/index.vue",
+    "Row": "./components/Row/index.vue",
     "Message": "./components/Message/index.vue"
 }
