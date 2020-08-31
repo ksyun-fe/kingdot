@@ -37,6 +37,7 @@
                                     },
                                     _status != '' ? customStatusClass : '',
                                 ]"
+                                :style="handleLH"
                         >
                             <i
                                     v-if="icon == '' && _status == 'finished'"
@@ -143,8 +144,6 @@
         data() {
             return {
                 index: 0,
-                // type: this.$parent.type,
-                lineWidth: this.space,
                 size: this.$parent.size,
                 position: 'left',
                 direction: 'horizontal',
@@ -161,6 +160,15 @@
             },
             customStatusClass() {
                 return 'kd-step-custom-status-' + this._status;
+            },
+            handleLH() {
+                const style = {};
+                if (this.size == 'small') {
+                    if (this._status == 'finished' || this._status == 'error') {
+                        style['line-height'] = '22px';
+                    }
+                }
+                return style;
             }
         },
         watch: {},

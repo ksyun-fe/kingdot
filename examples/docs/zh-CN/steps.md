@@ -49,7 +49,7 @@
         <Button @click="_next">下一步</Button>
     </div>
     <div>
-        <Steps v-model="stepIndex2">
+        <Steps v-model="stepIndex2" size="small">
             <Step title="步骤一" ></Step>
             <Step title="步骤二" ></Step>
             <Step title="步骤三" ></Step>

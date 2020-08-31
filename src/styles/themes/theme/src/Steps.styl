@@ -42,12 +42,8 @@
         height 32px
         border-radius 50%
         text-align center
-        line-height 28px
+        line-height 32px
         cursor default
-        &.kd-step-index-small,&.kd-step-index-simple
-            width 26px
-            height 26px
-            line-height 26px
         &.kd-step-index-default
             border 1px solid $-step-index-default-border-color
             color $-step-index-default-color
@@ -73,10 +69,15 @@
             border $-step-index-done-border-color
             background $-step-index-done-background-color
             color $-step-index-done-color
+            line-height 28px
         &.kd-step-custom-status-active
             border $-step-index-active-border-color
             background $-step-index-active-background-color
             color  #ffff
+        &.kd-step-index-small,&.kd-step-index-simple
+            width 26px
+            height 26px
+            line-height 25px
         &.kd-step-index-icon
             border 0 none
             background transparent
@@ -131,9 +132,9 @@
         display inline-block
         width max-content
         height 32px
+        line-height 32px
         padding 0 8px
         line-height 32px
-        font-family PingFangSC-Regular
         font-size 16px
         color $-step-title-color 
         z-index 10
@@ -149,7 +150,6 @@
         margin 37px 0 0 46px
         max-width 140px
         height auto
-        font-family PingFangSC-Regular
         font-size 14px
         color $-step-description-color
         text-align left
