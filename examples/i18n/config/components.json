@@ -30,6 +30,10 @@
         {
             "path": "/input",
             "name": "输入框"
+        },
+        {
+            "path": "/form",
+            "name": "表单"
         }
     ],
     "en-US": [
