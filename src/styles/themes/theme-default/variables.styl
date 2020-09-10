@@ -8,6 +8,7 @@ $-font-large-size := 16px
 $-font-default-size := 14px
 $-font-small-size := 12px
 $-font-mini-size := 12px
+$-font-second-size := 12px
 // font color
 $-text-dark-color := #262626
 $-text-light-color := #4C4C4C //主要正文颜色
@@ -45,12 +46,17 @@ $-table-content-bg-color := #F4F7FC //内容区
 $-disabled-color := #CCC
 $-disabled-bg-color := #F2F2F2
 $-disabled-border-color := #CCC
+// icon color
+$-icon-default-color := #B2B2B2
+// pend color
+$-pend-color := #666
 // box-shadow
 $-box-shadow := 0 0 15px 0 rgba(0, 0, 0, 0.15);
 // border-radius
 $-border-radius := 4px
 $-border-base-radius := 2px
-
+// size arr
+$-size-array = mini, small, default, large
 /******************************
             Headers
 *******************************/
@@ -157,13 +163,13 @@ $-btn-icon-text-gutter := $-icon-text-gutter
 /******************************
         Switch
 *******************************/
-$-switch-active-bg := #557dfc
-$-switch-inactive-bg := #cccccc
-$-switch-disabled-bg := #e5e5e5
-$-switch-disabled-font-color := #a7a5a5
-$-switch-font-size := 12px
+$-switch-active-bg := $-primary-color
+$-switch-inactive-bg := $-disabled-color // #ccc
+$-switch-disabled-bg := $-disabled-bg-color  // #e5e5e5
+$-switch-disabled-font-color := $-disabled-color // #a7a5a5
+$-switch-font-size := $-font-default-size
 $-switch-border-width := 2px
-$-switch-size-list = mini, small, default, large
+$-switch-size-list = $-size-array
 
 $-switch-mini-width := 24px
 $-switch-small-width := 36px
@@ -184,16 +190,16 @@ $-switch-large-border-radius := $-switch-large-height
 /******************************
         Input
 *******************************/
-$-input-color := #4C4C4C
-$-input-placeholder-color := #B2B2B2
+$-input-color := $-text-light-color
+$-input-placeholder-color := $-text-placeholder-color
 $-input-default-width := 300px
-$-input-border := 1px solid #ccc
-$-input-size-list = mini, small, default, large
-$-input-border-radius := 2px
-$-input-bg-color := #fff
-$-input-focus-border := 1px solid #557DFC
+$-input-border := 1px solid $-border-base-color
+$-input-size-list = $-size-array
+$-input-border-radius := $-border-base-radius
+$-input-bg-color := $-light-bg-color
+$-input-focus-border := 1px solid $-primary-color
 // append && prepend
-$-input-pend-color := #666
+$-input-pend-color := $-pend-color
 $-input-pend-padding-horizontal := 20px
 $-input-prepend-radius := 2px 0 0 2px
 $-input-append-radius := 0 2px 2px 0
@@ -208,9 +214,9 @@ $-input-small-inner-height := 28px
 $-input-default-inner-height := 32px
 $-input-large-inner-height := 36px
 
-$-input-disabled-color := #B2B2B2
-$-input-disabled-border-color := #E5E5E5
-$-input-disabled-background-color := #F3F4F7
+$-input-disabled-color := $-disabled-color
+$-input-disabled-border-color := $-disabled-border-color
+$-input-disabled-background-color := $-disabled-bg-color
 
 $-input-mini-padding-left-right := 16px
 $-input-small-padding-left-right := 16px
@@ -228,16 +234,16 @@ $-input-default-suffix-padding-right := 36px
 $-input-large-suffix-padding-right := 16px
 
 // 状态颜色
-$-input-status-list = success, err, warning
-$-input-success := #38C482
-$-input-success-border := 1px solid #38C482
-$-input-warning := #FF9C46
-$-input-warning-border := 1px solid #FF9C46
-$-input-err := #EF4E76
-$-input-err-border := 1px solid #EF4E76
-$-input-clear-color := #CCC
+$-input-status-list = $-size-array
+$-input-success := $-success-color
+$-input-success-border := 1px solid $-success-color
+$-input-warning := $-warning-color
+$-input-warning-border := 1px solid $-warning-color
+$-input-err := $-danger-color
+$-input-err-border := 1px solid $-danger-color
+$-input-clear-color := $-icon-default-color
 
 $-textarea-default-padding-top-bottom := 8px
-$-textarea-count-font-size := 12px
+$-textarea-count-font-size := $-font-second-size
 $-textarea-count-bottom := 5px
 $-textarea-count-right := 10px
