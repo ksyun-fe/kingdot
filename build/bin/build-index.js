@@ -16,11 +16,14 @@ const components = [
     {{components}}
 ];
 
-const install = (Vue) => {
+const install = (Vue, opts = {}) => {
     Vue.prototype.$message = Message.install;
     components.forEach(c => {
         Vue.component(c.name, c);
     });
+    Vue.prototype.$KD = {
+        zIndex: opts.zIndex || 2000
+    };
 };
 export default {
     version: {{version}},
