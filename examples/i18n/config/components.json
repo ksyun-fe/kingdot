@@ -30,6 +30,10 @@
         {
             "path": "/input",
             "name": "输入框"
+        },
+        {
+            "path": "/checkbox",
+            "name": "多选框"
         }
     ],
     "en-US": [
