@@ -8,6 +8,7 @@ $-font-large-size := 16px
 $-font-default-size := 14px
 $-font-small-size := 12px
 $-font-mini-size := 12px
+$-font-base-size := 14px
 $-font-second-size := 12px
 // font color
 $-text-dark-color := #262626
@@ -32,14 +33,10 @@ $-danger-darker-color := #A22334
 $-success-darker-color := #33A36D
 // border color
 $-border-base-color := #CCC //主要边框
-$-border-light-color := #999999
-$-border-second-light-color := #B2B2B2
-$-border-three-light-color := #F2F2F2
 $-split-line-color := #E5E5E5 //区域分割线
 // background color
 $-light-bg-color := #FFF
-$-dark-bg-color := #000
-$-bg-base-color := #F3F4F7 //基础内容背景样式
+$-bg-base-color := #fff //基础内容背景样式
 $-table-header-bg-color := #F3F6FB //table,title等头部背景
 $-table-content-bg-color := #F4F7FC //内容区
 // disable color
@@ -167,8 +164,8 @@ $-switch-active-bg := $-primary-color
 $-switch-inactive-bg := $-disabled-color // #ccc
 $-switch-disabled-bg := $-disabled-bg-color  // #e5e5e5
 $-switch-disabled-font-color := $-disabled-color // #a7a5a5
-$-switch-font-size := $-font-default-size
-$-switch-border-width := 2px
+$-switch-font-size := 14px
+$-switch-border-width := $-border-base-radius
 $-switch-size-list = $-size-array
 
 $-switch-mini-width := 24px
@@ -204,10 +201,10 @@ $-input-pend-padding-horizontal := 20px
 $-input-prepend-radius := 2px 0 0 2px
 $-input-append-radius := 0 2px 2px 0
 
-$-input-mini-font-size := 12px
-$-input-small-font-size := 12px
-$-input-default-font-size := 14px
-$-input-large-font-size := 16px
+$-input-mini-font-size := $-font-mini-size
+$-input-small-font-size := $-font-small-size
+$-input-default-font-size := $-font-default-size
+$-input-large-font-size := $-font-large-size
 
 $-input-mini-inner-height := 26px
 $-input-small-inner-height := 28px
