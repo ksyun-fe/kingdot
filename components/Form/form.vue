@@ -36,7 +36,9 @@
             },
             validate() {
                 const items = this.formItems || [];
-                Promise.all(items.map(item => item.validate()))
+                return Promise.all(items.map(item => {
+                    return item.validate();
+                }))
                     .then(values => values.every(value => value))
                     .catch(error => {
                         console.error('form validate: ', error);

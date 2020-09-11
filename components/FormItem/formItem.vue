@@ -88,7 +88,6 @@
             // 找到顶层form
             let form = this.$parent;
             while (form && form !== this.form) {
-                console.log(form);
                 form = form.$parent;
             }
             if (!form) {
@@ -140,7 +139,6 @@
                         if (typeof rule !== 'function') {
                             handler = _ruleHandlers[key];
                             if (!handler) {
-                                console.warn(`Can not find validate method: ${key}`);
                                 continue;
                             }
                         } else {
@@ -151,7 +149,7 @@
                         keys.push(key);
                     }
                 }
-                Promise.all(handlers)
+                return Promise.all(handlers)
                     .then(res => {
                         for (let i = 0; i < res.length; i++) {
                             if (res[i] !== true) {
@@ -170,8 +168,6 @@
             },
             getMessage(ruleName, value) {
                 const message = this.message && this.message[ruleName] ? this.message[ruleName] : defaultMessage[ruleName];
-                debugger;
-                console.log(defaultMessage[ruleName]);
                 return typeof message === 'function' ? message(value, this, this.rules[ruleName]) : message;
             },
             deepGetValue(data, path) {
