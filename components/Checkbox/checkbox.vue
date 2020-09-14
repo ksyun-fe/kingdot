@@ -11,20 +11,20 @@
                 class="kd-checkbox-wrap"
         >
             <input
-                    type="checkbox"
-                    class="kd-checkbox-input"
                     v-model="model"
+                    type="checkbox"
                     :name="name"
                     :indeterminate="indeterminate"
                     :disabled="disabled"
                     :true-value="trueValue"
                     :false-value="falseValue"
+                    class="kd-checkbox-input"
                     @change="change"
             >
         </span>
         <span
                 class="kd-checkbox-text"
-        ><slot>{{label}}</slot></span>
+        ><slot>{{ label }}</slot></span>
     </label>
 </template>
 
@@ -32,8 +32,12 @@
     export default {
         name: 'Checkbox',
         props: {
-            value: [String, Number, Boolean, Array],
-            name: String,
+            value: {
+                type: [String, Number, Boolean, Array]
+            },
+            name: {
+                type: String
+            },
             trueValue: {
                 type: [String, Number, Boolean],
                 default: true
@@ -50,7 +54,14 @@
                 type: Boolean,
                 default: false
             },
-            label: String
+            label: {
+                type: String
+            }
+        },
+        data() {
+            return {
+                model: true
+            };
         },
         computed: {
             isChecked() {
@@ -69,23 +80,20 @@
                 }
             }
         },
-        data() {
-            return {
-                model: true
-            };
-        },
         methods: {
 
             change() {
                 let index;
                 let value = this.value;
 
-                if (this.disabled)  return;
+                if (this.disabled) return;
 
                 if (this.isChecked) {
                     if (Array.isArray(value)) {
                         index = value.findIndex(i => i === this.trueValue);
-                        ~index && value.splice(index, 1);
+                        if (~index) {
+                            value.splice(index, 1);
+                        }
                     } else {
                         value = this.falseValue;
                     }
