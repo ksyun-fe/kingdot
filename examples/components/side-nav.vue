@@ -108,7 +108,7 @@
                 width: 20px;
                 height 4px
                 left 5px
-                top 6px
+                top 7px
                 border-top: 10px double;
-                border-bottom: 4px solid;
+                border-bottom: 3px solid;
 </style>

@@ -24,6 +24,10 @@
             "name": "按钮"
         },
         {
+            "path": "/switch",
+            "name": "开关"
+        },
+        {
             "path": "/input",
             "name": "输入框"
         }
@@ -46,6 +50,10 @@
         {
             "path": "/button",
             "name": "Button"
+        },
+        {
+            "path": "/switch",
+            "name": "switch"
         },
         {
             "path": "/input",

@@ -1,12 +1,13 @@
 const LRU = require('lru-cache');
 const hash = require('hash-sum');
 const cache = new LRU(500);
-
+const loaderUtils = require('loader-utils');
 function parse(option) {
     let {
         template,
         parsers,
-        resourcePath
+        resourcePath,
+        loaderContext
     } = option;
     let modules = '';
     let script = '';
@@ -14,6 +15,7 @@ function parse(option) {
     const components = [];
     const sfcMap = {};
     const cacheKey = hash(resourcePath + template);
+    const stringifyRequest = r => loaderUtils.stringifyRequest(loaderContext, r);
     let output = cache.get(cacheKey);
     if (output) {
         return output;
@@ -27,7 +29,7 @@ function parse(option) {
         template = template.replace(new RegExp(cReg, 'g'), (item, flag, content) => {
             const cid = hash(resourcePath + item);
             const Ctor = typeof parser.ctor === 'function' ? parser.ctor(item, index++, cid) : parser.ctor;
-            modules += `import ${Ctor} from '${resourcePath}?md&cid=${cid}';`;
+            modules += `import ${Ctor} from ${stringifyRequest(`${resourcePath}?md&cid=${cid}`)};`;
             components.push(Ctor);
             sfcMap[cid] = {
                 cid,
