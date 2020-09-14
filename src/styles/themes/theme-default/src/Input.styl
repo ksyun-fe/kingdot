@@ -1,0 +1,121 @@
+.kd-input, .kd-textarea
+    display inline-block
+    width $-input-default-width
+    vertical-align middle
+    .kd-input-wrapper
+        position relative
+        display inline-block
+        width 100%
+    .kd-input-inner
+        position relative
+        display inline-block
+        width 100%
+        color $-input-color
+        outline none
+        border $-input-border
+        border-radius $-input-border-radius
+        background-color $-input-bg-color
+        transition border $-transition, background $-transition
+        &:focus
+            border $-input-focus-border
+            z-index 1
+        &::-webkit-input-placeholder
+            color $-input-placeholder-color
+    &.kd-input-fluid
+        width 100%
+    .kd-input-prefix
+    .kd-input-suffix
+        position absolute
+        top 50%
+        transform translateY(-50%)
+        z-index 2
+        cursor pointer
+
+    &.kd-input-group
+        display table
+        .kd-input-prepend
+        .kd-input-append
+            display table-cell
+            padding 0 $-input-pend-padding-horizontal
+            width: 1px
+            color $-input-pend-color
+            vertical-align middle
+            border $-input-border
+            text-align center
+        .kd-input-prepend
+            border-right none
+            white-space nowrap
+            border-radius $-input-prepend-radius
+        .kd-input-append
+            border-left none
+            white-space nowrap
+            border-radius $-input-append-radius
+        .kd-input-inner
+            border-radius 0
+
+    &.kd-input-disabled
+        color $-input-disabled-color
+        cursor not-allowed
+        .kd-input-inner
+            color $-input-disabled-color
+            border-color $-input-disabled-border-color
+            background-color $-input-disabled-background-color
+            cursor not-allowed
+
+    .kd-textarea
+        padding $-input-textarea
+        height auto
+        line-height 1.5
+
+    for size in $-input-size-list
+        &.kd-input-{size}
+            font-size lookup('$-input-' + size + '-font-size')
+            .kd-input-inner
+                height lookup('$-input-' + size + '-inner-height')
+                line-height lookup('$-input-' + size + '-inner-height')
+                font-size lookup('$-input-' + size + '-font-size')
+                padding 0 lookup('$-input-' + size + '-padding-left-right')
+        &.kd-input-{size}.kd-textarea
+            .kd-input-inner
+                padding lookup('$-textarea-' + size + '-padding-top-bottom') lookup('$-input-' + size + '-padding-left-right')
+                height auto
+                line-height 1.5
+        &.kd-with-prefix.kd-input-{size}
+            .kd-input-inner
+                padding-left lookup('$-input-' + size + '-prefix-padding-left')
+        &.kd-with-suffix.kd-input-{size}
+        &.kd-with-suffix.kd-input-{size}
+            .kd-input-inner
+                padding-right lookup('$-input-' + size + '-suffix-padding-right')
+        .kd-input-prefix
+            left lookup('$-input-' + size + '-padding-left-right')
+        .kd-input-suffix
+            right lookup('$-input-' + size + '-padding-left-right')
+
+/*各种状态的样式*/
+    for status in $-input-status-list
+        .kd-input-status-{status}
+            .kd-input-inner
+                border lookup('$-input-' + status + '-border')
+            .kd-icon-{status}-solid
+                color lookup('$-input-' + status)
+.kd-input-clearable
+    color $-input-clear-color
+    cursor pointer
+
+    /*textarea*/
+    .kd-textarea
+        .kd-input-inner
+            height auto
+
+.kd-textarea-show-count
+    .kd-input-inner
+        resize vertical
+    .kd-textarea-count
+        color #909399
+        background #fff
+        position absolute
+        font-size $-textarea-count-font-size
+        bottom $-textarea-count-bottom
+        right $-textarea-count-right
+        z-index 1

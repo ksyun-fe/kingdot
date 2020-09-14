@@ -20,7 +20,8 @@ module.exports = function (source) {
                 return `${fileName}_demo_${index}`;
             }
         }],
-        resourcePath
+        resourcePath,
+        loaderContext: this
     });
     let sfc;
     if (query.md != null) {

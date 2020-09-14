@@ -202,7 +202,7 @@
                 left -(@width)
                 background: #fff
                 transition left ease-in-out 0.3s
-
+                z-index 1
                 &.active-menu
                     left 0
 

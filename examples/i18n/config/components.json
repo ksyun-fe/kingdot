@@ -26,6 +26,18 @@
         {
             "path": "/layout",
             "name": "layout"
+        },
+        {
+            "path": "/switch",
+            "name": "开关"
+        },
+        {
+            "path": "/input",
+            "name": "输入框"
+        },
+        {
+            "path": "/checkbox",
+            "name": "多选框"
         }
     ],
     "en-US": [
@@ -46,6 +58,14 @@
         {
             "path": "/button",
             "name": "Button"
+        },
+        {
+            "path": "/switch",
+            "name": "switch"
+        },
+        {
+            "path": "/input",
+            "name": "Input"
         }
     ]
 }

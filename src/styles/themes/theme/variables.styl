@@ -1,108 +1,67 @@
 /******************************
              Theme
 *******************************/
-// use('../functions.js')
-// $-theme-dir := __dirname()
-
-// root font size
-$-rem := 12
-/******************************
-             Colors
-*******************************/
-
-$-red := #EF4E76
-$-blue := #000
-$-green := #38C482
-$-yellow := #FF9A42
-$-grey := #4C4C4C
-
-// $-black := #262626
-$-light-black := #4C4C4C
-$-white-color := #FFF
-$-black-color := #000
-
-/******************************
-            Page
-*******************************/
-// let height be odd 20 / 14
-$-line-height := 1
 // $-font-family := -apple-system,'PingFang SC',BlinkMacSystemFont,'Segoe UI','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif !important
 $-font-family := 'PingFangSC-Regular,Microsoft YaHei,微软雅黑,Arial,sans-serif' !important
-$-font-size := 14px
-$-font-base-size := 12px
-$-title-color := #262626
-$-text-default-color := #4C4C4C
-//输出主题start
-$-primary-color := $-blue
-$-warning-color := $-yellow
-$-danger-color := $-red
-$-success-color := $-green
-
-$-text-color := $-light-black   //主要正文颜色
-$-text-list-color := #778088    //列表文字颜色
-$-text-regular-color := #737373         //常规文字颜色
-$-text-placeholder-color := #B2B2B2     //占位文字颜色
-
-
-$-white-color := #FFF
-$-black-color := #000
-
-$-border-base-color := #CCC     //主要边框
-$-border-light-color := #999999
-$-border-second-light-color := #B2B2B2
-$-border-three-light-color := #F2F2F2
-$-split-line-color := #E5E5E5   //区域分割线
-
-$-bg-base-color := #F3F4F7      //基础内容背景样式
-$-table-header-bg-color :=#F3F6FB       //table,title等头部背景
-$-table-content-bg-color :=#F4F7FC      //内容区
-
-$-light-bg-color := #fff
-$-dark-bg-color := #000
-//输出主题end
-
-//禁用样式
-$-disabled-color := #CCC
-$-disabled-bg-color := #F2F2F2
-$-disabled-border-color := #CCC
-
-// size
-$-large-height := 40px
-$-large-font-size := 14px
-$-large-padding := 13px 24px
-
-$-default-height := 32px
-$-default-font-size := 14px
-$-default-padding := 9px 16px
-
-$-small-height := 24px
-$-small-font-size := 12px
-$-small-padding := 5px 8px
-
-// $-mini-height := 26px
-$-mini-font-size := 12px
-// $-mini-padding := 10px
-
-// the gutter between icon and text
-$-icon-text-gutter := 8px
-
+// font size
+$-font-large-size := 16px
+$-font-default-size := 14px
+$-font-small-size := 12px
+$-font-mini-size := 12px
+$-font-base-size := 14px
+$-font-second-size := 12px
+// font color
+$-text-dark-color := #FFF
+$-text-light-color := #8D919B //主要正文颜色
+$-text-list-color := #8D919B //列表文字颜色
+$-text-regular-color := #FFFFFF //常规文字颜色
+$-text-placeholder-color := #8D919B //占位文字颜色
+//theme color
+$-primary-linear-color := linear-gradient(180deg, #F8334C 0%, #4E284D 91%)
+$-primary-color := #5399FF
+$-warning-color := #FF9A42
+$-danger-color := #ED3351
+$-success-color := #38C482
+// theme lighter color
+$-primary-lighter-linear-color := linear-gradient(180deg, #E946E5 0%, #5F3D5E 91%)
+$-primary-lighter-color := #75ADFF
+$-warning-lighter-color := #FFAF6B
+$-danger-lighter-color := #F05B73
+$-success-lighter-color := #5FCF9B
+// theme darker color
+$-primary-lighter-linear-color := linear-gradient(180deg, #B8273C 0%, #3D1F3C 91%)
+$-primary-darker-color := #427ACC
+$-warning-darker-color := #E58C3E
+$-danger-darker-color := #BD2840
+$-success-darker-color := #33A36D
+// border color
+$-border-base-color := #525C77 //主要边框
+$-split-line-color := #2F374F //区域分割线
+// background color
+$-light-bg-color := #2C314E
+$-bg-base-color := #2C314E //基础内容背景样式
+$-table-header-bg-color := #2C324D //table,title等头部背景
+$-table-content-bg-color := #1E253D //内容区
+// disable color
+$-disabled-color := #4F576E
+$-disabled-bg-color := #222A41
+$-disabled-border-color := #2F374F
+// icon color
+$-icon-default-color := #4F576E
+// pend color
+$-pend-color := #FFF
 // box-shadow
-$-box-shadow := 0 0 15px 0 rgba(0,0,0,0.15);
-
+$-box-shadow := none
+// border-radius
 $-border-radius := 4px
-
-$-max-z-index := 9999
-
-$-line-height := 1
-
-$-shape-round := 40px
-$-shape-circle := 50%
-
+$-border-base-radius := 2px
+// size arr
+$-size-array = mini, small, default, large
 /******************************
             Headers
 *******************************/
 
-$-header-font-family := $-font-family
+$-header-font-family := 'PingFangSC-Medium' !important
 $-header-margin := 0
 $-header-font-weight := bold
 $-h1 := 36px
@@ -110,16 +69,17 @@ $-h2 := 30px
 $-h3 := 24px
 $-h4 := 18px
 $-h5 := 14px
+$-h6 := 12px
 
 /******************************
             Link
 *******************************/
 
-$-link-color := $-blue
+$-link-color := $-primary-color
 $-link-underline := none
 $-link-hover-color := palette($-link-color, -1)
 $-link-hover-underline := $-link-underline
-$-link-font-family := PingFangSC-Regular
+$-link-font-family := $-font-family
 
 /******************************
             Code
@@ -152,6 +112,7 @@ $-icon-large-font-size := unit(18 / 14, rem)
 $-icon-small-font-size := unit(14 / 14, rem)
 $-icon-mini-font-size := unit(12 / 14, rem)
 
+
 /******************************
         ButtonGroup Button
 *******************************/
@@ -159,8 +120,6 @@ $-icon-mini-font-size := unit(12 / 14, rem)
 $-btn-disabled-color := $-border-base-color
 $-btn-disabled-bg-color := $-disabled-bg-color
 $-btn-disabled-border-color := $-disabled-border-color
-
-$-btn-line-height := $-line-height
 
 //btn default
 $-btn-default-border-color := $-border-base-color
@@ -173,12 +132,12 @@ $-btn-warning-color := $-warning-color
 $-btn-danger-color := $-danger-color
 //border
 $-btn-border-radius := $-border-radius
-$-btn-border-color := $-border-color
+$-btn-border-color := $-border-base-color
 $-btn-default-border-style := solid
 $-btn-dashed-border-style := dashed
 //shape
-$-btn-shape-round := $-shape-round
-$-btn-shape-circle := $-shape-circle
+$-btn-shape-round := 40px
+$-btn-shape-circle := 50%
 //size
 
 $-btn-large-padding := $-large-padding
@@ -200,3 +159,135 @@ $-btn-small-font-size := $-font-base-size
 
 //icon
 $-btn-icon-text-gutter := $-icon-text-gutter
+
+/******************************
+        Switch
+*******************************/
+$-switch-active-bg := $-primary-linear-color
+$-switch-inactive-bg := $-disabled-color // #ccc
+$-switch-disabled-bg := $-disabled-bg-color  // #e5e5e5
+$-switch-disabled-font-color := $-disabled-color // #a7a5a5
+$-switch-font-size := $-font-default-size
+$-switch-border-width := 2px
+$-switch-size-list = $-size-array
+
+$-switch-mini-width := 24px
+$-switch-small-width := 36px
+$-switch-default-width := 48px
+$-switch-large-width := 60px
+
+$-switch-mini-height := 14px
+$-switch-small-height := 18px
+$-switch-default-height := 24px
+$-switch-large-height := 30px
+
+$-switch-mini-border-radius := $-switch-mini-height
+$-switch-small-border-radius := $-switch-small-height
+$-switch-default-border-radius := $-switch-default-height
+$-switch-large-border-radius := $-switch-large-height
+
+
+/******************************
+        Switch
+*******************************/
+$-switch-active-bg := $-primary-lighter-linear-color
+$-switch-inactive-bg := #525C77
+$-switch-disabled-bg := $-disabled-bg-color
+$-switch-disabled-font-color := $-disabled-color
+$-switch-font-size := $-font-base-size
+$-switch-border-width := $-border-base-radius
+$-switch-size-list = $-size-array
+
+$-switch-mini-width := 24px
+$-switch-small-width := 36px
+$-switch-default-width := 48px
+$-switch-large-width := 60px
+
+$-switch-mini-height := 14px
+$-switch-small-height := 18px
+$-switch-default-height := 24px
+$-switch-large-height := 30px
+
+$-switch-mini-border-radius := $-switch-mini-height
+$-switch-small-border-radius := $-switch-small-height
+$-switch-default-border-radius := $-switch-default-height
+$-switch-large-border-radius := $-switch-large-height
+
+/******************************
+        Input
+*******************************/
+$-input-color := $-text-light-color
+$-input-placeholder-color := $-text-placeholder-color
+$-input-default-width := 300px
+$-input-border := 1px solid $-border-base-color
+$-input-size-list = $-size-array
+$-input-border-radius := $-border-base-radius
+$-input-bg-color := $-light-bg-color
+$-input-focus-border := 1px solid $-primary-color
+// append && prepend
+$-input-pend-color := $-pend-color
+$-input-pend-padding-horizontal := 20px
+$-input-prepend-radius := 2px 0 0 2px
+$-input-append-radius := 0 2px 2px 0
+
+$-input-mini-font-size := $-font-mini-size
+$-input-small-font-size := $-font-small-size
+$-input-default-font-size := $-font-default-size
+$-input-large-font-size := $-font-large-size
+
+$-input-mini-inner-height := 26px
+$-input-small-inner-height := 28px
+$-input-default-inner-height := 32px
+$-input-large-inner-height := 36px
+
+$-input-disabled-color := $-disabled-color
+$-input-disabled-border-color := $-disabled-border-color
+$-input-disabled-background-color := $-disabled-bg-color
+
+$-input-mini-padding-left-right := 16px
+$-input-small-padding-left-right := 16px
+$-input-default-padding-left-right := 16px
+$-input-large-padding-left-right := 16px
+
+$-input-mini-prefix-padding-left := 16px
+$-input-small-prefix-padding-left := 16px
+$-input-default-prefix-padding-left := 36px
+$-input-large-prefix-padding-left := 16px
+
+$-input-mini-suffix-padding-right := 16px
+$-input-small-suffix-padding-right := 16px
+$-input-default-suffix-padding-right := 36px
+$-input-large-suffix-padding-right := 16px
+
+// 状态颜色
+$-input-status-list = $-size-array
+$-input-success := $-success-color
+$-input-success-border := 1px solid $-success-color
+$-input-warning := $-warning-color
+$-input-warning-border := 1px solid $-warning-color
+$-input-err := $-danger-color
+$-input-err-border := 1px solid $-danger-color
+$-input-clear-color := $-icon-default-color
+
+$-textarea-default-padding-top-bottom := 8px
+$-textarea-count-font-size := $-font-second-size
+$-textarea-count-bottom := 5px
+$-textarea-count-right := 10px
+
+
+/******************************
+        checkbox
+*******************************/
+$-checkbox-input-width := 14px;
+$-checkbox-input-height := 14px;
+$-checkbox-font-size := $-font-default-size;
+$-checkbox-default-input-border-color := $-border-base-color;
+$-checkbox-default-input-background-color := $-light-bg-color;
+
+$-checkbox-disabled-icon-color := $-border-base-color;
+$-checkbox-disabled-input-border-color := $-disabled-border-color;
+$-checkbox-disabled-input-background-color := $-disabled-bg-color;
+
+$-checkbox-checked-icon-color := $-pend-color;
+$-checkbox-checked-input-border-color := $-icon-default-color;
+$-checkbox-checked-input-background-color := $-icon-default-color;
