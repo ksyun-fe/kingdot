@@ -1,7 +1,7 @@
 @import "../variables.styl";
 @import '../../mixin.styl'
-
 .kd-switch
+    box-sizing border-box
     position relative
     display inline-block
     vertical-align middle
@@ -18,7 +18,7 @@
         border-color $-switch-disabled-bg
     &.kd-switch-checked
         background $-switch-active-bg
-
+        border-color $-switch-active-bg
 .kd-switch-checked.kd-switch-disabled
     border-color $-switch-active-bg
 
@@ -29,6 +29,7 @@
     opacity 0
 
 .kd-switch-active, .kd-switch-inactive
+    box-sizing border-box
     position absolute
     left -($-switch-border-width)
     top -($-switch-border-width)
@@ -61,13 +62,4 @@ for size in $-switch-size-list
             transition all .3s ease-in-out
             &.checked
                 left 100%
-                margin-left -(lookup('$-switch-' + size + '-height') - $-switch-border-width)
-
-.kd-switch-checked
-    padding $-switch-border-width
-    border none
-    .kd-switch-active
-        left 0
-        top 0
-    .kd-switch-round.checked
-        left 100%
+                margin-left -(lookup('$-switch-' + size + '-height') - 4px)
