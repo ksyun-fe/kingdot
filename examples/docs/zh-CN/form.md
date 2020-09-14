@@ -25,9 +25,10 @@
                 </div>
             </template>
         </FormItem>
-        
     </Form>
-    <Button @click="submitHandler">提交</Button>
+    <Button
+        class="btn"
+        @click="submitHandler">提交</Button>
 </div>
     
 </template>
@@ -63,6 +64,11 @@
         }
     }
 </script>
+<style scoped>
+.btn {
+    margin: 10px 0;
+}
+</style>
 ```
 :::
 
@@ -91,7 +97,10 @@
                 </div>
             </template>
         </FormItem>
-        <Button type="mockSubmit" @click="submitHandler">提交</Button>
+        <Button
+            type="mockSubmit"
+            class="btn"
+            @click="submitHandler">提交</Button>
     </Form>
 </div>
     
@@ -128,6 +137,11 @@
         }
     }
 </script>
+<style scoped>
+.btn {
+    margin-left: 10px;
+}
+</style>
 ```
 :::
 
