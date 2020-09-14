@@ -140,11 +140,7 @@
                     roundStyle.borderRadius = `${(this.height - 4) / 2}px`;
                 }
                 if (this.switchValue === this.activeValue) {
-<<<<<<< HEAD
-                    roundStyle.marginLeft = `-${this.height - 2}px`;
-=======
                     roundStyle.marginLeft = `-${this.height - 4}px`;
->>>>>>> feat(switch): switch基本开发完成
                 }
                 return roundStyle;
             }
