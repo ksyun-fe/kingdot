@@ -1,7 +1,0 @@
-{
-    "Button": "./components/Button/index.vue",
-    "ButtonGroup": "./components/ButtonGroup/index.vue",
-    "Input": "./components/Input/index.vue",
-    "Message": "./components/Message/index.vue",
-    "Switch": "./components/Switch/index.vue"
-}
