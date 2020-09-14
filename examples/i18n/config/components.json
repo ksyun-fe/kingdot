@@ -34,6 +34,10 @@
         {
             "path": "/form",
             "name": "表单"
+        },
+        {
+            "path": "/checkbox",
+            "name": "多选框"
         }
     ],
     "en-US": [
@@ -62,6 +66,14 @@
         {
             "path": "/input",
             "name": "Input"
+        },
+        {
+            "path": "/form",
+            "name": "表单"
+        },
+        {
+            "path": "/checkbox",
+            "name": "多选框"
         }
     ]
 }
