@@ -4,7 +4,7 @@
 ```html
 <template>
     <div>
-        <Checkbox v-model="value1">checkbox</Checkbox>
+        <kd-checkbox v-model="value1">checkbox</kd-checkbox>
     </div>
 </template>
 <script >
@@ -36,8 +36,8 @@
 ```html
 <template>
     <div>
-        <Checkbox v-model="value1">默认值: {{ value1 }}</Checkbox>
-        <Checkbox v-model="value2" trueValue="checked" falseValue="unchecked">指定值: {{ value2 }}</Checkbox>
+        <kd-checkbox v-model="value1">默认值: {{ value1 }}</kd-checkbox>
+        <kd-checkbox v-model="value2" trueValue="checked" falseValue="unchecked">指定值: {{ value2 }}</kd-checkbox>
     </div>
 </template>
 <script >
@@ -62,9 +62,9 @@
 ```html
 <template>
     <div>
-        <Checkbox name="languages" trueValue="js" v-model="languages">Javascript</Checkbox>
-        <Checkbox name="languages" trueValue="css" v-model="languages">Css</Checkbox>
-        <Checkbox name="languages" trueValue="html" v-model="languages">Html</Checkbox>
+        <kd-checkbox name="languages" trueValue="js" v-model="languages">Javascript</kd-checkbox>
+        <kd-checkbox name="languages" trueValue="css" v-model="languages">Css</kd-checkbox>
+        <kd-checkbox name="languages" trueValue="html" v-model="languages">Html</kd-checkbox>
     </div>
 </template>
 <script >
@@ -88,15 +88,15 @@
 ```html
 <template>
     <div>
-        <Checkbox 
+        <kd-checkbox 
                 :indeterminate="length > 0 && length < 3"
                 :value="length === 3"
                 @change="toggleSelectAll"
-        >全选</Checkbox>
+        >全选</kd-checkbox>
         <hr />
-        <Checkbox name="languages" trueValue="js" v-model="languages">Javascript</Checkbox>
-        <Checkbox name="languages" trueValue="css" v-model="languages">Css</Checkbox>
-        <Checkbox name="languages" trueValue="html" v-model="languages">Html</Checkbox>
+        <kd-checkbox name="languages" trueValue="js" v-model="languages">Javascript</kd-checkbox>
+        <kd-checkbox name="languages" trueValue="css" v-model="languages">Css</kd-checkbox>
+        <kd-checkbox name="languages" trueValue="html" v-model="languages">Html</kd-checkbox>
     </div>
     
 </template>
@@ -132,9 +132,9 @@
 ```html
 <template>
     <div>
-        <Checkbox disabled v-model="value1">disabled</Checkbox>
-        <Checkbox disabled v-model="value2">disabled</Checkbox>
-        <Checkbox disabled v-model="value3" indeterminate>disabled</Checkbox>
+        <kd-checkbox disabled v-model="value1">disabled</kd-checkbox>
+        <kd-checkbox disabled v-model="value2">disabled</kd-checkbox>
+        <kd-checkbox disabled v-model="value3" indeterminate>disabled</kd-checkbox>
     </div>
 </template>
 <script>

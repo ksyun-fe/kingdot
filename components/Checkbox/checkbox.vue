@@ -2,9 +2,9 @@
     <label
             :class="{
                 'kd-checkbox': true,
-                'is-checked': isChecked,
-                'is-disabled': disabled,
-                'is-indeterminate': indeterminate
+                'kd-is-checked': isChecked,
+                'kd-is-disabled': disabled,
+                'kd-is-indeterminate': indeterminate
             }"
     >
         <span
@@ -24,13 +24,15 @@
         </span>
         <span
                 class="kd-checkbox-text"
-        ><slot>{{ label }}</slot></span>
+        >
+            <slot>{{ label }}</slot>
+        </span>
     </label>
 </template>
 
 <script>
     export default {
-        name: 'Checkbox',
+        name: 'KdCheckbox',
         props: {
             value: {
                 type: [String, Number, Boolean, Array]
