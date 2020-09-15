@@ -8,10 +8,10 @@ const mediaBreakpoints = {
 const mediaBreakSize = Object.keys(mediaBreakpoints);
 
 module.exports = function defineStylusVariable() {
-    return (style) => {
-        style.define('mediaBreakSize', () => mediaBreakSize);
-        style.define('getMediaBreakSizeInfo', (size) => mediaBreakpoints[size.val]);
-    }
+    return (stylus) => {
+        stylus.define('mediaBreakSize', () => mediaBreakSize);
+        stylus.define('getMediaBreakSizeInfo', (size) => mediaBreakpoints[size.val]);
+    };
 };
 
 module.exports.mediaBreakpoints = mediaBreakpoints;

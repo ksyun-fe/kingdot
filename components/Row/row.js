@@ -1,5 +1,5 @@
 export default {
-    name: 'Row',
+    name: 'KdRow',
     props: {
         gutter: {
             type: [Number, String],

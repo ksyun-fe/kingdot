@@ -4,8 +4,9 @@ const mediaBreakSizeProp = mediaBreakSize.reduce((props, size) => {
     return props;
 }, {});
 export default {
-    name: 'Col',
-    props: Object.assign({}, mediaBreakSizeProp, {
+    name: 'kdCol',
+    props: {
+        ...mediaBreakSizeProp,
         span: {
             type: [Number, String],
             default: 24
@@ -23,16 +24,12 @@ export default {
             type: String,
             default: 'div'
         }
-    }),
+    },
     computed: {
         gutter() {
-            let parent = this.$parent;
-
-            while (parent && parent.$options.name !== 'Row') {
-                parent = parent.$parent;
+            if (this.$parent && this.$parent.$options.name === 'KdRow') {
+                return this.$parent.gutter;
             }
-
-            return parent && parent.gutter;
         },
         className() {
             const classList = [];
