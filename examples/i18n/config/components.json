@@ -24,8 +24,8 @@
             "name": "按钮"
         },
         {
-            "path": "/dialog",
-            "name": "Dialog对话框"
+            "path": "/drawer",
+            "name": "Drawer抽屉"
         }
     ],
     "en-US": [

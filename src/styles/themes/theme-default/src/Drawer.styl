@@ -1,0 +1,188 @@
+@import '../variables.styl';
+
+$-drawer-position ?= left top bottom right;
+
+.kd-drawer 
+  position: absolute;
+  width: $-drawer-main-width;
+  top: 0;
+  left: 0;
+
+.kd-drawer-overlay 
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: $-drawer-main-width;
+  height: $-drawer-main-height;
+  background-color: $-drawer-overlay-backgroundColor;
+  opacity: 0;
+  transition: all $-drawer-animation-time;
+
+.kd-drawer-main 
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: $-drawer-mian-backgroundColor;
+  height: $-drawer-main-height;
+
+for item in $-drawer-position 
+  .main-{item}-enter-active 
+    animation: 'drawer-fade-' + item + '-in' $-drawer-animation-time;  
+  .main-{item}-leave-active 
+    animation: 'drawer-fade-' + item + '-out' $-drawer-animation-time;
+
+.kd-drawer-title 
+  border-bottom: 1px solid $-drawer-titleBorder-color;
+  flex: 0 0 56px;
+  padding: 15px 0 0 24px;
+
+.kd-drawer-txt 
+  font-size: 16px;
+  color: $-drawer-txt-color;
+  line-height: 24px;
+
+.kd-drawer-close-icon 
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: $-drawer-titleIcon-color;
+  &:hover 
+    cursor: pointer;
+  &::before 
+    font-size: 16px;
+
+.kd-drawer-body 
+  flex: 1;
+  padding-left: 24px;
+  padding-top: 20px;
+  overflow-y: auto;
+
+.kd-drawer-footer 
+  position: relative;
+  flex: 0 0 64px;
+  border-top: 1px solid $-drawer-footerBorder-color;
+  justify-content: flex-end;
+  display: flex;
+
+  button 
+    margin-top: 16px;
+    outline: none;
+
+    &:hover 
+      cursor: pointer;
+
+  .kd-drawer-closbutton 
+    border: 1px solid $-drawer-closeButton-borderColor;
+    border-radius: 4px;
+    width: 56px;
+    height: 32px;
+    background: $-drawer-closeButton-backgroundColor;
+
+    &:hover 
+      color: $-drawer-hover-color;
+      border-color: $-drawer-hover-color;
+
+    &:active 
+      color: $-drawer-active-color;
+      border-color: $-drawer-active-color;
+
+  .kd-drawer-truebutton 
+    margin-left: 16px;
+    margin-right: 16px;
+    background: $-drawer-trueButton-backgroundColor;
+    border-radius: 4px;
+    width: 56px;
+    height: 32px;
+    border: 0;
+    color: $-drawer-trueButton-fontColor;
+
+    &:hover 
+      background-color: $-drawer-hover-color;
+      border-color: $-drawer-hover-color;
+
+    &:active 
+      background-color: $-drawer-active-color;
+      border-color: $-drawer-active-color;
+
+@keyframes drawer-fade-left-in {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-fade-left-out {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes drawer-fade-right-in {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-fade-right-out {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes drawer-fade-top-in {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawer-fade-top-out {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes drawer-fade-bottom-in {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawer-fade-bottom-out {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
