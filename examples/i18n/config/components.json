@@ -15,13 +15,24 @@
             "path": "/i18n",
             "name": "国际化"
         },
-
         {
             "name": "组件"
         },
         {
             "path": "/button",
             "name": "按钮"
+        },
+        {
+            "path": "/switch",
+            "name": "开关"
+        },
+        {
+            "path": "/input",
+            "name": "输入框"
+        },
+        {
+            "path": "/checkbox",
+            "name": "多选框"
         },
         {
             "path": "/icon",
@@ -46,6 +57,14 @@
         {
             "path": "/button",
             "name": "Button"
+        },
+        {
+            "path": "/switch",
+            "name": "switch"
+        },
+        {
+            "path": "/input",
+            "name": "Input"
         },
         {
             "path": "/icon",
