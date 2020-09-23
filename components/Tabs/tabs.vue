@@ -73,11 +73,6 @@
                 type: Boolean,
                 default: false
             },
-            // large default small
-            size: {
-                type: String,
-                default: 'default'
-            },
             tabClickMove: {
                 type: Boolean,
                 default: false
@@ -100,8 +95,7 @@
         data() {
             var mainClass = {
                 'kd-tabs': true,
-                [`kd-tabs-${this.type}`]: this.type !== 'default',
-                [`kd-tabs-${this.size}`]: this.size !== 'default'
+                [`kd-tabs-${this.type}`]: this.type !== 'default'
             };
             return {
                 mainClass: mainClass,
@@ -151,18 +145,12 @@
             },
             tabHandelMove({marginLeft = ''}) {
                 if (this.handleTabMove) {
-                    this.calculateTravelDistance();
-                    if (
-                        this.marginLeft - this.singleWidth + this.contentWidth <
-                        this.regionWidth
+                    if (this.marginLeft - this.regionWidth <= -this.contentWidth
                     ) {
                         this.marginLeft = -(this.contentWidth - this.regionWidth);
                     } else {
-                        this.marginLeft -= marginLeft;
+                        this.marginLeft -= marginLeft - 20;
                     }
-                // eslint-disable-next-line no-empty
-                } else {
-
                 }
             },
             moveLeft() {

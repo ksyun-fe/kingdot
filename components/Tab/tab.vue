@@ -52,18 +52,13 @@
         watch: {
             innerValue: function (v) {
                 if (this.$parent.value == this.value) {
-                    this.clickTab();
+                    this.MainParameter();
                 }
             }
         },
         created() {
             this.$nextTick(() => {
-                this.checked && this.$parent.tabsActive({
-                    val: this.value,
-                    marginLeft: this.$el.offsetLeft,
-                    marginTop: this.$el.offsetTop,
-                    width: this.$el.offsetWidth
-                });
+                this.checked && this.MainParameter();
             });
         },
         methods: {
@@ -72,6 +67,9 @@
                 this.$parent.tabHandelMove({
                     marginLeft: this.$el.offsetLeft
                 });
+                this.MainParameter();
+            },
+            MainParameter() {
                 this.$parent.tabsActive({
                     val: this.value,
                     marginLeft: this.$el.offsetLeft,

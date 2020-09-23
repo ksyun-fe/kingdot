@@ -153,7 +153,7 @@
 ```html
 <template> 
 <div>
- <Tabs v-model='editableTabsValue' type='block' @addTab='addTab' :closable=true  @close='closeTab' :addable=true>
+ <Tabs v-model='editableTabsValue' handleTabMove type='block' @addTab='addTab' :closable=true  @close='closeTab' :addable=true>
       <Tab v-for="item in editableTabs" :value='item.name' :key='item.name'>  {{item.title}}  </Tab>
  </Tabs>
  </div>   
@@ -199,29 +199,6 @@
           this.editableTabsValue = activeName;
         }
     },
-   }
-</script>
-```
-:::
-### 自定义标签 
-:::demo #基础用法 根具自己需求自定义内容的标签页。
-```html
-<template>
- <div>
- <Tabs  v-model='key' type='card'>
-    <Tab value='1'> <i class='kd-icon-upload-file'></i> 标签页一</Tab>
-    <Tab value='2'> <i class='kd-icon-date'></i> 标签页二</Tab>
-    <Tab value='3'>自定义</Tab>
- </Tabs>   
- </div>   
-</template>   
-<script>
-   export default {
-        data(){
-            return{
-              key:1,
-            }
-        }
    }
 </script>
 ```
