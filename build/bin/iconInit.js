@@ -1,12 +1,12 @@
-'use strict';
-
-var postcss = require('postcss');
-var fs = require('fs');
 var path = require('path');
-var fontFile = fs.readFileSync(path.resolve(__dirname, '../../src/styles/fonts/iconfont.css'), 'utf8');
-var nodes = postcss.parse(fontFile).nodes;
-var classList = [];
+var fs = require('fs');
+var postcss = require('postcss');
 
+var fontPath = path.resolve(__dirname, '../../src/styles/fonts/iconfont.css');
+var jsonPath = path.resolve(__dirname, '../../examples/icon.json');
+var fileCont = fs.readFileSync(fontPath, 'utf8');
+var nodes = postcss.parse(fileCont).nodes;
+var classList = [];
 nodes.forEach((node) => {
     var selector = node.selector || '';
     var reg = new RegExp(/\.kd-icon-([^:]+):before/);
@@ -17,6 +17,4 @@ nodes.forEach((node) => {
     }
 });
 
-// classList.reverse(); // 希望按 css 文件顺序倒序排列
-
-fs.writeFile(path.resolve(__dirname, '../../examples/icon.json'), JSON.stringify(classList), () => {});
+fs.writeFile(jsonPath, JSON.stringify(classList), () => {});

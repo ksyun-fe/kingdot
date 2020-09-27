@@ -34,33 +34,42 @@
 ```html
 <template>
     <div class="icon-list">
-        <div v-for="name in $iconList" :key="name" class="icon-list-block">
+        <div v-for="name in iconList" :key="name" class="icon-list-block">
             <i :class="'kd-icon-' + name + ' icon-show'"></i>
             <span class="icon-name">{{'kd-icon-' + name}}</span>
         </div>
     </div>
 </template>
+<script>
+import iconList from '../../icon.json'
+export default {
+    data(){
+        return {
+            iconList:iconList
+        }
+    }
+}
+</script>
 <style type="text/stylus" scoped rel="stylesheet/stylus" lang="stylus">
     .icon-list
         overflow hidden
-        list-style none
         border 1px solid #eee
     .icon-list-block
         float left
         width 16.66%
-        text-align center
         height 140px
-        color #666
-        font-size 13px
-        border-right 1px solid #eee
-        border-bottom 1px solid #eee
         margin-right -1px
         margin-bottom -1px
+        border-right 1px solid #eee
+        border-bottom 1px solid #eee
+        text-align center
+        font-size 13px
+        color #666
         .icon-show
             display block
             height 32px
-            font-size 32px
             margin 30px 0
+            font-size 32px
             color #3d3d3d
         .icon-name
             display inline-block
