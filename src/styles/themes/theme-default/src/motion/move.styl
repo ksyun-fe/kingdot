@@ -1,0 +1,83 @@
+move-motion($className, $keyframeName)
+    make-motion($className, $keyframeName)
+    .{className}-enter, .{className}-appear
+        opacity 0
+        animation-timing-function $-ease-out-circ
+    .{className}-leave
+        animation-timing-function $-ease-in-circ
+move-motion(move-up, kdMoveUp)
+move-motion(move-down, kdMoveDown)
+move-motion(move-left, kdMoveLeft)
+move-motion(move-right, kdMoveRight)
+@keyframes kdMoveDownIn
+    0%
+        opacity 0
+        transform translateY(100%)
+        transform-origin 0 0
+    100%
+        opacity 1
+        transform translateY(0%)
+        transform-origin 0 0
+@keyframes kdMoveDownOut
+    0%
+        opacity 1
+        transform translateY(0%)
+        transform-origin 0 0
+    100%
+        opacity 0
+        transform translateY(100%)
+        transform-origin 0 0
+@keyframes kdMoveLeftIn
+    0%
+        opacity 0
+        transform translateX(-100%)
+        transform-origin 0 0
+    100%
+        opacity 1
+        transform translateX(0%)
+        transform-origin 0 0
+@keyframes kdMoveLeftOut
+    0%
+        opacity 1
+        transform translateX(0%)
+        transform-origin 0 0
+    100%
+        opacity 0
+        transform translateX(-100%)
+        transform-origin 0 0
+@keyframes kdMoveRightIn
+    0%
+        opacity 0
+        transform translateX(100%)
+        transform-origin 0 0
+    100%
+        opacity 1
+        transform translateX(0%)
+        transform-origin 0 0
+@keyframes kdMoveRightOut
+    0%
+        opacity 1
+        transform translateX(0%)
+        transform-origin 0 0
+    100%
+        opacity 0
+        transform translateX(100%)
+        transform-origin 0 0
+@keyframes kdMoveUpIn
+    0%
+        opacity 0
+        transform translateY(-100%)
+        transform-origin 0 0
+    100%
+        opacity 1
+        transform translateY(0%)
+        transform-origin 0 0
+@keyframes kdMoveUpOut
+    0%
+        opacity 1
+        transform translateY(0%)
+        transform-origin 0 0
+    100%
+        opacity 0
+        transform translateY(-100%)
+        transform-origin 0 0

@@ -1,0 +1,83 @@
+slide-motion($className, $keyframeName)
+    make-motion($className, $keyframeName)
+    .{className}-enter, .{className}-appear
+        opacity 0
+        animation-timing-function $-ease-out-quint
+    .{className}-leave
+        animation-timing-function $-ease-in-quint
+slide-motion(slide-up, kdSlideUp)
+slide-motion(slide-down, kdSlideDown)
+slide-motion(slide-left, kdSlideLeft)
+slide-motion(slide-right, kdSlideRight)
+@keyframes kdSlideUpIn
+    0%
+        opacity 0
+        transform scaleY(0.8)
+        transform-origin 0% 0%
+    100%
+        opacity 1
+        transform scaleY(1)
+        transform-origin 0% 0%
+@keyframes kdSlideUpOut
+    0%
+        opacity 1
+        transform scaleY(1)
+        transform-origin 0% 0%
+    100%
+        opacity 0
+        transform scaleY(0.8)
+        transform-origin 0% 0%
+@keyframes kdSlideDownIn
+    0%
+        opacity 0
+        transform scaleY(0.8)
+        transform-origin 100% 100%
+    100%
+        opacity 1
+        transform scaleY(1)
+        transform-origin 100% 100%
+@keyframes kdSlideDownOut
+    0%
+        opacity 1
+        transform scaleY(1)
+        transform-origin 100% 100%
+    100%
+        opacity 0
+        transform scaleY(0.8)
+        transform-origin 100% 100%
+@keyframes kdSlideLeftIn
+    0%
+        opacity 0
+        transform scaleX(0.8)
+        transform-origin 0% 0%
+    100%
+        opacity 1
+        transform scaleX(1)
+        transform-origin 0% 0%
+@keyframes kdSlideLeftOut
+    0%
+        opacity 1
+        transform scaleX(1)
+        transform-origin 0% 0%
+    100%
+        opacity 0
+        transform scaleX(0.8)
+        transform-origin 0% 0%
+@keyframes kdSlideRightIn
+    0%
+        opacity 0
+        transform scaleX(0.8)
+        transform-origin 100% 0%
+    100%
+        opacity 1
+        transform scaleX(1)
+        transform-origin 100% 0%
+@keyframes kdSlideRightOut
+    0%
+        opacity 1
+        transform scaleX(1)
+        transform-origin 100% 0%
+    100%
+        opacity 0
+        transform scaleX(0.8)
+        transform-origin 100% 0%
