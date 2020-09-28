@@ -9,6 +9,7 @@ import components from '../src/index.js';
 import Highlight from './directives/highlight.js';
 // 开发时用的样式
 import '../src/styles/themes/theme-default/src/index.styl'; // theme1
+// import '../src/styles/themes/theme/src/index.styl'; // theme1
 // import '../src/styles/themes/theme/src/index.styl'; // theme2
 // 项目中用到的样式
 // import '../lib/theme-default/index.css'; // theme1

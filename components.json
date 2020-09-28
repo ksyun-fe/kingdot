@@ -1,6 +1,9 @@
 {
     "Button": "./components/Button/index.vue",
     "ButtonGroup": "./components/ButtonGroup/index.vue",
+    "Checkbox": "./components/Checkbox/index.vue",
+    "Input": "./components/Input/index.vue",
     "Message": "./components/Message/index.vue",
-    "Radio": "./components/Radio/index.vue"
+    "Radio": "./components/Radio/index.vue",
+    "Switch": "./components/Switch/index.vue"
 }

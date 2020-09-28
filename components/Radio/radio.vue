@@ -16,13 +16,12 @@
                     type="radio"
                     class="kd-radio-input"
                     :value="radioValue"
-                    :name="name"
                     :disabled="disabled"
                     tabindex="-1"
                     @click="clickSelf"
             >
         </span>
-        <!-- 文本 -->
+        <!-- text -->
         <span class="kd-radio-text">
             <slot></slot>
         </span>
@@ -31,7 +30,7 @@
 
 <script>
     export default {
-        name: 'Radio',
+        name: 'KdRadio',
         props: {
             // 排列类型
             type: {
@@ -43,13 +42,10 @@
                 type: Boolean,
                 default: false
             },
-            name: {
-                type: String
-            },
             // 正确的值
             trueValue: {
                 type: [Boolean, String, Number],
-                default: ''
+                default: true
             },
             // 传入的值
             value: {

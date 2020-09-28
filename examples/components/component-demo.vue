@@ -32,6 +32,7 @@
                 <i
                         :class="{
                             active: sectionHover,
+                            'open': showCode,
                             'arrow-icon': true
                         }"
                 ></i>
@@ -148,7 +149,7 @@
         &.active
             transform translateX(-40px)
 
-            &:after
+        &.open:after
                 border-bottom 8px solid #557dfc
                 border-top none
 

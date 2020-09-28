@@ -3,21 +3,6 @@
 /****************************
             Reset
 *****************************/
-
-*, *:before, *:after
-    box-sizing inherit
-html
-    box-sizing border-box
-
-// iPad Input Shadows
-input
-    margin 0
-    -webkit-appearance none
-    -moz-appearance none
-    color $-text-color
-::-ms-clear
-    display none
-
 ul, ol, li
     list-style none
     margin 0
@@ -28,26 +13,6 @@ select:focus
     outline none
 ::placeholder
     color $-text-placeholder-color
-
-
-/****************************
-            Page
-*****************************/
-
-html
-body
-#app
-    height 100%
-    line-height $-line-height
-html
-    font-size unit($-rem, px)
-body
-    font-size $-font-size
-    font-family $-font-family
-    margin 0
-    padding 0
-    color $-text-default-color
-
 
 /****************************
             Headers
@@ -68,27 +33,6 @@ for type in 1 2 3 4 5
     h{type}:last-child
         margin-bottom 0
 
-
-/****************************
-            Link
-*****************************/
-
-a
-    color $-link-color
-    text-decoration $-link-underline
-    cursor pointer
-    outline none
-    &:hover
-        color $-link-hover-color
-        text-decoration $-link-hover-underline
-
-
-/****************************
-            Code
-*****************************/
-
-code, kbd, pre, samp
-    font-family $-code-font-family
 
 /****************************
            Tap Highlight

@@ -25,6 +25,18 @@
         {
             "path": "/radio",
             "name": "Radio 单选框"
+        },
+        {
+            "path": "/switch",
+            "name": "开关"
+        },
+        {
+            "path": "/input",
+            "name": "输入框"
+        },
+        {
+            "path": "/checkbox",
+            "name": "多选框"
         }
     ],
     "en-US": [
@@ -49,6 +61,14 @@
         {
             "path": "/radio",
             "name": "Radio"
+        },
+        {
+            "path": "/switch",
+            "name": "switch"
+        },
+        {
+            "path": "/input",
+            "name": "Input"
         }
     ]
 }
