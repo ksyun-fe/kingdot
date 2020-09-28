@@ -9,7 +9,7 @@
                 }
             ]"
     >
-        <!-- 按钮 -->
+        <!-- input -->
         <span class="kd-radio-wrapper">
             <input
                     ref="input"
@@ -59,7 +59,7 @@
             };
         },
         computed: {
-            // 是否已选择
+            // 是否选中
             checked() {
                 return this.trueValue === this.radioValue;
             },
