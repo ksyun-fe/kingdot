@@ -15,7 +15,7 @@
             "path": "/i18n",
             "name": "国际化"
         },
-        
+
         {
             "name": "组件"
         },
@@ -34,6 +34,10 @@
         {
             "path": "/checkbox",
             "name": "多选框"
+        },
+        {
+            "path": "/transition",
+            "name": "过渡动画"
         }
     ],
     "en-US": [
@@ -62,6 +66,10 @@
         {
             "path": "/input",
             "name": "Input"
+        },
+        {
+            "path": "/transition",
+            "name": "Transition"
         }
     ]
 }
