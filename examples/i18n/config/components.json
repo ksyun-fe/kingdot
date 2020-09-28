@@ -37,6 +37,10 @@
         {
             "path": "/checkbox",
             "name": "多选框"
+        },
+        {
+            "path": "/icon",
+            "name": "图标"
         }
     ],
     "en-US": [
@@ -69,6 +73,10 @@
         {
             "path": "/input",
             "name": "Input"
+        },
+        {
+            "path": "/icon",
+            "name": "Icon"
         }
     ]
 }
