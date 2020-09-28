@@ -107,7 +107,7 @@
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |:---------- |:-------- |:---------- |:-------------  |:-------- |
 | value     | 单选框的取值，用于v-model进行双向绑定   | Boolean / String / Number    |  —  |    —    |
-| trueValue  |   单选框选中后的值   | Boolean / String / Number  |     —     |   —    |
+| trueValue  |   单选框选中后的值   | Boolean / String / Number  |     —     |   true    |
 | disabled     | 是否禁用   | Boolean    |     true / false     |    false     |
 | type  |   定义radio的排列方式：垂直、水平   | String  |     "vertical" / "horizontal"    |    "horizontal"    |
 
