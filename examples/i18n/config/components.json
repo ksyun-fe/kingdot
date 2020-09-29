@@ -15,13 +15,16 @@
             "path": "/i18n",
             "name": "国际化"
         },
-        
         {
             "name": "组件"
         },
         {
             "path": "/button",
             "name": "按钮"
+        },
+        {
+            "path": "/radio",
+            "name": "Radio 单选框"
         },
         {
             "path": "/switch",
@@ -38,6 +41,10 @@
         {
             "path": "/checkbox",
             "name": "多选框"
+        },
+        {
+            "path": "/icon",
+            "name": "图标"
         }
     ],
     "en-US": [
@@ -60,6 +67,10 @@
             "name": "Button"
         },
         {
+            "path": "/radio",
+            "name": "Radio"
+        },
+        {
             "path": "/switch",
             "name": "switch"
         },
@@ -73,7 +84,10 @@
         },
         {
             "path": "/checkbox",
-            "name": "多选框"
+            "name": "多选框"},
+        {
+            "path": "/icon",
+            "name": "Icon"
         }
     ]
 }
