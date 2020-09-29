@@ -38,6 +38,10 @@
         {
             "path": "/transition",
             "name": "过渡动画"
+        },
+        {
+            "path": "/timeline",
+            "name": "时间轴"
         }
     ],
     "en-US": [
@@ -70,6 +74,10 @@
         {
             "path": "/transition",
             "name": "Transition"
+        },
+        {
+            "path": "/timeline",
+            "name": "Timeline"
         }
     ]
 }

@@ -1,4 +1,4 @@
-import Transition from './transition.js';
+import Transition from './transition.vue';
 
 Transition.install = function (Vue) {
     Vue.component(Transition.name, Transition);
