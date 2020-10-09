@@ -7,5 +7,8 @@
     "Input": "./components/Input/index.vue",
     "Message": "./components/Message/index.vue",
     "Radio": "./components/Radio/index.vue",
-    "Switch": "./components/Switch/index.vue"
+    "Switch": "./components/Switch/index.vue",
+    "Timeline": "./components/Timeline/index.vue",
+    "TimelineItem": "./components/TimelineItem/index.vue",
+    "Transition": "./components/Transition/index.vue"
 }

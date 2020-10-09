@@ -16,13 +16,16 @@
                 slots = slots.reverse();
             }
 
-            return h(
-                'ul',
-                {
-                    class: classes
-                },
-                slots
-            );
+            // return h(
+            //     'ul',
+            //     {
+            //         class: classes
+            //     },
+            //     slots
+            // );
+            return (<ul class={ classes }>
+                { slots }
+            </ul>);
         }
     };
 </script>

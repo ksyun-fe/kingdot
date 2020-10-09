@@ -7,6 +7,9 @@ import Input from '../components/Input/index.js';
 import Message from '../components/Message/index.js';
 import Radio from '../components/Radio/index.js';
 import Switch from '../components/Switch/index.js';
+import Timeline from '../components/Timeline/index.js';
+import TimelineItem from '../components/TimelineItem/index.js';
+import Transition from '../components/Transition/index.js';
 
 const components = [
     Button,
@@ -17,7 +20,10 @@ const components = [
     Input,
     Message,
     Radio,
-    Switch
+    Switch,
+    Timeline,
+    TimelineItem,
+    Transition
 ];
 
 const install = (Vue, opts = {}) => {
@@ -40,5 +46,8 @@ export default {
     Input,
     Message,
     Radio,
-    Switch
+    Switch,
+    Timeline,
+    TimelineItem,
+    Transition
 };
