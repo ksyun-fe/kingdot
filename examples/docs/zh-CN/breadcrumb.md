@@ -6,7 +6,7 @@
 ```html
 <template>
     <div>
-         <Breadcrumb>
+         <Breadcrumb separator="/">
             <BreadcrumbItem>一级菜单</BreadcrumbItem>
             <BreadcrumbItem>二级菜单</BreadcrumbItem>
             <BreadcrumbItem>三级菜单</BreadcrumbItem>
