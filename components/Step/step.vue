@@ -1,7 +1,7 @@
 <template>
     <div
             class="kd-step"
-            :class="{ 'kd-step-simple': type == 'simple' ,'kd-step-spot':type=='spot'}"
+            :class="`kd-step-${type}`"
     >
         <span
                 v-if="!isLast() && type != 'simple'"
