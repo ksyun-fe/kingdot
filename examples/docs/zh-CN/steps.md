@@ -232,9 +232,9 @@
 |---------- |------------------|---------------|---------------|-------- |
 | value     | 当前激活的步骤,v-model绑定     | string/Number  |    _          | 1       |
 | type      |  steps的类型      | String         | default/simple/spot | default |
-| direction |  steps的整体方向   | String         | level/vertical  | level |
-| position  | 控制step标题和描述的位置 ｜ String   | bottom/right  | right   |
+| direction |  steps的整体方向   | String         | horizontal/vertical  | horizontal |
+| position  | 控制step标题和描述的位置 | String   | bottom/right  | right   |
 | width     | steps的宽度       | Sring/Number |  -            |  -       |
-| size      | step的大小        ｜ String      | default/small | default   |
+| size      | step的大小        | String      | default/small | default   |
 | finishStatus | 已完成步骤的状态 | String      | wait/finished/error/active | finished |
 |currentStatus  | 当前激活步骤的状态 | String  | wait/finished/error/active | active |
