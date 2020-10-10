@@ -11,35 +11,64 @@
     }
     class Collapse {
         constructor() {
-            this.props = {
-                'enter-active-class':
-                    'kd-motion-collapse kd-motion-collapse-active',
-                'leave-active-class':
-                    'kd-motion-collapse kd-motion-collapse-active'
-            };
             this.on = {
                 beforeEnter(el) {
-                    el.style.height = 0;
-                    el.style.opacity = 0;
+                    if (!el.dataset) el.dataset = {};
+
+                    el.dataset.oldPaddingTop = el.style.paddingTop;
+                    el.dataset.oldPaddingBottom = el.style.paddingBottom;
+
+                    el.style.height = '0';
+                    el.style.paddingTop = 0;
+                    el.style.paddingBottom = 0;
+
+                    el.classList.add('kd-collapse-transition');
                 },
                 enter(el) {
-                    el.style.height = `${el.scrollHeight}px`;
-                    el.style.opacity = 1;
+                    el.dataset.oldOverflow = el.style.overflow;
+                    if (el.scrollHeight !== 0) {
+                        el.style.height = el.scrollHeight + 'px';
+                        el.style.paddingTop = el.dataset.oldPaddingTop;
+                        el.style.paddingBottom = el.dataset.oldPaddingBottom;
+                    } else {
+                        el.style.height = '';
+                        el.style.paddingTop = el.dataset.oldPaddingTop;
+                        el.style.paddingBottom = el.dataset.oldPaddingBottom;
+                    }
+                    el.style.overflow = 'hidden';
                 },
                 afterEnter(el) {
+                    // for safari: remove class then reset height is necessary
+                    el.classList.remove('kd-collapse-transition');
                     el.style.height = '';
-                    el.style.opacity = '';
+                    el.style.overflow = el.dataset.oldOverflow;
                 },
                 beforeLeave(el) {
-                    el.style.height = `${el.offsetHeight}px`;
-                    el.style.opacity = 1;
+                    if (!el.dataset) el.dataset = {};
+                    el.dataset.oldPaddingTop = el.style.paddingTop;
+                    el.dataset.oldPaddingBottom = el.style.paddingBottom;
+                    el.dataset.oldOverflow = el.style.overflow;
+
+                    // el.style.height = el.scrollHeight + "px";
+                    el.style.height = el.scrollHeight - parseFloat(el.dataset.oldPaddingTop) - parseFloat(el.dataset.oldPaddingBottom) + 'px';
+                    el.style.overflow = 'hidden';
+                    el.classList.add('kd-collapse-transition');
                 },
                 leave(el) {
-                    el.scrollHeight && (el.style.height = 0);
+                    if (el.scrollHeight !== 0) {
+                        // for safari: add class after set height, or it will jump to zero height suddenly, weired
+                        el.style.height = 0;
+                        el.style.paddingTop = 0;
+                        el.style.paddingBottom = 0;
+                        el.classList.add('kd-collapse-transition');
+                    }
                 },
                 afterLeave(el) {
+                    el.classList.remove('kd-collapse-transition');
                     el.style.height = '';
-                    el.style.opacity = '';
+                    el.style.overflow = el.dataset.oldOverflow;
+                    el.style.paddingTop = el.dataset.oldPaddingTop;
+                    el.style.paddingBottom = el.dataset.oldPaddingBottom;
                 }
             };
         }

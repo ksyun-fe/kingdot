@@ -69,11 +69,11 @@ Base on Vue native transition component.
     .big-text
         font-size 36px
         font-weight 900
-        /* padding 24px 48px */
+        padding 24px 48px
         border-radius 8px
         border 1px solid #ccc
-        .demo-content
-            padding 24px 48px
+        /* .demo-content
+            padding 24px 48px */
 </style>
 ```
 :::
