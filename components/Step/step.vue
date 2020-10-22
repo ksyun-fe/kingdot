@@ -39,16 +39,10 @@
                                 ]"
                                 :style="handleLH"
                         >
+                            <span v-if="icon == '' && _status != 'error' && _status != 'finished'">{{ index }}</span>
                             <i
-                                    v-if="icon == '' && _status == 'finished'"
-                                    class="kd-icon-success"
-                            ></i>
-                            <span
-                                    v-if="icon == '' && _status != 'error' && _status != 'finished'"
-                            >{{ index }}</span>
-                            <i
-                                    v-if="icon == '' && _status == 'error'"
-                                    class="kd-icon-error"
+                                    v-if="icon == ''"
+                                    :class="iconObj"
                             ></i>
                             <i
                                     v-if="icon != ''"
@@ -98,13 +92,13 @@
                             v-if="description != ''"
                             class="kd-step-description"
                             :class="{
-                                'kd-step-description-notitle': title == '' && position == 'left'&&direction != 'vertical',
+                                'kd-step-desc-notitle': title == '' && position == 'left'&&direction != 'vertical',
                                 'kd-step-desc-notitle-spot': title == '' && type == 'spot',
-                                'kd-step-description-active': index == activeIndex,
-                                'kd-step-description-bottom': position == 'bottom',
-                                'kd-step-description-spot': type == 'spot',
-                                'kd-step-description-vertical-notitle':title==''&&direction == 'vertical',
-                                'kd-step-description-vertical':direction == 'vertical'
+                                'kd-step-desc-active': index == activeIndex,
+                                'kd-step-desc-bottom': position == 'bottom',
+                                'kd-step-desc-spot': type == 'spot',
+                                'kd-step-desc-vertical-notitle':title==''&&direction == 'vertical',
+                                'kd-step-desc-vertical':direction == 'vertical'
                             }"
                     >
                         {{ description }}
@@ -169,6 +163,12 @@
                     }
                 }
                 return style;
+            },
+            iconObj() {
+                return {
+                    'kd-icon-success': this._status == 'finished',
+                    'kd-icon-error': this._status == 'error'
+                };
             }
         },
         watch: {},
