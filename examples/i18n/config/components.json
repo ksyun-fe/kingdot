@@ -45,6 +45,10 @@
         {
             "path": "/icon",
             "name": "图标"
+        },
+        {
+            "path": "/progress",
+            "name": "进度条"
         }
     ],
     "en-US": [
@@ -80,11 +84,11 @@
         },
         {
             "path": "/form",
-            "name": "表单"
+            "name": "form"
         },
         {
             "path": "/checkbox",
-            "name": "多选框"},
+            "name": "checkbox"},
         {
             "path": "/icon",
             "name": "Icon"
