@@ -1,5 +1,4 @@
 @import "../variables.styl";
-@import '../../mixin.styl'
 
 $-row-justify-content = {
     start: flex-start,
@@ -18,7 +17,7 @@ $-row-align-items = {
     baseline: baseline
 }
 
-gen(prop)
+genRowPropStyle(prop)
     for k, v in lookup('$-row-' + prop)
         .kd-row-{split('-', prop)[0]}-{k}
             {prop} v
@@ -36,5 +35,5 @@ gen(prop)
 .kd-row-flex
     display flex
 
-gen('justify-content')
-gen('align-items')
+genRowPropStyle('justify-content')
+genRowPropStyle('align-items')

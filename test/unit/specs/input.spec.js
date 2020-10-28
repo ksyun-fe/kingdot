@@ -1,7 +1,7 @@
 import Input from 'components/Input/index.js';
 import { createCons, createVue, destroyVM } from '../util';
 
-describe('Switch', () => {
+describe('Input', () => {
     let vm;
     afterEach(() => {
         destroyVM(vm);

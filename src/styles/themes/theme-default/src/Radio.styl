@@ -1,0 +1,66 @@
+@import "../variables.styl";
+
+.kd-radio
+    display inline-flex
+    cursor pointer
+    .kd-radio-wrapper
+        position relative
+        display inline-block
+        flex 0 0 auto
+        width $-radio-width
+        height $-radio-width
+        vertical-align middle
+        border 1px solid $-radio-border-color
+        border-radius 50%
+        transition all $-transition
+        background $-radio-bg-color
+        // inner
+        &:before
+            content ""
+            display block
+            position absolute
+            top 50%
+            left 50%
+            width $-radio-inner-width
+            height $-radio-inner-width
+            margin-left -(@width / 2)
+            margin-top @margin-left
+            border-radius 50%
+            background-color $-radio-content-bg-color
+            transform scale(0)
+            transition all $-transition
+    .kd-radio-input
+        position absolute
+        width 100%
+        height 100%
+        opacity 0
+        cursor pointer
+    .kd-radio-text
+        display inline-block
+        vertical-align middle
+        margin-left $-radio-text-margin-left
+        font-size 14px
+        color $-radio-text-color
+        flex 0 1 auto
+        line-height 16px
+// checked
+.kd-radio-checked
+    .kd-radio-wrapper
+        border-color $-radio-checked-color
+        &:before
+            background-color $-radio-content-bg-color
+            transform scale(1)
+// disabled
+.kd-radio-disabled
+    color $-radio-disabled-color
+    cursor not-allowed
+    .kd-radio-wrapper
+        border-color $-radio-disabled-border-color
+        background $-radio-disabled-bg-color
+        &:before
+            background $-radio-disabled-inner-color
+    .kd-radio-text
+        color $-radio-disabled-color
+.kd-radio-type
+    display flex
+    padding 4px 0

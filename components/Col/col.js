@@ -40,7 +40,6 @@ export default {
                 }
             });
             mediaBreakSize.forEach(size => {
-
                 if (typeof this[size] === 'object') {
                     Object.keys(this[size]).forEach(prop => {
                         classList.push(`kd-col-${size}-${prop}-${this[size][prop]}`);
@@ -48,12 +47,11 @@ export default {
                 } else if (this[size] != null) {
                     classList.push(`kd-col-${size}-span-${this[size]}`);
                 }
-
             });
             return classList;
         },
         style() {
-            let style = {};
+            const style = {};
 
             if (this.gutter) {
                 style.paddingLeft = this.gutter / 2 + 'px';

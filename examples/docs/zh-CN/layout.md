@@ -42,7 +42,6 @@
 ```
 :::
 
-### 间距
 :::demo #间距 ##给`Row`添加`gutter`，可以定义`Col`之间的间距，单位为`px`；
 
 ```html
@@ -76,7 +75,6 @@
 ```
 :::
 
-### 偏移
 :::demo #偏移 ##给`Col`添加`offset`属性可以使列相对本来的位置向右偏移相应的列数
 ```html
 <template>
@@ -106,7 +104,6 @@
 ```
 :::
 
-### flex布局
 :::demo #flex布局 ##给`Row`添加`justify`属性，即可自动启用`flex`布局来定义`Col`水平方向的排列方式，它的可选值为：start end center between around evenly
 ```html
 <template>
@@ -175,7 +172,6 @@
 :::
 
 
-### flex布局
 :::demo #flex对齐 ##给`Row`添加`align`属性，即可自动启用`flex`布局来定义`Col`垂直方向的排列方式，它的可选值为：`top` `bottom` `middle` `stretch` `baseline`
 ```html
 <template>
@@ -244,7 +240,6 @@
 :::
 
 
-### 响应式布局
 :::demo #响应式布局 ##响应式布局参考`bootstrap`，分为5个等级：`xs` `sm` `md` `lg` `xl`。你也可以对象的方式指定多个属性(包括：`span` `offset` `pull` `push`)的响应式，其中`xs="2"`等价于`xs={span: 2}`
 
 ```html

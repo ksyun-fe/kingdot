@@ -1,7 +1,13 @@
 {
     "Button": "./components/Button/index.vue",
     "ButtonGroup": "./components/ButtonGroup/index.vue",
+    "Checkbox": "./components/Checkbox/index.vue",
     "Col": "./components/Col/index.vue",
+    "Form": "./components/Form/index.vue",
+    "FormItem": "./components/FormItem/index.vue",
+    "Input": "./components/Input/index.vue",
+    "Message": "./components/Message/index.vue",
+    "Radio": "./components/Radio/index.vue",
     "Row": "./components/Row/index.vue",
-    "Message": "./components/Message/index.vue"
+    "Switch": "./components/Switch/index.vue"
 }

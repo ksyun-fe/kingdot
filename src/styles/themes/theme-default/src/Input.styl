@@ -1,12 +1,19 @@
 .kd-input, .kd-textarea
+    box-sizing border-box
     display inline-block
     width $-input-default-width
     vertical-align middle
+    input
+        appearance button;
+        -moz-appearance none
+        -webkit-appearance none
     .kd-input-wrapper
+        box-sizing border-box
         position relative
         display inline-block
         width 100%
     .kd-input-inner
+        box-sizing border-box
         position relative
         display inline-block
         width 100%
@@ -25,6 +32,7 @@
         width 100%
     .kd-input-prefix
     .kd-input-suffix
+        box-sizing border-box
         position absolute
         top 50%
         transform translateY(-50%)
@@ -35,6 +43,7 @@
         display table
         .kd-input-prepend
         .kd-input-append
+            box-sizing border-box
             display table-cell
             padding 0 $-input-pend-padding-horizontal
             width: 1px
@@ -112,8 +121,8 @@
     .kd-input-inner
         resize vertical
     .kd-textarea-count
-        color #909399
-        background #fff
+        color $-text-light-color
+        background $-input-bg-color
         position absolute
         font-size $-textarea-count-font-size
         bottom $-textarea-count-bottom

@@ -1,5 +1,4 @@
 @import '../variables.styl'
-@import '../../mixin.styl'
 
 $-col-props = {
     span: 'width',
@@ -8,7 +7,7 @@ $-col-props = {
     push: 'left'
 }
 
-col(size = "")
+genColSizeSyle(size = "")
     if (size)
         size = '-' + size
     for n in 0..24
@@ -25,7 +24,7 @@ mediaStyle(size, point, fn)
     float left
     box-sizing border-box
 
-col()
+genColSizeSyle()
 
 for size in mediaBreakSize()
-    mediaStyle(size, getMediaBreakSizeInfo(size), col)
+    mediaStyle(size, getMediaBreakSizeInfo(size), genColSizeSyle)

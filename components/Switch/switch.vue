@@ -140,7 +140,7 @@
                     roundStyle.borderRadius = `${(this.height - 4) / 2}px`;
                 }
                 if (this.switchValue === this.activeValue) {
-                    roundStyle.marginLeft = `-${this.height - 2}px`;
+                    roundStyle.marginLeft = `-${this.height - 4}px`;
                 }
                 return roundStyle;
             }
