@@ -40,3 +40,26 @@ export const destroyVM = function (vm) {
   vm.$el.parentNode &&
   vm.$el.parentNode.removeChild(vm.$el);
 };
+
+export const triggerEvent = function (el, name, ...eventData) {
+    let event, eventName;
+
+    if (/^mouse|click/.test(name)) {
+        eventName = 'MouseEvents';
+    } else if (/^key/.test(name)) {
+        eventName = 'KeyboardEvent';
+    } else {
+        eventName = 'HTMLEvents';
+    }
+
+    if (document.createEvent) {
+        event = document.createEvent(eventName);
+        event.initEvent(name, ...eventData);
+    }
+
+    if (el.dispatchEvent) {
+        el.dispatchEvent(event);
+    } else if (el.fireEvent) {
+        el.fireEvent(`on${name}`, event);
+    }
+};

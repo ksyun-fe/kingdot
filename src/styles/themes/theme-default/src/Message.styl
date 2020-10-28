@@ -1,49 +1,50 @@
 @import "../variables.styl";
-.k-messages
+$-message-types = 'success' 'warning' 'error' 'info';
+.kd-message
+    width $-message-width
+    font-size $-message-font-size
+    padding $-message-padding
+    border-radius $-message-border-radius
+    border 1px solid $-message-default-border-color
+    background $-message-default-background-color
+    color $-message-default-font-color
+    box-sizing border-box
+    position relative
+    overflow hidden
+.kd-message-fixed
     position fixed
-    top  .714285714285714rem
-    width 100%
-    pointer-events none
-    z-index 100000000
-    .fade-enter-active
-    .fade-leave-active
-        transition opacity .4s
-    .fade-enter
-    .fade-leave-to
-        opacity 0
-    .k-message
-
-        width 100%
-        .k-container
-            min-height 40px
-            width 400px
-            margin 0 auto
-            position relative
-            padding-left 24px
-            background-color #FFFFFF;
-            box-shadow 0 0 8px 0 rgba(52,57,87,0.20)
-            border-radius 2px
-            pointer-events all
-            .k-content
-                display inline-block
-                padding 10px
-                vertical-align middle
-                word-wrap break-word
-                word-break break-all
-                white-space pre-wrap
-            &>.ksicon
-                position absolute
-                left .714285714285714rem
-                top .4rem
-    .k-warning
-        .k-container
-            .ksicon
-                color #ffad37
-    .k-success
-        .k-container
-            .ksicon
-                color #4FCC6F
-    .k-error
-        .k-container
-            .ksicon
-                color #EF6A77
+    top 0
+    left 50%
+    transform translate(-50%, 0)
+    transition all $-message-transition
+for t in $-message-types
+    .kd-message-{t}
+        border-color lookup('$-message-' + t + '-border-color')
+        background lookup('$-message-' + t + '-background-color')
+        color lookup('$-message-' + t + '-font-color')
+.kd-message-icon
+    margin-right 6px
+.kd-message-wrap
+    position relative
+    display flex
+    justify-content center
+    align-items center
+    padding-right 20px
+.kd-message-content
+    line-height $-message-content-line-height
+    word-wrap break-word
+    word-break break-all
+    white-space pre-wrap
+.kd-message-center .kd-message-wrap
+    justify-content center
+.kd-message-close
+    position absolute
+    top 50%
+    right 14px
+    transform translate(0, -50%)
+    font-size 12px
+    cursor pointer
+.kd-message-fade-enter,
+.kd-message-fade-leave-active
+    opacity 0
+    transform translate(-50%, -100%)

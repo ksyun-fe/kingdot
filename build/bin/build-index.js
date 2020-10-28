@@ -17,7 +17,7 @@ const components = [
 ];
 
 const install = (Vue, opts = {}) => {
-    Vue.prototype.$message = Message.install;
+    Vue.prototype.$message = Message.creators;
     components.forEach(c => {
         Vue.component(c.name, c);
     });

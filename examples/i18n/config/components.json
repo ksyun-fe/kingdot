@@ -45,6 +45,10 @@
         {
             "path": "/icon",
             "name": "图标"
+        },
+        {
+            "path": "/message",
+            "name": "消息提示"
         }
     ],
     "en-US": [
@@ -88,6 +92,10 @@
         {
             "path": "/icon",
             "name": "Icon"
+        },
+        {
+            "path": "/message",
+            "name": "message"
         }
     ]
 }
