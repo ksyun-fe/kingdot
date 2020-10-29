@@ -36,13 +36,13 @@
         >
             <svg viewBox="0 0 100 100">
                 <path
-                        :d="trackPath"
+                        :d="path"
                         stroke="#ECECEC"
                         :stroke-width="relativeStrokeWidth"
                         fill="none"
                 ></path>
                 <path
-                        :d="trackPath"
+                        :d="path"
                         :stroke="color"
                         :stroke-width="relativeStrokeWidth"
                         fill="none"
@@ -116,9 +116,6 @@
         },
         computed: {
             value() {
-                if (this.percentage == 100) {
-                    console.log('--100');
-                }
                 return this.format ? this.format(this.percentage) : `${this.percentage}%`;
             },
             iconClass() {
@@ -132,11 +129,7 @@
                 }
             },
             iconStyle() {
-                if (this.progressTextSize) {
-                    return {fontSize: this.progressTextSize + 'px'};
-                } else {
-                    return {};
-                }
+                return this.progressTextSize ? {fontSize: this.progressTextSize + 'px'} : {};
             },
             barStyle() {
                 const style = {};
@@ -153,7 +146,7 @@
                 // 半径 = (画布宽度 - relativeStrokeWidth ) / 2
                 return parseInt((100 - this.relativeStrokeWidth) / 2, 10);
             },
-            trackPath() {
+            path() {
                 // 路径轨迹  环形
                 return `
                     M50 50
@@ -182,35 +175,30 @@
         },
         methods: {
             getCurrentColor(percentage) {
-                if (typeof this.color === 'function') {
-                    return this.color(percentage);
-                } else if (typeof this.color === 'string') {
+                if (typeof this.color === 'string') {
                     return this.color;
+                } else if (typeof this.color === 'function') {
+                    return this.color(percentage);
                 } else {
                     return this.getLevelColor(percentage);
                 }
             },
             getLevelColor(percentage) {
-                const colorArray = this.getColorArray().sort((a, b) => a.percentage - b.percentage);
+                const colors = this.color.map((color, index) => {
+                    if (typeof color === 'string') {
+                        return {
+                            color: color,
+                            percentage: (index + 1) * (100 / color.length)
+                        };
+                    }
+                });
+                const colorArray = colors.sort((a, b) => a.percentage - b.percentage);
                 for (let i = 0; i < colorArray.length; i++) {
                     if (colorArray[i].percentage > percentage) {
                         return colorArray[i].color;
                     }
                 }
                 return colorArray[colorArray.length - 1].color;
-            },
-            getColorArray() {
-                const color = this.color;
-                const span = 100 / color.length;
-                return color.map((seriesColor, index) => {
-                    if (typeof seriesColor === 'string') {
-                        return {
-                            color: seriesColor,
-                            percentage: (index + 1) * span
-                        };
-                    }
-                    return seriesColor;
-                });
             }
         }
     };

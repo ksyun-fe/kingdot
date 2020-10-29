@@ -1,13 +1,12 @@
 .kd-progress
     position relative
-    line-height 1
     div
         box-sizing border-box
 .kd-progress-bar
     display inline-block
     width 100%
-    margin-right -58px
-    padding-right 50px
+    margin-right $-progress-bar-marginRight
+    padding-right $-progress-bar-paddingRight
     vertical-align middle
 .kd-progress-without-text
     .kd-progress-bar
@@ -31,7 +30,7 @@
         text-align right
 .kd-progress-text
     display inline-block
-    margin-left 16px
+    margin-left $-pregress-text-marginLeft
     vertical-align middle
 
 /*环形*/
@@ -67,9 +66,9 @@ div.kd-progress-bar-active:before
         width 100%
 
 /*icon color*/
-i.kd-icon-success-solid
+i.kd-icon-success-solid, i.kd-icon-success
     color $-success-color
-i.kd-icon-error-solid
+i.kd-icon-error-solid, i.kd-icon-error
     color $-danger-color
 i.kd-icon-warning-solid
     color $-warning-color

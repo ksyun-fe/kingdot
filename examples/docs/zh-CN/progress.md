@@ -301,5 +301,4 @@ margin-bottom: 10px;
 | color | 进度条背景颜色 | string/function/array | -- | --
 | width | 画布宽度(仅type为circle时可用) | number | -- | 100
 | progressTextSize | 显示百分比时字体大小 | number | -- | 12
-
-
+| active | 显示动态进度 | boolean | true/false | false
