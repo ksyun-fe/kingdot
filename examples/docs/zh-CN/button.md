@@ -1,5 +1,5 @@
 ### 基础用法
-:::demo #基础用法 按钮主要有4中类型：主要按钮，次要按钮，虚线按钮，文字按钮。
+:::demo #基础用法 ##按钮主要有4中类型：主要按钮，次要按钮，虚线按钮，文字按钮。
 
 ```html
 <template>
@@ -48,7 +48,7 @@
 
 
 ### 禁用按钮
-:::demo #禁用按钮 使用disabled定义按钮是否可用，接受一个Boolean值。
+:::demo #禁用按钮 ##使用disabled定义按钮是否可用，接受一个Boolean值。
 
 ```html
 <template>
@@ -65,7 +65,7 @@
 
 
 ### 图标按钮
-:::demo #图标按钮 使用icon属性给按钮添加图标。
+:::demo #图标按钮 ##使用icon属性给按钮添加图标。
 
 ```html
 <template>
@@ -84,7 +84,7 @@
 :::
 
 ### 圆形按钮
-:::demo #图标按钮 圆形按钮有circle和round两种类型。
+:::demo #图标按钮 ##圆形按钮有circle和round两种类型。
 
 ```html
 <template>
@@ -99,7 +99,7 @@
 :::
 
 ### 按钮大小
-:::demo #按钮大小 图标大小有两种类型，large、small。
+:::demo #按钮大小 ##图标大小有两种类型，large、small。
 
 ```html
 <template>
@@ -125,7 +125,7 @@
 :::
 
 ### 按钮组合
-:::demo #按钮组合 button-group的按钮组合。
+:::demo #按钮组合 ##button-group的按钮组合。
 
 ```html
 <template>

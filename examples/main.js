@@ -25,7 +25,6 @@ Vue.component('header-area', HeaderArea);
 Vue.component('side-nav', SideNav);
 Vue.component('component-demo', ComponentDemo);
 Vue.config.productionTip = false;
-
 new Vue({
     router,
     render: h => h(App)

@@ -2,7 +2,7 @@
              Theme
 *******************************/
 // $-font-family := -apple-system,'PingFang SC',BlinkMacSystemFont,'Segoe UI','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif !important
-$-font-family := 'PingFangSC-Regular,Microsoft YaHei,微软雅黑,Arial,sans-serif' !important
+$-font-family := PingFangSC-Light, 'helvetica neue', arial, 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif
 // font size
 $-font-large-size := 16px
 $-font-default-size := 14px
@@ -161,6 +161,29 @@ $-btn-small-font-size := $-font-base-size
 $-btn-icon-text-gutter := $-icon-text-gutter
 
 /******************************
+        Radio
+*******************************/
+$-radio-width := 14px
+
+$-radio-border-color := #525C77
+$-radio-bg-color := #222A41
+$-radio-content-bg-color := #fff
+
+// text
+$-radio-text-margin-left := 8px
+$-radio-text-color := #fff
+
+// checked
+$-radio-checked-border-color := $-radio-border-color
+$-radio-inner-width := 8px
+$-radio-checked-color := #2F374F
+
+// disabled
+$-radio-disabled-color := #4f566d
+$-radio-disabled-border-color := #4f566d
+$-radio-disabled-bg-color := #222A41
+$-radio-disabled-inner-color := #4f566d
+/******************************
         Switch
 *******************************/
 $-switch-active-bg := $-primary-linear-color
@@ -273,3 +296,21 @@ $-textarea-default-padding-top-bottom := 8px
 $-textarea-count-font-size := $-font-second-size
 $-textarea-count-bottom := 5px
 $-textarea-count-right := 10px
+
+
+/******************************
+        checkbox
+*******************************/
+$-checkbox-input-width := 14px;
+$-checkbox-input-height := 14px;
+$-checkbox-font-size := $-font-default-size;
+$-checkbox-default-input-border-color := $-border-base-color;
+$-checkbox-default-input-background-color := $-light-bg-color;
+
+$-checkbox-disabled-icon-color := $-border-base-color;
+$-checkbox-disabled-input-border-color := $-disabled-border-color;
+$-checkbox-disabled-input-background-color := $-disabled-bg-color;
+
+$-checkbox-checked-icon-color := $-pend-color;
+$-checkbox-checked-input-border-color := $-icon-default-color;
+$-checkbox-checked-input-background-color := $-icon-default-color;
