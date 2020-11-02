@@ -10,11 +10,11 @@
                     class="logo"
                     exact
             />
-            <input
+            <!--<input
                     class="search"
                     type="text"
                     placeholder="请输入组件名称"
-            >
+            >-->
         </div>
         <ul class="nav-wrapper">
             <li
