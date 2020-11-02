@@ -16,7 +16,7 @@ function fileExists(filePath) {
 }
 
 themes.forEach((theme) => {
-    var reset = '@import "../../../fonts/iconfont.css";\n@import "../reset.styl";\n';
+    var reset = '@import "./iconfont.styl";\n@import "../reset.styl";\n';
     var indexContent = reset;
     Components.forEach(function (key) {
         var fileName = key + '.styl';
