@@ -16,7 +16,7 @@ module.exports = {
         libraryTarget: 'commonjs2'
     },
     resolve: {
-        extensions: ['.js, .vue, .json'],
+        extensions: ['.js', '.vue', '.json'],
         alias: {
             src: path.resolve(__dirname, '../src')
         }
