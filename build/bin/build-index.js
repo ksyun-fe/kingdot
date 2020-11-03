@@ -25,8 +25,9 @@ const install = (Vue, opts = {}) => {
         zIndex: opts.zIndex || 2000
     };
 };
+
 export default {
-    version: {{version}},
+    version: '{{version}}',
     install: install,
     {{components}}
 };
@@ -51,7 +52,7 @@ componentFiles.forEach(i => {
 
 fs.writeFileSync(filePath, string(template, {
     import: importContent.join(EOL),
-    version: '' + process.env.version || require('../../package.json').version,
+    version: process.env.version || require('../../package.json').version,
     components: components.join(',' + EOL + '    ')
 }));
 

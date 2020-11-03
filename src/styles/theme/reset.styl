@@ -1,4 +1,4 @@
-@import './variables.styl';
+@import 'variables.styl';
 
 /****************************
             Reset
@@ -23,7 +23,8 @@ h1, h2, h3, h4, h5
     margin $-header-margin
     font-weight $-header-font-weight
     padding 0
-
+// h1
+//     min-height unit(14 / $-rem, rem)
 for type in 1 2 3 4 5
     h{type}
         font-size lookup('$-h' + type)

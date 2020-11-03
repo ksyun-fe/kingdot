@@ -1,10 +1,11 @@
 {
     "name": "kingdot",
     "title": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "A UI Components Library For Vue",
     "author": "kingsoft",
     "main": "lib/kingdot.js",
+    "module": "src/index.js",
     "unpkg": "lib/kingdot.min.js",
     "license": "MIT",
     "files": [
@@ -29,10 +30,10 @@
         "build:entry": "node build/bin/build-index.js & node build/bin/iconInit.js",
         "version": "node build/bin/version.js",
         "dev": "npm run build:entry && cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.conf.js",
-        "clean": "rimraf lib",
+        "clean": "rimraf lib rimraf src/*/lib",
         "lint": "eslint --ext .js,.vue src components build examples",
         "dist:locale": "babel src --out-dir lib --ignore src/index.js",
-        "dist:theme": "cp-cli src/styles/themes/theme-default/src src/styles/themes/theme/src && node build/bin/gen-cssfile && gulp build --gulpfile src/styles/themes/gulpfile.js && cp-cli src/styles/themes/lib lib/",
+        "dist:theme": "cp-cli src/styles/theme-default/src src/styles/theme/src && node build/bin/gen-cssfile.js && gulp build --gulpfile src/styles/gulpfile.js && cp-cli src/styles/lib lib/",
         "demo:build": "rimraf examples/dist && npm run build:entry && cross-env NODE_ENV=production webpack --config build/webpack.demo.conf.js",
         "dist:component": "cross-env NODE_ENV=production && webpack --config build/webpack.component.js",
         "dist:prod": "npm run build:entry && cross-env NODE_ENV=production && webpack --config build/webpack.config.js",
@@ -170,7 +171,6 @@
     "peerDependencies": {
         "vue": "^2.6.11"
     },
-    "bundleDependencies": false,
     "engines": {
         "node": ">= 10.0.0",
         "npm": ">= 3.0.0"
@@ -178,6 +178,6 @@
     "browserslist": [
         "> 1%",
         "last 2 versions",
-        "not ie <= 8"
+        "not ie < 10"
     ]
 }

@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import kd from '../../src/index';
 Vue.use(kd);
-import 'src/styles/themes/theme-default/src/index.styl';
+import 'src/styles/theme-default/index.styl';
 
 let id = 0;
 
