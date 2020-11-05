@@ -15,8 +15,8 @@
                 beforeEnter(el) {
                     if (!el.dataset) el.dataset = {};
 
-                    el.dataset.oldPaddingTop = el.style.paddingTop;
-                    el.dataset.oldPaddingBottom = el.style.paddingBottom;
+                    el.dataset.oldPaddingTop = window.getComputedStyle(el).paddingTop;
+                    el.dataset.oldPaddingBottom = window.getComputedStyle(el).paddingBottom;
 
                     el.style.height = '0';
                     el.style.paddingTop = 0;
@@ -45,12 +45,16 @@
                 },
                 beforeLeave(el) {
                     if (!el.dataset) el.dataset = {};
-                    el.dataset.oldPaddingTop = el.style.paddingTop;
-                    el.dataset.oldPaddingBottom = el.style.paddingBottom;
+                    el.dataset.oldPaddingTop = window.getComputedStyle(el).paddingTop;
+                    el.dataset.oldPaddingBottom = window.getComputedStyle(el).paddingBottom;
                     el.dataset.oldOverflow = el.style.overflow;
 
                     // el.style.height = el.scrollHeight + "px";
-                    el.style.height = el.scrollHeight - parseFloat(el.dataset.oldPaddingTop) - parseFloat(el.dataset.oldPaddingBottom) + 'px';
+                    el.style.height =
+                        el.scrollHeight -
+                        parseFloat(el.dataset.oldPaddingTop) -
+                        parseFloat(el.dataset.oldPaddingBottom) +
+                        'px';
                     el.style.overflow = 'hidden';
                     el.classList.add('kd-collapse-transition');
                 },
@@ -67,8 +71,8 @@
                     el.classList.remove('kd-collapse-transition');
                     el.style.height = '';
                     el.style.overflow = el.dataset.oldOverflow;
-                    el.style.paddingTop = el.dataset.oldPaddingTop;
-                    el.style.paddingBottom = el.dataset.oldPaddingBottom;
+                    el.style.paddingTop = el.dataset.oldPaddingTop || 0;
+                    el.style.paddingBottom = el.dataset.oldPaddingBottom || 0;
                 }
             };
         }

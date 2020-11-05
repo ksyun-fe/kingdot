@@ -10,6 +10,7 @@ import Switch from '../components/Switch/index.js';
 import Timeline from '../components/Timeline/index.js';
 import TimelineItem from '../components/TimelineItem/index.js';
 import Transition from '../components/Transition/index.js';
+import Tree from '../components/Tree/index.js';
 
 const components = [
     Button,
@@ -23,7 +24,8 @@ const components = [
     Switch,
     Timeline,
     TimelineItem,
-    Transition
+    Transition,
+    Tree
 ];
 
 const install = (Vue, opts = {}) => {
@@ -49,5 +51,6 @@ export default {
     Switch,
     Timeline,
     TimelineItem,
-    Transition
+    Transition,
+    Tree
 };

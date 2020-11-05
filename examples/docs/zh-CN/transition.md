@@ -21,9 +21,8 @@
         <div class="demo-main">
             <kd-transition :type="type" :motion="motion">
                 <div class="big-text" v-show="isShow">
-                    <div class="demo-content">
-                        <span v-text="type" />&nbsp;<span v-text="motion" />
-                    </div>
+                    <div>xxxxxxxxx</div>
+                    <span v-text="type" />&nbsp;<span v-text="motion" />
                 </div>
             </kd-transition>
         </div>
@@ -72,8 +71,6 @@
         padding 24px 48px
         border-radius 8px
         border 1px solid #ccc
-        /* .demo-content
-            padding 24px 48px */
 </style>
 ```
 :::

@@ -10,5 +10,6 @@
     "Switch": "./components/Switch/index.vue",
     "Timeline": "./components/Timeline/index.vue",
     "TimelineItem": "./components/TimelineItem/index.vue",
-    "Transition": "./components/Transition/index.vue"
+    "Transition": "./components/Transition/index.vue",
+    "Tree": "./components/Tree/index.vue"
 }
