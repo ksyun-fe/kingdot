@@ -144,9 +144,11 @@
             margin-bottom 20px
 </style>
 ```
+
 :::
 
 :::demo #高级用法：自定义、懒加载 ##通过@async-load-nodes进行数据懒加载。
+
 ```html
 <template>
     <div class="tree-demo-2">
@@ -268,9 +270,11 @@
         margin 0 10px
 </style>
 ```
+
 :::
 
 ### Tree属性 {.component__content}
+
 | 属性    | 说明                         | 类型      | 可选值         | 默认值  |
 | --------- | ---------------------------- | --------- | -------------- | ------- |
 | `data` | `要渲染的数据` | `Node Object[]` | `[]` | `[]` |
@@ -287,7 +291,9 @@
 | `draggable` | `是否可拖拽` | `Boolean` | `true | false` | `false` |
 | `dragAfterExpanded` | `dragover是否自动展开targetNode` | `Boolean` | `true | false` | `true` |
 | `tpl` | `自定义Node模版` | `JSX` | `--` | `--` |
+
 ### Tree事件 {.component__content}
+
 | 事件名 | 说明               | 参数    |
 | ----  | ------------------| ------- |
 | `node-click` | `单击节点触发的事件` | `Function(node: Object)` |
@@ -298,7 +304,9 @@
 | `drag-node-end` | `节点拖拽结束后触发事件` | `Function({dragNode: Object, targetNode: Object})` |
 | `del-node` | `删除节点后触发事件` | `Function({ parentNode: Object/null, delNode: Object })` |
 | `node-expand` | `节点展开触发事件` | `Function(node: Object, expand: boolean, position: {level, index})` |
+
 ### Tree方法 {.component__content}
+
 | 方法名      | 说明    | 参数      | 返回值      |
 |---------- |-------- |---------- |---------- |
 | `getNodes` | `options: 可以包含一些过滤属性对象如{selected: true,checked: true}，空需传{}; data: node[],默认为传入Tree的data数据;isOriginal:是否保持原始数据,默认为false,会去掉children、hasExpanded、parent等属性;ignoreInvisibleNode:忽略不可见节点,默认false; isLeaf:是否只返回叶子节点,默认false` | `{options: Object, data: Array,isOriginal: Boolean,ignoreInvisibleNode: Boolean, isLeaf: Boolean}` | `Array` |
@@ -308,7 +316,9 @@
 | `nodeSelected` | `选中节点方法` | `Function(node: Object)` | `null` |
 | `addNode` | `增加节点` | `{parentNode: Object(不能为空), node: Object}` | `null` |
 | `addNodes` | `增加多个节点` | `{parentNode: Object(不能为空), nodes: Array}` | `null` |
+
 ### Node对象属性 {.component__content}
+
 | 参数      | 说明    | 类型      | 可选值 | 默认值  |
 |---------- |-------- |---------- |---------- |---------- |
 | `title`   | `节点名称` | `String` | `N` | `—` |
