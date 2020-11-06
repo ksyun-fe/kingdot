@@ -1,15 +1,21 @@
 import Button from '../components/Button/index.js';
 import ButtonGroup from '../components/ButtonGroup/index.js';
+import Drawer from '../components/Drawer/index.js';
 import Message from '../components/Message/index.js';
 import Spin from '../components/Spin/index.js';
 import Switch from '../components/Switch/index.js';
+import Tab from '../components/Tab/index.js';
+import Tabs from '../components/Tabs/index.js';
 
 const components = [
     Button,
     ButtonGroup,
+    Drawer,
     Message,
     Spin,
-    Switch
+    Switch,
+    Tab,
+    Tabs
 ];
 
 const install = (Vue) => {
@@ -23,7 +29,10 @@ export default {
     install: install,
     Button,
     ButtonGroup,
+    Drawer,
     Message,
     Spin,
-    Switch
+    Switch,
+    Tab,
+    Tabs
 };
