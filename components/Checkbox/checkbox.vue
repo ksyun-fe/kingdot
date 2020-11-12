@@ -86,7 +86,7 @@
 
             change() {
                 let index;
-                let value = this.value;
+                let value = Array.isArray(this.value) ? [...this.value] : this.value;
 
                 if (this.disabled) return;
 
@@ -108,7 +108,7 @@
                 }
 
                 this.$emit('input', value);
-                this.$emit('change', value, value === this.trueValue);
+                this.$emit('change', value);
             }
         }
     };

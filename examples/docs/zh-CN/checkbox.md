@@ -114,8 +114,8 @@
             }
         },
         methods: {
-            toggleSelectAll(value, checked) {
-                this.languages = checked ? ['js', 'css', 'html'] : [];
+            toggleSelectAll(value) {
+                this.languages = value ? ['js', 'css', 'html'] : [];
             }
         }  
     }
