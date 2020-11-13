@@ -57,6 +57,10 @@
         {
             "path": "/tree",
             "name": "树"
+        },
+        {
+            "path": "/tooltip",
+            "name": "Tooltip文字提示"
         }
     ],
     "en-US": [
@@ -113,6 +117,10 @@
         {
             "path": "/tree",
             "name": "Tree"
+        },
+        {
+            "path": "/tooltip",
+            "name": "Tooltip"
         }
     ]
 }
