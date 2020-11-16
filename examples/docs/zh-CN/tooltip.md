@@ -1,4 +1,4 @@
-### 文字提示
+### Tooltip 文字提示
 常用于展示鼠标 hover 时的提示信息。
 
 :::demo #基础用法  ##使用Tooltip包裹需要展示提示的元素，使用content指定文本，设置不同位置，支持disabled、canHover、value/v-model等
@@ -284,4 +284,24 @@
 
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
+| value/v-model    | 是否展示的绑定值 | `Boolean` | `true|false` | `false` |
 | effect    | 默认提供的主题 | `String` | `dark|light` | `light` |
+| placement    | 不同位置展示效果 | `String` | `top, top-start, top-end, right, right-start, right-end, bottom, bottom-start, bottom-end, left, left-start, left-end` | `top` |
+| trigger    | 触发方式 | `String` | `hover|focus|click` | `hover` |
+| content    | 内容 | `String` | `--` | `--` |
+| disabled    | 是否禁用（禁用不显示） | `Boolean` | `true|false` | `false` |
+| canHover    | 对于hover模式，鼠标在进入弹层后弹层不会消失 | `Boolean` | `true|false` | `false` |
+| showArrow    | 是否显示箭头 | `Boolean` | `true|false` | `true` |
+| mouseEnterDelay    | 弹层延迟显示时间，单位s | `Number` | `-` | `0` |
+| mouseLeaveDelay    | 弹层延迟隐藏时间，单位s | `Number` | `-` | `0` |
+| popperModifiers    | 弹层修饰器 | `Object[]` | `[]` | `[]` |
+
+### Tooltip slot {.component__content}
+
+| 属性       | 说明           |
+|---------- |--------        |
+| default   | 弹层的参考元素（参考元素需要能接受mouseenter、mouseleave、foucus、click等事件）   |
+| content   | 弹层内容        |
+
+### 注意
+参考元素需要能接受mouseenter、mouseleave、foucus、click等事件

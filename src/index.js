@@ -5,6 +5,8 @@ import Form from '../components/Form/index.js';
 import FormItem from '../components/FormItem/index.js';
 import Input from '../components/Input/index.js';
 import Message from '../components/Message/index.js';
+import Popconfirm from '../components/Popconfirm/index.js';
+import Popover from '../components/Popover/index.js';
 import Radio from '../components/Radio/index.js';
 import Switch from '../components/Switch/index.js';
 import Timeline from '../components/Timeline/index.js';
@@ -21,6 +23,8 @@ const components = [
     FormItem,
     Input,
     Message,
+    Popconfirm,
+    Popover,
     Radio,
     Switch,
     Timeline,
@@ -49,6 +53,8 @@ export default {
     FormItem,
     Input,
     Message,
+    Popconfirm,
+    Popover,
     Radio,
     Switch,
     Timeline,

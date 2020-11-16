@@ -63,7 +63,7 @@
         padding 20px 24px 20px 12px
         height: 100%
         overflow auto
-
+        font-size 12px
         li.nav-item
             width: 165px
             height: 37px

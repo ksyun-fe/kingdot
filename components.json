@@ -6,6 +6,8 @@
     "FormItem": "./components/FormItem/index.vue",
     "Input": "./components/Input/index.vue",
     "Message": "./components/Message/index.vue",
+    "Popconfirm": "./components/Popconfirm/index.vue",
+    "Popover": "./components/Popover/index.vue",
     "Radio": "./components/Radio/index.vue",
     "Switch": "./components/Switch/index.vue",
     "Timeline": "./components/Timeline/index.vue",

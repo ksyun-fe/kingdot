@@ -130,13 +130,13 @@ export default {
             }
         },
         destroyPopper() {
-            if (this.visible || !this.popperJS) return;
+            if (!this.popperJS) return;
             this.popperJS.destroy();
             this.popperJS = null;
-            this.currentPlacement = this.placement; // reset
             if (this.popper && this.popper.parentNode === document.body) {
                 document.body.removeChild(this.popper);
             }
+            this.currentPlacement = this.placement; // reset
         },
         appendArrow(element) {
             if (this.appended) return;

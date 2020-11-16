@@ -8,7 +8,6 @@ export default {
             type: Boolean,
             default: false
         },
-        content: String,
         trigger: {
             type: String,
             default: 'hover',
@@ -88,7 +87,8 @@ export default {
         this.popperVM.vnode = (
             <div v-show={this.visible} ref='popper' class={this.popperCls} style={{ zIndex: 1111 }}>
                 <div class='kd-tooltip-content'>
-                    <kd-tooltip-content content={this.$slots.content || this.content}></kd-tooltip-content>
+                    {/* <kd-tooltip-content content={this.$slots.content || this.content} title={this.$slots.title || this.title}></kd-tooltip-content> */}
+                    <kd-tooltip-content {...this}></kd-tooltip-content>
                 </div>
             </div>
         );
