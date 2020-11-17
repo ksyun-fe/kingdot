@@ -42,6 +42,10 @@ export default {
         showArrow: {
             type: Boolean,
             default: true
+        },
+        always: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -70,7 +74,18 @@ export default {
                     if (value) {
                         this.showPopper();
                     } else {
-                        this.hidePopper();
+                        this.closePopper();
+                    }
+                });
+            }
+        },
+        always: {
+            immediate: true,
+            handler(value) {
+                this.$nextTick(() => {
+                    if (value) {
+                        this.visible = true;
+                        this.showPopper();
                     }
                 });
             }
@@ -143,7 +158,8 @@ export default {
     },
     computed: {
         popperCls() {
-            return ['kd-tooltip', `kd-tooltip-${this.effect}`].concat(this.placementCls);
+            const theme = ['dark', 'light'].includes(this.effect) ? this.effect : 'light';
+            return ['kd-tooltip', `kd-tooltip-${theme}`].concat(this.placementCls);
         },
         currentMouseEnterDelay() {
             return this.mouseEnterDelay * 1000;
@@ -170,6 +186,7 @@ export default {
         },
         closePopper() {
             if (!this.visible) return;
+            if (this.always) return;
             clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
                 this.visible = false;

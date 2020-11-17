@@ -17,7 +17,10 @@
             <Button type="primary" class="btn">canHover</Button>
         </kd-tooltip>
         <kd-tooltip placement="top" content="no arrow" :showArrow="false" effect="dark">
-            <Button>no arrow</Button>
+            <Button class="btn">no arrow</Button>
+        </kd-tooltip>
+        <kd-tooltip placement="top-start" content="always be by your side" effect="dark" always>
+            <Button class="btn">always</Button>
         </kd-tooltip>
         <br />
         <kd-tooltip placement="top" content="show delay 1s" effect="dark" :mouseEnterDelay="1">
@@ -239,7 +242,7 @@
 <template>
     <div>
         <kd-tooltip
-            placement="bottom-start"
+            placement="bottom"
             content="hello world"
             trigger="click"
             canHover
@@ -264,7 +267,15 @@
                     {
                         name: 'offset',
                         options: {
-                            offset: [0, -8]
+                            offset: [0, -8] // [沿着参考元素移动的距离，沿着弹层放置方向移动的距离]
+                        }
+                    },
+                    {
+                        name: 'topLogger',
+                        enabled: true,
+                        phase: 'main', // popper分三个阶段：read，main，write，每个还可细分出before、after阶段
+                        fn({ state }) {
+                            console.log(`Popper is on the ${state.placement}`);
                         }
                     }
                 ]
@@ -295,6 +306,7 @@
 | mouseEnterDelay    | 弹层延迟显示时间，单位s | `Number` | `-` | `0` |
 | mouseLeaveDelay    | 弹层延迟隐藏时间，单位s | `Number` | `-` | `0` |
 | popperModifiers    | 弹层修饰器 | `Object[]` | `[]` | `[]` |
+| always    | 是否一直展示弹层 | `Boolean` | `true|false` | `false` |
 
 ### Tooltip slot {.component__content}
 

@@ -1,53 +1,59 @@
-// Tooltip
-$-font-size-base := 12px
-$-line-height-base := 1.5
-$-border-radius-base := 4px
-$-shadow-color := rgba(0, 0, 0, 0.15)
-$-box-shadow-base := 0 0 15px 0 $-shadow-color
-$-tooltip-max-width := calc(240px - 14px - 14px)
-$-tooltip-arrow-width := 5px
-$-tooltip-distance := $-tooltip-arrow-width - 1px + 4px
-
+// tooltip base
+$-font-size-base ?= 12px
+$-line-height-base ?= 1.5
+$-border-radius-base ?= 4px
+$-shadow-color ?= rgba(0, 0, 0, 0.15)
+$-box-shadow-base ?= 0 0 15px 0 $-shadow-color
+$-tooltip-max-width ?= calc(240px - 14px - 14px)
+$-tooltip-arrow-width ?= 5px
+$-tooltip-distance ?= $-tooltip-arrow-width - 1px + 4px
 // effect
-$-tooltip-theme := 'dark' 'light'
-$-tooltip-light-bg := #fff
-$-tooltip-light-color := #737373
-$-popover-content-light-color := #737373
-$-popover-titleline-light-color := #E5E5E5
-$-tooltip-dark-bg := #2C324D
-$-tooltip-dark-color := #fff
-$-popover-content-dark-color := #8D919B
-$-popover-titleline-dark-color := #414760
-
-// effect color
+$-tooltip-theme = 'dark' 'light'
+$-tooltip-light-bg ?= #fff
+$-tooltip-light-color ?= #737373
+$-popover-content-light-color ?= #737373
+$-popover-titleline-light-color ?= #E5E5E5
+$-tooltip-dark-bg ?= #2C324D
+$-tooltip-dark-color ?= #fff
+$-popover-content-dark-color ?= #8D919B
+$-popover-titleline-dark-color ?= #414760
+// effect style
 for theme in $-tooltip-theme
     .kd-tooltip-{theme}
         .kd-tooltip-inner
             background-color lookup('$-tooltip-' + theme + '-bg')
             color lookup('$-tooltip-' + theme + '-color')
             .kd-popover-title
-                font-size 14px
-                font-weight 500
                 margin-bottom 14px
+                font-weight 500
+                font-size 14px
             .kd-popover-content
                 color lookup('$-popover-content-' + theme + '-color')
         .kd-popover-title-line
-            border-bottom 1px solid lookup('$-popover-titleline-' + theme + '-color')
             margin-bottom 14px
+            border-bottom 1px solid lookup('$-popover-titleline-' + theme + '-color')
         .kd-popover-footer
-            margin-top 16px
             display flex
             justify-content flex-end
+            margin-top 16px
             .btn-cancel
                 margin-right 12px
         &[data-popper-placement^='top'] .kd-tooltip-arrow
-            border-top-color lookup('$-tooltip-' + theme + '-bg') !important
+            bottom $-tooltip-distance - $-tooltip-arrow-width
+            border-width $-tooltip-arrow-width $-tooltip-arrow-width 0
+            border-top-color lookup('$-tooltip-' + theme + '-bg')
         &[data-popper-placement^='right'] .kd-tooltip-arrow
-            border-right-color lookup('$-tooltip-' + theme + '-bg') !important
+            left $-tooltip-distance - $-tooltip-arrow-width
+            border-width $-tooltip-arrow-width $-tooltip-arrow-width $-tooltip-arrow-width 0
+            border-right-color lookup('$-tooltip-' + theme + '-bg')
         &[data-popper-placement^='bottom'] .kd-tooltip-arrow
-            border-bottom-color lookup('$-tooltip-' + theme + '-bg') !important
+            top $-tooltip-distance - $-tooltip-arrow-width
+            border-width 0 $-tooltip-arrow-width $-tooltip-arrow-width
+            border-bottom-color lookup('$-tooltip-' + theme + '-bg')
         &[data-popper-placement^='left'] .kd-tooltip-arrow
-            border-left-color lookup('$-tooltip-' + theme + '-bg') !important
+            right $-tooltip-distance - $-tooltip-arrow-width
+            border-width $-tooltip-arrow-width 0 $-tooltip-arrow-width $-tooltip-arrow-width
+            border-left-color lookup('$-tooltip-' + theme + '-bg')
 // default
 .kd-tooltip
     position absolute
@@ -66,35 +72,18 @@ for theme in $-tooltip-theme
         padding-top $-tooltip-distance
     &[data-popper-placement^='left']
         padding-right $-tooltip-distance
-    // arrow style of placement
-    &[data-popper-placement^='top'] &-arrow
-        bottom $-tooltip-distance - $-tooltip-arrow-width
-        border-width $-tooltip-arrow-width $-tooltip-arrow-width 0
-        border-top-color $-tooltip-light-bg
-    &[data-popper-placement^='right'] &-arrow
-        left $-tooltip-distance - $-tooltip-arrow-width
-        border-width $-tooltip-arrow-width $-tooltip-arrow-width $-tooltip-arrow-width 0
-        border-right-color $-tooltip-light-bg
-    &[data-popper-placement^='bottom'] &-arrow
-        top $-tooltip-distance - $-tooltip-arrow-width
-        border-width 0 $-tooltip-arrow-width $-tooltip-arrow-width
-        border-bottom-color $-tooltip-light-bg
-    &[data-popper-placement^='left'] &-arrow
-        right $-tooltip-distance - $-tooltip-arrow-width
-        border-width $-tooltip-arrow-width 0 $-tooltip-arrow-width $-tooltip-arrow-width
-        border-left-color $-tooltip-light-bg
 // Wrapper for the tooltip content
 .kd-tooltip-inner
     padding 14px
     max-width $-tooltip-max-width
     border-radius $-border-radius-base
+    background-color $-tooltip-light-bg
     box-shadow $-box-shadow-base
+    color $-tooltip-light-color
     text-align left
     text-decoration none
     font-size 12px
     line-height 20px
-    color $-tooltip-light-color
-    background-color $-tooltip-light-bg
 .kd-tooltip-arrow
     position absolute
     width 0
