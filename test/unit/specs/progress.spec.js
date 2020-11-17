@@ -112,7 +112,6 @@ describe('Progress', () => {
                         this.status = 'success';
                     }
                 }, 60)
-                console.log(this.$refs);
             },
             methods: {
                 customColorFunc(percentage) {
