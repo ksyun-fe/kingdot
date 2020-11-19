@@ -8,7 +8,7 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1" type="spot">
+        <Steps v-model="stepIndex1" type="spot" :isClick="true">
             <Step title="步骤一" ></Step>
             <Step title="步骤二" ></Step>
             <Step title="步骤三" ></Step>
@@ -226,6 +226,7 @@
 | description  | 描述   | String  |     —     |    -   |
 | icon  | 自定义图标的类   | String  |     —     |    -   |
 | status  | 当前步骤的状态   | string  |     wait/finished/error / active     |    —   |
+| isClick | 是否启用点击功能 | boolean | true/false | false |
 
 ### Steps属性 {.component__content}
 | 属性       | 说明              | 类型          | 可选值       | 默认值   |
@@ -238,3 +239,7 @@
 | size      | step的大小        | String      | default/small | default   |
 | finishStatus | 已完成步骤的状态 | String      | wait/finished/error/active | finished |
 |currentStatus  | 当前激活步骤的状态 | String  | wait/finished/error/active | active |
+### Step事件 {.component__content}
+|    事件名    | 说明              |
+|---------- |------------------|
+| onClick | 当前step的点击事件 |
