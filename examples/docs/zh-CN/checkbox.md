@@ -1,9 +1,10 @@
 ### 复选框
-:::demo #基本使用 ##通过v-model进行数据双向绑定。默认绑定变量的值会是Boolean，选中为true。
+:::demo #基本使用 ##通过`v-model`进行数据双向绑定。默认绑定变量的值会是`Boolean`，选中为`true`。
 
 ```html
 <template>
     <div>
+        <kd-checkbox>checkbox</kd-checkbox>
         <kd-checkbox v-model="value1">checkbox</kd-checkbox>
     </div>
 </template>
@@ -11,9 +12,7 @@
     export default {
         data() {
             return {
-                value1: '',
-                value2: 'aaa',
-                value3: ['b', 'a']
+                value1: ''
             };
         },
         methods: {
@@ -31,7 +30,7 @@
 :::
 
 
-:::demo #指定选中和非选中的取值 ##默认选中的值为true，非选中的值为false，通过trueValue和falseValue属性，我们可以指定选中和非选中的值。
+:::demo #指定选中和非选中的取值 ##默认选中的值为`true`，非选中的值为`false`，通过`trueValue`和`falseValue`属性，我们可以指定选中和非选中的值。
 
 ```html
 <template>
@@ -57,7 +56,7 @@
 ```
 :::
 
-:::demo #Checkbox组 ##和浏览器原生行为一样，给Checkbox指定相同的name，它们便组成了复选框组。
+:::demo #Checkbox组 ##和浏览器原生行为一样，给`Checkbox`指定相同的`name`，它们便组成了复选框组。
 
 ```html
 <template>
@@ -83,7 +82,7 @@
 ```
 :::
 
-:::demo #半选中状态 ##通过indeterminate属性可以控制Checkbox的半选中状态
+:::demo #半选中状态 ##通过`indeterminate`属性可以控制`Checkbox`的半选中状态
 
 ```html
 <template>
@@ -127,7 +126,7 @@
 ```
 :::
 
-:::demo #禁用状态 ##设置disabled属性表示禁用状态。
+:::demo #禁用状态 ##设置`disabled`属性表示禁用状态。
 
 ```html
 <template>
