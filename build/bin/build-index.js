@@ -26,9 +26,13 @@ const install = (Vue, opts = {}) => {
     };
 };
 
+if (typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+}
+
 export default {
     version: '{{version}}',
-    install: install,
+    install,
     {{components}}
 };
 `;
@@ -58,7 +62,7 @@ fs.writeFileSync(filePath, string(template, {
 
 fs.writeFileSync(path.resolve(process.cwd(), 'components.json'), `{
     ${components.map((c) => {
-        return `"${c}": "./components/${c}/index.vue"`;
+        return `"${c}": "./components/${c}/index.js"`;
     }).join(',' + EOL + '    ')}
 }`);
 

@@ -38,9 +38,14 @@ themes.forEach(theme => {
             outputPath: `./lib/${theme}`
         },
         {
+            taskName: `compile-${theme}-base`,
+            filePath: `./${theme}/base.styl`,
+            outputPath: `./lib/${theme}`
+        },
+        {
             taskName: `compile-${theme}-separate`,
-            filePath: `./lib/${theme}/src`,
-            outputPath: `./lib/${theme}/src`
+            filePath: `./${theme}/src/*`,
+            outputPath: `./lib/${theme}`
         }
     ];
 
