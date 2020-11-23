@@ -1,6 +1,12 @@
 'use strict';
 
-const {series, src, dest, parallel, task} = require('gulp');
+const {
+    series,
+    src,
+    dest,
+    parallel,
+    task
+} = require('gulp');
 const stylus = require('gulp-stylus');
 const autoprefixer = require('gulp-autoprefixer');
 const cssmin = require('gulp-cssmin');
@@ -31,18 +37,19 @@ task('copyfont', () => {
 tasks.push('copyfont');
 
 themes.forEach(theme => {
-    const themeTask = [
-        {
-            taskName: `compile-${theme}`,
-            filePath: `./${theme}/index.styl`,
-            outputPath: `./lib/${theme}`
-        },
-        {
-            taskName: `compile-${theme}-separate`,
-            filePath: `./lib/${theme}/src`,
-            outputPath: `./lib/${theme}/src`
-        }
-    ];
+    const themeTask = [{
+        taskName: `compile-${theme}`,
+        filePath: `./${theme}/index.styl`,
+        outputPath: `./lib/${theme}`
+    }, {
+        taskName: `compile-${theme}-base`,
+        filePath: `./${theme}/base.styl`,
+        outputPath: `./lib/${theme}`
+    }, {
+        taskName: `compile-${theme}-separate`,
+        filePath: `./lib/${theme}/src`,
+        outputPath: `./lib/${theme}/src`
+    }];
 
     themeTask.forEach((item) => {
         task(item.taskName, () => {
