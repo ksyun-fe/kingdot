@@ -37,19 +37,23 @@ task('copyfont', () => {
 tasks.push('copyfont');
 
 themes.forEach(theme => {
-    const themeTask = [{
-        taskName: `compile-${theme}`,
-        filePath: `./${theme}/index.styl`,
-        outputPath: `./lib/${theme}`
-    }, {
-        taskName: `compile-${theme}-base`,
-        filePath: `./${theme}/base.styl`,
-        outputPath: `./lib/${theme}`
-    }, {
-        taskName: `compile-${theme}-separate`,
-        filePath: `./lib/${theme}/src`,
-        outputPath: `./lib/${theme}/src`
-    }];
+    const themeTask = [
+        {
+            taskName: `compile-${theme}`,
+            filePath: `./${theme}/index.styl`,
+            outputPath: `./lib/${theme}`
+        },
+        {
+            taskName: `compile-${theme}-base`,
+            filePath: `./${theme}/base.styl`,
+            outputPath: `./lib/${theme}`
+        },
+        {
+            taskName: `compile-${theme}-separate`,
+            filePath: `./${theme}/src/*`,
+            outputPath: `./lib/${theme}`
+        }
+    ];
 
     themeTask.forEach((item) => {
         task(item.taskName, () => {

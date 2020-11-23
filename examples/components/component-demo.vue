@@ -103,6 +103,16 @@
 
     .demo-description
         padding 10px 20px
+        code
+            display inline-block
+            vertical-align 2px
+            background #F7FAFE
+            margin 0 3px
+            padding 0px 5px
+            border-radius 3px
+            color #666
+            border 1px solid #E5E5E5
+            line-height 20px
 
     .demo-code
         background #bbb
