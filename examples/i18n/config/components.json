@@ -47,6 +47,10 @@
             "name": "图标"
         },
         {
+            "path": "/collapse",
+            "name": "折叠面板"
+        },
+        {
             "path": "/progress",
             "name": "进度条"
         }
@@ -89,6 +93,10 @@
         {
             "path": "/checkbox",
             "name": "checkbox"},
+        {
+            "path": "/collapse",
+            "name": "Collapse"
+        },
         {
             "path": "/icon",
             "name": "Icon"
