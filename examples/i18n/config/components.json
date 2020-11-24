@@ -24,7 +24,7 @@
         },
         {
             "path": "/radio",
-            "name": "Radio 单选框"
+            "name": "单选框"
         },
         {
             "path": "/switch",
@@ -45,6 +45,10 @@
         {
             "path": "/icon",
             "name": "图标"
+        },
+        {
+            "path": "/spin",
+            "name": "加载中"
         }
     ],
     "en-US": [
@@ -88,6 +92,10 @@
         {
             "path": "/icon",
             "name": "Icon"
+        },
+        {
+            "path": "/spin",
+            "name": "spin"
         }
     ]
 }

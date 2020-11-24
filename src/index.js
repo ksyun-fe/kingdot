@@ -6,6 +6,7 @@ import FormItem from '../components/FormItem/index.js';
 import Input from '../components/Input/index.js';
 import Message from '../components/Message/index.js';
 import Radio from '../components/Radio/index.js';
+import Spin from '../components/Spin/index.js';
 import Switch from '../components/Switch/index.js';
 
 const components = [
@@ -17,6 +18,7 @@ const components = [
     Input,
     Message,
     Radio,
+    Spin,
     Switch
 ];
 
@@ -40,5 +42,6 @@ export default {
     Input,
     Message,
     Radio,
+    Spin,
     Switch
 };

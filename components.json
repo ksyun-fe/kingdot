@@ -7,5 +7,6 @@
     "Input": "./components/Input/index.vue",
     "Message": "./components/Message/index.vue",
     "Radio": "./components/Radio/index.vue",
+    "Spin": "./components/Spin/index.vue",
     "Switch": "./components/Switch/index.vue"
 }
