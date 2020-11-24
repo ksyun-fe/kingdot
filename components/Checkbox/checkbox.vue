@@ -2,9 +2,9 @@
     <label
             :class="{
                 'kd-checkbox': true,
-                'is-checked': isChecked,
-                'is-disabled': disabled,
-                'is-indeterminate': indeterminate
+                'kd-is-checked': isChecked,
+                'kd-is-disabled': disabled,
+                'kd-is-indeterminate': indeterminate
             }"
     >
         <span
@@ -24,13 +24,15 @@
         </span>
         <span
                 class="kd-checkbox-text"
-        ><slot>{{ label }}</slot></span>
+        >
+            <slot>{{ label }}</slot>
+        </span>
     </label>
 </template>
 
 <script>
     export default {
-        name: 'Checkbox',
+        name: 'KdCheckbox',
         props: {
             value: {
                 type: [String, Number, Boolean, Array]
@@ -65,30 +67,39 @@
         },
         computed: {
             isChecked() {
-                if (Array.isArray(this.value)) {
-                    return this.value.includes(this.trueValue);
-                } else {
-                    return this.value === this.trueValue;
-                }
+                return this.model === this.trueValue;
             }
         },
         watch: {
             value: {
                 immediate: true,
-                handler() {
-                    this.model = this.isChecked ? this.trueValue : this.falseValue;
+                handler(v) {
+                    let isChecked = false;
+                    if (Array.isArray(v)) {
+                        isChecked = v.includes(this.trueValue);
+                    } else {
+                        isChecked = v === this.trueValue;
+                    }
+                    this.model = isChecked ? this.trueValue : this.falseValue;
                 }
             }
         },
         methods: {
 
             change() {
-                let index;
-                let value = this.value;
+                let index, value;
 
                 if (this.disabled) return;
 
+                value = Array.isArray(this.value) ? [...this.value] : this.value;
+
                 if (this.isChecked) {
+                    if (Array.isArray(value) && !value.includes(this.trueValue)) {
+                        value.push(this.trueValue);
+                    } else {
+                        value = this.trueValue;
+                    }
+                } else {
                     if (Array.isArray(value)) {
                         index = value.findIndex(i => i === this.trueValue);
                         if (~index) {
@@ -97,16 +108,10 @@
                     } else {
                         value = this.falseValue;
                     }
-                } else {
-                    if (Array.isArray(value)) {
-                        value.push(this.trueValue);
-                    } else {
-                        value = this.trueValue;
-                    }
                 }
 
                 this.$emit('input', value);
-                this.$emit('change', value, value === this.trueValue);
+                this.$emit('change', value);
             }
         }
     };
