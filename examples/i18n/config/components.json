@@ -169,6 +169,10 @@
                         },{
                             "path": "/drawer",
                             "name": "Drawer 抽屉"
+                        },
+                        {
+                            "path": "/datePicker",
+                            "name": "DatePicker 日期选择器"
                         }
                     ]
                 }
@@ -319,6 +323,10 @@
                         {
                             "path": "/dialog",
                             "name": "Dialog"
+                        },
+                        {
+                            "path": "/datePicker",
+                            "name": "DatePicker"
                         }
                     ]
                 }

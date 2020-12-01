@@ -1,0 +1,300 @@
+/******************************
+             Theme
+*******************************/
+// use('../functions.js')
+// $-theme-dir := __dirname()
+
+// root font size
+$-rem := 12
+/******************************
+             Colors
+*******************************/
+
+$-red := #EF4E76
+$-blue := #557DFC
+$-green := #38C482
+$-yellow := #FF9A42
+// $-grey := #4C4C4C
+
+// $-black := #262626
+$-light-black := #4C4C4C
+$-white-color := #FFF
+$-black-color := #000
+
+/******************************
+            Page
+*******************************/
+// let height be odd 20 / 14
+$-line-height := 1
+// $-font-family := -apple-system,'PingFang SC',BlinkMacSystemFont,'Segoe UI','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif !important
+$-font-family := 'PingFangSC-Regular,Microsoft YaHei,微软雅黑,Arial,sans-serif' !important
+$-font-size := 14px
+$-font-base-size := 12px
+
+$-title-color := #262626
+$-text-default-color := #4C4C4C
+//输出主题start
+$-primary-color := $-blue
+$-warning-color := $-yellow
+$-danger-color := $-red
+$-success-color := $-green
+
+$-text-color := $-light-black   //主要正文颜色
+$-text-list-color := #778088    //列表文字颜色
+$-text-regular-color := #737373         //常规文字颜色
+$-text-placeholder-color := #B2B2B2     //占位文字颜色
+
+
+$-white-color := #FFF
+$-black-color := #000
+
+$-border-base-color := #CCC     //主要边框
+$-border-light-color := #999999
+$-border-second-light-color := #B2B2B2
+$-border-three-light-color := #F2F2F2
+$-split-line-color := #E5E5E5   //区域分割线
+
+$-bg-base-color := #F3F4F7      //基础内容背景样式
+$-table-header-bg-color :=#F3F6FB       //table,title等头部背景
+$-table-content-bg-color :=#F4F7FC      //内容区
+
+$-light-bg-color := #fff
+$-dark-bg-color := #000
+//输出主题end
+
+//禁用样式
+$-disabled-color := #CCC
+$-disabled-bg-color := #F2F2F2
+$-disabled-border-color := #CCC
+
+// size
+$-large-height := 40px
+$-large-font-size := 14px
+$-large-padding := 13px 24px
+
+$-default-height := 32px
+$-default-font-size := 14px
+$-default-padding := 9px 16px
+
+$-small-height := 24px
+$-small-font-size := 12px
+$-small-padding := 5px 8px
+
+// $-mini-height := 26px
+// $-mini-font-size := 12px
+// $-mini-padding := 10px
+
+// the gutter between icon and text
+$-icon-text-gutter := 8px
+
+// box-shadow
+$-box-shadow := 0 0 15px 0 rgba(0,0,0,0.15);
+
+$-border-radius := 4px
+
+$-max-z-index := 9999
+
+$-shape-round := 40px
+$-shape-circle := 50%
+
+/******************************
+            Headers
+*******************************/
+
+$-header-font-family := 'PingFangSC-Medium' !important
+$-header-margin := 0
+$-header-font-weight := bold
+$-h1 := 36px
+$-h2 := 30px
+$-h3 := 24px
+$-h4 := 18px
+$-h5 := 14px
+
+/******************************
+            Link
+*******************************/
+
+$-link-color := $-blue
+$-link-underline := none
+$-link-hover-color := palette($-link-color, -1)
+$-link-hover-underline := $-link-underline
+$-link-font-family := $-font-family
+
+/******************************
+            Code
+*******************************/
+
+$-code-font-family := Consolas, Menlo, Courier, monospace
+
+/******************************
+            Transition
+*******************************/
+
+$-transition := .25s ease-in-out
+
+/******************************
+            Spin
+*******************************/
+
+$-spin-color := $-primary-color
+$-spin-width := unit(40 / 14, rem)
+$-spin-stroke-width := 6
+
+// size
+$-spin-large-width := unit(48 / 14, rem)
+$-spin-small-width := unit(32 / 14, rem)
+$-spin-mini-width := unit(24 / 14, rem)
+
+// font size
+$-icon-default-font-size := unit(16 / 14, rem)
+$-icon-large-font-size := unit(18 / 14, rem)
+$-icon-small-font-size := unit(14 / 14, rem)
+$-icon-mini-font-size := unit(12 / 14, rem)
+
+/******************************
+        ButtonGroup Button
+*******************************/
+//btn disabled
+$-btn-disabled-color := $-border-base-color
+$-btn-disabled-bg-color := $-disabled-bg-color
+$-btn-disabled-border-color := $-disabled-border-color
+
+//btn default
+$-btn-default-border-color := $-border-base-color
+$-btn-default-bg := #fff
+$-btn-default-color := $-text-color
+//type
+$-btn-primary-color := $-primary-color
+$-btn-success-color := $-success-color
+$-btn-warning-color := $-warning-color
+$-btn-danger-color := $-danger-color
+//border
+$-btn-border-radius := $-border-radius
+$-btn-border-color := $-border-base-color
+$-btn-default-border-style := solid
+$-btn-dashed-border-style := dashed
+//shape
+$-btn-shape-round := $-shape-round
+$-btn-shape-circle := $-shape-circle
+//size
+
+$-btn-large-padding := $-large-padding
+$-btn-large-circle-padding := 14px
+$-btn-large-font-size := 14px
+
+$-btn-default-padding := $-default-padding
+$-btn-default-circle-padding := 12px
+$-btn-default-font-size := $-font-base-size
+
+
+$-btn-small-padding := $-small-padding
+$-btn-small-circle-padding := 10px
+$-btn-small-font-size := $-font-base-size
+
+// $-btn-mini-padding := 8px 5px
+// $-btn-mini-circle-padding := 8px
+// $-btn-mini-font-size := 12px
+
+//icon
+$-btn-icon-text-gutter := $-icon-text-gutter
+
+/******************************
+        Switch
+*******************************/
+$-switch-active-bg := #557dfc
+$-switch-inactive-bg := #cccccc
+$-switch-disabled-bg := #e5e5e5
+$-switch-disabled-font-color := #a7a5a5
+$-switch-font-size := 12px
+$-switch-border-width := 2px
+$-switch-size-list = mini, small, default, large
+
+$-switch-mini-width := 24px
+$-switch-small-width := 36px
+$-switch-default-width := 48px
+$-switch-large-width := 60px
+
+$-switch-mini-height := 14px
+$-switch-small-height := 18px
+$-switch-default-height := 24px
+$-switch-large-height := 30px
+
+$-switch-mini-border-radius := $-switch-mini-height
+$-switch-small-border-radius := $-switch-small-height
+$-switch-default-border-radius := $-switch-default-height
+$-switch-large-border-radius := $-switch-large-height
+
+
+/******************************
+        Input
+*******************************/
+$-input-color := #4C4C4C
+$-input-placeholder-color := #B2B2B2
+$-input-default-width := 300px
+$-input-border := 1px solid #ccc
+$-input-size-list = mini, small, default, large
+$-input-border-radius := 2px
+$-input-bg-color := #fff
+$-input-focus-border := 1px solid #557DFC
+// append && prepend
+$-input-pend-color := #666
+$-input-pend-padding-horizontal := 20px
+$-input-prepend-radius := 2px 0 0 2px
+$-input-append-radius := 0 2px 2px 0
+
+$-input-mini-font-size := 12px
+$-input-small-font-size := 12px
+$-input-default-font-size := 14px
+$-input-large-font-size := 16px
+
+$-input-mini-inner-height := 26px
+$-input-small-inner-height := 28px
+$-input-default-inner-height := 32px
+$-input-large-inner-height := 36px
+
+$-input-disabled-color := #B2B2B2
+$-input-disabled-border-color := #E5E5E5
+$-input-disabled-background-color := #F3F4F7
+
+$-input-mini-padding-left-right := 16px
+$-input-small-padding-left-right := 16px
+$-input-default-padding-left-right := 16px
+$-input-large-padding-left-right := 16px
+
+$-input-mini-prefix-padding-left := 16px
+$-input-small-prefix-padding-left := 16px
+$-input-default-prefix-padding-left := 36px
+$-input-large-prefix-padding-left := 16px
+
+$-input-mini-suffix-padding-right := 16px
+$-input-small-suffix-padding-right := 16px
+$-input-default-suffix-padding-right := 36px
+$-input-large-suffix-padding-right := 16px
+
+// 状态颜色
+$-input-status-list = success, err, warning
+$-input-success := #38C482
+$-input-success-border := 1px solid #38C482
+$-input-warning := #FF9C46
+$-input-warning-border := 1px solid #FF9C46
+$-input-err := #EF4E76
+$-input-err-border := 1px solid #EF4E76
+$-input-clear-color := #CCC
+
+$-textarea-default-padding-top-bottom := 8px
+
+
+/******************************
+        Datapicker
+*******************************/
+
+// 日历日期状态颜色
+$-datepicker-day-hover-bg-color := $-blue // #EEE
+$-datepicker-day-hover-color := $-white-color
+$-datepicker-day-in-range-bg-color := #f2f6fc
+$-datepicker-day-selected-bg-color := $-blue
+$-datepicker-day-selected-color := $-white-color
+$-datepicker-day-disMonth-bg-color := $-white-color
+$-datepicker-day-disMonth-color := #CCC
+$-datepicker-day-disabled-bg-color := #f5f7fa
+$-datepicker-day-disabled-color := #4c4c4c
