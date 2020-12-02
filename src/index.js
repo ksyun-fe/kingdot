@@ -8,6 +8,7 @@ import Message from '../components/Message/index.js';
 import Popconfirm from '../components/Popconfirm/index.js';
 import Popover from '../components/Popover/index.js';
 import Radio from '../components/Radio/index.js';
+import Slider from '../components/Slider/index.js';
 import Switch from '../components/Switch/index.js';
 import Timeline from '../components/Timeline/index.js';
 import TimelineItem from '../components/TimelineItem/index.js';
@@ -26,6 +27,7 @@ const components = [
     Popconfirm,
     Popover,
     Radio,
+    Slider,
     Switch,
     Timeline,
     TimelineItem,
@@ -56,6 +58,7 @@ export default {
     Popconfirm,
     Popover,
     Radio,
+    Slider,
     Switch,
     Timeline,
     TimelineItem,

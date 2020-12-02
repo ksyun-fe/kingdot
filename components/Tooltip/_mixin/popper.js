@@ -65,7 +65,7 @@ export default {
             this.popper = this.popper || this.$refs.popper;
             const options = Object.create(null);
             if (!this.popper || !this.reference) return;
-            if (this.visibleArrow) this.appendArrow(this.popper); // todo
+            if (this.visibleArrow) this.appendArrow(this.popper);
             document.body.appendChild(this.popper);
             if (this.popperJS && this.popperJS.destroy) {
                 this.popperJS.destroy();
@@ -118,7 +118,6 @@ export default {
             options.modifiers = [...defaultModifiers, ...this.popperModifiers];
             options.onFirstUpdate = () => {
                 this.currentPlacement = this.popper.getAttribute('data-popper-placement');
-                // this.$nextTick(this.updatePopper);
             };
             this.popperJS = createPopper(this.reference, this.popper, options);
         },

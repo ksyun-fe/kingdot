@@ -111,7 +111,7 @@
 
 :::
 
-:::demo #更多content  ##content属性、slot。
+:::demo #更多content  ##content属性、slot。`注意：tooltip 内不支持 router-link 组件，请使用 vm.$router.push 代替。`
 
 ```html
 <template>

@@ -9,6 +9,7 @@
     "Popconfirm": "./components/Popconfirm/index.vue",
     "Popover": "./components/Popover/index.vue",
     "Radio": "./components/Radio/index.vue",
+    "Slider": "./components/Slider/index.vue",
     "Switch": "./components/Switch/index.vue",
     "Timeline": "./components/Timeline/index.vue",
     "TimelineItem": "./components/TimelineItem/index.vue",

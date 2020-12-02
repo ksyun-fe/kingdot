@@ -1,0 +1,159 @@
+// slider variables
+$-slider-height ?= 4px
+$-slider-bg-color ?= #ECECEC
+$-slider-bar-color ?= #557DFC
+
+$-transition = $-animation-duration-base $-ease-in-out
+$-slider-border-radius ?= 100px
+$-slider-handle-height ?= 8px
+$-slider-handle-width ?= $-slider-handle-height
+$-slider-handle-border ?= 2px solid $-slider-bar-color
+$-slider-handle-border-radius ?= 50%
+$-slider-handle-bg-color ?= #fff
+$-slider-handle-hover-transform ?= scale(1.5)
+$-slider-handle-hover-bg-color ?= $-slider-bar-color
+$-slider-handle-disabled-bg-color ?= #fff
+
+$-slider-disabled-color = #999
+$slider-disabled-bg-color = #f7f7f7
+// stop point
+$-slider-stop-point-width ?= $-slider-height
+$-slider-stop-point-height ?= $-slider-stop-point-width
+$-slider-stop-point-bg-color ?= #fff
+// marks
+$-slider-marks-height ?= 20px
+$-slider-marks-margin-top ?= 10px
+// other
+$-slider-spinner-width ?= 135px // todo: no spinner
+
+.kd-slider
+    position relative
+    display inline-block
+    width 100%
+    outline none
+    padding 16px
+    .kd-slider-wrapper
+        .kd-wrapper
+            position relative
+            height $-slider-height
+            border-radius $-slider-border-radius
+            background-color $-slider-bg-color
+            cursor pointer
+            user-select none
+        .kd-slider-bar
+            position absolute
+            height 100%
+            border-radius $-slider-border-radius
+            background-color $-slider-bar-color
+            transition all $-transition
+        .kd-handle
+            position absolute
+            z-index 1
+            margin-top s('-%s', $-slider-handle-height / 2)
+            margin-left s('-%s', $-slider-handle-width / 2)
+            width $-slider-handle-width
+            height $-slider-handle-height
+            outline none
+            border $-slider-handle-border
+            border-radius $-slider-handle-border-radius
+            background-color $-slider-handle-bg-color
+            text-align center
+            transition all $-transition
+            transition all $-transition
+            &:hover, &:focus
+                background-color $-slider-handle-hover-bg-color
+                cursor grab
+                transform $-slider-handle-hover-transform
+    .kd-spinner-wrapper
+        position absolute
+        top 0
+        right 16px
+    &.kd-dragging
+        .kd-slider-bar
+            transition none
+        .kd-handle
+            transition none
+            &.kd-active
+                background-color $-slider-handle-hover-bg-color
+                cursor grabbing
+                transform $-slider-handle-hover-transform
+    &.kd-slider-disabled
+        .kd-wrapper
+            cursor not-allowed
+        .kd-slider-bar
+            background-color $-slider-disabled-color
+        .kd-handle
+            border-color $-slider-disabled-color
+            &:hover, &:focus
+                background-color $-slider-handle-disabled-bg-color
+                cursor not-allowed
+                transform none
+    // stop point
+    .kd-point
+        position absolute
+        top 0
+        width $-slider-stop-point-width
+        height $-slider-stop-point-height
+        background $-slider-stop-point-bg-color
+///
+
+
+
+
+
+
+
+// show input
+.kd-show-input
+    .kd-slider-wrapper
+        margin-right $-slider-spinner-width
+// marks
+.kd-slider-marks
+    position relative
+    height $-slider-marks-height
+    margin-top $-slider-marks-margin-top
+    .kd-slider-marks-item
+        position absolute
+        white-space nowrap
+        cursor pointer
+        transform translateX(-50%)
+        &:first-child
+            transform none
+        &:last-child
+            transform translateX(-100%)
+//
+.kd-slider-input-range
+    width 112px
+    border $-input-border
+    height 32px
+    border-radius 4px
+    &:hover:not(.kd-slider-input-disabled)
+        border $-input-focus-border
+.kd-slider-input-focus
+    border $-input-focus-border
+// test
+.left-input, .right-input
+    width 28px
+    height 18px
+    // border 1px dashed red
+.left-input
+    margin 6px 0 6px 16px
+.right-input
+    margin 6px 0 6px 16px
+.input-middle
+    border-bottom 1px solid #ccc
+    vertical-align 4px
+    width 16px
+    display inline-block
+
+.dsp
+    display inline-block
+.ip1, .ip2
+    width 48px
+.kd-slider-input-disabled
+    cursor not-allowed
+    background-color #f2f2f2
+    input
+        cursor not-allowed
+        // background-color $-slider-disabled-color
+        background-color #f2f2f2

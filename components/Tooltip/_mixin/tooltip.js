@@ -82,12 +82,10 @@ export default {
         always: {
             immediate: true,
             handler(value) {
-                this.$nextTick(() => {
-                    if (value) {
-                        this.visible = true;
-                        this.showPopper();
-                    }
-                });
+                if (value) {
+                    this.visible = true;
+                    this.showPopper();
+                }
             }
         }
     },

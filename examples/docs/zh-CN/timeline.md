@@ -25,6 +25,9 @@
             <kd-timeline-item color="green">
                 <i class="kd-icon-success-solid" slot="dot"></i>
                 设计
+                <div>Find problems 1</div>
+                <div>Find problems 2</div>
+                <div>Find problems 3</div>
             </kd-timeline-item>
         </kd-timeline>
     </div>
