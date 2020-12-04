@@ -210,7 +210,6 @@ module.exports = {
         "vue/singleline-html-element-content-newline": 0,
         "vue/multiline-html-element-content-newline": 0,
         "vue/name-property-casing": [2, "PascalCase"],
-        "vue/no-v-html": 2,
         "vue/html-indent": [2, 4, {
             "attribute": 2,
             "baseIndent": 1,

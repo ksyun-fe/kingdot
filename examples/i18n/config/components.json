@@ -23,6 +23,10 @@
             "name": "按钮"
         },
         {
+            "path": "/layout",
+            "name": "Layout 布局"
+        },
+        {
             "path": "/radio",
             "name": "Radio 单选框"
         },
@@ -73,6 +77,18 @@
         {
             "path": "/slider",
             "name": "Slider 滑块"
+        },
+        {
+            "path": "/collapse",
+            "name": "折叠面板"
+        },
+        {
+            "path": "/progress",
+            "name": "进度条"
+        },
+        {
+            "path": "/message",
+            "name": "消息提示"
         }
     ],
     "en-US": [
@@ -116,11 +132,15 @@
         },
         {
             "path": "/form",
-            "name": "表单"
+            "name": "form"
         },
         {
             "path": "/checkbox",
-            "name": "多选框"
+            "name": "checkbox"
+        },
+        {
+            "path": "/collapse",
+            "name": "Collapse"
         },
         {
             "path": "/icon",
@@ -133,6 +153,10 @@
         {
             "path": "/tooltip",
             "name": "Tooltip"
+        },
+        {
+            "path": "/message",
+            "name": "message"
         }
     ]
 }

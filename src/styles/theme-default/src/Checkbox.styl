@@ -1,21 +1,21 @@
 @import "../variables.styl";
 
 .kd-checkbox
-    cursor pointer
-    white-space nowrap
     font-size $-checkbox-font-size
-    &.is-indeterminate, &.is-checked
+    white-space nowrap
+    cursor pointer
+    &.kd-is-indeterminate, &.kd-is-checked
         .kd-checkbox-wrap
             border-color $-checkbox-checked-input-border-color
             background $-checkbox-checked-input-background-color
-    &.is-indeterminate
+    &.kd-is-indeterminate
         .kd-checkbox-wrap:before
                 border-bottom none
                 transform rotate(90deg) scale(1)
-    &.is-checked
+    &.kd-is-checked
         .kd-checkbox-wrap:before
                 transform rotate(45deg) scale(1)
-    &.is-disabled
+    &.kd-is-disabled
         cursor not-allowed
         .kd-checkbox-wrap
             border-color $-checkbox-disabled-input-border-color
@@ -24,16 +24,16 @@
                 border-color $-checkbox-disabled-icon-color
 
 .kd-checkbox-wrap
-    width $-checkbox-input-width
-    height $-checkbox-input-height
-    display inline-block
     position relative
+    display inline-block
     box-sizing border-box
     vertical-align -2px
-    background $-checkbox-default-input-background-color
+    width $-checkbox-input-width
+    height $-checkbox-input-height
     border 1px solid $-checkbox-default-input-border-color
-    border-radius 2px
-    transition all .25s ease-in-out
+    border-radius $-border-base-radius
+    background $-checkbox-default-input-background-color
+    transition all $-transition
     &:before
         content: ''
         display block
@@ -48,7 +48,7 @@
         border-left none
         transform-origin center
         transform rotate(45deg) scale(0)
-        transition all .25s ease-in-out
+        transition all $-transition
 
 .kd-checkbox-input
     position absolute

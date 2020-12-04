@@ -1,0 +1,44 @@
+@import "../variables.styl";
+
+.kd-collapse-item
+    border-bottom $-collapse-border
+    &:last-child
+        border-bottom none
+.kd-collapse-item-active
+    .kd-collapse-title
+        color $-collapse-active-color;
+        border-bottom $-collapse-border
+    .kd-collapse-content
+        height auto
+    .kd-collapse-title-icon
+        color $-collapse-active-color;
+        transform rotate(0deg)
+.kd-collapse-title
+    display flex
+    flex-direction row
+    align-items center
+    height $-collapse-title-height
+    background $-collapse-title-background-color;
+    padding 0 $-collapse-padding
+    cursor pointer
+.kd-collapse-title-icon
+    margin-right 8px
+    transform-origin center
+    transition $-transition
+    transform rotate(-90deg)
+    color $-collapse-disabled-color
+.kd-collapse-content
+    padding $-collapse-padding
+    background $-collapse-content-background-color
+.kd-collapse-concise
+    .kd-collapse-title
+        background none
+    .kd-collapse-content
+        padding $-collapse-concise-content-padding
+    .kd-collapse-item-active
+        .kd-collapse-title
+            border-bottom none
+.kd-collapse-item-disabled
+    .kd-collapse-title
+        color $-collapse-disabled-color
+        cursor not-allowed

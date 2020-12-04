@@ -1,19 +1,18 @@
 ### 复选框
-:::demo #基本使用 ##通过v-model进行数据双向绑定。默认绑定变量的值会是Boolean，选中为true。
+:::demo #基本使用 ##通过`v-model`进行数据双向绑定。默认绑定变量的值会是`Boolean`，选中为`true`。
 
 ```html
 <template>
     <div>
-        <Checkbox v-model="value1">checkbox</Checkbox>
+        <kd-checkbox>checkbox</kd-checkbox>
+        <kd-checkbox v-model="value1">checkbox</kd-checkbox>
     </div>
 </template>
 <script >
     export default {
         data() {
             return {
-                value1: '',
-                value2: 'aaa',
-                value3: ['b', 'a']
+                value1: ''
             };
         },
         methods: {
@@ -31,13 +30,13 @@
 :::
 
 
-:::demo #指定选中和非选中的取值 ##默认选中的值为true，非选中的值为false，通过trueValue和falseValue属性，我们可以指定选中和非选中的值。
+:::demo #指定选中和非选中的取值 ##默认选中的值为`true`，非选中的值为`false`，通过`trueValue`和`falseValue`属性，我们可以指定选中和非选中的值。
 
 ```html
 <template>
     <div>
-        <Checkbox v-model="value1">默认值: {{ value1 }}</Checkbox>
-        <Checkbox v-model="value2" trueValue="checked" falseValue="unchecked">指定值: {{ value2 }}</Checkbox>
+        <kd-checkbox v-model="value1">默认值: {{ value1 }}</kd-checkbox>
+        <kd-checkbox v-model="value2" trueValue="checked" falseValue="unchecked">指定值: {{ value2 }}</kd-checkbox>
     </div>
 </template>
 <script >
@@ -57,14 +56,14 @@
 ```
 :::
 
-:::demo #Checkbox组 ##和浏览器原生行为一样，给Checkbox指定相同的name，它们便组成了复选框组。
+:::demo #Checkbox组 ##和浏览器原生行为一样，给`Checkbox`指定相同的`name`，它们便组成了复选框组。
 
 ```html
 <template>
     <div>
-        <Checkbox name="languages" trueValue="js" v-model="languages">Javascript</Checkbox>
-        <Checkbox name="languages" trueValue="css" v-model="languages">Css</Checkbox>
-        <Checkbox name="languages" trueValue="html" v-model="languages">Html</Checkbox>
+        <kd-checkbox name="languages" trueValue="js" v-model="languages">Javascript</kd-checkbox>
+        <kd-checkbox name="languages" trueValue="css" v-model="languages">Css</kd-checkbox>
+        <kd-checkbox name="languages" trueValue="html" v-model="languages">Html</kd-checkbox>
     </div>
 </template>
 <script >
@@ -83,20 +82,20 @@
 ```
 :::
 
-:::demo #半选中状态 ##通过indeterminate属性可以控制Checkbox的半选中状态
+:::demo #半选中状态 ##通过`indeterminate`属性可以控制`Checkbox`的半选中状态
 
 ```html
 <template>
     <div>
-        <Checkbox 
+        <kd-checkbox 
                 :indeterminate="length > 0 && length < 3"
                 :value="length === 3"
                 @change="toggleSelectAll"
-        >全选</Checkbox>
+        >全选</kd-checkbox>
         <hr />
-        <Checkbox name="languages" trueValue="js" v-model="languages">Javascript</Checkbox>
-        <Checkbox name="languages" trueValue="css" v-model="languages">Css</Checkbox>
-        <Checkbox name="languages" trueValue="html" v-model="languages">Html</Checkbox>
+        <kd-checkbox name="languages" trueValue="js" v-model="languages">Javascript</kd-checkbox>
+        <kd-checkbox name="languages" trueValue="css" v-model="languages">Css</kd-checkbox>
+        <kd-checkbox name="languages" trueValue="html" v-model="languages">Html</kd-checkbox>
     </div>
     
 </template>
@@ -114,8 +113,8 @@
             }
         },
         methods: {
-            toggleSelectAll(value, checked) {
-                this.languages = checked ? ['js', 'css', 'html'] : [];
+            toggleSelectAll(value) {
+                this.languages = value ? ['js', 'css', 'html'] : [];
             }
         }  
     }
@@ -127,14 +126,14 @@
 ```
 :::
 
-:::demo #禁用状态 ##设置disabled属性表示禁用状态。
+:::demo #禁用状态 ##设置`disabled`属性表示禁用状态。
 
 ```html
 <template>
     <div>
-        <Checkbox disabled v-model="value1">disabled</Checkbox>
-        <Checkbox disabled v-model="value2">disabled</Checkbox>
-        <Checkbox disabled v-model="value3" indeterminate>disabled</Checkbox>
+        <kd-checkbox disabled v-model="value1">disabled</kd-checkbox>
+        <kd-checkbox disabled v-model="value2">disabled</kd-checkbox>
+        <kd-checkbox disabled v-model="value3" indeterminate>disabled</kd-checkbox>
     </div>
 </template>
 <script>

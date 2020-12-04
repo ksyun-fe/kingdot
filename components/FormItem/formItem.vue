@@ -36,7 +36,7 @@
 </template>
 
 <script>
-    import {defaultMessage, methods as _ruleHandlers} from './ruleHandlers';
+    import {defaultMessage, methods as _ruleHandlers} from './ruleHandlers.js';
 
     export default {
         name: 'FormItem',

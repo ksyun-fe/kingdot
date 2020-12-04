@@ -1,11 +1,11 @@
-var fs = require('fs');
-var path = require('path');
-var Components = require('../../components.json');
-var themes = [
+const fs = require('fs');
+const path = require('path');
+const componentsJson = require('../../components.json');
+const themes = [
     'theme-default', 'theme'
 ];
-Components = Object.keys(Components);
-var basepath = path.resolve(__dirname, '../../src/styles/themes/');
+const components = Object.keys(componentsJson);
+const basepath = path.resolve(__dirname, '../../src/styles/');
 
 function fileExists(filePath) {
     try {
@@ -16,17 +16,13 @@ function fileExists(filePath) {
 }
 
 themes.forEach((theme) => {
-    var reset = '@import "../../../fonts/iconfont.css";\n@import "../reset.styl";\n';
-    var indexContent = reset;
-    Components.forEach(function (key) {
-        var fileName = key + '.styl';
-        indexContent += '@import "./' + fileName + '";\n';
-        var filePath = path.resolve(basepath, theme, 'src', fileName);
+    components.forEach(function (key) {
+        const fileName = key + '.styl';
+        const filePath = path.resolve(basepath, theme, 'src', fileName);
         if (!fileExists(filePath)) {
-            var stylStr = '@import "../default.styl";\n';
+            const stylStr = '';
             fs.writeFileSync(filePath, stylStr, 'utf8');
-            console.log(theme, ' 新建缺失的 ', fileName, ' 文件');
+            console.log(theme, ' create the missing file ', fileName, '.styl');
         }
     });
-    fs.writeFileSync(path.resolve(basepath, theme, 'src', 'index.styl'), indexContent);
 });

@@ -2,7 +2,7 @@ import Vue from 'vue';
 
 import kd from '../../src/index';
 Vue.use(kd);
-import 'src/styles/themes/theme-default/src/index.styl';
+import 'src/styles/theme-default/index.styl';
 
 let id = 0;
 
@@ -39,4 +39,27 @@ export const destroyVM = function (vm) {
     vm.$el &&
   vm.$el.parentNode &&
   vm.$el.parentNode.removeChild(vm.$el);
+};
+
+export const triggerEvent = function (el, name, ...eventData) {
+    let event, eventName;
+
+    if (/^mouse|click/.test(name)) {
+        eventName = 'MouseEvents';
+    } else if (/^key/.test(name)) {
+        eventName = 'KeyboardEvent';
+    } else {
+        eventName = 'HTMLEvents';
+    }
+
+    if (document.createEvent) {
+        event = document.createEvent(eventName);
+        event.initEvent(name, ...eventData);
+    }
+
+    if (el.dispatchEvent) {
+        el.dispatchEvent(event);
+    } else if (el.fireEvent) {
+        el.fireEvent(`on${name}`, event);
+    }
 };

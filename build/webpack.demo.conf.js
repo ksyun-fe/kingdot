@@ -169,14 +169,6 @@ if (isProd) {
                 minChunks: 2,
                 priority: -20,
                 reuseExistingChunk: true
-            },
-            styles: {
-                name: 'styles',
-                test: (module, chunks) => {
-                    return /css/.test(module.type);
-                },
-                chunks: 'all',
-                enforce: true
             }
         }
     };
@@ -185,8 +177,7 @@ if (isProd) {
         new InlineManifestWebpackPlugin(),
         new MiniCssExtractPlugin({
             ignoreOrder: true,
-            filename: '[name].[contenthash].css',
-            chunkFilename: '[id].[contenthash].css'
+            filename: '[name].[contenthash].css'
         }),
         new webpack.optimize.MinChunkSizePlugin({
             minChunkSize: 10000

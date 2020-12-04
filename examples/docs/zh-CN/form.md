@@ -1,7 +1,6 @@
 ## Input输入框
 通过鼠标或键盘输入字符
 
-### 基础用法
 :::demo #基础用法 ##输入任意内容 input
 ```html
 <template>
@@ -73,7 +72,6 @@
 :::
 
 
-### 基础用法
 :::demo #基础用法 ##输入任意内容 input
 ```html
 <template>
@@ -145,7 +143,6 @@
 ```
 :::
 
-### 基础用法
 :::demo #基础用法 ##输入任意内容 input
 ```html
 <template>
