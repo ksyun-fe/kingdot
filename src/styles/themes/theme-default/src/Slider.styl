@@ -24,7 +24,8 @@ $-slider-stop-point-bg-color ?= #fff
 $-slider-marks-height ?= 20px
 $-slider-marks-margin-top ?= 10px
 // other
-$-slider-spinner-width ?= 135px // todo: no spinner
+$-slider-range-input-width ?= 146px
+$-slider-input-width ?= 80px
 
 .kd-slider
     position relative
@@ -95,18 +96,13 @@ $-slider-spinner-width ?= 135px // todo: no spinner
         width $-slider-stop-point-width
         height $-slider-stop-point-height
         background $-slider-stop-point-bg-color
-///
-
-
-
-
-
-
-
 // show input
 .kd-show-input
     .kd-slider-wrapper
-        margin-right $-slider-spinner-width
+        margin-right $-slider-input-width + 16px
+.kd-show-range-input
+    .kd-slider-wrapper
+        margin-right $-slider-range-input-width + 16px
 // marks
 .kd-slider-marks
     position relative
@@ -123,37 +119,33 @@ $-slider-spinner-width ?= 135px // todo: no spinner
             transform translateX(-100%)
 //
 .kd-slider-input-range
-    width 112px
+    width 144px
     border $-input-border
     height 32px
     border-radius 4px
     &:hover:not(.kd-slider-input-disabled)
         border $-input-focus-border
+    div
+        display inline-block
 .kd-slider-input-focus
     border $-input-focus-border
-// test
-.left-input, .right-input
-    width 28px
-    height 18px
-    // border 1px dashed red
-.left-input
-    margin 6px 0 6px 16px
-.right-input
-    margin 6px 0 6px 16px
 .input-middle
     border-bottom 1px solid #ccc
     vertical-align 4px
     width 16px
     display inline-block
 
-.dsp
-    display inline-block
-.ip1, .ip2
-    width 48px
 .kd-slider-input-disabled
     cursor not-allowed
     background-color #f2f2f2
     input
         cursor not-allowed
-        // background-color $-slider-disabled-color
         background-color #f2f2f2
+.single-input
+    .kd-input-wrapper
+        .kd-input-inner
+            border none !important
+            &:hover
+                border none !important
+.kd-slider-mark-active
+    color $-slider-bar-color

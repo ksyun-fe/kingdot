@@ -70,9 +70,11 @@
                         v-for="(item, index) in marksList"
                         :key="index"
                         class="kd-slider-marks-item"
+                        :class="{'kd-slider-mark-active': isRange ? sliderValue.includes(Number(item.value)) : (sliderValue[1] == item.value)}"
                         :style="{
                             left: item.posLeft
                         }"
+                        @click="clickMarks(item)"
                 >{{ item.label }}</span>
             </div>
         </div>
@@ -85,44 +87,42 @@
                     v-if="isRange"
                     :class="rangeInputCls"
             >
-                <div class="dsp ip1">
-                    <input
-                            v-model="sliderValue[0]"
-                            :disabled="disabled"
-                            class="left-input"
-                            @focus="_inputFocus"
-                            @blur="_inputBlur"
-                    />
-                </div>
-                <div class="dsp">
+                <kd-input
+                        v-model="sliderValue[0]"
+                        :disabled="disabled"
+                        :width="64"
+                        tabindex="0"
+                        status=""
+                        resize="none"
+                        class="single-input"
+                        @focus="_inputFocus"
+                        @blur="_inputBlur"
+                />
+                <div>
                     <span class="input-middle"></span>
                 </div>
-                <div class="dsp ip2">
-                    <input
-                            v-model="sliderValue[1]"
-                            :disabled="disabled"
-                            class="right-input"
-                            @focus="_inputFocus"
-                            @blur="_inputBlur"
-                    />
-                </div>
+                <kd-input
+                        v-model="sliderValue[1]"
+                        :disabled="disabled"
+                        :width="64"
+                        tabindex="0"
+                        status=""
+                        resize="none"
+                        class="single-input"
+                        @focus="_inputFocus"
+                        @blur="_inputBlur"
+                />
             </div>
-            <!-- 单个值 -->
+            <!-- 单个input -->
             <kd-input
                     v-else
                     v-model="sliderValue[1]"
                     :disabled="disabled"
                     :width="80"
+                    tabindex="0"
+                    status=""
+                    resize="none"
             />
-            <!-- input area -->
-            <!-- <Spinner
-                :max="maxValue"
-                :min="minValue"
-                :disabled="disabled"
-                vertical
-                :step="step"
-                v-model="spinnerValue"
-            /> -->
         </div>
     </div>
 </template>
@@ -229,7 +229,8 @@
                     'kd-slider': true,
                     'kd-slider-disabled': this.disabled,
                     'kd-dragging': this.isDragging,
-                    'kd-show-input': this.isShowInput,
+                    'kd-show-input': this.isShowInput && !this.isRange,
+                    'kd-show-range-input': this.isShowInput && this.isRange,
                     'kd-show-end': this.isShowEnd
                 };
             },
@@ -276,6 +277,7 @@
                 if (this.marks) {
                     return Object.keys(this.marks).map((item) => {
                         return {
+                            value: item,
                             label: this.marks[item],
                             posLeft: ((+item - this.minValue) * 100) / this.sliderWidth + '%'
                         };
@@ -283,10 +285,12 @@
                 } else if (this.isShowEnd) {
                     return [
                         {
+                            value: this.min,
                             label: this.minValue,
                             posLeft: '0%'
                         },
                         {
+                            value: this.max,
                             label: this.maxValue,
                             posLeft: '100%'
                         }
@@ -324,9 +328,7 @@
                     } else {
                         v = v[1];
                     }
-                    // if (this.value !== v) {
                     this.$emit('input', v);
-                    // }
                     setTimeout(() => {
                         this.tipUpdate();
                     }, 300);
@@ -418,6 +420,23 @@
                 } else {
                     this.sliderValue = [this.sliderValue[0], newValue];
                 }
+            },
+            clickMarks(item) {
+                console.log('ccccc', item.value);
+                const newValue = Number(item.value);
+                if (this.isRange) {
+                    if (
+                        Math.abs(this.sliderValue[0] - newValue) <=
+                        Math.abs(this.sliderValue[1] - newValue)
+                    ) {
+                        this.sliderValue = [newValue, this.sliderValue[1]];
+                    } else {
+                        this.sliderValue = [this.sliderValue[0], newValue];
+                    }
+                } else {
+                    this.sliderValue = [this.sliderValue[0], newValue];
+                }
+                //
             },
             getSlidingValue(pos) {
                 const rect = this.$refs.sliderWrapper.getBoundingClientRect();
