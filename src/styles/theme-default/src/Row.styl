@@ -1,0 +1,39 @@
+@import "../variables.styl";
+
+$-row-justify-content = {
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-around,
+    evenly: space-evenly
+}
+
+$-row-align-items = {
+    top: flex-start,
+    bottom: flex-end,
+    middle: center,
+    stretch: stretch,
+    baseline: baseline
+}
+
+genRowPropStyle(prop)
+    for k, v in lookup('$-row-' + prop)
+        .kd-row-{split('-', prop)[0]}-{k}
+            {prop} v
+
+.kd-row
+    display block
+    zoom 1
+    &:not(.kd-row-flex)
+        &:before, &:after
+            display table
+            content ' '
+        &:after
+            clear both
+
+.kd-row-flex
+    display flex
+
+genRowPropStyle('justify-content')
+genRowPropStyle('align-items')

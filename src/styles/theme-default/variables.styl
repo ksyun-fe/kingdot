@@ -1,6 +1,35 @@
 /******************************
         Theme
 *******************************/
+// use('../functions.js')
+// $-theme-dir := __dirname()
+/******************************
+             media
+*******************************/
+use('../../../media.js')
+
+// root font size
+$-rem := 12
+/******************************
+             Colors
+*******************************/
+
+$-red := #EF4E76
+$-blue := #557DFC
+$-green := #38C482
+$-yellow := #FF9A42
+// $-grey := #4C4C4C
+
+// $-black := #262626
+$-light-black := #4C4C4C
+$-white-color := #FFF
+$-black-color := #000
+
+/******************************
+            Page
+*******************************/
+// let height be odd 20 / 14
+$-line-height := 1
 // $-font-family := -apple-system,'PingFang SC',BlinkMacSystemFont,'Segoe UI','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif !important
 $-font-family := PingFangSC-Light, 'helvetica neue', arial, 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif
 // font size
@@ -285,3 +314,51 @@ $-checkbox-disabled-input-background-color := $-disabled-bg-color;
 $-checkbox-checked-icon-color := $-light-bg-color;
 $-checkbox-checked-input-border-color := $-primary-color;
 $-checkbox-checked-input-background-color := $-primary-color;
+
+/******************************
+        progressbar
+*******************************/
+$-progress-outBar-bgc := #ECECEC
+$-progress-bar-marginRight := -58px
+$-progress-bar-paddingRight := 50px
+$-pregress-text-marginLeft := 16px
+
+/******************************
+        collapse
+*******************************/
+$-collapse-border := 1px solid $-split-line-color;
+$-collapse-active-color := $-primary-color;
+$-collapse-title-background-color := #F7FAFE;
+$-collapse-content-background-color := #fff;
+$-collapse-title-height := 42px;
+$-collapse-padding := 24px;
+$-collapse-concise-content-padding := 0 34px 24px;
+$-collapse-disabled-color := $-disabled-color;
+
+/******************************
+        message
+*******************************/
+$-message-width := 400px;
+$-message-content-line-height := 1.5;
+$-message-font-size := $-font-small-size;
+$-message-padding := 6px 14px 6px 20px;
+$-message-border-radius := $-border-radius;
+$-message-transition := $-transition;
+
+$-message-default-font-color := $-text-regular-color;
+$-message-success-font-color := $-success-color;
+$-message-warning-font-color := $-warning-color;
+$-message-error-font-color := $-danger-color;
+$-message-info-font-color := $-primary-color;
+
+$-message-default-background-color := #F0F0F3;
+$-message-success-background-color := #DBFBEC;
+$-message-warning-background-color := #FFECDC;
+$-message-error-background-color := #FFE8EC;
+$-message-info-background-color := #E5ECFF;
+
+$-message-default-border-color := $-message-default-background-color;
+$-message-success-border-color := $-message-success-background-color;
+$-message-warning-border-color := $-message-warning-background-color;
+$-message-error-border-color := $-message-error-background-color;
+$-message-info-border-color := $-message-info-background-color;

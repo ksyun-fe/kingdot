@@ -57,7 +57,7 @@
         7<br/>
         8<br/>
         9<br/>
-        <kd-spin isLocal spinner="kd-icon-loading1" size="small" background="rgba(0,0,0,.6)"></kd-spin>
+        <kd-spin isLocal spinner="kd-icon-refresh" size="small" background="rgba(0,0,0,.6)"></kd-spin>
     </div>
 </template>
 <script>

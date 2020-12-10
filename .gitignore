@@ -15,5 +15,5 @@ lib/
 yarn*
 # cmd generate file
 components.json
-src/styles/themes/theme/src
+src/styles/theme/src
 src/index.js

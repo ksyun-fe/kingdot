@@ -28,17 +28,15 @@
                 class="code-toggle"
                 @click="toggleShowCode"
         >
-            <transition name="arrow-slide">
-                <i
-                        :class="{
-                            active: sectionHover,
-                            'open': showCode,
-                            'arrow-icon': true
-                        }"
-                ></i>
-            </transition>
+            <i
+                    :class="{
+                        active: sectionHover,
+                        'open': showCode,
+                        'arrow-icon': true
+                    }"
+            ></i>
             <transition name="fade">
-                <span v-show="sectionHover">{{ showCode ? '隐藏代码' : '显示代码' }}</span>
+                <span v-show="sectionHover"> {{ showCode ? '隐藏代码' : '显示代码' }}</span>
             </transition>
         </div>
         <slot></slot>
@@ -97,7 +95,7 @@
 
         .title
             position absolute
-            top -9px
+            top -11px
             left 15px
             background #fff
             padding 0 10px
@@ -105,6 +103,16 @@
 
     .demo-description
         padding 10px 20px
+        code
+            display inline-block
+            vertical-align 2px
+            background #F7FAFE
+            margin 0 3px
+            padding 0px 5px
+            border-radius 3px
+            color #666
+            border 1px solid #E5E5E5
+            line-height 20px
 
     .demo-code
         background #bbb
@@ -137,7 +145,7 @@
         width 12px
         height 8px
         transition all .3s
-
+        margin-right 16px
         &:after
             border 6px solid transparent
             border-top 8px solid #557dfc
@@ -145,13 +153,14 @@
             height 0
             position absolute
             content ' '
+            transition all .3s
+            transform-origin center 25%
 
         &.active
             transform translateX(-40px)
 
         &.open:after
-                border-bottom 8px solid #557dfc
-                border-top none
+            transform rotate(180deg)
 
     .fade-enter-active, .fade-leave-active
         transition all .3s

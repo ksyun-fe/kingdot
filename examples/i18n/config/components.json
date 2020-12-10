@@ -23,6 +23,10 @@
             "name": "按钮"
         },
         {
+            "path": "/layout",
+            "name": "Layout 布局"
+        },
+        {
             "path": "/radio",
             "name": "单选框"
         },
@@ -49,6 +53,18 @@
         {
             "path": "/spin",
             "name": "加载中"
+        },
+        {
+            "path": "/collapse",
+            "name": "折叠面板"
+        },
+        {
+            "path": "/progress",
+            "name": "进度条"
+        },
+        {
+            "path": "/message",
+            "name": "消息提示"
         }
     ],
     "en-US": [
@@ -84,11 +100,15 @@
         },
         {
             "path": "/form",
-            "name": "表单"
+            "name": "form"
         },
         {
             "path": "/checkbox",
-            "name": "多选框"},
+            "name": "checkbox"},
+        {
+            "path": "/collapse",
+            "name": "Collapse"
+        },
         {
             "path": "/icon",
             "name": "Icon"
@@ -96,6 +116,10 @@
         {
             "path": "/spin",
             "name": "spin"
+        },
+        {
+            "path": "/message",
+            "name": "message"
         }
     ]
 }
