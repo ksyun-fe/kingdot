@@ -5,7 +5,8 @@
                 {
                     'kd-spin': true,
                     [`kd-${size}`]: size !== 'default',
-                    'kd-overlay': overlay
+                    'kd-overlay': overlay,
+                    'kd-local': isLocal
                 },
             ]"
             :style="[
@@ -24,16 +25,18 @@
         >
             <!-- spinner -->
             <div
-                    v-if="spinner"
+                    v-if="spinner && typeof(spinner) == 'boolean'"
                     class="kd-spin-defined"
             >
                 <slot></slot>
             </div>
             <div
-                    v-else
                     class="kd-spin-animation"
             >
-                <svg viewBox="0 0 120 120">
+                <svg
+                        v-if="!spinner && typeof(spinner) == 'boolean'"
+                        viewBox="0 0 120 120"
+                >
                     <circle
                             cx="60"
                             cy="60"
@@ -41,6 +44,10 @@
                             r="57"
                     ></circle>
                 </svg>
+                <i
+                        v-else
+                        :class="[spinner,'kd-spin-roate']"
+                ></i>
             </div>
             <!-- text -->
             <div
@@ -75,6 +82,10 @@
                 default: 'rgba(255, 255, 255, .5)'
             },
             spinner: {
+                type: [Boolean, String],
+                default: false
+            },
+            isLocal: {
                 type: Boolean,
                 default: false
             }

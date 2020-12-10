@@ -12,6 +12,8 @@ c = round(2 * 3.14 * r)
         bottom 0
         left 0
         right 0
+    &.kd-local
+        position absolute
     .kd-wrapper
         position absolute
         top 50%
@@ -21,7 +23,11 @@ c = round(2 * 3.14 * r)
         margin 0 auto
         width $-spin-width
         height @width
-        animation c-rotate 2s linear infinite
+        animation kd-spin-rotate 2s linear infinite
+        text-align center
+    .kd-spin-roate
+        color $-primary-color
+        // font-size $-spin-width
     .kd-spin-circle
         animation kd-spin-dash 1.5s ease-in-out infinite
         stroke-dasharray round(c * 0.75), c
@@ -42,8 +48,17 @@ for size in $-size-array
         .kd-spin-animation
             width lookup('$-spin-' + size + '-width')
             height @width
+        .kd-spin-roate
+            font-size lookup('$-spin-' + size + '-width')
 
-@keyframes c-rotate
+// @keyframes kd-rotating
+//     0%
+//         transform rotate(0deg)
+
+//     100%
+//         transform rotate(360deg)
+
+@keyframes kd-spin-rotate
     0%
         transform-origin 50% 50%
         transform rotate(0)
@@ -61,11 +76,3 @@ for size in $-size-array
     to
         stroke-dasharray round(c * 0.75), c
         stroke-dashoffset -(c)
-// .c-fade-enter
-// .c-fade-leave
-//     opacity 0
-// .c-fade-enter-active
-// .c-fade-leave-active
-//     transition opacity $-transition
-// .c-fade-move
-//     transition transform $-transition
