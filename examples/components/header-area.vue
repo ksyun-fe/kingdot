@@ -50,20 +50,24 @@
                 {{ themeText }}
             </li>
             <!--     切换语言       -->
-            <li
-                    class="nav-item"
-                    :class="{'active' : activeIndex === 3 }"
-                    @click="changeLang"
-            >
-                {{ nextLang }}
-            </li>
+            <!--<li-->
+            <!--        class="nav-item"-->
+            <!--        :class="{'active' : activeIndex === 3 }"-->
+            <!--        @click="changeLang"-->
+            <!--&gt;-->
+            <!--    {{ nextLang }}-->
+            <!--</li>-->
         </ul>
     </div>
 </template>
 
 <script>
     import wordsConfig from '../i18n/config/words.json';
-
+    const themes = require('../../src/styles/themes.js');
+    const getThemeCss = (theme) => {
+        // eslint-disable-next-line no-undef
+        return publicPath + theme + '.' + version + '.css';
+    };
     export default {
         data() {
             return {
@@ -88,6 +92,21 @@
                 return this.words.header.theme[1];
             }
         },
+        watch: {
+            firstTheme: {
+                immediate: true,
+                handler(v) {
+                    let link = document.getElementById('theme_str');
+                    if (!link) {
+                        link = document.createElement('link');
+                        link.setAttribute('id', 'theme_str');
+                        link.setAttribute('rel', 'stylesheet');
+                        document.getElementsByTagName('head')[0].appendChild(link);
+                    }
+                    link.href = getThemeCss(themes[v]);
+                }
+            }
+        },
         methods: {
             switchLang(targetLang) {
                 if (this.currentLang === targetLang) return;
@@ -107,8 +126,6 @@
             changeTheme() {
                 this.activeIndex = 2;
                 this.firstTheme = this.firstTheme === 0 ? 1 : 0;
-                const href = this.firstTheme === 0 ? './dist/theme-default/index.css' : './dist/theme/index.css';
-                document.getElementById('theme_str').href = href;
             }
         }
     };

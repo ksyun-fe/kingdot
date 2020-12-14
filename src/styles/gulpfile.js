@@ -10,8 +10,8 @@ const {
 const stylus = require('gulp-stylus');
 const autoprefixer = require('gulp-autoprefixer');
 const cssmin = require('gulp-cssmin');
+const themes = require('./themes.js');
 
-const themes = ['theme-default', 'theme'];
 const tasks = [];
 
 const compiler = (fieldPath, outputPath) => {
