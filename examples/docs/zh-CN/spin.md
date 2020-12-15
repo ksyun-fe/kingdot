@@ -43,7 +43,7 @@
 
 可自定义加载文案、图标和背景色
 
-:::demo #自定义 ##添加 `text` 属性，其值会被渲染为加载文案，并显示在加载图标的下方。类似地，`background` 属性分别用来设定图标类名和背景色值。`spinner` 属性为布尔值 `true` 时，可自定义图标和动画；属性为布尔值 `false` 时，展示组件默认图标和动画；属性为 string 类型时，可传入 icon 类名。
+:::demo #自定义 ##添加 `text` 属性，其值会被渲染为加载文案，并显示在加载图标的下方。类似地，`background` 属性分别用来设定图标类名和背景色值。`spinner` 属性为布尔值 `true` 时，可自定义图标和动画；属性为布尔值 `false` 时，展示组件默认图标和动画；属性为 `String` 类型时，可传入 icon 类名。
 
 ```html
 <template>
@@ -149,7 +149,6 @@
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |:---------- |:-------- |:---------- |:-------------  |:-------- |
 | size     | 组件尺寸   | String    |  large / default / small  |    default    |
-| center  |   是否居中展示，需要父元素为定位元素   | Boolean  |     true / false     |   false    |
 | overlay     | 是否展示带遮罩层的加载动画   | Boolean    |     true / false     |    true     |
 | background  |   遮罩背景色   | String  |     -    |    rgba(255, 255, 255, .5)    |
 | text  |   显示在加载图标下方的加载文案   | String  |     -    |    -    |

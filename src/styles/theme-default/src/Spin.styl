@@ -3,15 +3,14 @@
 width = $-spin-stroke-width
 r = 120 - 60 - (width / 2)
 c = round(2 * 3.14 * r)
-
 .kd-spin
     display inline-block
     &.kd-overlay
         position fixed
         top 0
+        right 0
         bottom 0
         left 0
-        right 0
     &.kd-local
         position absolute
     .kd-wrapper
@@ -23,8 +22,8 @@ c = round(2 * 3.14 * r)
         margin 0 auto
         width $-spin-width
         height @width
-        animation kd-spin-rotate 2s linear infinite
         text-align center
+        animation kd-spin-rotate 2s linear infinite
     .kd-spin-roate
         color $-primary-color
         // font-size $-spin-width
@@ -41,8 +40,6 @@ c = round(2 * 3.14 * r)
         color $-primary-color
         text-align center
         font-size 14px
-
-    // size
 for size in $-size-array
     &.kd-{size}
         .kd-spin-animation
@@ -50,22 +47,19 @@ for size in $-size-array
             height @width
         .kd-spin-roate
             font-size lookup('$-spin-' + size + '-width')
-
 // @keyframes kd-rotating
-//     0%
-//         transform rotate(0deg)
+// 0%
+// transform rotate(0deg)
 
-//     100%
-//         transform rotate(360deg)
-
+// 100%
+// transform rotate(360deg)
 @keyframes kd-spin-rotate
     0%
-        transform-origin 50% 50%
         transform rotate(0)
-    100%
         transform-origin 50% 50%
+    100%
         transform rotate(360deg)
-
+        transform-origin 50% 50%
 @keyframes kd-spin-dash
     0%
         stroke-dasharray 1, c
