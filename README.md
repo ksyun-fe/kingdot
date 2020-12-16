@@ -26,7 +26,7 @@ Vue.use(Checkbox);
 Vue.use(Checkbox.name, Button);
 ```
 
-For more information, please refer to [Quick Start](https://goldendecade.github.io/#/zh-CN/component/start) in our documentation.
+For more information, please refer to [Quick Start](https://ksyun-fe.github.io/kingdot/#/zh-CN/component/start) in our documentation.
 
 ## Browser Support
   Supports all Modern browsers and Internet Explorer 10+.

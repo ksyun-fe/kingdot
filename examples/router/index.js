@@ -52,7 +52,7 @@ const generateComponentsRoute = (componentsConfig) => {
     Object.entries(componentsConfig).forEach(([lang, components], index) => {
         routes.push({
             path: `/${lang}/component`,
-            redirect: `/${lang}/component/button`,
+            redirect: `/${lang}/component/installation`,
             component: load_file(lang, 'component'),
             children: []
         });

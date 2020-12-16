@@ -7,9 +7,6 @@ import ComponentDemo from './components/component-demo';
 import components from '../src/index.js';
 import Highlight from './directives/highlight.js';
 
-import '../src/styles/theme-default/index.styl';
-// import '../src/styles/theme/index.styl';
-
 Vue.use(components);
 Vue.use(Highlight);
 
