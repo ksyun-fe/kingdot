@@ -143,19 +143,33 @@ $-icon-mini-font-size := unit(12 / 14, rem)
         ButtonGroup Button
 *******************************/
 //btn disabled
+$-white-color := #fff
+$-black-color := #000
 $-btn-disabled-color := $-border-base-color
 $-btn-disabled-bg-color := $-disabled-bg-color
 $-btn-disabled-border-color := $-disabled-border-color
 
 //btn default
+$-btn-default-padding := 9px 16px
+$-btn-default-font-size := 12px
 $-btn-default-border-color := $-border-base-color
 $-btn-default-bg := #fff
-$-btn-default-color := $-text-color
+$-btn-default-color := $-black-color
 //type
 $-btn-primary-color := $-primary-color
 $-btn-success-color := $-success-color
 $-btn-warning-color := $-warning-color
 $-btn-danger-color := $-danger-color
+$-btn-text-color := $-primary-color
+$-btn-none-color := $-black-color
+
+$-btn-text-hover-color := $-primary-color
+$-btn-none-hover-color := $-primary-color
+//loading 
+$-btn-stroke-width := 6
+//split 
+$-btn-split-padding := 5px 10px
+
 //border
 $-btn-border-radius := $-border-radius
 $-btn-border-color := $-border-base-color
@@ -166,25 +180,26 @@ $-btn-shape-round := 40px
 $-btn-shape-circle := 50%
 //size
 
-$-btn-large-padding := $-large-padding
+$-btn-large-padding := 13px 24px
 $-btn-large-circle-padding := 14px
 $-btn-large-font-size := 14px
 
-$-btn-default-padding := $-default-padding
+$-btn-default-padding := 9px 16px
 $-btn-default-circle-padding := 12px
 $-btn-default-font-size := $-font-base-size
 
+$-btn-small-padding := 7px 12px
+$-btn-small-circle-padding := 8px
+$-btn-small-font-size := 12px
 
-$-btn-small-padding := $-small-padding
-$-btn-small-circle-padding := 10px
-$-btn-small-font-size := $-font-base-size
-
-// $-btn-mini-padding := 8px 5px
-// $-btn-mini-circle-padding := 8px
-// $-btn-mini-font-size := 12px
-
+$-btn-mini-padding := 5px 8px
+$-btn-mini-circle-padding := 6px
+$-btn-mini-font-size := 12px
 //icon
-$-btn-icon-text-gutter := $-icon-text-gutter
+$-btn-icon-text-gutter := 8px
+
+$-btn-loading-r = 120 - 60 - ($-btn-stroke-width / 2)
+$-btn-loading-c = round(2 * 3.14 * $-btn-loading-r)
 
 /******************************
         Radio
