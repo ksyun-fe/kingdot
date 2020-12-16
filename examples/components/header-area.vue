@@ -126,6 +126,7 @@
             changeTheme() {
                 this.activeIndex = 2;
                 this.firstTheme = this.firstTheme === 0 ? 1 : 0;
+                this.firstTheme ? document.body.classList.add('dark') : document.body.classList.remove('dark');
             }
         }
     };
@@ -140,14 +141,14 @@
         .logo-wrapper
             line-height $headerHeight
             float left
-
+            cursor pointer
             .logo
                 display inline-block
-                padding 20px 24px
+                padding 18px 24px
                 width: 34px
-                height: 34px
+                height: 38px
                 background url('~examples/images/logo.png') no-repeat center
-                background-size 34px 34px
+                background-size 34px 38px
                 vertical-align middle
 
             .search
@@ -190,7 +191,19 @@
 
                         &:after
                             border-color #557DFC
-
+    //dark
+    body.dark
+        background: #1B2338;
+        .header-area
+            color #8D919B
+            background: #222A41
+            box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05)
+            .logo
+                background url('~examples/images/logo-dark.png') no-repeat center
+        /*.container
+            .left-menu
+                background: #1B2338;
+                box-shadow: 2px 0 12px 0 rgba(0,0,0,0.10)*/
     @media (max-width: 780px)
         .header-area
             display flex
@@ -231,7 +244,6 @@
             .logo-wrapper
                 flex 0
                 width 100px
-
                 .search
                     display none
 
