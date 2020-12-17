@@ -1,4 +1,5 @@
 @import '../variables.styl';
+
 .kd-tabs  
    position: relative;
    background: $-tabs-color-background;
@@ -23,6 +24,7 @@
    font-family: PingFangSC-Medium;
    font-size: $-tabs-font-size;
    letter-spacing: 0;
+ 
 .kd-tabs-default  
    &:after  
       content: '';
@@ -32,19 +34,23 @@
       height: 1px;
       width: $-tabs-after-width;
       background: $-tabs-after-backgroundColor;
+    
    .kd-tabs-content  
       position: relative;
       background: $-tabs-color-background;
       padding: 0 16px;
       display: inline-block;
       white-space: nowrap;
+    
    .kd-tab  
       display: inline-block;
       padding: 10px 16px;
       min-width: 88px;
+    
    .kd-active  
       .kd-tab-text  
          color: $-tabs-color-active;
+       
 .kd-tabs-pagination  
    background: $-tabs-color-background;
    .kd-tab  
@@ -58,57 +64,64 @@
          background: $-tabs-after-backgroundColor;
          height: 14px;
          right: 0;
-         top: 9px; 
+         top: 9px;
+       
    .kd-tabs-content  
       display: flex;
+    
    .kd-active  
       .kd-tab-text  
          display: inline-block;
-         border-bottom: $-tabs-border-width solid $-tabs-color-active;
-         padding-bottom: 10px;
+         border-bottom: $-tabs-border-width solid $-tabs-color-active-bar;
+         padding-bottom: 8px;
          height: auto;
-         color: $-tabs-color-active;    
-.kd-tabs-card  
+         color: $-tabs-color-active;
+       
+.kd-tabs-card
    .kd-tab:not(:first-child)
        border-left:none
    .kd-tab  
       display: inline-block;
+      border: 1px solid #525C77;
       min-width: 84px;
-      border: $-tabs-border-width solid $-tabs-after-borderColor;
       padding: 9px 16px;
       cursor: pointer;
-      background: $-tabs-card-backgroundColor;
+      background: $-tabs-color-background;
+    
    .kd-tabs-content  
       display: inline-block;
       font-size: 0;
       border-radius: 4px 0 0 4px;
       .kd-active  
-         background: $-tabs-color-background !important;
+         background-image: $-tabs-card-color-background !important
          .kd-tab-text  
             color: $-tabs-color-active;
+          
 .kd-tabs-block  
    .kd-tabs-content  
       display: inline-block;
       padding: 0 16px;
       display: inline-block;
       white-space: nowrap;
-      // display: flex;
       .kd-tab:not(:first-child)  
          margin-left: 7px;
+       
    .kd-tab  
       display: inline-block;
       min-width: 128px;
       padding: 14px 16px;
-      border: $-tabs-border-width solid $-tabs-after-borderColor;
       border-radius: 2px;
       background: $-tabs-large-backgroundColor;
+    
    .kd-active  
-      background: $-tabs-color-background !important;
-      border-top: 2px solid $-tabs-color-active;
+      background:$-tabs-large-backgroundColor-active !important;
+      border-top: 2px solid $-tabs-color-active-bar;
       border-bottom: 0;
       border-left: 0;
+
       .kd-tab-text  
          color: $-tabs-color-active;
+       
 .kd-tabs-vertical  
    display: inline-block;
    padding: 14px 0px;
@@ -119,7 +132,7 @@
    .kd-move-vertical  
       transition: all 0.3s;
       position: absolute;
-      background: $-tabs-color-active;
+      background: $-tabs-color-active-bar;
       right: 0;
       top: 0px;
       z-index: 99999;
@@ -135,7 +148,8 @@
       background: $-tabs-after-backgroundColor;
    .kd-active  
       .kd-tab-text  
-         color: $-tabs-color-active;  
+         color: $-tabs-color-active;
+       
 .kd-tabs-show-control  
    .kd-tabs-content  
       transition: margin-left 0.3s;
@@ -148,22 +162,23 @@
       border-bottom: none;
       background: $-tabs-color-background;
       height: 100%;
-      border: $-tabs-border-width solid $-tabs-after-borderColor;
       .kd-control-icon  
          font-size: 15px !important;
          vertical-align: middle;
          display: table-cell;
       &.right  
          right: 0;
+       
 .kd-move-bar  
    transition: all 0.3s;
    position: absolute;
    display: inline-block;
-   background: $-tabs-color-active;
+   background: $-tabs-color-active-bar;
    bottom: 0;
    left: 16px;
    z-index: 99;
    height: 2px;
+ 
 .kd-guanbi  
    display: inline;
    margin-left: 10px;
@@ -172,16 +187,19 @@
       color: $-tabs-color-active;
    &:active  
       color: $-tabs-color-background;
+    
 .kd-disabled  
    cursor: not-allowed;
    .kd-tab-text  
       color: $-tabs-after-disabledColor;
       cursor: not-allowed;
+
 .kd-move-disable-left , .kd-move-disable-right
    cursor: not-allowed !important
    color: $-tabs-after-disabledColor;
-   background:#f0f0f3 !important
+   background:$-tabs-large-backgroundColor  !important
 .kd-add-tab
+   background: #2D354D !important
    position: absolute
    right 0
    top: calc( 50% - 21px)
@@ -196,7 +214,3 @@
    font-size: 12px
    &:active  
       color: $-tabs-color-background;
-      border: 1px solid #e5e5e5 
-
-
-

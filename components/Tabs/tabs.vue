@@ -28,7 +28,6 @@
                     :style="{'margin-left':marginLeft+'px'}"
             >
                 <slot></slot>
-
                 <div
                         v-if="type=='default'"
                         class="kd-move-bar"
@@ -144,10 +143,8 @@
                 this.marginTop = marginTop;
                 this.activeMarginLeft = marginLeft;
                 this.activeWidth = width;
-                this.$nextTick(() => {
-                    this.$emit('click', val);
-                    this.$emit('input', val);
-                });
+                this.$emit('click', val);
+                this.$emit('input', val);
             },
 
             tabHandelMove({marginLeft = '', event = ''}) {

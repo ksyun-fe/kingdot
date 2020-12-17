@@ -2,13 +2,13 @@
 
 $-drawer-position ?= left top bottom right;
 
-.kd-drawer
+.kd-drawer 
   position: absolute;
   width: $-drawer-main-width;
   top: 0;
   left: 0;
 
-.kd-drawer-overlay
+.kd-drawer-overlay 
   position: fixed;
   top: 0;
   left: 0;
@@ -19,7 +19,7 @@ $-drawer-position ?= left top bottom right;
   opacity: 0;
   transition: all $-drawer-animation-time;
 
-.kd-drawer-main
+.kd-drawer-main 
   position: fixed;
   z-index: 10;
   display: flex;
@@ -28,67 +28,86 @@ $-drawer-position ?= left top bottom right;
   background: $-drawer-mian-backgroundColor;
   height: $-drawer-main-height;
 
-for item in $-drawer-position
-  .main-{item}-enter-active
-    animation: 'drawer-fade-' + item + '-in' $-drawer-animation-time;
-  .main-{item}-leave-active
+for item in $-drawer-position 
+  .main-{item}-enter-active 
+    animation: 'drawer-fade-' + item + '-in' $-drawer-animation-time;  
+  .main-{item}-leave-active 
     animation: 'drawer-fade-' + item + '-out' $-drawer-animation-time;
 
-.kd-drawer-title
+.kd-drawer-title 
   border-bottom: 1px solid $-drawer-titleBorder-color;
   flex: 0 0 56px;
   padding: 15px 0 0 24px;
-.kd-drawer-txt
+  background :$-drawer-title-backgroundColor
+.kd-drawer-txt 
   font-size: 16px;
   color: $-drawer-txt-color;
   line-height: 24px;
 
-.kd-drawer-close-icon
+.kd-drawer-close-icon 
   position: absolute;
   right: 20px;
   top: 20px;
   color: $-drawer-titleIcon-color;
-  &:hover
+  &:hover 
     cursor: pointer;
-  &::before
+  &::before 
     font-size: 16px;
 
-.kd-drawer-body
+.kd-drawer-body 
+  color: $-drawer-txt-color;
   flex: 1;
   padding-left: 24px;
   padding-top: 20px;
   overflow-y: auto;
 
-.kd-drawer-footer
+.kd-drawer-footer 
   position: relative;
   flex: 0 0 64px;
   border-top: 1px solid $-drawer-footerBorder-color;
   justify-content: flex-end;
   display: flex;
 
-  button
+  button 
     margin-top: 16px;
     outline: none;
 
-    &:hover
+    &:hover 
       cursor: pointer;
 
-  .kd-drawer-closbutton
+  .kd-drawer-closbutton 
     border: 1px solid $-drawer-closeButton-borderColor;
     border-radius: 4px;
-    width: 60px;
+    width: 56px;
     height: 32px;
+    color: $-drawer-closeButton-fontColor;
     background: $-drawer-closeButton-backgroundColor;
 
-  .kd-drawer-truebutton
+    &:hover 
+      color: $-drawer-hover-color;
+      border-color: $-drawer-hover-color;
+
+    &:active 
+      color: $-drawer-active-color;
+      border-color: $-drawer-active-color;
+
+  .kd-drawer-truebutton 
     margin-left: 16px;
     margin-right: 16px;
     background: $-drawer-trueButton-backgroundColor;
     border-radius: 4px;
-    width: 60px;
+    width: 56px;
     height: 32px;
     border: 0;
     color: $-drawer-trueButton-fontColor;
+
+    &:hover 
+      background-color: $-drawer-hover-color;
+      border-color: $-drawer-hover-color;
+
+    &:active 
+      background-color: $-drawer-active-color;
+      border-color: $-drawer-active-color;
 
 @keyframes drawer-fade-left-in {
   0% {

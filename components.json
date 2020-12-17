@@ -1,14 +1,9 @@
 {
     "Button": "./components/Button/index.vue",
     "ButtonGroup": "./components/ButtonGroup/index.vue",
-<<<<<<< HEAD
     "Drawer": "./components/Drawer/index.vue",
     "Message": "./components/Message/index.vue",
-    "Spin": "./components/Spin/index.vue",
     "Switch": "./components/Switch/index.vue",
     "Tab": "./components/Tab/index.vue",
     "Tabs": "./components/Tabs/index.vue"
-=======
-    "Message": "./components/Message/index.vue"
->>>>>>> 1d16c7cd6c498928e3baf0f757afc777f37c4162
 }
