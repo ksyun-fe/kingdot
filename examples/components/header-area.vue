@@ -10,11 +10,11 @@
                     class="logo"
                     exact
             />
-            <input
+            <!--<input
                     class="search"
                     type="text"
                     placeholder="请输入组件名称"
-            >
+            >-->
         </div>
         <ul class="nav-wrapper">
             <li
@@ -50,20 +50,24 @@
                 {{ themeText }}
             </li>
             <!--     切换语言       -->
-            <li
-                    class="nav-item"
-                    :class="{'active' : activeIndex === 3 }"
-                    @click="changeLang"
-            >
-                {{ nextLang }}
-            </li>
+            <!--<li-->
+            <!--        class="nav-item"-->
+            <!--        :class="{'active' : activeIndex === 3 }"-->
+            <!--        @click="changeLang"-->
+            <!--&gt;-->
+            <!--    {{ nextLang }}-->
+            <!--</li>-->
         </ul>
     </div>
 </template>
 
 <script>
     import wordsConfig from '../i18n/config/words.json';
-
+    const themes = require('../../src/styles/themes.js');
+    const getThemeCss = (theme) => {
+        // eslint-disable-next-line no-undef
+        return publicPath + theme + '.' + version + '.css';
+    };
     export default {
         data() {
             return {
@@ -72,7 +76,8 @@
                     'en-US': 'English'
                 },
                 nextLang: 'English',
-                firstTheme: 0,
+                // eslint-disable-next-line no-undef
+                firstTheme: themes.findIndex(i => i === devTheme) || 0,
                 activeIndex: 0
             };
         },
@@ -86,6 +91,38 @@
             themeText() {
                 if (this.firstTheme === 0) return this.words.header.theme[0];
                 return this.words.header.theme[1];
+            }
+        },
+        watch: {
+            firstTheme: {
+                immediate: true,
+                handler(v) {
+                    const theme = themes[v];
+                    let link = document.getElementById('theme_str');
+                    const toggleThemeClass = () => {
+                        if (theme === 'theme') {
+                            document.body.classList.add('dark');
+                        } else {
+                            document.body.classList.remove('dark');
+                        }
+                    };
+                    // eslint-disable-next-line no-undef
+                    if (!isProd) {
+                        toggleThemeClass();
+                        return;
+                    }
+
+                    if (!link) {
+                        link = document.createElement('link');
+                        link.setAttribute('id', 'theme_str');
+                        link.setAttribute('rel', 'stylesheet');
+                        document.getElementsByTagName('head')[0].appendChild(link);
+                    }
+                    link.href = getThemeCss(theme);
+                    link.onload = function () {
+                        toggleThemeClass();
+                    };
+                }
             }
         },
         methods: {
@@ -107,8 +144,6 @@
             changeTheme() {
                 this.activeIndex = 2;
                 this.firstTheme = this.firstTheme === 0 ? 1 : 0;
-                const href = this.firstTheme === 0 ? './dist/theme-default/index.css' : './dist/theme/index.css';
-                document.getElementById('theme_str').href = href;
             }
         }
     };
@@ -123,14 +158,14 @@
         .logo-wrapper
             line-height $headerHeight
             float left
-
+            cursor pointer
             .logo
                 display inline-block
-                padding 20px 24px
+                padding 18px 24px
                 width: 34px
-                height: 34px
+                height: 38px
                 background url('~examples/images/logo.png') no-repeat center
-                background-size 34px 34px
+                background-size 34px 38px
                 vertical-align middle
 
             .search
@@ -173,7 +208,23 @@
 
                         &:after
                             border-color #557DFC
-
+    //dark
+    body.dark
+        background: #1B2338;
+        .header-area
+            color #8D919B
+            background: #222A41
+            box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05)
+            .logo
+                background url('~examples/images/logo-dark.png') no-repeat center
+            .nav-wrapper .nav-item div.router-link-active
+                color #fff
+                &:after
+                    border-color #ED3351
+        /*.container
+            .left-menu
+                background: #1B2338;
+                box-shadow: 2px 0 12px 0 rgba(0,0,0,0.10)*/
     @media (max-width: 780px)
         .header-area
             display flex
@@ -202,7 +253,7 @@
                 left -(@width)
                 background: #fff
                 transition left ease-in-out 0.3s
-
+                z-index 1
                 &.active-menu
                     left 0
 
@@ -214,7 +265,6 @@
             .logo-wrapper
                 flex 0
                 width 100px
-
                 .search
                     display none
 

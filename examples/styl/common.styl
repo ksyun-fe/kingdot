@@ -75,15 +75,6 @@ button:focus
                 word-wrap break-word
     .row
         margin-bottom: 20px
-    .kd-btn
-        margin-left: 10px
-    .kd-btn:first-child
-        margin-left: 0px
-    .kd-btn-group
-        .kd-btn
-            margin-left: 0px
-        .kd-btn-default
-            margin-left: -1px
 .component-doc-content
 .content
     h1
@@ -112,13 +103,15 @@ button:focus
 
 /* page */
 .container
-    height: 100%
+    width 100%
+    height 100%
     display: flex
     .left-menu
         height: 100%
         flex 0
         width 213px
         left 0
+        z-index 9999
     .main-container
         box-sizing border-box
         padding 20px 20px 20px 40px
@@ -152,3 +145,22 @@ button:focus
         & > pre
             line-height 20px
             margin 0
+
+body.dark
+    .container
+        .main-container
+            color #8D919B
+            background #222A41
+    .hljs
+        color #8D919B
+        background-color #1B2338
+    .component-doc-content
+        table
+            background #222A41
+            thead
+                background linear-gradient(180deg,#222A41,#2D354D)
+                tr
+                    border-bottom 1px solid #2F374F;
+            tbody
+                tr
+                    border-bottom 1px solid #2F374F;

@@ -1,0 +1,74 @@
+.kd-progress
+    position relative
+    div
+        box-sizing border-box
+.kd-progress-bar
+    display inline-block
+    width 100%
+    margin-right $-progress-bar-marginRight
+    padding-right $-progress-bar-paddingRight
+    vertical-align middle
+.kd-progress-without-text
+    .kd-progress-bar
+        margin-right 0
+        padding-right 0
+.kd-progress-bar-outer
+    background-color $-progress-outBar-bgc
+    border-radius 1000px
+    overflow hidden
+.kd-progress-bar-inner
+    position relative
+    display table
+    height 100%
+    color #fff
+    border-radius 1000px
+    div
+        position relative
+        padding-right 6px
+        display table-cell
+        vertical-align middle
+        text-align right
+.kd-progress-text
+    display inline-block
+    margin-left $-pregress-text-marginLeft
+    vertical-align middle
+
+/*环形*/
+.kd-progress-circle
+    display inline-block
+    .kd-progress-text
+        margin 0
+        position absolute
+        left 0
+        top 50%
+        width: 100%
+        text-align center
+        transform translateY(-50%)
+
+div.kd-progress-bar-active:before
+    content ''
+    opacity 0
+    position absolute
+    top 0
+    left 0
+    right 0
+    bottom 0
+    background-color: #fff
+    border-radius 100px
+    animation progress-active 2s ease-in-out infinite
+
+@keyframes progress-active
+    0%
+        opacity .3
+        width 0
+    100%
+        opacity 0
+        width 100%
+
+/*icon color*/
+i.kd-icon-success-solid, i.kd-icon-success
+    color $-success-color
+i.kd-icon-error-solid, i.kd-icon-error
+    color $-danger-color
+i.kd-icon-warning-solid
+    color $-warning-color

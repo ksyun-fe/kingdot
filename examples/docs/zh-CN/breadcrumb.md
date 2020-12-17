@@ -1,7 +1,7 @@
 ### Breadcrumb面包屑
  用途： 显示当前页面的路径，快速返回之前的任意页面。
 ### 基础用法
-:::demo #基础用法 在Breadcrumb中使用BreadcrumbItem标签表示从首页开始的每一级。
+:::demo #基础用法 ##在Breadcrumb中使用BreadcrumbItem标签表示从首页开始的每一级。
 
 ```html
 <template>
@@ -16,7 +16,7 @@
 ```
 :::
 ### 可以返回任意父级
-:::demo #基础用法 给每个父级BreadcrumbItem标签增to或href属性。
+:::demo #基础用法 ##给每个父级BreadcrumbItem标签增to或href属性。
 
 ```html
 <template>
@@ -31,7 +31,7 @@
 ```
 :::
 ### 自定义分隔符
-:::demo #基础用法 可以通过separator属性改变分隔符，也可以通过separatorClass传入想代替分隔符的图标的类名。
+:::demo #基础用法 ##可以通过separator属性改变分隔符，也可以通过separatorClass传入想代替分隔符的图标的类名。
 
 ```html
 <template>

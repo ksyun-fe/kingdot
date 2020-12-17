@@ -5,17 +5,17 @@ const TerserJSPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     mode: 'production',
-    devtool: 'sourcemap',
     entry: path.resolve(__dirname, '../src/index.js'),
     output: {
         path: path.resolve(__dirname, '../lib'),
         publicPath: '/dist',
-        filename: 'kingdot.min.js',
+        filename: 'kingdot.js',
         chunkFilename: '[id].js',
-        library: 'kINGDOT',
+        library: 'KingDot',
         libraryTarget: 'umd',
         umdNamedDefine: true,
-        globalObject: 'typeof self !== undefined ? self : this'
+        libraryExport: 'default',
+        globalObject: 'typeof self !== \'undefined\' ? self : this'
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],

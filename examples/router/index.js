@@ -49,17 +49,21 @@ function load_component(lang, name) {
     return component_map[lang](name);
 }
 const generateComponentsRoute = (componentsConfig) => {
-    Object.entries(componentsConfig).forEach(([lang, components], index) => {
-        routes.push({
-            path: `/${lang}/component`,
-            redirect: `/${lang}/component/button`,
-            component: load_file(lang, 'component'),
-            children: []
-        });
-        components.forEach(component => {
-            if (component.path) {
-                addComponentRoute(component, lang, index);
-            }
+    Object.entries(componentsConfig).forEach(([lang, types], index) => {
+        types.forEach((groups) => {
+            groups.children.forEach((components) => {
+                routes.push({
+                    path: `/${lang}/component`,
+                    redirect: `/${lang}/component/installation`,
+                    component: load_file(lang, 'component'),
+                    children: []
+                });
+                components.children.forEach(component => {
+                    if (component.path) {
+                        addComponentRoute(component, lang, index);
+                    }
+                });
+            });
         });
     });
     function addComponentRoute(component, lang, index) {

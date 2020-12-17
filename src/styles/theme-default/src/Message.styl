@@ -1,0 +1,50 @@
+@import "../variables.styl";
+$-message-types = 'success' 'warning' 'error' 'info';
+.kd-message
+    width $-message-width
+    font-size $-message-font-size
+    padding $-message-padding
+    border-radius $-message-border-radius
+    border 1px solid $-message-default-border-color
+    background $-message-default-background-color
+    color $-message-default-font-color
+    box-sizing border-box
+    position relative
+    overflow hidden
+.kd-message-fixed
+    position fixed
+    top 0
+    left 50%
+    transform translate(-50%, 0)
+    transition all $-message-transition
+for t in $-message-types
+    .kd-message-{t}
+        border-color lookup('$-message-' + t + '-border-color')
+        background lookup('$-message-' + t + '-background-color')
+        color lookup('$-message-' + t + '-font-color')
+.kd-message-icon
+    margin-right 6px
+.kd-message-wrap
+    position relative
+    display flex
+    justify-content center
+    align-items center
+    padding-right 20px
+.kd-message-content
+    line-height $-message-content-line-height
+    word-wrap break-word
+    word-break break-all
+    white-space pre-wrap
+.kd-message-center .kd-message-wrap
+    justify-content center
+.kd-message-close
+    position absolute
+    top 50%
+    right 14px
+    transform translate(0, -50%)
+    font-size 12px
+    cursor pointer
+.kd-message-fade-enter,
+.kd-message-fade-leave-active
+    opacity 0
+    transform translate(-50%, -100%)
