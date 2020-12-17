@@ -1,10 +1,9 @@
-@import "./variables.styl";
+@import "../variables.styl";
 
 .kd-steps-container
     position relative
     display flex
     flex-wrap nowrap
-    width 100%
     min-height 32px
     background-color $-steps-container-background-color
     padding  20px
@@ -44,7 +43,6 @@
         text-align center
         line-height 29px
         cursor default
-        box-sizing: border-box;
         &.kd-step-index-default
             border 1px solid $-step-index-default-border-color
             color $-step-index-default-color
@@ -73,7 +71,7 @@
             background $-step-index-done-background-color
             color $-step-index-done-color
             line-height 25px
-            i 
+            i
                 color $-step-index-done-color
         &.kd-step-custom-status-active
             border $-step-index-active-border-color
@@ -101,7 +99,7 @@
         display inline-block
         width 7px
         height 7px
-        border-radius 50%   
+        border-radius 50%
         &.kd-step-spot-default
             background $-step-spot-default-background-color
         &.kd-step-spot-active
@@ -113,8 +111,8 @@
     .kd-step-spot-line
         display inline-block
         width 14px
-        height 14px 
-        border-radius 50% 
+        height 14px
+        border-radius 50%
         border 1px solid $-step-spot-line-border-color
         background-color $-step-spot-line-background-color
         text-align center
@@ -141,7 +139,7 @@
         line-height 32px
         padding 0 8px
         font-size 16px
-        color $-step-title-color 
+        color $-step-title-color
         z-index 10
         background-color $-steps-container-background-color
         &.kd-step-title-active
@@ -193,7 +191,7 @@
             left -31px
             content ' '
             width 0
-            height 0   
+            height 0
             border 20px solid $-step-simple-background-color
             border-left 10px solid transparent
 .kd-step-simple
@@ -252,7 +250,7 @@
         transform translateX(-25%)
         width 140px
     .kd-step-head
-        padding 0 
+        padding 0
     .kd-step-title-spot
         top 20px
     .kd-step-desc-spot
