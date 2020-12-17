@@ -4,19 +4,18 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 module.exports = {
     mode: 'production',
-    devtool: 'sourcemap',
     entry: path.resolve(__dirname, '../src/index.js'),
     output: {
         path: path.resolve(__dirname, '../lib'),
         publicPath: '/dist/',
-        filename: 'kingdot.js',
+        filename: 'index.js',
         chunkFilename: '[id].js',
-        library: 'kingdot',
+        library: 'KingDot',
         libraryExport: 'default',
         libraryTarget: 'commonjs2'
     },
     resolve: {
-        extensions: ['.js, .vue, .json'],
+        extensions: ['.js', '.vue', '.json'],
         alias: {
             src: path.resolve(__dirname, '../src')
         }

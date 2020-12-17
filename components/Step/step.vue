@@ -157,17 +157,17 @@
             },
             handleLH() {
                 const style = {};
-                if (this.size == 'small') {
-                    if (this._status == 'finished' || this._status == 'error') {
-                        style['line-height'] = '22px';
+                if (this.size === 'small') {
+                    if (this._status === 'finished' || this._status === 'error') {
+                        style['line-height'] = '20px';
                     }
                 }
                 return style;
             },
             iconObj() {
                 return {
-                    'kd-icon-success': this._status == 'finished',
-                    'kd-icon-error': this._status == 'error'
+                    'kd-icon-success': this._status === 'finished',
+                    'kd-icon-error': this._status === 'error'
                 };
             }
         },
@@ -196,16 +196,16 @@
                 const parentCurrentStatus = this.$parent.currentStatus;
                 if (this.index < this.activeIndex) {
                     status =
-                        this.status != ''
+                        this.status !== ''
                             ? this.status
-                            : parentFinishStatus != ''
+                            : parentFinishStatus !== ''
                                 ? parentFinishStatus
                                 : '';
-                } else if (this.index == this.activeIndex) {
+                } else if (this.index === this.activeIndex) {
                     status =
-                        this.status != ''
+                        this.status !== ''
                             ? this.status
-                            : parentCurrentStatus != ''
+                            : parentCurrentStatus !== ''
                                 ? parentCurrentStatus
                                 : '';
                 } else {
@@ -215,11 +215,11 @@
             },
             getType() {
                 const v = this.$parent.type;
-                if (v == 'spot') {
+                if (v === 'spot') {
                     this.position = 'bottom';
                     this.direction = 'horizontal';
                     this.status = '';
-                } else if (v == 'simple') {
+                } else if (v === 'simple') {
                     this.description = '';
                     this.position = 'left';
                     this.size = 'small';

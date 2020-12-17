@@ -14,7 +14,7 @@
                         tag="button"
                         exact
                 >开始使用</router-link>
-                <button>Github</button>
+                <button @click="openGithub">Github</button>
             </div>
         </div>
     </div>
@@ -28,10 +28,36 @@
         },
         created() {
             this.componentRouter = '/' + this.$route.meta.lang + '/component';
+        },
+        methods: {
+            openGithub() {
+                window.open('https://ksyun-fe.github.io/kingdot', '_blank ');
+            }
         }
     };
 </script>
 <style scoped ref="stylesheet/stylus" lang="stylus" type="text/stylus">
+    body.dark
+        .container
+            .panel
+                color: #FFF
+                background: #222A41;
+                box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
+                h1
+                    color: #FFF
+                    &:after
+                        background-image: linear-gradient(90deg, #F8334C 0%, #4E284D 100%)
+                .desc
+                    color: #FFF
+                .button-wrapper
+                    button
+                        color: #FFF
+                        background-color: #222A41
+                        border: 1px solid #ED3351
+                        &.active, &:nth-of-type(1)
+                            color #fff
+                            background-image: linear-gradient(90deg, #F8334C 0%, #4E284D 100%);
+
     .container
         height: 100%
         text-align center
@@ -79,6 +105,7 @@
                     border 1px solid #557DFC
                     background-color: #fff
                     border-radius 40px
+                    cursor pointer
                     &.active, &:nth-of-type(1)
                         color #fff
                         background-color: #557DFC

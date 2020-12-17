@@ -10,7 +10,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
 const HashOutput = require('webpack-plugin-hash-output');
+const version = require('../package.json').version;
 const isProd = process.env.NODE_ENV === 'production';
+const theme = process.env.THEME;
+const publicPath = isProd ? '/kingdot/' : '/';
 const cssLoader = (preprocessor) => {
     const loader = [
         isProd ? {
@@ -34,12 +37,21 @@ const cssLoader = (preprocessor) => {
     }
     return loader;
 };
+
+const entry = [
+    path.resolve(__dirname, '../examples/main.js')
+];
+
+if (!isProd) {
+    entry.push(path.resolve(__dirname, `../src/styles/${theme}/index.styl`));
+}
+
 const webpackConfig = {
     mode: process.env.NODE_ENV,
-    entry: './examples/main.js',
+    entry: entry,
     output: {
-        path: path.resolve(__dirname, '../examples/dist/'),
-        publicPath: '/',
+        path: path.resolve(__dirname, '../docs'),
+        publicPath: publicPath,
         filename: isProd ? '[name].[hash].js' : '[name].js',
         chunkFilename: '[name].[chunkhash].js'
     },
@@ -109,7 +121,12 @@ const webpackConfig = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(),
+        new webpack.DefinePlugin({
+            isProd: isProd,
+            devTheme: `"${theme}"`,
+            publicPath: `"${publicPath}"`,
+            version: `"${version}"`
+        }),
         new HtmlWebpackPlugin({
             title: 'King Dot UI',
             template: './examples/index.html',
@@ -165,24 +182,18 @@ if (isProd) {
                 minChunks: 2,
                 priority: -20,
                 reuseExistingChunk: true
-            },
-            styles: {
-                name: 'styles',
-                test: (module, chunks) => {
-                    return /css/.test(module.type);
-                },
-                chunks: 'all',
-                enforce: true
             }
         }
     };
     webpackConfig.plugins.unshift(new HashOutput());
     webpackConfig.plugins.push(
+        new CleanWebpackPlugin()
+    );
+    webpackConfig.plugins.push(
         new InlineManifestWebpackPlugin(),
         new MiniCssExtractPlugin({
             ignoreOrder: true,
-            filename: '[name].[contenthash].css',
-            chunkFilename: '[id].[contenthash].css'
+            filename: '[name].[contenthash].css'
         }),
         new webpack.optimize.MinChunkSizePlugin({
             minChunkSize: 10000

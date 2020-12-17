@@ -42,4 +42,8 @@
         height: 100%
         .main-area
             height calc(100% - 74px)
+    body.dark
+        #app
+            .main-area
+                background: #1B2338;
 </style>

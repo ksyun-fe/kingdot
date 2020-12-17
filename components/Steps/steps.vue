@@ -3,7 +3,7 @@
             id="kd-steps"
             ref="kdSteps"
             class="kd-steps-container"
-            :class="{ 'kd-steps-container-vertical': orientation == 'vertical' }"
+            :class="{ 'kd-steps-container-vertical': orientation === 'vertical' }"
             :style="stepsStyle"
     >
         <slot></slot>
@@ -74,7 +74,7 @@
         },
         methods: {
             resetDirection() {
-                if (this.type != 'default') {
+                if (this.type !== 'default') {
                     this.orientation = 'horizontal';
                 }
             },
@@ -97,7 +97,7 @@
                 const lastChildWidth = precent / childNum + '%';
                 const leftStyle = (precent / childNum) + 5 + '%';
                 const parent = this.$el;
-                if (this.type == 'default' && this.direction == 'vertical') {
+                if (this.type === 'default' && this.direction === 'vertical') {
                     Array.from(parent.children)[childNum - 1].style[
                         'max-height'
                     ] = lastChildWidth;
@@ -115,18 +115,18 @@
                         }
                     });
                 }
-                if (this.type == 'simple') {
+                if (this.type === 'simple') {
                     Array.from(parent.children)[childNum - 1].style[
                         'flex-basis'
                     ] = lastChildWidth;
                     Array.from(parent.children).forEach(item => {
                         const head = item.children[0].children[0].children[0].children[0];
-                        if (head && head.className == 'kd-step-head') {
+                        if (head && head.className === 'kd-step-head') {
                             item.children[0].children[0].children[0].style.left = leftStyle;
                         }
                     });
                 }
-                if (this.type == 'spot') {
+                if (this.type === 'spot') {
                     Array.from(parent.children).forEach(item => {
                         const headHeight = item.children[0].children[0].children[0].offsetHeight;
                         const firstChild = item.children[0].children[0].children[1].children[0];

@@ -1,55 +1,220 @@
 {
     "zh-CN": [
         {
-            "name": "开发指南"
+            "name": "开发指南",
+            "children": [
+                {
+                    "name": "",
+                    "children": [
+                        {
+                            "path": "/installation",
+                            "name": "安装"
+                        },
+                        {
+                            "path": "/start",
+                            "name": "快速上手"
+                        },
+                        {
+                            "path": "/i18n",
+                            "name": "国际化"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "path": "/installation",
-            "name": "安装"
-        },
-        {
-            "path": "/start",
-            "name": "快速上手"
-        },
-        {
-            "path": "/i18n",
-            "name": "国际化"
-        },
-        
-        {
-            "name": "组件"
-        },
-        {
-            "path": "/button",
-            "name": "按钮"
-        },
-        {
-            "path": "/steps",
-            "name": "Steps步骤条"
+            "name": "组件",
+            "children": [
+                {
+                    "name": "General",
+                    "children": [
+                        {
+                            "path": "/layout",
+                            "name": "Layout 布局"
+                        },
+                        {
+                            "path": "/icon",
+                            "name": "Icon 图标"
+                        },
+                        {
+                            "path": "/button",
+                            "name": "Button 按钮"
+                        }
+                    ]
+                },
+                {
+                    "name": "Form",
+                    "children": [
+                        {
+                            "path": "/radio",
+                            "name": "Radio 单选框"
+                        },
+                        {
+                            "path": "/switch",
+                            "name": "Switch 开关"
+                        },
+                        {
+                            "path": "/input",
+                            "name": "Input 输入框"
+                        },
+                        {
+                            "path": "/form",
+                            "name": "Form 表单"
+                        },
+                        {
+                            "path": "/checkbox",
+                            "name": "Checkbox 多选框"
+                        }
+                    ]
+                },
+                {
+                    "name": "Data Display",
+                    "children": [
+                        {
+                            "path": "/progress",
+                            "name": "Progress 进度条"
+                        }
+                    ]
+                },
+                {
+                    "name": "Notice",
+                    "children": [
+                        {
+                            "path": "/message",
+                            "name": "Message 消息提示"
+                        }
+                    ]
+                },
+                {
+                    "name": "Navigation",
+                    "children": []
+                },
+                {
+                    "name": "Others",
+                    "children": [
+                        {
+                            "path": "/collapse",
+                            "name": "Collapse 折叠面板"
+                        }
+                    ]
+                },
+                {
+                    "name":"Steps",
+                    "children":[{
+                        "path": "/steps",
+                        "name": "Steps 步骤条"
+                    }]
+                }
+            ]
         }
     ],
     "en-US": [
         {
-            "name": "Development"
+            "name": "Development",
+            "children": [
+                {
+                    "name": "",
+                    "children": [
+                        {
+                            "path": "/installation",
+                            "name": "Installation"
+                        },
+                        {
+                            "path": "/start",
+                            "name": "Quick Start"
+                        },
+                        {
+                            "path": "/i18n",
+                            "name": "Internationalization"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "path": "/installation",
-            "name": "Installation"
-        },
-        {
-            "path": "/i18n",
-            "name": "Internationalization"
-        },
-        {
-            "name": "Components"
-        },
-        {
-            "path": "/button",
-            "name": "Button"
-        },
-        {
-            "path": "/steps",
-            "name": "Steps"
+            "name": "Components",
+            "children": [
+                {
+                    "name": "General",
+                    "children": [
+                        {
+                            "path": "/layout",
+                            "name": "Layout"
+                        },
+                        {
+                            "path": "/icon",
+                            "name": "Icon"
+                        },
+                        {
+                            "path": "/button",
+                            "name": "Button"
+                        }
+                    ]
+                },
+                {
+                    "name": "Form",
+                    "children": [
+                        {
+                            "path": "/radio",
+                            "name": "Radio"
+                        },
+                        {
+                            "path": "/switch",
+                            "name": "Switch"
+                        },
+                        {
+                            "path": "/input",
+                            "name": "Input"
+                        },
+                        {
+                            "path": "/form",
+                            "name": "Form"
+                        },
+                        {
+                            "path": "/checkbox",
+                            "name": "Checkbox"
+                        }
+                    ]
+                },
+                {
+                    "name": "Data Display",
+                    "children": [
+                        {
+                            "path": "/progress",
+                            "name": "Progress"
+                        }
+                    ]
+                },
+                {
+                    "name": "Notice",
+                    "children": [
+                        {
+                            "path": "/message",
+                            "name": "Message"
+                        }
+                    ]
+                },
+                {
+                    "name": "Navigation",
+                    "children": []
+                },
+                {
+                    "name": "Others",
+                    "children": [
+                        {
+                            "path": "/collapse",
+                            "name": "Collapse"
+                        }
+                    ]
+                },
+                {
+                    "name":"Steps",
+                    "children":[{
+                        "path": "/steps",
+                        "name": "Steps"
+                    }]
+                }
+            ]
         }
     ]
 }

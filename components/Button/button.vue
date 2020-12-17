@@ -1,44 +1,29 @@
 <template>
     <button
             class="kd-btn"
-            :class="[
-                text && type=='default' ? '' : `kd-btn-${type}`,
-                shape ? `kd-btn-${shape}` : '',
-                size ? `kd-btn-${size}` : '',
-                text ? `kd-btn-text-${type}` : '',
-                {
-                    'kd-btn-disabled': disabled,
-                    'kd-btn-hollow': hollow,
-                    'kd-btn-line': line,
-                    'kd-btn-loading': loading
-                }
-            ]"
-            @click="btnClick"
+            :class="allClassList"
+            :type="nativeType"
+            @click="handleClick"
     >
-        <span
+        <!-- 加载中 -->
+        <i
                 v-if="loading"
-                class="kd-btn-loading-icon"
-                :class="{ 'kd-icon-left':$slots.default }"
+                class="kd-btn-loading-icon kd-icon-loading1"
+                :class="{ 'kd-icon-left': $slots.default }"
         >
-            <svg viewBox="0 0 120 120">
-                <circle
-                        cx="60"
-                        cy="60"
-                        r="57"
-                />
-            </svg>
-        </span>
+        </i>
+        <!-- 传入icon -->
         <i
                 v-if="icon"
-                :class="['kdicon', icon]"
+                :class="icon"
         />
+        <!-- 默认按钮 -->
         <span
                 v-if="$slots.default"
-                :class="{'kd-icon-right': icon}"
+                :class="{'kd-icon-right': icon && $slots.default[0].text }"
         >
             <slot/>
         </span>
-        <!-- <span>{{ translate('button.confirm') }}</span> -->
     </button>
 </template>
 
@@ -46,9 +31,12 @@
     import Lang from 'src/mixin/lang.js';
 
     export default {
-        name: 'Button',
+        name: 'KdButton',
         mixins: [Lang],
         props: {
+            value: {
+                type: [Number, String]
+            },
             type: {
                 type: String,
                 default: 'default'
@@ -77,24 +65,51 @@
                 type: Boolean,
                 default: false
             },
-            text: {
+            split: {
                 type: Boolean,
                 default: false
             },
-            line: {
-                type: Boolean,
-                default: false
+            nativeType: {
+                type: String,
+                default: ''
             }
         },
         data() {
-            return {};
+            return {
+                isActive: false
+            };
+        },
+        computed: {
+            // 所有样式类
+            allClassList() {
+                const allClassAry = [
+                    `kd-btn-${this.type}`,
+                    this.shape ? `kd-btn-${this.shape}` : '',
+                    this.size ? `kd-btn-${this.size}` : '',
+                    {
+                        'kd-btn-active': this.isActive,
+                        'kd-btn-split': this.split,
+                        'kd-btn-disabled': this.disabled,
+                        'kd-btn-hollow': this.hollow,
+                        'kd-btn-loading': this.loading
+                    }
+                ];
+                return allClassAry;
+            }
         },
         methods: {
-            btnClick(e) {
-                if (this.disabled || this.loading) return;
-                this.$emit('click', e);
+            //  点击事件
+            handleClick(e) {
+                if (!this.disabled && !this.loading) {
+                    this.$emit('click', e);
+                }
+                if (this.$parent.$options._componentTag === 'kd-button-group') {
+                    this.$parent.emit(this.value, this.isActive);
+                }
+            },
+            active() {
+                this.isActive = true;
             }
         }
     };
-
 </script>

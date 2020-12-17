@@ -13,4 +13,7 @@ examples/dist
 .DS_Store?
 lib/
 yarn*
-
+# cmd generate file
+components.json
+src/styles/theme/src
+src/index.js

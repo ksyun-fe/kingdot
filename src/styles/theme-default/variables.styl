@@ -1,0 +1,411 @@
+/******************************
+        Theme
+*******************************/
+// use('../functions.js')
+// $-theme-dir := __dirname()
+/******************************
+             media
+*******************************/
+use('../../../media.js')
+
+// root font size
+$-rem := 12
+/******************************
+             Colors
+*******************************/
+
+$-red := #EF4E76
+$-blue := #557DFC
+$-green := #38C482
+$-yellow := #FF9A42
+// $-grey := #4C4C4C
+
+// $-black := #262626
+$-light-black := #4C4C4C
+$-white-color := #FFF
+$-black-color := #000
+
+/******************************
+            Page
+*******************************/
+// let height be odd 20 / 14
+$-line-height := 1
+// $-font-family := -apple-system,'PingFang SC',BlinkMacSystemFont,'Segoe UI','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif !important
+$-font-family := PingFangSC-Light, 'helvetica neue', arial, 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif
+// font size
+$-font-large-size := 16px
+$-font-default-size := 14px
+$-font-small-size := 12px
+$-font-mini-size := 12px
+$-font-base-size := 14px
+$-font-second-size := 12px
+// font color
+$-text-dark-color := #262626
+$-text-light-color := #4C4C4C //主要正文颜色
+$-text-list-color := #778088 //列表文字颜色
+$-text-regular-color := #737373 //常规文字颜色
+$-text-placeholder-color := #B2B2B2 //占位文字颜色
+//theme color
+$-primary-color := #557DFC
+$-warning-color := #FF9A42
+$-danger-color := #EF4E76
+$-success-color := #38C482
+// theme lighter color
+$-primary-lighter-color := #7797FC
+$-warning-lighter-color := #FFAF6B
+$-danger-lighter-color := #F3839F
+$-success-lighter-color := #5FCF9B
+// theme darker color
+$-primary-darker-color := #4464C9
+$-warning-darker-color := #E58C3E
+$-danger-darker-color := #A22334
+$-success-darker-color := #33A36D
+// border color
+$-border-base-color := #CCC //主要边框
+$-split-line-color := #E5E5E5 //区域分割线
+// background color
+$-light-bg-color := #FFF
+$-bg-base-color := #fff //基础内容背景样式
+$-table-header-bg-color := #F3F6FB //table,title等头部背景
+$-table-content-bg-color := #F4F7FC //内容区
+// disable color
+$-disabled-color := #CCC
+$-disabled-bg-color := #F2F2F2
+$-disabled-border-color := #CCC
+// icon color
+$-icon-default-color := #B2B2B2
+// pend color
+$-pend-color := #666
+// box-shadow
+$-box-shadow := 0 0 15px 0 rgba(0, 0, 0, 0.15);
+// border-radius
+$-border-radius := 4px
+$-border-base-radius := 2px
+// size arr
+$-size-array = mini, small, default, large
+/******************************
+        Headers
+*******************************/
+
+$-header-font-family := 'PingFangSC-Medium' !important
+$-header-margin := 0
+$-header-font-weight := bold
+$-h1 := 36px
+$-h2 := 30px
+$-h3 := 24px
+$-h4 := 18px
+$-h5 := 14px
+$-h6 := 12px
+
+/******************************
+        Link
+*******************************/
+
+$-link-color := $-primary-color
+$-link-underline := none
+$-link-hover-color := palette($-link-color, -1)
+$-link-hover-underline := $-link-underline
+$-link-font-family := $-font-family
+
+/******************************
+        Code
+*******************************/
+
+$-code-font-family := Consolas, Menlo, Courier, monospace
+
+/******************************
+        Transition
+*******************************/
+
+$-transition := .25s ease-in-out
+
+/******************************
+        Spin
+*******************************/
+
+$-spin-color := $-primary-color
+$-spin-width := unit(40 / 14, rem)
+$-spin-stroke-width := 6
+
+// size
+$-spin-large-width := unit(48 / 14, rem)
+$-spin-small-width := unit(32 / 14, rem)
+$-spin-mini-width := unit(24 / 14, rem)
+
+// font size
+$-icon-default-font-size := unit(16 / 14, rem)
+$-icon-large-font-size := unit(18 / 14, rem)
+$-icon-small-font-size := unit(14 / 14, rem)
+$-icon-mini-font-size := unit(12 / 14, rem)
+
+
+/******************************
+        ButtonGroup Button
+*******************************/
+//btn disabled
+$-white-color := #fff
+$-black-color := #000
+$-btn-disabled-color := $-border-base-color
+$-btn-disabled-bg-color := $-disabled-bg-color
+$-btn-disabled-border-color := $-disabled-border-color
+
+//btn default
+$-btn-default-padding := 9px 16px
+$-btn-default-font-size := 12px
+$-btn-default-border-color := $-border-base-color
+$-btn-default-bg := #fff
+$-btn-default-color := $-black-color
+//type
+$-btn-primary-color := $-primary-color
+$-btn-success-color := $-success-color
+$-btn-warning-color := $-warning-color
+$-btn-danger-color := $-danger-color
+$-btn-text-color := $-primary-color
+$-btn-none-color := $-black-color
+
+$-btn-text-hover-color := $-primary-color
+$-btn-none-hover-color := $-primary-color
+//loading 
+$-btn-stroke-width := 6
+//split 
+$-btn-split-padding := 5px 10px
+
+//border
+$-btn-border-radius := $-border-radius
+$-btn-border-color := $-border-base-color
+$-btn-default-border-style := solid
+$-btn-dashed-border-style := dashed
+//shape
+$-btn-shape-round := 40px
+$-btn-shape-circle := 50%
+//size
+
+$-btn-large-padding := 13px 24px
+$-btn-large-circle-padding := 14px
+$-btn-large-font-size := 14px
+
+$-btn-default-padding := 9px 16px
+$-btn-default-circle-padding := 12px
+$-btn-default-font-size := $-font-base-size
+
+$-btn-small-padding := 7px 12px
+$-btn-small-circle-padding := 8px
+$-btn-small-font-size := 12px
+
+$-btn-mini-padding := 5px 8px
+$-btn-mini-circle-padding := 6px
+$-btn-mini-font-size := 12px
+//icon
+$-btn-icon-text-gutter := 8px
+
+$-btn-loading-r = 120 - 60 - ($-btn-stroke-width / 2)
+$-btn-loading-c = round(2 * 3.14 * $-btn-loading-r)
+
+/******************************
+        Radio
+*******************************/
+$-radio-width := 14px
+
+$-radio-border-color := $-border-base-color
+$-radio-bg-color := #fff
+$-radio-content-bg-color := $-primary-color
+
+// text
+$-radio-text-margin-left := 8px
+$-radio-text-color := $-text-light-color
+
+// checked
+$-radio-checked-border-color := $-primary-color
+$-radio-inner-width := 8px
+$-radio-checked-color := $-primary-color
+
+// disabled
+$-radio-disabled-color := $-disabled-color
+$-radio-disabled-border-color := $-disabled-border-color
+$-radio-disabled-bg-color := $-disabled-bg-color
+$-radio-disabled-inner-color := $-disabled-color
+/******************************
+        Switch
+*******************************/
+$-switch-active-bg := $-primary-color
+$-switch-inactive-bg := $-disabled-color // #ccc
+$-switch-disabled-bg := $-disabled-bg-color  // #e5e5e5
+$-switch-disabled-font-color := $-disabled-color // #a7a5a5
+$-switch-font-size := 14px
+$-switch-border-width := $-border-base-radius
+$-switch-size-list = $-size-array
+
+$-switch-mini-width := 24px
+$-switch-small-width := 36px
+$-switch-default-width := 48px
+$-switch-large-width := 60px
+
+$-switch-mini-height := 14px
+$-switch-small-height := 18px
+$-switch-default-height := 24px
+$-switch-large-height := 30px
+
+$-switch-mini-border-radius := $-switch-mini-height
+$-switch-small-border-radius := $-switch-small-height
+$-switch-default-border-radius := $-switch-default-height
+$-switch-large-border-radius := $-switch-large-height
+
+
+/******************************
+        Input
+*******************************/
+$-input-color := $-text-light-color
+$-input-placeholder-color := $-text-placeholder-color
+$-input-default-width := 300px
+$-input-border := 1px solid $-border-base-color
+$-input-size-list = $-size-array
+$-input-border-radius := $-border-base-radius
+$-input-bg-color := $-light-bg-color
+$-input-focus-border := 1px solid $-primary-color
+// append && prepend
+$-input-pend-color := $-pend-color
+$-input-pend-padding-horizontal := 20px
+$-input-prepend-radius := 2px 0 0 2px
+$-input-append-radius := 0 2px 2px 0
+
+$-input-mini-font-size := $-font-mini-size
+$-input-small-font-size := $-font-small-size
+$-input-default-font-size := $-font-default-size
+$-input-large-font-size := $-font-large-size
+
+$-input-mini-inner-height := 26px
+$-input-small-inner-height := 28px
+$-input-default-inner-height := 32px
+$-input-large-inner-height := 36px
+
+$-input-disabled-color := $-disabled-color
+$-input-disabled-border-color := $-disabled-border-color
+$-input-disabled-background-color := $-disabled-bg-color
+
+$-input-mini-padding-left-right := 16px
+$-input-small-padding-left-right := 16px
+$-input-default-padding-left-right := 16px
+$-input-large-padding-left-right := 16px
+
+$-input-mini-prefix-padding-left := 16px
+$-input-small-prefix-padding-left := 16px
+$-input-default-prefix-padding-left := 36px
+$-input-large-prefix-padding-left := 16px
+
+$-input-mini-suffix-padding-right := 16px
+$-input-small-suffix-padding-right := 16px
+$-input-default-suffix-padding-right := 36px
+$-input-large-suffix-padding-right := 16px
+
+// 状态颜色
+$-input-status-list = $-size-array
+$-input-success := $-success-color
+$-input-success-border := 1px solid $-success-color
+$-input-warning := $-warning-color
+$-input-warning-border := 1px solid $-warning-color
+$-input-err := $-danger-color
+$-input-err-border := 1px solid $-danger-color
+$-input-clear-color := $-icon-default-color
+
+$-textarea-default-padding-top-bottom := 8px
+$-textarea-count-font-size := $-font-second-size
+$-textarea-count-bottom := 5px
+$-textarea-count-right := 10px
+
+/******************************
+        checkbox
+*******************************/
+$-checkbox-input-width := 14px;
+$-checkbox-input-height := 14px;
+$-checkbox-font-size := $-font-default-size;
+$-checkbox-default-input-border-color := $-border-base-color;
+$-checkbox-default-input-background-color := $-light-bg-color;
+
+$-checkbox-disabled-icon-color := $-border-base-color;
+$-checkbox-disabled-input-border-color := $-border-base-color;
+$-checkbox-disabled-input-background-color := $-disabled-bg-color;
+
+$-checkbox-checked-icon-color := $-light-bg-color;
+$-checkbox-checked-input-border-color := $-primary-color;
+$-checkbox-checked-input-background-color := $-primary-color;
+
+/******************************
+        progressbar
+*******************************/
+$-progress-outBar-bgc := #ECECEC
+$-progress-bar-marginRight := -58px
+$-progress-bar-paddingRight := 50px
+$-pregress-text-marginLeft := 16px
+
+/******************************
+        collapse
+*******************************/
+$-collapse-border := 1px solid $-split-line-color;
+$-collapse-active-color := $-primary-color;
+$-collapse-title-background-color := #F7FAFE;
+$-collapse-content-background-color := #fff;
+$-collapse-title-height := 42px;
+$-collapse-padding := 24px;
+$-collapse-concise-content-padding := 0 34px 24px;
+$-collapse-disabled-color := $-disabled-color;
+
+/******************************
+        message
+*******************************/
+$-message-width := 400px;
+$-message-content-line-height := 1.5;
+$-message-font-size := $-font-small-size;
+$-message-padding := 6px 14px 6px 20px;
+$-message-border-radius := $-border-radius;
+$-message-transition := $-transition;
+
+$-message-default-font-color := $-text-regular-color;
+$-message-success-font-color := $-success-color;
+$-message-warning-font-color := $-warning-color;
+$-message-error-font-color := $-danger-color;
+$-message-info-font-color := $-primary-color;
+
+$-message-default-background-color := #F0F0F3;
+$-message-success-background-color := #DBFBEC;
+$-message-warning-background-color := #FFECDC;
+$-message-error-background-color := #FFE8EC;
+$-message-info-background-color := #E5ECFF;
+
+$-message-default-border-color := $-message-default-background-color;
+$-message-success-border-color := $-message-success-background-color;
+$-message-warning-border-color := $-message-warning-background-color;
+$-message-error-border-color := $-message-error-background-color;
+$-message-info-border-color := $-message-info-background-color;
+
+/******************************
+        steps
+*******************************/
+$-steps-container-background-color := #fff //主题色
+$-step-spot-done-background-color := #557DFC 
+$-step-spot-line-border-color := #E5E5E5
+$-step-spot-line-background-color := transparent
+$-step-spot-active-background-color := #557DFC ;
+$-step-spot-default-background-color := #E5E5E5
+$-step-line-background-color := #E5E5E5
+$-step-line-active-background-color := #557DFC;
+$-step-title-color := #4C4C4C
+$-step-title-active-color := #262626
+$-step-description-color :=   #B2B2B2
+$-step-description-active-color := #4C4C4C
+$-step-index-default-border-color := #ccc
+$-step-index-default-color := #737373
+$-step-index-active-border-color := transparent
+$-step-index-active-background-color := #557DFC;
+$-step-index-done-color := #557DFC
+$-step-index-done-border-color := 2px solid #557DFC
+$-step-index-done-background-color := #dbe1f5
+$-step-simple-background-color := #F3F6FB
+$-step-simple-border-color := #fff //和主题色保持一直
+$-kd-step-simple-bgc := #f3f6fb
+$-step-index-icon-color := #ccc
+$-step-icon-active-color := #557dfc
+$-step-icon-done-color := #557dfc
+$-step-custom-status-error-border-color := 2px solid #ED3351
+$-step-custom-status-error-background-color := #efcece
+$-step-custom-status-error-color := #ED3351
+$-step-custom-status-wait-background-color := transparent

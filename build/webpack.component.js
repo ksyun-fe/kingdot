@@ -5,14 +5,13 @@ const Components = require('../components.json');
 
 module.exports = {
     mode: 'production',
-    devtool: 'none',
     entry: Components,
     output: {
         path: path.posix.join(process.cwd(), './lib'),
-        publicPath: 'dist',
+        publicPath: '/dist/',
         filename: '[name].js',
         chunkFilename: '[id].js',
-        library: 'kongdot',
+        library: 'KingDot',
         libraryTarget: 'commonjs2',
         libraryExport: 'default'
     },

@@ -16,15 +16,23 @@ const components = [
     {{components}}
 ];
 
-const install = (Vue) => {
-    Vue.prototype.$message = Message.install;
+const install = (Vue, opts = {}) => {
+    Vue.prototype.$message = Message.creators;
     components.forEach(c => {
         Vue.component(c.name, c);
     });
+    Vue.prototype.$KD = {
+        zIndex: opts.zIndex || 2000
+    };
 };
+
+if (typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+}
+
 export default {
-    version: {{version}},
-    install: install,
+    version: '{{version}}',
+    install,
     {{components}}
 };
 `;
@@ -48,13 +56,13 @@ componentFiles.forEach(i => {
 
 fs.writeFileSync(filePath, string(template, {
     import: importContent.join(EOL),
-    version: '' + process.env.version || require('../../package.json').version,
+    version: process.env.version || require('../../package.json').version,
     components: components.join(',' + EOL + '    ')
 }));
 
 fs.writeFileSync(path.resolve(process.cwd(), 'components.json'), `{
     ${components.map((c) => {
-        return `"${c}": "./components/${c}/index.vue"`;
+        return `"${c}": "./components/${c}/index.js"`;
     }).join(',' + EOL + '    ')}
 }`);
 

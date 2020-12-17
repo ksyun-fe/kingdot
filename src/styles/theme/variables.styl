@@ -1,0 +1,389 @@
+/******************************
+             Theme
+*******************************/
+// $-font-family := -apple-system,'PingFang SC',BlinkMacSystemFont,'Segoe UI','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif !important
+$-font-family := PingFangSC-Light, 'helvetica neue', arial, 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif
+// font size
+$-font-large-size := 16px
+$-font-default-size := 14px
+$-font-small-size := 12px
+$-font-mini-size := 12px
+$-font-base-size := 14px
+$-font-second-size := 12px
+// font color
+$-text-dark-color := #FFF
+$-text-light-color := #8D919B //主要正文颜色
+$-text-list-color := #8D919B //列表文字颜色
+$-text-regular-color := #FFFFFF //常规文字颜色
+$-text-placeholder-color := #8D919B //占位文字颜色
+//theme color
+$-primary-linear-color := linear-gradient(180deg, #F8334C 0%, #4E284D 91%)
+$-primary-color := #5399FF
+$-warning-color := #FF9A42
+$-danger-color := #ED3351
+$-success-color := #38C482
+// theme lighter color
+$-primary-lighter-linear-color := linear-gradient(180deg, #E946E5 0%, #5F3D5E 91%)
+$-primary-lighter-color := #75ADFF
+$-warning-lighter-color := #FFAF6B
+$-danger-lighter-color := #F05B73
+$-success-lighter-color := #5FCF9B
+// theme darker color
+$-primary-lighter-linear-color := linear-gradient(180deg, #B8273C 0%, #3D1F3C 91%)
+$-primary-darker-color := #427ACC
+$-warning-darker-color := #E58C3E
+$-danger-darker-color := #BD2840
+$-success-darker-color := #33A36D
+// border color
+$-border-base-color := #525C77 //主要边框
+$-split-line-color := #2F374F //区域分割线
+// background color
+$-light-bg-color := #2C314E
+$-bg-base-color := #2C314E //基础内容背景样式
+$-table-header-bg-color := #2C324D //table,title等头部背景
+$-table-content-bg-color := #1E253D //内容区
+// disable color
+$-disabled-color := #4F576E
+$-disabled-bg-color := #222A41
+$-disabled-border-color := #2F374F
+// icon color
+$-icon-default-color := #4F576E
+// pend color
+$-pend-color := #FFF
+// box-shadow
+$-box-shadow := none
+// border-radius
+$-border-radius := 4px
+$-border-base-radius := 2px
+// size arr
+$-size-array = mini, small, default, large
+/******************************
+            Headers
+*******************************/
+
+$-header-font-family := 'PingFangSC-Medium' !important
+$-header-margin := 0
+$-header-font-weight := bold
+$-h1 := 36px
+$-h2 := 30px
+$-h3 := 24px
+$-h4 := 18px
+$-h5 := 14px
+$-h6 := 12px
+
+/******************************
+            Link
+*******************************/
+
+$-link-color := $-primary-color
+$-link-underline := none
+$-link-hover-color := palette($-link-color, -1)
+$-link-hover-underline := $-link-underline
+$-link-font-family := $-font-family
+
+/******************************
+            Code
+*******************************/
+
+$-code-font-family := Consolas, Menlo, Courier, monospace
+
+/******************************
+            Transition
+*******************************/
+
+$-transition := .25s ease-in-out
+
+/******************************
+            Spin
+*******************************/
+
+$-spin-color := $-primary-color
+$-spin-width := unit(40 / 14, rem)
+$-spin-stroke-width := 6
+
+// size
+$-spin-large-width := unit(48 / 14, rem)
+$-spin-small-width := unit(32 / 14, rem)
+$-spin-mini-width := unit(24 / 14, rem)
+
+// font size
+$-icon-default-font-size := unit(16 / 14, rem)
+$-icon-large-font-size := unit(18 / 14, rem)
+$-icon-small-font-size := unit(14 / 14, rem)
+$-icon-mini-font-size := unit(12 / 14, rem)
+
+
+/******************************
+        ButtonGroup Button
+*******************************/
+//btn disabled
+$-btn-disabled-color := $-border-base-color
+$-btn-disabled-bg-color := $-disabled-bg-color
+$-btn-disabled-border-color := $-disabled-border-color
+
+//btn default
+$-btn-default-border-color := $-border-base-color
+$-btn-default-bg := #fff
+$-btn-default-color := $-text-color
+//type
+$-btn-primary-color := $-primary-color
+$-btn-success-color := $-success-color
+$-btn-warning-color := $-warning-color
+$-btn-danger-color := $-danger-color
+//border
+$-btn-border-radius := $-border-radius
+$-btn-border-color := $-border-base-color
+$-btn-default-border-style := solid
+$-btn-dashed-border-style := dashed
+//shape
+$-btn-shape-round := 40px
+$-btn-shape-circle := 50%
+//size
+
+$-btn-large-padding := $-large-padding
+$-btn-large-circle-padding := 14px
+$-btn-large-font-size := 14px
+
+$-btn-default-padding := $-default-padding
+$-btn-default-circle-padding := 12px
+$-btn-default-font-size := $-font-base-size
+
+
+$-btn-small-padding := $-small-padding
+$-btn-small-circle-padding := 10px
+$-btn-small-font-size := $-font-base-size
+
+// $-btn-mini-padding := 8px 5px
+// $-btn-mini-circle-padding := 8px
+// $-btn-mini-font-size := 12px
+
+//icon
+$-btn-icon-text-gutter := $-icon-text-gutter
+
+/******************************
+        Radio
+*******************************/
+$-radio-width := 14px
+
+$-radio-border-color := #525C77
+$-radio-bg-color := #222A41
+$-radio-content-bg-color := #fff
+
+// text
+$-radio-text-margin-left := 8px
+$-radio-text-color := #fff
+
+// checked
+$-radio-checked-border-color := $-radio-border-color
+$-radio-inner-width := 8px
+$-radio-checked-color := #2F374F
+
+// disabled
+$-radio-disabled-color := #4f566d
+$-radio-disabled-border-color := #4f566d
+$-radio-disabled-bg-color := #222A41
+$-radio-disabled-inner-color := #4f566d
+/******************************
+        Switch
+*******************************/
+$-switch-active-bg := $-primary-linear-color
+$-switch-inactive-bg := $-disabled-color // #ccc
+$-switch-disabled-bg := $-disabled-bg-color  // #e5e5e5
+$-switch-disabled-font-color := $-disabled-color // #a7a5a5
+$-switch-font-size := $-font-default-size
+$-switch-border-width := 2px
+$-switch-size-list = $-size-array
+
+$-switch-mini-width := 24px
+$-switch-small-width := 36px
+$-switch-default-width := 48px
+$-switch-large-width := 60px
+
+$-switch-mini-height := 14px
+$-switch-small-height := 18px
+$-switch-default-height := 24px
+$-switch-large-height := 30px
+
+$-switch-mini-border-radius := $-switch-mini-height
+$-switch-small-border-radius := $-switch-small-height
+$-switch-default-border-radius := $-switch-default-height
+$-switch-large-border-radius := $-switch-large-height
+
+
+/******************************
+        Switch
+*******************************/
+$-switch-active-bg := $-primary-lighter-linear-color
+$-switch-inactive-bg := #525C77
+$-switch-disabled-bg := $-disabled-bg-color
+$-switch-disabled-font-color := $-disabled-color
+$-switch-font-size := $-font-base-size
+$-switch-border-width := $-border-base-radius
+$-switch-size-list = $-size-array
+
+$-switch-mini-width := 24px
+$-switch-small-width := 36px
+$-switch-default-width := 48px
+$-switch-large-width := 60px
+
+$-switch-mini-height := 14px
+$-switch-small-height := 18px
+$-switch-default-height := 24px
+$-switch-large-height := 30px
+
+$-switch-mini-border-radius := $-switch-mini-height
+$-switch-small-border-radius := $-switch-small-height
+$-switch-default-border-radius := $-switch-default-height
+$-switch-large-border-radius := $-switch-large-height
+
+/******************************
+        Input
+*******************************/
+$-input-color := $-text-light-color
+$-input-placeholder-color := $-text-placeholder-color
+$-input-default-width := 300px
+$-input-border := 1px solid $-border-base-color
+$-input-size-list = $-size-array
+$-input-border-radius := $-border-base-radius
+$-input-bg-color := $-light-bg-color
+$-input-focus-border := 1px solid $-primary-color
+// append && prepend
+$-input-pend-color := $-pend-color
+$-input-pend-padding-horizontal := 20px
+$-input-prepend-radius := 2px 0 0 2px
+$-input-append-radius := 0 2px 2px 0
+
+$-input-mini-font-size := $-font-mini-size
+$-input-small-font-size := $-font-small-size
+$-input-default-font-size := $-font-default-size
+$-input-large-font-size := $-font-large-size
+
+$-input-mini-inner-height := 26px
+$-input-small-inner-height := 28px
+$-input-default-inner-height := 32px
+$-input-large-inner-height := 36px
+
+$-input-disabled-color := $-disabled-color
+$-input-disabled-border-color := $-disabled-border-color
+$-input-disabled-background-color := $-disabled-bg-color
+
+$-input-mini-padding-left-right := 16px
+$-input-small-padding-left-right := 16px
+$-input-default-padding-left-right := 16px
+$-input-large-padding-left-right := 16px
+
+$-input-mini-prefix-padding-left := 16px
+$-input-small-prefix-padding-left := 16px
+$-input-default-prefix-padding-left := 36px
+$-input-large-prefix-padding-left := 16px
+
+$-input-mini-suffix-padding-right := 16px
+$-input-small-suffix-padding-right := 16px
+$-input-default-suffix-padding-right := 36px
+$-input-large-suffix-padding-right := 16px
+
+// 状态颜色
+$-input-status-list = $-size-array
+$-input-success := $-success-color
+$-input-success-border := 1px solid $-success-color
+$-input-warning := $-warning-color
+$-input-warning-border := 1px solid $-warning-color
+$-input-err := $-danger-color
+$-input-err-border := 1px solid $-danger-color
+$-input-clear-color := $-icon-default-color
+
+$-textarea-default-padding-top-bottom := 8px
+$-textarea-count-font-size := $-font-second-size
+$-textarea-count-bottom := 5px
+$-textarea-count-right := 10px
+
+
+/******************************
+        checkbox
+*******************************/
+$-checkbox-input-width := 14px;
+$-checkbox-input-height := 14px;
+$-checkbox-font-size := $-font-default-size;
+$-checkbox-default-input-border-color := $-border-base-color;
+$-checkbox-default-input-background-color := $-light-bg-color;
+
+$-checkbox-disabled-icon-color := $-border-base-color;
+$-checkbox-disabled-input-border-color := $-disabled-border-color;
+$-checkbox-disabled-input-background-color := $-disabled-bg-color;
+
+$-checkbox-checked-icon-color := $-pend-color;
+$-checkbox-checked-input-border-color := $-icon-default-color;
+$-checkbox-checked-input-background-color := $-icon-default-color;
+
+/******************************
+        collapse
+*******************************/
+$-collapse-border := 1px solid $-split-line-color;
+$-collapse-active-color := $-primary-color;
+$-collapse-title-background-color := #2C324D;
+$-collapse-content-background-color := $-disabled-bg-color;
+$-collapse-title-height := 42px;
+$-collapse-padding := 24px;
+$-collapse-concise-content-padding := 0 34px 24px;
+$-collapse-disabled-color := $-disabled-color;
+
+/******************************
+        message
+*******************************/
+$-message-width := 400px;
+$-message-content-line-height := 1.5;
+$-message-font-size := $-font-small-size;
+$-message-padding := 6px 14px 6px 20px;
+$-message-border-radius := $-border-radius;
+$-message-transition := $-transition;
+
+$-message-default-font-color := $-text-regular-color;
+$-message-success-font-color := $-success-color;
+$-message-warning-font-color := $-warning-color;
+$-message-error-font-color := $-danger-color;
+$-message-info-font-color := $-primary-color;
+
+$-message-default-background-color := #373F57;
+$-message-success-background-color := #274E4D;
+$-message-warning-background-color := #654526;
+$-message-error-background-color := #552B39;
+$-message-info-background-color := #2E3A5F;
+
+$-message-default-border-color := $-message-default-background-color;
+$-message-success-border-color := $-message-success-background-color;
+$-message-warning-border-color := $-message-warning-background-color;
+$-message-error-border-color := $-message-error-background-color;
+$-message-info-border-color := $-message-info-background-color;
+
+/******************************
+        steps
+*******************************/
+$-steps-container-background-color := #222A41 //主题色
+$-step-spot-done-background-color := #ED3351 
+$-step-spot-line-border-color := #ED3351
+$-step-spot-line-background-color := transparent
+$-step-spot-active-background-color := #ED3351;
+$-step-spot-default-background-color := #525C77
+$-step-line-background-color := #525C77
+$-step-line-active-background-color := #ED3351;
+$-step-title-color := #fff
+$-step-title-active-color := #fff
+$-step-description-color :=  #8D919B
+$-step-description-active-color := #8D919B
+$-step-index-default-border-color := #525C77
+$-step-index-default-color := #fff
+$-step-index-active-border-color := transparent
+$-step-index-active-background-color := linear-gradient(180deg, #F8334C 0%, #4E284D 100%);
+$-step-index-done-color := #fff
+$-step-index-done-border-color := none
+$-step-index-done-background-color := linear-gradient(180deg, #F8334C 0%, #4E284D 100%);
+$-step-simple-background-color := #2C324D
+$-step-simple-border-color := #222A41 //和主题色保持一直
+$-kd-step-simple-bgc := transparent
+$-step-index-icon-color := #525C77
+$-step-icon-active-color := #ED3351
+$-step-icon-done-color := #ED3351
+$-step-custom-status-error-border-color := none
+$-step-custom-status-error-background-color := linear-gradient(180deg, #F8334C 0%, #4E284D 100%);
+$-step-custom-status-error-color := #fff
+$-step-custom-status-wait-background-color := transparent

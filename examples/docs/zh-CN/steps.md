@@ -1,10 +1,10 @@
-### Steps步骤条
+## Steps步骤条
  用途： 引导用户按照流程完成任务的分步导航条，可根据实际应用场景设定步骤，步骤不得少于 2 步。
 
-### 基础用法
 #### 简单步骤条
->
-:::demo #基础用法 简单步骤条 该条件下，position/direction/size/status,均失效
+
+:::demo #基础用法 ##简单步骤条 该条件下，position/direction/size/status,均失效
+
 ```html
 <template>
     <div>
@@ -34,8 +34,8 @@
 ```
 :::
 #### 有状态的步骤条
->
-:::demo #基础用法 有状态的步骤条
+
+:::demo #基础用法 ##有状态的步骤条  状态可以通过 Steps的finishStatus属性控制，也可以单独对Step的status属性进行设置，进而控制状态
 ```html
 <template>
 <div>
@@ -82,8 +82,8 @@
 ```
 :::
 #### 有描述的步骤条
->
-:::demo #基础用法 有描述步骤条
+
+:::demo #基础用法 ##有描述步骤条 描述的位置和标题的位置始终保持一致
 ```html
 <template>
     <div>
@@ -120,8 +120,8 @@
 ```
 :::
 #### 自定义图标的步骤条
->
-:::demo #基础用法 自定义图标的步骤条
+
+:::demo #基础用法 ##自定义图标的步骤条 通过icon属性直接传图标类名即可
 ```html
 <template>
     <div>
@@ -150,8 +150,8 @@
 ```
 :::
 #### 简约版的步骤条
->
-:::demo #基础用法 简约版的步骤条 该条件下 position / description / direction / size 都将失效
+
+:::demo #基础用法 ##简约版的步骤条 该条件下 position / description / direction / size 都将失效
 ```html
 <template>
     <div>
@@ -185,19 +185,20 @@
 ```
 :::
 #### 竖式的步骤条
->
-:::demo #基础用法 竖式的步骤条,其父元素一定要设置高度
+
+:::demo #基础用法 ##竖式的步骤条,其父元素一定要设置高度
 ```html
 <template>
     <div>
-    <div style="height:300px">
-        <Steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
-            <Step title="步骤一"></Step>
-            <Step title="步骤二"></Step>
-            <Step title="步骤三" :description="description"></Step>
-        </Steps>
-    </div>
         <Button @click="_next">下一步</Button>
+        <div style="height:300px">
+            <Steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
+                <Step title="步骤一"></Step>
+                <Step title="步骤二"></Step>
+                <Step title="步骤三" :description="description"></Step>
+            </Steps>
+        </div>
+        
     </div>
 </template>
 <script>
