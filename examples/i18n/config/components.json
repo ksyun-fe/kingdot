@@ -24,16 +24,8 @@
             "name": "按钮"
         },
         {
-            "path": "/switch",
-            "name": "开关"
-        },
-        {
             "path":"/tabs",
             "name":"Tabs 标签页"
-        },
-        {
-            "path":"/drawer",
-            "name":"Drawer 抽屉"
         }
     ],
     "en-US": [
