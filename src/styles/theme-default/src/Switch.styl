@@ -1,0 +1,65 @@
+@import "../variables.styl";
+@import '../../mixin.styl'
+.kd-switch
+    box-sizing border-box
+    position relative
+    display inline-block
+    vertical-align middle
+    color $-switch-inactive-bg
+    background $-switch-inactive-bg
+    cursor pointer
+    user-select none
+    overflow hidden
+    border $-switch-border-width solid
+    &.kd-switch-disabled
+        cursor not-allowed
+        color $-switch-disabled-font-color
+        background $-switch-disabled-bg
+        border-color $-switch-disabled-bg
+    &.kd-switch-checked
+        background $-switch-active-bg
+        border-color $-switch-active-bg
+.kd-switch-checked.kd-switch-disabled
+    border-color $-switch-active-bg
+
+.kd-switch-input
+    position absolute
+    width 0
+    height 0
+    opacity 0
+
+.kd-switch-active, .kd-switch-inactive
+    box-sizing border-box
+    position absolute
+    left -($-switch-border-width)
+    top -($-switch-border-width)
+    font-size $-switch-font-size
+    color #fff
+    text-align center
+
+for size in $-switch-size-list
+    $padding := (lookup('$-switch-' + size + '-height') / 3)
+    .kd-switch-{size}
+    .kd-switch-{size} .kd-switch-active
+    .kd-switch-{size} .kd-switch-inactive
+        width lookup('$-switch-' + size + '-width')
+        height lookup('$-switch-' + size + '-height')
+        line-height lookup('$-switch-' + size + '-height')
+    .kd-switch-{size}
+        border-radius lookup('$-switch-' + size + '-border-radius')
+        .kd-switch-active
+            padding 0 lookup('$-switch-' + size + '-height') 0 $padding
+        .kd-switch-inactive
+            padding 0 $padding 0 lookup('$-switch-' + size + '-height')
+        .kd-switch-round
+            position absolute
+            left 0
+            box-sizing border-box
+            width lookup('$-switch-' + size + '-height') - (2 * $-switch-border-width)
+            height lookup('$-switch-' + size + '-height') - (2 * $-switch-border-width)
+            background-color #fff
+            border-radius 50%
+            transition all .3s ease-in-out
+            &.checked
+                left 100%
+                margin-left -(lookup('$-switch-' + size + '-height') - 4px)

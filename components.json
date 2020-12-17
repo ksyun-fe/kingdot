@@ -1,7 +1,22 @@
 {
-    "Button": "./components/Button/index.vue",
-    "ButtonGroup": "./components/ButtonGroup/index.vue",
-    "Message": "./components/Message/index.vue",
-    "Tab": "./components/Tab/index.vue",
-    "Tabs": "./components/Tabs/index.vue"
+    "Breadcrumb": "./components/Breadcrumb/index.js",
+    "BreadcrumbItem": "./components/BreadcrumbItem/index.js",
+    "Button": "./components/Button/index.js",
+    "ButtonGroup": "./components/ButtonGroup/index.js",
+    "Checkbox": "./components/Checkbox/index.js",
+    "Col": "./components/Col/index.js",
+    "Collapse": "./components/Collapse/index.js",
+    "CollapseItem": "./components/CollapseItem/index.js",
+    "Form": "./components/Form/index.js",
+    "FormItem": "./components/FormItem/index.js",
+    "Input": "./components/Input/index.js",
+    "Message": "./components/Message/index.js",
+    "Progress": "./components/Progress/index.js",
+    "Radio": "./components/Radio/index.js",
+    "Row": "./components/Row/index.js",
+    "Step": "./components/Step/index.js",
+    "Steps": "./components/Steps/index.js",
+    "Switch": "./components/Switch/index.js",
+    "Tab": "./components/Tab/index.js",
+    "Tabs": "./components/Tabs/index.js"
 }

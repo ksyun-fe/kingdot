@@ -1,0 +1,30 @@
+@import '../variables.styl'
+
+$-col-props = {
+    span: 'width',
+    offset: 'margin-left',
+    pull: 'right',
+    push: 'left'
+}
+
+genColSizeSyle(size = "")
+    if (size)
+        size = '-' + size
+    for n in 0..24
+        for key, prop in $-col-props
+            .kd-col{size}-{key}-{n}
+                {prop} percentage(n / 24)
+
+mediaStyle(size, point, fn)
+    @media only screen and ({point})
+        fn(size)
+
+.kd-col
+    position relative
+    float left
+    box-sizing border-box
+
+genColSizeSyle()
+
+for size in mediaBreakSize()
+    mediaStyle(size, getMediaBreakSizeInfo(size), genColSizeSyle)

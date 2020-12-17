@@ -46,6 +46,12 @@ describe('Button', () => {
         });
         expect(vm.$el.classList.contains('kd-btn-large')).true;
     });
+    it('button group', () => {
+        vm = createCons(Button, {
+            size: 'large'
+        });
+        expect(vm.$el.classList.contains('kd-btn-large')).true;
+    });
     // 点击按钮返回event事件
     it('click button', (done) => {
         let result;
@@ -62,6 +68,42 @@ describe('Button', () => {
         vm.$el.click();
         setTimeout(() => {
             expect(result).to.exist;
+            done();
+        }, 50);
+    });
+    it('disabled not click button', done => {
+        let result;
+        vm = createVue({
+            template: `
+                <Button type='primary' disabled @click='btnTest'>测试</Button>
+            `,
+            methods: {
+                btnTest(e) {
+                    result = e;
+                }
+            }
+        });
+        vm.$el.click();
+        setTimeout(() => {
+            expect(result).to.not.exist;
+            done();
+        }, 50);
+    });
+    it('login not click button', done => {
+        let result;
+        vm = createVue({
+            template: `
+                <Button type='primary' loading @click='btnTest'>测试</Button>
+            `,
+            methods: {
+                btnTest(e) {
+                    result = e;
+                }
+            }
+        });
+        vm.$el.click();
+        setTimeout(() => {
+            expect(result).to.not.exist;
             done();
         }, 50);
     });

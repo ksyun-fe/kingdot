@@ -1,9 +1,7 @@
 ## Switch 开关
 表示两种相互对立的状态间的切换，多用于触发「开/关」。
 
-### 基础用法
-
-:::demo #基础用法 绑定v-model到一个Boolean类型的变量,使用 `size` 属性可以指定组件尺寸：`large`、`default`、`small`、`mini`。
+:::demo #基础用法 ##绑定v-model到一个Boolean类型的变量,使用 `size` 属性可以指定组件尺寸：`large`、`default`、`small`、`mini`。
 
 ```html
 <template>
@@ -23,12 +21,15 @@
         }
     }
 </script>
+<style>
+    div .kd-switch {
+        margin-right: 10px;
+    }
+</style>
 ```
 :::
 
-### 文字描述
-
-:::demo #文字描述 使用 `active-text` 属性与 `inactive-text` 属性来设置开关的文字描述,使用 `font-size` 属性来设置字体大小。
+:::demo #文字描述 ##使用 `active-text` 属性与 `inactive-text` 属性来设置开关的文字描述,使用 `font-size` 属性来设置字体大小。
 
 ```html
 <template>
@@ -50,12 +51,15 @@
         }
     }
 </script>
+<style>
+    div .kd-switch {
+        margin-right: 10px;
+    }
+</style>
 ```
 :::
 
-### 扩展的value类型
-
-:::demo #扩展的 `value` 类型 设置 `active-value` 和 `inactive-value` 属性，接受`Boolean`, `String`或`Number`类型的值。
+:::demo #扩展的 `value` 类型 ##设置 `active-value` 和 `inactive-value` 属性，接受`Boolean`, `String`或`Number`类型的值。
 
 ```html
 <template>
@@ -86,12 +90,15 @@
         }
     }
 </script>
+<style>
+    div .kd-switch {
+        margin-right: 10px;
+    }
+</style>
 ```
 :::
 
-### 自定义大小
-
-:::demo #自定义大小 设置`width`属性和`height`属性，接受一个`Number`或`String`类型。
+:::demo #自定义大小 ##设置`width`属性和`height`属性，接受一个`Number`或`String`类型。
 
 ```html
 <template>
@@ -123,12 +130,15 @@
         }
     }
 </script>
+<style>
+    div .kd-switch {
+        margin-right: 10px;
+    }
+</style>
 ```
 :::
 
-### 禁用状态
-
-:::demo #禁用状态 设置disabled属性，接受一个Boolean，设置true即可禁用。
+:::demo #禁用状态 ##设置disabled属性，接受一个Boolean，设置true即可禁用。
 
 ```html
 <template>
@@ -153,6 +163,11 @@
         }
     }
 </script>
+<style>
+    div .kd-switch {
+        margin-right: 10px;
+    }
+</style>
 ```
 :::
 ### Attributes {.component__content}

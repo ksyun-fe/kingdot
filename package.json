@@ -1,11 +1,11 @@
 {
     "name": "kingdot",
-    "title": "",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "description": "A UI Components Library For Vue",
     "author": "kingsoft",
-    "main": "lib/kingdot.js",
-    "unpkg": "lib/kingdot.min.js",
+    "main": "lib/index.js",
+    "unpkg": "lib/kingdot.js",
+    "style": "lib/theme-default/index.css",
     "license": "MIT",
     "files": [
         "lib",
@@ -14,34 +14,35 @@
     ],
     "repository": {
         "type": "git",
-        "url": ""
+        "url": "git@github.com:ksyun-fe/kingdot.git"
     },
-    "homepage": "",
+    "homepage": "https://ksyun-fe.github.io/kingdot",
     "keywords": [
         "components",
         "vue",
         "kingsoft"
     ],
     "bugs": {
-        "url": ""
+        "url": "https://github.com/ksyun-fe/kingdot/issues"
     },
     "scripts": {
-        "build:entry": "node build/bin/build-index.js",
+        "build:entry": "node build/bin/build-index.js & node build/bin/iconInit.js",
         "version": "node build/bin/version.js",
-        "dev": "npm run build:entry && cross-env NODE_ENV=development webpack-dev-server --config build/webpack.demo.conf.js",
-        "clean": "rimraf lib",
+        "dev": "npm run build:entry && cross-env NODE_ENV=development THEME=theme-default webpack-dev-server  --config build/webpack.demo.conf.js",
+        "dev:theme": "npm run build:entry && cross-env NODE_ENV=development THEME=theme webpack-dev-server  --config build/webpack.demo.conf.js",
+        "clean": "rimraf lib && rimraf src/*/lib && rimraf test/**/coverage",
         "lint": "eslint --ext .js,.vue src components build examples",
         "dist:locale": "babel src --out-dir lib --ignore src/index.js",
-        "dist:theme": "cp-cli src/styles/themes/theme-default/src src/styles/themes/theme/src && node build/bin/gen-cssfile && gulp build --gulpfile src/styles/themes/gulpfile.js && cp-cli src/styles/themes/lib lib/",
-        "demo:build": "rimraf examples/dist && npm run build:entry && cross-env NODE_ENV=production webpack --config build/webpack.demo.conf.js",
+        "dist:theme": "npm run build:entry && cp-cli src/styles/theme-default/src src/styles/theme/src && node build/bin/gen-cssfile.js && gulp build --gulpfile src/styles/gulpfile.js && cp-cli src/styles/lib lib/",
+        "demo:build": "rimraf docs && npm run build:entry && cross-env NODE_ENV=production webpack --config build/webpack.demo.conf.js && node build/bin/gen-docstheme.js",
         "dist:component": "cross-env NODE_ENV=production && webpack --config build/webpack.component.js",
         "dist:prod": "npm run build:entry && cross-env NODE_ENV=production && webpack --config build/webpack.config.js",
         "dist:commonjs": "npm run build:entry && cross-env NODE_ENV=production && webpack --config build/webpack.common.js",
-        "dist": "npm run clean && npm run build:entry && npm run lint && npm run dist:theme && npm run dist:locale && npm run dist:prod && npm run dist:commonjs",
-        "publish": "",
+        "dist": "npm run clean && npm run build:entry && npm run lint && npm run dist:theme && npm run dist:locale && npm run dist:prod && npm run dist:commonjs && npm run dist:component",
+        "publish": "sh build/deploy.sh",
         "release": "npm version patch && git push && npm publish",
-        "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-        "unit:watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+        "test": "npm run dist:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+        "test:watch": "npm run dist:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
         "lang": "node build/bin/lang.js"
     },
     "husky": {
@@ -64,7 +65,7 @@
         "babel": "^6.23.0",
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
-        "babel-eslint": "^8.0.1",
+        "babel-eslint": "^10.1.0",
         "babel-loader": "^7.1.5",
         "babel-plugin-istanbul": "^4.1.6",
         "babel-plugin-syntax-jsx": "^6.18.0",
@@ -105,6 +106,7 @@
         "gulp-autoprefixer": "^7.0.1",
         "gulp-cssmin": "^0.2.0",
         "gulp-stylus": "^2.7.0",
+        "hash-sum": "^2.0.0",
         "highlight.js": "^9.18.1",
         "html-webpack-plugin": "^3.2.0",
         "http-proxy-middleware": "^1.0.3",
@@ -121,6 +123,8 @@
         "karma-webpack": "^4.0.2",
         "lint-staged": "^10.2.0",
         "loader-runner": "^3.1.0",
+        "loader-utils": "^2.0.0",
+        "lru-cache": "^6.0.0",
         "markdown-it": "^10.0.0",
         "markdown-it-attrs": "^3.0.2",
         "markdown-it-chain": "^1.3.0",
@@ -167,14 +171,9 @@
     "peerDependencies": {
         "vue": "^2.6.11"
     },
-    "bundleDependencies": false,
-    "engines": {
-        "node": ">= 10.0.0",
-        "npm": ">= 3.0.0"
-    },
     "browserslist": [
         "> 1%",
         "last 2 versions",
-        "not ie <= 8"
+        "not ie < 10"
     ]
 }

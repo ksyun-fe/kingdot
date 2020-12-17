@@ -1,0 +1,63 @@
+@import "../variables.styl";
+@import '../../mixin.styl';
+
+$-btn-types = primary success warning danger
+
+.kd-btn-group
+    display flex
+    justify-content start
+    .kd-btn-default
+        margin-left -1px
+        border-radius 0
+        background-color #fff
+        &:focus:not(.kd-btn-active)
+        &:hover:not(.kd-btn-active)
+            z-index 2
+    .kd-btn-default:first-child
+        margin-left 0
+        border-radius $-btn-border-radius 0 0 $-btn-border-radius
+    .kd-btn-default:last-child
+        border-radius 0 $-btn-border-radius $-btn-border-radius 0
+    
+    for type in $-btn-types
+        .kd-btn-{type}
+            border 1px
+            border-radius 0
+        .kd-btn-{type}:first-child
+            border-radius $-btn-border-radius 0 0 $-btn-border-radius
+        .kd-btn-{type}:last-child
+            border-radius 0 $-btn-border-radius $-btn-border-radius 0
+        .kd-btn-{type}+.kd-btn-{type}
+            &:before
+                content ""
+                position absolute
+                left -1px
+                top 5px
+                width 1px
+                height calc(100% - 10px)
+                background palette(lookup('$-btn-'+ type +'-color'),-1)
+                border-radius 2px
+
+.kd-btn-group-radio
+.kd-btn-group-checkbox
+    position relative
+    .kd-btn-default
+        &:hover
+            color $-btn-primary-color
+    .kd-btn-active
+        background-color $-btn-primary-color
+        color $-white-color
+        border-color $-btn-primary-color
+        &:hover
+            color $-white-color
+        &:before
+            content:''
+            width: 1px 
+            position: absolute
+            left -1px
+            top 5px
+            bottom 5px
+            background-color: palette(lookup('$-btn-primary-color'),-1)
+    .kd-btn-active:first-child
+        &:before
+            display: none
