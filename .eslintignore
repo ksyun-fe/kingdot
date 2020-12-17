@@ -1,5 +1,6 @@
 /src/styles
 *.sh
+docs
 node_modules
 lib
 examples/dist
