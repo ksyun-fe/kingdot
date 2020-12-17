@@ -28,7 +28,7 @@ describe('Radio', () => {
         });
         expect(vm.$el.classList.contains('kd-radio-type')).to.be.true;
     });
-    // change event
+    // change
     it('change event', async () => {
         let el;
         vm = createVue({
