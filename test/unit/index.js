@@ -1,3 +1,3 @@
-const testsContext = require.context('./specs', true, /\.spec$/);
+const testsContext = require.context('./specs', true, /radio\.spec$/);
 
 testsContext.keys().forEach(testsContext);

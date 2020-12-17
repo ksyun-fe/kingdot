@@ -105,8 +105,23 @@
                             "name": "Collapse 折叠面板"
                         }
                     ]
+                },
+                {
+                    "name":"Steps",
+                    "children":[{
+                        "path": "/steps",
+                        "name": "Steps 步骤条"
+                    }]
+                },
+                {
+                    "name":"Breadcrumb",
+                    "children":[{
+                        "path": "/breadcrumb",
+                        "name": "Breadcrumb面包屑"
+                    }]
                 }
             ]
+
         }
     ],
     "en-US": [
@@ -215,6 +230,20 @@
                             "name": "Collapse"
                         }
                     ]
+                },
+                {
+                    "name":"Steps",
+                    "children":[{
+                        "path": "/steps",
+                        "name": "Steps"
+                    }]
+                },
+                {
+                    "name":"Breadcrumb",
+                    "children":[{
+                        "path": "/breadcrumb",
+                        "name": "Breadcrumb"
+                    }]
                 }
             ]
         }

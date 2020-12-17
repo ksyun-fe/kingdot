@@ -1,4 +1,6 @@
 {
+    "Breadcrumb": "./components/Breadcrumb/index.js",
+    "BreadcrumbItem": "./components/BreadcrumbItem/index.js",
     "Button": "./components/Button/index.js",
     "ButtonGroup": "./components/ButtonGroup/index.js",
     "Checkbox": "./components/Checkbox/index.js",
@@ -14,5 +16,7 @@
     "Radio": "./components/Radio/index.js",
     "Row": "./components/Row/index.js",
     "Spin": "./components/Spin/index.js",
+    "Step": "./components/Step/index.js",
+    "Steps": "./components/Steps/index.js",
     "Switch": "./components/Switch/index.js"
 }

@@ -8,36 +8,43 @@
     <div>
         <kd-row class="demo-layout">
             <kd-col :span="12">
-                <div class="col-content bg-blue-dark">col-12</div>
+                <div class="col-content bg-dark">col-12</div>
             </kd-col>
             <kd-col :span="12">
-                <div class="col-content bg-blue-light">col-12</div>
+                <div class="col-content bg-light">col-12</div>
             </kd-col>
         </kd-row>
         <kd-row class="demo-layout">
             <kd-col :span="4">
-                <div class="col-content bg-blue-dark">col-2</div>
+                <div class="col-content bg-dark">col-2</div>
             </kd-col>
             <kd-col :span="8">
-                <div class="col-content bg-blue-light">col-10</div>
+                <div class="col-content bg-light">col-10</div>
             </kd-col>
             <kd-col :span="12">
-                <div class="col-content bg-blue-dark">col-12</div>
+                <div class="col-content bg-dark">col-12</div>
             </kd-col>
         </kd-row>
     </div>
 </template>
 <style scoped lang="stylus" type="text/stylus">
+    .dark
+        .bg-dark
+            background #252D45
+        .bg-light
+            background #2D354D
+        .col-content
+            color inherit
     .demo-layout
         margin-bottom 20px
-    .bg-blue-dark
-        background: #0a5eee;
-    .bg-blue-light
-        background: #4f8df8;
+    .bg-dark
+        background #0a5eee
+    .bg-light
+        background #4f8df8
     .col-content
-        line-height: 40px;
-        text-align: center;
-        color: #fff;
+        line-height 40px
+        text-align center
+        color #fff
 </style>
 ```
 :::
@@ -48,24 +55,31 @@
 <template>
     <div>
         <kd-row gutter="16" class="demo-layout">
-            <kd-col span="12"><div class="col-content bg-blue-light">col-12</div></kd-col>
-            <kd-col span="12"><div class="col-content bg-blue-dark">col-12</div></kd-col>
+            <kd-col span="12"><div class="col-content bg-light">col-12</div></kd-col>
+            <kd-col span="12"><div class="col-content bg-dark">col-12</div></kd-col>
         </kd-row>
         <kd-row gutter="8">
-            <kd-col span="4"><div class="col-content bg-blue-light">col-4</div></kd-col>
-            <kd-col span="6"><div class="col-content bg-blue-dark">col-6</div></kd-col>
-            <kd-col span="8"><div class="col-content bg-blue-light">col-8</div></kd-col>
-            <kd-col span="6"><div class="col-content bg-blue-dark">col-6</div></kd-col>
+            <kd-col span="4"><div class="col-content bg-light">col-4</div></kd-col>
+            <kd-col span="6"><div class="col-content bg-dark">col-6</div></kd-col>
+            <kd-col span="8"><div class="col-content bg-light">col-8</div></kd-col>
+            <kd-col span="6"><div class="col-content bg-dark">col-6</div></kd-col>
         </kd-row>
       
     </div>
 </template>
 <style scoped lang="stylus" type="text/stylus">
+    .dark
+        .bg-dark
+            background #252D45
+        .bg-light
+            background #2D354D
+        .col-content
+            color inherit
     .demo-layout
         margin-bottom 20px
-    .bg-blue-dark
+    .bg-dark
         background #0a5eee
-    .bg-blue-light
+    .bg-light
         background #4f8df8
     .col-content
         line-height 40px
@@ -80,21 +94,28 @@
 <template>
     <div>
         <kd-row gutter="16" class="demo-layout">
-            <kd-col span="6" offset="4"><div class="col-content bg-blue-light">col-12</div></kd-col>
-            <kd-col span="6" offset="6"><div class="col-content bg-blue-dark">col-12</div></kd-col>
+            <kd-col span="6" offset="4"><div class="col-content bg-light">col-12</div></kd-col>
+            <kd-col span="6" offset="6"><div class="col-content bg-dark">col-12</div></kd-col>
         </kd-row>
         <kd-row gutter="16">
-            <kd-col span="4" offset="3"><div class="col-content bg-blue-light">col-4</div></kd-col>
-            <kd-col span="6" offset="4"><div class="col-content bg-blue-dark">col-6</div></kd-col>
+            <kd-col span="4" offset="3"><div class="col-content bg-light">col-4</div></kd-col>
+            <kd-col span="6" offset="4"><div class="col-content bg-dark">col-6</div></kd-col>
         </kd-row>
     </div>
 </template>
 <style scoped lang="stylus" type="text/stylus">
+    .dark
+        .bg-dark
+            background #252D45
+        .bg-light
+            background #2D354D
+        .col-content
+            color inherit
     .demo-layout
         margin-bottom 20px
-    .bg-blue-dark
+    .bg-dark
         background #0a5eee
-    .bg-blue-light
+    .bg-light
         background #4f8df8
     .col-content
         line-height 40px
@@ -110,58 +131,63 @@
     <div>
         <h5 class="title">居左 start</h5>
         <kd-row class="demo-layout" justify="start"> 
-            <kd-col class="col-content bg-blue-dark" span="4">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-4</kd-col>
         </kd-row>
         <h5 class="title">居右 end</h5>
         <kd-row class="demo-layout" justify="end"> 
-            <kd-col class="col-content bg-blue-dark" span="4">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-4</kd-col>
         </kd-row>
         <h5 class="title">居中 center</h5>
         <kd-row class="demo-layout" justify="center"> 
-            <kd-col class="col-content bg-blue-dark" span="4">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-4</kd-col>
         </kd-row>
         <h5 class="title">平均分布，顶边 between</h5>
         <kd-row class="demo-layout" justify="between"> 
-            <kd-col class="col-content bg-blue-dark" span="4">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-4</kd-col>
         </kd-row>
         <h5 class="title">平均分布，与边界的距离是两个子元素的一半 around</h5>
         <kd-row class="demo-layout" justify="around"> 
-            <kd-col class="col-content bg-blue-dark" span="4">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-4</kd-col>
         </kd-row>
         <h5 class="title">平均分布，间距（包括边界）相等 evenly</h5>
         <kd-row class="demo-layout" justify="evenly"> 
-            <kd-col class="col-content bg-blue-dark" span="4">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-4</kd-col>
         </kd-row>
     </div>
 </template>
 <style scoped lang="stylus" type="text/stylus">
     .title
         line-height 1.5
+    .dark
+        .bg-dark
+            background #252D45
+        .bg-light
+            background #2D354D
+        .col-content
+            color inherit
     .demo-layout
         margin-bottom 20px
-        padding 10px 0
-        background #f2f2f2
-    .bg-blue-dark
+    .bg-dark
         background #0a5eee
-    .bg-blue-light
+    .bg-light
         background #4f8df8
     .col-content
         line-height 40px
@@ -178,38 +204,38 @@
     <div>
         <h5 class="title">顶端对齐 top</h5>
         <kd-row class="demo-layout" align="top" justify="center"> 
-            <kd-col class="col-content bg-blue-dark" span="4" :style="{height: '60px'}">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4" :style="{height: '50px'}">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4" :style="{height: '20px'}">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4" :style="{height: '40px'}">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4" :style="{height: '60px'}">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4" :style="{height: '50px'}">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4" :style="{height: '20px'}">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4" :style="{height: '40px'}">col-4</kd-col>
         </kd-row>
         <h5 class="title">底部对齐 bottom</h5>
         <kd-row class="demo-layout" align="bottom" justify="center"> 
-            <kd-col class="col-content bg-blue-dark" span="4" :style="{height: '60px'}">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4" :style="{height: '50px'}">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4" :style="{height: '20px'}">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4" :style="{height: '40px'}">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4" :style="{height: '60px'}">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4" :style="{height: '50px'}">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4" :style="{height: '20px'}">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4" :style="{height: '40px'}">col-4</kd-col>
         </kd-row>
         <h5 class="title">居中对齐 middle</h5>
         <kd-row class="demo-layout" align="middle" justify="center"> 
-            <kd-col class="col-content bg-blue-dark" span="4" :style="{height: '60px'}">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4" :style="{height: '50px'}">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4" :style="{height: '20px'}">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4" :style="{height: '40px'}">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4" :style="{height: '60px'}">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4" :style="{height: '50px'}">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4" :style="{height: '20px'}">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4" :style="{height: '40px'}">col-4</kd-col>
         </kd-row>
         <h5 class="title">撑开成容器高度 stretch</h5>
         <kd-row class="demo-layout" align="stretch" justify="center"> 
-            <kd-col class="col-content bg-blue-dark" span="4">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4">col-4</kd-col>
         </kd-row>
         <h5 class="title">基线对齐 baseline</h5>
         <kd-row class="demo-layout" align="baseline" justify="center"> 
-            <kd-col class="col-content bg-blue-dark" span="4" :style="{height: '60px'}">col-1</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4" :style="{height: '50px', fontSize: '30px'}">col-2</kd-col>
-            <kd-col class="col-content bg-blue-dark" span="4" :style="{height: '20px'}">col-3</kd-col>
-            <kd-col class="col-content bg-blue-light" span="4" :style="{height: '40px'}">col-4</kd-col>
+            <kd-col class="col-content bg-dark" span="4" :style="{height: '60px'}">col-1</kd-col>
+            <kd-col class="col-content bg-light" span="4" :style="{height: '50px', fontSize: '30px'}">col-2</kd-col>
+            <kd-col class="col-content bg-dark" span="4" :style="{height: '20px'}">col-3</kd-col>
+            <kd-col class="col-content bg-light" span="4" :style="{height: '40px'}">col-4</kd-col>
         </kd-row>
     </div>
 </template>
@@ -222,14 +248,18 @@
         height 40px
     .h-40
         height 20px
+    .dark
+        .bg-dark
+            background #252D45
+        .bg-light
+            background #2D354D
+        .col-content
+            color inherit
     .demo-layout
         margin-bottom 20px
-        padding 10px 0
-        background #f2f2f2
-        height 100px
-    .bg-blue-dark
+    .bg-dark
         background #0a5eee
-    .bg-blue-light
+    .bg-light
         background #4f8df8
     .col-content
         /*line-height 40px*/
@@ -247,31 +277,38 @@
     <div>
         <h5 class="title">指定每一个断点Col所占的栅格数</h5>
         <kd-row class="demo-layout">
-            <kd-col class="col-content bg-blue-dark" xs="24" sm="6" md="6" lg="4" xl="10">col</kd-col>
-            <kd-col class="col-content bg-blue-light" xs="24" sm="8" md="12" lg="8" xl="2">col</kd-col>
-            <kd-col class="col-content bg-blue-dark" xs="24" sm="6" md="4" lg="4" xl="10">col</kd-col>
-            <kd-col class="col-content bg-blue-light" xs="24" sm="4" md="2" lg="8" xl="2">col</kd-col>
+            <kd-col class="col-content bg-dark" xs="24" sm="6" md="6" lg="4" xl="10">col</kd-col>
+            <kd-col class="col-content bg-light" xs="24" sm="8" md="12" lg="8" xl="2">col</kd-col>
+            <kd-col class="col-content bg-dark" xs="24" sm="6" md="4" lg="4" xl="10">col</kd-col>
+            <kd-col class="col-content bg-light" xs="24" sm="4" md="2" lg="8" xl="2">col</kd-col>
         </kd-row>
         <h5 class="title">指定一个断点，当宽度小于该断点时，Col将以100%宽度纵向排列</h5>
         <kd-row class="demo-layout"> 
-            <kd-col class="col-content bg-blue-dark" md="16">col-md-18</kd-col>
-            <kd-col class="col-content bg-blue-light" md="8">col-md-8</kd-col>
+            <kd-col class="col-content bg-dark" md="16">col-md-18</kd-col>
+            <kd-col class="col-content bg-light" md="8">col-md-8</kd-col>
         </kd-row>
         <h5 class="title">同时指定多个属性</h5>
         <kd-row>
-            <kd-col class="col-content bg-blue-dark" :md="{span: 4, offset: 4}" :lg="{span: 8, offset: 8}">1 col</kd-col>
-            <kd-col class="col-content bg-blue-light" :md="{span: 8, offset: 8}" :lg="{span: 4, offset: 4}">2 col</kd-col>
+            <kd-col class="col-content bg-dark" :md="{span: 4, offset: 4}" :lg="{span: 8, offset: 8}">1 col</kd-col>
+            <kd-col class="col-content bg-light" :md="{span: 8, offset: 8}" :lg="{span: 4, offset: 4}">2 col</kd-col>
         </kd-row>
     </div>
 </template>
 <style scoped lang="stylus" type="text/stylus">
     .title
         line-height 1.5
+    .dark
+        .bg-dark
+            background #252D45
+        .bg-light
+            background #2D354D
+        .col-content
+            color inherit
     .demo-layout
         margin-bottom 20px
-    .bg-blue-dark
+    .bg-dark
         background #0a5eee
-    .bg-blue-light
+    .bg-light
         background #4f8df8
     .col-content
         line-height 40px
