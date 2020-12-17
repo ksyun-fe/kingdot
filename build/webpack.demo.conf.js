@@ -195,7 +195,7 @@ if (isProd) {
     webpackConfig.devServer = {
         contentBase: path.resolve(__dirname, '../examples/dist/'),
         host: 'localhost',
-        port: 8001,
+        port: 3,
         publicPath: '/',
         hot: true
     };
