@@ -57,6 +57,14 @@
 </script>
 
 <style scoped ref="stylesheet/stylus" lang="stylus" type="text/stylus">
+    body.dark
+        .side-nav
+            color #8D919B
+            background: #1B2338;
+            box-shadow: 2px 0 12px 0 rgba(0,0,0,0.10)
+            li.nav-item
+                div.active
+                    background-image: linear-gradient(90deg, #F8334C 0%, #4E284D 100%);
     .side-nav
         position relative
         box-sizing border-box

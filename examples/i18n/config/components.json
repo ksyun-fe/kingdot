@@ -23,6 +23,10 @@
             "name": "Layout 布局"
         },
         {
+            "path": "/button",
+            "name": "按钮"
+        },
+        {
             "path": "/radio",
             "name": "Radio 单选框"
         },

@@ -3,41 +3,35 @@
 
 $-btn-border-types := default dashed
 $-btn-types := primary success warning danger
-$-btn-size-types := large small
-
-width = $-spin-stroke-width
-r = 120 - 60 - (width / 2)
-c = round(2 * 3.14 * r)
-
+$-btn-size-types := large small mini
+$-btn-text-types := none text
 
 .kd-btn
   position relative
-  padding: 9px 16px
-  font-size: 12px
-  cursor: pointer
-  border-radius: $-btn-border-radius
+  padding $-btn-default-padding
+  font-size $-btn-default-font-size
+  cursor pointer
+  border-radius $-btn-border-radius
   line-height 1
   border 1px solid $-btn-default-border-color
+  color $-black-color
 
-//  默认状态
-for item in $-btn-border-types
-    .kd-btn-{item}
-        background-color: $-btn-default-bg
-        color: $-btn-default-color
-        border-style lookup('$-btn-'+ item +'-border-style')
+//  border的类型
+for border in $-btn-border-types
+    .kd-btn-{border}
+        background-color $-btn-default-bg
+        color $-btn-default-color
+        border-style lookup('$-btn-'+ border +'-border-style')
         &:hover
         &:focus
             color $-btn-primary-color
             border-color $-btn-primary-color
         &:active
-            border-color: $-btn-primary-color
-            background-color: palette($-btn-primary-color, -3)
-            color: palette($-btn-primary-color,1)
-        .kd-btn-loading-icon 
-            circle
-                stroke $-btn-default-color
+            border-color $-btn-primary-color
+            background-color palette($-btn-primary-color, -3)
+            color palette($-btn-primary-color,1)
 
-    .kd-btn-{item}.kd-btn-hollow
+    .kd-btn-{border}.kd-btn-hollow
         background-color transparent
         border 1px solid $-btn-border-color
         color $-btn-default-color
@@ -48,28 +42,17 @@ for item in $-btn-border-types
         &:active
             color palette($-btn-primary-color, 1)
 
-    .kd-btn-{item}.kd-btn-disabled
+    .kd-btn-{border}.kd-btn-disabled
         background-color $-btn-disabled-bg-color
         border-color $-btn-border-color
         color $-btn-disabled-color
-
-.kd-btn-text-default
-    background-color: transparent
-    border none
-    color $-btn-default-color
-    &:hover
-        color: palette($-btn-primary-color, -1)
-    &:active
-        color: palette($-btn-primary-color, 1)
-.kd-btn-text-default.kd-btn-disabled
-    color $-disabled-color
-
+    
 //4种状态
 for type in $-btn-types
     .kd-btn-{type}
         background-color lookup('$-btn-'+ type +'-color')
-        border-color lookup('$-btn-'+ type +'-color')
-        color: #fff
+        border 1px solid lookup('$-btn-'+ type +'-color')
+        color $-white-color
         &:hover
         &:focus
             background-color palette(lookup('$-btn-'+ type +'-color'),-1)
@@ -79,76 +62,70 @@ for type in $-btn-types
             border-color palette(lookup('$-btn-'+ type +'-color'),1)
     //空心
     .kd-btn-{type}.kd-btn-hollow
-        background-color: transparent
+        background-color transparent
         border 1px solid lookup('$-btn-'+ type +'-color')
-        color: lookup('$-btn-'+ type +'-color')
+        color lookup('$-btn-'+ type +'-color')
         &:hover
         &:focus
             background-color palette(lookup('$-btn-'+ type +'-color'), -4)
         &:active
             background-color lookup('$-btn-'+ type +'-color')
-            color #fff
+            color $-white-color
+    .kd-btn-{type}.kd-btn-disabled
+        background-color $-btn-disabled-bg-color
+        border-color $-btn-border-color
+        color $-btn-disabled-color
 
-    //text类型
-    .kd-btn-{type}.kd-btn-text-{type}
-        background-color: transparent
-        border-color: transparent
-        color lookup('$-btn-'+ type +'-color')
+//  text types
+for textItem in $-btn-text-types
+    .kd-btn-{textItem}
+        padding 0
+        background-color transparent
+        border-color transparent
+        color lookup('$-btn-'+ textItem +'-color')
         &:hover
         &:focus
-            color palette(lookup('$-btn-'+ type +'-color'), -1)
+            color palette(lookup('$-btn-'+ textItem +'-hover-color'), -1)
         &:active
-            color palette(lookup('$-btn-'+ type +'-color'), 1)
-    //禁用
-    .kd-btn-{type}.kd-btn-disabled
-        background-color: $-btn-disabled-bg-color
-        border: 1px solid $-btn-disabled-border-color
-        
+            color palette(lookup('$-btn-'+ textItem +'-hover-color'), 1)
+    .kd-btn-{textItem}.kd-btn-disabled
+        color $-disabled-color
+//  加载
 .kd-btn-loading
     pointer-events none
     user-select none
     &:before
         content ""
-        position: absolute
-        top: -1px
-        left: -1px
-        bottom: -1px
+        position absolute
+        top -1px
+        left -1px
+        bottom -1px
         right -1px
         background-color rgba(255,255,255,0.3)
 .kd-btn-loading-icon
-    width: 12px
-    height 12px
+    // i
     display inline-block
-    svg
-        margin -1px 0
-    circle
-        display inline-block
-        stroke-dasharray: round(c * 0.1), c
-        stroke-dashoffset: 0
-        fill none
-        stroke-width width
-        stroke #fff
-        r r
-        animation k-spin-dash 1s ease-in-out infinite
+    transform-origin center
+    animation kd-btn-loading-dash 1s linear infinite
 //size
 for s in $-btn-size-types
     .kd-btn-{s}
-        padding: lookup('$-btn-'+ s +'-padding')
+        padding lookup('$-btn-'+ s +'-padding')
         font-size lookup('$-btn-'+ s +'-font-size')
-        .kdicon
+        [class*=kd-icon]
             font-size lookup('$-btn-'+ s +'-font-size')
     .kd-btn-circle.kd-btn-{s}
         padding lookup('$-btn-'+ s +'-circle-padding')
-.kdicon
-    font-size lookup('$-btn-'+ s +'-font-size')
+    
+    
 .kd-btn-disabled
   color $-disabled-color
-  cursor: not-allowed
+  cursor not-allowed
 
 .kd-icon-left
-    margin-right: $-btn-icon-text-gutter
+    margin-right $-btn-icon-text-gutter
 .kd-icon-right
-    margin-left: $-btn-icon-text-gutter
+    margin-left $-btn-icon-text-gutter
 
 //shape
 .kd-btn-circle
@@ -157,4 +134,12 @@ for s in $-btn-size-types
 .kd-btn-round
     border-radius $-btn-shape-round
 
+.kd-btn-split
+    padding $-btn-split-padding
 
+@keyframes kd-btn-loading-dash {
+    100%{
+        transform-origin center
+        transform: rotate(360deg)
+    }
+}
