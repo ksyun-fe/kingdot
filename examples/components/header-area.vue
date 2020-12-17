@@ -76,7 +76,8 @@
                     'en-US': 'English'
                 },
                 nextLang: 'English',
-                firstTheme: 0,
+                // eslint-disable-next-line no-undef
+                firstTheme: themes.findIndex(i => i === devTheme) || 0,
                 activeIndex: 0
             };
         },
@@ -96,14 +97,31 @@
             firstTheme: {
                 immediate: true,
                 handler(v) {
+                    const theme = themes[v];
                     let link = document.getElementById('theme_str');
+                    const toggleThemeClass = () => {
+                        if (theme === 'theme') {
+                            document.body.classList.add('dark');
+                        } else {
+                            document.body.classList.remove('dark');
+                        }
+                    };
+                    // eslint-disable-next-line no-undef
+                    if (!isProd) {
+                        toggleThemeClass();
+                        return;
+                    }
+
                     if (!link) {
                         link = document.createElement('link');
                         link.setAttribute('id', 'theme_str');
                         link.setAttribute('rel', 'stylesheet');
                         document.getElementsByTagName('head')[0].appendChild(link);
                     }
-                    link.href = getThemeCss(themes[v]);
+                    link.href = getThemeCss(theme);
+                    link.onload = function () {
+                        toggleThemeClass();
+                    };
                 }
             }
         },
@@ -126,7 +144,6 @@
             changeTheme() {
                 this.activeIndex = 2;
                 this.firstTheme = this.firstTheme === 0 ? 1 : 0;
-                this.firstTheme ? document.body.classList.add('dark') : document.body.classList.remove('dark');
             }
         }
     };
@@ -200,6 +217,10 @@
             box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05)
             .logo
                 background url('~examples/images/logo-dark.png') no-repeat center
+            .nav-wrapper .nav-item div.router-link-active
+                color #fff
+                &:after
+                    border-color #ED3351
         /*.container
             .left-menu
                 background: #1B2338;

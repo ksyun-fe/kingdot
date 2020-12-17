@@ -1,113 +1,206 @@
 {
     "zh-CN": [
         {
-            "name": "开发指南"
+            "name": "开发指南",
+            "children": [
+                {
+                    "name": "",
+                    "children": [
+                        {
+                            "path": "/installation",
+                            "name": "安装"
+                        },
+                        {
+                            "path": "/start",
+                            "name": "快速上手"
+                        },
+                        {
+                            "path": "/i18n",
+                            "name": "国际化"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "path": "/installation",
-            "name": "安装"
-        },
-        {
-            "path": "/start",
-            "name": "快速上手"
-        },
-        {
-            "path": "/i18n",
-            "name": "国际化"
-        },
-        {
-            "name": "组件"
-        },
-        {
-            "path": "/layout",
-            "name": "Layout 布局"
-        },
-        {
-            "path": "/button",
-            "name": "按钮"
-        },
-        {
-            "path": "/radio",
-            "name": "Radio 单选框"
-        },
-        {
-            "path": "/switch",
-            "name": "开关"
-        },
-        {
-            "path": "/input",
-            "name": "输入框"
-        },
-        {
-            "path": "/form",
-            "name": "表单"
-        },
-        {
-            "path": "/checkbox",
-            "name": "多选框"
-        },
-        {
-            "path": "/icon",
-            "name": "图标"
-        },
-        {
-            "path": "/collapse",
-            "name": "折叠面板"
-        },
-        {
-            "path": "/progress",
-            "name": "进度条"
-        },
-        {
-            "path": "/message",
-            "name": "消息提示"
+            "name": "组件",
+            "children": [
+                {
+                    "name": "General",
+                    "children": [
+                        {
+                            "path": "/layout",
+                            "name": "Layout 布局"
+                        },
+                        {
+                            "path": "/icon",
+                            "name": "Icon 图标"
+                        },
+                        {
+                            "path": "/button",
+                            "name": "Button 按钮"
+                        }
+                    ]
+                },
+                {
+                    "name": "Form",
+                    "children": [
+                        {
+                            "path": "/radio",
+                            "name": "Radio 单选框"
+                        },
+                        {
+                            "path": "/switch",
+                            "name": "Switch 开关"
+                        },
+                        {
+                            "path": "/input",
+                            "name": "Input 输入框"
+                        },
+                        {
+                            "path": "/form",
+                            "name": "Form 表单"
+                        },
+                        {
+                            "path": "/checkbox",
+                            "name": "Checkbox 多选框"
+                        }
+                    ]
+                },
+                {
+                    "name": "Data Display",
+                    "children": [
+                        {
+                            "path": "/progress",
+                            "name": "Progress 进度条"
+                        }
+                    ]
+                },
+                {
+                    "name": "Notice",
+                    "children": [
+                        {
+                            "path": "/message",
+                            "name": "Message 消息提示"
+                        }
+                    ]
+                },
+                {
+                    "name": "Navigation",
+                    "children": []
+                },
+                {
+                    "name": "Others",
+                    "children": [
+                        {
+                            "path": "/collapse",
+                            "name": "Collapse 折叠面板"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "en-US": [
         {
-            "name": "Development"
+            "name": "Development",
+            "children": [
+                {
+                    "name": "",
+                    "children": [
+                        {
+                            "path": "/installation",
+                            "name": "Installation"
+                        },
+                        {
+                            "path": "/start",
+                            "name": "Quick Start"
+                        },
+                        {
+                            "path": "/i18n",
+                            "name": "Internationalization"
+                        }
+                    ]
+                }
+            ]
         },
         {
-            "path": "/installation",
-            "name": "Installation"
-        },
-        {
-            "path": "/i18n",
-            "name": "Internationalization"
-        },
-        {
-            "name": "Components"
-        },
-        {
-            "path": "/radio",
-            "name": "Radio"
-        },
-        {
-            "path": "/switch",
-            "name": "switch"
-        },
-        {
-            "path": "/input",
-            "name": "Input"
-        },
-        {
-            "path": "/form",
-            "name": "form"
-        },
-        {
-            "path": "/checkbox",
-            "name": "checkbox"},
-        {
-            "path": "/collapse",
-            "name": "Collapse"
-        },
-        {
-            "path": "/icon",
-            "name": "Icon"
-        },
-        {
-            "path": "/message",
-            "name": "message"
+            "name": "Components",
+            "children": [
+                {
+                    "name": "General",
+                    "children": [
+                        {
+                            "path": "/layout",
+                            "name": "Layout"
+                        },
+                        {
+                            "path": "/icon",
+                            "name": "Icon"
+                        },
+                        {
+                            "path": "/button",
+                            "name": "Button"
+                        }
+                    ]
+                },
+                {
+                    "name": "Form",
+                    "children": [
+                        {
+                            "path": "/radio",
+                            "name": "Radio"
+                        },
+                        {
+                            "path": "/switch",
+                            "name": "Switch"
+                        },
+                        {
+                            "path": "/input",
+                            "name": "Input"
+                        },
+                        {
+                            "path": "/form",
+                            "name": "Form"
+                        },
+                        {
+                            "path": "/checkbox",
+                            "name": "Checkbox"
+                        }
+                    ]
+                },
+                {
+                    "name": "Data Display",
+                    "children": [
+                        {
+                            "path": "/progress",
+                            "name": "Progress"
+                        }
+                    ]
+                },
+                {
+                    "name": "Notice",
+                    "children": [
+                        {
+                            "path": "/message",
+                            "name": "Message"
+                        }
+                    ]
+                },
+                {
+                    "name": "Navigation",
+                    "children": []
+                },
+                {
+                    "name": "Others",
+                    "children": [
+                        {
+                            "path": "/collapse",
+                            "name": "Collapse"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
