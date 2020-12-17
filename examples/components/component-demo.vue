@@ -79,6 +79,31 @@
     };
 </script>
 <style lang="stylus" scoped type="text/stylus">
+    body.dark
+        .demo
+            background #222A41
+            border none
+        .demo-title
+            border-bottom 1px solid #2F374F
+            border-top 1px solid #2F374F
+            .title
+                background #222A41
+        .demo-description
+            code
+                color #8D919B;
+                border 1px solid #2F374F
+                background #252D45
+        .demo-code
+            .hljs
+                background #222A41
+        .code-toggle
+            border-top 1px solid #2F374F
+            &:hover
+                color #8D919B
+                background #2D354D
+        .arrow-icon
+            &:after
+                border-top 8px solid #737D99
     .demo
         margin-bottom: 20px;
         background: #fff;

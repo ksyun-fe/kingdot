@@ -126,6 +126,8 @@ const webpackConfig = {
     },
     plugins: [
         new webpack.DefinePlugin({
+            isProd: isProd,
+            devTheme: `"${theme}"`,
             publicPath: `"${publicPath}"`,
             version: `"${version}"`
         }),
