@@ -116,20 +116,35 @@ $-icon-mini-font-size := unit(12 / 14, rem)
 /******************************
         ButtonGroup Button
 *******************************/
+
 //btn disabled
+$-white-color := #fff
+$-black-color := #000
 $-btn-disabled-color := $-border-base-color
 $-btn-disabled-bg-color := $-disabled-bg-color
 $-btn-disabled-border-color := $-disabled-border-color
 
 //btn default
+$-btn-default-padding := 9px 16px
+$-btn-default-font-size := 12px
 $-btn-default-border-color := $-border-base-color
 $-btn-default-bg := #fff
-$-btn-default-color := $-text-color
+$-btn-default-color := $-black-color
 //type
 $-btn-primary-color := $-primary-color
 $-btn-success-color := $-success-color
 $-btn-warning-color := $-warning-color
 $-btn-danger-color := $-danger-color
+$-btn-text-color := $-primary-color
+$-btn-none-color := $-black-color
+
+$-btn-text-hover-color := $-primary-color
+$-btn-none-hover-color := $-primary-color
+//loading 
+$-btn-stroke-width := 6
+//split 
+$-btn-split-padding := 5px 10px
+
 //border
 $-btn-border-radius := $-border-radius
 $-btn-border-color := $-border-base-color
@@ -140,25 +155,26 @@ $-btn-shape-round := 40px
 $-btn-shape-circle := 50%
 //size
 
-$-btn-large-padding := $-large-padding
+$-btn-large-padding := 13px 24px
 $-btn-large-circle-padding := 14px
 $-btn-large-font-size := 14px
 
-$-btn-default-padding := $-default-padding
+$-btn-default-padding := 9px 16px
 $-btn-default-circle-padding := 12px
 $-btn-default-font-size := $-font-base-size
 
+$-btn-small-padding := 7px 12px
+$-btn-small-circle-padding := 8px
+$-btn-small-font-size := 12px
 
-$-btn-small-padding := $-small-padding
-$-btn-small-circle-padding := 10px
-$-btn-small-font-size := $-font-base-size
-
-// $-btn-mini-padding := 8px 5px
-// $-btn-mini-circle-padding := 8px
-// $-btn-mini-font-size := 12px
-
+$-btn-mini-padding := 5px 8px
+$-btn-mini-circle-padding := 6px
+$-btn-mini-font-size := 12px
 //icon
-$-btn-icon-text-gutter := $-icon-text-gutter
+$-btn-icon-text-gutter := 8px
+
+$-btn-loading-r = 120 - 60 - ($-btn-stroke-width / 2)
+$-btn-loading-c = round(2 * 3.14 * $-btn-loading-r)
 
 /******************************
         Radio
@@ -354,3 +370,45 @@ $-message-success-border-color := $-message-success-background-color;
 $-message-warning-border-color := $-message-warning-background-color;
 $-message-error-border-color := $-message-error-background-color;
 $-message-info-border-color := $-message-info-background-color;
+
+/******************************
+        steps
+*******************************/
+$-steps-container-background-color := #222A41 //主题色
+$-step-spot-done-background-color := #ED3351 
+$-step-spot-line-border-color := #ED3351
+$-step-spot-line-background-color := transparent
+$-step-spot-active-background-color := #ED3351;
+$-step-spot-default-background-color := #525C77
+$-step-line-background-color := #525C77
+$-step-line-active-background-color := #ED3351;
+$-step-title-color := #fff
+$-step-title-active-color := #fff
+$-step-description-color :=  #8D919B
+$-step-description-active-color := #8D919B
+$-step-index-default-border-color := #525C77
+$-step-index-default-color := #fff
+$-step-index-active-border-color := transparent
+$-step-index-active-background-color := linear-gradient(180deg, #F8334C 0%, #4E284D 100%);
+$-step-index-done-color := #fff
+$-step-index-done-border-color := none
+$-step-index-done-background-color := linear-gradient(180deg, #F8334C 0%, #4E284D 100%);
+$-step-simple-background-color := #2C324D
+$-step-simple-border-color := #222A41 //和主题色保持一直
+$-kd-step-simple-bgc := transparent
+$-step-index-icon-color := #525C77
+$-step-icon-active-color := #ED3351
+$-step-icon-done-color := #ED3351
+$-step-custom-status-error-border-color := none
+$-step-custom-status-error-background-color := linear-gradient(180deg, #F8334C 0%, #4E284D 100%);
+$-step-custom-status-error-color := #fff
+$-step-custom-status-wait-background-color := transparent
+
+/******************************
+        breadcrumb
+*******************************/
+$-breadcrumb-item-text-color := #8d919b
+$-breadcrumb-item-text-last-color := #fff
+$-breadcrumb-item-link-color := #5399ff
+$-breadcrumb-item-link-hover := #75adff
+$-breadcrumb-item-link-active := #427ac

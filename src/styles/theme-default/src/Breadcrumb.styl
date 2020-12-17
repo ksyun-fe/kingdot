@@ -1,0 +1,22 @@
+@import "../variables.styl";
+@import '../../mixin.styl'
+.kd-breadcrumb-item
+    display inline-block
+    font-size $-font-size;
+    .kd-breadcrumb-item-text
+        padding 0 10px 0 4px
+        font-family PingFangSC-Regular
+        color $-breadcrumb-item-text-color
+    .kd-breadcrumb-item-text-last
+        font-family PingFangSC-Medium
+        color $-breadcrumb-item-text-last-color
+    .kd-breadcrumb-item-link
+        font-family PingFangSC-Regular
+        color $-breadcrumb-item-link-color
+        cursor pointer
+        &:hover
+            color $-breadcrumb-item-link-hover
+        &:active
+            color $-breadcrumb-item-link-active
+    .kd-separator-item
+        color $-text-default-color
