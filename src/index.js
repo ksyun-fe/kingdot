@@ -8,6 +8,7 @@ import Form from '../components/Form/index.js';
 import FormItem from '../components/FormItem/index.js';
 import Input from '../components/Input/index.js';
 import Message from '../components/Message/index.js';
+import Pagination from '../components/Pagination/index.js';
 import Progress from '../components/Progress/index.js';
 import Radio from '../components/Radio/index.js';
 import Row from '../components/Row/index.js';
@@ -25,6 +26,7 @@ const components = [
     FormItem,
     Input,
     Message,
+    Pagination,
     Progress,
     Radio,
     Row,
@@ -59,6 +61,7 @@ export default {
     FormItem,
     Input,
     Message,
+    Pagination,
     Progress,
     Radio,
     Row,

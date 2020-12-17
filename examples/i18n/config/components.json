@@ -65,6 +65,10 @@
         {
             "path": "/message",
             "name": "消息提示"
+        },
+        {
+            "path": "/pagination",
+            "name": "分页"
         }
     ],
     "en-US": [
@@ -120,6 +124,10 @@
         {
             "path": "/message",
             "name": "message"
+        },
+        {
+            "path": "/pagination",
+            "name": "pagination"
         }
     ]
 }

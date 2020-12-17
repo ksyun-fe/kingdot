@@ -1,0 +1,96 @@
+@import '../variables.styl'
+
+.k-pagination
+    // font-size $pagination-font-size
+    font-size 0
+    display: inline-block
+    .k-btn
+        //border-radius 0
+        font-size 12px
+        min-width 24px
+        height 24px
+        line-height 24px
+        padding 0 6px
+        &:first-child
+            border-right-width 0
+        &:last-child
+            border-right-width 0
+    &.default
+        text-align: right
+    &.center
+        text-align: center
+    .k-limits
+    .k-goto
+    .k-total
+        // margin-left $pagination-gutter
+        display inline-block
+        vertical-align middle
+    .k-limits
+        .k-btn
+            &:first-child
+                border-left-width 1px !important
+            &:last-child
+                border-right-width 1px !important
+    .k-limits-text
+        font-size 12px
+        display inline-block
+        vertical-align middle
+        margin 0 6px 0 10px
+        &+ div
+            display inline-block
+    .k-btns
+        display: inline-block
+
+    // goto
+    .k-goto
+        font-size 12px
+        .k-input
+            width $-pagination-goto-width
+            margin $-pagination-goto-margin
+            height 24px
+            display: inline-block;
+            padding-left 5px
+            padding-right 5px
+            border: 1px solid #d1d5de;
+            background-color: #fff;
+            transition: border 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+            outline: none;
+            position: relative;
+            .k-inner
+                height 24px !important
+                line-height 24px !important
+    .k-select
+        width auto
+
+    // size
+    for size in large small mini
+        &.k-{size}
+            font-size lookup('$-pagination-' + size + '-font-size')
+            if lookup('$-pagination-' + size + '-btn-margin-right') != 0
+                .k-btns
+                    .k-btn
+                        margin-right lookup('$-pagination-' + size + '-btn-margin-right')
+
+    // noBorder
+    &.k-no-border
+        .k-select
+            &
+            &:hover
+            &.k-show
+                .k-wrapper
+                    border none
+
+.k-pagination-large-first
+    margin-right: 10px
+.k-pagination-large-end
+    margin-left: 10px
+
+.k-pagination-small-first
+    margin-right: 8px
+.k-pagination-small-end
+    margin-left: 8px
+
+.k-pagination-mini-first
+    margin-right: 6px
+.k-pagination-mini-end
+    margin-left: 6px
