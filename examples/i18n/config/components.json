@@ -73,10 +73,6 @@
                         {
                             "path": "/progress",
                             "name": "Progress 进度条"
-                        },
-                        {
-                            "path": "/pagination",
-                            "name": "Pagination 分页"
                         }
                     ]
                 },
@@ -86,10 +82,6 @@
                         {
                             "path": "/message",
                             "name": "Message 消息提示"
-                        },
-                        {
-                            "path": "/spin",
-                            "name": "Spin 加载中"
                         }
                     ]
                 },
@@ -198,10 +190,6 @@
                         {
                             "path": "/progress",
                             "name": "Progress"
-                        },
-                        {
-                            "path": "/pagination",
-                            "name": "Pagination"
                         }
                     ]
                 },
@@ -211,10 +199,6 @@
                         {
                             "path": "/message",
                             "name": "Message"
-                        },
-                        {
-                            "path": "/spin",
-                            "name": "Spin"
                         }
                     ]
                 },
