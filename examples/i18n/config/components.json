@@ -73,6 +73,10 @@
                         {
                             "path": "/progress",
                             "name": "Progress 进度条"
+                        },
+                        {
+                            "path": "/timeline",
+                            "name": "Timeline 时间轴"
                         }
                     ]
                 },
@@ -82,6 +86,18 @@
                         {
                             "path": "/message",
                             "name": "Message 消息提示"
+                        },
+                        {
+                            "path": "/tooltip",
+                            "name": "Tooltip 文字提示"
+                        },
+                        {
+                            "path": "/popover",
+                            "name": "Popover 气泡卡片"
+                        },
+                        {
+                            "path": "/popconfirm",
+                            "name": "Popconfirm 气泡确认框"
                         }
                     ]
                 },
@@ -95,22 +111,6 @@
                         {
                             "path": "/collapse",
                             "name": "Collapse 折叠面板"
-                        },
-                        {
-                            "path": "/timeline",
-                            "name": "Timeline 时间轴"
-                        },
-                        {
-                            "path": "/tooltip",
-                            "name": "Tooltip 文字提示"
-                        },
-                        {
-                            "path": "/popover",
-                            "name": "Popover 气泡卡片"
-                        },
-                        {
-                            "path": "/popconfirm",
-                            "name": "Popconfirm 气泡确认框"
                         },
                         {
                             "path": "/transition",
