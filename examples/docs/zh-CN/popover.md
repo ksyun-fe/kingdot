@@ -7,10 +7,10 @@
 <template>
     <div>
         <kd-popover placement="top-end" title="标题" content="通常用来显示完整信息、注释信息；通常用来显示完整信息、注释信息；">
-            <Button class="btn">light</Button>
+            <kd-button class="btn">light</kd-button>
         </kd-popover>
         <kd-popover placement="top-start" effect="dark" trigger="click">
-            <Button type="primary" class="btn">dark</Button>
+            <kd-button type="primary" class="btn">dark</kd-button>
             <template slot="title">
                 <span>标题</span>
             </template>

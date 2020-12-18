@@ -6,7 +6,7 @@
 ```html
 <template>
     <div>
-        <Button class="demo-main" @click="() => {this.reverse = !this.reverse;}">reverse: {{ reverse }}</Button>
+        <kd-button class="demo-main" @click="() => {this.reverse = !this.reverse;}">reverse: {{ reverse }}</kd-button>
         <kd-timeline :reverse="reverse">
             <kd-timeline-item type="success">发布</kd-timeline-item>
             <kd-timeline-item color="orange">lalalala</kd-timeline-item>

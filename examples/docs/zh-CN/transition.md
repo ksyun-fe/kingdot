@@ -16,7 +16,7 @@
             <option v-for="(item, index) in motions" :value="item" :key="index">{{ item }}</option>
         </select>
 
-        <Button @click="handleClick">{{ isShow ? '隐藏' : '展示' }}</Button>
+        <kd-button @click="handleClick">{{ isShow ? '隐藏' : '展示' }}</kd-button>
 
         <div class="demo-main">
             <kd-transition :type="type" :motion="motion">

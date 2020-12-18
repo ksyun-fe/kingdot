@@ -14,13 +14,11 @@
     "Progress": "./components/Progress/index.js",
     "Radio": "./components/Radio/index.js",
     "Row": "./components/Row/index.js",
-    "Slider": "./components/Slider/index.js",
     "Step": "./components/Step/index.js",
     "Steps": "./components/Steps/index.js",
     "Switch": "./components/Switch/index.js",
     "Timeline": "./components/Timeline/index.js",
     "TimelineItem": "./components/TimelineItem/index.js",
     "Tooltip": "./components/Tooltip/index.js",
-    "Transition": "./components/Transition/index.js",
-    "Tree": "./components/Tree/index.js"
+    "Transition": "./components/Transition/index.js"
 }

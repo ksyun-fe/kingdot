@@ -13,7 +13,6 @@ import Popover from '../components/Popover/index.js';
 import Progress from '../components/Progress/index.js';
 import Radio from '../components/Radio/index.js';
 import Row from '../components/Row/index.js';
-import Slider from '../components/Slider/index.js';
 import Step from '../components/Step/index.js';
 import Steps from '../components/Steps/index.js';
 import Switch from '../components/Switch/index.js';
@@ -21,7 +20,6 @@ import Timeline from '../components/Timeline/index.js';
 import TimelineItem from '../components/TimelineItem/index.js';
 import Tooltip from '../components/Tooltip/index.js';
 import Transition from '../components/Transition/index.js';
-import Tree from '../components/Tree/index.js';
 
 const components = [
     Button,
@@ -39,15 +37,13 @@ const components = [
     Progress,
     Radio,
     Row,
-    Slider,
     Step,
     Steps,
     Switch,
     Timeline,
     TimelineItem,
     Tooltip,
-    Transition,
-    Tree
+    Transition
 ];
 
 const install = (Vue, opts = {}) => {
@@ -82,13 +78,11 @@ export default {
     Progress,
     Radio,
     Row,
-    Slider,
     Step,
     Steps,
     Switch,
     Timeline,
     TimelineItem,
     Tooltip,
-    Transition,
-    Tree
+    Transition
 };

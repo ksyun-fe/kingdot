@@ -7,13 +7,13 @@
 <template>
     <div>
         <kd-popconfirm placement="top-start" title="标题" content="通常用来显示完整信息、注释信息；通常用来显示完整信息、注释信息；" ref="pop1">
-            <Button class="btn">light</Button>
+            <kd-button class="btn">light</kd-button>
             <template slot="footer">
-                <Button @click="__close">close</Button>
+                <kd-button @click="__close">close</kd-button>
             </template>
         </kd-popconfirm>
         <kd-popconfirm placement="top-start" effect="dark" trigger="click" :confirm="__confirm">
-            <Button type="primary" class="btn">dark</Button>
+            <kd-button type="primary" class="btn">dark</kd-button>
             <template slot="title">
                 <span>标题</span>
             </template>

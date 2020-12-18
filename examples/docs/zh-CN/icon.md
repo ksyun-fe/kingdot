@@ -11,7 +11,7 @@
     <div>
         <i class="kd-icon-message-solid icon-demo"></i>
         <i class="kd-icon-success-solid icon-demo"></i>
-        <Button type='primary' icon='kd-icon-search'>搜索</Button>
+        <kd-button type='primary' icon='kd-icon-search'>搜索</kd-button>
     </div>
 </template>
 <style type="text/stylus" scoped rel="stylesheet/stylus" lang="stylus">

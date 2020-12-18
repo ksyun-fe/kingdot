@@ -11,23 +11,23 @@
         </kd-tooltip>
         <br />
         <kd-tooltip placement="top" content="disabled" disabled>
-            <Button class="btn">disabled</Button>
+            <kd-button class="btn">disabled</kd-button>
         </kd-tooltip>
         <kd-tooltip placement="top" content="can hover" canHover>
-            <Button type="primary" class="btn">canHover</Button>
+            <kd-button type="primary" class="btn">canHover</kd-button>
         </kd-tooltip>
         <kd-tooltip placement="top" content="no arrow" :showArrow="false" effect="dark">
-            <Button class="btn">no arrow</Button>
+            <kd-button class="btn">no arrow</kd-button>
         </kd-tooltip>
         <kd-tooltip placement="top-start" content="always be by your side" effect="dark" always>
-            <Button class="btn">always</Button>
+            <kd-button class="btn">always</kd-button>
         </kd-tooltip>
         <br />
         <kd-tooltip placement="top" content="show delay 1s" effect="dark" :mouseEnterDelay="1">
-            <Button class="btn">show delay 1s</Button>
+            <kd-button class="btn">show delay 1s</kd-button>
         </kd-tooltip>
         <kd-tooltip placement="top" content="hide delay 1s" effect="dark" :mouseLeaveDelay="1">
-            <Button class="btn">hide delay 1s</Button>
+            <kd-button class="btn">hide delay 1s</kd-button>
         </kd-tooltip>
     </div>
 </template>
@@ -54,7 +54,7 @@
 <template>
     <div>
         <kd-tooltip v-for="item in trigger" :key="item" placement="top" content="prompt text" :trigger="item">
-            <Button type="primary" class="btn">{{ item }}</Button>
+            <kd-button type="primary" class="btn">{{ item }}</kd-button>
         </kd-tooltip>
         <br />
         <kd-tooltip placement="top" content="account" trigger="focus" effect="dark">
@@ -93,10 +93,10 @@
 <template>
     <div>
         <kd-tooltip placement="top" content="light theme">
-            <Button class="btn">light</Button>
+            <kd-button class="btn">light</kd-button>
         </kd-tooltip>
         <kd-tooltip placement="top" content="dark theme" effect="dark">
-            <Button type="primary" class="btn">dark</Button>
+            <kd-button type="primary" class="btn">dark</kd-button>
         </kd-tooltip>
     </div>
 </template>
@@ -117,10 +117,10 @@
 <template>
     <div>
         <kd-tooltip placement="top" content="dark theme" canHover effect="dark">
-            <Button type="primary" class="btn">Content</Button>
+            <kd-button type="primary" class="btn">Content</kd-button>
             <template slot="content">
                 <kd-tooltip placement="top" content="light">
-                    <Button type="primary">dark</Button>
+                    <kd-button type="primary">dark</kd-button>
                 </kd-tooltip>
             </template>
         </kd-tooltip>
@@ -144,32 +144,32 @@
     <div class="position">
         <div class="top">
             <kd-tooltip placement="top-start" content="position: topLeft">
-                <Button type="primary" class="btn">上左</Button>
+                <kd-button type="primary" class="btn">上左</kd-button>
             </kd-tooltip>
             <kd-tooltip placement="top" content="position: top">
-                <Button type="primary" class="btn">上边</Button>
+                <kd-button type="primary" class="btn">上边</kd-button>
             </kd-tooltip>
             <kd-tooltip placement="top-end" content="position: topRight">
-                <Button type="primary" class="btn">上右</Button>
+                <kd-button type="primary" class="btn">上右</kd-button>
             </kd-tooltip>
         </div>
         <div class="left">
             <kd-tooltip placement="left-start">
-                <Button type="primary" class="btn">左上</Button>
+                <kd-button type="primary" class="btn">左上</kd-button>
                 <template slot="content">
                     <div>position:</div>
                     <div>left-start</div>
                 </template>
             </kd-tooltip>
             <kd-tooltip placement="left">
-                <Button type="primary" class="btn">左边</Button>
+                <kd-button type="primary" class="btn">左边</kd-button>
                 <template slot="content">
                     <div>position:</div>
                     <div>left</div>
                 </template>
             </kd-tooltip>
             <kd-tooltip placement="left-end">
-                <Button type="primary" class="btn">左下</Button>
+                <kd-button type="primary" class="btn">左下</kd-button>
                 <template slot="content">
                     <div>position:</div>
                     <div>left-end</div>
@@ -178,21 +178,21 @@
         </div>
         <div class="right">
             <kd-tooltip placement="right-start">
-                <Button type="primary" class="btn">右上</Button>
+                <kd-button type="primary" class="btn">右上</kd-button>
                 <template slot="content">
                     <div>position:</div>
                     <div>right-start</div>
                 </template>
             </kd-tooltip>
             <kd-tooltip placement="right">
-                <Button type="primary" class="btn">右边</Button>
+                <kd-button type="primary" class="btn">右边</kd-button>
                 <template slot="content">
                     <div>position:</div>
                     <div>right</div>
                 </template>
             </kd-tooltip>
             <kd-tooltip placement="right-end">
-                <Button type="primary" class="btn">右下</Button>
+                <kd-button type="primary" class="btn">右下</kd-button>
                 <template slot="content">
                     <div>position:</div>
                     <div>right-end</div>
@@ -201,13 +201,13 @@
         </div>
         <div class="bottom">
             <kd-tooltip placement="bottom-start" content="position: bottom-start">
-                <Button type="primary" class="btn">下左</Button>
+                <kd-button type="primary" class="btn">下左</kd-button>
             </kd-tooltip>
             <kd-tooltip placement="bottom" content="position: bottom">
-                <Button type="primary" class="btn">下边</Button>
+                <kd-button type="primary" class="btn">下边</kd-button>
             </kd-tooltip>
             <kd-tooltip placement="bottom-end" content="position: bottom-end">
-                <Button type="primary" class="btn">下右</Button>
+                <kd-button type="primary" class="btn">下右</kd-button>
             </kd-tooltip>
         </div>
     </div>
@@ -250,7 +250,7 @@
             effect="dark"
             :popperModifiers="popperModifiers"
         >
-            <Button type="primary" class="btn">click</Button>
+            <kd-button type="primary" class="btn">click</kd-button>
             <template slot="content">
                 <div>menu1</div>
                 <div>menu2</div>
