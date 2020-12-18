@@ -8,10 +8,14 @@
 ```html
 <template>
     <div>
-        <kd-radio :true-value="1" v-model="radioValue">radio</kd-radio>
-        <kd-radio :true-value="2" v-model="radioValue">radio</kd-radio>
-        <kd-radio :true-value="3" v-model="radioValue">radio</kd-radio>
-        <kd-radio :true-value="4" v-model="radioValue" :disabled="true">radio</kd-radio>
+        <kd-radio
+            class="radio-margin-right"
+            v-for="(item,key) in Array(3)"
+            :key="key"
+            :true-value="key + 1"
+            v-model="radioValue"
+            :disabled="key == 3"
+            >radio</kd-radio>
         <kd-radio :true-value="3" v-model="radioValueDisabled" :disabled="true">radio</kd-radio>
         <div>选择的数据是：{{ radioValue }}</div>
     </div>
@@ -26,6 +30,10 @@
         }
     }
 </script>
+<style type="text/stylus" scoped rel="stylesheet/stylus" lang="stylus">
+    .radio-margin-right
+        margin-right 10px
+</style>
 ```
 
 :::

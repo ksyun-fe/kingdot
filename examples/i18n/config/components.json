@@ -106,6 +106,13 @@
                     }]
                 },
                 {
+                    "name":"Tabs",
+                    "children":[{
+                        "path": "/tabs",
+                        "name": "Tabs标签页"
+                    }]
+                },
+                {
                     "name":"Breadcrumb",
                     "children":[{
                         "path": "/breadcrumb",
