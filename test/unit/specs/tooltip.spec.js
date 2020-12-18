@@ -22,6 +22,9 @@ describe('Tooltip', () => {
     });
     // hover
     describe('hover', () => {
+        afterEach(() => {
+            destroyVM(vm);
+        });
         vm = createVue(`
             <kd-tooltip ref="tooltip" content="提示文字">
                 <button>click2</button>

@@ -124,8 +124,23 @@
                         "path": "/steps",
                         "name": "Steps 步骤条"
                     }]
+                },
+                {
+                    "name":"Tabs",
+                    "children":[{
+                        "path": "/tabs",
+                        "name": "Tabs标签页"
+                    }]
+                },
+                {
+                    "name":"Breadcrumb",
+                    "children":[{
+                        "path": "/breadcrumb",
+                        "name": "Breadcrumb面包屑"
+                    }]
                 }
             ]
+
         }
     ],
     "en-US": [
@@ -232,6 +247,13 @@
                     "children":[{
                         "path": "/steps",
                         "name": "Steps"
+                    }]
+                },
+                {
+                    "name":"Breadcrumb",
+                    "children":[{
+                        "path": "/breadcrumb",
+                        "name": "Breadcrumb"
                     }]
                 }
             ]

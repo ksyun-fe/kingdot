@@ -1,0 +1,72 @@
+@import '../variables.styl'
+
+width = $-spin-stroke-width
+r = 120 - 60 - (width / 2)
+c = round(2 * 3.14 * r)
+.kd-spin
+    display inline-block
+    &.kd-overlay
+        position fixed
+        top 0
+        right 0
+        bottom 0
+        left 0
+    &.kd-local
+        position absolute
+    .kd-wrapper
+        position absolute
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
+    .kd-spin-animation
+        margin 0 auto
+        width $-spin-width
+        height @width
+        text-align center
+        animation kd-spin-rotate 2s linear infinite
+    .kd-spin-roate
+        color $-primary-color
+        // font-size $-spin-width
+    .kd-spin-circle
+        animation kd-spin-dash 1.5s ease-in-out infinite
+        stroke-dasharray round(c * 0.75), c
+        stroke-dashoffset 0
+        fill none
+        stroke-width width
+        stroke $-spin-color
+        r r
+    .kd-spin-text
+        margin 3px 0
+        color $-primary-color
+        text-align center
+        font-size 14px
+for size in $-size-array
+    &.kd-{size}
+        .kd-spin-animation
+            width lookup('$-spin-' + size + '-width')
+            height @width
+        .kd-spin-roate
+            font-size lookup('$-spin-' + size + '-width')
+// @keyframes kd-rotating
+// 0%
+// transform rotate(0deg)
+
+// 100%
+// transform rotate(360deg)
+@keyframes kd-spin-rotate
+    0%
+        transform rotate(0)
+        transform-origin 50% 50%
+    100%
+        transform rotate(360deg)
+        transform-origin 50% 50%
+@keyframes kd-spin-dash
+    0%
+        stroke-dasharray 1, c
+        stroke-dashoffset 0
+    50%
+        stroke-dasharray round(c * 0.75), c
+        stroke-dashoffset -(c * 0.25)
+    to
+        stroke-dasharray round(c * 0.75), c
+        stroke-dashoffset -(c)
