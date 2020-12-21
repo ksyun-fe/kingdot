@@ -118,33 +118,41 @@ $-icon-mini-font-size := unit(12 / 14, rem)
 *******************************/
 
 //btn disabled
-$-white-color := #fff
-$-black-color := #000
-$-btn-disabled-color := $-border-base-color
-$-btn-disabled-bg-color := $-disabled-bg-color
-$-btn-disabled-border-color := $-disabled-border-color
+$-btn-disabled-color := #4F576E
+$-btn-disabled-bg-color := #2F374F
+$-btn-disabled-border-color := #2F374F
 
 //btn default
 $-btn-default-padding := 9px 16px
 $-btn-default-font-size := 12px
-$-btn-default-border-color := $-border-base-color
-$-btn-default-bg := #fff
-$-btn-default-color := $-black-color
+$-btn-default-text-color := $-white-color
+$-btn-default-border-color := #525C77
+$-btn-default-bg := transparent
+
+$-btn-default-hover-bg-color := #3D4660
+$-btn-default-active-bg-color := #38425E
+
+$-btn-hollow-bg-color :=#3D4660
+$-btn-hollow-hover-bg-color :=#525C77
+
 //type
-$-btn-primary-color := $-primary-color
-$-btn-success-color := $-success-color
-$-btn-warning-color := $-warning-color
-$-btn-danger-color := $-danger-color
-$-btn-text-color := $-primary-color
-$-btn-none-color := $-black-color
-
+$-btn-primary-color := linear-gradient(180deg, #F8334C 0%, #4E284D 91%)
+$-btn-primary-hover-color := linear-gradient(180deg, #E8465D 0%, #603D5F 100%)
+$-btn-primary-active-color := linear-gradient(180deg, #B8283C 0%, #3E203D 100%)
+$-btn-primary-border-color := transparent
+// $-btn-success-color := $-success-color
+// $-btn-warning-color := $-warning-color
+// $-btn-danger-color := $-danger-color
+// $-btn-none-color := $-text-color
+//text
+$-btn-text-bg := transparent
+$-btn-text-color := #5399FF
 $-btn-text-hover-color := $-primary-color
-$-btn-none-hover-color := $-primary-color
-//loading 
-$-btn-stroke-width := 6
-//split 
-$-btn-split-padding := 5px 10px
+// $-btn-none-hover-color := $-primary-color
 
+// split 
+$-btn-split-padding := 5px 10px
+$-btn-split-bg := rgba(255,255,255,0.25)
 //border
 $-btn-border-radius := $-border-radius
 $-btn-border-color := $-border-base-color
@@ -155,26 +163,22 @@ $-btn-shape-round := 40px
 $-btn-shape-circle := 50%
 //size
 
-$-btn-large-padding := 13px 24px
+//size
+$-btn-large-padding := $-large-padding
 $-btn-large-circle-padding := 14px
 $-btn-large-font-size := 14px
 
-$-btn-default-padding := 9px 16px
+$-btn-default-padding := $-default-padding
 $-btn-default-circle-padding := 12px
 $-btn-default-font-size := $-font-base-size
 
-$-btn-small-padding := 7px 12px
-$-btn-small-circle-padding := 8px
-$-btn-small-font-size := 12px
 
-$-btn-mini-padding := 5px 8px
-$-btn-mini-circle-padding := 6px
-$-btn-mini-font-size := 12px
+$-btn-small-padding := $-small-padding
+$-btn-small-circle-padding := 10px
+$-btn-small-font-size := $-font-base-size
 //icon
-$-btn-icon-text-gutter := 8px
+$-btn-icon-text-gutter := $-icon-text-gutter
 
-$-btn-loading-r = 120 - 60 - ($-btn-stroke-width / 2)
-$-btn-loading-c = round(2 * 3.14 * $-btn-loading-r)
 
 /******************************
         Radio
