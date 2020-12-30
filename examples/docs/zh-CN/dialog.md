@@ -18,7 +18,6 @@
         },
         methods:{
             openDialog(){
-                debugger
                 this.showDialog = true;
             },
             OK(dialog){

@@ -51,7 +51,6 @@
             background-color $-dialog-header-background-color
     .kd-dialog-title
         padding 0 4px
-        font-family PingFangSC-Regular
         font-size $-font-size
         color $-dialog-title-color
         letter-spacing 0
@@ -79,29 +78,27 @@
 .kd-dialog-body
     .kd-icon-section
         display inline-block
-        background-color #fff
         border-radius 50%
+        i
+            border-radius 50%
+            background-color #fff
     .kd-dialog-icon-title
-        font-family PingFangSC-Medium
         line-height 20px
         font-size 16px
         color $-dialog-icon-title-color
     .kd-dialog-message
         padding 0 6px
-        font-family PingFangSC-Regular
         text-align center
         line-height 20px
         font-size $-font-base-size
         color $-dialog-message-color
     .kd-dialog-confirm-title
-        font-family PingFangSC-Medium
         font-size 18px
         text-align center
         line-height 22px
         color $-dialog-confirm-title-color
         letter-spacing 0
     .kd-dialog-confirm-tips
-        font-family PingFangSC-Regular
         font-size $-font-size
         text-align center
         line-height 22px
@@ -123,7 +120,6 @@
     .kd-dailog-tips-icon
         margin-right 12px
     .kd-dialog-tips-title
-        font-family PingFangSC-Medium
         font-size 16px
         line-height 20px
         color $-dialog-tips-title-color
@@ -132,7 +128,6 @@
         padding 8px 0
     .kd-dialog-tips-message
         margin-left 40px
-        font-family PingFangSC-Regular
         font-size $-font-base-size
         line-height 20px
         color $-dialog-tips-message-color
@@ -141,19 +136,6 @@
 .kd-dialog-footer
     .kd-dialog-btn
         margin 0 4px
-    .kd-dialog-btn-loading-disabled
-        border-left-color #4c4c4c
-        border-top-color #4c4c4c
-    .kd-dialog-btn-loading
-        display inline-block
-        width 10px
-        height 10px
-        border 1px solid rgba(255, 255, 255, 0.3)
-        border-left-color #ccc
-        border-top-color #ccc
-        border-radius 50%
-        vertical-align middle
-        animation loading 0.8s linear infinite
 //进入和离开时的动画      
 .kd-dialog-fade-enter-active 
   animation dialog-fade-in .3s
@@ -181,16 +163,6 @@
     opacity: 0;
   }
 }
-@keyframes loading {
-   0%{
-     transform: rotate(0deg);
-     transform-origin: center;///旋转的基点位置，center表示从中间开始旋转
-   }
-   100%{
-     transform: rotate(360deg);
-     transform-origin: center;
-   }
- }
 // 内容区域有滚动条的时候
 ::-webkit-scrollbar 
     background-color $-dialog-scrollbar-background-color
