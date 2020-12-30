@@ -124,6 +124,10 @@
                         {
                             "path": "/transition",
                             "name": "Transition 过渡动画"
+                        },
+                        {
+                            "path": "/dialog",
+                            "name": "Dialog 对话框"
                         }
                     ]
                 }
@@ -236,6 +240,10 @@
                         {
                             "path": "/collapse",
                             "name": "Collapse"
+                        },
+                        {
+                            "path": "/dialog",
+                            "name": "Dialog"
                         }
                     ]
                 }

@@ -14,7 +14,7 @@
             <Step title="步骤三" ></Step>
             <Step title="完成" ></Step>
         </Steps>
-        <Button @click="_next">下一步</Button>
+        <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
 <script>
@@ -46,7 +46,7 @@
             <Step title="步骤三" status="active"></Step>
             <Step title="完成完成完成完成"></Step>
         </Steps>
-        <Button @click="_next">下一步</Button>
+        <kd-button @click="_next">下一步</kd-button>
     </div>
     <div>
         <Steps v-model="stepIndex2" size="small">
@@ -55,7 +55,7 @@
             <Step title="步骤三" ></Step>
             <Step title="完成完成完成完成"></Step>
         </Steps>
-        <Button @click="_next1">下一步</Button>
+        <kd-button @click="_next1">下一步</kd-button>
     </div>
 </div>
 </template>
@@ -99,7 +99,7 @@
             <Step title="步骤三" :description="description"></Step>
             <Step title="完成" :description="description"></Step>
         </Steps>
-        <Button @click="_next">下一步</Button>
+        <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
 <script>
@@ -130,7 +130,7 @@
             <Step title="步骤二" icon="kd-icon-menu-more"></Step>
             <Step title="步骤三" icon="kd-icon-success-circle"></Step>
         </Steps>
-        <Button @click="_next">下一步</Button>
+        <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
 <script>
@@ -165,7 +165,7 @@
             <Step title="步骤二" ></Step>
             <Step title="步骤三" ></Step>
         </Steps>
-        <Button @click="_next">下一步</Button>
+        <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
 <script>
@@ -190,7 +190,7 @@
 ```html
 <template>
     <div>
-        <Button @click="_next">下一步</Button>
+        <kd-button @click="_next">下一步</kd-button>
         <div style="height:300px">
             <Steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
                 <Step title="步骤一"></Step>

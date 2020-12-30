@@ -6,6 +6,7 @@ import Checkbox from '../components/Checkbox/index.js';
 import Col from '../components/Col/index.js';
 import Collapse from '../components/Collapse/index.js';
 import CollapseItem from '../components/CollapseItem/index.js';
+import Dialog from '../components/Dialog/index.js';
 import Form from '../components/Form/index.js';
 import FormItem from '../components/FormItem/index.js';
 import Input from '../components/Input/index.js';
@@ -36,6 +37,7 @@ const components = [
     Col,
     Collapse,
     CollapseItem,
+    Dialog,
     Form,
     FormItem,
     Input,
@@ -83,6 +85,7 @@ export default {
     Col,
     Collapse,
     CollapseItem,
+    Dialog,
     Form,
     FormItem,
     Input,
