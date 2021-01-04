@@ -7,7 +7,7 @@ describe('Input', () => {
         destroyVM(vm);
     });
     // 创建基本input
-    it('create input & focus', () => {
+    it('create input & focus', async () => {
         vm = createVue({
             template: `
                 <div>
@@ -44,7 +44,7 @@ describe('Input', () => {
         expect(inputElem.getAttribute('maxlength')).to.equal('12');
         vm.inputFocus();
         expect(vm.isFocus).to.be.true;
-        vm.$nextTick().then(() => {
+        await vm.$nextTick().then(() => {
             expect(document.defaultView.getComputedStyle(inputElem, null).border).to.equal('1px solid rgb(85, 125, 252)');
             vm.inputBlur();
             expect(vm.isFocus).to.be.false;
@@ -54,7 +54,7 @@ describe('Input', () => {
     });
 
     // disabled
-    it('disabled', () => {
+    it('disabled', async () => {
         vm = createVue({
             template: `
                 <div>
@@ -82,42 +82,13 @@ describe('Input', () => {
         const inputWrapperElem = vm.$el.querySelector('.kd-input-inner');
         expect(inputWrapperElem.getAttribute('disabled')).to.equal('disabled');
         vm.changeStatus();
-        vm.$nextTick(() => {
+        await vm.$nextTick(() => {
             expect(inputWrapperElem.getAttribute('disabled')).to.be.null;
         });
     });
 
-    // 先有值，然后clear，然后再赋值；  检测clear icon的变化
-    it('clearable', () => {
-        vm = createVue({
-            template: `
-                <Input
-                        type="text"
-                        v-model="info"
-                        clearable
-                />
-            `,
-            data() {
-                return {
-                    info: 'abc'
-                }
-            }
-        });
-        const inputWrapperElem = vm.$el.querySelector('.kd-input-inner');
-        const clearableIcon = vm.$el.querySelector('.kd-input-clearable');
-        expect(vm.info).to.equal('abc');
-        clearableIcon.click();
-        expect(vm.info).to.equal('');
-        vm.$nextTick().then(() => {
-            expect(vm.$el.querySelector('.kd-input-clearable')).to.be.null;
-            vm.$set('info', '12345');
-        }).then(() => {
-            expect(vm.$el.querySelector('.kd-input-clearable')).to.not.be.null;
-        });
-    });
-
     // type
-    it('type--password', () => {
+    it('type--password', async () => {
         vm = createVue({
             template: `
                 <Input
@@ -152,7 +123,7 @@ describe('Input', () => {
         const psdElem = vm.$el.querySelector('.kd-input-inner');
         expect(psdElem.getAttribute('type')).to.equal('password');
         vm.switchType();
-        vm.$nextTick().then(() => {
+        await vm.$nextTick().then(() => {
             expect(psdElem.getAttribute('type')).to.equal('text');
             vm.switchType();
         }).then(() => {
