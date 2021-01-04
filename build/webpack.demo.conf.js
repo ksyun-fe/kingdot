@@ -181,7 +181,7 @@ if (isProd) {
             vendors: {
                 test: /[\\/]node_modules[\\/]/,
                 priority: -10,
-                filename: 'vendors.[contenthash].js'
+                // filename: 'vendors.[contenthash].js'
             },
             common: {
                 minChunks: 2,

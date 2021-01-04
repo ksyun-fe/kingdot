@@ -68,6 +68,7 @@
         // eslint-disable-next-line no-undef
         return publicPath + theme + '.' + version + '.css';
     };
+
     export default {
         data() {
             return {
@@ -77,7 +78,7 @@
                 },
                 nextLang: 'English',
                 // eslint-disable-next-line no-undef
-                firstTheme: themes.findIndex(i => i === devTheme) || 0,
+                firstTheme: isProd ? 0 : themes.findIndex(i => i === devTheme),
                 activeIndex: 0
             };
         },
@@ -113,12 +114,13 @@
                         return;
                     }
 
-                    if (!link) {
-                        link = document.createElement('link');
-                        link.setAttribute('id', 'theme_str');
-                        link.setAttribute('rel', 'stylesheet');
-                        document.getElementsByTagName('head')[0].appendChild(link);
+                    if (link) {
+                        document.getElementsByTagName('head')[0].removeChild(link);
                     }
+                    link = document.createElement('link');
+                    link.setAttribute('id', 'theme_str');
+                    link.setAttribute('rel', 'stylesheet');
+                    document.getElementsByTagName('head')[0].appendChild(link);
                     link.href = getThemeCss(theme);
                     link.onload = function () {
                         toggleThemeClass();
