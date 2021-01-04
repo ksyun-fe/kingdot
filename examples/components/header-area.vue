@@ -105,6 +105,7 @@
                         } else {
                             document.body.classList.remove('dark');
                         }
+                        this.$emit('toggleTheme', theme);
                     };
                     // eslint-disable-next-line no-undef
                     if (!isProd) {

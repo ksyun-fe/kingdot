@@ -1,20 +1,25 @@
 <template>
     <div id="app">
-        <header-area/>
+        <header-area @toggleTheme="toggleTheme"/>
         <div class="main-area">
-            <router-view/>
+            <router-view
+                    ref="routerView"
+                    :theme="theme"
+            />
         </div>
     </div>
 </template>
 <script>
-    /* import { use } from '../lib/lang/index.js';
-    import zhComponentWords from '../lib/lang/zh-CN/index.js';
-    import enComponentWords from '../lib/lang/en-US/index.js';*/
     import { use } from 'src/lang/index.js';
     import zhComponentWords from 'src/lang/zh-CN/index.js';
     import enComponentWords from 'src/lang/en-US/index.js';
     export default {
         name: 'KDot',
+        data() {
+            return {
+                theme: ''
+            };
+        },
         computed: {
             currentLang() {
                 return this.$route.path.split('/')[1] || 'zh-CN';
@@ -32,6 +37,11 @@
                     default:
                         break;
                 }
+            }
+        },
+        methods: {
+            toggleTheme(theme) {
+                this.theme = theme;
             }
         }
     };
