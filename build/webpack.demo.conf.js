@@ -180,8 +180,7 @@ if (isProd) {
         cacheGroups: {
             vendors: {
                 test: /[\\/]node_modules[\\/]/,
-                priority: -10,
-                // filename: 'vendors.[contenthash].js'
+                priority: -10
             },
             common: {
                 minChunks: 2,
