@@ -39,8 +39,6 @@ describe('Input', () => {
             }
         });
         const inputElem = vm.$el.querySelector('.kd-input-inner');
-        const focusBtn = vm.$el.querySelectorAll('.kd-btn')[0];
-        const blurBtn = vm.$el.querySelectorAll('.kd-btn')[1];
         expect(document.defaultView.getComputedStyle(inputElem, null).border).to.equal('1px solid rgb(204, 204, 204)');
         expect(inputElem.getAttribute('placeholder')).to.equal('请输入内容');
         expect(inputElem.getAttribute('maxlength')).to.equal('12');
@@ -66,7 +64,7 @@ describe('Input', () => {
                             :maxlength="12"
                             :disabled="disabled"
                     />
-                    <Button @click="disabled = !disabled">switch disabled</Button>
+                    <Button @click="changeStatus">switch disabled</Button>
                 </div>
             `,
             data() {
@@ -74,12 +72,16 @@ describe('Input', () => {
                     age: 20,
                     disabled: true
                 }
+            },
+            methods: {
+                changeStatus() {
+                    this.disabled = !this.disabled;
+                }
             }
         });
         const inputWrapperElem = vm.$el.querySelector('.kd-input-inner');
-        const buttonElem = vm.$el.querySelector('.kd-btn');
         expect(inputWrapperElem.getAttribute('disabled')).to.equal('disabled');
-        buttonElem.click();
+        vm.changeStatus();
         vm.$nextTick(() => {
             expect(inputWrapperElem.getAttribute('disabled')).to.be.null;
         });
