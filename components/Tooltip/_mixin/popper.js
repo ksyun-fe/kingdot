@@ -1,4 +1,4 @@
-import { createPopper } from '@popperjs/core/lib/index.js';
+import { createPopper } from '@popperjs/core/dist/umd/popper.js';
 
 // 实际使用的位置和popper.js的位置
 const placements = [

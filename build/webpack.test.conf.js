@@ -17,8 +17,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(jsx?|babel|es6)$/,
-                loader: 'babel-loader'
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: '@popperjs'
             },
             {
                 test: /\.vue$/,

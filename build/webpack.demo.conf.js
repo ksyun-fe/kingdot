@@ -68,7 +68,8 @@ const webpackConfig = {
         rules: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: '@popperjs'
             },
             {
                 test: /\.vue$/,
