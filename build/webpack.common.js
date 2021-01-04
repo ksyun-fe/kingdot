@@ -34,7 +34,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: '@popperjs'
+                exclude: /@popperjs/
             },
             {
                 test: /\.vue$/,
