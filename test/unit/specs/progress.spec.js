@@ -8,7 +8,7 @@ describe('Progress', () => {
     });
 
     // 创建基本progress,改变percentage,比较innerBar占outerBar的比例
-    it('create progress', () => {
+    it('create progress', async () => {
         vm = createVue({
             template: `
                 <div>
@@ -46,7 +46,7 @@ describe('Progress', () => {
         // increase
         vm.increase();
         vm.increase();
-        vm.$nextTick().then(() => {
+        await vm.$nextTick().then(() => {
             // percentage为20
             expect(vm.percentage).to.equal(20);
             // innerBar占outerBar的10%
