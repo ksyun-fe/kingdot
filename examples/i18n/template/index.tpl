@@ -162,7 +162,7 @@
         },
         methods: {
             openGithub() {
-                window.open('https://ksyun-fe.github.io/kingdot', '_blank ');
+                window.open('https://github.com/ksyun-fe/kingdot', '_blank');
             }
         }
     };
