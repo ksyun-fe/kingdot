@@ -216,7 +216,7 @@
             background: #222A41
             box-shadow: 0 2px 12px 0 rgba(0,0,0,0.05)
             .logo
-                background url('~examples/images/logo-dark.svg') no-repeat center
+                background url('~examples/images/logo-dark.png') no-repeat center
             .nav-wrapper .nav-item div.router-link-active
                 color #fff
                 &:after
