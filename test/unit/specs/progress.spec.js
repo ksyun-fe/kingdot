@@ -39,15 +39,13 @@ describe('Progress', () => {
         });
         const innerBarElem = vm.$el.querySelector('.kd-progress-bar-inner');
         const outerBarElem = vm.$el.querySelector('.kd-progress.kd-progress-line .kd-progress-bar-outer');
-        const increaseBtn = vm.$el.querySelectorAll('.kd-btn')[0];
-        const decreaseBtn = vm.$el.querySelectorAll('.kd-btn')[1];
         // 判断颜色
         expect(document.defaultView.getComputedStyle(innerBarElem, null).backgroundColor).to.equal('rgb(79, 204, 111)');
         // 判断初始值
         expect(document.defaultView.getComputedStyle(innerBarElem, null).width).to.equal('0px');
         // increase
-        increaseBtn.click();
-        increaseBtn.click();
+        vm.increase();
+        vm.increase();
         vm.$nextTick().then(() => {
             // percentage为20
             expect(vm.percentage).to.equal(20);
@@ -57,7 +55,7 @@ describe('Progress', () => {
             let percentage = Math.round(innerBarWidth / outerBarWidth * 100);
             expect(percentage).to.equal(20);
         }).then(() => {
-            decreaseBtn.click();
+            vm.decrease();
         }).then(() => {
             // percentage为10
             expect(vm.percentage).to.equal(10);
