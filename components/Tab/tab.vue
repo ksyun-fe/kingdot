@@ -42,7 +42,7 @@
         computed: {
             checked() {
                 let flag = false;
-                flag = this.$parent.value == this.value;
+                flag = this.$parent.value === this.value;
                 return flag;
             },
             innerValue() {
@@ -51,7 +51,7 @@
         },
         watch: {
             innerValue: function (v) {
-                if (this.$parent.value == this.value) {
+                if (this.$parent.value === this.value) {
                     this.autoMove();
                 }
             }
