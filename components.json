@@ -8,6 +8,7 @@
     "Collapse": "./components/Collapse/index.js",
     "CollapseItem": "./components/CollapseItem/index.js",
     "Dialog": "./components/Dialog/index.js",
+    "Drawer": "./components/Drawer/index.js",
     "Form": "./components/Form/index.js",
     "FormItem": "./components/FormItem/index.js",
     "Input": "./components/Input/index.js",
