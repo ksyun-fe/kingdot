@@ -38,10 +38,6 @@
                     {
                         path: '/color',
                         name: '颜色'
-                    },
-                    {
-                        path: '/updatelog',
-                        name: '更新日志'
                     }
                 ]
             };

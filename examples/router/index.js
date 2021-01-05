@@ -97,11 +97,6 @@ const navRoutes = (lang) => {
             path: 'color',
             meta: { lang },
             component: load_file(lang, 'color')
-        },
-        {
-            path: 'updatelog',
-            meta: { lang },
-            component: load_file(lang, 'updatelog')
         }]
 
     };

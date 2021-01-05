@@ -38,10 +38,6 @@
                     {
                         path: '/color',
                         name: '<%= 2 >'
-                    },
-                    {
-                        path: '/updatelog',
-                        name: '<%= 3 >'
                     }
                 ]
             };
