@@ -140,7 +140,7 @@
                             <kd-button
                                     class="kd-dialog-btn"
                                     type="primary"
-                                    :disabled="disableOk || this.selfDisableOk"
+                                    :disabled="disableOk || selfDisableOk"
                                     :loading="selfDisableOk"
                                     @click="_ok"
                             >
@@ -325,10 +325,10 @@
             },
             iconObj() {
                 return {
-                    'kd-icon-success-solid': this.icon == 'success',
-                    'kd-icon-error-solid': this.icon == 'failed',
-                    'kd-icon-warning-solid': this.icon == 'warning',
-                    'kd-icon-message-solid': this.icon == 'info'
+                    'kd-icon-success-solid': this.icon === 'success',
+                    'kd-icon-error-solid': this.icon === 'failed',
+                    'kd-icon-warning-solid': this.icon === 'warning',
+                    'kd-icon-message-solid': this.icon === 'info'
                 };
             },
             iconColorObj() {

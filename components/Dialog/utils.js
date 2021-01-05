@@ -26,7 +26,7 @@ var rePropName = RegExp(
             '(?=(?:\\.|\\[\\])(?:\\.|\\[\\]|$))',
     'g'
 );
-var valueRegexp = /\{([^\}\s]+)\}/g;
+var valueRegexp = /\{([^}\s]+)\}/g;
 function castPath(path) {
     if (typeof path !== 'string') return path;
     if (pathMap[path]) return pathMap[path];
