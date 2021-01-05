@@ -73,7 +73,7 @@
         methods: {
             // 处理跳转
             handleLink(e) {
-                if (this.href != undefined) return;
+                if (this.href !== undefined) return;
                 if (this.to === undefined) {
                     this.$emit('click', e);
                 } else {

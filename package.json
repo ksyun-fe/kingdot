@@ -52,7 +52,9 @@
         }
     },
     "lint-staged": {
-        "*.{js,vue}": ["eslint"]
+        "*.{js,vue}": [
+            "eslint"
+        ]
     },
     "dependencies": {
         "@popperjs/core": "^2.5.4",
