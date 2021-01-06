@@ -8,12 +8,12 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1" type="spot" :isClick="true">
-            <Step title="步骤一" ></Step>
-            <Step title="步骤二" ></Step>
-            <Step title="步骤三" ></Step>
-            <Step title="完成" ></Step>
-        </Steps>
+        <kd-steps v-model="stepIndex1" type="spot" :isClick="true">
+            <kd-step title="步骤一" ></kd-step>
+            <kd-step title="步骤二" ></kd-step>
+            <kd-step title="步骤三" ></kd-step>
+            <kd-step title="完成" ></kd-step>
+        </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
@@ -40,21 +40,21 @@
 <template>
 <div>
     <div>
-        <Steps v-model="stepIndex1" finishStatus='finished'>
-            <Step title="步骤一" status="wait"></Step>
-            <Step title="步骤二" status="error"></Step>
-            <Step title="步骤三" status="active"></Step>
-            <Step title="完成完成完成完成"></Step>
-        </Steps>
+        <kd-steps v-model="stepIndex1" finishStatus='finished'>
+            <kd-step title="步骤一" status="wait"></kd-step>
+            <kd-step title="步骤二" status="error"></kd-step>
+            <kd-step title="步骤三" status="active"></kd-step>
+            <kd-step title="完成完成完成完成"></kd-step>
+        </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
     <div>
-        <Steps v-model="stepIndex2" size="small">
-            <Step title="步骤一" ></Step>
-            <Step title="步骤二" ></Step>
-            <Step title="步骤三" ></Step>
-            <Step title="完成完成完成完成"></Step>
-        </Steps>
+        <kd-steps v-model="stepIndex2" size="small">
+            <kd-step title="步骤一" ></kd-step>
+            <kd-step title="步骤二" ></kd-step>
+            <kd-step title="步骤三" ></kd-step>
+            <kd-step title="完成完成完成完成"></kd-step>
+        </kd-steps>
         <kd-button @click="_next1">下一步</kd-button>
     </div>
 </div>
@@ -87,18 +87,18 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1">
-            <Step title="步骤一" :description="description"></Step>
-            <Step title="步骤二" :description="description"></Step>
-            <Step title="步骤三" :description="description"></Step>
-            <Step title="完成" :description="description"></Step>
-        </Steps>
-        <Steps v-model="stepIndex1" position="bottom">
-            <Step title="步骤一" :description="description"></Step>
-            <Step title="步骤二" :description="description"></Step>
-            <Step title="步骤三" :description="description"></Step>
-            <Step title="完成" :description="description"></Step>
-        </Steps>
+        <kd-steps v-model="stepIndex1">
+            <kd-step title="步骤一" :description="description"></kd-step>
+            <kd-step title="步骤二" :description="description"></kd-step>
+            <kd-step title="步骤三" :description="description"></kd-step>
+            <kd-step title="完成" :description="description"></kd-step>
+        </kd-steps>
+        <kd-steps v-model="stepIndex1" position="bottom">
+            <kd-step title="步骤一" :description="description"></kd-step>
+            <kd-step title="步骤二" :description="description"></kd-step>
+            <kd-step title="步骤三" :description="description"></kd-step>
+            <kd-step title="完成" :description="description"></kd-step>
+        </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
@@ -125,11 +125,11 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1">
-            <Step title="步骤一" icon="kd-icon-upload-file"></Step>
-            <Step title="步骤二" icon="kd-icon-menu-more"></Step>
-            <Step title="步骤三" icon="kd-icon-success-circle"></Step>
-        </Steps>
+        <kd-steps v-model="stepIndex1">
+            <kd-step title="步骤一" icon="kd-icon-upload-file"></kd-step>
+            <kd-step title="步骤二" icon="kd-icon-menu-more"></kd-step>
+            <kd-step title="步骤三" icon="kd-icon-success-circle"></kd-step>
+        </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
@@ -155,16 +155,16 @@
 ```html
 <template>
     <div>
-        <Steps v-model="stepIndex1" type='simple'>
-            <Step title="步骤一" icon="kd-icon-upload-file"></Step>
-            <Step title="步骤二" icon="kd-icon-menu-more"></Step>
-            <Step title="步骤三" icon="kd-icon-success-circle"></Step>
-        </Steps>
-        <Steps v-model="stepIndex1" type='simple'>
-            <Step title="步骤一" ></Step>
-            <Step title="步骤二" ></Step>
-            <Step title="步骤三" ></Step>
-        </Steps>
+        <kd-steps v-model="stepIndex1" type='simple'>
+            <kd-step title="步骤一" icon="kd-icon-upload-file"></kd-step>
+            <kd-step title="步骤二" icon="kd-icon-menu-more"></kd-step>
+            <kd-step title="步骤三" icon="kd-icon-success-circle"></kd-step>
+        </kd-steps>
+        <kd-steps v-model="stepIndex1" type='simple'>
+            <kd-step title="步骤一" ></kd-step>
+            <kd-step title="步骤二" ></kd-step>
+            <kd-step title="步骤三" ></kd-step>
+        </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
@@ -192,11 +192,11 @@
     <div>
         <kd-button @click="_next">下一步</kd-button>
         <div style="height:300px">
-            <Steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
-                <Step title="步骤一"></Step>
-                <Step title="步骤二"></Step>
-                <Step title="步骤三" :description="description"></Step>
-            </Steps>
+            <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
+                <kd-step title="步骤一"></kd-step>
+                <kd-step title="步骤二"></kd-step>
+                <kd-step title="步骤三" :description="description"></kd-step>
+            </kd-steps>
         </div>
         
     </div>
