@@ -120,8 +120,8 @@
         },
         watch: {
             marginLeft(newValue) {
-                newValue == 0 ? this.movedisabledLeft = true : this.movedisabledLeft = false;
-                newValue == -(this.contentWidth - this.regionWidth) ? this.movedisabledRight = true : this.movedisabledRight = false;
+                newValue === 0 ? this.movedisabledLeft = true : this.movedisabledLeft = false;
+                newValue === -(this.contentWidth - this.regionWidth) ? this.movedisabledRight = true : this.movedisabledRight = false;
             }
         },
         updated() {

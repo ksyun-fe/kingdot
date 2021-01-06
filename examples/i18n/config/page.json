@@ -48,12 +48,6 @@
                         "text":"用于内容、表头背景。" 
                     }]
             },
-            "updatelog": {
-                "1": "更新日志",
-                "2": "v1.1",
-                "3": "新增1",
-                "4": "修改2"
-            },
             "component": {}
         }
     },
@@ -107,12 +101,6 @@
                         "text":"used to identify status."
                     }
                 ]
-            },
-            "updatelog": {
-                "1": "update log",
-                "2": "v1.1",
-                "3": "add",
-                "4": "add"
             },
             "component": {}
         }

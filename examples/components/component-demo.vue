@@ -128,6 +128,7 @@
 
     .demo-description
         padding 10px 20px
+        font-size 12px
         code
             display inline-block
             vertical-align 2px

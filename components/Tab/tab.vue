@@ -51,7 +51,7 @@
         },
         watch: {
             innerValue: function (v) {
-                if (this.$parent.value == this.value) {
+                if (this.$parent.value === this.value) {
                     this.autoMove();
                 }
             }

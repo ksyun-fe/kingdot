@@ -38,10 +38,6 @@
                     {
                         path: '/color',
                         name: 'color'
-                    },
-                    {
-                        path: '/updatelog',
-                        name: 'update logs'
                     }
                 ]
             };
