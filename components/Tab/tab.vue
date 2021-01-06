@@ -42,7 +42,7 @@
         computed: {
             checked() {
                 let flag = false;
-                flag = this.$parent.value === this.value;
+                flag = this.$parent.value == this.value;
                 return flag;
             },
             innerValue() {
