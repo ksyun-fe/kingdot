@@ -1,6 +1,9 @@
 /* eslint-disable no-undef */
 <template>
-    <div class="kd-drawer">
+    <div
+            class="kd-drawer"
+            :style="kdDrawerMainbox"
+    >
         <!-- 遮罩 -->
         <transition name="mask">
             <div
@@ -60,6 +63,7 @@
 </template>
 
 <script>
+    import nextZIndex from '../../src/utils/zIndex.js';
     export default {
         name: 'Drawer',
         props: {
@@ -167,6 +171,11 @@
                     // eslint-disable-next-line vue/no-side-effects-in-computed-properties
                     this.flag = '';
                 }
+                return style;
+            },
+            kdDrawerMainbox() {
+                const style = {};
+                style.zIndex = nextZIndex();
                 return style;
             }
         },
