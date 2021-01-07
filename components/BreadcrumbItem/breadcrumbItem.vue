@@ -43,7 +43,7 @@
 
 <script type="text/javascript">
     export default {
-        name: 'BreadcrumbItem',
+        name: 'KdBreadcrumbItem',
         components: {},
         props: {
             href: {
@@ -73,7 +73,7 @@
         methods: {
             // 处理跳转
             handleLink(e) {
-                if (this.href != undefined) return;
+                if (this.href !== undefined) return;
                 if (this.to === undefined) {
                     this.$emit('click', e);
                 } else {

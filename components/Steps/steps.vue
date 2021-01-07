@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
     export default {
-        name: 'Steps',
+        name: 'KdSteps',
         components: {},
         props: {
             value: {

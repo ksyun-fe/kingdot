@@ -48,6 +48,13 @@ button:focus
     border-radius: 6px;
     background-color: #CCCCCC;
 
+.dark
+    ::-webkit-scrollbar
+        background-color: #1B2338
+    ::-webkit-scrollbar-track
+        background-color: #1B2338
+    ::-webkit-scrollbar-thumb
+        background-color #4F576E
 
 .component-doc-content
     table
@@ -55,6 +62,7 @@ button:focus
         width 100%
         border-collapse collapse
         border-spacing 0
+        font-size 12px
         background #fff
         thead
             background linear-gradient(180deg,#fff,#fafafa)
@@ -111,7 +119,11 @@ button:focus
         flex 0
         width 213px
         left 0
-        z-index 9999
+        z-index 999
+    .menu-wrap
+        width 100%
+        height 100%
+        overflow auto
     .main-container
         box-sizing border-box
         padding 20px 20px 20px 40px
@@ -132,12 +144,15 @@ button:focus
             transition left ease-in-out 0.3s
             &.active-menu
                 left 0
-
+        .menu-wrap
+            width 100%
+            height 100%
+            overflow auto
 .code-highlight
     margin 0
 
     .hljs
-        font-size 14px
+        font-size 12px
         line-height 0
         background #fafafa
         padding 20px

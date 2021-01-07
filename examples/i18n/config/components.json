@@ -103,7 +103,16 @@
                 },
                 {
                     "name": "Navigation",
-                    "children": []
+                    "children": [{
+                        "path": "/steps",
+                        "name": "Steps 步骤条"
+                    },{
+                        "path": "/breadcrumb",
+                        "name": "Breadcrumb面包屑"
+                    },{
+                        "path": "/tabs",
+                        "name": "Tabs标签页"
+                    }]
                 },
                 {
                     "name": "Others",
@@ -115,29 +124,15 @@
                         {
                             "path": "/transition",
                             "name": "Transition 过渡动画"
+                        },
+                        {
+                            "path": "/dialog",
+                            "name": "Dialog 对话框"
+                        },{
+                            "path": "/drawer",
+                            "name": "Drawer 抽屉"
                         }
                     ]
-                },
-                {
-                    "name":"Steps",
-                    "children":[{
-                        "path": "/steps",
-                        "name": "Steps 步骤条"
-                    }]
-                },
-                {
-                    "name":"Tabs",
-                    "children":[{
-                        "path": "/tabs",
-                        "name": "Tabs标签页"
-                    }]
-                },
-                {
-                    "name":"Breadcrumb",
-                    "children":[{
-                        "path": "/breadcrumb",
-                        "name": "Breadcrumb面包屑"
-                    }]
                 }
             ]
 
@@ -231,7 +226,16 @@
                 },
                 {
                     "name": "Navigation",
-                    "children": []
+                    "children": [{
+                        "path": "/steps",
+                        "name": "Steps"
+                    },{
+                        "path": "/breadcrumb",
+                        "name": "Breadcrumb"
+                    },{
+                        "path": "/tabs",
+                        "name": "Tabs"
+                    }]
                 },
                 {
                     "name": "Others",
@@ -239,22 +243,12 @@
                         {
                             "path": "/collapse",
                             "name": "Collapse"
+                        },
+                        {
+                            "path": "/dialog",
+                            "name": "Dialog"
                         }
                     ]
-                },
-                {
-                    "name":"Steps",
-                    "children":[{
-                        "path": "/steps",
-                        "name": "Steps"
-                    }]
-                },
-                {
-                    "name":"Breadcrumb",
-                    "children":[{
-                        "path": "/breadcrumb",
-                        "name": "Breadcrumb"
-                    }]
                 }
             ]
         }

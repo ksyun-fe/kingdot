@@ -98,7 +98,7 @@ describe("Button", () => {
       },
     });
     vm.$nextTick((_) => {
-        expect(vm.$el.childNodes[0].childNodes[1].childNodes[0].childNodes[0].childNodes[0].childNodes[3].classList.contains('kd-step-icon')).to.be
+        expect(vm.$el.childNodes[0].childNodes[1].childNodes[0].childNodes[0].childNodes[0].childNodes[2].classList.contains('kd-step-icon')).to.be
         .true;
       done();
     }, 500);

@@ -6,7 +6,7 @@
 
 <script type="text/javascript">
     export default {
-        name: 'Breadcrumb',
+        name: 'KdBreadcrumb',
         components: {
 
         },

@@ -1,6 +1,6 @@
 {
     "name": "kingdot",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "A UI Components Library For Vue",
     "author": "kingsoft",
     "main": "lib/index.js",
@@ -41,8 +41,8 @@
         "dist": "npm run clean && npm run build:entry && npm run lint && npm run dist:theme && npm run dist:locale && npm run dist:prod && npm run dist:commonjs && npm run dist:component",
         "publish": "sh build/deploy.sh",
         "release": "npm version patch && git push && npm publish",
-        "test": "npm run dist:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-        "test:watch": "npm run dist:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+        "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+        "test:watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
         "lang": "node build/bin/lang.js"
     },
     "husky": {
@@ -50,6 +50,11 @@
             "pre-commit": "lint-staged",
             "commit-msg": "commitLint -E HUSKY_GIT_PARAMS"
         }
+    },
+    "lint-staged": {
+        "*.{js,vue}": [
+            "eslint"
+        ]
     },
     "dependencies": {
         "@popperjs/core": "^2.5.3",
@@ -150,6 +155,7 @@
         "stylus": "^0.54.7",
         "stylus-loader": "^3.0.2",
         "terser-webpack-plugin": "^3.0.3",
+        "three-js": "^75.0.1",
         "uglifyjs-webpack-plugin": "^2.2.0",
         "url-loader": "^4.1.0",
         "vue": "^2.6.11",
