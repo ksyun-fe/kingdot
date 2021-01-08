@@ -2,17 +2,25 @@
 @import '../../mixin.styl';
 
 $-btn-types = primary success warning danger
-
+$-btn-gradient := $-btn-type == 'gradient'
 .kd-btn-group
     display flex
     justify-content start
     .kd-btn-default
         margin-left -1px
         border-radius 0
-        background-color #fff
+        // background $-btn-group-default-color
         &:focus:not(.kd-btn-active)
         &:hover:not(.kd-btn-active)
             z-index 2
+            background $-btn-group-default-hover-color
+            if $-btn-gradient
+                border: none
+                span
+                    display: inline-block
+                    padding 1px
+        &:active:not(.kd-btn-active)
+            background $-btn-group-default-active-color
     .kd-btn-default:first-child
         margin-left 0
         border-radius $-btn-border-radius 0 0 $-btn-border-radius
@@ -35,7 +43,7 @@ $-btn-types = primary success warning danger
                 top 5px
                 width 1px
                 height calc(100% - 10px)
-                background palette(lookup('$-btn-'+ type +'-color'),-1)
+                background lookup('$-btn-'+ type +'-color')
                 border-radius 2px
 
 .kd-btn-group-radio
@@ -45,11 +53,16 @@ $-btn-types = primary success warning danger
         &:hover
             color $-btn-primary-color
     .kd-btn-active
-        background-color $-btn-primary-color
-        color $-white-color
+        background $-btn-primary-color
+        color $-btn-active-color
         border-color $-btn-primary-color
+        if $-btn-gradient
+            border: none
+            span
+                display: inline-block
+                padding 1px
         &:hover
-            color $-white-color
+            color $-btn-active-color
         &:before
             content:''
             width: 1px 
@@ -57,7 +70,7 @@ $-btn-types = primary success warning danger
             left -1px
             top 5px
             bottom 5px
-            background-color: palette(lookup('$-btn-primary-color'),-1)
+            background: $-btn-active-line-color
     .kd-btn-active:first-child
         &:before
             display: none
