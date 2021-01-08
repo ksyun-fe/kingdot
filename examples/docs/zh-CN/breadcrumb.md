@@ -1,31 +1,31 @@
 ### Breadcrumb面包屑
  用途： 显示当前页面的路径，快速返回之前的任意页面。
 ### 基础用法
-:::demo #基础用法 ##在Breadcrumb中使用BreadcrumbItem标签表示从首页开始的每一级。
+:::demo #基础用法 ##在Breadcrumb中使用Breadcrumb-item标签表示从首页开始的每一级。
 
 ```html
 <template>
     <div>
-         <Breadcrumb separator="/">
-            <BreadcrumbItem>一级菜单</BreadcrumbItem>
-            <BreadcrumbItem>二级菜单</BreadcrumbItem>
-            <BreadcrumbItem>三级菜单</BreadcrumbItem>
-        </Breadcrumb>
+         <kd-breadcrumb separator="/">
+            <kd-breadcrumb-item>一级菜单</kd-breadcrumb-item>
+            <kd-breadcrumb-item>二级菜单</kd-breadcrumb-item>
+            <kd-breadcrumb-item>三级菜单</kd-breadcrumb-item>
+        </kd-breadcrumb>
     </div>
 </template>
 ```
 :::
 ### 可以返回任意父级
-:::demo #基础用法 ##给每个父级BreadcrumbItem标签增to或href属性。
+:::demo #基础用法 ##给每个父级Breadcrumb-item标签增to或href属性。
 
 ```html
 <template>
     <div>
-         <Breadcrumb>
-            <BreadcrumbItem to="/">一级菜单</BreadcrumbItem>
-            <BreadcrumbItem href="/">二级菜单</BreadcrumbItem>
-            <BreadcrumbItem>三级菜单</BreadcrumbItem>
-        </Breadcrumb>
+         <kd-breadcrumb>
+            <kd-breadcrumb-item to="/">一级菜单</kd-breadcrumb-item>
+            <kd-breadcrumb-item href="/">二级菜单</kd-breadcrumb-item>
+            <kd-breadcrumb-item>三级菜单</kd-breadcrumb-item>
+        </kd-breadcrumb>
     </div>
 </template>
 ```
@@ -37,18 +37,18 @@
 <template>
     <div>
         <div>
-         <Breadcrumb separator="/">
-            <BreadcrumbItem to="/">一级菜单</BreadcrumbItem>
-            <BreadcrumbItem href="/">二级菜单</BreadcrumbItem>
-            <BreadcrumbItem>三级菜单</BreadcrumbItem>
-        </Breadcrumb>
+         <kd-breadcrumb separator="/">
+            <kd-breadcrumb-item to="/">一级菜单</kd-breadcrumb-item>
+            <kd-breadcrumb-item href="/">二级菜单</kd-breadcrumb-item>
+            <kd-breadcrumb-item>三级菜单</kd-breadcrumb-item>
+        </kd-breadcrumb>
         </div>
         <div style="margin-top:20px">
-         <Breadcrumb separatorClass="kd-icon-video-play">
-            <BreadcrumbItem to="/" href="#/zh-CN/component/button">一级菜单</BreadcrumbItem>
-            <BreadcrumbItem href="/">二级菜单</BreadcrumbItem>
-            <BreadcrumbItem>三级菜单</BreadcrumbItem>
-        </Breadcrumb>
+         <kd-breadcrumb separatorClass="kd-icon-video-play">
+            <kd-breadcrumb-item to="/" href="#/zh-CN/component/button">一级菜单</kd-breadcrumb-item>
+            <kd-breadcrumb-item href="/">二级菜单</kd-breadcrumb-item>
+            <kd-breadcrumb-item>三级菜单</kd-breadcrumb-item>
+        </kd-breadcrumb>
         </div>
     </div>
 </template>
@@ -62,7 +62,7 @@
 |separatorClass | 图标分隔符 class  |  String | -     | - |
 
 
-### BreadcrumbItem 属性 {.component_content}
+### Breadcrumb-item 属性 {.component_content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 |  to       |路由跳转对象，同 vue-router 的 to| String/Function/Object | - | - |

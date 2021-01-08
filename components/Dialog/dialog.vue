@@ -158,7 +158,7 @@
     import transferDom from './transfer-dom.js';
     import { mouseDragBegin, animationFrame } from './utils.js';
     export default {
-        name: 'Dialog',
+        name: 'KdDialog',
         directives: { transferDom },
         props: {
             // v-model绑定，控制dialog显示与隐藏
