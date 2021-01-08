@@ -5,6 +5,8 @@ $-btn-border-types := default dashed
 $-btn-types := primary success warning danger
 $-btn-size-types := large small mini
 $-btn-text-types := none text
+$-btn-gradient := $-btn-type == 'gradient'
+
 
 .kd-btn
   position relative
@@ -14,65 +16,79 @@ $-btn-text-types := none text
   border-radius $-btn-border-radius
   line-height 1
   border 1px solid $-btn-default-border-color
-  color $-black-color
-
+  color $-btn-default-color
+  
 //  border的类型
 for border in $-btn-border-types
     .kd-btn-{border}
-        background-color $-btn-default-bg
-        color $-btn-default-color
+        background $-btn-default-bg
+        color $-btn-default-color 
         border-style lookup('$-btn-'+ border +'-border-style')
         &:hover
         &:focus
-            color $-btn-primary-color
-            border-color $-btn-primary-color
+            color $-btn-default-hover-color
+            background $-btn-default-hover-bg-color
+            border-color $-btn-default-hover-border-color
         &:active
-            border-color $-btn-primary-color
-            background-color palette($-btn-primary-color, -3)
-            color palette($-btn-primary-color,1)
+            border-color $-btn-default-active-border-color
+            background $-btn-default-active-bg-color
+            color $-btn-default-active-colo
 
     .kd-btn-{border}.kd-btn-hollow
-        background-color transparent
+        background transparent
         border 1px solid $-btn-border-color
         color $-btn-default-color
         &:hover
         &:focus
-            border 1px solid lookup('$-btn-'+ type +'-color')
-            color palette($-btn-primary-color, 0)
+            border 1px solid $-btn-hollow-hover-border-color
+            color $-btn-hollow-hover-color
+            if $-btn-gradient
+                background $-btn-default-hover-bg-color
         &:active
-            color palette($-btn-primary-color, 1)
-
+            color $-btn-hollow-active-color
+            if $-btn-gradient
+                background $-btn-default-active-bg-color
     .kd-btn-{border}.kd-btn-disabled
-        background-color $-btn-disabled-bg-color
+        background $-btn-disabled-bg-color
         border-color $-btn-border-color
         color $-btn-disabled-color
     
 //4种状态
 for type in $-btn-types
     .kd-btn-{type}
-        background-color lookup('$-btn-'+ type +'-color')
-        border 1px solid lookup('$-btn-'+ type +'-color')
+        background lookup('$-btn-'+ type +'-color')
         color $-white-color
+        if $-btn-gradient && type == "primary"
+            border none
+            span
+            i
+                display inline-block
+                padding 1px
+        else
+            border 1px solid lookup('$-btn-'+ type +'-color')
         &:hover
         &:focus
-            background-color palette(lookup('$-btn-'+ type +'-color'),-1)
-            border-color palette(lookup('$-btn-'+ type +'-color'),-1)
+            background lookup('$-btn-'+ type +'-hover-bg')
+            border-color lookup('$-btn-'+ type +'-hover-border')
         &:active
-            background-color palette(lookup('$-btn-'+ type +'-color'),1)
-            border-color palette(lookup('$-btn-'+ type +'-color'),1)
+            background lookup('$-btn-'+ type +'-active-bg')
+            border-color lookup('$-btn-'+ type +'-active-border')
     //空心
     .kd-btn-{type}.kd-btn-hollow
-        background-color transparent
-        border 1px solid lookup('$-btn-'+ type +'-color')
+        background transparent
         color lookup('$-btn-'+ type +'-color')
+        if $-btn-gradient && type == 'primary'
+            border 1px solid $-btn-default-border-color
+        else
+            border 1px solid lookup('$-btn-'+ type +'-color')
         &:hover
         &:focus
-            background-color palette(lookup('$-btn-'+ type +'-color'), -4)
+            background lookup('$-btn-hollow-'+ type +'-hover-bg')
         &:active
-            background-color lookup('$-btn-'+ type +'-color')
+            background lookup('$-btn-'+ type +'-color')
             color $-white-color
     .kd-btn-{type}.kd-btn-disabled
-        background-color $-btn-disabled-bg-color
+        background $-btn-disabled-bg-color
         border-color $-btn-border-color
         color $-btn-disabled-color
 
@@ -80,14 +96,14 @@ for type in $-btn-types
 for textItem in $-btn-text-types
     .kd-btn-{textItem}
         padding 0
-        background-color transparent
+        background transparent
         border-color transparent
         color lookup('$-btn-'+ textItem +'-color')
         &:hover
         &:focus
-            color palette(lookup('$-btn-'+ textItem +'-hover-color'), -1)
+            color lookup('$-btn-'+ textItem +'-hover-color')
         &:active
-            color palette(lookup('$-btn-'+ textItem +'-hover-color'), 1)
+            color lookup('$-btn-'+ textItem +'-active-color')
     .kd-btn-{textItem}.kd-btn-disabled
         color $-disabled-color
 //  加载
@@ -101,7 +117,8 @@ for textItem in $-btn-text-types
         left -1px
         bottom -1px
         right -1px
-        background-color rgba(255,255,255,0.3)
+        border-radius $-btn-border-radius
+        background rgba(255,255,255,0.3)
 .kd-btn-loading-icon
     // i
     display inline-block
