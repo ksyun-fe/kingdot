@@ -65,7 +65,7 @@
 <script>
     import nextZIndex from '../../src/utils/zIndex.js';
     export default {
-        name: 'Drawer',
+        name: 'KdDrawer',
         props: {
             // 是否显示抽屉
             value: {
