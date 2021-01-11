@@ -1,0 +1,181 @@
+/* base */
+$text-color := #595959
+$placeholder-color := #B2B2B2
+$active-color := #557DFC
+html, body
+    margin: 0
+    padding: 0
+    height: 100%
+    color #444
+    -webkit-font-smoothing: antialiased; /*chrome、safari*/
+
+input
+    -webkit-appearance none
+    -moz-appearance none
+    border none
+    outline none
+    color $text-color
+
+ul, ol, li
+    list-style none
+    margin 0
+    padding 0
+
+input:focus
+select:focus
+    outline none
+::placeholder
+    color $placeholder-color
+a
+    text-decoration none
+    cursor pointer
+    &:hover
+        color $active-color
+
+button:focus
+    outline 0
+
+::-webkit-scrollbar
+    width: 6px;
+    height: 6px;
+    background-color: #fff;
+
+::-webkit-scrollbar-track
+    border-radius: 10px;
+    background-color: #fff;
+
+::-webkit-scrollbar-thumb
+    border-radius: 6px;
+    background-color: #CCCCCC;
+
+.dark
+    ::-webkit-scrollbar
+        background-color: #1B2338
+    ::-webkit-scrollbar-track
+        background-color: #1B2338
+    ::-webkit-scrollbar-thumb
+        background-color #4F576E
+
+.component-doc-content
+    table
+        table-layout fixed
+        width 100%
+        border-collapse collapse
+        border-spacing 0
+        font-size 12px
+        background #fff
+        thead
+            background linear-gradient(180deg,#fff,#fafafa)
+            tr
+                border-bottom 1px solid #f0f0f0
+            th
+                padding 14px 10px
+                text-align left
+                font-weight 400
+                position relative
+                &:first-of-type
+                    width 150px
+        tbody
+            tr
+                border-bottom 1px solid #f0f0f0
+            td
+                padding 14px 10px
+                word-wrap break-word
+    .row
+        margin-bottom: 20px
+.component-doc-content
+.content
+    h1
+        margin 18px 0
+        padding 10px 0
+    h2
+        padding 10px 0
+        margin 18px 0
+    h3
+        padding 10px 0
+        margin 18px 0
+
+.design-list
+    li
+        font-size 14px
+        line-height 30px
+        margin 10px 0
+        &:before
+            content ''
+            display inline-block
+            width 6px
+            height 6px
+            border 1px solid #778088
+            border-radius 50%
+            margin-right 10px
+
+/* page */
+.container
+    width 100%
+    height 100%
+    display: flex
+    .left-menu
+        height: 100%
+        flex 0
+        width 213px
+        left 0
+        z-index 999
+    .menu-wrap
+        width 100%
+        height 100%
+        overflow auto
+    .main-container
+        box-sizing border-box
+        padding 20px 20px 20px 40px
+        height: 100%
+        flex 1
+        overflow-y scroll
+        background-color: #f2f2f2
+@media (max-width: 780px)
+    .container
+        position relative
+        .left-menu
+            position absolute
+            top 0
+            bottom 0
+            width 213px
+            left -(@width)
+            background: #fff
+            transition left ease-in-out 0.3s
+            &.active-menu
+                left 0
+        .menu-wrap
+            width 100%
+            height 100%
+            overflow auto
+.code-highlight
+    margin 0
+
+    .hljs
+        font-size 12px
+        line-height 0
+        background #fafafa
+        padding 20px
+
+        & > pre
+            line-height 20px
+            margin 0
+
+body.dark
+    .container
+        .main-container
+            color #8D919B
+            background #222A41
+    .hljs
+        color #8D919B
+        background-color #1B2338
+    .component-doc-content
+        table
+            background #222A41
+            thead
+                background linear-gradient(180deg,#222A41,#2D354D)
+                tr
+                    border-bottom 1px solid #2F374F;
+            tbody
+                tr
+                    border-bottom 1px solid #2F374F;
