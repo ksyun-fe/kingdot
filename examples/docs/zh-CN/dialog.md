@@ -5,7 +5,7 @@
 <template>
     <div>
         <kd-button @click="openDialog">点击打开默认Dialog</kd-button>
-        <Dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800"></Dialog>
+        <kd-dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800"></kd-dialog>
     </div>
 </template>
 <script>
@@ -48,22 +48,22 @@
             <kd-button @click="openTipsDialog">提示类不居中Dialog</kd-button>
             <kd-button @click="openDialog">自定义body类Dialog</kd-button>
         </div>
-        <Dialog v-model="showMessageDialog"
+        <kd-dialog v-model="showMessageDialog"
                 type="tips"
                 :showTitle="false" 
                 icon="success"
                 tipsTitle="操作成功"
                 :tipsMessage="additionalTips"
-                :tipsIsCenter="true"></Dialog>
-        <Dialog v-model="showMessageDialog_noBottom"
+                :tipsIsCenter="true"></kd-dialog>
+        <kd-dialog v-model="showMessageDialog_noBottom"
                 type="tips"
                 :showTitle="false" 
                 icon="warning"
                 tipsTitle="操作成功"
                 :tipsMessage="additionalTips"
                 :showFooter="false"
-                :tipsIsCenter="true"></Dialog>
-        <Dialog v-model="showMessageDialog_confirm"
+                :tipsIsCenter="true"></kd-dialog>
+        <kd-dialog v-model="showMessageDialog_confirm"
                 type="confirm"
                 :showTitle="false" 
                 icon="failed"
@@ -72,8 +72,8 @@
             <div slot="footer">
                 <kd-button type="primary" @click="()=>{showMessageDialog_confirm=false}">确定</kd-button>
             </div>
-        </Dialog>
-        <Dialog v-model="showMessageDialog_confirmTitle"
+        </kd-dialog>
+        <kd-dialog v-model="showMessageDialog_confirmTitle"
                 type="confirm"
                 :showTitle="false" 
                 icon="failed"
@@ -82,19 +82,19 @@
             <!-- <div slot="footer">
                 <kd-button type="primary" @click="()=>{showMessageDialog_confirmTitle=false}">确定</kd-button>
             </div> -->
-        </Dialog>
+        </kd-dialog>
 
-        <Dialog v-model="showTipsDialog" 
+        <kd-dialog v-model="showTipsDialog" 
                 type="tips" 
                 :showTitle="false" 
                 icon="success"
                 tipsTitle="这是一条成功通知信息"
                 tipsMessage="提示信息"
-                ></Dialog>
-         <Dialog title="创建提醒" v-model="showDialog">
+                ></kd-dialog>
+         <kd-dialog title="创建提醒" v-model="showDialog">
             <p style="text-align:left">该任务暂未创建tensorboard</p>
             <p style="text-align:left; color:red">是否要创建？</p>
-         </Dialog>
+         </kd-dialog>
     </div>
 </template>
 <script>
@@ -151,7 +151,7 @@
 <template>
     <div>
         <kd-button @click="openMessageDialog">增加滚动的Dialog</kd-button>
-        <Dialog title="创建提醒" v-model="showDialog" height="200" :isScroll="true">
+        <kd-dialog title="创建提醒" v-model="showDialog" height="200" :isScroll="true">
             <div>
                 附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
                 附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
@@ -163,7 +163,7 @@
                 附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
                 附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。
             </div>
-         </Dialog>
+         </kd-dialog>
     </div>
 </template>
 <script>

@@ -1,3 +1,4 @@
+import 'promise-polyfill/src/polyfill';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
