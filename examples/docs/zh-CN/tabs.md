@@ -3,11 +3,11 @@
 ```html
 <template>
  <div>
- <Tabs  v-model='key'>
-    <Tab value='1'>标签页一</Tab>
-    <Tab value='2'>标签页二</Tab>
-    <Tab value='3'>标签页三</Tab>
- </Tabs>   
+ <kd-tabs  v-model='key'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2'>标签页二</kd-tab>
+    <kd-tab value='3'>标签页三</kd-tab>
+ </kd-tabs>   
  </div>   
 </template>   
 <script>
@@ -26,11 +26,11 @@
 ```html
 <template>
  <div>
- <Tabs  v-model='key' type='pagination'>
-    <Tab value='1'>标签页一</Tab>
-    <Tab value='2'>标签页二</Tab>
-    <Tab value='3'>标签页三</Tab>
- </Tabs>   
+ <kd-tabs  v-model='key' type='pagination'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2'>标签页二</kd-tab>
+    <kd-tab value='3'>标签页三</kd-tab>
+ </kd-tabs>   
  </div>   
 </template>   
 <script>
@@ -49,11 +49,11 @@
 ```html
 <template>
  <div>
- <Tabs  v-model='key' type='block'>
-    <Tab value='1'>标签页一</Tab>
-    <Tab value='2'>标签页二</Tab>
-    <Tab value='3'>标签页三</Tab>
- </Tabs>   
+ <kd-tabs  v-model='key' type='block'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2'>标签页二</kd-tab>
+    <kd-tab value='3'>标签页三</kd-tab>
+ </kd-tabs>   
  </div>   
 </template>   
 <script>
@@ -72,11 +72,11 @@
 ```html
 <template>
  <div>
- <Tabs  v-model='key' type='card'>
-    <Tab value='1'>标签页一</Tab>
-    <Tab value='2'>标签页二</Tab>
-    <Tab value='3'>标签页三</Tab>
- </Tabs>   
+ <kd-tabs  v-model='key' type='card'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2'>标签页二</kd-tab>
+    <kd-tab value='3'>标签页三</kd-tab>
+ </kd-tabs>   
  </div>   
 </template>   
 <script>
@@ -95,11 +95,11 @@
 ```html
 <template>
  <div>
- <Tabs  v-model='key' type='vertical'>
-    <Tab value='1'>标签页一</Tab>
-    <Tab value='2'>标签页二</Tab>
-    <Tab value='3'>标签页三</Tab>
- </Tabs>   
+ <kd-tabs  v-model='key' type='vertical'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2'>标签页二</kd-tab>
+    <kd-tab value='3'>标签页三</kd-tab>
+ </kd-tabs>   
  </div>   
 </template>   
 <script>
@@ -118,23 +118,23 @@
 ```html
 <template>
  <div>
- <Tabs  v-model='key'>
-    <Tab value='1'>标签页一</Tab>
-    <Tab value='2' disabled>标签页二</Tab>
-    <Tab value='3' disabled>标签页三</Tab>
- </Tabs>   
+ <kd-tabs  v-model='key'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2' disabled>标签页二</kd-tab>
+    <kd-tab value='3' disabled>标签页三</kd-tab>
+ </kd-tabs>   
  <br>
- <Tabs  v-model='key' type='block'>
-    <Tab value='1'>标签页一</Tab>
-    <Tab value='2' disabled>标签页二</Tab>
-    <Tab value='3' disabled>标签页三</Tab>
- </Tabs> 
+ <kd-tabs  v-model='key' type='block'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2' disabled>标签页二</kd-tab>
+    <kd-tab value='3' disabled>标签页三</kd-tab>
+ </kd-tabs> 
  <br>  
- <Tabs  v-model='key'  type='vertical'>
-    <Tab value='1'>标签页一</Tab>
-    <Tab value='2' disabled>标签页二</Tab>
-    <Tab value='3' disabled>标签页三</Tab>
- </Tabs>   
+ <kd-tabs  v-model='key'  type='vertical'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2' disabled>标签页二</kd-tab>
+    <kd-tab value='3' disabled>标签页三</kd-tab>
+ </kd-tabs>   
  </div>   
 </template>   
 <script>
@@ -153,9 +153,9 @@
 ```html
 <template> 
 <div>
- <Tabs  v-model='editableTabsValue' type='block' @addTab='addTab' :closable=true  @close='closeTab' :addable=true>
-      <Tab v-for="item in editableTabs" :value='item.name' :key='item.name'>  {{item.title}}  </Tab>
- </Tabs>
+ <kd-tabs  v-model='editableTabsValue' type='block' @addTab='addTab' :closable=true  @close='closeTab' :addable=true>
+      <kd-tab v-for="item in editableTabs" :value='item.name' :key='item.name'>  {{item.title}}  </kd-tab>
+ </kd-tabs>
  </div>   
 </template>   
 <script>
@@ -208,11 +208,11 @@
 ```html
 <template>
  <div>
- <Tabs  v-model='key' type='card'>
-    <Tab value='1'> <i class='kd-icon-upload-file'></i> 标签页一</Tab>
-    <Tab value='2'> <i class='kd-icon-date'></i> 标签页二</Tab>
-    <Tab value='3'>自定义</Tab>
- </Tabs>   
+ <kd-tabs  v-model='key' type='card'>
+    <kd-tab value='1'> <i class='kd-icon-upload-file'></i> 标签页一</kd-tab>
+    <kd-tab value='2'> <i class='kd-icon-date'></i> 标签页二</kd-tab>
+    <kd-tab value='3'>自定义</kd-tab>
+ </kd-tabs>   
  </div>   
 </template>   
 <script>
