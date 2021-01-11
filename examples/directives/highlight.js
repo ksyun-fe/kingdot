@@ -1,5 +1,5 @@
-import hljs from 'highlight.js/lib/highlight.js';
-import 'highlight.js/styles/color-brewer.css';
+const hljs = require('highlight.js/lib/highlight.js');
+require('highlight.js/styles/color-brewer.css');
 
 hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
 hljs.registerLanguage('xml', require('highlight.js/lib/languages/xml'));
