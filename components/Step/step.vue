@@ -111,7 +111,7 @@
 
 <script type="text/javascript">
     export default {
-        name: 'Step',
+        name: 'KdStep',
         components: {},
         props: {
             title: {

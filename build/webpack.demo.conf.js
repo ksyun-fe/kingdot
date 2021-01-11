@@ -39,6 +39,7 @@ const cssLoader = (preprocessor) => {
 };
 
 const entry = [
+    'babel-polyfill',
     path.resolve(__dirname, '../examples/main.js')
 ];
 

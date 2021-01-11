@@ -57,10 +57,11 @@
         ]
     },
     "dependencies": {
-        "@popperjs/core": "^2.5.4",
+        "@popperjs/core": "^2.5.3",
         "babel-helper-vue-jsx-merge-props": "^2.0.3",
         "lodash": "^4.17.4",
         "normalize-wheel": "^1.0.1",
+        "promise-polyfill": "8.2.0",
         "ulid": "^2.3.0"
     },
     "devDependencies": {

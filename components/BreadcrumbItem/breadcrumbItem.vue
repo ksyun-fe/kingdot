@@ -43,7 +43,7 @@
 
 <script type="text/javascript">
     export default {
-        name: 'BreadcrumbItem',
+        name: 'KdBreadcrumbItem',
         components: {},
         props: {
             href: {
