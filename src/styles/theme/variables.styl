@@ -116,33 +116,92 @@ $-icon-mini-font-size := unit(12 / 14, rem)
 /******************************
         ButtonGroup Button
 *******************************/
-
-//btn disabled
+$-btn-type := 'gradient'
 $-white-color := #fff
 $-black-color := #000
 $-btn-disabled-color := $-border-base-color
 $-btn-disabled-bg-color := $-disabled-bg-color
 $-btn-disabled-border-color := $-disabled-border-color
 
-//btn default
-$-btn-default-padding := 9px 16px
-$-btn-default-font-size := 12px
-$-btn-default-border-color := $-border-base-color
-$-btn-default-bg := #fff
-$-btn-default-color := $-black-color
+$-btn-default-border-color := #525C77
+$-btn-default-bg := rgb(26,34,54)
+$-btn-default-color := $-white-color
+
+$-btn-default-hover-color := $-white-color
+$-btn-default-hover-bg-color := #3D4660
+$-btn-default-hover-border-color := #525C77
+
+$-btn-default-active-color :=  #4165D7
+$-btn-default-active-bg-color :=  #38425E
+$-btn-default-active-border-color :=  #525C77
+
+$-btn-hollow-hover-color := $-white-color
+$-btn-hollow-hover-border-color := #525C77
+$-btn-hollow-active-color := $-white-color
+
+$-btn-primary-hover-bg := linear-gradient(180deg, #E8465D 0%, #603D5F 100%)
+$-btn-primary-hover-border := $-border-base-color
+$-btn-primary-active-bg := linear-gradient(180deg, #B8283C 0%, #3E203D 100%)
+$-btn-primary-active-border := $-border-base-color
+
+$-btn-success-hover-bg := #5ED79E 
+$-btn-success-hover-border := #5ED79E 
+$-btn-success-active-bg := #39B67A
+$-btn-success-active-border := #39B67A
+
+$-btn-warning-hover-bg := #FFAF6A
+$-btn-warning-hover-border := #FFAF6A
+$-btn-warning-active-bg := #F68E35
+$-btn-warning-active-border := #F68E35
+
+$-btn-danger-hover-bg := #FF7F91
+$-btn-danger-hover-border := #FF7F91
+$-btn-danger-active-bg := #CB2C42
+$-btn-danger-active-border := #CB2C42
+
+$-btn-hollow-primary-hover-bg := $-btn-primary-hover-bg
+$-btn-hollow-primary-active-bg := $-btn-primary-active-bg
+$-btn-hollow-success-hover-bg := #e5fff1
+$-btn-hollow-success-active-bg := #38C482
+$-btn-hollow-warning-hover-bg := #fff0e5
+$-btn-hollow-warning-active-bg := #e5fff1
+$-btn-hollow-danger-hover-bg := #ffe5ee
+$-btn-hollow-danger-active-bg := #EF4E76
+
 //type
-$-btn-primary-color := $-primary-color
+$-btn-primary-color := linear-gradient(180deg, #F8334C 0%, #4E284D 91%)
+$-btn-primary-border := transparent
 $-btn-success-color := $-success-color
 $-btn-warning-color := $-warning-color
 $-btn-danger-color := $-danger-color
 $-btn-text-color := $-primary-color
-$-btn-none-color := $-black-color
+$-btn-none-color := #fff
 
-$-btn-text-hover-color := $-primary-color
-$-btn-none-hover-color := $-primary-color
-//loading 
+$-btn-text-hover-color := #7999FF 
+$-btn-text-active-color := #4165D7
+$-btn-none-hover-color := #7999FF 
+$-btn-none-active-color := #4165D7
+
+// group
+$-btn-group-default-color := #525C77
+$-btn-group-default-hover-color := $-btn-primary-hover-bg
+$-btn-group-default-active-color := $-btn-primary-active-bg
+$-btn-active-line-color := $-btn-primary-active-bg
+$-btn-active-color := #fff
+
+// $-btn-group-default-before-color := #525C77
+// $-btn-group-primary-before-color := #525C77
+// $-btn-group-success-before-color := #525C77
+// $-btn-group-warning-before-color := #525C77
+// $-btn-group-dar-before-color := #525C77
+
+//btn default
+$-btn-default-padding := 9px 16px
+$-btn-default-font-size := 12px
+
+//loading
 $-btn-stroke-width := 6
-//split 
+//split
 $-btn-split-padding := 5px 10px
 
 //border
@@ -175,6 +234,7 @@ $-btn-icon-text-gutter := 8px
 
 $-btn-loading-r = 120 - 60 - ($-btn-stroke-width / 2)
 $-btn-loading-c = round(2 * 3.14 * $-btn-loading-r)
+
 
 /******************************
         Radio

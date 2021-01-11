@@ -89,11 +89,11 @@ describe('Button', () => {
             done();
         }, 50);
     });
-    it('login not click button', done => {
+    it('loading not click button', done => {
         let result;
         vm = createVue({
             template: `
-                <Button type='primary' loading @click='btnTest'>测试</Button>
+                <Button @click='btnTest' loading ><span class="inner-text"></span></Button>
             `,
             methods: {
                 btnTest(e) {
@@ -101,9 +101,9 @@ describe('Button', () => {
                 }
             }
         });
-        vm.$el.click();
+        vm.$el.querySelector(".inner-text").click();
         setTimeout(() => {
-            expect(result).to.not.exist;
+            expect(result).to.exist;
             done();
         }, 50);
     });
