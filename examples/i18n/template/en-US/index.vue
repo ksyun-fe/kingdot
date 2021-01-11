@@ -200,9 +200,11 @@
         text-align center
         position relative
         .panel
-            position relative
+            position absolute
+            left 50%
             top 50%
-            margin 0 auto
+            transform translate(-50%)
+            // margin 0 auto
             padding 0 58px
             height: 398px
             margin-top -(@height / 2)
