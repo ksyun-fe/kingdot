@@ -171,22 +171,22 @@
         <div class='comp-top'>
             <kd-button-group>
                 <kd-button>按钮1</kd-button>
-                <kd-button icon='iconmoren_xinzeng'>按钮2</kd-button>
-                <kd-button icon='iconmoren_xinzeng'>按钮3</kd-button>
+                <kd-button>按钮2</kd-button>
+                <kd-button>按钮3</kd-button>
             </kd-button-group>
         </div>
         <div class='comp-top'>
             <kd-button-group checkType="radio" v-model="radioValue" >
                 <kd-button value="1" >按钮1</kd-button>
-                <kd-button value="2" icon='iconmoren_xinzeng'>按钮2</kd-button>
-                <kd-button value="3" icon='iconmoren_xinzeng'>按钮3</kd-button>
+                <kd-button value="2">按钮2</kd-button>
+                <kd-button value="3" >按钮3</kd-button>
             </kd-button-group>
         </div>
         <div class='comp-top'>
             <kd-button-group checkType="checkbox" v-model="checkboxValue">
                 <kd-button value="1" >按钮1</kd-button>
-                <kd-button value="2" icon='iconmoren_xinzeng'>按钮2</kd-button>
-                <kd-button value="3" icon='iconmoren_xinzeng'>按钮3</kd-button>
+                <kd-button value="2">按钮2</kd-button>
+                <kd-button value="3">按钮3</kd-button>
             </kd-button-group>
         </div>
     </div>
