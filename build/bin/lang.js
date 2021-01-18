@@ -8,12 +8,14 @@ pageConfig.forEach(ele => {
         fs.mkdirSync(path.resolve(__dirname, `../../examples/i18n/template/${ele.lang}`));
     }
     // 替换模板中的字符
-    Object.entries(ele.page).forEach(([pageName, pageWords]) => {
+    Object.keys(ele.page).forEach((pageName) => {
+        const pageWords = ele.page[pageName];
         const tplPath = path.resolve(__dirname, `../../examples/i18n/template/${pageName}.tpl`);
         const vuePath = path.resolve(__dirname, `../../examples/i18n/template/${ele.lang}/${pageName}.vue`);
         let content = fs.readFileSync(tplPath, 'utf8');
 
-        Object.entries(pageWords).forEach(([key, val]) => {
+        Object.keys(pageWords).forEach((key) => {
+            const val = pageWords[key];
             const reg = new RegExp(`<%=\\s*${key}\\s*>`, 'g');
             content = content.replace(reg, val);
         });

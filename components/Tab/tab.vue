@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        name: 'Tab',
+        name: 'KdTab',
         props: {
             // eslint-disable-next-line vue/require-prop-types
             value: {
