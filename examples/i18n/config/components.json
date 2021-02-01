@@ -64,6 +64,10 @@
                         {
                             "path": "/checkbox",
                             "name": "Checkbox 多选框"
+                        },
+                        {
+                            "path": "/slider",
+                            "name": "Slider 滑块"
                         }
                     ]
                 },
@@ -77,6 +81,10 @@
                         {
                             "path": "/timeline",
                             "name": "Timeline 时间轴"
+                        },
+                        {
+                            "path": "/tree",
+                            "name": "Tree 树"
                         }
                     ]
                 },
