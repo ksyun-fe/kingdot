@@ -117,7 +117,7 @@
                 const handlers = [];
                 const rules = Object.assign({}, this.rules);
                 const keys = [];
-                const $data = JSON.stringify(this.$vnode.context.$data) === '{}' ? this.$vnode.context.$props : this.$vnode.context.$data;
+                const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
                 const value = this.deepGetValue($data, this.model).value;
                 if (value !== this.oldValue) {
                     this.oldValue = value;
