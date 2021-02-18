@@ -8,7 +8,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../lib'),
         publicPath: '/dist/',
-        filename: 'index.js',
+        filename: 'kingdot.js',
         chunkFilename: '[id].js',
         library: 'KingDot',
         libraryExport: 'default',
