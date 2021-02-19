@@ -29,11 +29,11 @@ describe('drawer', () => {
     it('Refactoring drawer header', () => {
         vm = createVue({
             template: `
-                <Drawer  
+                <kd-drawer  
                    v-model="visible"
                >
                   <div slot="header">我是重构标题</div>
-               </Drawer>
+               <kd-drawer>
             `,
             data() {
                 return {
@@ -57,26 +57,26 @@ describe('drawer', () => {
 
     //自定义 footer
     it('custom drawer footer', () => {
-        vm = createVue({
-            template: `
-                <Drawer  
+            vm = createVue({
+                template: `
+                <kd-drawer  
                  v-model="visible"
                 >
               <div slot="footer">
                 <Button>自定义</Button>
               </div>
-                </Drawer>
+                <kd-drawer>
             `,
-            data() {
-                return {
-                    visible: true
+                data() {
+                    return {
+                        visible: true
+                    }
                 }
-            }
-        }, true)
-        let footer = vm.$el.childNodes[1].childNodes[2].childNodes[0].childNodes[0];
-        expect(footer.classList[0]).to.equal('kd-btn');
-    })
-    //隐藏 footer
+            }, true)
+            let footer = vm.$el.childNodes[1].childNodes[2].childNodes[0].childNodes[0];
+            expect(footer.classList[0]).to.equal('kd-btn');
+        })
+        //隐藏 footer
     it('hide drawer footer', () => {
         vm = createCons(Drawer, {
             value: true,
@@ -88,32 +88,32 @@ describe('drawer', () => {
 
     //点击X关闭 drawer
     it('close drawer', () => {
-        vm = createVue({
-            template: `
-                <Drawer  
+            vm = createVue({
+                template: `
+                <kd-drawer  
                  v-model="visible"
                 >
-                </Drawer>
+                <kd-drawer>
             `,
-            data() {
-                return {
-                    visible: true
+                data() {
+                    return {
+                        visible: true
+                    }
                 }
-            }
-        }, true)
-        vm.$el.childNodes[1].childNodes[0].childNodes[1].click();
-        setTimeout(() => {
-            expect(vm.visible).to.be.false;
-            done();
-        }, 500);
-    })
-    //自定义内容
+            }, true)
+            vm.$el.childNodes[1].childNodes[0].childNodes[1].click();
+            setTimeout(() => {
+                expect(vm.visible).to.be.false;
+                done();
+            }, 500);
+        })
+        //自定义内容
     it('custom drawer content', () => {
         vm = createVue({
             template: `
-                <Drawer  
+                <kd-drawer  
                  v-model="visible"
-                >自定义内容</Drawer>
+                >自定义内容<kd-drawer>
             `,
             data() {
                 return {
