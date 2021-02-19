@@ -92,7 +92,8 @@
                         <slot>
                             <span
                                     v-if="icon"
-                                    class="kd-icon-section kd-dailog-tips-icon"
+                                    class="kd-icon-section"
+                                    :class="{'kd-dailog-tips-icon':!tipsIsCenter}"
                             >
                                 <i
                                         :class="[
