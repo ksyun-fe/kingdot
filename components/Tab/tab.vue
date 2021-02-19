@@ -13,7 +13,7 @@
         <div
                 v-if="this.$parent.closable&&this.$parent.size!=='mini'&&!this.$parent.isVertical"
                 class="kd-guanbi"
-                @click="closTab"
+                @click.stop="closTab"
         >
             <i class="kd-icon-close"></i>
         </div>
@@ -42,7 +42,7 @@
         computed: {
             checked() {
                 let flag = false;
-                flag = this.$parent.value == this.value;
+                flag = this.$parent.value === this.value;
                 return flag;
             },
             innerValue() {
@@ -72,6 +72,7 @@
                 if (this.$parent.handleTabMove) {
                     this.$parent.tabHandelMove({
                         marginLeft: this.$el.offsetLeft
+
                     });
                 }
                 this.autoMove();
@@ -85,8 +86,8 @@
                 });
             },
             closTab(v) {
-                v.event && v.event.stopPropagation();   // 兼容
-                this.$parent.close(this.value);
+                v.event && v.event.stopPropagation();
+                this.$parent.close();
                 this.$el.remove();
             }
         }
