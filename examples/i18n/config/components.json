@@ -13,10 +13,6 @@
                         {
                             "path": "/start",
                             "name": "快速上手"
-                        },
-                        {
-                            "path": "/i18n",
-                            "name": "国际化"
                         }
                     ]
                 }
@@ -160,10 +156,6 @@
                         {
                             "path": "/start",
                             "name": "Quick Start"
-                        },
-                        {
-                            "path": "/i18n",
-                            "name": "Internationalization"
                         }
                     ]
                 }
