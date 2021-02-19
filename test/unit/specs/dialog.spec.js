@@ -102,7 +102,7 @@ describe('dialog',()=>{
     it('create dialog of custom bottom', () => {
         vm = createVue({
             template: `
-                    <Dialog v-model="visible"
+                    <kd-dialog v-model="visible"
                         type="confirm"
                         :showTitle="false" 
                         icon="failed"
@@ -110,7 +110,7 @@ describe('dialog',()=>{
                         <div slot="footer">
                             <Button class="customBtn" type="primary" @click="()=>{visible=false}">确定</Button>
                         </div>
-                    </Dialog>
+                    </kd-dialog>
             `,
             data() {
               return {
@@ -128,12 +128,12 @@ describe('dialog',()=>{
     it('create dialog of custom body', () => {
         vm = createVue({
             template: `
-                <Dialog title="创建提醒" v-model="visible">
+                <kd-dialog title="创建提醒" v-model="visible">
                     <div class="confirmBody">
                         <p style="text-align:left">该任务暂未创建tensorboard</p>
                         <p style="text-align:left; color:red">是否要创建？</p>
                     </div>
-                </Dialog>
+                </kd-dialog>
             `,
             data() {
               return {
