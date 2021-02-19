@@ -46,6 +46,10 @@ export default {
         always: {
             type: Boolean,
             default: false
+        },
+        widthLimit: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -100,7 +104,7 @@ export default {
     render(h) {
         this.popperVM.vnode = (
             <div v-show={this.visible} ref='popper' class={this.popperCls} style={{ zIndex: nextZIndex() }}>
-                <div class='kd-tooltip-content'>
+                <div class={['kd-tooltip-content', {'kd-tooltip-limit': this.widthLimit}]}>
                     <kd-tooltip-content {...this}></kd-tooltip-content>
                 </div>
             </div>

@@ -4,12 +4,12 @@
 ```html
 <template>
     <div>
-        <Button
+        <KdButton
                 v-for="type in typeList"
                 :key="type"
                 style="margin-right: 10px"
                 @click="showMessage(type)"
-        >{{type || '默认提示'}}</Button>
+        >{{type || '默认提示'}}</KdButton>
     </div>
 </template>
 <script>
@@ -35,21 +35,21 @@
 ```html
 <template>
     <div>
-        <Button 
+        <KdButton 
                 v-for="time in typeList"
                 :key="time"
                 style="margin-right: 10px; margin-bottom: 16px"
                 @click="showMessage('success', time + 's', time)"
-        >{{time + 's'}}</Button>
+        >{{time + 's'}}</KdButton>
 
         <br>
 
-        <Button 
+        <KdButton 
                 v-for="time in typeList"
                 :key="'key' + time"
                 style="margin-right: 10px"
                 @click="showMessage2('success', time + 's', time)"
-        >{{time + 's'}}</Button>
+        >{{time + 's'}}</KdButton>
     </div>
 </template>
 <script>
@@ -81,12 +81,12 @@
 ```html
 <template>
     <div>
-        <Button 
+        <KdButton 
                 v-for="type in typeList"
                 :key="type"
                 style="margin-right: 10px"
                 @click="showMessage(type)"
-        >{{type}}</Button>
+        >{{type}}</KdButton>
     </div>
 </template>
 <script>
@@ -114,12 +114,12 @@
 ```html
 <template>
     <div>
-        <Button 
+        <KdButton 
                 v-for="type in typeList"
                 :key="type"
                 style="margin-right: 10px"
                 @click="showMessage(type)"
-        >{{type}}</Button>
+        >{{type}}</KdButton>
     </div>
 </template>
 <script>
@@ -149,12 +149,12 @@
 ```html
 <template>
     <div>
-        <Button 
+        <KdButton 
                 v-for="type in typeList"
                 :key="type"
                 style="margin-right: 10px"
                 @click="showMessage(type)"
-        >{{type}}</Button>
+        >{{type}}</KdButton>
     </div>
 </template>
 <script>
@@ -184,12 +184,12 @@
 ```html
 <template>
     <div>
-        <Button 
+        <KdButton 
                 v-for="type in typeList"
                 :key="type"
                 style="margin-right: 10px"
                 @click="showMessage(type)"
-        >{{type}}</Button>
+        >{{type}}</KdButton>
     </div>
 </template>
 <script>
@@ -217,12 +217,12 @@
 ```html
 <template>
     <div>
-        <Button 
+        <KdButton
                 v-for="type in typeList"
                 :key="type"
                 style="margin-right: 10px"
                 @click="showMessage(type)"
-        >{{type}}</Button>
+        >{{type}}</KdButton>
     </div>
 </template>
 <script>
@@ -252,12 +252,12 @@
 ```html
 <template>
     <div>
-        <Button 
+        <KdButton 
                 v-for="type in typeList"
                 :key="type"
                 style="margin-right: 10px"
                 @click="showMessage(type)"
-        >{{type}}</Button>
+        >{{type}}</KdButton>
     </div>
 </template>
 <script>
@@ -289,13 +289,13 @@
 ```html
 <template>
     <div>
-        <Button 
+        <KdButton 
                 style="margin-right: 10px"
                 @click="showMessage('success')"
-        >自定义展示内容VNode</Button>
-        <Button 
+        >自定义展示内容VNode</KdButton>
+        <KdButton 
                 @click="showHtmlMessage('success')"
-        >自定义展示内容Html</Button>
+        >自定义展示内容Html</KdButton>
     </div>
 </template>
 <script>

@@ -9,7 +9,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../lib'),
         publicPath: '/dist',
-        filename: 'kingdot.js',
+        filename: 'index.js',
         chunkFilename: '[id].js',
         library: 'KingDot',
         libraryTarget: 'umd',
