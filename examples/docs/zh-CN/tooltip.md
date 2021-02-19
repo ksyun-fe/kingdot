@@ -29,6 +29,19 @@
         <kd-tooltip placement="top" content="hide delay 1s" effect="dark" :mouseLeaveDelay="1">
             <kd-button class="btn">hide delay 1s</kd-button>
         </kd-tooltip>
+        <br />
+        <kd-tooltip placement="top" effect="dark" :width-limit="true">
+            <template slot="content">
+                <div>width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width</div>
+            </template>
+            <kd-button class="btn">width-limint</kd-button>
+        </kd-tooltip>
+        <kd-tooltip placement="top" effect="dark" :width-limit="false">
+            <template slot="content">
+                <div>width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width</div>
+            </template>
+            <kd-button class="btn">width-un-limint</kd-button>
+        </kd-tooltip>
     </div>
 </template>
 <script>
@@ -307,6 +320,7 @@
 | mouseLeaveDelay    | 弹层延迟隐藏时间，单位s | `Number` | `-` | `0` |
 | popperModifiers    | 弹层修饰器 | `Object[]` | `[]` | `[]` |
 | always    | 是否一直展示弹层 | `Boolean` | `true|false` | `false` |
+| widthLimit    | 弹层宽度是否有限制（其他情况下使用可取消tip最大宽度限制） | `Boolean` | `true|false` | `true` |
 
 ### Tooltip slot {.component__content}
 

@@ -9,11 +9,11 @@ describe('Breadcrunmb',()=>{
     it('create default Breadcrumb', (done) => {
         vm = createVue({
             template: `
-                <Breadcrumb>
-                    <BreadcrumbItem>一级菜单</BreadcrumbItem>
-                    <BreadcrumbItem>二级菜单</BreadcrumbItem>
-                    <BreadcrumbItem>三级菜单</BreadcrumbItem>
-                </Breadcrumb>
+                <kd-breadcrumb>
+                    <kd-breadcrumb-item>一级菜单</kd-breadcrumb-item>
+                    <kd-breadcrumb-item>二级菜单</kd-breadcrumb-item>
+                    <kd-breadcrumb-item>三级菜单</kd-breadcrumb-item>
+                </kd-breadcrumb>
          `
         });
         vm.$el;
@@ -26,11 +26,11 @@ describe('Breadcrunmb',()=>{
     it('create Breadcrumb is custom separator', (done) => {
         vm = createVue({
             template: `
-                <Breadcrumb separator="/">
-                    <BreadcrumbItem>一级菜单</BreadcrumbItem>
-                    <BreadcrumbItem>二级菜单</BreadcrumbItem>
-                    <BreadcrumbItem>三级菜单</BreadcrumbItem>
-                </Breadcrumb>
+                <kd-breadcrumb separator="/">
+                    <kd-breadcrumb-item>一级菜单</kd-breadcrumb-item>
+                    <kd-breadcrumb-item>二级菜单</kd-breadcrumb-item>
+                    <kd-breadcrumb-item>三级菜单</kd-breadcrumb-item>
+                </kd-breadcrumb>
          `
         });
         vm.$el;

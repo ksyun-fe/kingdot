@@ -49,6 +49,7 @@ for item in $-drawer-position
   color: $-drawer-titleIcon-color;
   &:hover
     cursor: pointer;
+    color #557DFC
   &::before
     font-size: 16px;
 
@@ -73,21 +74,14 @@ for item in $-drawer-position
       cursor: pointer;
 
   .kd-drawer-closbutton
-    border: 1px solid $-drawer-closeButton-borderColor;
-    border-radius: 4px;
     width: 60px;
     height: 32px;
-    background: $-drawer-closeButton-backgroundColor;
 
   .kd-drawer-truebutton
     margin-left: 16px;
     margin-right: 16px;
-    background: $-drawer-trueButton-backgroundColor;
-    border-radius: 4px;
     width: 60px;
     height: 32px;
-    border: 0;
-    color: $-drawer-trueButton-fontColor;
 
 @keyframes drawer-fade-left-in {
   0% {

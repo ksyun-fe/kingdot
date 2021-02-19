@@ -11,9 +11,9 @@ npm i kingdot -S
 ```html
 
 <!-- 引入样式 -->
-<link rel="stylesheet" href="https://xxx.com/kingdot/lib/theme-default/index.css">
+<link rel="stylesheet" href="https://unpkg.com/kingdot/lib/theme-default/index.css">
 <!-- 引入组件库 -->
-<script src="https://xxx.com/kingdot/lib/index.js"></script>
+<script src="https://unpkg.com/kingdot/lib/index.js"></script>
 
 ```
 #### Demo
@@ -24,7 +24,7 @@ npm i kingdot -S
 <head>
   <meta charset="UTF-8">
   <!-- import CSS -->
-  <link rel="stylesheet" href="https://xxx.com/kingdot/lib/theme-default/index.css">
+  <link rel="stylesheet" href="https://unpkg.com/kingdot/lib/theme-default/index.css">
 </head>
 <body>
   <div id="app">
@@ -32,9 +32,9 @@ npm i kingdot -S
   </div>
 </body>
   <!-- import Vue before Kingdot -->
-  <script src="https://xxx.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
   <!-- import JavaScript -->
-  <script src="https://xxx.com/kingdot/lib/index.js"></script>
+  <script src="https://unpkg.com/kingdot/lib/index.js"></script>
   <script>
     new Vue({
       el: '#app',

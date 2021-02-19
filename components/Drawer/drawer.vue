@@ -43,18 +43,18 @@
                         class="kd-drawer-footer"
                 >
                     <slot name="footer">
-                        <Button
+                        <kd-button
                                 class="kd-drawer-closbutton"
                                 @click="cancelClose"
-                        >{{ cancelText }}</Button>
+                        >{{ cancelText }}</kd-button>
 
-                        <Button
+                        <kd-button
                                 type="primary"
                                 class="kd-drawer-truebutton"
                                 @click="running"
                         >
                             {{ okText }}
-                        </Button>
+                        </kd-button>
                     </slot>
                 </section>
             </div>

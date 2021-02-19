@@ -1,5 +1,5 @@
 import Vue from 'vue';
-
+import "babel-polyfill";
 import kd from '../../src/index';
 Vue.use(kd);
 import 'src/styles/theme-default/index.styl';
