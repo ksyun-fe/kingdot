@@ -1,5 +1,5 @@
 import Radio from 'components/Radio/index.js';
-import { createCons, createVue, destroyVM } from '../util';
+import { createCons, createVue, destroyVM, triggerEvent} from '../util';
 
 describe('Radio', () => {
     let vm;
@@ -65,6 +65,41 @@ describe('Radio', () => {
             expect(vm.changeCalled).to.be.true;
             expect(vm.changeFnValue).to.be.true;
             expect(el.classList.contains('kd-radio-checked')).to.be.true;
+        });
+    });
+    // disabled radio
+    it('disabled', async () => {
+        let el;
+        vm = createVue({
+            template: `
+                <KdRadio
+                        ref="radio"
+                        disabled
+                        @click="click"
+                >checked</KdRadio>
+            `,
+            data() {
+                return {
+                }
+            },
+        }, true);
+
+        el = vm.$el;
+        // el = document.querySelector('.kd-radio');
+        el.click();
+        expect(vm.$el.classList.contains('kd-radio-disabled')).to.be.true;
+        // expect(el).to.be.exist;
+        // triggerEvent(el, 'mouseover');
+        // expect(el.classList.contains('kd-radio-checked')).to.be.false;
+        // expect(vm.checked).to.be.false;
+        // expect(vm.changeCalled).to.be.false;
+        // el.click();
+        await vm.$nextTick().then(() => {
+            expect(vm.$el.classList.contains('kd-radio-disabled')).to.be.true;
+            // expect(vm.checked).to.be.true;
+            // expect(vm.changeCalled).to.be.true;
+            // expect(vm.changeFnValue).to.be.true;
+            // expect(el.classList.contains('kd-radio-checked')).to.be.true;
         });
     });
 })
