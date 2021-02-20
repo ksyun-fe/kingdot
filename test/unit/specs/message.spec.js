@@ -296,8 +296,8 @@ describe('Message', () => {
                 setTimeout(() => {
                     done();
                 }, 500);
-            }, 1000);
-        }, 1000);
+            }, 500);
+        }, 500);
     });
 
     it('as a component', function () {

@@ -39,12 +39,13 @@ const getTop = (index, offset) => {
 const nextTickRefreshTop = (function () {
     let flag = false;
     return () => {
-        if (flag) return;
-        flag = true;
-        Vue.prototype.$nextTick(() => {
-            refreshTop();
-            flag = false;
-        });
+        if (!flag) {
+            flag = true;
+            Vue.prototype.$nextTick(() => {
+                refreshTop();
+                flag = false;
+            });
+        }
     };
 })();
 
