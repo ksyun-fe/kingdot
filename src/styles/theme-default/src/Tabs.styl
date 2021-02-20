@@ -146,9 +146,9 @@
       cursor: pointer;
       z-index: 9999;
       border-bottom: none;
-      background: $-tabs-color-background;
+      background:$-tabs-large-backgroundColor;
+      border: 1px solid $-tabs-after-borderColor
       height: 100%;
-      border: $-tabs-border-width solid $-tabs-after-borderColor;
       .kd-control-icon  
          font-size: 15px !important;
          vertical-align: middle;
@@ -179,8 +179,9 @@
       cursor: not-allowed;
 .kd-move-disable-left , .kd-move-disable-right
    cursor: not-allowed !important
-   color: $-tabs-after-disabledColor;
-   background:#f0f0f3 !important
+   color:$-disabled-color;
+   background:$-disabled-bg-color !important
+   border: 1px solid  $-disabled-border-color !important
 .kd-add-tab
    position: absolute
    right 0
