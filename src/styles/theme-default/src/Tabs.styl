@@ -100,13 +100,14 @@
       min-width: 128px;
       padding: 14px 16px;
       border: $-tabs-border-width solid $-tabs-after-borderColor;
-      border-radius: 2px;
       background: $-tabs-large-backgroundColor;
    .kd-active  
+      position relative
+      top:1px
       background: $-tabs-color-background !important;
       border-top: 2px solid $-tabs-color-active-bar;
-      border-bottom: 1px;
-      border-left: 1px;
+      border-bottom: 1px solid transparent;
+      border-left:1px solid transparent;
       .kd-tab-text  
          color: $-tabs-color-active;
 .kd-tabs-vertical  
