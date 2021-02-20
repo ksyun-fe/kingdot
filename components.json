@@ -7,6 +7,7 @@
     "Col": "./components/Col/index.js",
     "Collapse": "./components/Collapse/index.js",
     "CollapseItem": "./components/CollapseItem/index.js",
+    "DatePicker": "./components/DatePicker/index.js",
     "Dialog": "./components/Dialog/index.js",
     "Drawer": "./components/Drawer/index.js",
     "Dropdown": "./components/Dropdown/index.js",

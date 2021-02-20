@@ -176,9 +176,9 @@
 ### shortcuts {.component__content}
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| value  | 快捷选项跳转的时间  | number    | - | - |
-| unit  | 时间单位 | string  | 'day', 'week', 'month', 'year' | - |
-| label  | 快捷选项展示的标签 | bool    | - | - |
+| value  | 快捷选项跳转的时间值  | number    | - | - |
+| unit  | 快捷选项跳转的时间单位 | string  | 'day', 'week', 'month', 'year' | - |
+| label  | 快捷选项展示的标签文本 | string  | - | - |
 
 ### Events {.component__content}
 | 事件名称      | 说明    | 回调参数 |

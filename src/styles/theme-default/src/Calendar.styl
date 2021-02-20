@@ -5,6 +5,9 @@
     text-align center
     margin 15px 15px 
     margin-bottom 30px
+    .kd-calendar-text-btn
+        &:hover 
+            color $-blue
     .left
         float left
     .right
@@ -12,7 +15,7 @@
     .kd-icon-skip-forward,.kd-icon-date-forward
         margin 0 5px
         cursor pointer
-        color $-input-clear-color
+        color $-datepicker-icon-color
         &:first-child,&:nth-child(2)
             transform rotate(-180deg)
         &:hover 
@@ -24,7 +27,7 @@
     width 270px
     .kd-week
         display flex
-        border-bottom 1px solid $-input-disabled-border-color
+        border-bottom 1px solid $-datepicker-disabled-border-color
         span
             flex 1
             text-align center
@@ -33,12 +36,27 @@
 .kd-calendar-table
     .kd-calendar-row
         margin-top: 10px
-    div
         display flex
-        span
-            flex 0 0 25%
+    // div.kd-calendar-row
+    //     display flex
+        // margin-top: 10px
+        div.kd-day-container
+            // width 24px
+            flex 1
+            justify-content center
+            display flex
+            &.kd-in-range
+                background-color $-datepicker-day-in-range-bg-color
+            &.kd-disMonth
+                background-color $-datepicker-day-disMonth-bg-color
+                // color $-datepicker-day-disMonth-color
+                // cursor no-drop
+                // &:hover
+                //     color $-datepicker-day-disMonth-color
+        span.kd-day
+            // flex 0 0 25%
             text-align center
-            line-height 35px
+            line-height 24px
             font-size $-font-base-size
             cursor pointer
             /******** 动态样式 *******/ 
@@ -66,4 +84,6 @@
                 &:hover
                     color $-datepicker-day-disMonth-color
         .kd-day
-            flex 1
+            justify-content: space-between;
+            width 24px
+            // flex 1

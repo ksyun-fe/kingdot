@@ -2,37 +2,44 @@
     <div class="kd-calendar-wrapper">
         <!-- 头部放置翻页按钮, 展示当前月份 -->
         <div
-                v-if="mode==='select-year' || mode==='select-month'"
+                v-show="mode==='select-year' || mode==='select-month'"
                 class="kd-calendar-header"
         >
             <i
-                    v-if="mode==='select-year'"
+                    v-show="mode==='select-year'"
                     class="kd-icon-date-forward left"
                     @click="setMonthOrYear('Year', -10)"
             ></i>
             <i
-                    v-if="mode==='select-month'"
+                    v-show="mode==='select-month'"
                     class="kd-icon-date-forward left"
                     @click="setMonthOrYear('Year', -1)"
             ></i>
-            <span @click="setMode('select-year')">{{ year }} 年 </span>
             <span
-                    v-if="mode==='select-month'"
-                    @click="setMode('select-month')"
-            >{{ month }} 月</span>
+                    v-show="mode==='select-year'"
+            >
+                {{ Math.floor(moment.year() / 10) * 10 }}年 ~ {{ Math.floor(moment.year() / 10) * 10 + 9 }}年
+            </span>
+            <span
+                    v-show="mode==='select-month'"
+                    :class="{
+                        'kd-calendar-text-btn': !isRange,
+                    }"
+                    @click="setMode('select-year')">{{ year }} 年
+            </span>
             <i
-                    v-if="mode==='select-year'"
+                    v-show="mode==='select-year'"
                     class="kd-icon-date-forward right"
                     @click="setMonthOrYear('Year',10)"
             ></i>
             <i
-                    v-if="mode==='select-month'"
+                    v-show="mode==='select-month'"
                     class="kd-icon-date-forward right"
                     @click="setMonthOrYear('Year',1)"
             ></i>
         </div>
         <div
-                v-if="mode==='select-day'"
+                v-show="mode==='select-day'"
                 class="kd-calendar-header"
         >
             <i
@@ -45,8 +52,16 @@
                     class="kd-icon-date-forward left"
                     @click="setMonthOrYear('Month', -1)"
             ></i>
-            <span @click="setMode('select-year')">{{ year }} 年 </span>
-            <span @click="setMode('select-month')">{{ month }} 月</span>
+            <span
+                    :class="{
+                        'kd-calendar-text-btn': !isRange,
+                    }"
+                    @click="setMode('select-year')">{{ year }} 年 </span>
+            <span
+                    :class="{
+                        'kd-calendar-text-btn': !isRange,
+                    }"
+                    @click="setMode('select-month')">{{ month }} 月</span>
             <i
                     v-if="!isRange || isRange && isEndCalendar"
                     class="kd-icon-skip-forward right"
@@ -60,7 +75,7 @@
         </div>
         <div class="kd-calendar-default">
             <div
-                    v-if="mode==='select-day'"
+                    v-show="mode==='select-day'"
                     class="kd-week"
             >
                 <span
@@ -70,7 +85,7 @@
                 </span>
             </div>
             <div
-                    v-if="mode==='select-year'"
+                    v-show="mode==='select-year'"
                     class="kd-calendar-table"
             >
                 <div
@@ -92,7 +107,7 @@
                 </div>
             </div>
             <div
-                    v-if="mode==='select-month'"
+                    v-show="mode==='select-month'"
                     class="kd-calendar-table"
             >
                 <div
@@ -104,39 +119,47 @@
                             v-for="(item,k) in row"
                             :key="k"
                             :class="{
-                                'kd-blue': item === now.month + 1,
-                                'kd-selected': month === item,
+                                'kd-blue': item.isCurrentMonth,
+                                'kd-selected': selectedDate[0] && selectedDate[0].indexOf(item.dateStr) > -1,
                             }"
-                            @click="selectMonth(item)"
+                            @click="selectMonth(item.month)"
                     >
-                        {{ item }} 月
+                        {{ item.month }} 月
                     </span>
                 </div>
             </div>
             <div
-                    v-if="mode==='select-day'"
+                    v-show="mode==='select-day'"
                     class="kd-calendar-table"
             >
                 <div
                         v-for="(row,index) in dayLists"
                         :key="index"
+                        class="kd-calendar-row"
                 >
-                    <span
+                    <div
                             v-for="(item,k) in row"
                             :key="k"
                             :class="{
-                                'kd-day': true,
-                                'kd-blue':item.isTodayFlag,
+                                'kd-day-container': true,
                                 'kd-in-range': item.isInRange,
                                 'kd-disMonth': item.disMonth,
-                                'kd-disabled': item.isDisabled,
-                                'kd-selected': selectedDate.indexOf(item.dateStr) > -1
                             }"
-                            @click="selectDate(item)"
-                            @mouseenter="onDayMouseenter(item)"
                     >
-                        {{ item.day }}
-                    </span>
+                        <span
+                                :class="{
+                                    'kd-day': true,
+                                    'kd-blue':item.isTodayFlag,
+                                    'kd-disMonth': item.disMonth,
+                                    'kd-disabled': item.isDisabled,
+                                    'kd-selected': selectedDate.indexOf(item.dateStr) > -1
+                                }"
+                                @click="selectDate(item)"
+                                @mouseenter="onDayMouseenter(item)"
+                        >
+                            {{ item.day }}
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -202,7 +225,7 @@
             return {
                 now: {
                     year: Moment().year(),
-                    month: Moment().month(),
+                    month: Moment().month() + 1,
                     date: Moment().date()
                 },
                 moment: this.isEndCalendar ? Moment().add(1, 'month') : Moment(), // 第二日历 默认渲染下个月的日期
@@ -238,16 +261,17 @@
             monthLists() {
                 const rows = [];
                 const tmpArr = [];
-                // let tmpMonth = this.moment.month();
+                let tmpTime = this.moment.set('month', 0);
                 for (let j = 1; j <= 12; j++) {
-                    // tmpArr.push({
-                    //     // dateStr: tmpTime.format(this.formatString), // 日期字符串
-                    //     // day: tmpTime.date(), // 当前第几日. 渲染用
-                    //     // isCurrentMonth
-                    // });
+                    tmpArr.push({
+                        dateStr: tmpTime.format('YYYY-MM'), // 日期字符串
+                        month: tmpTime.month() + 1, // 当前第几月. 渲染用
+                        isCurrentMonth: tmpTime.month() === Moment().month() &&
+                            tmpTime.year() === Moment().year()
+                    });
 
-                    // tmpMonth++;
-                    tmpArr.push(j);
+                    tmpTime = tmpTime.add(1, 'month');
+                    // tmpArr.push(j);
                 }
                 for (let i = 0; i < 3; i++) {
                     rows.push(tmpArr.slice(i * 4, (i + 1) * 4));
@@ -279,7 +303,7 @@
                         isDisabled: this.disabledDate && this.disabledDate(tmpTime.format(this.formatString)) ||
                             this.maxDateValue && tmpTime.isAfter(Moment(this.maxDateValue)) ||
                             this.minDateValue && tmpTime.isBefore(Moment(this.minDateValue)),
-                        isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpTime.isBetween(this.selectedDate[0], rangeEndDate, '[]') || false
+                        isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpTime.isBetween(this.selectedDate[0], rangeEndDate, 'day', '[]') || false
                     });
                     tmpTime = tmpTime.add(1, 'day');
                 }
@@ -338,14 +362,19 @@
                 this.mode = 'select-month';
             },
 
-            selectMonth(m) {
-                this.moment = Moment(this.moment).set('month', m + 1);
+            selectMonth(m) { // 只改变month 逻辑对不对?? 通过进入月份, 翻页 看看是否变年份
+                // console.log('month item', m);
+                // console.log('selectedDate', this.selectedDate, m.dateStr.slice(0, 7));
+                // console.log('month', this.now, this.year, this.month);
+
+                this.moment = Moment(this.moment).set('month', m - 1);
                 this.mode = 'select-day';
             },
 
             // 点击选中日期
             selectDate(date) {
                 if (date.isDisabled) return;
+                if (date.disMonth) return; // 不能点击另外月份的日期进行翻页
                 if (this.isRange && date.disMonth) return;
 
                 // 多选
