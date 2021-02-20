@@ -3,10 +3,10 @@
         <div
                 ref="tabs"
                 class="kd-tabs-main-move"
-                :class="[
-                    { 'kd-tabs-show-control': showControl },
-                    { 'kd-addabble-box': addable },
-                ]"
+                :class="{
+                    'kd-tabs-show-control': showControl,
+                    'kd-addabble-box': addable
+                }"
         >
             <div
                     class="kd-control right"
