@@ -36,7 +36,7 @@
                 default: 'horizontal' // (horizontal,vertical),vertical,父元素一定要设置高度
             },
             width: {
-                type: Number
+                type: [String, Number]
             },
             isClick: {
                 type: Boolean,
@@ -58,6 +58,15 @@
                 orientation: this.direction
             };
         },
+        computed: {
+            stepsStyle() {
+                const style = {};
+                if (this.width) {
+                    style.width = this.width + 'px';
+                }
+                return style;
+            }
+        },
         watch: {
             value(v) {
                 this.stepIndex = v;
@@ -77,13 +86,6 @@
                 if (this.type !== 'default') {
                     this.orientation = 'horizontal';
                 }
-            },
-            stepsStyle() {
-                const style = {};
-                if (this.width) {
-                    style.width = this.width + 'px';
-                }
-                return style;
             },
             getChildrenIndex(child) {
                 if (child) {

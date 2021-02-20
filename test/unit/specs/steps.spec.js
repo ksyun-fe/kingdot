@@ -10,28 +10,36 @@ describe("Steps", () => {
   it("steps spot", (done) => {
     vm = createVue({
       template: `
+		<div>
                     <kd-steps v-model="stepIndex1" type="spot">
                         <kd-step title="步骤一" ></kd-step>
                         <kd-step title="步骤二" ></kd-step>
                         <kd-step title="步骤三" ></kd-step>
                         <kd-step title="完成" ></kd-step>
                     </kd-steps>
+					<kd-button ref="focusBtn" @click="_next">下一步</kd-button>
+					</div>
                 `,
       data() {
         return {
-          stepIndex1: 1,
+          stepIndex1: 2,
         };
       },
+      methods: {
+        _next() {
+          this.stepIndex1 = this.stepIndex1 < 4 ? this.stepIndex1 + 1 : 1;
+        },
+      },
     });
-
+    vm._next();
     vm.$nextTick((_) => {
-      expect(vm.$el.childNodes[0].classList.contains("kd-step-spot")).to.be
+      expect(vm.$el.childNodes[0].childNodes[0].classList.contains("kd-step-spot")).to.be
         .true;
       done();
     }, 500);
   });
   //创建一个有状态的steps
-  it("steps has status", function (done){
+  it("steps has status", function (done) {
     vm = createVue({
       template: `
         <kd-steps v-model="stepIndex1" finishStatus='finished'>
@@ -47,13 +55,22 @@ describe("Steps", () => {
         };
       },
     });
-    vm.$nextTick( (_) => {
-        expect(vm.$el.childNodes[0].childNodes[1].childNodes[0].childNodes[0].childNodes[0].classList.contains('kd-step-custom-status-wait')).to.be
-        .true;
-        expect(vm.$el.childNodes[2].childNodes[1].childNodes[0].childNodes[0].childNodes[0].classList.contains('kd-step-custom-status-error')).to.be
-        .true;
-        expect(vm.$el.childNodes[4].childNodes[1].childNodes[0].childNodes[0].childNodes[0].classList.contains('kd-step-custom-status-active')).to.be
-        .true;
+    vm.$nextTick((_) => {
+      expect(
+        vm.$el.childNodes[0].childNodes[1].childNodes[0].childNodes[0].childNodes[0].classList.contains(
+          "kd-step-custom-status-wait"
+        )
+      ).to.be.true;
+      expect(
+        vm.$el.childNodes[2].childNodes[1].childNodes[0].childNodes[0].childNodes[0].classList.contains(
+          "kd-step-custom-status-error"
+        )
+      ).to.be.true;
+      expect(
+        vm.$el.childNodes[4].childNodes[1].childNodes[0].childNodes[0].childNodes[0].classList.contains(
+          "kd-step-custom-status-active"
+        )
+      ).to.be.true;
       done();
     }, 500);
   });
@@ -98,8 +115,11 @@ describe("Steps", () => {
       },
     });
     vm.$nextTick((_) => {
-        expect(vm.$el.childNodes[0].childNodes[1].childNodes[0].childNodes[0].childNodes[0].childNodes[2].classList.contains('kd-step-icon')).to.be
-        .true;
+      expect(
+        vm.$el.childNodes[0].childNodes[1].childNodes[0].childNodes[0].childNodes[0].childNodes[2].classList.contains(
+          "kd-step-icon"
+        )
+      ).to.be.true;
       done();
     }, 500);
   });
@@ -118,15 +138,68 @@ describe("Steps", () => {
       data() {
         return {
           stepIndex1: 1,
-          description:'xxx'
+          description: "xxx",
         };
       },
     });
 
     vm.$nextTick((_) => {
-      expect(vm.$el.childNodes[0].classList.contains("kd-steps-container-vertical")).to.be
-        .true;
+      expect(
+        vm.$el.childNodes[0].classList.contains("kd-steps-container-vertical")
+      ).to.be.true;
       done();
     }, 500);
   });
+  //可以点击的steps
+  it("create a clickable step", (done) => {
+    vm = createVue({
+      template: `
+			<div>
+				<kd-steps v-model="stepIndex1" type="spot" :isClick="true">
+					<kd-step title="步骤一" ></kd-step>
+					<kd-step title="步骤二" ></kd-step>
+					<kd-step title="步骤三" ></kd-step>
+					<kd-step title="完成" ></kd-step>
+				</kd-steps>
+				<kd-button ref="focusBtn" @click="_next">下一步</kd-button>
+			</div>`,
+      data() {
+        return {
+          stepIndex1: 2,
+        };
+      },
+      methods: {
+        _next() {
+          this.stepIndex1 = this.stepIndex1 < 4 ? this.stepIndex1 + 1 : 1;
+        },
+      },
+    });
+    vm.$nextTick((_) => {
+      vm.$el.querySelectorAll(".kd-step-cursor")[0].click();
+      done();
+    }, 500);
+  });
+  //自定义宽度的steps
+  it('create a custom width step',(done)=>{
+	vm = createVue({
+		template: `
+		  <kd-steps v-model="stepIndex1" :width="width">
+			  <kd-step title="步骤一"></kd-step>
+			  <kd-step title="步骤二"></kd-step>
+			  <kd-step title="步骤三"></kd-step>
+		  </kd-steps>
+				  `,
+		data() {
+		  return {
+			stepIndex1: 1,
+			width:1280
+		  };
+		},
+	  });
+	//   
+	  vm.$nextTick((_) => {
+		expect(vm.$el.style.width).to.equal('1280px')
+		done();
+	  }, 500);
+  })
 });

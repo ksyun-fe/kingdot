@@ -40,7 +40,7 @@
 <template>
 <div>
     <div>
-        <kd-steps v-model="stepIndex1" finishStatus='finished'>
+        <kd-steps v-model="stepIndex1" finishStatus='finished' :width="width">
             <kd-step title="步骤一" status="wait"></kd-step>
             <kd-step title="步骤二" status="error"></kd-step>
             <kd-step title="步骤三" status="active"></kd-step>
@@ -65,7 +65,8 @@
             return{
                 stepIndex1:2,
                 stepIndex2:2,
-                description:'这里是描述文案，超出折行显示'
+                description:'这里是描述文案，超出折行显示',
+                width:1280
             }
         },
         methods:{

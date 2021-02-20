@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import "babel-polyfill";
 import kd from '../../src/index';
+import Router from 'vue-router';
+Vue.use(Router);
 Vue.use(kd);
 import 'src/styles/theme-default/index.styl';
 
