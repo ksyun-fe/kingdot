@@ -118,8 +118,8 @@
 ```html
 <template>
     <div>
-        <Button
-        @click="changeHandler">加载中</Button>
+        <kd-button
+        @click="changeHandler">加载中</kd-button>
         <kd-spin v-if="change" text="加载中"/>
     </div>
 </template>

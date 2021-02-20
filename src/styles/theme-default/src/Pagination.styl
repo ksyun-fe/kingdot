@@ -1,96 +1,99 @@
 @import '../variables.styl'
 
-.k-pagination
-    // font-size $pagination-font-size
+.kd-pagination
+    // font-size $-pagination-font-size
     font-size 0
     display: inline-block
-    .k-btn
-        //border-radius 0
-        font-size 12px
-        min-width 24px
-        height 24px
-        line-height 24px
-        padding 0 6px
-        &:first-child
-            border-right-width 0
-        &:last-child
-            border-right-width 0
+    // .kd-pagination-btn
+    //     font-size 12px
+    //     min-width 24px
+    //     height 24px
+    //     line-height 24px
+    //     padding 0 6px
+    //     margin-right 4px
+        // &:first-child
+        //     border-right-width 0
+        // &:last-child
+        //     border-right-width 0
     &.default
-        text-align: right
+        text-align right
     &.center
-        text-align: center
-    .k-limits
-    .k-goto
-    .k-total
-        // margin-left $pagination-gutter
+        text-align center
+    .kd-pagination-left
+    .kd-pagination-right
+        font-size 12px
+        color #ccc
+    .kd-pagination-limits
+    .kd-pagination-total
+    .kd-pagination-goto
+        // margin-left $-pagination-gutter
         display inline-block
-        vertical-align middle
-    .k-limits
-        .k-btn
+    .kd-pagination-limits
+        .kd-pagination-btn
             &:first-child
                 border-left-width 1px !important
             &:last-child
                 border-right-width 1px !important
-    .k-limits-text
+    .kd-pagination-limits-text
         font-size 12px
         display inline-block
         vertical-align middle
         margin 0 6px 0 10px
         &+ div
             display inline-block
-    .k-btns
-        display: inline-block
+    .kd-pagination-btns
+        display inline-block
 
     // goto
-    .k-goto
+    .kd-pagination-goto
         font-size 12px
-        .k-input
+        .kd-pagination-input
             width $-pagination-goto-width
-            margin $-pagination-goto-margin
-            height 24px
-            display: inline-block;
+            margin 0 $-pagination-goto-margin
+            height 20px
+            display inline-block;
             padding-left 5px
             padding-right 5px
-            border: 1px solid #d1d5de;
-            background-color: #fff;
-            transition: border 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
-            outline: none;
-            position: relative;
-            .k-inner
+            border 1px solid #d1d5de;
+            background-color #fff;
+            transition border 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+            outline none;
+            position relative;
+            .kd-inner
                 height 24px !important
                 line-height 24px !important
-    .k-select
-        width auto
+    // .kd-select
+    //     width auto
 
     // size
-    for size in large small mini
-        &.k-{size}
-            font-size lookup('$-pagination-' + size + '-font-size')
-            if lookup('$-pagination-' + size + '-btn-margin-right') != 0
-                .k-btns
-                    .k-btn
-                        margin-right lookup('$-pagination-' + size + '-btn-margin-right')
+    // for size in $-size-array
+    //     &.kd-{size}
+    //         font-size lookup('$-pagination-' + size + '-font-size')
+    //         if lookup('$-pagination-' + size + '-btn-margin-right') != 0
+    //             .kd-pagination-btns
+    //                 .kd-pagination-btn
+    //                     margin-right lookup('$-pagination-' + size + '-btn-margin-right')
 
     // noBorder
-    &.k-no-border
-        .k-select
-            &
-            &:hover
-            &.k-show
-                .k-wrapper
-                    border none
+    // &.kd-no-border
+    //     .kd-select
+    //         &
+    //         &:hover
+    //         &.kd-show
+    //             .kd-wrapper
+    //                 border none
 
-.k-pagination-large-first
-    margin-right: 10px
-.k-pagination-large-end
-    margin-left: 10px
+.kd-pagination-large-first
+    margin-right 10px
+.kd-pagination-large-end
+    margin-left 10px
 
-.k-pagination-small-first
-    margin-right: 8px
-.k-pagination-small-end
-    margin-left: 8px
+.kd-pagination-small-first
+    margin-right 8px
+.kd-pagination-small-end
+    margin-left 8px
 
-.k-pagination-mini-first
-    margin-right: 6px
-.k-pagination-mini-end
-    margin-left: 6px
+.kd-pagination-mini-first
+    margin-right 6px
+.kd-pagination-mini-end
+    margin-left 6px
