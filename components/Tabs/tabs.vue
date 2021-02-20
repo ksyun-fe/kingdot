@@ -183,8 +183,8 @@
                     : (distance = this.$refs.tabs.clientWidth);
                 this.singleWidth = distance;
             },
-            close() {
-                this.$emit('close', this.innerValue);
+            close(v) {
+                this.$emit('close', v);
                 this.Recapture();
                 this.$nextTick(() => {
                     if (this.showControl) {
