@@ -33,7 +33,7 @@ describe('drawer', () => {
                    v-model="visible"
                >
                   <div slot="header">我是重构标题</div>
-               <kd-drawer>
+               </kd-drawer>
             `,
             data() {
                 return {
@@ -63,9 +63,9 @@ describe('drawer', () => {
                  v-model="visible"
                 >
               <div slot="footer">
-                <Button>自定义</Button>
+                <kd-button>自定义</kd-button>
               </div>
-                <kd-drawer>
+                </kd-drawer>
             `,
                 data() {
                     return {
@@ -93,7 +93,7 @@ describe('drawer', () => {
                 <kd-drawer  
                  v-model="visible"
                 >
-                <kd-drawer>
+                </kd-drawer>
             `,
                 data() {
                     return {
@@ -113,7 +113,7 @@ describe('drawer', () => {
             template: `
                 <kd-drawer  
                  v-model="visible"
-                >自定义内容<kd-drawer>
+                >自定义内容</kd-drawer>
             `,
             data() {
                 return {
