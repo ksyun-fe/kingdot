@@ -11,6 +11,7 @@ describe('Switch', () => {
         vm = createCons(Switch, {
             value: true,
             size: 'large',
+            height: 36,
             activeText: 'on'
         }, true)
         const switchElem = vm.$el;
@@ -38,7 +39,7 @@ describe('Switch', () => {
     });
 
     // 事件触发
-    it('switch trigger change event', () => {
+    it('switch trigger change event', async () => {
         vm = createVue({
             template: `
                 <div>
@@ -70,16 +71,16 @@ describe('Switch', () => {
         const core = vm.$el.querySelector('.kd-switch-round');
         expect(switchElem.querySelector('.kd-switch-inactive').innerText).to.equal('off');
         core.click();
-        setTimeout(()=> {
+        await vm.$nextTick().then(() => {
             expect(switchElem.querySelector('.kd-switch-active').innerText).to.equal('on');
             expect(vm.val).to.equal(100);
             expect(vm.isEmitChange).to.equal(true);
-            core.click();
-            setTimeout(() => {
-                expect(switchElem.querySelector('.kd-switch-inactive').innerText).to.equal('off');
-                expect(vm.val).to.equal(0);
-                expect(vm.isEmitChange).to.equal(false);
-            });
-        }, 10);
+        });
+        core.click();
+        await vm.$nextTick().then(() => {
+            expect(switchElem.querySelector('.kd-switch-inactive').innerText).to.equal('off');
+            expect(vm.val).to.equal(0);
+            expect(vm.isEmitChange).to.equal(false);
+        });
     });
 });
