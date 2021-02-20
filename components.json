@@ -20,6 +20,7 @@
     "Radio": "./components/Radio/index.js",
     "Row": "./components/Row/index.js",
     "Spin": "./components/Spin/index.js",
+    "Spinner": "./components/Spinner/index.js",
     "Step": "./components/Step/index.js",
     "Steps": "./components/Steps/index.js",
     "Switch": "./components/Switch/index.js",
