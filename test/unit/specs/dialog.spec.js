@@ -15,7 +15,7 @@ describe("dialog", () => {
       height: 800,
     });
     expect(
-      vm.$el.childNodes[1].childNodes[0].classList.contains("kd-dialog-default")
+      vm.$el.querySelector('.kd-dialog').classList.contains("kd-dialog-default")
     ).to.be.true;
   });
   //创建一个提示类的dialog,且提示信息居中
@@ -31,11 +31,11 @@ describe("dialog", () => {
     });
     //是否是提示类的dialog
     expect(
-      vm.$el.childNodes[1].childNodes[0].classList.contains("kd-dialog-tips")
+      vm.$el.querySelector('.kd-dialog').classList.contains("kd-dialog-tips")
     ).to.be.true;
     //是否居中
     expect(
-      vm.$el.childNodes[1].childNodes[0].childNodes[3].classList.contains(
+      vm.$el.querySelector('.kd-dialog-body').classList.contains(
         "kd-dialog-tips-body-center"
       )
     ).to.be.true;
@@ -53,11 +53,11 @@ describe("dialog", () => {
     });
     //是否是提示类的dialog
     expect(
-      vm.$el.childNodes[1].childNodes[0].classList.contains("kd-dialog-tips")
+      vm.$el.querySelector('.kd-dialog').classList.contains("kd-dialog-tips")
     ).to.be.true;
     //是否居中
     expect(
-      vm.$el.childNodes[1].childNodes[0].childNodes[3].classList.contains(
+      vm.$el.querySelector('.kd-dialog-body').classList.contains(
         "kd-dialog-tips-body-center"
       )
     ).to.be.false;
@@ -76,13 +76,13 @@ describe("dialog", () => {
     });
     //是否是提示类的dialog
     expect(
-      vm.$el.childNodes[1].childNodes[0].classList.contains("kd-dialog-tips")
+      vm.$el.querySelector('.kd-dialog').classList.contains("kd-dialog-tips")
     ).to.be.true;
     //是否🈶️底部
     let footerSecionIndex =
-      vm.$el.childNodes[1].childNodes[0].childNodes.length;
+      vm.$el.querySelector('.kd-dialog').childNodes.length;
     let footerSection =
-      vm.$el.childNodes[1].childNodes[0].childNodes[footerSecionIndex - 1];
+      vm.$el.querySelector('.kd-dialog').childNodes[footerSecionIndex - 1];
     expect(footerSection.classList.contains("kd-dialog-footer-height")).to.be
       .true;
   });
@@ -97,11 +97,10 @@ describe("dialog", () => {
     });
     //是否是二次确认类的dialog
     expect(
-      vm.$el.childNodes[1].childNodes[0].classList.contains("kd-dialog-confirm")
+      vm.$el.querySelector('.kd-dialog').classList.contains("kd-dialog-confirm")
     ).to.be.true;
     //是否有标题
-    let confirmTitle =
-      vm.$el.childNodes[1].childNodes[0].childNodes[2].childNodes[1];
+    let confirmTitle =vm.$el.querySelector('.kd-dialog-confirm-title');
     expect(confirmTitle.textContent).to.equal("");
   });
   //创建一个二次确认类dialog，且有标题
@@ -116,11 +115,10 @@ describe("dialog", () => {
     });
     //是否是二次确认类的dialog
     expect(
-      vm.$el.childNodes[1].childNodes[0].classList.contains("kd-dialog-confirm")
+      vm.$el.querySelector('.kd-dialog').classList.contains("kd-dialog-confirm")
     ).to.be.true;
     //是否有标题
-    let confirmTitle =
-      vm.$el.childNodes[1].childNodes[0].childNodes[2].childNodes[1];
+    let confirmTitle = vm.$el.querySelector('.kd-dialog-confirm-title');
     expect(confirmTitle.textContent).to.equal("二次确认标题");
   });
   //自定义底部
@@ -149,9 +147,9 @@ describe("dialog", () => {
     );
     const _dialog = vm.$el;
     let footerSecionIndex =
-      _dialog.childNodes[1].childNodes[0].childNodes.length;
+      _dialog.querySelector('.kd-dialog').childNodes.length;
     let footerSectionBtn =
-      _dialog.childNodes[1].childNodes[0].childNodes[footerSecionIndex - 1]
+      _dialog.querySelector('.kd-dialog').childNodes[footerSecionIndex - 1]
         .childNodes[1].childNodes[0];
     expect(footerSectionBtn.classList.contains("customBtn")).to.be.true;
   });
@@ -176,7 +174,7 @@ describe("dialog", () => {
       true
     );
     const _dialog =
-      vm.$el.childNodes[1].childNodes[0].childNodes[1].childNodes[0];
+      vm.$el.querySelector('.kd-dialog').childNodes[1].childNodes[0];
     expect(_dialog.classList.contains("confirmBody")).to.be.true;
   });
   //自定义按钮文案
@@ -188,14 +186,14 @@ describe("dialog", () => {
       okText: "关闭",
     });
     let footerSecionIndex =
-      vm.$el.childNodes[1].childNodes[0].childNodes.length;
+      vm.$el.querySelector('.kd-dialog').childNodes.length;
     expect(
-      vm.$el.childNodes[1].childNodes[0].childNodes[
+      vm.$el.querySelector('.kd-dialog').childNodes[
         footerSecionIndex - 1
       ].childNodes[1].textContent.trim()
     ).to.equal("上一步");
     expect(
-      vm.$el.childNodes[1].childNodes[0].childNodes[
+      vm.$el.querySelector('.kd-dialog').childNodes[
         footerSecionIndex - 1
       ].childNodes[2].childNodes[2].childNodes[0].textContent.trim()
     ).to.equal("关闭");
@@ -206,7 +204,7 @@ describe("dialog", () => {
       type: "default",
       value: true,
     });
-    vm.$el.childNodes[1].childNodes[0].childNodes[0].childNodes[1].click();
+    vm.$el.querySelector('.kd-icon-close').click();
     setTimeout(() => {
       expect(vm.visible).to.be.false;
       done();
@@ -237,21 +235,26 @@ describe("dialog", () => {
     }, 500);
   });
   //dialog可以移动
-  it("dialog to move", () => {
+  it("dialog to move", (done) => {
     vm = createCons(Dialog, {
       type: "default",
       value: true,
     });
     triggerEvent(vm.$el.querySelector(".kd-dialog-header"), "mousedown");
-    triggerEvent(vm.$el.querySelector(".kd-dialog-header"),"mousemove",true,false,{ x: -88, y: 160 });
+    triggerEvent(
+      vm.$el.querySelector(".kd-dialog-header"),
+      "mousemove",
+      true,
+      false,
+      { x: -88, y: 160 }
+    );
     setTimeout(() => {
-      triggerEvent(vm.$el.querySelector(".kd-dialog-header"), "mouseup");
-    // vm.$el.querySelector(".kd -dialog-header").mouseup()
-    //   vm.$el.querySelector(".kd-dialog-body").click();
+      triggerEvent(document, "mouseup");
+      done();
     }, 100);
   });
   //'取消'&‘确认’操作
-  it("cancel & ok", (done) => {
+  it("cancel & ok", async () => {
     vm = createVue({
       template: `
               <kd-dialog v-model="isShowDialog" :ok="OK" :cancel="close" width="800" height="800">
@@ -275,7 +278,7 @@ describe("dialog", () => {
         },
       },
     });
-    vm.$nextTick((_) => {
+    await vm.$nextTick().then((_) => {
       vm.$el.querySelectorAll(".kd-dialog-btn")[1].click();
       setTimeout(function () {
         expect(
@@ -283,10 +286,9 @@ describe("dialog", () => {
         ).to.equal("2");
       }, 200);
       vm.$el.querySelectorAll(".kd-dialog-btn")[0].click();
-      done();
-    }, 500);
+    }, 300);
   });
-  it("ok is not a function", (done) => {
+  it("ok is not a function", async () => {
     vm = createVue({
       template: `
               <kd-dialog v-model="isShowDialog" width="800" height="800">
@@ -300,14 +302,13 @@ describe("dialog", () => {
         };
       },
     });
-    vm.$nextTick((_) => {
+    await vm.$nextTick().then((_) => {
       vm.$el.querySelectorAll(".kd-dialog-btn")[1].click();
       setTimeout(function () {
         expect(
           vm.$el.querySelector(".kd-dialog-body").childNodes[0].innerText
         ).to.equal("2");
       }, 200);
-      done();
     }, 300);
   });
 });
