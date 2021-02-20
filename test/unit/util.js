@@ -1,8 +1,4 @@
 import Vue from 'vue';
-import "babel-polyfill";
-import kd from '../../src/index';
-Vue.use(kd);
-import 'src/styles/theme-default/index.styl';
 
 let id = 0;
 
@@ -18,7 +14,7 @@ const createEl = function () {
 // 创建Vue实例
 export const createVue = function (Component, mounted = true) {
     if (typeof Component === 'string') {
-        Component = { template: Component };
+        Component = {template: Component};
     }
     return new Vue(Component).$mount(mounted ? createEl() : null);
 };
@@ -30,15 +26,16 @@ export const createCons = function (Component, propsData = {}, mounted = true) {
         propsData = {};
     }
     const Constructor = Vue.extend(Component);
-    return new Constructor({ propsData }).$mount(mounted ? createEl() : null);
+    return new Constructor({propsData}).$mount(mounted ? createEl() : null);
 };
 
 // 回收vm
 export const destroyVM = function (vm) {
+    if (!vm)  return;
     vm.$destroy && vm.$destroy();
     vm.$el &&
-  vm.$el.parentNode &&
-  vm.$el.parentNode.removeChild(vm.$el);
+    vm.$el.parentNode &&
+    vm.$el.parentNode.removeChild(vm.$el);
 };
 
 export const triggerEvent = function (el, name, ...eventData) {
