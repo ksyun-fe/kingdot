@@ -44,6 +44,31 @@ describe('Message', () => {
         expect(vm.$el.querySelector('.kd-message-content').textContent).to.be.equal('custom content');
     });
 
+    it('custom content function', function () {
+        vm = Vue.prototype.$message.success({
+            content() {
+                return 'custom content function'
+            }
+        });
+        expect(vm.$el.querySelector('.kd-message-content').textContent).to.be.equal('custom content function');
+    });
+
+    it('custom content vnode', function () {
+        vm = Vue.prototype.$message.success({
+            content: () =>  {
+                const instance = new Vue();
+                const h = instance.$createElement;
+                instance.$destroy();
+                return h(
+                    'div',
+                    { class: "my-message" },
+                    '自定义展示内容'
+                );
+            }
+        });
+        expect(vm.$el.querySelector('.my-message')).to.be.exist;
+    });
+
 
     ['success', 'error', 'info', 'warning'].forEach((type) => {
         it(`message ${type} type`, function () {
@@ -127,6 +152,17 @@ describe('Message', () => {
         });
 
         expect(vm.$el.style.width).to.be.equal('300px');
+
+    });
+
+    it('custom width auto', function () {
+
+        vm = Vue.prototype.$message.success({
+            content: 'custom icon',
+            width: 'auto'
+        });
+
+        expect(vm.$el.style.width).to.be.equal('auto');
 
     });
 
@@ -238,6 +274,30 @@ describe('Message', () => {
                 }, 1500);
             }, 1500);
         }, 500);
+    });
+
+    it('create multiple vm in a cycle', function (done) {
+        let offset = 200;
+        let vm2;
+        vm = Vue.prototype.$message.success({
+            content: 'message 1',
+            offset
+        });
+        this.timeout(5000);
+        vm2 = Vue.prototype.$message.success({
+            content: 'message 2',
+            offset
+        });
+        setTimeout(() => {
+            expect(vm.$el.style.top).to.be.equal(`${offset}px`);
+            expect(vm2.$el.style.top).to.be.equal(`${offset + vm.$el.offsetHeight + 16}px`);
+            setTimeout(() => {
+                vm2.close();
+                setTimeout(() => {
+                    done();
+                }, 500);
+            }, 1000);
+        }, 1000);
     });
 
     it('as a component', function () {

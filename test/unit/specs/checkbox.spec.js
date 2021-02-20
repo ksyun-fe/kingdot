@@ -1,4 +1,4 @@
-import {createCons, createVue, destroyVM} from '../util';
+import {createVue, destroyVM, triggerEvent} from '../util';
 
 describe('Checkbox', () => {
     let vm;
@@ -126,19 +126,18 @@ describe('Checkbox', () => {
                 <kd-checkbox
                         v-model="languages"
                         disabled
-                        @click="click"
-                >Javascript
-                </kd-checkbox>
+                        @change="change"
+                >Javascript</kd-checkbox>
             `,
             data() {
                 return {
                     languages: false,
-                    clicked: false
+                    changed: false
                 };
             },
             methods: {
-                click() {
-                    this.clicked = true;
+                change() {
+                    this.changed = true;
                 }
             }
         }, true);
@@ -146,10 +145,11 @@ describe('Checkbox', () => {
         expect(el.classList.contains('kd-is-disabled')).to.be.true;
         expect(vm.languages).to.be.equal(false);
         el.click();
+        triggerEvent(el.querySelector('.kd-checkbox-input'), 'change');
         await vm.$nextTick().then(() => {
             expect(el.classList.contains('kd-is-disabled')).to.be.true;
             expect(vm.languages).to.be.equal(false);
-            expect(vm.clicked).to.be.false;
+            expect(vm.changed).to.be.false;
         });
     });
 
