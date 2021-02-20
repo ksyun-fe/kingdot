@@ -72,7 +72,6 @@
                 if (this.$parent.handleTabMove) {
                     this.$parent.tabHandelMove({
                         marginLeft: this.$el.offsetLeft
-
                     });
                 }
                 this.autoMove();
