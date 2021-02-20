@@ -86,7 +86,7 @@
             },
             closTab(v) {
                 v.event && v.event.stopPropagation();
-                this.$parent.close();
+                this.$parent.close(this.value);
                 this.$el.remove();
             }
         }
