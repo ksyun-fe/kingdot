@@ -3,6 +3,7 @@
         <kd-tooltip
                 placement="bottom-start"
                 trigger="click"
+                :widthLimit="false"
                 :disabled="disabled"
                 can-hover
         >
