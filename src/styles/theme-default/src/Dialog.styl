@@ -67,6 +67,8 @@
         top 0
         color #ccc
         cursor pointer
+        &:hover
+            color #557DFC
     .kd-dialog-body
         padding 20px 20px 32px
         text-align center
@@ -110,6 +112,8 @@
         text-align left
         padding-left 30px
     .kd-dialog-icon-size-tips
+        display inline-block
+        margin-top -3px
         font-size 30px
         vertical-align middle
     &.kd-dialog-tips-body-center
@@ -121,18 +125,24 @@
         margin-right 12px
     .kd-dialog-tips-title
         font-size 16px
-        line-height 20px
+        line-height 30px
         color $-dialog-tips-title-color
     .kd-dialog-tips-title-center
         display block
         padding 8px 0
+        line-height 20px
     .kd-dialog-tips-message
         margin-left 40px
+        margin-top 8px
         font-size $-font-base-size
         line-height 20px
         color $-dialog-tips-message-color
     .kd-dialog-tips-message-center
+        display flex
+        justify-content center
         margin-left 0
+        padding 0px 10px
+        text-align justify
 .kd-dialog-footer
     .kd-dialog-btn
         margin 0 4px

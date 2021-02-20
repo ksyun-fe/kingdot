@@ -73,9 +73,11 @@ for theme in $-tooltip-theme
     &[data-popper-placement^='left']
         padding-right $-tooltip-distance
 // Wrapper for the tooltip content
+.kd-tooltip-limit
+    .kd-tooltip-inner
+        max-width $-tooltip-max-width
 .kd-tooltip-inner
     padding 14px
-    max-width $-tooltip-max-width
     border-radius $-border-radius-base
     background-color $-tooltip-light-bg
     box-shadow $-box-shadow-base

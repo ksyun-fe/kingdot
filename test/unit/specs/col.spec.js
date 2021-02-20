@@ -17,6 +17,19 @@ describe('Col', () => {
         expect(vm.$el.classList.contains('kd-col')).to.be.true;
     });
 
+    it('row gutter', () => {
+        vm = createVue({
+            template: `
+                <KdRow gutter="16">
+                    <kd-col ref='a' span="12">a</kd-col>
+                    <kd-col span="12">b</kd-col>
+                </KdRow>
+            `
+        });
+
+        expect(vm.$refs.a.style.paddingLeft == '8px').to.be.true;
+    });
+
     ['span', 'offset', 'pull', 'push'].forEach(prop => {
         it(prop, () => {
             vm = createVue({

@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "description": "A UI Components Library For Vue",
     "author": "kingsoft",
-    "main": "lib/index.js",
-    "unpkg": "lib/kingdot.js",
+    "main": "lib/kingdot.js",
+    "unpkg": "lib/index.js",
     "style": "lib/theme-default/index.css",
     "license": "MIT",
     "files": [

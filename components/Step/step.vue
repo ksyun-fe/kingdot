@@ -84,7 +84,8 @@
                                 'kd-step-title-simple': type == 'simple',
                                 'kd-step-title-spot': type == 'spot',
                                 'kd-step-title-vertical':direction == 'vertical',
-                                'kd-step-cursor':isClick
+                                'kd-step-cursor':isClick,
+                                'kd-step-title-spot-active':index == activeIndex && type == 'spot'
                             }"
                             @click="_click"
                     >{{ title }}</span>
