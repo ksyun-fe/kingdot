@@ -25,7 +25,8 @@
                     :class="{
                         'kd-calendar-text-btn': !isRange,
                     }"
-                    @click="setMode('select-year')">{{ year }} 年
+                    @click="setMode('select-year')"
+            >{{ year }} 年
             </span>
             <i
                     v-show="mode==='select-year'"
@@ -56,12 +57,14 @@
                     :class="{
                         'kd-calendar-text-btn': !isRange,
                     }"
-                    @click="setMode('select-year')">{{ year }} 年 </span>
+                    @click="setMode('select-year')"
+            >{{ year }} 年 </span>
             <span
                     :class="{
                         'kd-calendar-text-btn': !isRange,
                     }"
-                    @click="setMode('select-month')">{{ month }} 月</span>
+                    @click="setMode('select-month')"
+            >{{ month }} 月</span>
             <i
                     v-if="!isRange || isRange && isEndCalendar"
                     class="kd-icon-skip-forward right"
