@@ -5,16 +5,16 @@
 ```html
 <template>
 <div>
-    <Input
+    <kd-input
             placeholder="请输入内容"
             v-model="age"
-    />
-    <Input
+    ></kd-input>
+    <kd-input
             class="input-gap1"
             width="200px"
             placeholder="请输入内容"
             v-model="age"
-    />
+    ></kd-input>
 </div>
    
 </template>
@@ -27,10 +27,10 @@
         }
     }
 </script>
-<style>
-.input-gap1 {
-    margin-left: 10px;
-}
+<style scoped>
+    .input-gap1 {
+        margin-left: 10px;
+    }
 </style>
 ```
 :::
@@ -39,11 +39,11 @@
 ```html
 <template>
 <div>
-    <Input
+    <kd-input
             placeholder="请输入内容"
             v-model="age"
             :disabled="true"
-    />
+    ></kd-input>
 </div>
 </template>
 <script >
@@ -61,13 +61,11 @@
 :::demo #可清空 ##使用clearable属性即可得到一个可清空的输入框
 ```html
 <template>
-<div>
-    <Input
+    <kd-input
             type="text"
             v-model="info"
             clearable
-    />
-</div>
+    ></kd-input>
 </template>
 <script >
     export default{
@@ -86,7 +84,7 @@
 ```html
 <template>
 <div>
-    <Input
+    <kd-input
             :type="type"
             v-model="password"
     >
@@ -96,7 +94,7 @@
                     @click="switchType"
              ></i>
         </template>
-    </Input>
+    </kd-input>
 </div>
 </template>
 <script >
@@ -127,24 +125,24 @@
 ```html
 <template>
 <div>
-    <Input
+    <kd-input
             class="input-gap2"
             type="text"
             v-model="info"
             status="success"
-    />
-    <Input
+    ></kd-input>
+    <kd-input
             class="input-gap2"
             type="text"
             v-model="info"
             status="error"
-    />
-    <Input
+    ></kd-input>
+    <kd-input
             class="input-gap2"
             type="text"
             v-model="info"
             status="warning"
-    />
+    ></kd-input>
 </div>
 </template>
 <script >
@@ -156,7 +154,7 @@
         }
     }   
 </script>
-<style>
+<style scoped>
     .input-gap2 {
         margin: 0 10px 10px 0;
     }
@@ -168,7 +166,7 @@
 ```html
 <template>
 <div>
-    <Input
+    <kd-input
             class="input-gap3"
             type="text"
             v-model="info"
@@ -178,8 +176,8 @@
         <template v-slot:suffix>
             <i class="kd-icon-search"></i>
         </template>
-    </Input>
-    <Input
+    </kd-input>
+    <kd-input
             class="input-gap3"
             type="text"
             v-model="info"
@@ -189,8 +187,8 @@
         <template v-slot:suffix>
             <i class="kd-icon-search"></i>
         </template>
-    </Input>
-    <Input
+    </kd-input>
+    <kd-input
             class="input-gap3"
             type="text"
             v-model="info"
@@ -200,8 +198,8 @@
         <template v-slot:suffix>
             <i class="kd-icon-search"></i>
         </template>
-    </Input>
-    <Input
+    </kd-input>
+    <kd-input
             class="input-gap3"
             type="text"
             v-model="info"
@@ -211,7 +209,7 @@
         <template v-slot:suffix>
             <i class="kd-icon-search"></i>
         </template>
-    </Input>
+    </kd-input>
 </div>
 </template>
 <script >
@@ -223,7 +221,7 @@
         }
     }   
 </script>
-<style>
+<style scoped>
     .input-gap3 {
         margin: 0 10px 10px 0;
     }
@@ -235,7 +233,7 @@
 ```html
 <template>
 <div>
-    <Input
+    <kd-input
             v-model="url"
             name="url"
             size="mini"
@@ -246,8 +244,8 @@
         <template v-slot:append>
                 <span>.com</span>
         </template>
-    </Input>
-    <Input
+    </kd-input>
+    <kd-input
             class="input-gap4"
             v-model="url"
             name="url"
@@ -259,9 +257,9 @@
         <template v-slot:append>
                 <span>.com</span>
         </template>
-    </Input>
+    </kd-input>
     
-    <Input
+    <kd-input
             class="input-gap4"
             v-model="url"
             name="url"
@@ -273,8 +271,8 @@
         <template v-slot:append>
                 <span>.com</span>
         </template>
-    </Input>
-    <Input
+    </kd-input>
+    <kd-input
             class="input-gap4"
             v-model="url"
             name="url"
@@ -286,10 +284,10 @@
         <template v-slot:append>
                 <span>.com</span>
         </template>
-    </Input>
+    </kd-input>
 </div>
 </template>
-<script >
+<script>
     export default{
         data() {
             return {
@@ -298,7 +296,7 @@
         }
     }   
 </script>
-<style>
+<style scoped>
     .input-gap4 {
         margin: 10px 0;
     }
@@ -310,24 +308,24 @@
 ```html
 <template>
 <div>
-    <Input
+    <kd-input
+            class="input-gap5"
             type="textarea"
             v-model="intro"
             name="intro"
             :rows="5"
             width="300px"
-    />
-    <Input
+    ></kd-input>
+    <kd-input
             class="input-gap5"
             type="textarea"
             v-model="intro"
             name="intro"
             :fluid="true"
-    />
-
+    ></kd-input>
 </div>
 </template>
-<script >
+<script>
     export default{
         data() {
             return {
@@ -336,7 +334,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     .input-gap5 {
         margin: 10px 0;
     }
@@ -345,11 +343,20 @@
 :::
 
 
-:::demo #文本域 ##maxlength是原生属性，用来限制输入框的字符长度.对于 textarea 的输入框，在使用 maxlength 属性限制最大输入长度的同时，可通过设置 show-count 属性来展示字数统计。
+:::demo #输入长度限制 ##maxlength是原生属性，用来限制输入框的字符长度.对于 textarea 的输入框，在使用 maxlength 属性限制最大输入长度的同时，可通过设置 show-count 属性来展示字数统计。
 ```html
 <template>
 <div>
-    <Input
+    <kd-input
+            class="input-gap5"
+            type="text"
+            placeholder="最大输入长度10"
+            v-model="info"
+            name="ten"
+            maxlength="10"
+            size="large"
+    ></kd-input>
+    <kd-input
             type="textarea"
             placeholder="最大输入长度100"
             v-model="intro"
@@ -357,18 +364,25 @@
             maxlength="100"
             :show-count="true"
             size="large"
-    />
+    ></kd-input>
 </div>
 </template>
-<script >
+<script>
     export default{
         data() {
             return {
+                info: 'hellohelloeqw',
                 intro: 'this is textarea'
             }   
         }
     }   
 </script>
+<style scoped>
+    .input-gap5 {
+        display: block;
+        margin: 10px 0;
+    }
+</style>
 ```
 :::
 
