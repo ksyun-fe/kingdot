@@ -1,13 +1,10 @@
 import Vue from 'vue';
-<<<<<<< HEAD
 import "babel-polyfill";
 import kd from '../../src/index';
 import Router from 'vue-router';
 Vue.use(Router);
 Vue.use(kd);
 import 'src/styles/theme-default/index.styl';
-=======
->>>>>>> c2165352a56d3070248869fbd93352db434ea37e
 
 let id = 0;
 
