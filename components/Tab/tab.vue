@@ -13,7 +13,7 @@
         <div
                 v-if="this.$parent.closable&&this.$parent.size!=='mini'&&!this.$parent.isVertical"
                 class="kd-guanbi"
-                @click="closTab"
+                @click.stop="closTab"
         >
             <i class="kd-icon-close"></i>
         </div>
@@ -42,7 +42,7 @@
         computed: {
             checked() {
                 let flag = false;
-                flag = this.$parent.value == this.value;
+                flag = this.$parent.value === this.value;
                 return flag;
             },
             innerValue() {
@@ -85,7 +85,7 @@
                 });
             },
             closTab(v) {
-                v.event && v.event.stopPropagation();   // 兼容
+                v.event && v.event.stopPropagation();
                 this.$parent.close(this.value);
                 this.$el.remove();
             }

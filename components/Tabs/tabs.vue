@@ -1,15 +1,16 @@
 <template>
-    <div
-            :class="[mainClass,{'kd-tabs-default':type=='default'}]"
-    >
+    <div :class="[mainClass, { 'kd-tabs-default': type === 'default' }]">
         <div
                 ref="tabs"
                 class="kd-tabs-main-move"
-                :class="[{'kd-tabs-show-control':showControl},{'kd-addabble-box': addable}]"
+                :class="[
+                    { 'kd-tabs-show-control': showControl },
+                    { 'kd-addabble-box': addable },
+                ]"
         >
             <div
                     class="kd-control right"
-                    :class="{'kd-move-disable-right':movedisabledRight}"
+                    :class="{ 'kd-move-disable-right': movedisabledRight }"
                     @click="moveLeft"
             >
                 <i class="kd-icon-arrow-right kd-control-icon"></i>
@@ -17,7 +18,7 @@
 
             <div
                     class="kd-control left"
-                    :class="{'kd-move-disable-left':movedisabledLeft}"
+                    :class="{ 'kd-move-disable-left': movedisabledLeft }"
                     @click="moveRight"
             >
                 <i class="kd-icon-arrow-left kd-control-icon"></i>
@@ -25,20 +26,21 @@
 
             <div
                     class="kd-tabs-content"
-                    :style="{'margin-left':marginLeft+'px'}"
+                    :style="{ 'margin-left': marginLeft + 'px' }"
             >
                 <slot></slot>
                 <div
-                        v-if="type=='default'"
+                        v-if="type == 'default'"
                         class="kd-move-bar"
                         :style="{
-                            'width':activeWidth + 'px',
-                            'left':activeMarginLeft+'px'}"
+                            width: activeWidth + 'px',
+                            left: activeMarginLeft + 'px',
+                        }"
                 ></div>
                 <div
-                        v-if="type=='vertical'"
+                        v-if="type == 'vertical'"
                         class="kd-move-vertical"
-                        :style="{'margin-top':marginTop+'px'}"
+                        :style="{ 'margin-top': marginTop + 'px' }"
                 ></div>
             </div>
         </div>
@@ -52,7 +54,6 @@
                 <i class="kd-icon-plus"></i>
             </slot>
         </div>
-
     </div>
 </template>
 
@@ -120,8 +121,12 @@
         },
         watch: {
             marginLeft(newValue) {
-                newValue === 0 ? this.movedisabledLeft = true : this.movedisabledLeft = false;
-                newValue === -(this.contentWidth - this.regionWidth) ? this.movedisabledRight = true : this.movedisabledRight = false;
+                newValue === 0
+                    ? (this.movedisabledLeft = true)
+                    : (this.movedisabledLeft = false);
+                newValue === -(this.contentWidth - this.regionWidth)
+                    ? (this.movedisabledRight = true)
+                    : (this.movedisabledRight = false);
             }
         },
         updated() {
@@ -130,7 +135,9 @@
         methods: {
             Recapture() {
                 this.$nextTick(() => {
-                    this.contentWidth = this.$refs.tabs.querySelector('.kd-tabs-content').scrollWidth;
+                    this.contentWidth = this.$refs.tabs.querySelector(
+                        '.kd-tabs-content'
+                    ).scrollWidth;
                     this.regionWidth = this.$refs.tabs.clientWidth;
                     this.showControl = this.regionWidth < this.contentWidth;
                     if (!this.showControl) {
@@ -147,7 +154,7 @@
                 this.$emit('input', val);
             },
 
-            tabHandelMove({marginLeft = '', event = ''}) {
+            tabHandelMove({ marginLeft = '', event = '' }) {
                 this.marginLeft = this.marginLeft - marginLeft + 20;
             },
             moveLeft() {
@@ -171,11 +178,19 @@
             },
             calculateTravelDistance() {
                 let distance = '';
-                this.movingDistance ? distance = this.movingDistance : distance = this.$refs.tabs.clientWidth;
+                this.movingDistance
+                    ? (distance = this.movingDistance)
+                    : (distance = this.$refs.tabs.clientWidth);
                 this.singleWidth = distance;
             },
             close(v) {
                 this.$emit('close', v);
+                this.Recapture();
+                this.$nextTick(() => {
+                    if (this.showControl) {
+                        this.marginLeft = -(this.contentWidth - this.regionWidth);
+                    }
+                });
             },
             addTab(v) {
                 this.$emit('addTab');
