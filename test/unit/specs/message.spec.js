@@ -292,7 +292,7 @@ describe('Message', () => {
             expect(vm.$el.style.top).to.be.equal(`${offset}px`);
             expect(vm2.$el.style.top).to.be.equal(`${offset + vm.$el.offsetHeight + 16}px`);
             setTimeout(() => {
-                vm2.close();
+                destroyMessage(vm2);
                 setTimeout(() => {
                     done();
                 }, 500);
