@@ -64,7 +64,7 @@
    .kd-active  
       .kd-tab-text  
          display: inline-block;
-         border-bottom: $-tabs-border-width solid $-tabs-color-active;
+         border-bottom: $-tabs-border-width solid $-tabs-color-active-bar;
          padding-bottom: 10px;
          height: auto;
          color: $-tabs-color-active;    
@@ -74,16 +74,16 @@
    .kd-tab  
       display: inline-block;
       min-width: 84px;
-      border: $-tabs-border-width solid $-tabs-after-borderColor;
+      border: $-tabs-border-width solid $-tabs-after-borderColor-card;
       padding: 9px 16px;
       cursor: pointer;
-      background: $-tabs-card-backgroundColor;
+      background: $-tabs-card-background;
    .kd-tabs-content  
       display: inline-block;
       font-size: 0;
       border-radius: 4px 0 0 4px;
       .kd-active  
-         background: $-tabs-color-background !important;
+         background:  $-tabs-card-color-background !important;
          .kd-tab-text  
             color: $-tabs-color-active;
 .kd-tabs-block  
@@ -100,13 +100,14 @@
       min-width: 128px;
       padding: 14px 16px;
       border: $-tabs-border-width solid $-tabs-after-borderColor;
-      border-radius: 2px;
       background: $-tabs-large-backgroundColor;
    .kd-active  
+      position relative
+      top:1px
       background: $-tabs-color-background !important;
-      border-top: 2px solid $-tabs-color-active;
-      border-bottom: 0;
-      border-left: 0;
+      border-top: 2px solid $-tabs-color-active-bar;
+      border-bottom: 1px solid transparent;
+      border-left:1px solid transparent;
       .kd-tab-text  
          color: $-tabs-color-active;
 .kd-tabs-vertical  
@@ -119,7 +120,7 @@
    .kd-move-vertical  
       transition: all 0.3s;
       position: absolute;
-      background: $-tabs-color-active;
+      background: $-tabs-color-active-bar;
       right: 0;
       top: 0px;
       z-index: 99999;
@@ -146,9 +147,9 @@
       cursor: pointer;
       z-index: 9999;
       border-bottom: none;
-      background: $-tabs-color-background;
+      background:$-tabs-large-backgroundColor;
+      border: 1px solid $-tabs-after-borderColor
       height: 100%;
-      border: $-tabs-border-width solid $-tabs-after-borderColor;
       .kd-control-icon  
          font-size: 15px !important;
          vertical-align: middle;
@@ -159,7 +160,7 @@
    transition: all 0.3s;
    position: absolute;
    display: inline-block;
-   background: $-tabs-color-active;
+   background: $-tabs-color-active-bar;
    bottom: 0;
    left: 16px;
    z-index: 99;
@@ -179,15 +180,16 @@
       cursor: not-allowed;
 .kd-move-disable-left , .kd-move-disable-right
    cursor: not-allowed !important
-   color: $-tabs-after-disabledColor;
-   background:#f0f0f3 !important
+   color:$-disabled-color;
+   background:$-disabled-bg-color !important
+   border: 1px solid  $-disabled-border-color !important
 .kd-add-tab
    position: absolute
    right 0
    top: calc( 50% - 21px)
    width: 42px
    height 42px
-   background: #F3F4F7
+   background:  $-kd-add-tab
    margin-left: 7px
    color #b2b2b2
    cursor pointer
@@ -196,7 +198,7 @@
    font-size: 12px
    &:active  
       color: $-tabs-color-background;
-      border: 1px solid #e5e5e5 
+      border: 1px solid  $-kd-add-tab
 
 
 

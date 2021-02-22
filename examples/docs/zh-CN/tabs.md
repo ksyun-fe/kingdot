@@ -14,7 +14,7 @@
    export default {
         data(){
             return{
-              key:1,
+              key:'1',
             }
         }
    }
@@ -37,7 +37,7 @@
    export default {
         data(){
             return{
-              key:1,
+              key:'1',
             }
         }
    }
@@ -60,7 +60,7 @@
    export default {
         data(){
             return{
-              key:1,
+              key:'1',
             }
         }
    }
@@ -83,7 +83,7 @@
    export default {
         data(){
             return{
-              key:1,
+              key:'1',
             }
         }
    }
@@ -106,7 +106,7 @@
    export default {
         data(){
             return{
-              key:1,
+              key:'1',
             }
         }
    }
@@ -141,7 +141,7 @@
    export default {
         data(){
             return{
-              key:1,
+              key:'1',
             }
         }
    }
@@ -153,8 +153,25 @@
 ```html
 <template> 
 <div>
- <kd-tabs  v-model='editableTabsValue' type='block' @addTab='addTab' :closable=true  @close='closeTab' :addable=true>
-      <kd-tab v-for="item in editableTabs" :value='item.name' :key='item.name'>  {{item.title}}  </kd-tab>
+ <kd-tabs  
+      v-model='editableTabsValue'
+      type='block'
+      @addTab='addTab' 
+      @close='closeTab'
+      :closable=true 
+      :addable=true
+      >
+
+      <kd-tab
+       v-for="item in editableTabs" 
+       :value='item.name' 
+       :key='item.name'
+       > 
+
+       {{item.title}}  
+
+       </kd-tab>
+
  </kd-tabs>
  </div>   
 </template>   
@@ -219,7 +236,7 @@
    export default {
         data(){
             return{
-              key:1,
+              key:'1',
             }
         }
    }
@@ -228,26 +245,26 @@
 :::
 
 ### Tabs属性
-| 属性      | 说明    | 类型      | 可选值       | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- |
-| value / v-model | 当前tabs的绑定值                   |  — | —         |  —
-| isVertical           | tabs是否竖直     | boolean                    |  —       |  false
-| type           | tabs的类型              | string                    | pagination / block / card / vertical |  
-| closable          | tab是否可关闭              | boolean           |     —     |    false   
-| handleTabMove          | tab是否移动到最前面      | boolean           |     —     |    false   
-| movingDistance          | 左右移动距离     |            |     —     |    Tabs可视区宽度 
-| addable          | Tab是否可添加     |     boolean       |     —     |    false 
+| 属性            | 说明                | 类型    | 可选值                               | 默认值         |
+| --------------- | ------------------- | ------- | ------------------------------------ | -------------- |
+| value / v-model | 当前tabs的绑定值    | —       | —                                    | —              |
+| isVertical      | tabs是否竖直        | boolean | —                                    | false          |
+| type            | tabs的类型          | string  | pagination / block / card / vertical |
+| closable        | tab是否可关闭       | boolean | —                                    | false          |
+| handleTabMove   | tab是否移动到最前面 | boolean | —                                    | false          |
+| movingDistance  | 左右移动距离        |         | —                                    | Tabs可视区宽度 |
+| addable         | Tab是否可添加       | boolean | —                                    | false          |
 ### Tab属性
-| 属性      | 说明    | 类型      | 可选值       | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- |
-| value | 当前tab的绑定值                   |  — | —         |  —
-| disabled           | 标签页是否不可点击     | boolean                    |  —       |  false
+| 属性     | 说明               | 类型    | 可选值 | 默认值 |
+| -------- | ------------------ | ------- | ------ | ------ |
+| value    | 当前tab的绑定值    | —       | —      | —      |
+| disabled | 标签页是否不可点击 | boolean | —      | false  |
 ### Events
-| 属性      | 说明    | 类型      | 可选值       | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- |
-| close | 关闭tabs回调                 |  function | —         |  —
+| 属性  | 说明         | 类型     | 可选值 | 默认值 |
+| ----- | ------------ | -------- | ------ | ------ |
+| close | 关闭tabs回调 | function | —      | —      |
 ### Slot
-| 属性      | 说明    | 类型      | 可选值       | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- |
-| addable | 自定义添加按钮                 |  — | —         |  —
+| 属性    | 说明           | 类型 | 可选值 | 默认值 |
+| ------- | -------------- | ---- | ------ | ------ |
+| addable | 自定义添加按钮 | —    | —      | —      |
 
