@@ -52,9 +52,7 @@
                                 type="primary"
                                 class="kd-drawer-truebutton"
                                 @click="running"
-                        >
-                            {{ okText }}
-                        </kd-button>
+                        >{{ okText }}</kd-button>
                     </slot>
                 </section>
             </div>
