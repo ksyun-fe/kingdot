@@ -7,7 +7,7 @@
     margin-bottom 30px
     .kd-calendar-text-btn
         &:hover 
-            color $-blue
+            color $-datepicker-day-blue-color
     .left
         float left
     .right
@@ -19,7 +19,7 @@
         &:first-child,&:nth-child(2)
             transform rotate(-180deg)
         &:hover 
-            color $-blue
+            color $-datepicker-day-blue-color
     span
         text-align center
 .kd-calendar-default
@@ -61,7 +61,7 @@
             cursor pointer
             /******** 动态样式 *******/ 
             &.kd-blue
-                color $-blue
+                color $-datepicker-day-blue-color
             &.kd-in-range
                 background-color $-datepicker-day-in-range-bg-color
             &:hover
@@ -70,15 +70,15 @@
             
                 // font-weight $-header-font-weight
             &.kd-selected
-                background-color $-datepicker-day-selected-bg-color
+                background $-datepicker-day-selected-bg-color
                 color $-datepicker-day-selected-color
             &.kd-disabled
-                background-color $-datepicker-day-disabled-bg-color
+                background $-datepicker-day-disabled-bg-color
                 cursor no-drop
                 &:hover
                     color $-datepicker-day-disabled-color
             &.kd-disMonth
-                background-color $-datepicker-day-disMonth-bg-color
+                background $-datepicker-day-disMonth-bg-color
                 color $-datepicker-day-disMonth-color
                 cursor no-drop
                 &:hover

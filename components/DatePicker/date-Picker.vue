@@ -7,7 +7,7 @@
                 :disabled="disabled"
                 can-hover
         >
-            <kd-input
+            <Input
                     v-model="inputDateString"
                     :placeholder="isRange ? rangePlaceholder : placeholder"
                     :width="isRange ? 400 : 200"
@@ -15,10 +15,10 @@
                     @blur="setDate(inputDateString)"
                     @keyup.enter="setDate(inputDateString)"
             >
-                <template slot="suffix">
-                    <i class="kd-icon-date"></i>
-                </template>
-            </kd-input>
+            <template slot="suffix">
+                <i class="kd-icon-date"></i>
+            </template>
+            </Input>
             <template slot="content">
                 <div
                         v-if="isRange===true"
