@@ -5,15 +5,15 @@ r = 120 - 60 - (width / 2)
 c = round(2 * 3.14 * r)
 .kd-spin
     display inline-block
-    &.kd-overlay
+    &.kd-spin-overlay
         position fixed
         top 0
         right 0
         bottom 0
         left 0
-    &.kd-local
+    &.kd-spin-local
         position absolute
-    .kd-wrapper
+    .kd-spin-wrapper
         position absolute
         top 50%
         left 50%
@@ -41,7 +41,7 @@ c = round(2 * 3.14 * r)
         text-align center
         font-size 14px
 for size in $-size-array
-    &.kd-{size}
+    &.kd-spin-{size}
         .kd-spin-animation
             width lookup('$-spin-' + size + '-width')
             height @width

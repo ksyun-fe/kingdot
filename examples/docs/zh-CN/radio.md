@@ -16,7 +16,7 @@
             v-model="radioValue"
             :disabled="key == 3"
             >radio</kd-radio>
-        <kd-radio :true-value="3" v-model="radioValueDisabled" :disabled="true">radio</kd-radio>
+        <kd-radio :true-value="3" v-model="radioValueDisabled" disabled>radio</kd-radio>
         <div>选择的数据是：{{ radioValue }}</div>
     </div>
 </template>

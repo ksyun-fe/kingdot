@@ -4,9 +4,9 @@
             :class="[
                 {
                     'kd-spin': true,
-                    [`kd-${size}`]: size !== 'default',
-                    'kd-overlay': overlay,
-                    'kd-local': isLocal
+                    [`kd-spin-${size}`]: size !== 'default',
+                    'kd-spin-overlay': overlay,
+                    'kd-spin-local': isLocal
                 },
             ]"
             :style="[
@@ -19,7 +19,7 @@
         <div
                 :class="[
                     {
-                        'kd-wrapper': overlay
+                        'kd-spin-wrapper': overlay
                     }
                 ]"
         >
@@ -65,26 +65,32 @@
     export default {
         name: 'KdSpin',
         props: {
+            // 展示文案
             text: {
                 type: String,
                 default: ''
             },
+            // 尺寸
             size: {
                 type: String,
                 default: 'default'
             },
+            // 遮罩层
             overlay: {
                 type: Boolean,
                 default: true
             },
+            // 颜色
             background: {
                 type: String,
                 default: 'rgba(255, 255, 255, .5)'
             },
+            // 自定义加载图标
             spinner: {
                 type: [Boolean, String],
                 default: false
             },
+            // 局部
             isLocal: {
                 type: Boolean,
                 default: false
