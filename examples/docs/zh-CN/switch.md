@@ -21,7 +21,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     div .kd-switch {
         margin-right: 10px;
     }
@@ -51,7 +51,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     div .kd-switch {
         margin-right: 10px;
     }
@@ -90,7 +90,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     div .kd-switch {
         margin-right: 10px;
     }
@@ -130,7 +130,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     div .kd-switch {
         margin-right: 10px;
     }
@@ -163,7 +163,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
     div .kd-switch {
         margin-right: 10px;
     }

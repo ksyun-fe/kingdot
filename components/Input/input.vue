@@ -10,7 +10,8 @@
                     'kd-with-suffix': $slots.suffix || success || warning || error,
                     'kd-input-fluid': fluid,
                     ['kd-input-status-' + (status === 'error' ? 'err' : status)]: success || warning || error,
-                    'kd-textarea-show-count': showCount
+                    'kd-textarea-show-count': showCount,
+                    'kd-is-exceed': isExceed
                 }
             ]"
             :style="{width: parseInt(width) + 'px'}"
@@ -102,7 +103,7 @@
 </template>
 <script type="text/javascript">
     export default {
-        name: 'Input',
+        name: 'KdInput',
         inheritAttrs: false,
         props: {
             tabindex: {
@@ -176,7 +177,7 @@
                 return this.clearable && !this.readonly && !this.disabled && this.innerValue && (this.type !== 'textarea');
             },
             isShowCount() {
-                return this.showCount && this.$attrs.maxlength && this.type === 'textarea' && !this.disabled && !this.readonly;
+                return this.showCount && this.$attrs.maxlength && (this.type === 'text' || this.type === 'textarea') && !this.disabled && !this.readonly;
             },
             textLength() {
                 if (typeof this.value === 'number') {
@@ -186,16 +187,18 @@
             },
             limit() {
                 return this.$attrs.maxlength;
+            },
+            isExceed() {
+                return this.$attrs.maxlength && (this.type === 'text' || this.type === 'textarea') && !this.disabled && !this.readonly && (this.textLength > this.limit);
             }
         },
         watch: {
+            value(v) {
+                this.innerValue = v;
+            },
             innerValue: function (v) {
                 if (v === this.value) return;
                 this.$emit('input', v);
-            },
-            value(v) {
-                this.innerValue = v;
-                this.$emit('change', v);
             }
         },
         created() {
