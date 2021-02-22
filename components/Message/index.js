@@ -22,16 +22,37 @@ const getTop = (index, offset) => {
 
     for (let i = 0; i < index; i++) {
         vm = messages[i];
-        if (!vm) continue;
+        if (vm && vm.$el.offsetHeight) {
+            if (vm.offset != null && vm.offset > top) {
+                offset = vm.offset;
+            }
 
-        if (vm.offset != null && vm.offset > top) {
-            offset = vm.offset;
+            top += vm.$el.offsetHeight + defaultMargin;
+        } else if (vm) {
+            nextTickRefreshTop();
         }
-
-        top += vm.$el.offsetHeight + defaultMargin;
     }
 
     return top + offset + 'px';
+};
+
+const nextTickRefreshTop = (function () {
+    let flag = false;
+    return () => {
+        if (!flag) {
+            flag = true;
+            Vue.prototype.$nextTick(() => {
+                refreshTop();
+                flag = false;
+            });
+        }
+    };
+})();
+
+const refreshTop = () => {
+    messages.forEach((i, index) => {
+        i.$el.style.top = getTop(index, i.offset);
+    });
 };
 
 const close = (vm) => {
@@ -40,9 +61,7 @@ const close = (vm) => {
     if (_index < 0) return;
 
     messages.splice(_index, 1);
-    messages.forEach((i, index) => {
-        i.$el.style.top = getTop(index, i.offset);
-    });
+    refreshTop();
 };
 
 const stopAllTimer = () => {

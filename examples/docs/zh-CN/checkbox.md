@@ -92,7 +92,7 @@
                 :value="length === 3"
                 @change="toggleSelectAll"
         >全选</kd-checkbox>
-        <hr />
+        <br/>
         <kd-checkbox name="languages" trueValue="js" v-model="languages">Javascript</kd-checkbox>
         <kd-checkbox name="languages" trueValue="css" v-model="languages">Css</kd-checkbox>
         <kd-checkbox name="languages" trueValue="html" v-model="languages">Html</kd-checkbox>
