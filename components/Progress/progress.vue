@@ -166,11 +166,6 @@
                     strokeDashoffset: 0,
                     transition: 'all .6s ease'
                 };
-            },
-            textSize() {
-                return this.type === 'line'
-                    ? 12 + this.strokeWidth * 0.4
-                    : this.width * 0.111111 + 2;
             }
         },
         methods: {
@@ -198,7 +193,6 @@
                         return colorArray[i].color;
                     }
                 }
-                return colorArray[colorArray.length - 1].color;
             }
         }
     };

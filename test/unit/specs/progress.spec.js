@@ -173,7 +173,7 @@ describe('Progress', () => {
                     />
                     <kd-progress
                             type="line"
-                             ref="statusBar"
+                             ref="errorStatusBar"
                             :percentage="30"
                             :active="true"
                             :strokeWidth="20"
@@ -181,34 +181,61 @@ describe('Progress', () => {
                             status="error"
                             color="#EF4E76"
                     />
+                    <kd-progress
+                            type="line"
+                            ref="warningStatusBar"
+                            :percentage="30"
+                            :active="true"
+                            :strokeWidth="20"
+                            :showText="true"
+                            status="warning"
+                            color="#EF4E76"
+                    />
+                     <kd-progress
+                            type="circle"
+                            ref="errorStatusCircle"
+                            :percentage="40"
+                            color="red"
+                            :showText="true"
+                            status="error"
+                     />
                 </div>
             `
         });
         const insideTextElem = vm.$refs.insideText.$el.querySelector('.kd-progress-bar-inner > div');
         const outsideTextElem = vm.$refs.outsideText.$el.querySelector('.kd-progress-text');
-        const statusElem = vm.$refs.statusBar.$el.querySelector('.kd-progress-text i');
+        const errorStatusElem = vm.$refs.errorStatusBar.$el.querySelector('.kd-progress-text i');
+        const warningStatusElem = vm.$refs.warningStatusBar.$el.querySelector('.kd-progress-text i');
+        const errorStatusCircle = vm.$refs.errorStatusCircle.$el.querySelector('.kd-progress-text i');
 
         expect(insideTextElem.innerText).to.equal('30%');
         expect(outsideTextElem.innerText).to.equal('30%');
-        expect(statusElem.classList.contains('kd-icon-error-solid')).to.be.true;
+        expect(errorStatusElem.classList.contains('kd-icon-error-solid')).to.be.true;
+        expect(warningStatusElem.classList.contains('kd-icon-warning-solid')).to.be.true;
+        expect(errorStatusCircle.classList.contains('kd-icon-error')).to.be.true;
+
     });
 
-    it('custom strokewidth', () => {
+    it('line: custom strokewidth & progressTextSize', () => {
         vm = createVue({
             template: `
                 <kd-progress
                         type="line"
                         :percentage="30"
                         :active="true"
-                        :strokeWidth="20"
+                        :strokeWidth="30"
+                        :progressTextSize="16"
                         :showText="true"
+                        :textInside="true"
                         status="error"
                         color="#EF4E76"
                 />
             `
         });
         const progressBarElem = vm.$el.querySelector('.kd-progress-bar-inner');
-        expect(document.defaultView.getComputedStyle(progressBarElem, null).height).to.equal('20px');
+        expect(document.defaultView.getComputedStyle(progressBarElem, null).height).to.equal('30px');
+        const percentElem = vm.$el.querySelector('.kd-progress-bar-inner > div');
+        expect(document.defaultView.getComputedStyle(percentElem, null).fontSize).to.equal('16px');
     });
 
     // circle progress bar
@@ -228,5 +255,21 @@ describe('Progress', () => {
         });
         const progressBarElem = vm.$el.querySelector('.kd-progress');
         expect(progressBarElem.classList.contains('kd-progress-circle')).to.be.true;
+    });
+
+    it('circle: custom progressTextSize', () => {
+        vm = createVue({
+            template: `
+                    <kd-progress
+                            type="circle"
+                            :percentage="30"
+                            color="#4fcc6f"
+                            :showText="true"
+                            :progressTextSize="16"
+                    />
+            `
+        });
+        const progressTextElem = vm.$el.querySelector('.kd-progress-text');
+        expect(document.defaultView.getComputedStyle(progressTextElem, null).fontSize).to.equal('16px');
     });
 });

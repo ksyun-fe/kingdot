@@ -175,17 +175,8 @@
             :progressTextSize="16"
     />
 </div>
-   
+
 </template>
-<script >
-    export default{
-        data() {
-            return {
-                
-            }
-        }
-    }
-</script>
 <style>
 .kd-progress {
 margin-bottom: 10px;
