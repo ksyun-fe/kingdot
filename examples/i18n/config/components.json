@@ -54,6 +54,10 @@
                             "name": "Input 输入框"
                         },
                         {
+                            "path": "/spinner",
+                            "name": "Spinner 数字输入框"
+                        },
+                        {
                             "path": "/form",
                             "name": "Form 表单"
                         },
