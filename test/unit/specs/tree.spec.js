@@ -1,4 +1,5 @@
 import { createVue, triggerEvent, destroyVM } from '../util';
+import { methods } from '../../../components/FormItem/ruleHandlers';
 
 describe('Tree', () => {
     let vm;
@@ -104,9 +105,7 @@ describe('Tree', () => {
     it('drag', function(done) {
         vm = getTreeVm(':draggable="true" :expandedKeys="expandedKeys"');
         let el= document.querySelectorAll('.kd-tree-node-el');
-        this.timeout(10000);
-        console.log('el====', el);
-
+        this.timeout(15000);
 
         triggerEvent(el[1], 'mousedown');
         // eventName, true, false, null, 0, 0, 0, ofsx, ofsy
@@ -115,11 +114,10 @@ describe('Tree', () => {
             'mousemove',
             true,
             false,
-            { x: 20, y: 34 },
-            0, 0, 0,
-            20, 34
+            { x: 130, y: 134 },
         );
         triggerEvent(document, 'mouseup');
+        // todo
 
         setTimeout(() => {
             console.log('xxxxxx==', vm.data);

@@ -92,9 +92,14 @@
     .btn
         margin 10px
     .demo-input
-        height 32px
+        height 28px
+        width 300px
         margin-bottom 10px
         border 1px solid #ccc
+    .dark
+        .demo-input
+            border 1px solid #525c77
+            background-color #2c314e
 </style>
 ```
 
