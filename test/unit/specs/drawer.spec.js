@@ -247,7 +247,7 @@ describe('drawer', () => {
             vm = createCons(Drawer, {
                 value: true,
             })
-            expect(vm.$el.querySelector('.kd-drawer-overlay').classList.contains('kd-drawer-overlay')).to.be.true;
+            expect(vm.$el.querySelector('.kd-drawer-overlay')).to.be.have;
         })
         //点击遮罩关闭抽屉
     it('close mask', async() => {
