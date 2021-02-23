@@ -26,8 +26,8 @@
             >
                 {{ item.label }}
             </div>
-            <!-- <div class="k-border"></div> -->
         </div>
+        <div class="k-border"></div>
     </div>
 </template>
 
@@ -53,7 +53,7 @@
                 type: Function,
                 default: () => false
             },
-            count: { //  展示范围, 最好奇数位. 默认5, TODO: 其他值需要改变容器高度
+            count: { //  展示范围, 最好奇数位. 默认5
                 type: Number,
                 default() {
                     return 5;
@@ -129,7 +129,7 @@
         created() {
         },
         mounted() {
-            // this.initPosition();
+            this.initPosition();
         },
         methods: {
             // 初始化位置信息
@@ -149,7 +149,6 @@
             },
             mouseWheel(e) {
                 if (this.disabled) return;
-                // console.log('滚动', e.deltaY < 0, e);
                 // 拿滚动数据 (方向, 距离x 次数)
                 // const normalized = normalizeWheel(e);
                 this.setMoveValue(e.deltaY < 0 ? -1 : 1, null, true);
@@ -188,12 +187,3 @@
         }
     };
 </script>
-<style scoped>
-.k-active {
-    border: 1px solid #e5e5e5;
-}
-/* .k-scroll-select {
-  height: 100px;
-  overflow: scroll;
-} */
-</style>

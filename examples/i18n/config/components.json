@@ -177,6 +177,13 @@
                         },{
                             "path": "/drawer",
                             "name": "Drawer 抽屉"
+                        },{
+                            "path": "/scrollSelect",
+                            "name": "ScrollSelect 滚动选择器"
+                        },
+                        {
+                            "path": "/timePicker",
+                            "name": "TimePicker 时间选择器"
                         }
                     ]
                 }
@@ -339,6 +346,14 @@
                         {
                             "path": "/datePicker",
                             "name": "DatePicker"
+                        },
+                        {
+                            "path": "/scrollSelect",
+                            "name": "ScrollSelect"
+                        },
+                        {
+                            "path": "/timePicker",
+                            "name": "TimePicker"
                         }
                     ]
                 }
