@@ -1,0 +1,88 @@
+$-spinner-size-type := 'large' 'default' 'small' 'mini'
+
+
+.kd-spinner
+    display inline-block
+    position relative
+    .kd-input-inner
+        background $-spinner-fill-bg
+    &:not(.kd-spinner-disabled)
+        &:hover
+            .kd-input-inner
+                border 1px solid $-spinner-primary-color
+// 按钮
+.kd-spinner-btn
+    position absolute
+    z-index 2
+    cursor pointer
+    color $-spinnter-border-color
+    background $-spinner-fill-bg
+    text-align center
+    font-size 12px
+    &:not(.kd-spinner-disabled-btn)
+        &:hover
+            color $-spinner-primary-color
+// 默认样式
+.kd-spinner-add
+.kd-spinner-minus
+    top 1px
+
+.kd-spinner-add
+    right 1px
+    border-left 1px solid $-spinner-border-color
+.kd-spinner-minus
+    left 1px
+    border-right 1px solid $-spinner-border-color
+
+// 按钮在input右侧
+
+.kd-spinner-right-add
+.kd-spinner-right-minus
+    border-left 1px solid $-spinner-border-color
+
+.kd-spinner-right-add
+    right 1px
+    top 1px
+    border-bottom 1px solid $-spinner-border-color
+.kd-spinner-right-minus
+    right 1px
+    bottom 1px 
+
+// 禁用
+.kd-spinner-disabled-btn
+    background $-spinnter-disable-bg
+    cursor not-allowed
+.kd-spinner-disabled-btn.kd-spinner-add
+    border-left 1px solid $-spinnter-disable-color
+.kd-spinner-disabled-btn.kd-spinner-minus
+    border-right 1px solid $-spinnter-disable-color
+
+//  大小
+for size in $-spinner-size-type
+    $-spinner-input-h = lookup('$-spinner-btn-'+ size +'-height')
+    $-spinner-input-w = lookup('$-spinner-'+ size +'-width')
+    $-spinner-input-padding = lookup('$-spinner-'+ size +'-input-padding')
+    $-spinner-btn-w = lookup('$-spinner-btn-'+ size +'-height') - 2 
+
+    .kd-spinner-{size}
+        width unit($-spinner-input-w,'px')
+        .kd-spinner-add
+        .kd-spinner-minus
+            width unit($-spinner-btn-w, 'px')
+            height unit($-spinner-btn-w, 'px')
+            line-height unit($-spinner-btn-w, 'px')
+        .kd-spinner-input
+            width unit($-spinner-input-w, 'px')    
+            .kd-input-inner
+                text-align center
+                padding 0 unit($-spinner-btn-w + 1 + $-spinner-input-padding, 'px')
+        .kd-spinner-right-add
+        .kd-spinner-right-minus
+            width unit($-spinner-btn-w, 'px')
+            height unit($-spinner-btn-w / 2, 'px')
+            line-height unit($-spinner-btn-w / 2, 'px')
+    .kd-spinner-{size}.kd-spinner-right
+        .kd-spinner-input
+            width unit($-spinner-input-w , 'px')   
+            .kd-input-inner
+                padding 0 unit($-spinner-btn-w + $-spinner-input-padding,'px') 0 unit($-spinner-input-padding,'px')

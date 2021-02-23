@@ -308,7 +308,7 @@ describe('Input', () => {
     });
 
     // limit
-    it('limit ', (done) => {
+    it('limit ', async () => {
         vm = createVue({
             template: `
                 <div>
@@ -353,11 +353,10 @@ describe('Input', () => {
         expect(countExceedElem.classList.contains('kd-is-exceed')).to.true;
         vm.info = '123';
         vm.count = 10;
-        setTimeout(() => {
+        await vm.$nextTick().then(() => {
             expect(inputExceedElem.classList.contains('kd-is-exceed')).to.false;
             expect(countExceedElem.classList.contains('kd-is-exceed')).to.false;
-            done();
-        }, 100);
+        });
     });
 
     // innerValue change
@@ -381,7 +380,7 @@ describe('Input', () => {
         const inputElem = vm.$el.querySelector('.kd-input-inner');
         vm.$refs.inner.innerValue = 'abc';
         await vm.$nextTick().then(() => {
-            console.log(vm.info);
+            expect(vm.info).to.equal('abc');
         })
     })
 });

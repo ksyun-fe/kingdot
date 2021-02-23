@@ -283,6 +283,7 @@
 | `checkedKeys` | `通过nodeKey指定勾选的节点` | `String[]` | `[]` | `[]` |
 | `checkbox` | `是否展示复选框` | `Boolean` | `true | false` | `false` |
 | `halfcheck` | `非叶子节点是否展示半选状态（获取勾选的节点可选是否包含非叶子节点）` | `Boolean` | `true | false` | `true` |
+| `scoped` | `隔离节点选中状态` | `Boolean` | `true | false` | `false` |
 | `radio` | `select是否允许单选` | `Boolean` | `true | false` | `false` |
 | `selectAlone` | `select事件是否影响checkbox` | `Boolean` | `true | false` | `false` |
 | `canDeleteRoot` | `是否可以删除根节点` | `Boolean` | `true | false` | `false` |

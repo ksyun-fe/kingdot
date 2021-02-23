@@ -219,6 +219,11 @@
                         this.$set(node, 'halfcheck', false);
                     }
                     this.childChecked(node, checked, halfcheck);
+                    if (node.children && node.children.length) {
+                        node.children.forEach(cld => {
+                            this.nodeCheck(cld, checked);
+                        });
+                    }
                 }
             },
             // mouse over

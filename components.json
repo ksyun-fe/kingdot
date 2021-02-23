@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "Breadcrumb": "./components/Breadcrumb/index.js",
     "BreadcrumbItem": "./components/BreadcrumbItem/index.js",
     "Button": "./components/Button/index.js",
@@ -31,4 +32,37 @@
     "Tooltip": "./components/Tooltip/index.js",
     "Transition": "./components/Transition/index.js",
     "Tree": "./components/Tree/index.js"
+=======
+    "Breadcrumb": "./components/Breadcrumb/index.js",
+    "BreadcrumbItem": "./components/BreadcrumbItem/index.js",
+    "Button": "./components/Button/index.js",
+    "ButtonGroup": "./components/ButtonGroup/index.js",
+    "Checkbox": "./components/Checkbox/index.js",
+    "Col": "./components/Col/index.js",
+    "Collapse": "./components/Collapse/index.js",
+    "CollapseItem": "./components/CollapseItem/index.js",
+    "Dialog": "./components/Dialog/index.js",
+    "Drawer": "./components/Drawer/index.js",
+    "Form": "./components/Form/index.js",
+    "FormItem": "./components/FormItem/index.js",
+    "Input": "./components/Input/index.js",
+    "Message": "./components/Message/index.js",
+    "Pagination": "./components/Pagination/index.js",
+    "Popconfirm": "./components/Popconfirm/index.js",
+    "Popover": "./components/Popover/index.js",
+    "Progress": "./components/Progress/index.js",
+    "Radio": "./components/Radio/index.js",
+    "Row": "./components/Row/index.js",
+    "Spin": "./components/Spin/index.js",
+    "Spinner": "./components/Spinner/index.js",
+    "Step": "./components/Step/index.js",
+    "Steps": "./components/Steps/index.js",
+    "Switch": "./components/Switch/index.js",
+    "Tab": "./components/Tab/index.js",
+    "Tabs": "./components/Tabs/index.js",
+    "Timeline": "./components/Timeline/index.js",
+    "TimelineItem": "./components/TimelineItem/index.js",
+    "Tooltip": "./components/Tooltip/index.js",
+    "Transition": "./components/Transition/index.js"
+>>>>>>> origin/dev
 }

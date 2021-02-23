@@ -10,21 +10,29 @@ describe('Popconfirm', () => {
             <div>
                 <kd-popconfirm
                     ref="popconfirm"
-                    title="content"
+                    title="title"
+                    content="content"
                 >
-                    <button ref="reference">trigger</button>
+                    <button id="reference" ref="reference">trigger</button>
                 </kd-popconfirm>
             </div>
         `);
     };
-    it('click', () => {
+    it('click', function(done) {
         vm = createVM();
         const compo = vm.$refs.popconfirm;
+
         vm.$refs.reference.click();
-        vm.$nextTick(() => {
-            expect(compo.visible).to.true;
+        this.timeout(5000);
+        setTimeout(() => {
+            expect(compo.visible).to.be.true;
+            console.log('xxxxxxxxx1===', compo.visible);
             document.body.click();
-            expect(compo.visible).to.false;
-        })
+            setTimeout(() => {
+                console.log('xxxxxxxxx2===', compo.visible);
+                expect(compo.visible).to.be.false;
+                done();
+            }, 1000);
+        }, 1000);
     });
 });
