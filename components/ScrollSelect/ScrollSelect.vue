@@ -20,7 +20,7 @@
                     class="k-scroll-item"
                     :class="{
                         'k-active': currentValue === item.value,
-                        'k-disabled': isItemDisabled(item)
+                        'k-disabled': isItemDisabled(item.value)
                     }"
                     @click="clickHandler(item, index)"
             >
@@ -151,6 +151,7 @@
                 if (this.disabled) return;
                 // 拿滚动数据 (方向, 距离x 次数)
                 // const normalized = normalizeWheel(e);
+                // 部分选项禁用??
                 this.setMoveValue(e.deltaY < 0 ? -1 : 1, null, true);
             },
             setMoveValue(index, moveY, isSetTranslate) {
@@ -159,6 +160,10 @@
                 const currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
                 // 选中
                 this.currentValue = this.selectList[(length + currentIndex + index) % length].value;
+
+                if (this.isItemDisabled(this.currentValue)) {
+                    this.setMoveValue(index > 0 ? index++ : index--, null, true);
+                }
                 // this.marginTop += moveY || index * this.itemHeight; // 滚动一节. 上移或者下移 整个 itemHeight
 
                 // this.translateY -= this.itemHeight * index;
@@ -169,17 +174,20 @@
             },
             clickHandler(selectItem, index) {
                 if (this.disabled) return;
-                console.log('click', selectItem, index);
+                if (this.isItemDisabled(selectItem.value)) return;
+
                 const half = Math.floor(this.count / 2);
                 const length = this.selectList.length;
                 const currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
 
                 this.currentValue = this.selectList[(length + currentIndex + index - half) % length].value;
             },
-            isItemDisabled(item) {
+            isItemDisabled(value) {
                 // 整个组件被禁用, 或者传入了 验证函数, 且验证后为禁用
-                const flag = this.isDisabled || !!this.itemDisable && this.itemDisable(item.value);
-                if (!flag && item.value === this.currentValue && this.currentValue !== this.value) {
+                const flag = this.isDisabled || !!this.itemDisable && this.itemDisable(value);
+                // TODO: 为何需要改变inpt?? 查看调用方
+                // 没被禁用, 改变 currentValue
+                if (!flag && value === this.currentValue && this.currentValue !== this.value) {
                     this.$emit('input', this.currentValue);
                 }
                 return flag;

@@ -5,7 +5,7 @@
                 :placeholder="placeholder"
                 :value="timeString"
         >
-        <template v-slot:prefix>
+        <template slot="prefix">
             <i class="kd-icon-time"></i>
         </template>
         </Input>
