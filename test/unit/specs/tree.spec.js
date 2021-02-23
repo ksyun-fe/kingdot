@@ -115,7 +115,9 @@ describe('Tree', () => {
             'mousemove',
             true,
             false,
-            { x: 20, y: 34 }
+            { x: 20, y: 34 },
+            0, 0, 0,
+            20, 34
         );
         triggerEvent(document, 'mouseup');
 

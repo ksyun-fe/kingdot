@@ -1,32 +1,3 @@
-// slider variables
-$-slider-height ?= 4px
-$-slider-bg-color ?= #ECECEC
-$-slider-bar-color ?= #557DFC
-
-$-transition = $-animation-duration-base $-ease-in-out
-$-slider-border-radius ?= 100px
-$-slider-handle-height ?= 8px
-$-slider-handle-width ?= $-slider-handle-height
-$-slider-handle-border ?= 2px solid $-slider-bar-color
-$-slider-handle-border-radius ?= 50%
-$-slider-handle-bg-color ?= #fff
-$-slider-handle-hover-transform ?= scale(1.5)
-$-slider-handle-hover-bg-color ?= $-slider-bar-color
-$-slider-handle-disabled-bg-color ?= #fff
-
-$-slider-disabled-color = #999
-$slider-disabled-bg-color = #f7f7f7
-// stop point
-$-slider-stop-point-width ?= $-slider-height
-$-slider-stop-point-height ?= $-slider-stop-point-width
-$-slider-stop-point-bg-color ?= #fff
-// marks
-$-slider-marks-height ?= 20px
-$-slider-marks-margin-top ?= 10px
-// other
-$-slider-range-input-width ?= 146px
-$-slider-input-width ?= 80px
-
 .kd-slider
     position relative
     display inline-block
@@ -95,7 +66,7 @@ $-slider-input-width ?= 80px
         top 0
         width $-slider-stop-point-width
         height $-slider-stop-point-height
-        background $-slider-stop-point-bg-color
+        background-color $-input-bg-color
 // show input
 .kd-show-input
     .kd-slider-wrapper
@@ -123,6 +94,7 @@ $-slider-input-width ?= 80px
     border $-input-border
     height 32px
     border-radius 4px
+    background-color $-input-bg-color
     &:hover:not(.kd-slider-input-disabled)
         border $-input-focus-border
     div

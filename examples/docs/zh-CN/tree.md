@@ -12,7 +12,7 @@
             draggable: <KdSwitch v-model="draggable" size="small"></KdSwitch>
         </div>
         <div class="demo-props">
-            <Input v-model="search" placeholder="按显示内容搜索" />
+            <kd-input v-model="search" placeholder="按显示内容搜索" />
             <kd-button @click="getCheckedData">getCheckedData</kd-button>
             <kd-button @click="getSelectedData">getSelectedData</kd-button>
         </div>
@@ -245,7 +245,7 @@
                             }
                         />
                         <i
-                            class="op1 kd-icon-message-solid"
+                            class="op1 kd-icon-circle-plus-outline"
                             title="async add node"
                             onClick={() => this.asyncLoadNodes(node)}
                         />

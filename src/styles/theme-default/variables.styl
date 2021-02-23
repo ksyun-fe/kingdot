@@ -162,15 +162,15 @@ $-btn-default-active-border-color :=  #557DFC
 
 $-btn-hollow-hover-color :=  #557DFC
 $-btn-hollow-hover-border-color :=  #557DFC
-$-btn-hollow-active-color :=  #4165D7 
+$-btn-hollow-active-color :=  #4165D7
 
 $-btn-primary-hover-bg := #7999FF
 $-btn-primary-hover-border := #7999FF
 $-btn-primary-active-bg := #557DFC
 $-btn-primary-active-border := #557DFC
 
-$-btn-success-hover-bg := #5ED79E 
-$-btn-success-hover-border := #5ED79E 
+$-btn-success-hover-bg := #5ED79E
+$-btn-success-hover-border := #5ED79E
 $-btn-success-active-bg := #39B67A
 $-btn-success-active-border := #39B67A
 
@@ -508,8 +508,8 @@ $-tabs-after-borderColor := #e5e5e5
 $-tabs-after-borderColor-card := #e5e5e5
 $-tabs-after-disabledColor := #ccc
 $-tabs-large-backgroundColor := #F0F0F3
-$-tabs-card-backgroundColor := #F3F4F7  
-$-tabs-card-background := #F3F4F7  
+$-tabs-card-backgroundColor := #F3F4F7
+$-tabs-card-background := #F3F4F7
 $-kd-add-tab :=#e5e5e5
 $-tabs-font-size := 14px
 
@@ -573,7 +573,7 @@ $-dialog-scrollbar-thumb-color := #ccc
 /******************************
         spinner
 *******************************/
-$-spinnter-border-color := $-border-base-color 
+$-spinnter-border-color := $-border-base-color
 $-spinnter-disable-bg := #f2f2f2
 $-spinnter-disable-color := #ccc
 $-spinner-primary-color := $-primary-color
@@ -595,3 +595,38 @@ $-spinner-btn-default-height := 32
 $-spinner-btn-small-height := 28
 $-spinner-btn-mini-height := 26
 $-spinner-border-color := $-border-base-color
+
+/******************************
+        slider
+*******************************/
+$-slider-height ?= 4px
+$-slider-bg-color ?= #ECECEC
+$-slider-bar-color ?= #557DFC
+
+$-transition = $-animation-duration-base $-ease-in-out
+$-slider-border-radius ?= 100px
+$-slider-handle-height ?= 8px
+$-slider-handle-width ?= $-slider-handle-height
+$-slider-handle-border ?= 2px solid $-slider-bar-color
+$-slider-handle-border-radius ?= 50%
+$-slider-handle-bg-color ?= #fff
+$-slider-handle-hover-transform ?= scale(1.5)
+$-slider-handle-hover-bg-color ?= $-slider-bar-color
+$-slider-handle-disabled-bg-color ?= #fff
+
+$-slider-disabled-color = #999
+$-slider-disabled-bg-color = #f7f7f7
+// stop point
+$-slider-stop-point-width ?= $-slider-height
+$-slider-stop-point-height ?= $-slider-stop-point-width
+// marks
+$-slider-marks-height ?= 20px
+$-slider-marks-margin-top ?= 10px
+// other
+$-slider-range-input-width ?= 146px
+$-slider-input-width ?= 80px
+
+/******************************
+        tree
+*******************************/
+$-tree-node-bg-color ?= #f5f5f5
