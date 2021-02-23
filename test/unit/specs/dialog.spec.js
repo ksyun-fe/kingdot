@@ -235,23 +235,25 @@ describe("dialog", () => {
     }, 500);
   });
   //dialog可以移动
-  it("dialog to move", (done) => {
+  it("dialog to move", async () => {
     vm = createCons(Dialog, {
       type: "default",
       value: true,
     });
-    triggerEvent(vm.$el.querySelector(".kd-dialog-header"), "mousedown");
-    triggerEvent(
-      vm.$el.querySelector(".kd-dialog-header"),
-      "mousemove",
-      true,
-      false,
-      { x: -88, y: 160 }
-    );
-    setTimeout(() => {
-      triggerEvent(document, "mouseup");
-      done();
-    }, 100);
+    await vm.$nextTick().then((_) => {
+      triggerEvent(vm.$el.querySelector(".kd-dialog-header"), "mousedown");
+      triggerEvent(
+        vm.$el.querySelector(".kd-dialog-header"),
+        "mousemove",
+        true,
+        false,
+        { x: 88, y: 260 }
+      );
+      setTimeout(() => {
+        expect(vm.$el.querySelector(".kd-dialog").style.webkitTransform).to.equal('translate(0px, -25px)')
+        triggerEvent(document, "mouseup");
+      }, 300);
+  },300)
   });
   //'取消'&‘确认’操作
   it("cancel & ok", async () => {
