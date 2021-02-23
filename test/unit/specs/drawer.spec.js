@@ -214,32 +214,55 @@ describe('drawer', () => {
         })
         // 取消操作
     it('cancel', async() => {
-        vm = createVue({
-            template: `
+            vm = createVue({
+                template: `
             <kd-drawer v-model="visible"  :cancel='cancelFn'>
             {{num}}
             </kd-drawer>
           `,
-            data() {
-                return {
-                    visible: true,
-                    num: 0
+                data() {
+                    return {
+                        visible: true,
+                        num: 0
+                    }
+                },
+                methods: {
+                    cancelFn() {
+                        this.num = -1
+                    }
                 }
-            },
-            methods: {
-                cancelFn() {
-                    this.num = -1
-                }
-            }
-        }, true)
+            }, true)
+            await vm.$nextTick().then((_) => {
+                vm.$el.querySelector('.kd-drawer-closbutton').click();
+                setTimeout(function() {
+                    expect(
+                        vm.$el.querySelector('.kd-drawer-body').textContent
+                    ).to.equal(-1);
+                }, 200);
+            })
+
+        })
+        //是否有遮罩层
+    it('show mask', () => {
+            vm = createCons(Drawer, {
+                value: true,
+            })
+            expect(vm.$el.querySelector('.kd-drawer-overlay').classList.contains('kd-drawer-overlay')).to.be.true;
+        })
+        //点击遮罩关闭抽屉
+    it('close mask', async() => {
+        vm = createCons(Drawer, {
+            value: true,
+            maskClosable: true
+        })
         await vm.$nextTick().then((_) => {
-            vm.$el.querySelector('.kd-drawer-closbutton').click();
+            vm.$el.querySelector('.kd-drawer-overlay').click();
             setTimeout(function() {
                 expect(
-                    vm.$el.querySelector('.kd-drawer-body').textContent
-                ).to.equal(-1);
+                    vm.$el.querySelector('.kd-drawer')
+                ).to.be.null
             }, 200);
         })
-
     })
+
 })
