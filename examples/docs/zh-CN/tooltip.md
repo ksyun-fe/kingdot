@@ -19,7 +19,7 @@
         <kd-tooltip placement="top" content="no arrow" :showArrow="false" effect="dark">
             <kd-button class="btn">no arrow</kd-button>
         </kd-tooltip>
-        <kd-tooltip placement="top-start" content="always be by your side" effect="dark" always>
+        <kd-tooltip placement="top-start" content="always be by your side" effect="dark" always contentClass="cccc">
             <kd-button class="btn">always</kd-button>
         </kd-tooltip>
         <br />
@@ -322,6 +322,7 @@
 | always    | 是否一直展示弹层 | `Boolean` | `true|false` | `false` |
 | widthLimit    | 弹层宽度是否有限制（其他情况下使用可取消tip最大宽度限制） | `Boolean` | `true|false` | `true` |
 | hideDestroy    | 弹层隐藏后是否销毁dom | `Boolean` | `true|false` | `true` |
+| contentClass    | 弹层内容添加类名 | `String` | `-` | `-` |
 
 ### Tooltip slot {.component__content}
 
