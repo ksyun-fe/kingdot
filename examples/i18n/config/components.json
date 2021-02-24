@@ -81,6 +81,10 @@
                         {
                             "path": "/timeline",
                             "name": "Timeline 时间轴"
+                        },
+                        {
+                            "path": "/table",
+                            "name": "table"
                         }
                     ]
                 },
