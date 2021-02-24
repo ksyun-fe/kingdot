@@ -64,6 +64,10 @@
                         {
                             "path": "/checkbox",
                             "name": "Checkbox 多选框"
+                        },
+                        {
+                            "path": "/dropdown",
+                            "name": "Dropdown 下拉菜单"
                         }
                     ]
                 },
@@ -193,12 +197,20 @@
                             "name": "Input"
                         },
                         {
+                            "path": "/spinner",
+                            "name": "Spinner"
+                        },
+                        {
                             "path": "/form",
                             "name": "Form"
                         },
                         {
                             "path": "/checkbox",
                             "name": "Checkbox"
+                        },
+                        {
+                            "path": "/dropdown",
+                            "name": "Dropdown"
                         }
                     ]
                 },

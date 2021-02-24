@@ -40,7 +40,9 @@
                 <div
                         v-if="type == 'vertical'"
                         class="kd-move-vertical"
-                        :style="{ 'margin-top': marginTop + 'px' }"
+                        :style="{ 'margin-top': marginTop + 'px',
+                                  height:activeHeight+'px'
+                        }"
                 ></div>
             </div>
         </div>
@@ -116,7 +118,8 @@
                 showControl: false,
                 regionWidth: 0,
                 contentWidth: 0,
-                singleWidth: ''
+                singleWidth: '',
+                activeHeight: ''
             };
         },
         watch: {
@@ -145,11 +148,12 @@
                     }
                 });
             },
-            tabsActive({ val = '', marginLeft = '', marginTop = '', width = 0 }) {
+            tabsActive({ val = '', marginLeft = '', marginTop = '', width = 0, height = 0}) {
                 this.innerValue = val;
                 this.marginTop = marginTop;
                 this.activeMarginLeft = marginLeft;
                 this.activeWidth = width;
+                this.activeHeight = height;
                 this.$emit('click', val);
                 this.$emit('input', val);
             },

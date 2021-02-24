@@ -1,3 +1,4 @@
+@import "../variables.styl";
 $-spinner-size-type := 'large' 'default' 'small' 'mini'
 
 
@@ -59,7 +60,6 @@ $-spinner-size-type := 'large' 'default' 'small' 'mini'
 
 //  大小
 for size in $-spinner-size-type
-    $-spinner-input-h = lookup('$-spinner-btn-'+ size +'-height')
     $-spinner-input-w = lookup('$-spinner-'+ size +'-width')
     $-spinner-input-padding = lookup('$-spinner-'+ size +'-input-padding')
     $-spinner-btn-w = lookup('$-spinner-btn-'+ size +'-height') - 2 

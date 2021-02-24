@@ -188,13 +188,6 @@ $-btn-group-default-hover-color := $-btn-primary-hover-bg
 $-btn-group-default-active-color := $-btn-primary-active-bg
 $-btn-active-line-color := $-btn-primary-active-bg
 $-btn-active-color := #fff
-
-// $-btn-group-default-before-color := #525C77
-// $-btn-group-primary-before-color := #525C77
-// $-btn-group-success-before-color := #525C77
-// $-btn-group-warning-before-color := #525C77
-// $-btn-group-dar-before-color := #525C77
-
 //btn default
 $-btn-default-padding := 9px 16px
 $-btn-default-font-size := 12px
@@ -232,10 +225,10 @@ $-btn-mini-font-size := 12px
 //icon
 $-btn-icon-text-gutter := 8px
 
-$-btn-loading-r = 120 - 60 - ($-btn-stroke-width / 2)
-$-btn-loading-c = round(2 * 3.14 * $-btn-loading-r)
+$-btn-loading-r := 120 - 60 - ($-btn-stroke-width / 2)
+$-btn-loading-c := round(2 * 3.14 * $-btn-loading-r)
 
-
+$-btn-group-line-color := linear-gradient(180deg, #E8465D 0%, #603D5F 100%)
 /******************************
         Radio
 *******************************/
@@ -488,7 +481,7 @@ $-tabs-after-backgroundColor := #2F374F;
 
 $-tabs-color-guanbi := #C0C7CC
 
-$-tabs-after-borderColor := none
+$-tabs-after-borderColor := transparent
 $-tabs-after-disabledColor := #4F576E
 $-tabs-large-backgroundColor := #2D354D
 $-tabs-card-backgroundColor := #F3F4F7  
