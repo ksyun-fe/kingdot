@@ -1,78 +1,47 @@
 <template>
     <div class="kd-time-picker">
         <!-- 根据 isrange 改变input长度 -->
-        <Input
-                :placeholder="placeholder"
-                :value="timeString"
+        <kd-tooltip
+                placement="bottom-start"
+                trigger="click"
+                :width-limit="false"
         >
-        <template slot="prefix">
-            <i class="kd-icon-time"></i>
-        </template>
-        </Input>
-        <!-- <Input
-                :placeholder="rangePlaceholder"
-                :value="rangeTimeString"
-        >
-        <template v-slot:prefix>
-            <i class="kd-icon-time"></i>
-        </template>
-        </Input> -->
-        <div
-                v-if="!isRange && mode === 'steped-time'"
-                class="dropdown"
-        >
-            <!-- <div
-                    v-for="(item, i) in timeList"
-                    :key="i"
-                    class="item">
-                {{ item }}
-            </div> -->
-            <ScrollSelect
-                    v-model="selectedTime"
-                    :data="timeList"
-            ></ScrollSelect>
-        </div>
-        <div
-                v-if="!isRange && mode === 'anytime'"
-                class="dropdown"
-        >
-            <div class="column">
-                <ScrollSelect
-                        v-model="startTime.hour"
-                        :data="hourArr"
-                ></ScrollSelect>
-            </div>
-            <div class="column">
-                <ScrollSelect
-                        v-model="startTime.minute"
-                        :data="minArr"
-                ></ScrollSelect>
-            </div>
-            <div class="column">
-                <ScrollSelect
-                        v-model="startTime.second"
-                        :data="minArr"
-                ></ScrollSelect>
-            </div>
-        </div>
-        <div
-                v-if="isRange"
-                class="range-container"
-        >
-            <div>
-                <div class="sub-title">开始时间</div>
+            <kd-input
+                    :placeholder="placeholder"
+                    :value="timeString"
+            >
+                <template slot="prefix">
+                    <i class="kd-icon-time"></i>
+                </template>
+            </kd-input>
+            <!-- </kd-tooltip> -->
+            <!-- <Input
+                    :placeholder="rangePlaceholder"
+                    :value="rangeTimeString"
+            >
+            <template v-slot:prefix>
+                <i class="kd-icon-time"></i>
+            </template>
+            </Input> -->
+            <template slot="content">
                 <div
-                        v-if="mode === 'steped-time'"
-                        class="selector-container"
+                        v-if="!isRange && mode === 'steped-time'"
+                        class="dropdown"
                 >
+                    <!-- <div
+                            v-for="(item, i) in timeList"
+                            :key="i"
+                            class="item">
+                        {{ item }}
+                    </div> -->
                     <ScrollSelect
                             v-model="selectedTime"
                             :data="timeList"
                     ></ScrollSelect>
                 </div>
                 <div
-                        v-if="mode === 'anytime'"
-                        class="selector-container"
+                        v-if="!isRange && mode === 'anytime'"
+                        class="dropdown"
                 >
                     <div class="column">
                         <ScrollSelect
@@ -93,45 +62,85 @@
                         ></ScrollSelect>
                     </div>
                 </div>
-            </div>
-            <div>
-                <div class="sub-title">结束时间</div>
                 <div
-                        v-if="mode === 'steped-time'"
-                        class="selector-container"
+                        v-if="isRange"
+                        class="range-container"
                 >
-                    <ScrollSelect
-                            v-model="endSelectedTime"
-                            :data="timeList"
-                    ></ScrollSelect>
+                    <div>
+                        <div class="sub-title">开始时间</div>
+                        <div
+                                v-if="mode === 'steped-time'"
+                                class="selector-container"
+                        >
+                            <ScrollSelect
+                                    v-model="selectedTime"
+                                    :data="timeList"
+                            ></ScrollSelect>
+                        </div>
+                        <div
+                                v-if="mode === 'anytime'"
+                                class="selector-container"
+                        >
+                            <div class="column">
+                                <ScrollSelect
+                                        v-model="startTime.hour"
+                                        :data="hourArr"
+                                ></ScrollSelect>
+                            </div>
+                            <div class="column">
+                                <ScrollSelect
+                                        v-model="startTime.minute"
+                                        :data="minArr"
+                                ></ScrollSelect>
+                            </div>
+                            <div class="column">
+                                <ScrollSelect
+                                        v-model="startTime.second"
+                                        :data="minArr"
+                                ></ScrollSelect>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="sub-title">结束时间</div>
+                        <div
+                                v-if="mode === 'steped-time'"
+                                class="selector-container"
+                        >
+                            <ScrollSelect
+                                    v-model="endSelectedTime"
+                                    :data="timeList"
+                            ></ScrollSelect>
+                        </div>
+                        <div
+                                v-if="mode === 'anytime'"
+                                class="selector-container"
+                        >
+                            <div class="column">
+                                <ScrollSelect
+                                        v-model="endTime.hour"
+                                        :data="hourArr"
+                                        :item-disable="endHourLimit"
+                                ></ScrollSelect>
+                            </div>
+                            <div class="column">
+                                <ScrollSelect
+                                        v-model="endTime.minute"
+                                        :data="minArr"
+                                        :item-disable="endMinuteLimit"
+                                ></ScrollSelect>
+                            </div>
+                            <div class="column">
+                                <ScrollSelect
+                                        v-model="endTime.second"
+                                        :data="minArr"
+                                ></ScrollSelect>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div
-                        v-if="mode === 'anytime'"
-                        class="selector-container"
-                >
-                    <div class="column">
-                        <ScrollSelect
-                                v-model="endTime.hour"
-                                :data="hourArr"
-                                :item-disable="endHourLimit"
-                        ></ScrollSelect>
-                    </div>
-                    <div class="column">
-                        <ScrollSelect
-                                v-model="endTime.minute"
-                                :data="minArr"
-                                :item-disable="endMinuteLimit"
-                        ></ScrollSelect>
-                    </div>
-                    <div class="column">
-                        <ScrollSelect
-                                v-model="endTime.second"
-                                :data="minArr"
-                        ></ScrollSelect>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </template>
+        </kd-tooltip>
     </div>
 </template>
 <script>
@@ -147,8 +156,7 @@
             },
             // 满足某条件的时间将被禁用
             disableCondition: {
-                type: Function,
-                default: () => false
+                type: Function
             },
             // 显示模式: 'steped-time', 'anytime', 按步长显示时间, 任意时间点
             mode: {
@@ -273,7 +281,7 @@
                 } else if (this.startTime.hour === this.endTime.hour) {
                     return value < this.startTime.minute;
                 }
-            },
+            }
         }
     };
 </script>
@@ -282,21 +290,13 @@
         color: #e5e5e5;
     }
     .dropdown {
-        border: 1px solid #e5e5e5;
+        /* border: 1px solid #e5e5e5;
         margin-bottom: 10px;
-        padding: 20px;
+        padding: 20px; */
         width: 200px;
-    }
-    .step-dropdown {
-        border: 1px solid #e5e5e5;
-        margin-bottom: 10px;
-        /* padding: 20px 0px; */
-        width: 200px;
-        max-height: 200px;
-        overflow: scroll;
     }
     .range-container {
-        border: 1px solid #e5e5e5;
+        /* border: 1px solid #e5e5e5; */
         margin-bottom: 10px;
         /* padding: 20px; */
         width: 500px;
