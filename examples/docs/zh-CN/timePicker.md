@@ -76,3 +76,10 @@
 </script>
 ```
 :::
+
+### 属性 {.component__content}
+| 属性      | 说明    | 类型      | 可选值       | 默认值   |
+|--------- |-------- |---------- |-------------  |-------- |
+| value    | 时间字符串   | string  |     —     |    -   |
+| disabled  | 设置组件的禁用状态   | boolean  |     —     |    false   |
+| disableCondition  | 按条件设置禁用时间   | function  |     —     |    -   |
