@@ -100,6 +100,7 @@
                             v-for="(item,k) in row"
                             :key="k"
                             :class="{
+                                'kd-year': true,
                                 'kd-blue':item === now.year,
                                 'kd-selected': year === item,
                             }"
@@ -122,6 +123,7 @@
                             v-for="(item,k) in row"
                             :key="k"
                             :class="{
+                                'kd-month': true,
                                 'kd-blue': item.isCurrentMonth,
                                 'kd-selected': selectedDate[0] && selectedDate[0].indexOf(item.dateStr) > -1,
                             }"
@@ -205,7 +207,7 @@
             disabledDate: {
                 type: Function
             },
-            isRange: { // 多选模式
+            isRange: { // 范围选择模式
                 type: Boolean,
                 default: function () {
                     return false;
@@ -231,7 +233,7 @@
                     month: Moment().month() + 1,
                     date: Moment().date()
                 },
-                moment: this.isEndCalendar ? Moment().add(1, 'month') : Moment(), // 第二日历 默认渲染下个月的日期
+                moment: this.isEndCalendar ? Moment(this.value[0]).add(1, 'month') : Moment(this.value[0]), // 第二日历 默认渲染下个月的日期
                 selectedDate: this.value,
                 maxDateValue: this.maxDate,
                 minDateValue: this.minDate,
@@ -239,6 +241,9 @@
             };
         },
         computed: {
+            // selectedDate() {
+            //     return this.value;
+            // },
             hoverDate() {
                 return this.rangeEndDate;
             },
@@ -318,6 +323,14 @@
         },
 
         watch: {
+            value: {
+                immediate: true,
+                handler(v) {
+                    if (v) {
+                        this.selectedDate = v;
+                    }
+                }
+            },
             rangeEndDate: {
                 immediate: true,
                 handler(v) {
@@ -347,11 +360,6 @@
                 // this.hoverDate = dayItem.dateStr;
                 this.$emit('onDayMouseenter', dayItem.dateStr);
             },
-            // 检查某个日期是否处于禁用状态
-            validateDisabledStatus(dateStr) {
-
-            },
-
             // 日历翻页
             setMonthOrYear(k, v) {
                 this.$emit('pageChange', v, k); // 由外层统一执行
@@ -365,11 +373,7 @@
                 this.mode = 'select-month';
             },
 
-            selectMonth(m) { // 只改变month 逻辑对不对?? 通过进入月份, 翻页 看看是否变年份
-                // console.log('month item', m);
-                // console.log('selectedDate', this.selectedDate, m.dateStr.slice(0, 7));
-                // console.log('month', this.now, this.year, this.month);
-
+            selectMonth(m) {
                 this.moment = Moment(this.moment).set('month', m - 1);
                 this.mode = 'select-day';
             },
@@ -410,26 +414,28 @@
                         const tmp = this.selectedDate.pop();
                         this.selectedDate.unshift(tmp);
                     }
-                    this.$emit('select', this.selectedDate);
+                    this.$emit('select', this.selectedDate, 'calendar');
                 } else { // 非时间范围(单点时间)
                     if (date.disMonth) {
                         this.moment = Moment(date.dateStr); // 点击其他月份日期, 需要刷新日历的页面
                     }
 
                     this.selectedDate.splice(0, this.value.length, date.dateStr); // 清空, 然后第一位赋值
-                    this.$emit('select', this.selectedDate);
+                    this.$emit('select', this.selectedDate, 'calendar');
                 }
             },
 
-            jumpToDate(dateStr) {
-                const formattedStr = Moment(dateStr).format('YYYY-MM-DD');
+            jumpToDate(dateStr, source) {
+                const formattedStr = Moment(dateStr).format(this.formatString);
+                this.selectedDate = [formattedStr];
                 if (this.disabledDate && this.disabledDate(formattedStr)) {
                     this.$emit('select', 'Invalid Date');
                     return;
                 }
 
                 this.moment = Moment(dateStr); // 刷新日历的页面
-                this.$emit('select', this.selectedDate);
+                // this.$emit('input', this.selectedDate);
+                this.$emit('select', this.selectedDate, source);
             }
         }
     };

@@ -2,12 +2,23 @@
 用于选择或输入日期
 
 ### 基础用法
-:::demo #基础用法 ## 以「日」为基本单位，基础的日期选择控件
+:::demo #基础用法 ## 以「日」为基本单位，基础的日期选择控件. 通过 value 属性可以指定一个默认日期
 
 ```html
 <template>
-    <kd-date-picker> </kd-date-picker>
+    <div>
+        <kd-date-picker v-model="dateString"> </kd-date-picker> 选中值: {{ dateString }}
+    </div>
 </template>
+<script>
+    export default {
+        data() {
+            return {
+                dateString: '2020-01-01'
+            }
+        }
+    }
+</script>
 ```
 :::
 
@@ -35,28 +46,36 @@
             return {
                 data: [{
                     label: '今天',
-                    value: 0,
-                    unit: 'day'
+                    offset: {
+                        value: 0,
+                        unit: 'day'
+                    }
                 }, {
                     label: '昨天',
-                    value: -1,
-                    unit: 'day'
+                    offset: {
+                        value: -1,
+                        unit: 'day'
+                    }
                 }, {
                     label: '明天',
-                    value: 1,
-                    unit: 'day'
+                    offset: {
+                        value: 1,
+                        unit: 'day'
+                    }
                 },{
                     label: '一周前',
-                    value: -1,
-                    unit: 'week'
+                    offset: {
+                        value: -1,
+                        unit: 'week'
+                    }
                 }, {
                     label: '一个月前',
-                    value: -1,
-                    unit: 'month'
-                }, {
-                    label: '三个月前',
-                    value: -3,
-                    unit: 'month'
+                    offset() {
+                        return {
+                            value: -1,
+                            unit: 'month'
+                        }
+                    }
                 }]
             }
         }
@@ -103,11 +122,18 @@
 
 ```html
 <template>
-    <kd-date-picker :is-range="true"> </kd-date-picker>
+    <div>
+        <kd-date-picker :is-range="true" v-model="dateArr"> </kd-date-picker>
+    </div>
 </template>
 <script>
     import Moment from 'dayjs';
-    export default{
+    export default {
+        data() {
+            return {
+                dateArr: ['2020-01-01', '2020-01-11']
+            }
+        },
     }
 </script>
 ```
@@ -118,7 +144,7 @@
 
 ```html
 <template>
-    <kd-date-picker :is-range="true" :shortcuts="data"> </kd-date-picker>
+    <kd-date-picker :is-range="true" :shortcuts="data" placeholder="起始时间 ~ 结束时间"> </kd-date-picker>
 </template>
 <script>
     import Moment from 'dayjs';
@@ -127,32 +153,34 @@
             return {
                 data: [{
                     label: '最近3天',
-                    value: -3,
-                    unit: 'day'
+                    offset: {
+                        value: -3,
+                        unit: 'day'
+                    }
                 }, {
                     label: '最近一周',
-                    value: -1,
-                    unit: 'week'
+                    offset: {
+                        value: -1,
+                        unit: 'week' 
+                    }
                 }, {
                     label: '近一个月',
-                    value: -1,
-                    unit: 'month'
-                }, {
-                    label: '三个月前',
-                    value: -3,
-                    unit: 'month'
+                    offset: {
+                        value: -1,
+                        unit: 'month'
+                    }
                 },{
                     label: '未来一周',
-                    value: 1,
-                    unit: 'week'
+                    offset: {
+                        value: 1,
+                        unit: 'week'
+                    }
                 }, {
                     label: '未来一个月',
-                    value: 1,
-                    unit: 'month'
-                }, {
-                    label: '未来三个月',
-                    value: 3,
-                    unit: 'month'
+                    offset: {
+                        value: 1,
+                        unit: 'month'
+                    }
                 }]
             }
         }
@@ -164,11 +192,10 @@
 ### 属性 {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| value / v-model  | 绑定值   | array    | - | - |
+| value / v-model  | 绑定值   | string, array    | - | - |
 | formatString  | 日期格式字符串   | string    | - | 'YYYY-MM-DD' |
 | isRange  | 是否为范围选择   | bool    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
-| range-placeholder  | 范围选择时的占位内容   | string    | - | '开始日期 ~ 结束日期' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
 | disabledDate  | 符合条件的日期将被禁用   | function    | - | - |
 
@@ -176,11 +203,10 @@
 ### shortcuts {.component__content}
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| value  | 快捷选项跳转的时间值  | number    | - | - |
-| unit  | 快捷选项跳转的时间单位 | string  | 'day', 'week', 'month', 'year' | - |
-| label  | 快捷选项展示的标签文本 | string  | - | - |
+| label  | 快捷选项展示的标签文本 | string, function  | - | - |
+| offset  | 快捷选项展示的标签文本 | object, function  | - | - |
 
 ### Events {.component__content}
 | 事件名称      | 说明    | 回调参数 |
 |---------- |-------- |---------- |
-| change | 在选择完成, 绑定值改变时触发 | (dateArr: Array)
+| change | 在选择完成, 绑定值改变时触发 | (dateArr: Array, source: String)

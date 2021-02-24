@@ -7,18 +7,17 @@
                 :disabled="disabled"
                 can-hover
         >
-            <Input
+            <kd-input
                     v-model="inputDateString"
-                    :placeholder="isRange ? rangePlaceholder : placeholder"
+                    :placeholder="placeholder"
                     :width="isRange ? 400 : 200"
                     :disabled="disabled"
-                    @blur="setDate(inputDateString)"
                     @keyup.enter="setDate(inputDateString)"
             >
-            <template slot="suffix">
-                <i class="kd-icon-date"></i>
-            </template>
-            </Input>
+                <template slot="suffix">
+                    <i class="kd-icon-date"></i>
+                </template>
+            </kd-input>
             <template slot="content">
                 <div
                         v-if="isRange===true"
@@ -37,7 +36,7 @@
                                 v-for="(item, i) in shortcuts"
                                 :key="i"
                                 class="kd-sidebar-row"
-                                @click="rapidSelect(item.value, item.unit)"
+                                @click="rapidSelect(item.offset)"
                         >
                             <span>{{ item.label }}</span>
                         </div>
@@ -94,9 +93,9 @@
                                 v-for="(item, i) in shortcuts"
                                 :key="i"
                                 class="kd-sidebar-row"
-                                @click="rapidSelect(item.value, item.unit)"
+                                @click="rapidSelect(item.offset)"
                         >
-                            <span>{{ item.label }}</span>
+                            <span>{{ typeof item.label === 'function' ? item.label() : item.label }}</span>
                         </div>
                     </div>
                     <!-- 日历 -->
@@ -125,12 +124,18 @@
     export default {
         name: 'KdDatePicker',
         props: {
-            dateValue: {
-                type: Array,
+            value: {
+                type: [String, Array],
                 default: function () {
                     return [];
                 }
             },
+            // dateValue: {
+            //     type: Array,
+            //     default: function () {
+            //         return [];
+            //     }
+            // },
             // 格式字符串
             formatString: {
                 type: String,
@@ -149,12 +154,6 @@
                 type: String,
                 default() {
                     return '请选择日期';
-                }
-            },
-            rangePlaceholder: {
-                type: String,
-                default() {
-                    return '开始日期 ~ 结束日期';
                 }
             },
             // 配置的快捷菜单
@@ -184,6 +183,7 @@
         },
         data() {
             return {
+                dateValue: [],
                 inputDateString: '',
                 max: this.maxDate ? Moment(this.maxDate).format(this.formatString) : '',
                 min: this.minDate ? Moment(this.minDate).format(this.formatString) : '',
@@ -192,6 +192,22 @@
             };
         },
         watch: {
+            value: {
+                immediate: true,
+                handler(v) {
+                    if (typeof v === 'string') {
+                        // this.$emit('input', v);
+                        // this.$emit('change', v);
+                        this.inputDateString = v;
+                        this.dateValue = [v];
+                    } else if (Array.isArray(v)) {
+                        // this.$emit('input', v);
+                        // this.$emit('change', v);
+                        this.inputDateString = v.join(' ~ ');
+                        this.dateValue = v;
+                    }
+                }
+            },
             maxDate: {
                 immediate: true,
                 handler(v) {
@@ -227,15 +243,19 @@
             },
 
             // 底下上传上来的数据  在这里不给dateValue赋值. 从底下来的数据, 又通过props传下去不合理
-            popDateValue(dateArr) {
+            // 应该用 watch 监听value, 然后改变 inputDateString. 就没有select 的事情了 吗??
+            popDateValue(dateArr, source = 'calendar') {
                 if (this.isRange && dateArr.length < 2) return;
                 if (this.isRange) {
+                    this.$emit('input', dateArr);
                     this.inputDateString = dateArr.join(' ~ ');
                 } else {
+                    this.$emit('input', dateArr[0]);
                     this.inputDateString = dateArr[0];
                 }
+                // console.log('emit change', this.inputDateString, source);
                 this.dateValue = dateArr;
-                this.$emit('change', this.dateValue);
+                this.$emit('change', this.dateValue, source);
             },
             // input 回车和blur事件触发
             setDate(inputValue) {
@@ -251,10 +271,13 @@
                     this.inputDateString = 'Invalid Date';
                     return;
                 }
-                this.$refs.calendar.jumpToDate(inputValue);
+                this.$refs.calendar.jumpToDate(inputValue, 'input');
                 this.$emit('input', inputValue); // 通过 input 改变时间.
             },
-            rapidSelect(value, unit) {
+            rapidSelect(offset) { // value, unit
+                offset = typeof offset === 'function' ? offset() : offset;
+                const { value, unit } = offset;
+
                 if (this.isRange) {
                     const aimDateStr = Moment().add(value, unit).format(this.formatString);
                     const startDate = value > 0 ? Moment().format(this.formatString) : aimDateStr;
@@ -266,13 +289,13 @@
                     this.inputDateString = this.dateValue.join(' ~ ');
 
                     // 调整两页的日历渲染月份
-                    this.$refs.startCalendar.jumpToDate(startDate);
-                    this.$refs.endCalendar.jumpToDate(Moment(startDate).add(1, 'month').format(this.formatString));
+                    this.$refs.startCalendar.jumpToDate(startDate, 'shortcuts');
+                    this.$refs.endCalendar.jumpToDate(Moment(startDate).add(1, 'month').format(this.formatString), 'shortcuts');
                 } else {
                     // 时间点模式
                     const aimDateStr = Moment().add(value, unit).format(this.formatString);
                     this.dateValue.splice(0, this.dateValue.length, aimDateStr);
-                    this.$refs.calendar.jumpToDate(aimDateStr);
+                    this.$refs.calendar.jumpToDate(aimDateStr, 'shortcuts');
                 }
             }
         }
