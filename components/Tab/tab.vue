@@ -62,7 +62,8 @@
                     val: this.value,
                     marginLeft: this.$el.offsetLeft,
                     marginTop: this.$el.offsetTop,
-                    width: this.$el.offsetWidth
+                    width: this.$el.offsetWidth,
+                    height: this.$el.offsetHeight
                 });
             });
         },
@@ -81,7 +82,8 @@
                     val: this.value,
                     marginLeft: this.$el.offsetLeft,
                     marginTop: this.$el.offsetTop,
-                    width: this.$el.offsetWidth
+                    width: this.$el.offsetWidth,
+                    height: this.$el.offsetHeight
                 });
             },
             closTab(v) {
