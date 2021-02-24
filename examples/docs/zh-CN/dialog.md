@@ -59,14 +59,14 @@
                 type="tips"
                 :showTitle="false" 
                 icon="warning"
-                tipsTitle="操作成功"
+                tipsTitle="警告"
                 :tipsMessage="additionalTips"
                 :showFooter="false"
                 :tipsIsCenter="true"></kd-dialog>
         <kd-dialog v-model="showMessageDialog_confirm"
                 type="confirm"
                 :showTitle="false" 
-                icon="failed"
+                icon="warning"
                 :confirmTips="confirmTips">
                 
             <div slot="footer">

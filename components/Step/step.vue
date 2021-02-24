@@ -158,7 +158,7 @@
             },
             handleLH() {
                 const style = {};
-                if (this.size === 'small') {
+                if (this.size === 'small' && this.icon === '') {
                     if (this._status === 'finished' || this._status === 'error') {
                         style['line-height'] = '20px';
                     }
