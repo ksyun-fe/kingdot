@@ -1,0 +1,76 @@
+
+.kd-transfer
+    display flex
+    justify-content flex-start
+    align-items center
+.kd-transfer-panel
+    width unit($-transfer-width,'px')
+    display inline-block
+    border 1px solid $-border-base-color
+    border-radius $-transfer-radius
+    overflow hidden
+.kd-transfer-panel-row
+    background $-transfer-header-bg
+    height unit($-transfer-row-height, 'px')
+    line-height unit($-transfer-row-height, 'px')
+    padding $-transfer-row-padding
+    cursor pointer
+.kd-transfer-panel-count
+    font-size $-font-small-size
+    float right
+    
+//  内容区
+.kd-transfer-filter
+    margin $-transfer-filter-margin
+.kd-transfer-search
+    width $-tarnsfer-serach-width
+.kd-transfer-content-wrap
+    height $-transfer-content-height
+    overflow auto
+.kd-transfer-content-item
+    height $-transfer-items-height 
+    line-height $-transfer-items-height 
+    padding $-transfer-items-padding 
+    cursor pointer
+    font-size $-font-small-size
+    display: flex
+    &:hover
+        color $-primary-color
+.kd-transfer-content-label
+    flex 1
+    display inline-block
+    overflow-x auto
+    overflow-y hidden
+.kd-transfer-active
+    color $-primary-color
+    
+// 按钮
+.kd-transfer-btn-wrap
+    display inline-block
+    padding $-transfer-btn-padding
+    .kd-btn+.kd-btn
+        margin-left $-transfer-btn-margin-left
+
+.kd-transfer-btn-vertical
+    .kd-btn
+        display block
+    .kd-btn+.kd-btn
+        margin $-transfer-btn-vertical-mr
+.kd-transfer-label-disabled
+    color $-disabled-color
+
+//  footer
+.kd-transfer-panel-footer
+    padding $-transfer-footer-btn-padding
+    border-top 1px solid $-border-base-color
+    display flex
+    justify-content flex-start
+    align-items center
+    flex-wrap wrap
+    .kd-btn+.kd-btn
+        margin-left $-transfer-footer-btn-margin
+//无数据
+.kd-transfer-content-nonedata
+    text-align center
+    color $-text-regular-color
+    

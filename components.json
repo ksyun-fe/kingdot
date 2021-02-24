@@ -32,5 +32,6 @@
     "Timeline": "./components/Timeline/index.js",
     "TimelineItem": "./components/TimelineItem/index.js",
     "Tooltip": "./components/Tooltip/index.js",
+    "Transfer": "./components/Transfer/index.js",
     "Transition": "./components/Transition/index.js"
 }
