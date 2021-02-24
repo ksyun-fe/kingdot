@@ -50,30 +50,26 @@
             },
             // 判断选项是否需要禁用
             itemDisable: {
-                type: Function,
-                default: () => false
-            },
-            count: { //  展示范围, 最好奇数位. 默认5
-                type: Number,
-                default() {
-                    return 5;
-                }
+                type: Function
             }
+            // count: { //  展示范围, 最好奇数位. 默认5
+            //     type: Number,
+            //     default() {
+            //         return 5;
+            //     }
+            // }
         },
         data() {
             return {
                 translateY: 0,
                 marginTop: 0,
                 curIndex: 0,
-                currentValue: '',
-                isDisabled: this.disabled
+                currentValue: this.data[0].value || this.data[0],
+                count: 5 // 展示范围, 默认5
+                // isDisabled: this.disabled
             };
         },
         computed: {
-            // displayList() {
-            //     let list = [];
-            //     return list;
-            // },
             selectList() {
                 let list = [];
                 let curIndex = -1;
@@ -81,6 +77,7 @@
                 // if(typeof data == 'function'){  // data == 'function' 的特殊处理
                 //     data = data(this.currentValue);
                 // }
+                // data 是完整的列表
                 data = data.map((item, index) => {
                     const type = typeof item;
                     // 若为字符串数组, 则处理成对象数组
@@ -102,16 +99,11 @@
                 if (length < 1) {
                     return [];
                 }
-                if (curIndex === -1) { // 按位取反 1 => -2  判断 curIndex != -1
-                    curIndex = 0;
-                    this.currentValue = data[0].value;
-                }
 
-                list = Array(this.count).fill(0).map((item, index) => { // 把下半截挪到上面...
+                // list 是能展示出来的几个元素的集合. 与当前选中的 curValue 有关
+                list = Array(this.count).fill(0).map((item, index) => {
                     return data[((length + (curIndex - half) % length) + index) % length];
                 });
-                // console.log('data', this.data);
-                // console.log('selectList', list);
                 return list;
             }
         },
@@ -125,8 +117,6 @@
                     this.$emit('change', value, oldValue);
                 }
             }
-        },
-        created() {
         },
         mounted() {
             this.initPosition();
@@ -149,20 +139,20 @@
             },
             mouseWheel(e) {
                 if (this.disabled) return;
-                // 拿滚动数据 (方向, 距离x 次数)
-                // const normalized = normalizeWheel(e);
-                // 部分选项禁用??
-                this.setMoveValue(e.deltaY < 0 ? -1 : 1, null, true);
+                // TODO: 拿滚动详细数据 (方向, 距离)
+
+                this.setMoveValue(e.deltaY < 0 ? -1 : 1);
             },
-            setMoveValue(index, moveY, isSetTranslate) {
+            setMoveValue(index) {
                 // +-1, null true()
                 const length = this.selectList.length;
                 const currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
                 // 选中
                 this.currentValue = this.selectList[(length + currentIndex + index) % length].value;
 
+                // 如果滚动之后 下一条被禁用 => 同方向再滚动一次
                 if (this.isItemDisabled(this.currentValue)) {
-                    this.setMoveValue(index > 0 ? index++ : index--, null, true);
+                    this.setMoveValue(index > 0 ? index++ : index--);
                 }
                 // this.marginTop += moveY || index * this.itemHeight; // 滚动一节. 上移或者下移 整个 itemHeight
 
@@ -184,13 +174,7 @@
             },
             isItemDisabled(value) {
                 // 整个组件被禁用, 或者传入了 验证函数, 且验证后为禁用
-                const flag = this.isDisabled || !!this.itemDisable && this.itemDisable(value);
-                // TODO: 为何需要改变inpt?? 查看调用方
-                // 没被禁用, 改变 currentValue
-                if (!flag && value === this.currentValue && this.currentValue !== this.value) {
-                    this.$emit('input', this.currentValue);
-                }
-                return flag;
+                return this.disabled || !!this.itemDisable && this.itemDisable(value);
             }
         }
     };
