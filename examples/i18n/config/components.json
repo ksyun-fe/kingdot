@@ -84,7 +84,7 @@
                         },
                         {
                             "path": "/table",
-                            "name": "table 表格"
+                            "name": "Table 表格"
                         }
                     ]
                 },
@@ -224,6 +224,14 @@
                         {
                             "path": "/progress",
                             "name": "Progress"
+                        },
+                        {
+                            "path": "/timeline",
+                            "name": "Timeline"
+                        },
+                        {
+                            "path": "/table",
+                            "name": "Table"
                         }
                     ]
                 },
