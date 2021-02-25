@@ -140,7 +140,7 @@
                             <kd-button
                                     class="kd-dialog-btn"
                                     type="primary"
-                                    :disabled="disableOk || selfDisableOk"
+                                    :disabled="disableOk"
                                     :loading="selfDisableOk"
                                     @click="_ok"
                             >
