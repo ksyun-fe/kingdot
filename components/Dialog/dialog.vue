@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 <template>
     <div
             v-transfer-dom
@@ -19,6 +18,7 @@
                     class="kd-dialog-wrapper"
             >
                 <div
+                        id="kd-dialog"
                         class="kd-dialog"
                         :style="[
                             style,
@@ -156,7 +156,7 @@
 
 <script>
     import transferDom from './transfer-dom.js';
-    import { mouseDragBegin, animationFrame } from './utils.js';
+    import { mouseDragBegin, animationFrame } from '../../src/utils/utils.js';
     import nextZIndex from '../../src/utils/zIndex.js';
     export default {
         name: 'KdDialog',
@@ -424,9 +424,10 @@
                 });
             },
             mousedown(e) {
+                var ele = document.getElementById('kd-dialog');
                 mouseDragBegin(e, this.drag, this.dragEnd, {
                     top: 50
-                });
+                }, ele);
             }
         }
     };
