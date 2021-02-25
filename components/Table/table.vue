@@ -142,7 +142,7 @@ import {
     mouseDragBegin,
     animationFrame,
     isIe
-} from "../utils";
+} from "../../src/utils/utils";
 
 let inIeBrowser = isIe();
 

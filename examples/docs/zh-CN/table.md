@@ -8,9 +8,10 @@
 ```html
 <template>
     <div>
-        
-        <button @click="prevPage">上一页</button>
-        <button @click="nextPage">下一页</button>
+        <p style="margin-bottom: 10px">
+            <kd-button @click="prevPage">上一页</kd-button>
+            <kd-button @click="nextPage">下一页</kd-button>
+        </p>
         <kd-table :data="data" 
                 stored nodeKey="id" columnFilter
                 :disableRow="disableRow" 

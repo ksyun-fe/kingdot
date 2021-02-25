@@ -1,4 +1,4 @@
-import {ulid} from "../utils.js";
+import {ulid} from "../../src/utils/utils.js";
 
 //列最小宽度
 const columnMinWidth = 100;

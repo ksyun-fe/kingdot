@@ -1,4 +1,4 @@
-import {ulid} from "../utils.js";
+import {ulid} from "../../src/utils/utils.js";
 
 const defaults = {
     title: "",

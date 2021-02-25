@@ -1,5 +1,5 @@
 import myColgroup from './colgroup.js';
-import {mouseDragBegin} from "../utils";
+import {mouseDragBegin} from "../../src/utils/utils";
 
 const getAllColumns = (columns) => {
     const result = [];
