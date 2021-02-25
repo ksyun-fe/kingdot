@@ -172,6 +172,8 @@
         height 8px
         transition all .3s
         margin-right 16px
+        left 50%
+        top 18px
         &:after
             border 6px solid transparent
             border-top 8px solid #557dfc
@@ -183,7 +185,7 @@
             transform-origin center 25%
 
         &.active
-            transform translateX(-40px)
+            transform translateX(-54px)
 
         &.open:after
             transform rotate(180deg)
