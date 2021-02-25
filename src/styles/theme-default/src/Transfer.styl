@@ -1,4 +1,4 @@
-
+@import '../variables.styl';
 .kd-transfer
     display flex
     justify-content flex-start
@@ -10,6 +10,7 @@
     border-radius $-transfer-radius
     overflow hidden
 .kd-transfer-panel-row
+    position relative
     background $-transfer-header-bg
     height unit($-transfer-row-height, 'px')
     line-height unit($-transfer-row-height, 'px')
@@ -17,7 +18,8 @@
     cursor pointer
 .kd-transfer-panel-count
     font-size $-font-small-size
-    float right
+    position absolute
+    right 15px
     
 //  内容区
 .kd-transfer-filter
@@ -36,11 +38,14 @@
     display: flex
     &:hover
         color $-primary-color
+.kd-transfer-content-temp
+    width 100%
 .kd-transfer-content-label
-    flex 1
+    width 100%
     display inline-block
-    overflow-x auto
-    overflow-y hidden
+    text-overflow ellipsis
+    white-space nowrap
+    overflow hidden
 .kd-transfer-active
     color $-primary-color
     

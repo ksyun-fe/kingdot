@@ -2,16 +2,18 @@
     <div class="kd-transfer-panel">
         <div
                 class="kd-transfer-panel-row"
-                @click="handleClick"
         >
             <!-- 顶部 -->
             <kd-checkbox
                     v-if="selectAll"
                     v-model="allChecked"
                     @change="inputChange"
-            ></kd-checkbox>
-            <span>{{ title }}</span>
-            <span class="kd-transfer-panel-count">{{ checkedList.length }}/{{ panelData.length }}</span>
+            >
+                <div>
+                    <span>{{ title }}</span>
+                    <span class="kd-transfer-panel-count">{{ checkedList.length }}/{{ panelData.length }}</span>
+                </div>
+            </kd-checkbox>
         </div>
         <div class="kd-transfer-content">
             <!-- 搜索 -->
@@ -39,24 +41,29 @@
                             :scope="panelData"
                     >
                     </slot>
+                    <!-- @click="itemHandleClick(item,index)" -->
                     <li
                             v-for="(item,index) in panelData"
                             :key="item[dataKey.key]"
                             class="kd-transfer-content-item"
                             :class="{'kd-transfer-active':item.checked}"
-                            @click="itemHandleClick(item,index)"
                     >
                         <kd-checkbox
                                 v-model="item.checked"
                                 :disabled="item.disabled"
-                                @change="itemInputChange(item)"
+                                @change="itemCheckboxChange(item,index)"
                         ></kd-checkbox>
-                        <content-label
-                                class="kd-transfer-content-label"
-                                :class="{'kd-transfer-label-disabled':item.disabled}"
-                                :scope="item"
-                                :data-key="dataKey"
-                        ></content-label>
+                        <div
+                                class="kd-transfer-content-temp"
+                                @click="itemHandleClick(item,index)"
+                        >
+                            <content-label
+                                    class="kd-transfer-content-label"
+                                    :class="{'kd-transfer-label-disabled':item.disabled}"
+                                    :scope="item"
+                                    :data-key="dataKey"
+                            ></content-label>
+                        </div>
                     </li>
 
                 </ul>
@@ -194,15 +201,16 @@
                 this.$emit('checkChange', this.checkedList, allSelect);
             },
             //  顶部点击一行
-            handleClick() {
-                this.allChecked = !this.allChecked;
-                this.inputChange();
-            },
+            // handleClick() {
+            //     this.allChecked = !this.allChecked;
+            //     this.inputChange();
+            // },
             //  内容input改变
+
             itemInputChange(item) {
                 const changeKeys = [item[this.dataKey.key]];
                 const noramlData = this.panelData.filter(
-                    (child) => !child.disabled || child.checked
+                    (child) => !child.disabled
                 );
                 this.allChecked =
                     noramlData.length === this.checkedList.length &&
@@ -213,6 +221,10 @@
             itemHandleClick(data, index) {
                 if (data.disabled) return;
                 data.checked = !data.checked;
+                this.$set(this.panelData, index, data);
+                this.itemInputChange(data);
+            },
+            itemCheckboxChange(data, index) {
                 this.$set(this.panelData, index, data);
                 this.itemInputChange(data);
             },
@@ -228,7 +240,6 @@
                 this.allChecked = false;
                 return data;
             },
-
             // 获取当前所有点击的数据
             getAllSelectedData() {
                 return this.panelData.filter(

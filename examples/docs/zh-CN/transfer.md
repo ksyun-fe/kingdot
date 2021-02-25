@@ -69,48 +69,6 @@
 ```
 :::
 
-### 自定义
-:::demo #穿梭框 ##自定义操作按钮和渲染数据项。
-
-```html
-<template>
-    <kd-transfer v-model="value" :data="defaultData" buttonLevel :dataKey="keys">
-        <span slot-scope="scope" slot="children-label" >
-            {{ scope.name }}testtesttestewttesttesttestewt
-            <i class="icon kd-icon kd-icon-more"></i>
-        </span>
-        <kd-button slot="left-bottom">操作</kd-button>
-        <kd-button slot="right-bottom">操作</kd-button>
-    </kd-transfer>
-
-</template>
-<script>
-    export default{
-        data(){
-            const defaultData = () =>{
-                const data = [];
-                for(let i = 0;i<10;i++){
-                    data.push({
-                        id:i,
-                        name:`item${i}`,
-                    })
-                }
-                return data;
-            }
-            return{
-                defaultData:defaultData(),
-                value:[1,3,5],
-                keys: {
-                    key: 'id',
-                    label:'name',
-                }
-            }
-        }
-    }
-</script>
-```
-:::
-
 ### 自定义内容
 :::demo #穿梭框 ##自定义操作按钮和渲染数据项。
 
