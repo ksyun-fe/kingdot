@@ -7,16 +7,16 @@
 <template>
     <div class="tree-demo-1">
         <div class="demo-props">
-            showLine: <KdSwitch v-model="showLine" size="small"></KdSwitch>
-            checkbox: <KdSwitch v-model="checkbox" size="small"></KdSwitch>
-            draggable: <KdSwitch v-model="draggable" size="small"></KdSwitch>
+            showLine: <kd-switch v-model="showLine" size="small" />
+            checkbox: <kd-switch v-model="checkbox" size="small" />
+            draggable: <kd-switch v-model="draggable" size="small" />
         </div>
         <div class="demo-props">
             <kd-input v-model="search" placeholder="按显示内容搜索" />
             <kd-button @click="getCheckedData">getCheckedData</kd-button>
             <kd-button @click="getSelectedData">getSelectedData</kd-button>
         </div>
-        <KdTree
+        <kd-tree
             ref="tree1"
             :canDeleteRoot="true"
             :data="treeData1"
@@ -109,9 +109,6 @@
                 ],
             }
         },
-        created() {
-            window.__tree1 = this;
-        },
         watch: {
             search() {
                 // this.$refs.tree1.searchNodes(this.search);
@@ -155,7 +152,7 @@
         <div class="demo-props">
             <kd-button @click="addNewNode">添加节点</kd-button>
         </div>
-        <KdTree
+        <kd-tree
             ref="tree2"
             :canDeleteRoot="true"
             :data="treeData2"
@@ -185,9 +182,6 @@
                     },
                 ],
             }
-        },
-        created() {
-            window.__tree2 = this;
         },
         methods: {
             addNewNode() {

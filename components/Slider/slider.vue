@@ -19,7 +19,7 @@
                         :always="always"
                 >
                     <div
-                            v-if="isRange"
+                            v-if="range"
                             ref="sliderStartBtn"
                             :class="{
                                 'kd-handle': true,
@@ -50,13 +50,13 @@
                             @mousedown="onDrag('end')"
                     ></div>
                 </kd-tooltip>
-                <template v-if="isShowStop">
+                <template v-if="showStop">
                     <i
-                            v-for="i in isShowStopList"
+                            v-for="i in stopList"
                             :key="i"
                             class="kd-point"
                             :style="{
-                                left: (i * 100) / (isShowStopList.length + 1) + '%'
+                                left: (i * 100) / (stopList.length + 1) + '%'
                             }"
                     ></i>
                 </template>
@@ -70,7 +70,7 @@
                         v-for="(item, index) in marksList"
                         :key="index"
                         class="kd-slider-marks-item"
-                        :class="{'kd-slider-mark-active': isRange ? sliderValue.includes(Number(item.value)) : (sliderValue[1] == item.value)}"
+                        :class="{'kd-slider-mark-active': range ? sliderValue.includes(Number(item.value)) : (sliderValue[1] == item.value)}"
                         :style="{
                             left: item.posLeft
                         }"
@@ -79,12 +79,12 @@
             </div>
         </div>
         <div
-                v-if="isShowInput"
+                v-if="showInput"
                 class="kd-spinner-wrapper"
         >
             <!-- range类型的input -->
             <div
-                    v-if="isRange"
+                    v-if="range"
                     :class="rangeInputCls"
             >
                 <kd-input
@@ -160,25 +160,25 @@
                     return '';
                 }
             },
-            isShowEnd: {
+            showEnd: {
                 type: Boolean,
                 default() {
                     return false;
                 }
             },
-            isShowInput: {
+            showInput: {
                 type: Boolean,
                 default() {
                     return false;
                 }
             },
-            isShowStop: {
+            showStop: {
                 type: Boolean,
                 default() {
                     return false;
                 }
             },
-            isRange: {
+            range: {
                 type: Boolean,
                 default() {
                     return false;
@@ -228,14 +228,14 @@
                     'kd-slider': true,
                     'kd-slider-disabled': this.disabled,
                     'kd-dragging': this.isDragging,
-                    'kd-show-input': this.isShowInput && !this.isRange,
-                    'kd-show-range-input': this.isShowInput && this.isRange,
-                    'kd-show-end': this.isShowEnd
+                    'kd-show-input': this.showInput && !this.range,
+                    'kd-show-range-input': this.showInput && this.range,
+                    'kd-show-end': this.showEnd
                 };
             },
             barStyle() {
                 let style;
-                if (this.isRange) {
+                if (this.range) {
                     style = {
                         width: (Math.abs(this.barValue[1] - this.barValue[0]) / this.sliderWidth) * 100 + '%',
                         left: ((Math.min(this.barValue[0], this.barValue[1]) - this.minValue) / this.sliderWidth) * 100 + '%'
@@ -261,7 +261,7 @@
                     left: (Math.abs(this.barValue[1] - this.minValue) / this.sliderWidth) * 100 + '%'
                 };
             },
-            isShowStopList() {
+            stopList() {
                 const counts = Math.floor(this.sliderWidth / this.step);
                 return Array.from({ length: counts - 1 }).map((v, i) => i + 1);
             },
@@ -281,7 +281,7 @@
                             posLeft: ((+item - this.minValue) * 100) / this.sliderWidth + '%'
                         };
                     });
-                } else if (this.isShowEnd) {
+                } else if (this.showEnd) {
                     return [
                         {
                             value: this.min,
@@ -306,7 +306,7 @@
                     if (Array.isArray(v)) {
                         this.sliderValue = v;
                     } else {
-                        if (this.isRange) {
+                        if (this.range) {
                             this.sliderValue = [this.minValue, this.minValue];
                         } else {
                             this.sliderValue = [this.minValue, v];
@@ -322,7 +322,7 @@
                     if (!this.isDragging) {
                         this.barValue = v;
                     }
-                    if (this.isRange) {
+                    if (this.range) {
                         v = v && v.length < 2 ? [this.minValue, this.minValue] : v;
                     } else {
                         v = v[1];
@@ -346,7 +346,7 @@
                 }
             },
             spinnerValue(v) {
-                if (this.isRange) return;
+                if (this.range) return;
                 this.sliderValue = [this.sliderValue[0], v];
             },
             barValue(v) {
@@ -407,7 +407,7 @@
             clickWrapper(e) {
                 if (this.disabled || this.isDragging) return;
                 const newValue = this.getSlidingValue(e.clientX);
-                if (this.isRange) {
+                if (this.range) {
                     if (
                         Math.abs(this.sliderValue[0] - newValue) <=
                         Math.abs(this.sliderValue[1] - newValue)
@@ -422,7 +422,7 @@
             },
             clickMarks(item) {
                 const newValue = Number(item.value);
-                if (this.isRange) {
+                if (this.range) {
                     if (
                         Math.abs(this.sliderValue[0] - newValue) <=
                         Math.abs(this.sliderValue[1] - newValue)

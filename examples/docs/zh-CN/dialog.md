@@ -5,7 +5,7 @@
 <template>
     <div>
         <kd-button @click="openDialog">点击打开默认Dialog</kd-button>
-        <kd-dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800"></kd-dialog>
+        <kd-dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800">{{num}}</kd-dialog>
     </div>
 </template>
 <script>
@@ -13,7 +13,8 @@
         data(){
             return{
                 showDialog:false,
-                disableOk:false
+                disableOk:false,
+                num:1
             }
         },
         methods:{
@@ -22,6 +23,7 @@
             },
             OK(dialog){
                 dialog.showLoading()
+                this.num++
                 setTimeout(function(){ 
                     dialog.hideLoading()
                 }, 2000);
@@ -59,14 +61,14 @@
                 type="tips"
                 :showTitle="false" 
                 icon="warning"
-                tipsTitle="操作成功"
+                tipsTitle="警告"
                 :tipsMessage="additionalTips"
                 :showFooter="false"
                 :tipsIsCenter="true"></kd-dialog>
         <kd-dialog v-model="showMessageDialog_confirm"
                 type="confirm"
                 :showTitle="false" 
-                icon="failed"
+                icon="warning"
                 :confirmTips="confirmTips">
                 
             <div slot="footer">

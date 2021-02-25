@@ -108,20 +108,20 @@ describe('Tree', () => {
         this.timeout(15000);
 
         triggerEvent(el[1], 'mousedown');
+        // 尝试把第一个子节点拖放到第二个子节点内部
         // eventName, true, false, null, 0, 0, 0, ofsx, ofsy
         triggerEvent(
             el[1],
             'mousemove',
             true,
             false,
-            { x: 130, y: 134 },
+            { x: 1, y: 1 },
         );
+        // fix: 未拖放到其他节点下，只做拖放到测试
         triggerEvent(document, 'mouseup');
-        // todo
 
         setTimeout(() => {
-            console.log('xxxxxx==', vm.data);
-            console.log('xxxxxx2==', vm.data[0].children);
+            expect(vm.data[0].children.length).to.equal(2);
             done();
         }, 8000);
     });

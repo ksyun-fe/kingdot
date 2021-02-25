@@ -68,6 +68,14 @@
                         {
                             "path": "/slider",
                             "name": "Slider 滑块"
+                        },
+                        {
+                            "path": "/dropdown",
+                            "name": "Dropdown 下拉菜单"
+                        },
+                        {
+                            "path": "/transfer",
+                            "name": "Transfer 穿梭框"
                         }
                     ]
                 },
@@ -85,6 +93,10 @@
                         {
                             "path": "/tree",
                             "name": "Tree 树"
+                        },
+                        {
+                            "path": "/table",
+                            "name": "Table 表格"
                         }
                     ]
                 },
@@ -201,12 +213,24 @@
                             "name": "Input"
                         },
                         {
+                            "path": "/spinner",
+                            "name": "Spinner"
+                        },
+                        {
                             "path": "/form",
                             "name": "Form"
                         },
                         {
                             "path": "/checkbox",
                             "name": "Checkbox"
+                        },
+                        {
+                            "path": "/dropdown",
+                            "name": "Dropdown"
+                        },
+                        {
+                            "path": "/transfer",
+                            "name": "Transfer"
                         }
                     ]
                 },
@@ -216,6 +240,14 @@
                         {
                             "path": "/progress",
                             "name": "Progress"
+                        },
+                        {
+                            "path": "/timeline",
+                            "name": "Timeline"
+                        },
+                        {
+                            "path": "/table",
+                            "name": "Table"
                         }
                     ]
                 },

@@ -15,8 +15,8 @@ describe('use component', () => {
 });
 Vue.use(kingdot);
 
-// const testsContext = require.context('./specs', true, /\.spec$/);
-const testsContext = require.context('./specs', true, /tree\.spec$/);
+const testsContext = require.context('./specs', true, /\.spec$/);
+// const testsContext = require.context('./specs', true, /tooltip|tree|slider\.spec$/);
 
 
 testsContext.keys().forEach(testsContext);

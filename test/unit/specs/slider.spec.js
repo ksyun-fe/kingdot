@@ -10,7 +10,7 @@ describe('Slider', () => {
         vm = createVue({
             template: `
                 <div>
-                    <kd-slider ref="slider" :value="20" isShowStop isShowInput />
+                    <kd-slider ref="slider" :value="20" showStop showInput />
                 </div>
             `
         });
@@ -154,8 +154,8 @@ describe('Slider', () => {
                     <kd-slider
                         v-model="value2"
                         ref="slider"
-                        isRange
-                        isShowEnd
+                        range
+                        showEnd
                         always
                         :marks="marks"
                     />

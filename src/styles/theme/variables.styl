@@ -188,13 +188,6 @@ $-btn-group-default-hover-color := $-btn-primary-hover-bg
 $-btn-group-default-active-color := $-btn-primary-active-bg
 $-btn-active-line-color := $-btn-primary-active-bg
 $-btn-active-color := #fff
-
-// $-btn-group-default-before-color := #525C77
-// $-btn-group-primary-before-color := #525C77
-// $-btn-group-success-before-color := #525C77
-// $-btn-group-warning-before-color := #525C77
-// $-btn-group-dar-before-color := #525C77
-
 //btn default
 $-btn-default-padding := 9px 16px
 $-btn-default-font-size := 12px
@@ -232,10 +225,10 @@ $-btn-mini-font-size := 12px
 //icon
 $-btn-icon-text-gutter := 8px
 
-$-btn-loading-r = 120 - 60 - ($-btn-stroke-width / 2)
-$-btn-loading-c = round(2 * 3.14 * $-btn-loading-r)
+$-btn-loading-r := 120 - 60 - ($-btn-stroke-width / 2)
+$-btn-loading-c := round(2 * 3.14 * $-btn-loading-r)
 
-
+$-btn-group-line-color := linear-gradient(180deg, #E8465D 0%, #603D5F 100%)
 /******************************
         Radio
 *******************************/
@@ -488,7 +481,7 @@ $-tabs-after-backgroundColor := #2F374F;
 
 $-tabs-color-guanbi := #C0C7CC
 
-$-tabs-after-borderColor := none
+$-tabs-after-borderColor := transparent
 $-tabs-after-disabledColor := #4F576E
 $-tabs-large-backgroundColor := #2D354D
 $-tabs-card-backgroundColor := #F3F4F7
@@ -628,3 +621,36 @@ $-slider-input-width ?= 80px
         tree
 *******************************/
 $-tree-node-bg-color ?= #2c324e
+
+/******************************
+        transfer
+*******************************/
+$-transfer-radius := $-border-radius
+$-transfer-header-bg := $-table-header-bg-color
+$-transfer-width := 198
+$-transfer-row-height := 39
+$-transfer-row-padding := 0 15px
+$-transfer-filter-margin := 10px 15px
+$-transfer-content-height := 290px
+$-transfer-items-height := 32px
+$-transfer-items-padding := 0 15px
+$-tarnsfer-serach-width := 100%
+$-transfer-btn-padding := 0 30px
+$-transfer-btn-margin-left := 10px
+$-transfer-btn-vertical-mr := 10px 0 0
+$-transfer-footer-btn-padding := 4px 15px
+$-transfer-footer-btn-margin := 15px
+
+/******************************
+        Dropdown
+*******************************/
+
+$-dropdown-menu-bg := $-white-color
+$-dropdown-menu-padding := 8px 0
+$-dropdown-menu-margin := 5px 0
+
+//item
+$-dropdown-item-disabled-bg := $-disabled-color
+$-dropdown-item-hover-bg := #F3F4F7
+$-dropdown-item-dividedLine := #ccc
+$-dropdown-item-disabled-hover := $-white-color

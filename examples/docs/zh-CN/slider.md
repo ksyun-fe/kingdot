@@ -9,15 +9,15 @@
     <div>
         <div class="block">
             <span class="demo-title">默认</span>
-            <kd-slider v-model="value1" isShowEnd></kd-slider>
+            <kd-slider v-model="value1" showEnd></kd-slider>
         </div>
         <div class="block">
             <span class="demo-title">自定义初始值</span>
-            <kd-slider :value="20" isShowEnd></kd-slider>
+            <kd-slider :value="20" showEnd></kd-slider>
         </div>
         <div class="block">
             <span class="demo-title">自定义mix、max</span>
-            <kd-slider :min="min" :max="max" :value="20" isShowEnd></kd-slider>
+            <kd-slider :min="min" :max="max" :value="20" showEnd></kd-slider>
         </div>
         <div class="block">
             <span class="demo-title">隐藏 Tooltip</span>
@@ -33,27 +33,27 @@
         </div>
         <div class="block">
             <span class="demo-title">分隔点</span>
-            <kd-slider v-model="value1" isShowStop></kd-slider>
+            <kd-slider v-model="value1" showStop></kd-slider>
         </div>
         <div class="block">
             <span class="demo-title">范围滑块</span>
             <kd-slider
                 v-model="value2"
-                isRange
-                isShowEnd
+                range
+                showEnd
                 always
             ></kd-slider>
         </div>
         <div class="block">
             <span class="demo-title">带输入框</span>
-            <kd-slider v-model="value1" isShowEnd isShowInput></kd-slider>
+            <kd-slider v-model="value1" showEnd showInput></kd-slider>
             <br />
             <br />
             <kd-slider
                 v-model="value2"
-                isRange
-                isShowInput
-                isShowEnd
+                range
+                showInput
+                showEnd
                 always
             ></kd-slider>
         </div>
@@ -62,7 +62,7 @@
             <kd-slider :min="1" :max="12" :value="3" :marks="marks"></kd-slider>
             <br />
             <br />
-            <kd-slider isRange :min="1" :max="12" :value="value3" :marks="marks"></kd-slider>
+            <kd-slider range :min="1" :max="12" :value="value3" :marks="marks"></kd-slider>
         </div>
     </div>
 </template>
@@ -115,12 +115,12 @@
 | min     | 最小值   | `Number`    |     —    |
 | max     | 最大值   | `Number`    |     —    |
 | unit     | 单位，用于刻度展示   | `String`    |     —    |
-| isShowEnd     | 是否展示最小和最大刻度   | `Boolean`    |     `false`    |
-| isShowInput     | 是否展示输入框  | `Boolean`    |     `false`    |
-| isShowStop     | 是否展示间隔点  | `Boolean`    |     `false`    |
+| showEnd     | 是否展示最小和最大刻度   | `Boolean`    |     `false`    |
+| showInput     | 是否展示输入框  | `Boolean`    |     `false`    |
+| showStop     | 是否展示间隔点  | `Boolean`    |     `false`    |
 | step     | 步长  | `Number`    |     `1`    |
 | marks     | `标注刻度(Object：key表示组件的值，value为该值对应展示的标注文案。)`  | `Object`    |     `undefined`    |
 | showTip     | 是否展示tooltip  | `Boolean`    |     `true`    |
 | always     | 是否一直展示tooltip  | `Boolean`    |     `false`    |
-| isRange     | 是否为范围选择  | `Boolean`    |     `false`    |
+| range     | 是否为范围选择  | `Boolean`    |     `false`    |
 | disabled     | 禁用  | `Boolean`    |     `false`    |
