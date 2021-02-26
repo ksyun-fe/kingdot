@@ -55,7 +55,8 @@
             return {
                 stepIndex: this.value,
                 children: [],
-                orientation: this.direction
+                orientation: this.direction,
+                spotLineLH: ''
             };
         },
         computed: {
@@ -131,6 +132,7 @@
                 if (this.type === 'spot') {
                     Array.from(parent.children).forEach(item => {
                         const headHeight = item.children[0].children[0].children[0].offsetHeight;
+                        this.spotLineLH = headHeight;
                         const firstChild = item.children[0].children[0].children[1].children[0];
                         const secondChild = item.children[0].children[0].children[1].children[1];
                         const titleHeight = firstChild ? firstChild.offsetHeight : 0;
