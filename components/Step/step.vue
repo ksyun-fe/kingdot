@@ -175,7 +175,7 @@
             stepLineStyle() {
                 const style = {};
                 if (this.type === 'spot') {
-                    const _tranlateY = Math.ceil((this.$parent.spotLineLH + 5) / 2);
+                    const _tranlateY = Math.ceil((this.$parent.spotLineLH + 4) / 2);
                     style.transform = `translate(6px, ${_tranlateY}px)`;
                 }
                 return style;
