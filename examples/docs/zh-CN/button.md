@@ -12,7 +12,7 @@
         <kd-button type='text'>链接按钮</kd-button>
     </div>
 </template>
-<style>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -42,7 +42,7 @@
         </div>
     </div>
 </template>
-<style>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -64,7 +64,7 @@
         <kd-button disabled type='none'>text禁用按钮</kd-button>
     </div>
 </template>
-<style>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -87,7 +87,7 @@
         <kd-button type='danger'>图标在后<i class="kd-icon-right kd-icon-more"></i></kd-button>
     </div>
 </template>
-<style>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -107,7 +107,7 @@
         <kd-button type='primary' shape='round'>按钮</kd-button> 
     </div>
 </template>
-<style scope>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -141,7 +141,7 @@
         </div>
     </div>
 </template>
-<style scope>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -214,7 +214,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
 .comp-top{
     margin-top:20px
 }

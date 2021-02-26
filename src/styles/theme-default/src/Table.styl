@@ -1,0 +1,215 @@
+@import "../variables.styl";
+@import '../../mixin.styl'
+
+$-table-border-color := #edeff4
+
+.kd-table
+  box-sizing border-box
+  border 1px solid $-table-border-color
+  position relative
+  //隐藏系统自带滚动条
+  & ::-webkit-scrollbar
+    height 0px !important
+    width 0px !important
+  table
+    font-size 12px
+    table-layout fixed
+    width 100%
+    border-collapse collapse
+    border-spacing 0
+    color #343957
+    text-align left
+    thead
+      color #343957
+      background #f7f8fa
+      border-bottom 1px solid $-table-border-color
+      z-index 1
+      overflow hidden
+      width 100%
+      th
+        padding 7px 6px
+        font-size 14px
+        font-weight 400
+        position relative
+        text-align left
+        user-select none
+        text-overflow ellipsis
+        white-space nowrap
+        &:after
+          content ''
+          background-color $-table-border-color
+          height 14px
+          width 1px
+          position absolute
+          top 50%
+          right -1px
+          margin-top -7px
+
+        &.kd-th-noborder:after
+          content none
+
+    tbody
+      display table-row-group
+      vertical-align middle
+      border-color inherit
+      tr
+        border-bottom 1px solid $-table-border-color
+        &:last-child
+          border none
+        &.kd-disabled
+          background-color #efefef
+          &:hover
+            background-color #efefef !important
+        td
+          color #343957
+          padding 15px 6px
+  .kd-table-fixed
+    position absolute
+    top 0
+    display inline-block
+    overflow hidden
+    &.ks-fixed-left
+      left 0
+    &.ks-fixed-right
+      right 0
+    .kd-table-body
+      overflow hidden
+  .kd-table-overflow-x
+    overflow hidden
+    background-color #dcdcdc
+    position relative
+    transform background-color 1s
+    .bar
+      display inline-block
+      width 50px
+      height 12px
+      background-color #b5b5b5
+      top 0
+      position absolute
+      cursor pointer
+      border-radius 2px
+      transition background-color .3s
+      &:active
+        background-color #7c7c7c
+      &:hover
+        background-color #7c7c7c
+  .box-shadow-left
+    box-shadow: 8px 10px 18px rgba(0,0,0,0.12);
+  .box-shadow-right
+    box-shadow: -8px 10px 18px rgba(0,0,0,0.12);
+  .kd-table-sort
+    display inline-block
+    position absolute
+    top 50%
+    height 18px
+    right 0
+    transform translateY(-50%)
+    .kd-sort-content
+      margin-top 8px
+      transform translateY(-50%)
+      width 16px
+    .kd-sort-item
+      display block
+      color #afafaf
+      &.kd-sort-asc
+        transform rotate(180deg)
+        margin-right 2px
+        margin-bottom -10px
+      &.kd-sort-desc
+        margin-top -4px
+      &.kd-sort-action
+        color #505050 !important
+      &:hover
+        color #a09f9f
+      i
+        display inline-block
+        cursor pointer
+        height 12px
+        font-size 14px
+        line-height 1
+  .kd-table-move-line
+    left 0
+    top 0
+    height 100%
+    width 1px
+    background: rgba(0,0,0,.2)
+    position: absolute
+    cursor col-resize
+  .kd-table-btn
+    display inline-block
+    cursor pointer
+    transform rotate(-90deg)
+    transition $-transition
+    &.kd-table-show-btn
+      transform rotate(0deg)
+  .kd-table-tree-btn
+    margin-right 10px
+  .kd-table-loading
+    animation loadTree .8s ease-in-out infinite
+  .kd-table-tree-placeholder
+    display inline-block
+    height 10px
+  .kd-table-column-content
+    display inline-block
+    position absolute
+    right 0
+    top 11px
+    z-index 10
+  .kd-table-column-btn-outer
+    padding-bottom 4px
+    width 4px
+    height 10px
+    .kd-table-column-btn
+      cursor pointer
+      width 0
+      height 0
+      border-top 6px solid transparent
+      border-right 6px solid #afafaf
+      border-bottom 6px solid transparent
+      position absolute
+      right -1px
+      top -4px
+  //.kd-dropdown-menu
+  //  position fixed !important
+  //  top auto !important
+  //  right auto !important
+  //  background-color #fff
+  //  transform translateX(-40%) translateY(-4%)
+  .kd-btn-text
+    color #afafaf
+  &.kd-table-border
+    thead
+      th
+        &:after
+          top 7px
+          height 100%
+    tbody
+      td
+        border-right 1px solid $-table-border-color
+        &:last-child
+          border: none
+
+
+
+.kd-table-header
+  width 100%
+  overflow hidden
+  .kd-table-drag-th
+    isplay inline-block
+    width 6px
+    height 100%
+    position absolute
+    left -2px
+    top 0
+    cursor col-resize
+  //.kd-dropdown
+  //  margin-left 4px
+
+.kd-table-body
+  width 100%
+  overflow-y auto
+
+@keyframes loadTree{
+  from {transform: rotate(0deg)}
+  to {transform: rotate(360deg)}
+}

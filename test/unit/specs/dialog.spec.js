@@ -234,25 +234,6 @@ describe("dialog", () => {
       expect(vm.visible).to.be.false;
     }, 500);
   });
-  //dialog可以移动
-  it("dialog to move", (done) => {
-    vm = createCons(Dialog, {
-      type: "default",
-      value: true,
-    });
-    triggerEvent(vm.$el.querySelector(".kd-dialog-header"), "mousedown");
-    triggerEvent(
-      vm.$el.querySelector(".kd-dialog-header"),
-      "mousemove",
-      true,
-      false,
-      { x: -88, y: 160 }
-    );
-    setTimeout(() => {
-      triggerEvent(document, "mouseup");
-      done();
-    }, 100);
-  });
   //'取消'&‘确认’操作
   it("cancel & ok", async () => {
     vm = createVue({
@@ -263,7 +244,7 @@ describe("dialog", () => {
             `,
       data() {
         return {
-          isShowDialog: true,
+          isShowDialog: false,
           num: 1,
         };
       },
@@ -278,6 +259,7 @@ describe("dialog", () => {
         },
       },
     });
+    vm.isShowDialog = true;
     await vm.$nextTick().then((_) => {
       vm.$el.querySelectorAll(".kd-dialog-btn")[1].click();
       setTimeout(function () {
@@ -310,5 +292,26 @@ describe("dialog", () => {
         ).to.equal("2");
       }, 200);
     }, 300);
+  });
+  //dialog可以移动
+  it("dialog to move", async () => {
+    vm = createCons(Dialog, {
+      type: "default",
+      value: true,
+    });
+    await vm.$nextTick().then((_) => {
+      triggerEvent(vm.$el.querySelector(".kd-dialog-header"), "mousedown");
+      triggerEvent(
+        vm.$el.querySelector(".kd-dialog-header"),
+        "mousemove",
+        true,
+        false,
+        { x: 88, y: 260 }
+      );
+      setTimeout(() => {
+        expect(vm.$el.querySelector(".kd-dialog").style.webkitTransform).to.equal('translate(0px, -25px)')
+        triggerEvent(document, "mouseup");
+      }, 200);
+  },500)
   });
 });

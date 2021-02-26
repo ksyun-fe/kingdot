@@ -81,7 +81,7 @@
 <style lang="stylus" scoped type="text/stylus">
     body.dark
         .demo
-            background #222A41
+            background #252D45
             border none
         .demo-title
             border-bottom 1px solid #2F374F
@@ -95,7 +95,7 @@
                 background #252D45
         .demo-code
             .hljs
-                background #222A41
+                background #252D45
         .code-toggle
             border-top 1px solid #2F374F
             &:hover

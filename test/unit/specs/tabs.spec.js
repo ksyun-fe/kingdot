@@ -22,23 +22,73 @@ describe('tabs', () => {
 
     //创建一个block标签Tabs
     it('create Tabs Tab of block', () => {
-        vm = createVue({
-            template: `
+            vm = createVue({
+                template: `
                 <kd-tabs v-model='key' type='block'>
                    <kd-tab value='block'>block</kd-tab>
                 </kd-tabs>
             `,
-            data() {
-                return {
-                    key: 'block',
+                data() {
+                    return {
+                        key: 'block',
+                    }
                 }
-            }
-        }, true)
-        let classList = vm.$el.classList;
-        expect(classList.contains('kd-tabs-block')).to.be.true;
-    })
-
-    //标签页的禁用
+            }, true)
+            let classList = vm.$el.classList;
+            expect(classList.contains('kd-tabs-block')).to.be.true;
+        })
+        //创建一个card标签
+    it('create Tabs Tab of card', () => {
+            vm = createVue({
+                template: `
+                <kd-tabs v-model='key' type='card'>
+                   <kd-tab value='block'>block</kd-tab>
+                </kd-tabs>
+            `,
+                data() {
+                    return {
+                        key: 'block',
+                    }
+                }
+            }, true)
+            let classList = vm.$el.classList;
+            expect(classList.contains('kd-tabs-card')).to.be.true;
+        })
+        //创建一个pagination标签
+    it('create Tabs Tab of pagination', () => {
+            vm = createVue({
+                template: `
+                <kd-tabs v-model='key' type='pagination'>
+                   <kd-tab value='block'>block</kd-tab>
+                </kd-tabs>
+            `,
+                data() {
+                    return {
+                        key: 'block',
+                    }
+                }
+            }, true)
+            let classList = vm.$el.classList;
+            expect(classList.contains('kd-tabs-pagination')).to.be.true;
+        })
+        //创建一个vertical标签
+    it('create Tabs Tab of vertical', () => {
+            vm = createVue({
+                template: `
+                <kd-tabs v-model='key' type='vertical'>
+                   <kd-tab value='block'>block</kd-tab>
+                </kd-tabs>
+            `,
+                data() {
+                    return {
+                        key: 'block',
+                    }
+                }
+            }, true)
+            let classList = vm.$el.classList;
+            expect(classList.contains('kd-tabs-vertical')).to.be.true;
+        })
+        //标签页的禁用
     it(' Tabs Tab of disabled', () => {
             vm = createVue({
                 template: `
@@ -52,8 +102,8 @@ describe('tabs', () => {
                     }
                 }
             }, true)
-            let classList = vm.$el.childNodes[0].childNodes[2].childNodes[0].classList;
-            expect(classList.contains('kd-disabled')).to.be.true;
+            vm.$el.querySelector('.kd-disabled').click();
+            expect(vm.$el.querySelector('.kd-disabled')).to.be.have;
         })
         //标签页的添加
     it(' Tabs Tab of add', () => {
@@ -92,5 +142,189 @@ describe('tabs', () => {
         vm.$el.childNodes[1].click();
         expect(vm.editableTabs.length).to.equal(3);
     })
+
+    //tab 关闭属性
+    it('close Tabs ', () => {
+            vm = createVue({
+                template: `
+                <kd-tabs v-model='key' closable>
+                   <kd-tab value='block'>block</kd-tab>
+                </kd-tabs>
+            `,
+                data() {
+                    return {
+                        key: 'block',
+                    }
+                }
+            }, true)
+            let obj = vm.$el.querySelector('.kd-guanbi');
+            expect(obj).to.be.have;
+        })
+        //点击 ‘X’关闭 tab
+    it('close Tabs click', async() => {
+        vm = createVue({
+            template: `
+                <kd-tabs v-model='key' closable>
+                   <kd-tab value='block'>block</kd-tab>
+                   <kd-tab value='block1'>block1</kd-tab>
+                </kd-tabs>
+            `,
+            data() {
+                return {
+                    key: 'block',
+                }
+            }
+        }, true)
+        await vm.$nextTick().then((_) => {
+            vm.$el.querySelector('.kd-guanbi').click();
+            setTimeout(function() {
+                expect(
+                    vm.$el.querySelector('.kd-tab').textContent
+                ).to.be.null
+            }, 200);
+        })
+    })
+
+    //标签页的选择
+    it('Tabs click', async() => {
+            vm = createVue({
+                template: `
+                <kd-tabs v-model='key' closable>
+                   <kd-tab value='block'>block</kd-tab>
+                </kd-tabs>
+            `,
+                data() {
+                    return {
+                        key: 'block',
+                    }
+                }
+            }, true)
+            await vm.$nextTick().then((_) => {
+                vm.$el.querySelector('.kd-tab').click();
+                setTimeout(function() {
+                    expect(
+                        vm.$el.querySelector('.kd-active')
+                    ).to.be.have
+                }, 200);
+            })
+        })
+        //标签页的选择
+    it('set  addbutton', async() => {
+        vm = createVue({
+            template: `
+                <kd-tabs v-model='key' :addable=true  @addTab='addTab'>
+                   <kd-tab value='block'>block</kd-tab>
+                   <div slot='addable' class='addButton' v-if='show'>添加</div>
+                </kd-tabs>
+            `,
+            data() {
+                return {
+                    key: 'block',
+                    show: true
+                }
+            },
+            methods: {
+                addTab() {
+                    this.show = false;
+                },
+            }
+        }, true)
+        expect(vm.$el.querySelector('.addButton').textContent).to.equal('添加')
+        await vm.$nextTick().then((_) => {
+            vm.$el.querySelector('.addButton').click();
+            setTimeout(function() {
+                expect(
+                    vm.$el.querySelector('.addButton')
+                ).to.no.have
+            }, 200);
+        })
+
+    })
+
+    // 点击tabs 移动到最前面
+
+    it('move tab', async() => {
+            vm = createVue({
+                template: `
+            <kd-tabs v-model='key' handleTabMove>
+               <kd-tab value='block1'>block1</kd-tab>
+               <kd-tab value='block2'>block2</kd-tab>
+               <kd-tab value='block3'>block3</kd-tab>
+               <kd-tab value='block4'>block4</kd-tab>
+               <kd-tab value='block5'>block5</kd-tab>
+               <kd-tab value='block6'>block6</kd-tab>
+               <kd-tab value='block7'>block7</kd-tab>
+               <kd-tab value='block8'>block8</kd-tab>
+               <kd-tab value='block9'>block9</kd-tab>
+               <kd-tab value='block10'>block10</kd-tab>
+               <kd-tab value='block11'>block11</kd-tab>
+               <kd-tab value='block12'>block12</kd-tab>
+               <kd-tab value='block13'>block13</kd-tab>
+               <kd-tab value='block14'>block14</kd-tab>
+               <kd-tab value='block15'>block15</kd-tab>
+            </kd-tabs>
+        `,
+                data() {
+                    return {
+                        key: 'block1'
+                    }
+                },
+            }, true)
+            await vm.$nextTick().then((_) => {
+                vm.$el.querySelector('.kd-tabs-content').childNodes[2].click();
+                setTimeout(function() {
+                    expect(
+                        vm.$el.querySelector('.kd-tabs-content').childNodes[2].style.left
+                    ).to.equal('0px')
+                }, 200);
+            })
+
+        })
+        // 左右滑动tabs
+
+    it('left right move tab', async() => {
+        vm = createVue({
+            template: `
+            <kd-tabs v-model='key'>
+               <kd-tab value='block1'>block1</kd-tab>
+               <kd-tab value='block2'>block2</kd-tab>
+               <kd-tab value='block3'>block3</kd-tab>
+               <kd-tab value='block4'>block4</kd-tab>
+               <kd-tab value='block5'>block5</kd-tab>
+               <kd-tab value='block6'>block6</kd-tab>
+               <kd-tab value='block7'>block7</kd-tab>
+               <kd-tab value='block8'>block8</kd-tab>
+               <kd-tab value='block9'>block9</kd-tab>
+               <kd-tab value='block10'>block10</kd-tab>
+               <kd-tab value='block11'>block11</kd-tab>
+               <kd-tab value='block12'>block12</kd-tab>
+               <kd-tab value='block13'>block13</kd-tab>
+               <kd-tab value='block14'>block14</kd-tab>
+               <kd-tab value='block15'>block15</kd-tab>
+            </kd-tabs>
+        `,
+            data() {
+                return {
+                    key: 'block1'
+                }
+            },
+        }, true)
+        await vm.$nextTick().then((_) => {
+            vm.$el.querySelector('.right').click();
+            setTimeout(function() {
+                expect(
+                    vm.$el.querySelector('.kd-tabs-content').style.right
+                ).to.equal('0px')
+            }, 200);
+            vm.$el.querySelector('.left').click();
+            setTimeout(function() {
+                expect(
+                    vm.$el.querySelector('.kd-tabs-content').style.left
+                ).to.equal('0px')
+            }, 200);
+        })
+
+    })
+
 
 })

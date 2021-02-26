@@ -12,14 +12,13 @@
                     @click="handleModalClick"
             ></div>
         </transition>
-        <transition
-                name="kd-dialog-fade"
-        >
+        <transition name="kd-dialog-fade">
             <div
                     v-if="visible"
                     class="kd-dialog-wrapper"
             >
                 <div
+                        id="kd-dialog"
                         class="kd-dialog"
                         :style="[
                             style,
@@ -93,7 +92,7 @@
                             <span
                                     v-if="icon"
                                     class="kd-icon-section"
-                                    :class="{'kd-dailog-tips-icon':!tipsIsCenter}"
+                                    :class="{ 'kd-dailog-tips-icon': !tipsIsCenter }"
                             >
                                 <i
                                         :class="[
@@ -141,7 +140,7 @@
                             <kd-button
                                     class="kd-dialog-btn"
                                     type="primary"
-                                    :disabled="disableOk || selfDisableOk"
+                                    :disabled="disableOk"
                                     :loading="selfDisableOk"
                                     @click="_ok"
                             >
@@ -157,10 +156,13 @@
 
 <script>
     import transferDom from './transfer-dom.js';
-    import { mouseDragBegin, animationFrame } from './utils.js';
+    import { mouseDragBegin, animationFrame } from '../../src/utils/utils.js';
+    import nextZIndex from '../../src/utils/zIndex.js';
     export default {
         name: 'KdDialog',
-        directives: { transferDom },
+        directives: {
+            transferDom
+        },
         props: {
             // v-model绑定，控制dialog显示与隐藏
             value: {
@@ -288,7 +290,10 @@
                 closed: false,
                 marginTop: 0,
                 marginLeft: 0,
-                originData: { marginTop: 0, marginLeft: 0 },
+                originData: {
+                    marginTop: 0,
+                    marginLeft: 0
+                },
                 iconColor_obj: {
                     success: '#38C482',
                     failed: '#EF4E76',
@@ -344,16 +349,21 @@
                     this.visible = newValue;
                     this.marginTop = 0;
                     this.marginLeft = 0;
-                    this.originData = { marginTop: 0, marginLeft: 0 };
+                    this.originData = {
+                        marginTop: 0,
+                        marginLeft: 0
+                    };
                 }
             },
             visible(newValue) {
+                if (newValue) {
+                    this.$el.style.zIndex = nextZIndex();
+                }
                 this.$emit('input', newValue);
             }
         },
 
-        created() {
-        },
+        created() {},
         // 销毁前移除dom
         destroyed() {
             // if appendToBody is true, remove DOM node after destroy
@@ -414,11 +424,15 @@
                 });
             },
             mousedown(e) {
-                mouseDragBegin(e, this.drag, this.dragEnd, { top: 50 });
+                var ele = document.getElementById('kd-dialog');
+                mouseDragBegin(e, this.drag, this.dragEnd, {
+                    top: 50
+                }, ele);
             }
         }
     };
 </script>
+
 <style lang="">
 /* @import "./dialog.css"; */
 </style>
