@@ -4,7 +4,7 @@
             <!-- slider -->
             <div
                     ref="sliderWrapper"
-                    class="kd-wrapper"
+                    class="kd-slider-main"
                     @click="clickWrapper"
             >
                 <div
@@ -22,8 +22,8 @@
                             v-if="range"
                             ref="sliderStartBtn"
                             :class="{
-                                'kd-handle': true,
-                                'kd-active': isBarReverse
+                                'kd-slider-handle': true,
+                                'kd-slider-point-active': isBarReverse
                                     ? draggingPoint == 'end'
                                     : draggingPoint == 'start'
                             }"
@@ -41,8 +41,8 @@
                     <div
                             ref="sliderEndBtn"
                             :class="{
-                                'kd-handle': true,
-                                'kd-active': isBarReverse
+                                'kd-slider-handle': true,
+                                'kd-slider-point-active': isBarReverse
                                     ? draggingPoint == 'start'
                                     : draggingPoint == 'end'
                             }"
@@ -54,7 +54,7 @@
                     <i
                             v-for="i in stopList"
                             :key="i"
-                            class="kd-point"
+                            class="kd-slider-point"
                             :style="{
                                 left: (i * 100) / (stopList.length + 1) + '%'
                             }"
@@ -94,12 +94,12 @@
                         tabindex="0"
                         status=""
                         resize="none"
-                        class="single-input"
+                        class="kd-slider-single-input"
                         @focus="inputFocusFn"
                         @blur="inputBlurFn"
                 />
                 <div>
-                    <span class="input-middle"></span>
+                    <span class="kd-slider-input-middle"></span>
                 </div>
                 <kd-input
                         v-model="sliderValue[1]"
@@ -108,7 +108,7 @@
                         tabindex="0"
                         status=""
                         resize="none"
-                        class="single-input"
+                        class="kd-slider-single-input"
                         @focus="inputFocusFn"
                         @blur="inputBlurFn"
                 />
