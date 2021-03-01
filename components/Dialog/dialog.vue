@@ -22,7 +22,6 @@
                         class="kd-dialog"
                         :style="[
                             style,
-                            { transform: `translate(${marginLeftUnit},${marginTopUnit})` },
                         ]"
                         :class="`kd-dialog-${type}`"
                 >
@@ -156,7 +155,6 @@
 
 <script>
     import transferDom from './transfer-dom.js';
-    import { mouseDragBegin, animationFrame } from '../../src/utils/utils.js';
     import nextZIndex from '../../src/utils/zIndex.js';
     export default {
         name: 'KdDialog',
@@ -288,12 +286,6 @@
                 mask: this.modal,
                 selfDisableOk: false,
                 closed: false,
-                marginTop: 0,
-                marginLeft: 0,
-                originData: {
-                    marginTop: 0,
-                    marginLeft: 0
-                },
                 iconColor_obj: {
                     success: '#38C482',
                     failed: '#EF4E76',
@@ -323,12 +315,6 @@
                 }
                 return style;
             },
-            marginTopUnit() {
-                return this.marginTop + 'px';
-            },
-            marginLeftUnit() {
-                return this.marginLeft + 'px';
-            },
             iconObj() {
                 return {
                     'kd-icon-success-solid': this.icon === 'success',
@@ -347,12 +333,6 @@
                 immediate: true,
                 handler(newValue) {
                     this.visible = newValue;
-                    this.marginTop = 0;
-                    this.marginLeft = 0;
-                    this.originData = {
-                        marginTop: 0,
-                        marginLeft: 0
-                    };
                 }
             },
             visible(newValue) {
@@ -364,13 +344,6 @@
         },
 
         created() {},
-        // 销毁前移除dom
-        destroyed() {
-            // if appendToBody is true, remove DOM node after destroy
-            if (this.appendToBody && this.$el && this.$el.parentNode) {
-                this.$el.parentNode.removeChild(this.$el);
-            }
-        },
         methods: {
             // 确认按钮的回调，默认关闭dialogue
             _ok() {
@@ -407,27 +380,45 @@
                 if (!this.clickModalToClose) return;
                 this.close();
             },
-            // dialog可以移动相关计算
-            drag(startPoint, endPoint) {
-                animationFrame(() => {
-                    this.marginTop = endPoint.y - startPoint.y + this.originData.marginTop;
-                    this.marginLeft =
-                        endPoint.x - startPoint.x + this.originData.marginLeft;
-                });
-            },
-            dragEnd(startPoint, endPoint) {
-                animationFrame(() => {
-                    this.originData = {
-                        marginTop: this.marginTop,
-                        marginLeft: this.marginLeft
-                    };
-                });
-            },
             mousedown(e) {
-                mouseDragBegin(e, this.drag, this.dragEnd, {
-                    top: 50
-                });
+                var event = e || window.event;
+                var _target = document.getElementById('kd-dialog');
+                var _targetW = _target.clientWidth;
+                var _targetH = _target.clientHeight;
+                var startx = event.clientX;
+                var starty = event.clientY;
+                var sbBkx = startx - _target.offsetLeft;
+                var sbBky = starty - _target.offsetTop;
+                var ww = document.body.offsetWidth - Math.ceil(_targetW / 2);
+                var wh = document.body.offsetHeight - Math.floor(_targetH / 2);
+                if (event.preventDefault) {
+                    event.preventDefault();
+                } else {
+                    event.returnValue = false;
+                }
+                document.onmousemove = function (ev) {
+                    var _event = ev || window.event;
+                    var endx = _event.clientX - sbBkx;
+                    var endy = _event.clientY - sbBky;
+                    if (endx <= Math.ceil(_targetW / 2)) {
+                        endx = Math.ceil(_targetW / 2);
+                    } else if (endx >= ww + 20) {
+                        endx = ww + 20;
+                    }
+                    if (endy <= 0) {
+                        endy = 0;
+                    } else if (endy >= wh) {
+                        endy = wh;
+                    }
+                    _target.style.left = endx + 'px';
+                    _target.style.top = endy + 'px';
+                };
+                document.onmouseup = function (e) {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
             }
+
         }
     };
 </script>

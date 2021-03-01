@@ -14,7 +14,9 @@
     .kd-dialog
         position relative
         top 100px
-        margin 0 auto
+        // margin 0 auto
+        left 50%
+        transform translateX(-50%)
         background-color $-dialog-background-color
         box-shadow 0 0 8px 0 rgba(0,0,0,.06)
         border-radius 2px
@@ -41,7 +43,6 @@
         background $-dialog-line-color
 .kd-dialog
     .kd-dialog-header
-        position relative
         height 48px
         padding 0 20px
         line-height 48px
