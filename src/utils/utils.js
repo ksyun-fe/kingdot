@@ -165,8 +165,7 @@ export function mouseDragBegin(
     { x, y, target },
     dragFn,
     endFn,
-    outBraking = {},
-    ele
+    outBraking = {}
 ) {
     var startPosition = {
         x,
@@ -176,10 +175,6 @@ export function mouseDragBegin(
         x,
         y
     };
-    // 判断，若是在低版本IE上，为物体添加全局捕获
-    if (ele.setCapture) {
-        ele.setCapture();
-    }
     var { top, left, width, height} = target.getClientRects()[0];
     const { offsetHeight, offsetWidth } = document.body;
     const minLeft =
@@ -191,6 +186,7 @@ export function mouseDragBegin(
         (outBraking.right || windowPaddingMin) -
         (width - (startPosition.x - left));
     var mouseMove = function (e) {
+        e = window.event || e;
         var _x, _y;
 
         if (minLeft > e.x) {
@@ -216,10 +212,6 @@ export function mouseDragBegin(
         endFn && endFn(startPosition, prePosition);
         document.removeEventListener('mousemove', mouseMove);
         document.removeEventListener('mouseup', mouseUp);
-        // 释放全局捕获
-        if (ele.releaseCapture) {
-            ele.releaseCapture();
-        }
     };
     document.addEventListener('mousemove', mouseMove);
     document.addEventListener('mouseup', mouseUp);

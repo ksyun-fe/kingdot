@@ -424,10 +424,9 @@
                 });
             },
             mousedown(e) {
-                var ele = document.getElementById('kd-dialog');
                 mouseDragBegin(e, this.drag, this.dragEnd, {
                     top: 50
-                }, ele);
+                });
             }
         }
     };
