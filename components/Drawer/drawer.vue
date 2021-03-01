@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 <template>
     <div
+            v-transfer-dom
             class="kd-drawer"
-            :style="kdDrawerMainbox"
+            :data-transfer="true"
     >
         <!-- 遮罩 -->
         <transition name="mask">
@@ -61,9 +62,13 @@
 </template>
 
 <script>
+    import transferDom from './transfer-dom.js';
     import nextZIndex from '../../src/utils/zIndex.js';
     export default {
         name: 'KdDrawer',
+        directives: {
+            transferDom
+        },
         props: {
             // 是否显示抽屉
             value: {
@@ -132,8 +137,8 @@
         },
         data() {
             return {
-                flag: false
-
+                flag: false,
+                visible: this.value
             };
         },
         computed: {
@@ -170,11 +175,6 @@
                     this.flag = '';
                 }
                 return style;
-            },
-            kdDrawerMainbox() {
-                const style = {};
-                style.zIndex = nextZIndex();
-                return style;
             }
         },
         watch: {
@@ -185,6 +185,9 @@
                 }
             },
             flag(newValue) {
+                if (newValue) {
+                    this.$el.style.zIndex = nextZIndex();
+                }
                 this.$emit('input', newValue);
             }
         },

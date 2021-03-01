@@ -1,37 +1,44 @@
 @import '../variables.styl';
 
-$-drawer-position ?= left top bottom right;
+$-drawer-position := 'left' 'top' 'bottom' 'right';
 .kd-drawer
   position: fixed;
   width: $-drawer-main-width;
   top: 0;
   left: 0;
-
 .kd-drawer-overlay
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
   width: $-drawer-main-width;
   height: $-drawer-main-height;
   background-color: $-drawer-overlay-backgroundColor;
   opacity: 0;
   transition: all $-drawer-animation-time;
-
 .kd-drawer-main
   position: fixed;
-  z-index: 10;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   background: $-drawer-mian-backgroundColor;
   height: $-drawer-main-height;
 
-for item in $-drawer-position
-  .main-{item}-enter-active
-    animation: 'drawer-fade-' + item + '-in' $-drawer-animation-time;
-  .main-{item}-leave-active
-    animation: 'drawer-fade-' + item + '-out' $-drawer-animation-time;
+.main-left-enter-active
+  animation: drawer-fade-left-in $-drawer-animation-time;
+.main-left-leave-active
+  animation: drawer-fade-left-out $-drawer-animation-time;
+.main-right-enter-active
+  animation: drawer-fade-right-in $-drawer-animation-time;
+.main-right-leave-active
+  animation: drawer-fade-right-out $-drawer-animation-time;
+.main-top-enter-active
+  animation: drawer-fade-top-in $-drawer-animation-time;
+.main-top-leave-active
+  animation: drawer-fade-top-out $-drawer-animation-time;
+.main-bottom-enter-active
+  animation: drawer-fade-bottom-in $-drawer-animation-time;
+.main-bottom-leave-active
+  animation: drawer-fade-bottom-out $-drawer-animation-time;
 
 .kd-drawer-title
   border-bottom: 1px solid $-drawer-titleBorder-color;
