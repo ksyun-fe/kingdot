@@ -22,7 +22,7 @@
                         v-if="!isValid"
                         class="kd-form-Item-validate-error"
                 >
-                    {{ warning }}
+                    {{ message }}
                 </div>
             </transition>
         </div>
@@ -39,7 +39,7 @@
     import {defaultMessage, methods as _ruleHandlers} from './ruleHandlers.js';
 
     export default {
-        name: 'FormItem',
+        name: 'KdFormItem',
         inject: ['form'],
         props: {
             label: {
@@ -59,19 +59,21 @@
                 type: Object,
                 default: () => ({})
             },
-            message: {
-                type: Object
+            messages: {
+                type: [Object, String]
             },
-            isDirty: {
-                type: Boolean,
-                default: true
+            value: {
+                type: [Number, String]
             }
         },
         data() {
             return {
+                forms: [],
+                isDirty: false,
                 isValid: true,
+                force: false,
                 oldValue: '',
-                warning: ''
+                message: ''
             };
         },
         computed: {
@@ -163,7 +165,7 @@
                     })
                     .then(([isValid, message]) => {
                         this.isValid = isValid;
-                        this.warning = message;
+                        this.message = message;
                         return isValid;
                     });
             },

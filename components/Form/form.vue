@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: 'Form',
+        name: 'KdForm',
         provide() {
             return { 'form': this };
         },
