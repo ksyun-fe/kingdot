@@ -1,13 +1,17 @@
 import { expect } from 'chai';
 import { createCons, createVue, destroyVM } from '../util';
 describe('tabs', () => {
+    afterEach(() => {
+        if (!vm) return;
+        destroyVM(vm);
+    });
     let vm;
     //创建一个默认的Tabs
     it('create Tabs Tab of default', () => {
         vm = createVue({
             template: `
                 <kd-tabs v-model='key'>
-                   <kd-tab value='default'>默认</kd-tab>
+                    <kd-tab value='default'>默认</kd-tab>
                 </kd-tabs>
             `,
             data() {
@@ -25,7 +29,7 @@ describe('tabs', () => {
             vm = createVue({
                 template: `
                 <kd-tabs v-model='key' type='block'>
-                   <kd-tab value='block'>block</kd-tab>
+                    <kd-tab value='block'>block</kd-tab>
                 </kd-tabs>
             `,
                 data() {
@@ -93,7 +97,7 @@ describe('tabs', () => {
             vm = createVue({
                 template: `
             <kd-tabs v-model='key' type='block'>
-               <kd-tab value='block' disabled>disabled</kd-tab>
+                <kd-tab value='block' disabled>disabled</kd-tab>
             </kd-tabs>
         `,
                 data() {

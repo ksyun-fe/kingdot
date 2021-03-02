@@ -6,7 +6,7 @@ describe('Tooltip', () => {
         destroyVM(vm);
     });
     // create
-    it('create', done => {
+    it('create', function(done) {
         vm = createVue({
             template: `
                 <kd-tooltip ref="tooltip" content="提示文字">
@@ -15,31 +15,33 @@ describe('Tooltip', () => {
             `
         });
         const tooltip = vm.$refs.tooltip;
-        vm.$nextTick(() => {
+        this.timeout(2000);
+        setTimeout(() => {
             expect(tooltip.popperVM.$el).to.have.property('textContent', '提示文字');
             done();
-        });
+        }, 1000);
     });
     // hover
-    describe('hover', () => {
-        afterEach(() => {
-            destroyVM(vm);
-        });
+    it('hover', function(done) {
         vm = createVue(`
-            <kd-tooltip ref="tooltip" content="提示文字">
+            <kd-tooltip ref="tooltip" content="提示文字" canHover effect="dark">
                 <button>click2</button>
             </kd-tooltip>
         `);
         const tooltip = vm.$refs.tooltip;
         triggerEvent(tooltip.$el, 'mouseenter');
-        it('popperVM is exist', () => expect(tooltip.popperVM).to.exist);
-        it('show popper: visible is true', () => expect(tooltip.visible).to.true);
-        it('close popper: visible is false', done => {
+
+        this.timeout(8000);
+        setTimeout(() => {
+            // popperVM is exist
+            expect(tooltip.popperVM).to.exist;
+            expect(tooltip.visible).to.be.true;
+
             triggerEvent(tooltip.$el, 'mouseleave');
             setTimeout(() => {
                 expect(tooltip.visible).to.false;
                 done();
-            }, 300);
-        });
-    });
+            }, 3000)
+        }, 3000);
+    })
 })

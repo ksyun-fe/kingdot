@@ -14,7 +14,9 @@
     .kd-dialog
         position relative
         top 100px
-        margin 0 auto
+        // margin 0 auto
+        left 50%
+        transform translateX(-50%)
         background-color $-dialog-background-color
         box-shadow 0 0 8px 0 rgba(0,0,0,.06)
         border-radius 2px
@@ -41,7 +43,6 @@
         background $-dialog-line-color
 .kd-dialog
     .kd-dialog-header
-        position relative
         height 48px
         padding 0 20px
         line-height 48px
@@ -51,7 +52,7 @@
             background-color $-dialog-header-background-color
     .kd-dialog-title
         padding 0 4px
-        font-size $-font-size
+        font-size $-font-base-size
         color $-dialog-title-color
         letter-spacing 0
         line-height 16px
@@ -72,7 +73,6 @@
     .kd-dialog-body
         padding 20px 20px 32px
         text-align center
-        word-wrap break-word
         word-break normal
         color $-dialog-body-color
     .kd-dialog-footer-height
@@ -102,7 +102,7 @@
         color $-dialog-confirm-title-color
         letter-spacing 0
     .kd-dialog-confirm-tips
-        font-size $-font-size
+        font-size $-font-base-size
         text-align center
         line-height 22px
         color $-dialog-confirm-tips-color
@@ -149,11 +149,13 @@
         margin 0 4px
 //进入和离开时的动画      
 .kd-dialog-fade-enter-active 
-  animation dialog-fade-in .3s
+  animation dialog-fade-enter .3s
+  animation-fill-mode forwards
 .kd-dialog-fade-leave-active 
   animation dialog-fade-out .3s
+  animation-fill-mode forwards
 
-@keyframes dialog-fade-in {
+@keyframes dialog-fade-enter {
   0% {
     transform: translate3d(0, -20px, 0);
     opacity: 0;

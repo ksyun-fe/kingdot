@@ -148,8 +148,8 @@ $-btn-primary-hover-border := $-border-base-color
 $-btn-primary-active-bg := linear-gradient(180deg, #B8283C 0%, #3E203D 100%)
 $-btn-primary-active-border := $-border-base-color
 
-$-btn-success-hover-bg := #5ED79E 
-$-btn-success-hover-border := #5ED79E 
+$-btn-success-hover-bg := #5ED79E
+$-btn-success-hover-border := #5ED79E
 $-btn-success-active-bg := #39B67A
 $-btn-success-active-border := #39B67A
 
@@ -181,9 +181,9 @@ $-btn-danger-color := $-danger-color
 $-btn-text-color := $-primary-color
 $-btn-none-color := #fff
 
-$-btn-text-hover-color := #7999FF 
+$-btn-text-hover-color := #7999FF
 $-btn-text-active-color := #4165D7
-$-btn-none-hover-color := #7999FF 
+$-btn-none-hover-color := #7999FF
 $-btn-none-active-color := #4165D7
 
 // group
@@ -432,7 +432,7 @@ $-message-info-border-color := $-message-info-background-color;
         steps
 *******************************/
 $-steps-container-background-color := #222A41 //主题色
-$-step-spot-done-background-color := #ED3351 
+$-step-spot-done-background-color := #ED3351
 $-step-spot-line-border-color := #ED3351
 $-step-spot-line-background-color := transparent
 $-step-spot-active-background-color := #ED3351;
@@ -488,8 +488,8 @@ $-tabs-color-guanbi := #C0C7CC
 $-tabs-after-borderColor := transparent
 $-tabs-after-disabledColor := #4F576E
 $-tabs-large-backgroundColor := #2D354D
-$-tabs-card-backgroundColor := #F3F4F7  
-$-tabs-card-background := #222a41  
+$-tabs-card-backgroundColor := #F3F4F7
+$-tabs-card-background := #222a41
 $-tabs-after-borderColor-card :=#525c77
 
 $-tabs-font-size := 14px
@@ -534,19 +534,6 @@ $-dialog-header-background-color := #2C314E
 $-dialog-line-color := #2C314E
 $-dialog-title-color := #fff
 $-dialog-body-color := #fff
-$-dialog-btn-border-color := #525C77
-$-dialog-btn-default-background-color := transparent;
-$-dialog-btn-default-color := #fff
-$-dialog-btn-default-hover := #3D4660
-$-dialog-btn-default-hover-background-color := #3D4660
-$-dialog-btn-default-active :=  #38425E
-$-dialog-btn-default-color-active := #fff
-$-dialog-btn-default-active-background-color := #38425E
-$-dialog-btn-primary-background-color := linear-gradient(180deg, #F8334C 0%, #4E284D 100%);
-$-dialog-btn-primary-border := none
-$-dialog-btn-primary-hover := linear-gradient(180deg, #ec4473 0%, #5F3D5E 100%);
-$-dialog-btn-primary-active := linear-gradient(180deg, #B8273C 0%, #3D1F3C 100%);
-$-dialog-btn-disabled-background-color := #2D354D
 $-dialog-btn-disabled-color := #4F576E
 $-dialog-icon-title-color := #fff
 $-dialog-message-color := #8D919B
@@ -590,6 +577,41 @@ $-spinner-btn-large-height := 36
 $-spinner-btn-default-height := 32
 $-spinner-btn-small-height := 28
 $-spinner-btn-mini-height := 26
+
+/******************************
+        slider
+*******************************/
+$-slider-height ?= 4px
+$-slider-bg-color ?= #2F374F
+$-slider-bar-color ?= #ED3351
+
+$-transition = $-animation-duration-base $-ease-in-out
+$-slider-border-radius ?= 100px
+$-slider-handle-height ?= 8px
+$-slider-handle-width ?= $-slider-handle-height
+$-slider-handle-border ?= 2px solid $-slider-bar-color
+$-slider-handle-border-radius ?= 50%
+$-slider-handle-bg-color ?= #fff
+$-slider-handle-hover-transform ?= scale(1.5)
+$-slider-handle-hover-bg-color ?= $-slider-bar-color
+$-slider-handle-disabled-bg-color ?= #fff
+
+$-slider-disabled-color = #999
+$-slider-disabled-bg-color = #f7f7f7
+// stop point
+$-slider-stop-point-width ?= $-slider-height
+$-slider-stop-point-height ?= $-slider-stop-point-width
+// marks
+$-slider-marks-height ?= 20px
+$-slider-marks-margin-top ?= 10px
+// other
+$-slider-range-input-width ?= 146px
+$-slider-input-width ?= 80px
+
+/******************************
+        tree
+*******************************/
+$-tree-node-bg-color ?= #2c324e
 
 /******************************
         transfer
