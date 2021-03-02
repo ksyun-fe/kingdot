@@ -128,7 +128,7 @@ describe("dialog", () => {
         template: `
                     <kd-dialog v-model="visible"
                         type="confirm"
-                        :showTitle="false" 
+                        :showTitle="false"
                         icon="failed"
                         :confirmTips="confirmTips">
                         <div slot="footer">

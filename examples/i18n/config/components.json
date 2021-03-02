@@ -66,6 +66,10 @@
                             "name": "Checkbox 多选框"
                         },
                         {
+                            "path": "/slider",
+                            "name": "Slider 滑块"
+                        },
+                        {
                             "path": "/dropdown",
                             "name": "Dropdown 下拉菜单"
                         },
@@ -85,6 +89,10 @@
                         {
                             "path": "/timeline",
                             "name": "Timeline 时间轴"
+                        },
+                        {
+                            "path": "/tree",
+                            "name": "Tree 树"
                         },
                         {
                             "path": "/table",

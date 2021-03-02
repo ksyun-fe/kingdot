@@ -567,6 +567,41 @@ $-spinner-btn-mini-height := 26
 $-spinner-border-color := $-border-base-color
 
 /******************************
+        slider
+*******************************/
+$-slider-height ?= 4px
+$-slider-bg-color ?= #ECECEC
+$-slider-bar-color ?= #557DFC
+
+$-transition = $-animation-duration-base $-ease-in-out
+$-slider-border-radius ?= 100px
+$-slider-handle-height ?= 8px
+$-slider-handle-width ?= $-slider-handle-height
+$-slider-handle-border ?= 2px solid $-slider-bar-color
+$-slider-handle-border-radius ?= 50%
+$-slider-handle-bg-color ?= #fff
+$-slider-handle-hover-transform ?= scale(1.5)
+$-slider-handle-hover-bg-color ?= $-slider-bar-color
+$-slider-handle-disabled-bg-color ?= #fff
+
+$-slider-disabled-color = #999
+$-slider-disabled-bg-color = #f7f7f7
+// stop point
+$-slider-stop-point-width ?= $-slider-height
+$-slider-stop-point-height ?= $-slider-stop-point-width
+// marks
+$-slider-marks-height ?= 20px
+$-slider-marks-margin-top ?= 10px
+// other
+$-slider-range-input-width ?= 146px
+$-slider-input-width ?= 80px
+
+/******************************
+        tree
+*******************************/
+$-tree-node-bg-color ?= #f5f5f5
+
+/******************************
         Dropdown
 *******************************/
 
@@ -598,3 +633,26 @@ $-transfer-btn-margin-left := 10px
 $-transfer-btn-vertical-mr := 10px 0 0
 $-transfer-footer-btn-padding := 4px 15px
 $-transfer-footer-btn-margin := 15px
+
+/******************************
+        tooltip
+*******************************/
+// tooltip base
+$-font-size-base ?= 12px
+$-line-height-base ?= 1.5
+$-border-radius-base ?= 4px
+$-shadow-color ?= rgba(0, 0, 0, 0.15)
+$-box-shadow-base ?= 0 0 15px 0 $-shadow-color
+$-tooltip-max-width ?= calc(240px - 14px - 14px)
+$-tooltip-arrow-width ?= 5px
+$-tooltip-distance ?= $-tooltip-arrow-width - 1px + 4px
+// effect
+$-tooltip-theme = 'dark' 'light'
+$-tooltip-light-bg ?= #fff
+$-tooltip-light-color ?= #737373
+$-popover-content-light-color ?= #737373
+$-popover-titleline-light-color ?= #E5E5E5
+$-tooltip-dark-bg ?= #2C324D
+$-tooltip-dark-color ?= #fff
+$-popover-content-dark-color ?= #8D919B
+$-popover-titleline-dark-color ?= #414760

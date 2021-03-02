@@ -1,3 +1,5 @@
+@import "../variables.styl";
+@import './motion/mixins.styl';
 .kd-tree
     font-size $-font-small-size
     ul
@@ -5,7 +7,7 @@
     .kd-tree-node-el
         margin-bottom 12px
         &:hover
-            background-color #f5f5f5
+            background-color $-tree-node-bg-color
     .kd-tree-switcher, .kd-tree-loading
         margin-right 8px
         display inline-block
