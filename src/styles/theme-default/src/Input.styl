@@ -4,7 +4,7 @@
     width $-input-default-width
     vertical-align middle
     input
-        appearance button;
+        appearance button
         -moz-appearance none
         -webkit-appearance none
     .kd-input-wrapper
@@ -130,3 +130,6 @@
         bottom $-textarea-count-bottom
         right $-textarea-count-right
         z-index 1
+
+input::-ms-clear, input::-ms-reveal
+    display none

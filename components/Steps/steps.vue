@@ -9,8 +9,8 @@
         <slot></slot>
     </div>
 </template>
-
 <script type="text/javascript">
+    import { isIe } from '../../src/utils/utils.js';
     export default {
         name: 'KdSteps',
         components: {},
@@ -55,7 +55,8 @@
             return {
                 stepIndex: this.value,
                 children: [],
-                orientation: this.direction
+                orientation: this.direction,
+                spotLineLH: ''
             };
         },
         computed: {
@@ -99,6 +100,7 @@
                 const lastChildWidth = precent / childNum + '%';
                 const leftStyle = (precent / childNum) + 5 + '%';
                 const parent = this.$el;
+                console.log(isIe());
                 if (this.type === 'default' && this.direction === 'vertical') {
                     Array.from(parent.children)[childNum - 1].style[
                         'max-height'
@@ -108,10 +110,11 @@
                         'max-width'
                     ] = lastChildWidth;
                     Array.from(parent.children).forEach(item => {
-                        const headWidth = item.children[0].children[0].children[0].offsetWidth;
+                        const headWidth = isIe() ? item.children[0].children[0].children[0].clientWidth : item.children[0].children[0].children[0].offsetWidth;
                         const firstChild = item.children[0].children[0].children[1].children[0];
-                        const titleWidth = firstChild ? firstChild.offsetWidth : 0;
+                        const titleWidth = firstChild ? isIe() ? firstChild.clientWidth : firstChild.offsetWidth : 0;
                         const secondChild = item.children[0].children[0].children[1].children[1];
+                        console.log(firstChild, titleWidth, headWidth);
                         if (!secondChild && firstChild) {
                             item.children[0].children[0].children[1].style.width = titleWidth + headWidth + 'px';
                         }
@@ -130,11 +133,12 @@
                 }
                 if (this.type === 'spot') {
                     Array.from(parent.children).forEach(item => {
-                        const headHeight = item.children[0].children[0].children[0].offsetHeight;
+                        const headHeight = isIe() ? item.children[0].children[0].children[0].clientHeight : item.children[0].children[0].children[0].offsetHeight;
+                        this.spotLineLH = headHeight;
                         const firstChild = item.children[0].children[0].children[1].children[0];
                         const secondChild = item.children[0].children[0].children[1].children[1];
-                        const titleHeight = firstChild ? firstChild.offsetHeight : 0;
-                        const descHeight = secondChild ? secondChild.offsetHeight : 0;
+                        const titleHeight = firstChild ? isIe() ? firstChild.clientHeight : firstChild.offsetHeight : 0;
+                        const descHeight = secondChild ? isIe() ? secondChild.clientHeight : secondChild.offsetHeight : 0;
                         if (firstChild && secondChild) {
                             item.children[0].children[0].children[1].style.height = titleHeight + descHeight + 'px';
                             item.children[0].children[0].style.height = headHeight + titleHeight + descHeight + 'px';

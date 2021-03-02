@@ -137,25 +137,23 @@
       .kd-tab-text  
          color: $-tabs-color-active;  
 .kd-tabs-show-control  
+   position relative
    .kd-tabs-content  
       transition: margin-left 0.3s;
       padding: 0px 20px;
-   .kd-control  
-      position: absolute;
-      top: 1px
-      display: table;
-      cursor: pointer;
-      z-index: 9999;
-      border-bottom: none;
-      background:$-tabs-large-backgroundColor;
-      border: 1px solid $-tabs-after-borderColor
-      height: 100%;
-      .kd-control-icon  
-         font-size: 15px !important;
-         vertical-align: middle;
-         display: table-cell;
-      &.right  
-         right: 0;
+   .kd-control
+     position: absolute
+     top: 1px
+     display:flex; 
+     justify-content:center 
+     align-items:center
+     height: 100%
+     cursor: pointer
+     background:$-tabs-large-backgroundColor;
+     border: 1px solid $-tabs-after-borderColor
+     z-index 10
+     &.right
+         right: 0
 .kd-move-bar  
    transition: all 0.3s;
    position: absolute;

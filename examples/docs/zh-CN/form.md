@@ -5,17 +5,17 @@
 ```html
 <template>
 <div>
-    <Form
+    <kd-form
         ref="form"
     >
-        <FormItem
+        <kd-form-item
             model="batchSize"
             :message="message"
             :rules="rules"
             :isDirty="false"
         >
             <template v-slot:label><i class="required">* </i> 数据写入批次大小：</template> 
-            <Input class="address-step1-format-width"
+            <kd-input class="address-step1-format-width"
                    placeholder="0或大于等于100并且小于1000000000"
                    v-model.trim="batchSize"/>
             <template slot="append">
@@ -23,11 +23,11 @@
                     <i class="kd-icon-success-solid"></i>
                 </div>
             </template>
-        </FormItem>
-    </Form>
-    <Button
+        </kd-form-item>
+    </kd-form>
+    <kd-button
         class="btn"
-        @click="submitHandler">提交</Button>
+        @click="submitHandler">提交</kd-button>
 </div>
     
 </template>
@@ -76,17 +76,17 @@
 ```html
 <template>
 <div>
-    <Form
+    <kd-form
         ref="form"
     >
-        <FormItem
+        <kd-form-item
             model="batchSize"
             :message="message"
             :rules="rules"
             :isDirty="false"
         >
             <template v-slot:label><i class="required">* </i> 数据写入批次大小：</template> 
-            <Input class="address-step1-format-width"
+            <kd-input class="address-step1-format-width"
                    placeholder="0或大于等于100并且小于1000000000"
                    v-model.trim="batchSize"/>
             <template slot="append">
@@ -94,12 +94,12 @@
                     <i class="kd-icon-success-solid"></i>
                 </div>
             </template>
-        </FormItem>
-        <Button
+        </kd-form-item>
+        <kd-button
             type="mockSubmit"
             class="btn"
-            @click="submitHandler">提交</Button>
-    </Form>
+            @click="submitHandler">提交</kd-button>
+    </kd-form>
 </div>
     
 </template>
@@ -147,19 +147,19 @@
 ```html
 <template>
 <div>
-    <Form
+    <kd-form
         ref="form"
         @submit="submitHandler"
         @validateFail="validateFail"
     >
-        <FormItem
+        <kd-form-item
             model="batchSize"
             :message="message"
             :rules="rules"
             :isDirty="false"
         >
             <template v-slot:label><i class="required">* </i> 数据写入批次大小：</template> 
-            <Input class="address-step1-format-width"
+            <kd-input class="address-step1-format-width"
                    placeholder="0或大于等于100并且小于1000000000"
                    v-model.trim="batchSize"/>
             <template slot="append">
@@ -167,8 +167,8 @@
                     <i class="kd-icon-success-solid"></i>
                 </div>
             </template>
-        </FormItem>
-    </Form>
+        </kd-form-item>
+    </kd-form>
 </div>
     
 </template>

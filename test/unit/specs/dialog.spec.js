@@ -306,10 +306,11 @@ describe("dialog", () => {
         "mousemove",
         true,
         false,
-        { x: 88, y: 260 }
+        { x: 180, y: 160 }
       );
+      triggerEvent(document, "mouseup");
       setTimeout(() => {
-        expect(vm.$el.querySelector(".kd-dialog").style.webkitTransform).to.equal('translate(0px, -25px)')
+        expect(vm.$el.querySelector(".kd-dialog").style.left).to.equal('600px')
         triggerEvent(document, "mouseup");
       }, 200);
   },500)

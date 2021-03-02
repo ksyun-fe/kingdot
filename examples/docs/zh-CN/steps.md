@@ -66,7 +66,7 @@
                 stepIndex1:2,
                 stepIndex2:2,
                 description:'这里是描述文案，超出折行显示',
-                width:1280
+                width:800
             }
         },
         methods:{

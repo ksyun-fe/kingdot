@@ -13,6 +13,7 @@
                     'kd-step-line-vertical-small':direction == 'vertical'&&size=='small',
                     'kd-step-line-spot': type == 'spot',
                 }"
+                :style="stepLineStyle"
         ></span>
         <div class="kd-step-wrap">
             <div class="kd-step-container">
@@ -170,6 +171,14 @@
                     'kd-icon-success': this._status === 'finished',
                     'kd-icon-error': this._status === 'error'
                 };
+            },
+            stepLineStyle() {
+                const style = {};
+                if (this.type === 'spot') {
+                    const _tranlateY = Math.ceil((this.$parent.spotLineLH + 4) / 2);
+                    style.transform = `translate(6px, ${_tranlateY}px)`;
+                }
+                return style;
             }
         },
         watch: {},
