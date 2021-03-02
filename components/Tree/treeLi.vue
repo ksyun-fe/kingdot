@@ -20,10 +20,10 @@
                 />
             </span>
             <!-- checkbox -->
-            <Checkbox
-                    v-if="checkbox && !item.nocheck"
+            <kd-checkbox
+                    v-if="checkbox && !item.nocheck && !TREE.nocheckKeys.includes(item[TREE.nodeKey])"
                     v-model="item.checked"
-                    :disabled="item.chkDisabled"
+                    :disabled="item.chkDisabled || TREE.chkDisabledKeys.includes(item[TREE.nodeKey])"
                     :indeterminate="item.halfcheck"
                     class="kd-tree-checkbox"
                     @change="changeNodeCheckStatus(item, $event)"
@@ -43,7 +43,7 @@
                     :level="level"
             />
         </div>
-        <KdTransition
+        <kd-transition
                 v-if="item.children && item.children.length"
                 type="collapse"
         >
@@ -63,19 +63,20 @@
                         :show-line="showLine"
                 />
             </div>
-        </KdTransition>
+        </kd-transition>
     </li>
 </template>
 <script>
     import TreeNode from './treeNode.vue';
-    import KdTransition from '../Transition';
-    import Checkbox from '../Checkbox';
+    import KdTransition from '../Transition/index.js';
+    import KdCheckbox from '../Checkbox/index.js';
     export default {
         name: 'TreeLi',
         components: {
             TreeNode,
             KdTransition,
-            Checkbox
+            KdCheckbox,
+            TreeUl: () => import('./treeUl.vue')
         },
         props: {
             item: {
@@ -118,6 +119,14 @@
             tpl: Function,
             level: Number,
             allowGetParentNode: Boolean
+            // nocheckKeys: {
+            //     type: Array,
+            //     default: () => []
+            // }
+            // chkDisabledKeys: {
+            //     type: Array,
+            //     default: () => []
+            // }
         },
         inject: [
             'isLeaf',
@@ -154,7 +163,7 @@
             },
             hasChildren() {
                 const item = this.item;
-                return item.children && item.children.length > 0;
+                return item.children && item.children.length >= 0; // empty children to show switcher
             },
             showExpand() {
                 const item = this.item;
@@ -180,9 +189,6 @@
                 }
             }
         },
-        beforeCreate() {
-            this.$options.components.TreeUl = require('./treeUl.vue').default;
-        },
         methods: {
             // drag node
             drag(node, ev) {
@@ -205,8 +211,8 @@
                 const expended = !node.expanded;
                 this.setAttr(node, 'expanded', expended);
                 this.setAttr(node, 'hasExpanded', true);
-                if (node.async && !node.children) {
-                    this.emitEventToTree('async-load-nodes', node);
+                if (this.TREE.async && !node.loaded) {
+                    this.TREE.asyncLoadNodes(node);
                 }
                 this.emitEventToTree('node-expand', node, expended, this.position);
             },

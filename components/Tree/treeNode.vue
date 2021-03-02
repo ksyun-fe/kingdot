@@ -37,19 +37,22 @@
             //     titleClass += ` kd-tree-insert-${mode}`;
             // }
 
-            return tpl ? (
-                tpl(node, ctx, parent, index, ctx.props)
-            ) : (
-                <span
-                    domPropsInnerHTML={node.title}
-                    title={node.title}
-                    class={titleClass}
-                    onMouseover={() => nodeMouseOver(node, index, parent)}
-                    onClick={() => {
-                        if (selDisabled) return;
-                        ctx.parent.nodeSelected(node, { level, index });
-                    }}
-                ></span>
+            const _tree = ctx.injections.TREE;
+            return tpl
+                ? tpl(node, ctx, parent, index, ctx.props)
+                : _tree.$scopedSlots.default
+                    ? _tree.$scopedSlots.default(node)
+                    : (
+                        <span
+                            domPropsInnerHTML={node.title}
+                            title={node.title}
+                            class={titleClass}
+                            onMouseover={() => nodeMouseOver(node, index, parent)}
+                            onClick={() => {
+                                if (selDisabled) return;
+                                ctx.parent.nodeSelected(node, { level, index });
+                            }}
+                        ></span>
             );
         }
     };

@@ -18,7 +18,8 @@
                 emitEventToTree: this.emitEventToParent,
                 nodeSelected: this.nodeSelected,
                 setAttr: this.setAttr,
-                TREE: this
+                TREE: this,
+                chkDisabledKeys: this.chkDisabledKeys
             };
         },
         props: {
@@ -66,11 +67,24 @@
                 // 允许获取父节点
                 type: Boolean,
                 default: false
-            }
+            },
+            chkDisabledKeys: {
+                type: Array,
+                default: () => []
+            },
+            nocheckKeys: {
+                type: Array,
+                default: () => []
+            },
+            async: {
+                type: Boolean,
+                default: false
+            },
+            asyncFn: Function
         },
         data() {
             return {
-                test: true,
+                // test: true,
                 radioNode: null,
                 mode: null,
                 dragInfo: {}
@@ -148,7 +162,6 @@
                         case 'node-select':
                         case 'node-check':
                         case 'node-mouse-over':
-                        case 'async-load-nodes':
                         case 'drag-node-end':
                         case 'del-node':
                         case 'node-expand':
@@ -483,6 +496,17 @@
             },
             _getDefVal(attr) {
                 return this.$defVal[attr] || false;
+            },
+            asyncLoadNodes(node) {
+                const self = this;
+                this.$set(node, 'loading', true);
+
+                const resolve = (children) => {
+                    self.$set(node, 'loading', false);
+                    self.$set(node, 'children', children);
+                };
+
+                this.asyncFn && this.asyncFn(node, resolve);
             }
         }
     };

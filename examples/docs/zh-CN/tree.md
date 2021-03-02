@@ -28,7 +28,14 @@
             :showLine="showLine"
             :expandedKeys="expandedKeys"
             :checkedKeys="checkedKeys"
-        />
+            :chkDisabledKeys="['node-1-1']"
+            :nocheckKeys="['node-1-1-2']"
+        >
+            <span slot-scope="node">
+                {{ node.title }} ??
+                <kd-button type="mini">test</kd-button>
+            </span>
+        </kd-tree>
     </div>
 </template>
 <script>
@@ -144,7 +151,7 @@
 
 :::
 
-:::demo #高级用法：自定义、懒加载 ##通过@async-load-nodes进行数据懒加载。
+:::demo #高级用法：自定义、懒加载 ##通过属性async asyncFn进行数据懒加载。
 
 ```html
 <template>
@@ -156,12 +163,13 @@
             ref="tree2"
             :canDeleteRoot="true"
             :data="treeData2"
-            @async-load-nodes="asyncLoadNodes"
             :radio="radio"
             selectAlone
             @node-expand="_nodeExpand"
             :tpl="tpl"
             draggable
+            async
+            :asyncFn="asyncFn"
         />
     </div>
 </template>
@@ -191,29 +199,24 @@
                     async: true,
                 });
             },
-            async asyncLoadNodes(node) {
-                const { checked = false } = node;
-                this.$set(node, "loading", true);
-                let pro = await new Promise((resolve) => {
-                    setTimeout(resolve, 300, [
+            async asyncFn(node, resolve) {
+                node.loaded = true;
+                setTimeout(() => {
+                    const data = [
                         { title: "Sync Node1", async: true },
                         { title: "Sync Node2", async: true },
                         { title: "Node3" },
-                    ]);
-                });
-                if (!node.hasOwnProperty("children")) {
-                    this.$set(node, "children", []);
-                }
-                node.children.push(...pro);
-                this.$set(node, "loading", false);
-                if (checked) {
-                    this.$refs.tree2.childCheckedHandle(node, checked);
-                }
+                    ];
+                    resolve(data);
+                }, 500);
             },
             _nodeExpand(node, expand, position) {
                 if (!expand) {
-                    delete node.children;
+                    // delete node.children;
                 }
+            },
+            _testAsync(node) {
+                this.$refs.tree2.asyncLoadNodes(node);
             },
             // tpl (node, ctx, parent, index, props) {
             tpl(...args) {
@@ -227,21 +230,20 @@
                         <span
                             class={titleClass}
                             domPropsInnerHTML={node.title}
-                            onClick={() => this.asyncLoadNodes(node)}
                         />
                         <i
                             class="op1 kd-icon-plus"
                             title="add node"
                             onClick={() =>
                                 this.$refs.tree2.addNode(node, {
-                                    title: "Sync Node",
+                                    title: "new Node",
                                 })
                             }
                         />
                         <i
                             class="op1 kd-icon-circle-plus-outline"
                             title="async add node"
-                            onClick={() => this.asyncLoadNodes(node)}
+                            onClick={() => this._testAsync(node)}
                         />
                         <i
                             class="op1 kd-icon-delete"
@@ -276,6 +278,8 @@
 | `expandedKeys` | `通过nodeKey指定展开的节点` | `String[]` | `[]` | `[]` |
 | `checkedKeys` | `通过nodeKey指定勾选的节点` | `String[]` | `[]` | `[]` |
 | `checkbox` | `是否展示复选框` | `Boolean` | `true | false` | `false` |
+| `nocheckKeys` | `通过nodeKey指定的节点不展示复选框` | `Array` | `[]` | `[]` |
+| `chkDisabledKeys` | `通过nodeKey指定的节点禁用复选框` | `Array` | `[]` | `[]` |
 | `halfcheck` | `非叶子节点是否展示半选状态（获取勾选的节点可选是否包含非叶子节点）` | `Boolean` | `true | false` | `true` |
 | `scoped` | `隔离节点选中状态` | `Boolean` | `true | false` | `false` |
 | `radio` | `select是否允许单选` | `Boolean` | `true | false` | `false` |
@@ -286,6 +290,8 @@
 | `draggable` | `是否可拖拽` | `Boolean` | `true | false` | `false` |
 | `dragAfterExpanded` | `dragover是否自动展开targetNode` | `Boolean` | `true | false` | `true` |
 | `tpl` | `自定义Node模版` | `JSX` | `--` | `--` |
+| `async` | `是否开启懒加载，与asyncFn配合使用` | `Boolean` | `true | false` | `false` |
+| `asyncFn` | `加载子树数据的方法，懒加载时候生效` | `Function` | `--` | `--` |
 
 ### Tree事件 {.component__content}
 
@@ -295,7 +301,6 @@
 | `node-select` | `选择节点后触发的事件(和node-click一样)；position: 位置信息level：层级` | `Function(node: Object, selected: boolean, position: {level, index})` |
 | `node-check` | `点击checkbox触发事件` | `Function(node: Object, checked: boolean, position: {level, index})` |
 | `node-mouse-over` | `鼠标滑过节点触发事件` | `Function(node: Object, index: Number, parentNode: node, position: {level, index})` |
-| `async-load-nodes` | `用于实现异步加载` | `Function(node: Object)` |
 | `drag-node-end` | `节点拖拽结束后触发事件` | `Function({dragNode: Object, targetNode: Object})` |
 | `del-node` | `删除节点后触发事件` | `Function({ parentNode: Object/null, delNode: Object })` |
 | `node-expand` | `节点展开触发事件` | `Function(node: Object, expand: boolean, position: {level, index})` |
@@ -326,8 +331,14 @@
 | `chkDisabled` | `禁用某一结点的复选框的功能` | `Boolean` | `Y` | `false` |
 | `selected` |  `节点是否被选中` | `Boolean` | `Y` | `false` |
 | `selDisabled` | `禁用某一结点的select的功能` | `Boolean` | `Y` | `false` |
-| `async` | `是否异步加载子节点` | `Boolean` | `Y` | `false` |
+| `loaded` | `是否已完成异步加载子节点(配合懒加载使用，为true后不会懒加载)` | `Boolean` | `N` | `false` |
 | `loading` | `开启加载效果` | `Boolean` | `Y` | `false` |
 | `children` |  `子节点` | `Array[Node Object]` | `Y` | `—` |
 | `parent` | `获取父节点：当allowGetParentNode=true时,增加parent方法,若父节点不存在时,会返回null` | `Function` | `-` | `undefined` |
 | `__key__ ` | `组件内部标识，可指定Tree属性nodeKey为任一节点的属性（不重复）` | `String` | `N` | `—` |
+
+### Tree scoped slot {.component__content}
+
+| 名称       | 说明           |
+|---------- |--------        |
+| --   | 自定义树节点的内容，参数slot-scope="node"，优先级低于props tpl   |
