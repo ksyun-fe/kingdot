@@ -26,8 +26,7 @@ module.exports = {
             commonjs: 'vue',
             commonjs2: 'vue',
             amd: 'vue'
-        },
-        'src/mixin/lang.js': '../lib/mixin/lang.js'
+        }
     },
     module: {
         rules: [
