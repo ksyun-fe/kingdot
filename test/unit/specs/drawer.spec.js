@@ -132,12 +132,13 @@ describe('drawer', () => {
                         visible: true
                     }
                 }
-            }, true)
-            vm.$el.querySelector('span.kd-drawer-close-icon').click();
-            setTimeout(() => {
-                expect(vm.visible).to.be.false;
-                done();
-            }, 500);
+            }, true);
+            await vm.$nextTick().then(() => {
+                vm.$el.querySelector('span.kd-drawer-close-icon').click();
+                setTimeout(() => {
+                    expect(vm.visible).to.be.false;
+                }, 500);
+            })
         })
         //自定义内容
     it('custom drawer content', () => {
