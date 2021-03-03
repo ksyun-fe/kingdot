@@ -11,7 +11,7 @@
             <slot>标签页</slot>
         </a>
         <div
-                v-if="this.$parent.closable&&this.$parent.size!=='mini'&&!this.$parent.isVertical"
+                v-if="this.$parent.closable && this.$parent.size!=='mini' && !this.$parent.isVertical"
                 class="kd-guanbi"
                 @click.stop="closTab"
         >
