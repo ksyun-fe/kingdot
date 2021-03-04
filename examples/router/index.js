@@ -49,7 +49,8 @@ function load_component(lang, name) {
     return component_map[lang](name);
 }
 const generateComponentsRoute = (componentsConfig) => {
-    Object.entries(componentsConfig).forEach(([lang, types], index) => {
+    Object.keys(componentsConfig).forEach((lang, index) => {
+        const types = componentsConfig[lang];
         types.forEach((groups) => {
             groups.children.forEach((components) => {
                 routes.push({
@@ -97,11 +98,6 @@ const navRoutes = (lang) => {
             path: 'color',
             meta: { lang },
             component: load_file(lang, 'color')
-        },
-        {
-            path: 'updatelog',
-            meta: { lang },
-            component: load_file(lang, 'updatelog')
         }]
 
     };

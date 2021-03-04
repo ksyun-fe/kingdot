@@ -9,7 +9,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, '../lib'),
         publicPath: '/dist',
-        filename: 'kingdot.js',
+        filename: 'index.js',
         chunkFilename: '[id].js',
         library: 'KingDot',
         libraryTarget: 'umd',
@@ -29,8 +29,7 @@ module.exports = {
             commonjs: 'vue',
             commonjs2: 'vue',
             amd: 'vue'
-        },
-        'src/mixin/lang.js': '../lib/mixin/lang.js'
+        }
     },
     optimization: {
         minimize: true,
@@ -63,7 +62,8 @@ module.exports = {
             },
             {
                 test: /\.js$/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                exclude: /@popperjs/
             },
             {
                 test: /\.css$/,

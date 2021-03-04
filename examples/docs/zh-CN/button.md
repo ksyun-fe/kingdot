@@ -12,7 +12,7 @@
         <kd-button type='text'>链接按钮</kd-button>
     </div>
 </template>
-<style>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -42,7 +42,7 @@
         </div>
     </div>
 </template>
-<style>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -64,7 +64,7 @@
         <kd-button disabled type='none'>text禁用按钮</kd-button>
     </div>
 </template>
-<style>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -87,7 +87,7 @@
         <kd-button type='danger'>图标在后<i class="kd-icon-right kd-icon-more"></i></kd-button>
     </div>
 </template>
-<style>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -107,7 +107,7 @@
         <kd-button type='primary' shape='round'>按钮</kd-button> 
     </div>
 </template>
-<style scope>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -141,7 +141,7 @@
         </div>
     </div>
 </template>
-<style scope>
+<style scoped>
 .row button{
     margin-left:20px
 }
@@ -171,22 +171,22 @@
         <div class='comp-top'>
             <kd-button-group>
                 <kd-button>按钮1</kd-button>
-                <kd-button icon='iconmoren_xinzeng'>按钮2</kd-button>
-                <kd-button icon='iconmoren_xinzeng'>按钮3</kd-button>
+                <kd-button>按钮2</kd-button>
+                <kd-button>按钮3</kd-button>
             </kd-button-group>
         </div>
         <div class='comp-top'>
             <kd-button-group checkType="radio" v-model="radioValue" >
                 <kd-button value="1" >按钮1</kd-button>
-                <kd-button value="2" icon='iconmoren_xinzeng'>按钮2</kd-button>
-                <kd-button value="3" icon='iconmoren_xinzeng'>按钮3</kd-button>
+                <kd-button value="2">按钮2</kd-button>
+                <kd-button value="3" >按钮3</kd-button>
             </kd-button-group>
         </div>
         <div class='comp-top'>
             <kd-button-group checkType="checkbox" v-model="checkboxValue">
                 <kd-button value="1" >按钮1</kd-button>
-                <kd-button value="2" icon='iconmoren_xinzeng'>按钮2</kd-button>
-                <kd-button value="3" icon='iconmoren_xinzeng'>按钮3</kd-button>
+                <kd-button value="2">按钮2</kd-button>
+                <kd-button value="3">按钮3</kd-button>
             </kd-button-group>
         </div>
     </div>
@@ -214,7 +214,7 @@
         }
     }
 </script>
-<style>
+<style scoped>
 .comp-top{
     margin-top:20px
 }

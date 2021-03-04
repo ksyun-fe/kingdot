@@ -1,27 +1,12 @@
-/******************************
-        Theme
-*******************************/
-// use('../functions.js')
-// $-theme-dir := __dirname()
+
 /******************************
              media
 *******************************/
-use('../../../media.js')
+use('../../media.js')
 
-// root font size
-$-rem := 12
 /******************************
              Colors
 *******************************/
-
-$-red := #EF4E76
-$-blue := #557DFC
-$-green := #38C482
-$-yellow := #FF9A42
-// $-grey := #4C4C4C
-
-// $-black := #262626
-$-light-black := #4C4C4C
 $-white-color := #FFF
 $-black-color := #000
 
@@ -30,8 +15,8 @@ $-black-color := #000
 *******************************/
 // let height be odd 20 / 14
 $-line-height := 1
-// $-font-family := -apple-system,'PingFang SC',BlinkMacSystemFont,'Segoe UI','Hiragino Sans GB','Microsoft YaHei','Helvetica Neue',Helvetica,Arial,sans-serif !important
 $-font-family := PingFangSC-Light, 'helvetica neue', arial, 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif
+$-font-path := '../fonts';
 // font size
 $-font-large-size := 16px
 $-font-default-size := 14px
@@ -144,18 +129,55 @@ $-spin-mini-font-size := 12px
         ButtonGroup Button
 *******************************/
 //btn disabled
-$-white-color := #fff
-$-black-color := #000
+$-btn-type := 'default'
 $-btn-disabled-color := $-border-base-color
 $-btn-disabled-bg-color := $-disabled-bg-color
 $-btn-disabled-border-color := $-disabled-border-color
 
-//btn default
-$-btn-default-padding := 9px 16px
-$-btn-default-font-size := 12px
 $-btn-default-border-color := $-border-base-color
 $-btn-default-bg := #fff
 $-btn-default-color := $-black-color
+
+$-btn-default-hover-color := #557DFC
+$-btn-default-hover-border-color := #557DFC
+$-btn-default-hover-bg-color := #fff
+$-btn-default-active-color :=  #4165D7
+$-btn-default-active-bg-color :=  #E5ECFF
+$-btn-default-active-border-color :=  #557DFC
+
+$-btn-hollow-hover-color :=  #557DFC
+$-btn-hollow-hover-border-color :=  #557DFC
+$-btn-hollow-active-color :=  #4165D7
+
+$-btn-primary-hover-bg := #7999FF
+$-btn-primary-hover-border := #7999FF
+$-btn-primary-active-bg := #557DFC
+$-btn-primary-active-border := #557DFC
+
+$-btn-success-hover-bg := #5ED79E
+$-btn-success-hover-border := #5ED79E
+$-btn-success-active-bg := #39B67A
+$-btn-success-active-border := #39B67A
+
+$-btn-warning-hover-bg := #FFAF6A
+$-btn-warning-hover-border := #FFAF6A
+$-btn-warning-active-bg := #F68E35
+$-btn-warning-active-border := #F68E35
+
+$-btn-danger-hover-bg := #FF7F91
+$-btn-danger-hover-border := #FF7F91
+$-btn-danger-active-bg := #CB2C42
+$-btn-danger-active-border := #CB2C42
+
+$-btn-hollow-primary-hover-bg := #e5edff
+$-btn-hollow-primary-active-bg := #557DFC
+$-btn-hollow-success-hover-bg := #e5fff1
+$-btn-hollow-success-active-bg := #38C482
+$-btn-hollow-warning-hover-bg := #fff0e5
+$-btn-hollow-warning-active-bg := #e5fff1
+$-btn-hollow-danger-hover-bg := #ffe5ee
+$-btn-hollow-danger-active-bg := #EF4E76
+
 //type
 $-btn-primary-color := $-primary-color
 $-btn-success-color := $-success-color
@@ -164,8 +186,22 @@ $-btn-danger-color := $-danger-color
 $-btn-text-color := $-primary-color
 $-btn-none-color := $-black-color
 
-$-btn-text-hover-color := $-primary-color
-$-btn-none-hover-color := $-primary-color
+$-btn-text-hover-color := #7999FF
+$-btn-text-active-color := #4165D7
+$-btn-none-hover-color := #7999FF
+$-btn-none-active-color := #4165D7
+
+// group
+$-btn-group-default-color := #fff
+$-btn-group-default-hover-color := #fff
+$-btn-group-default-active-color := #fff
+$-btn-active-line-color := #7999FF
+$-btn-active-color := #fff
+
+//btn default
+$-btn-default-padding := 9px 16px
+$-btn-default-font-size := 12px
+
 //loading
 $-btn-stroke-width := 6
 //split
@@ -199,9 +235,10 @@ $-btn-mini-font-size := 12px
 //icon
 $-btn-icon-text-gutter := 8px
 
-$-btn-loading-r = 120 - 60 - ($-btn-stroke-width / 2)
-$-btn-loading-c = round(2 * 3.14 * $-btn-loading-r)
+$-btn-loading-r := 120 - 60 - ($-btn-stroke-width / 2)
+$-btn-loading-c := round(2 * 3.14 * $-btn-loading-r)
 
+$-btn-group-line-color := #7999FF
 /******************************
         Radio
 *******************************/
@@ -310,7 +347,7 @@ $-input-clear-color := $-icon-default-color
 
 $-textarea-default-padding-top-bottom := 8px
 $-textarea-count-font-size := $-font-second-size
-$-textarea-count-bottom := 5px
+$-textarea-count-bottom := 6px
 $-textarea-count-right := 10px
 
 /******************************
@@ -422,15 +459,15 @@ $-step-index-active-border-color := transparent
 $-step-index-active-background-color := #557DFC;
 $-step-index-done-color := #557DFC
 $-step-index-done-border-color := 2px solid #557DFC
-$-step-index-done-background-color := #dbe1f5
+$-step-index-done-background-color := #DBE1F5
 $-step-simple-background-color := #F3F6FB
 $-step-simple-border-color := #fff //和主题色保持一直
-$-kd-step-simple-bgc := #f3f6fb
-$-step-index-icon-color := #ccc
-$-step-icon-active-color := #557dfc
-$-step-icon-done-color := #557dfc
+$-kd-step-simple-bgc := #F3F6FB
+$-step-index-icon-color := #CCC
+$-step-icon-active-color := #557DFC
+$-step-icon-done-color := #557DFC
 $-step-custom-status-error-border-color := 2px solid #ED3351
-$-step-custom-status-error-background-color := #efcece
+$-step-custom-status-error-background-color := #EFCECE
 $-step-custom-status-error-color := #ED3351
 $-step-custom-status-wait-background-color := transparent
 
@@ -442,3 +479,180 @@ $-breadcrumb-item-text-last-color := #262626
 $-breadcrumb-item-link-color := #557dfc
 $-breadcrumb-item-link-hover := #7797fc
 $-breadcrumb-item-link-active := #4464c9
+
+/******************************
+         Tabs
+*******************************/
+$-tabs-color-active-bar := #557dfc
+$-tabs-color-active := #557dfc
+$-tabs-color-font := #4c4c4c
+$-tabs-color-background := #ffffff
+$-tabs-card-color-background := #ffffff
+$-tabs-color-guanbi := #C0C7CC
+$-tabs-after-backgroundColor := #e5e5e5
+$-tabs-after-borderColor := #e5e5e5
+$-tabs-after-borderColor-card := #e5e5e5
+$-tabs-after-disabledColor := #ccc
+$-tabs-large-backgroundColor := #F0F0F3
+$-tabs-card-backgroundColor := #F3F4F7
+$-tabs-card-background := #F3F4F7
+$-kd-add-tab :=#e5e5e5
+$-tabs-font-size := 14px
+
+$-tabs-after-width :=100%
+$-tabs-border-width := 1px
+
+$-tabs-user-select :=none
+/******************************
+          Drawer
+*******************************/
+$-drawer-active-color := #4464c9
+$-drawer-hover-color := #7797FC
+$-drawer-mian-backgroundColor := #ffffff
+$-drawer-trueButton-backgroundColor := #557DFC
+$-drawer-trueButton-fontColor := #fff
+$-drawer-closeButton-backgroundColor := #fff
+$-drawer-closeButton-borderColor := #ccc
+$-drawer-overlay-backgroundColor := #000
+$-drawer-titleBorder-color := #E5E5E5
+$-drawer-titleIcon-color := #ccc
+$-drawer-footerBorder-color := #E5E5E5
+$-drawer-txt-color := #262626
+
+$-drawer-main-width := 100%
+$-drawer-main-height := 100%
+
+$-drawer-animation-time := .5s
+/******************************
+        Dialog
+*******************************/
+$-dialog-background-color := #fff
+$-dialog-header-background-color := #fff
+$-dialog-line-color := $-split-line-color
+$-dialog-title-color := #262626
+$-dialog-body-color := #4C4C4C
+$-dialog-icon-title-color := #404040
+$-dialog-message-color := $-text-regular-color
+$-dialog-confirm-title-color := #262626
+$-dialog-confirm-tips-color := $-text-regular-color
+$-dialog-tips-title-color := #404040
+$-dialog-tips-message-color := $-text-regular-color
+$-dialog-scrollbar-background-color := #fff
+$-dialog-scrollbar-thumb-color := #ccc
+
+/******************************
+        spinner
+*******************************/
+$-spinnter-border-color := $-border-base-color
+$-spinnter-disable-bg := #f2f2f2
+$-spinnter-disable-color := #ccc
+$-spinner-primary-color := $-primary-color
+$-spinner-fill-bg := #fff
+$-spinner-input-padding := 8
+
+$-spinner-large-width := 160
+$-spinner-default-width := 130
+$-spinner-small-width := 100
+$-spinner-mini-width := 85
+
+$-spinner-large-input-padding := 10
+$-spinner-default-input-padding := 8
+$-spinner-small-input-padding := 6
+$-spinner-mini-input-padding := 4
+
+$-spinner-btn-large-height := 36
+$-spinner-btn-default-height := 32
+$-spinner-btn-small-height := 28
+$-spinner-btn-mini-height := 26
+$-spinner-border-color := $-border-base-color
+
+/******************************
+        slider
+*******************************/
+$-slider-height ?= 4px
+$-slider-bg-color ?= #ECECEC
+$-slider-bar-color ?= #557DFC
+
+$-transition = $-animation-duration-base $-ease-in-out
+$-slider-border-radius ?= 100px
+$-slider-handle-height ?= 8px
+$-slider-handle-width ?= $-slider-handle-height
+$-slider-handle-border ?= 2px solid $-slider-bar-color
+$-slider-handle-border-radius ?= 50%
+$-slider-handle-bg-color ?= #fff
+$-slider-handle-hover-transform ?= scale(1.5)
+$-slider-handle-hover-bg-color ?= $-slider-bar-color
+$-slider-handle-disabled-bg-color ?= #fff
+
+$-slider-disabled-color = #999
+$-slider-disabled-bg-color = #f7f7f7
+// stop point
+$-slider-stop-point-width ?= $-slider-height
+$-slider-stop-point-height ?= $-slider-stop-point-width
+// marks
+$-slider-marks-height ?= 20px
+$-slider-marks-margin-top ?= 10px
+// other
+$-slider-range-input-width ?= 146px
+$-slider-input-width ?= 80px
+
+/******************************
+        tree
+*******************************/
+$-tree-node-bg-color ?= #f5f5f5
+
+/******************************
+        Dropdown
+*******************************/
+
+$-dropdown-menu-bg := $-white-color
+$-dropdown-menu-padding := 8px 0
+$-dropdown-menu-margin := 5px 0
+
+//item
+$-dropdown-item-disabled-bg := $-disabled-color
+$-dropdown-item-hover-bg := #F3F4F7
+$-dropdown-item-dividedLine := #ccc
+$-dropdown-item-disabled-hover := $-white-color
+
+/******************************
+        transfer
+*******************************/
+$-transfer-radius := $-border-radius
+$-transfer-header-bg := $-table-header-bg-color
+$-transfer-width := 198
+$-transfer-row-height := 39
+$-transfer-row-padding := 0 15px
+$-transfer-filter-margin := 10px 15px
+$-transfer-content-height := 290px
+$-transfer-items-height := 32px
+$-transfer-items-padding := 0 15px
+$-tarnsfer-serach-width := 100%
+$-transfer-btn-padding := 0 30px
+$-transfer-btn-margin-left := 10px
+$-transfer-btn-vertical-mr := 10px 0 0
+$-transfer-footer-btn-padding := 4px 15px
+$-transfer-footer-btn-margin := 15px
+
+/******************************
+        tooltip
+*******************************/
+// tooltip base
+$-font-size-base ?= 12px
+$-line-height-base ?= 1.5
+$-border-radius-base ?= 4px
+$-shadow-color ?= rgba(0, 0, 0, 0.15)
+$-box-shadow-base ?= 0 0 15px 0 $-shadow-color
+$-tooltip-max-width ?= calc(240px - 14px - 14px)
+$-tooltip-arrow-width ?= 5px
+$-tooltip-distance ?= $-tooltip-arrow-width - 1px + 4px
+// effect
+$-tooltip-theme = 'dark' 'light'
+$-tooltip-light-bg ?= #fff
+$-tooltip-light-color ?= #737373
+$-popover-content-light-color ?= #737373
+$-popover-titleline-light-color ?= #E5E5E5
+$-tooltip-dark-bg ?= #2C324D
+$-tooltip-dark-color ?= #fff
+$-popover-content-dark-color ?= #8D919B
+$-popover-titleline-dark-color ?= #414760

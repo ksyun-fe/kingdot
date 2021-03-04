@@ -1,5 +1,5 @@
 ## Switch 
-Switch is used for switching between two opposing states.
+Swich is used for switching between two opposing states.
 
 ### Basic usage
 

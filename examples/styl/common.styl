@@ -48,6 +48,13 @@ button:focus
     border-radius: 6px;
     background-color: #CCCCCC;
 
+.dark
+    ::-webkit-scrollbar
+        background-color: #1B2338
+    ::-webkit-scrollbar-track
+        background-color: #1B2338
+    ::-webkit-scrollbar-thumb
+        background-color #4F576E
 
 .component-doc-content
     table
@@ -55,6 +62,7 @@ button:focus
         width 100%
         border-collapse collapse
         border-spacing 0
+        font-size 12px
         background #fff
         thead
             background linear-gradient(180deg,#fff,#fafafa)
@@ -105,20 +113,29 @@ button:focus
 .container
     width 100%
     height 100%
-    display: flex
+    position relative
     .left-menu
-        height: 100%
-        flex 0
-        width 213px
+        position absolute
+        top 0
         left 0
-        z-index 9999
+        height: 100%
+        width 213px
+        z-index 1
+    .menu-wrap
+        width 100%
+        height 100%
+        overflow auto
     .main-container
+        //position absolute
+        //top 0
+        //left 213px
+        //right 0
         box-sizing border-box
         padding 20px 20px 20px 40px
         height: 100%
-        flex 1
-        overflow-y scroll
+        overflow auto
         background-color: #f2f2f2
+        margin-left 213px
 @media (max-width: 780px)
     .container
         position relative
@@ -132,12 +149,17 @@ button:focus
             transition left ease-in-out 0.3s
             &.active-menu
                 left 0
-
+        .menu-wrap
+            width 100%
+            height 100%
+            overflow auto
+        .main-container
+            left 0
 .code-highlight
     margin 0
 
     .hljs
-        font-size 14px
+        font-size 12px
         line-height 0
         background #fafafa
         padding 20px
@@ -156,7 +178,7 @@ body.dark
         background-color #1B2338
     .component-doc-content
         table
-            background #222A41
+            background #252D45
             thead
                 background linear-gradient(180deg,#222A41,#2D354D)
                 tr

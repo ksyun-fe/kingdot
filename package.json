@@ -1,10 +1,10 @@
 {
     "name": "kingdot",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "A UI Components Library For Vue",
     "author": "kingsoft",
-    "main": "lib/index.js",
-    "unpkg": "lib/kingdot.js",
+    "main": "lib/kingdot.js",
+    "unpkg": "lib/index.js",
     "style": "lib/theme-default/index.css",
     "license": "MIT",
     "files": [
@@ -34,15 +34,15 @@
         "lint": "eslint --ext .js,.vue src components build examples",
         "dist:locale": "babel src --out-dir lib --ignore src/index.js",
         "dist:theme": "npm run build:entry && cp-cli src/styles/theme-default/src src/styles/theme/src && node build/bin/gen-cssfile.js && gulp build --gulpfile src/styles/gulpfile.js && cp-cli src/styles/lib lib/",
-        "demo:build": "rimraf docs && npm run build:entry && cross-env NODE_ENV=production webpack --config build/webpack.demo.conf.js && node build/bin/gen-docstheme.js",
+        "demo:build": "rimraf docs && npm run build:entry && cross-env NODE_ENV=production webpack --config build/webpack.demo.conf.js && gulp build --gulpfile build/bin/gen-docstheme.js",
         "dist:component": "cross-env NODE_ENV=production && webpack --config build/webpack.component.js",
         "dist:prod": "npm run build:entry && cross-env NODE_ENV=production && webpack --config build/webpack.config.js",
         "dist:commonjs": "npm run build:entry && cross-env NODE_ENV=production && webpack --config build/webpack.common.js",
         "dist": "npm run clean && npm run build:entry && npm run lint && npm run dist:theme && npm run dist:locale && npm run dist:prod && npm run dist:commonjs && npm run dist:component",
         "publish": "sh build/deploy.sh",
         "release": "npm version patch && git push && npm publish",
-        "test": "npm run dist:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-        "test:watch": "npm run dist:theme && cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
+        "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
+        "test:watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
         "lang": "node build/bin/lang.js"
     },
     "husky": {
@@ -51,10 +51,17 @@
             "commit-msg": "commitLint -E HUSKY_GIT_PARAMS"
         }
     },
+    "lint-staged": {
+        "*.{js,vue}": [
+            "eslint"
+        ]
+    },
     "dependencies": {
+        "@popperjs/core": "^2.5.3",
         "babel-helper-vue-jsx-merge-props": "^2.0.3",
         "lodash": "^4.17.4",
         "normalize-wheel": "^1.0.1",
+        "promise-polyfill": "8.2.0",
         "ulid": "^2.3.0"
     },
     "devDependencies": {
@@ -105,6 +112,7 @@
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^7.0.1",
         "gulp-cssmin": "^0.2.0",
+        "gulp-rename": "^2.0.0",
         "gulp-stylus": "^2.7.0",
         "hash-sum": "^2.0.0",
         "highlight.js": "^9.18.1",
@@ -149,6 +157,7 @@
         "stylus": "^0.54.7",
         "stylus-loader": "^3.0.2",
         "terser-webpack-plugin": "^3.0.3",
+        "three-js": "^75.0.1",
         "uglifyjs-webpack-plugin": "^2.2.0",
         "url-loader": "^4.1.0",
         "vue": "^2.6.11",

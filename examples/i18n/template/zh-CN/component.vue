@@ -4,12 +4,14 @@
                 class="left-menu"
                 :class="{'active-menu': isShowMenu}"
         >
-            <side-nav
-                    :data="navData[lang]"
-                    :base-path="`/${ lang }/component`"
-                    @showMenu="showMenu"
-                    @hideMenu="hideMenu"
-            />
+            <div class="menu-wrap">
+                <side-nav
+                        :data="navData[lang]"
+                        :base-path="`/${ lang }/component`"
+                        @showMenu="showMenu"
+                        @hideMenu="hideMenu"
+                />
+            </div>
         </div>
         <div
                 class="main-container"

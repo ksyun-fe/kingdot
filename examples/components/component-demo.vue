@@ -81,7 +81,7 @@
 <style lang="stylus" scoped type="text/stylus">
     body.dark
         .demo
-            background #222A41
+            background #252D45
             border none
         .demo-title
             border-bottom 1px solid #2F374F
@@ -95,7 +95,7 @@
                 background #252D45
         .demo-code
             .hljs
-                background #222A41
+                background #252D45
         .code-toggle
             border-top 1px solid #2F374F
             &:hover
@@ -128,6 +128,7 @@
 
     .demo-description
         padding 10px 20px
+        font-size 12px
         code
             display inline-block
             vertical-align 2px
@@ -171,6 +172,8 @@
         height 8px
         transition all .3s
         margin-right 16px
+        left 50%
+        top 18px
         &:after
             border 6px solid transparent
             border-top 8px solid #557dfc
@@ -182,7 +185,7 @@
             transform-origin center 25%
 
         &.active
-            transform translateX(-40px)
+            transform translateX(-54px)
 
         &.open:after
             transform rotate(180deg)

@@ -1,0 +1,78 @@
+@import "../variables.styl";
+// effect style
+for theme in $-tooltip-theme
+    .kd-tooltip-{theme}
+        .kd-tooltip-inner
+            background-color lookup('$-tooltip-' + theme + '-bg')
+            color lookup('$-tooltip-' + theme + '-color')
+            .kd-popover-title
+                margin-bottom 14px
+                font-weight 500
+                font-size 14px
+            .kd-popover-content
+                color lookup('$-popover-content-' + theme + '-color')
+        .kd-popover-title-line
+            margin-bottom 14px
+            border-bottom 1px solid lookup('$-popover-titleline-' + theme + '-color')
+        .kd-popover-footer
+            display flex
+            justify-content flex-end
+            margin-top 16px
+            .btn-cancel
+                margin-right 12px
+        &[data-popper-placement^='top'] .kd-tooltip-arrow
+            bottom $-tooltip-distance - $-tooltip-arrow-width
+            border-width $-tooltip-arrow-width $-tooltip-arrow-width 0
+            border-top-color lookup('$-tooltip-' + theme + '-bg')
+        &[data-popper-placement^='right'] .kd-tooltip-arrow
+            left $-tooltip-distance - $-tooltip-arrow-width
+            border-width $-tooltip-arrow-width $-tooltip-arrow-width $-tooltip-arrow-width 0
+            border-right-color lookup('$-tooltip-' + theme + '-bg')
+        &[data-popper-placement^='bottom'] .kd-tooltip-arrow
+            top $-tooltip-distance - $-tooltip-arrow-width
+            border-width 0 $-tooltip-arrow-width $-tooltip-arrow-width
+            border-bottom-color lookup('$-tooltip-' + theme + '-bg')
+        &[data-popper-placement^='left'] .kd-tooltip-arrow
+            right $-tooltip-distance - $-tooltip-arrow-width
+            border-width $-tooltip-arrow-width 0 $-tooltip-arrow-width $-tooltip-arrow-width
+            border-left-color lookup('$-tooltip-' + theme + '-bg')
+// default
+.kd-tooltip
+    position absolute
+    display block
+    visibility visible
+    font-size $-font-size-base
+    line-height $-line-height-base
+    &[data-popper-reference-hidden]
+        visibility hidden
+        pointer-events none
+    &[data-popper-placement^='top']
+        padding-bottom $-tooltip-distance
+    &[data-popper-placement^='right']
+        padding-left $-tooltip-distance
+    &[data-popper-placement^='bottom']
+        padding-top $-tooltip-distance
+    &[data-popper-placement^='left']
+        padding-right $-tooltip-distance
+// Wrapper for the tooltip content
+.kd-tooltip-limit
+    .kd-tooltip-inner
+        max-width $-tooltip-max-width
+.kd-tooltip-inner
+    padding 14px
+    border-radius $-border-radius-base
+    background-color $-tooltip-light-bg
+    box-shadow $-box-shadow-base
+    color $-tooltip-light-color
+    text-align left
+    text-decoration none
+    font-size 12px
+    line-height 20px
+.kd-tooltip-arrow
+    position absolute
+    width 0
+    height 0
+    border-style solid
+    border-color transparent
+    &[data-hide]
+        visibility hidden

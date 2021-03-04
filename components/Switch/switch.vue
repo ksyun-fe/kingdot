@@ -86,7 +86,7 @@
             },
             size: {
                 type: String,
-                validate(v) {
+                validator(v) {
                     return ['large', 'default', 'small', 'mini'].includes(v);
                 },
                 default() {

@@ -33,7 +33,7 @@
 ```html
 <template>
     <div class="icon-list">
-        <div v-for="name in iconList" :key="name" class="icon-list-block">
+        <div v-for="name in iconList" :key="name" class="icon-list-block" @click="copyCls(`kd-icon-${name}`)">
             <i :class="'kd-icon-' + name + ' icon-show'"></i>
             <span class="icon-name">{{'kd-icon-' + name}}</span>
         </div>
@@ -46,6 +46,18 @@ export default {
         return {
             iconList:iconList
         }
+    },
+    methods: {
+        copyCls(content) {
+            let transfer = document.createElement('input');
+            transfer.value = content;
+            document.body.appendChild(transfer);
+            transfer.focus();
+            transfer.select();
+            document.execCommand('copy');
+            document.body.removeChild(transfer);
+            this.$message.success('复制成功');
+        }
     }
 }
 </script>
@@ -54,6 +66,7 @@ export default {
         overflow hidden
         border 1px solid #eee
     .icon-list-block
+        cursor pointer
         float left
         width 16.66%
         height 140px

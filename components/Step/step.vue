@@ -13,6 +13,7 @@
                     'kd-step-line-vertical-small':direction == 'vertical'&&size=='small',
                     'kd-step-line-spot': type == 'spot',
                 }"
+                :style="stepLineStyle"
         ></span>
         <div class="kd-step-wrap">
             <div class="kd-step-container">
@@ -84,7 +85,8 @@
                                 'kd-step-title-simple': type == 'simple',
                                 'kd-step-title-spot': type == 'spot',
                                 'kd-step-title-vertical':direction == 'vertical',
-                                'kd-step-cursor':isClick
+                                'kd-step-cursor':isClick,
+                                'kd-step-title-spot-active':index == activeIndex && type == 'spot'
                             }"
                             @click="_click"
                     >{{ title }}</span>
@@ -111,7 +113,7 @@
 
 <script type="text/javascript">
     export default {
-        name: 'Step',
+        name: 'KdStep',
         components: {},
         props: {
             title: {
@@ -157,7 +159,7 @@
             },
             handleLH() {
                 const style = {};
-                if (this.size === 'small') {
+                if (this.size === 'small' && this.icon === '') {
                     if (this._status === 'finished' || this._status === 'error') {
                         style['line-height'] = '20px';
                     }
@@ -169,6 +171,14 @@
                     'kd-icon-success': this._status === 'finished',
                     'kd-icon-error': this._status === 'error'
                 };
+            },
+            stepLineStyle() {
+                const style = {};
+                if (this.type === 'spot') {
+                    const _tranlateY = Math.ceil((this.$parent.spotLineLH + 4) / 2);
+                    style.transform = `translate(6px, ${_tranlateY}px)`;
+                }
+                return style;
             }
         },
         watch: {},

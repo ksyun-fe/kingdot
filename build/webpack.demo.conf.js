@@ -39,6 +39,7 @@ const cssLoader = (preprocessor) => {
 };
 
 const entry = [
+    'babel-polyfill',
     path.resolve(__dirname, '../examples/main.js')
 ];
 
@@ -66,6 +67,11 @@ const webpackConfig = {
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /@popperjs/
+            },
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
@@ -175,8 +181,7 @@ if (isProd) {
         cacheGroups: {
             vendors: {
                 test: /[\\/]node_modules[\\/]/,
-                priority: -10,
-                filename: 'vendors.[contenthash].js'
+                priority: -10
             },
             common: {
                 minChunks: 2,

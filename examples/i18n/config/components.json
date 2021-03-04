@@ -13,10 +13,6 @@
                         {
                             "path": "/start",
                             "name": "快速上手"
-                        },
-                        {
-                            "path": "/i18n",
-                            "name": "国际化"
                         }
                     ]
                 }
@@ -58,12 +54,28 @@
                             "name": "Input 输入框"
                         },
                         {
+                            "path": "/spinner",
+                            "name": "Spinner 数字输入框"
+                        },
+                        {
                             "path": "/form",
                             "name": "Form 表单"
                         },
                         {
                             "path": "/checkbox",
                             "name": "Checkbox 多选框"
+                        },
+                        {
+                            "path": "/slider",
+                            "name": "Slider 滑块"
+                        },
+                        {
+                            "path": "/dropdown",
+                            "name": "Dropdown 下拉菜单"
+                        },
+                        {
+                            "path": "/transfer",
+                            "name": "Transfer 穿梭框"
                         }
                     ]
                 },
@@ -73,6 +85,18 @@
                         {
                             "path": "/progress",
                             "name": "Progress 进度条"
+                        },
+                        {
+                            "path": "/timeline",
+                            "name": "Timeline 时间轴"
+                        },
+                        {
+                            "path": "/tree",
+                            "name": "Tree 树"
+                        },
+                        {
+                            "path": "/table",
+                            "name": "Table 表格"
                         },
                         {
                             "path": "/pagination",
@@ -88,6 +112,18 @@
                             "name": "Message 消息提示"
                         },
                         {
+                            "path": "/tooltip",
+                            "name": "Tooltip 文字提示"
+                        },
+                        {
+                            "path": "/popover",
+                            "name": "Popover 气泡卡片"
+                        },
+                        {
+                            "path": "/popconfirm",
+                            "name": "Popconfirm 气泡确认框"
+                        },
+                        {
                             "path": "/spin",
                             "name": "Spin 加载中"
                         }
@@ -95,7 +131,16 @@
                 },
                 {
                     "name": "Navigation",
-                    "children": []
+                    "children": [{
+                        "path": "/steps",
+                        "name": "Steps 步骤条"
+                    },{
+                        "path": "/breadcrumb",
+                        "name": "Breadcrumb面包屑"
+                    },{
+                        "path": "/tabs",
+                        "name": "Tabs标签页"
+                    }]
                 },
                 {
                     "name": "Others",
@@ -103,22 +148,19 @@
                         {
                             "path": "/collapse",
                             "name": "Collapse 折叠面板"
+                        },
+                        {
+                            "path": "/transition",
+                            "name": "Transition 过渡动画"
+                        },
+                        {
+                            "path": "/dialog",
+                            "name": "Dialog 对话框"
+                        },{
+                            "path": "/drawer",
+                            "name": "Drawer 抽屉"
                         }
                     ]
-                },
-                {
-                    "name":"Steps",
-                    "children":[{
-                        "path": "/steps",
-                        "name": "Steps 步骤条"
-                    }]
-                },
-                {
-                    "name":"Breadcrumb",
-                    "children":[{
-                        "path": "/breadcrumb",
-                        "name": "Breadcrumb面包屑"
-                    }]
                 }
             ]
 
@@ -138,10 +180,6 @@
                         {
                             "path": "/start",
                             "name": "Quick Start"
-                        },
-                        {
-                            "path": "/i18n",
-                            "name": "Internationalization"
                         }
                     ]
                 }
@@ -183,12 +221,24 @@
                             "name": "Input"
                         },
                         {
+                            "path": "/spinner",
+                            "name": "Spinner"
+                        },
+                        {
                             "path": "/form",
                             "name": "Form"
                         },
                         {
                             "path": "/checkbox",
                             "name": "Checkbox"
+                        },
+                        {
+                            "path": "/dropdown",
+                            "name": "Dropdown"
+                        },
+                        {
+                            "path": "/transfer",
+                            "name": "Transfer"
                         }
                     ]
                 },
@@ -198,6 +248,14 @@
                         {
                             "path": "/progress",
                             "name": "Progress"
+                        },
+                        {
+                            "path": "/timeline",
+                            "name": "Timeline"
+                        },
+                        {
+                            "path": "/table",
+                            "name": "Table"
                         },
                         {
                             "path": "/pagination",
@@ -220,7 +278,16 @@
                 },
                 {
                     "name": "Navigation",
-                    "children": []
+                    "children": [{
+                        "path": "/steps",
+                        "name": "Steps"
+                    },{
+                        "path": "/breadcrumb",
+                        "name": "Breadcrumb"
+                    },{
+                        "path": "/tabs",
+                        "name": "Tabs"
+                    }]
                 },
                 {
                     "name": "Others",
@@ -228,22 +295,12 @@
                         {
                             "path": "/collapse",
                             "name": "Collapse"
+                        },
+                        {
+                            "path": "/dialog",
+                            "name": "Dialog"
                         }
                     ]
-                },
-                {
-                    "name":"Steps",
-                    "children":[{
-                        "path": "/steps",
-                        "name": "Steps"
-                    }]
-                },
-                {
-                    "name":"Breadcrumb",
-                    "children":[{
-                        "path": "/breadcrumb",
-                        "name": "Breadcrumb"
-                    }]
                 }
             ]
         }

@@ -1,0 +1,170 @@
+@import '../variables.styl';
+
+$-drawer-position := 'left' 'top' 'bottom' 'right';
+.kd-drawer
+  position: fixed;
+  width: $-drawer-main-width;
+  top: 0;
+  left: 0;
+.kd-drawer-overlay
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $-drawer-main-width;
+  height: $-drawer-main-height;
+  background-color: $-drawer-overlay-backgroundColor;
+  opacity: 0;
+  transition: all $-drawer-animation-time;
+.kd-drawer-main
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background: $-drawer-mian-backgroundColor;
+  height: $-drawer-main-height;
+
+.main-left-enter-active
+  animation: drawer-fade-left-in $-drawer-animation-time;
+.main-left-leave-active
+  animation: drawer-fade-left-out $-drawer-animation-time;
+.main-right-enter-active
+  animation: drawer-fade-right-in $-drawer-animation-time;
+.main-right-leave-active
+  animation: drawer-fade-right-out $-drawer-animation-time;
+.main-top-enter-active
+  animation: drawer-fade-top-in $-drawer-animation-time;
+.main-top-leave-active
+  animation: drawer-fade-top-out $-drawer-animation-time;
+.main-bottom-enter-active
+  animation: drawer-fade-bottom-in $-drawer-animation-time;
+.main-bottom-leave-active
+  animation: drawer-fade-bottom-out $-drawer-animation-time;
+
+.kd-drawer-title
+  border-bottom: 1px solid $-drawer-titleBorder-color;
+  flex: 0 0 56px;
+  padding: 15px 0 0 24px;
+.kd-drawer-txt
+  font-size: 16px;
+  color: $-drawer-txt-color;
+  line-height: 41px;
+
+.kd-drawer-close-icon
+  position: absolute;
+  right: 20px;
+  top: 28px;
+  color: $-drawer-titleIcon-color;
+  &:hover
+    cursor: pointer;
+    color #557DFC
+  &::before
+    font-size: 16px;
+
+.kd-drawer-body
+  flex: 1;
+  padding: 20px 24px;
+  overflow-y: auto;
+
+.kd-drawer-footer
+  position: relative;
+  flex: 0 0 64px;
+  border-top: 1px solid $-drawer-footerBorder-color;
+  justify-content: flex-end;
+  display: flex;
+
+  button
+    margin-top: 16px;
+    outline: none;
+
+    &:hover
+      cursor: pointer;
+
+  .kd-drawer-closbutton
+    width: 60px;
+    height: 32px;
+
+  .kd-drawer-truebutton
+    margin-left: 16px;
+    margin-right: 16px;
+    width: 60px;
+    height: 32px;
+
+@keyframes drawer-fade-left-in {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-fade-left-out {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes drawer-fade-right-in {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes drawer-fade-right-out {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes drawer-fade-top-in {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawer-fade-top-out {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes drawer-fade-bottom-in {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawer-fade-bottom-out {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
