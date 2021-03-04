@@ -39,8 +39,7 @@
         "dist:prod": "npm run build:entry && cross-env NODE_ENV=production && webpack --config build/webpack.config.js",
         "dist:commonjs": "npm run build:entry && cross-env NODE_ENV=production && webpack --config build/webpack.common.js",
         "dist": "npm run clean && npm run build:entry && npm run lint && npm run dist:theme && npm run dist:locale && npm run dist:prod && npm run dist:commonjs && npm run dist:component",
-        "publish": "sh build/deploy.sh",
-        "release": "npm version patch && git push && npm publish",
+        "release": "sh build/release.sh",
         "test": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
         "test:watch": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js",
         "lang": "node build/bin/lang.js"
