@@ -1,5 +1,10 @@
 <template>
-    <div :class="[mainClass, { 'kd-tabs-default': type === 'default' }]">
+    <div
+            :class="[
+                mainClass,
+                { 'kd-tabs-default': type === 'default'}
+            ]"
+    >
         <div
                 ref="tabs"
                 class="kd-tabs-main-move"

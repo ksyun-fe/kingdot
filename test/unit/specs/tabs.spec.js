@@ -159,7 +159,7 @@ describe('tabs', () => {
             expect(obj).to.be.have;
         })
         //点击 ‘X’关闭 tab
-    it('close Tabs click', async() => {
+    it('close Tabs click', async(done) => {
             vm = createVue({
                 template: `
                 <kd-tabs v-model='key' closable>
@@ -179,11 +179,12 @@ describe('tabs', () => {
                     expect(
                         vm.$el.querySelector('.kd-tab').textContent
                     ).to.be.null
+                    done();
                 }, 200);
             })
         })
         //标签页的选择
-    it('Tabs click', async() => {
+    it('Tabs click', async(done) => {
             vm = createVue({
                 template: `
                 <kd-tabs v-model='key' closable>
@@ -202,11 +203,12 @@ describe('tabs', () => {
                     expect(
                         vm.$el.querySelector('.kd-active')
                     ).to.be.have
+                    done();
                 }, 200);
             })
         })
         //标签页的选择
-    it('set  addbutton', async() => {
+    it('set  addbutton', async(done) => {
             vm = createVue({
                 template: `
                 <kd-tabs v-model='key' :addable=true  @addTab='addTab'>
@@ -233,12 +235,13 @@ describe('tabs', () => {
                     expect(
                         vm.$el.querySelector('.addButton')
                     ).to.no.have
+                    done();
                 }, 200);
             })
 
         })
         // 点击tabs 移动到最前面
-    it('move tab', async() => {
+    it('move tab', async(done) => {
             vm = createVue({
                 template: `
             <kd-tabs v-model='key' handleTabMove>
@@ -271,12 +274,13 @@ describe('tabs', () => {
                     expect(
                         vm.$el.querySelector('.kd-tabs-content').childNodes[2].style.left
                     ).to.equal('0px')
+                    done();
                 }, 200);
             })
 
         })
         // 左右滑动tabs
-    it('left right move tab', async() => {
+    it('left right move tab', async(done) => {
         vm = createVue({
             template: `
             <kd-tabs v-model='key'>
@@ -309,12 +313,14 @@ describe('tabs', () => {
                 expect(
                     vm.$el.querySelector('.kd-tabs-content').style.right
                 ).to.equal('0px')
+                done();
             }, 200);
             vm.$el.querySelector('.left').click();
             setTimeout(() => {
                 expect(
                     vm.$el.querySelector('.kd-tabs-content').style.left
                 ).to.equal('0px')
+                done();
             }, 200);
         })
 
