@@ -3,22 +3,22 @@
             :class="classNameObj"
             class="kd-pagination"
     >
-        <kd-button
-                v-if="!superMini && showTotal"
-                type="none"
-                :size="size"
-                class="kd-pagination-total"
-        >共 {{ total }} 条</kd-button>
-        <kd-button
-                v-if="superMini"
-                type="none"
-                :size="size"
-                class="kd-pagination-total"
-        >共 {{ pageCount }} 页</kd-button>
+        <!-- total -->
+        <div
+            v-if="!superMini && showTotal"
+            class="kd-pagination-total">
+            <span>共{{ total }}条</span>
+        </div>
+            <!-- v-if="superMini" -->
+        <div
+            v-if="showPageCount"
+            class="kd-pagination-total">
+            <span>共{{ pageCount }}页</span>
+        </div>
         <!-- <div class="kd-pagination-limits" v-if="!superMini">
             <div class="kd-pagination-limits-text">每页显示</div>
             <Dropdown>
-                <kd-button class="kd-pagination-btns kd-btn-total" :no-border="type" :size="size">
+                <kd-button class="kd-pagination-btns kd-btn-total" :type="type" :size="size">
                     {{innerLimit}}条 / 页
                     <i class="kd-arrow ion-arrow-down-b"></i>
                 </kd-button>
@@ -27,17 +27,27 @@
                 </DropdownMenu>
             </Dropdown>
         </div> -->
+        <!-- prev -->
         <kd-button
-                class="kd-pagination-btn kd-pagination-first"
+                class="kd-pagination-btn"
                 :size="size"
-                :disabled="innerCurrent === 1"
-                :no-border="type"
+                :disabled="innerCurrent == 1"
+                :type="type"
                 @click="prev"
         >
-            <i class="kd-icon-riqishaixuan_shangyige kd-pagination-left"></i>
+            <i
+                v-if="!prevText || prevText.includes('kd-icon')"
+                :class="[
+                    'kd-icon-riqishaixuan_shangyige',
+                    prevText.includes('kd-icon') ? prevText : 'kd-pagination-left'
+                ]"
+            ></i>
+            <span v-else>
+                {{ prevText }}
+            </span>
         </kd-button>
         <kd-button-group
-                v-if="!superMini"
+                v-if="!superMini && showPageNum"
                 v-model="innerCurrent"
                 class="kd-pagination-btns"
                 check-type="radio"
@@ -45,41 +55,51 @@
             <kd-button
                     v-for="item in showPageArray"
                     :key="getKey(item.value)"
-                    class="kd-pagination-btn"
+                    :class="{'kd-pagination-btn': true, 'kd-pagination-btn-active': type == 'none'}"
                     :value="item.value"
-                    :no-border="type"
+                    :type="type"
                     :size="size"
-                    @click="checkPage()"
+                    @click="checkPage(item)"
             >{{ item.label }}</kd-button>
         </kd-button-group>
         <div
-                v-else
+                v-else-if="showPageNum"
                 class="kd-pagination-btns"
         >
             <kd-button
                     key="superMini"
-                    class="kd-pagination-btn kd-active"
-                    :no-border="type"
-                    type="primary"
+                    :class="{'kd-pagination-btn': true, 'kd-pagination-btn-active': type == 'none'}"
+                    type="text"
                     :size="size"
             >{{ innerCurrent }}</kd-button>
         </div>
+        <!-- next -->
         <kd-button
                 :size="size"
-                class="kd-pagination-btn kd-pagination-end"
+                class="kd-pagination-btn kd-pagination-btn-next"
                 icon
                 :disabled="innerCurrent == pageCount"
-                :no-border="type"
+                :type="type"
                 @click="next"
         >
-            <i class="kd-icon-date-forward kd-pagination-right"></i>
+            <i
+                v-if="!nextText || nextText.includes('kd-icon')"
+                :class="[
+                    'kd-pagination-right',
+                    nextText.includes('kd-icon') ? nextText : 'kd-icon-date-forward'
+                ]"
+            ></i>
+            <span v-else>
+                {{ nextText }}
+            </span>
         </kd-button>
+        <!-- !superMini  -->
         <div
-                v-if="!superMini"
+                v-if="showGoto && !superMini"
                 class="kd-pagination-goto"
         >
             前往<input
-                    v-model="inputCurrent"
+                    v-model.number="inputCurrent"
                     class="kd-pagination-input"
                     :size="size"
                     @keyup.enter="jumpEnterAction"
@@ -118,13 +138,13 @@
             total: {
                 type: Number
             },
-            size: {
-                type: String,
-                default: 'default'
-            },
             showTotal: {
                 type: Boolean,
                 default: true
+            },
+            showPageCount: {
+                type: Boolean,
+                default: false
             },
             current: {
                 type: Number,
@@ -132,7 +152,7 @@
             },
             showGoto: {
                 type: Boolean,
-                default: false
+                default: true
             },
             noBorder: {
                 type: Boolean,
@@ -146,11 +166,26 @@
             },
             counts: {
                 type: Number,
+                validator(value) {
+                    return (value | 0) === value && value > 4 && value < 22 && (value % 2) === 1;
+                },
                 default: 7
             },
             superMini: {
                 type: Boolean,
                 default: false
+            },
+            prevText: {
+                type: String,
+                default: ''
+            },
+            nextText: {
+                type: String,
+                default: ''
+            },
+            showPageNum: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
@@ -161,14 +196,15 @@
                 classNameObj: {
                     align: this.align
                 },
-                innerCurrent: this.current,
-                type: this.noBorder,
+                innerCurrent: Number(this.current),
+                type: this.noBorder ? 'none' : 'default',
+                size: this.noBorder ? 'mini' : 'default',
                 innerLimit: this.limit,
                 ellipsisMark: markDic.left,
                 markDic: markDic,
                 timer: null,
                 preValue: 0,
-                inputCurrent: this.current
+                inputCurrent: Number(this.current)
             };
         },
         watch: {
@@ -183,7 +219,8 @@
                 }, 100);
             },
             current(newV, oldV) {
-                if (newV !== this.innerCurrent) {
+                // 若外部传入的值 != 当前值
+                if (newV != this.innerCurrent) {
                     this.innerCurrent = newV;
                     this.inputCurrent = newV;
                     if (this.timer) {
@@ -197,9 +234,8 @@
                     this.preValue = this.innerCurrent;
                 }
             },
-
             limit(newV) {
-                if (newV !== this.innerCurrent) {
+                if (newV != this.innerCurrent) {
                     this.innerLimit = newV;
                     if (this.timer) {
                         clearInterval(this.timer);
@@ -213,61 +249,43 @@
             }
         },
         created() {
+            // init
             this.parseData();
             this.preValue = this.innerCurrent;
         },
         methods: {
-            jumpEnterAction() {
-                var v = this.inputCurrent;
-                if (!/^\d{1,}$/.test(v)) {
-                    return;
-                }
-
-                if (v !== this.innerCurrent) {
-                    if (v > 0 && v <= this.pageCount) {
-                        this.innerCurrent = v;
-                    } else if (v <= 0) {
-                        this.innerCurrent = 1;
-                        this.inputCurrent = 1;
-                    } else {
-                        this.innerCurrent = this.pageCount;
-                        this.inputCurrent = this.pageCount;
-                    }
-                    this.parseData();
-                }
-            },
             parseData() {
                 this.emitEvent();
                 const _pageArrayData = [];
                 this.pageCount = Math.ceil(this.total / this.innerLimit);
-                // 显示页面总数大于 总页数
-                if (this.pageCount <= this.counts) {
+                // 显示页码数 大于 总页数
+                if (this.counts >= this.pageCount) {
                     for (let i = 1; i < this.pageCount + 1; i++) {
                         _pageArrayData.push(pageItem(i));
                     }
-                } else if (this.total !== 0) {
-                    // 需要显示省略符'...'
-                    // 前半段全显
-                    // debugger;
-                    if (this.innerCurrent <= this.counts - 3) {
-                        for (let i = 1; i < this.counts - 1; i++) {
+                } else if (this.total != 0) {
+                    // 前半部分全显，需要显示省略符'...'，总页数
+                    if (this.innerCurrent <= this.counts - 2) {
+                        for (let i = 1; i < this.counts; i++) {
                             _pageArrayData.push(pageItem(i));
                         }
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.right));
                         _pageArrayData.push(pageItem(this.pageCount));
-                    } else if (this.pageCount - this.innerCurrent < this.counts - 2) {
-                        // 后半段 全显
-                        //   debugger;
+                    } else if (this.pageCount - this.innerCurrent <= this.counts - 3) {
+                        // 1，省略符'...'，后半部分全显
                         _pageArrayData.push(pageItem(1));
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.left));
-                        for (let i = this.counts - 2; i > 0; i--) {
+                        for (let i = this.counts - 1; i > 0; i--) {
                             _pageArrayData.push(pageItem(this.pageCount - i + 1));
                         }
                     } else {
+                        // 1，省略符'...'，中间部分，省略符'...'，总页数
                         _pageArrayData.push(pageItem(1));
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.left));
-                        const start = this.innerCurrent - Math.ceil((this.counts - 2) / 2);
-                        for (let i = 0; i < this.counts - 2; i++) {
+                        let num = this.counts%2 == 0 ? Math.ceil((this.counts - 2) / 2) : Math.floor((this.counts - 2) / 2)
+                        const start = this.innerCurrent - num;
+                        let endNum = this.counts%2 == 0 ? (this.counts - 1) : (this.counts - 2)
+                        for (let i = 0; i < endNum; i++) {
                             _pageArrayData.push(pageItem(i + start));
                         }
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.right));
@@ -278,21 +296,46 @@
                 }
                 this.showPageArray = _pageArrayData;
             },
+            // prev
             prev() {
-                if (this.innerCurrent === 1) return;
+                if (this.innerCurrent == 1) return;
                 this.innerCurrent--;
                 this.parseData();
             },
+            // next
             next() {
-                if (this.innerCurrent === this.pageCount) return;
+                if (this.innerCurrent == this.pageCount) return;
                 this.innerCurrent++;
                 this.parseData();
             },
-            checkPage(index) {
-                if (this.innerCurrent === this.markDic.left) {
+            // jump
+            jumpEnterAction() {
+                var v = this.inputCurrent;
+                if (!/^\d{1,}$/.test(v)) {
+                    this.innerCurrent = 1;
+                    this.inputCurrent = 1;
+                    return;
+                }
+                // 是否等于当前高亮值
+                if (v != this.innerCurrent) {
+                    if (v > 0 && v <= this.pageCount) {
+                        this.innerCurrent = v;
+                    } else {
+                        this.innerCurrent = this.pageCount;
+                        this.inputCurrent = this.pageCount;
+                    }
+                    this.parseData();
+                }
+            },
+            // click page btn
+            checkPage(item) {
+                // click right ... or left ...
+                if (item.value == this.markDic.left) {
                     this.innerCurrent = this.preValue - 2;
-                } else if (this.innerCurrent === this.markDic.right) {
+                } else if (item.value == this.markDic.right) {
                     this.innerCurrent = this.preValue + 2;
+                }else{
+                    this.innerCurrent = item.value;
                 }
                 this.preValue = this.innerCurrent;
                 this.inputCurrent = this.innerCurrent;
@@ -308,8 +351,9 @@
             changePage(i) {
                 this.checkPage(i);
             },
+            // change event
             emitEvent() {
-                if (this.innerCurrent !== this.current || this.innerLimit !== this.limit) {
+                if (this.innerCurrent != this.current || this.innerLimit != this.limit) {
                     this.$emit('change', {
                         current: this.innerCurrent,
                         limit: this.innerLimit
@@ -317,7 +361,7 @@
                 }
             },
             getKey(keyStr) {
-                if (keyStr === this.markDic.left || keyStr === this.markDic.right) {
+                if (keyStr == this.markDic.left || keyStr == this.markDic.right) {
                     return Math.random() + keyStr;
                 }
                 return keyStr;

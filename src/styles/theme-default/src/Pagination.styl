@@ -3,47 +3,56 @@
 .kd-pagination
     // font-size $-pagination-font-size
     font-size 0
-    display: inline-block
-    // .kd-pagination-btn
-    //     font-size 12px
-    //     min-width 24px
-    //     height 24px
-    //     line-height 24px
-    //     padding 0 6px
-    //     margin-right 4px
-        // &:first-child
-        //     border-right-width 0
-        // &:last-child
-        //     border-right-width 0
+    display inline-block
+    .kd-pagination-btn
+        font-size 12px
+        min-width 24px
+        height 24px
+        line-height 24px
+        padding 0 6px
+        margin-right 4px
+        border-radius 2px !important
     &.default
         text-align right
     &.center
         text-align center
+    .kd-pagination-btn-next
+        margin-right 0
     .kd-pagination-left
     .kd-pagination-right
         font-size 12px
-        color #ccc
     .kd-pagination-limits
     .kd-pagination-total
     .kd-pagination-goto
-        // margin-left $-pagination-gutter
+        margin-left 16px
         display inline-block
+    .kd-pagination-total
+        font-size 12px
+        color #4C4C4C
+        margin 0 16px 0 0
     .kd-pagination-limits
         .kd-pagination-btn
             &:first-child
                 border-left-width 1px !important
             &:last-child
                 border-right-width 1px !important
-    .kd-pagination-limits-text
-        font-size 12px
-        display inline-block
-        vertical-align middle
-        margin 0 6px 0 10px
-        &+ div
-            display inline-block
+    // .kd-pagination-limits-text
+    //     font-size 12px
+    //     display inline-block
+    //     vertical-align middle
+    //     margin 0 6px 0 10px
+    //     &+ div
+    //         display inline-block
+    .kd-btn-active.kd-pagination-btn-active
+        background-color #fff
+        color #557dfc
+        border-color #fff
+        &:before
+            width 0
     .kd-pagination-btns
         display inline-block
-
+        &:last-child
+            margin-right 0
     // goto
     .kd-pagination-goto
         font-size 12px
@@ -83,17 +92,17 @@
     //             .kd-wrapper
     //                 border none
 
-.kd-pagination-large-first
-    margin-right 10px
-.kd-pagination-large-end
-    margin-left 10px
+// .kd-pagination-large-first
+//     margin-right 10px
+// .kd-pagination-large-end
+//     margin-left 10px
 
-.kd-pagination-small-first
-    margin-right 8px
-.kd-pagination-small-end
-    margin-left 8px
+// .kd-pagination-small-first
+//     margin-right 8px
+// .kd-pagination-small-end
+//     margin-left 8px
 
-.kd-pagination-mini-first
-    margin-right 6px
-.kd-pagination-mini-end
-    margin-left 6px
+// .kd-pagination-mini-first
+//     margin-right 6px
+// .kd-pagination-mini-end
+//     margin-left 6px
