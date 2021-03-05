@@ -1,6 +1,5 @@
 <template>
     <div
-            :class="classNameObj"
             class="kd-pagination"
     >
         <!-- total -->
@@ -9,24 +8,20 @@
             class="kd-pagination-total">
             <span>共{{ total }}条</span>
         </div>
-            <!-- v-if="superMini" -->
         <div
             v-if="showPageCount"
             class="kd-pagination-total">
             <span>共{{ pageCount }}页</span>
         </div>
-        <!-- <div class="kd-pagination-limits" v-if="!superMini">
-            <div class="kd-pagination-limits-text">每页显示</div>
-            <Dropdown>
-                <kd-button class="kd-pagination-btns kd-btn-total" :type="type" :size="size">
-                    {{innerLimit}}条 / 页
-                    <i class="kd-arrow ion-arrow-down-b"></i>
-                </kd-button>
-                <DropdownMenu>
-                    <DropdownItem v-for="item in limits" :key="item" @click="selectSize(item)">{{item}}</DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
-        </div> -->
+        <!-- limits -->
+        <div class="kd-pagination-limits" v-if="!superMini && showLimits">
+            <kd-dropdown size="mini">
+                {{innerLimit}}条 / 页 <i class="kd-icon-arrow-down"></i>
+                <kd-dropdown-menu slot="dropdown">
+                    <kd-dropdown-item slot="dropdownItem" v-for="item in limits" :key="item" @click="selectSize(item)">{{item}}</kd-dropdown-item>
+                </kd-dropdown-menu>
+            </kd-dropdown>
+        </div>
         <!-- prev -->
         <kd-button
                 class="kd-pagination-btn"
@@ -38,7 +33,7 @@
             <i
                 v-if="!prevText || prevText.includes('kd-icon')"
                 :class="[
-                    'kd-icon-riqishaixuan_shangyige',
+                    'kd-icon-caret-left',
                     prevText.includes('kd-icon') ? prevText : 'kd-pagination-left'
                 ]"
             ></i>
@@ -93,9 +88,9 @@
                 {{ nextText }}
             </span>
         </kd-button>
-        <!-- !superMini  -->
+        <!-- jump  -->
         <div
-                v-if="showGoto && !superMini"
+                v-if="!superMini && showGoto"
                 class="kd-pagination-goto"
         >
             前往<input
@@ -109,10 +104,11 @@
 </template>
 
 <script>
-    // import Dropdown from "../Dropdown/index";
+    import KdDropdown from "../Dropdown/dropdown";
+    import KdDropdownMenu from "../Dropdown/dropdown-menu";
+    import KdDropdownItem from "../Dropdown/dropdown-item";
     import KdButton from '../Button/button';
     import KdButtonGroup from '../ButtonGroup/button-group';
-    // import paginationInput from "./input.js";
     const markDic = {
         left: 'left',
         right: 'right'
@@ -124,16 +120,11 @@
     };
     export default {
         name: 'KdPagination',
-        // components: { KdDropdown, KdButton, ButtonGroup, paginationInput },
-        components: { KdButton, KdButtonGroup },
+        components: { KdDropdown, KdDropdownMenu, KdDropdownItem, KdButtonGroup, KdButton },
         props: {
             limit: {
                 type: Number,
                 default: 10
-            },
-            align: {
-                type: String,
-                default: 'default'
             },
             total: {
                 type: Number
@@ -164,6 +155,10 @@
                     return [10, 20, 50];
                 }
             },
+            showLimits: {
+                type: Boolean,
+                default: true
+            },
             counts: {
                 type: Number,
                 validator(value) {
@@ -193,18 +188,14 @@
                 ellipsis: '...',
                 pageCount: 0,
                 showPageArray: [],
-                classNameObj: {
-                    align: this.align
-                },
-                innerCurrent: Number(this.current),
+                innerCurrent: this.current,
                 type: this.noBorder ? 'none' : 'default',
                 size: this.noBorder ? 'mini' : 'default',
                 innerLimit: this.limit,
-                ellipsisMark: markDic.left,
                 markDic: markDic,
                 timer: null,
                 preValue: 0,
-                inputCurrent: Number(this.current)
+                inputCurrent: this.current
             };
         },
         watch: {
@@ -341,6 +332,7 @@
                 this.inputCurrent = this.innerCurrent;
                 this.parseData();
             },
+            // change limit
             selectSize(pageSize) {
                 this.innerLimit = pageSize;
                 // 当每页条数变动，页码自动变为1

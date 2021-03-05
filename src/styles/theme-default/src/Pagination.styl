@@ -1,108 +1,58 @@
 @import '../variables.styl'
 
 .kd-pagination
-    // font-size $-pagination-font-size
-    font-size 0
     display inline-block
     .kd-pagination-btn
-        font-size 12px
+        margin-right 4px
+        padding 0 6px
         min-width 24px
         height 24px
-        line-height 24px
-        padding 0 6px
-        margin-right 4px
         border-radius 2px !important
-    &.default
-        text-align right
-    &.center
-        text-align center
+        font-size $-pagination-font-size
+        line-height 24px
     .kd-pagination-btn-next
         margin-right 0
-    .kd-pagination-left
-    .kd-pagination-right
-        font-size 12px
-    .kd-pagination-limits
-    .kd-pagination-total
+    .kd-pagination-left, .kd-pagination-right, .kd-pagination-total
+        font-size $-pagination-font-size
+    .kd-pagination-limits, .kd-pagination-total, .kd-pagination-goto
+        display inline-block
+    .kd-pagination-limits, .kd-pagination-total
+        margin-right $-pagination-margin-right
     .kd-pagination-goto
-        margin-left 16px
-        display inline-block
+        margin-left $-pagination-margin-left
     .kd-pagination-total
-        font-size 12px
-        color #4C4C4C
-        margin 0 16px 0 0
-    .kd-pagination-limits
-        .kd-pagination-btn
-            &:first-child
-                border-left-width 1px !important
-            &:last-child
-                border-right-width 1px !important
-    // .kd-pagination-limits-text
-    //     font-size 12px
-    //     display inline-block
-    //     vertical-align middle
-    //     margin 0 6px 0 10px
-    //     &+ div
-    //         display inline-block
-    .kd-btn-active.kd-pagination-btn-active
-        background-color #fff
-        color #557dfc
-        border-color #fff
-        &:before
-            width 0
-    .kd-pagination-btns
-        display inline-block
+        color $-pagination-text-color
+.kd-pagination-limits
+    .kd-pagination-btn
+        &:first-child
+            border-left-width 1px !important
         &:last-child
-            margin-right 0
-    // goto
-    .kd-pagination-goto
-        font-size 12px
-        .kd-pagination-input
-            width $-pagination-goto-width
-            margin 0 $-pagination-goto-margin
-            height 20px
-            display inline-block;
-            padding-left 5px
-            padding-right 5px
-            border 1px solid #d1d5de;
-            background-color #fff;
-            transition border 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
-            outline none;
-            position relative;
-            .kd-inner
-                height 24px !important
-                line-height 24px !important
-    // .kd-select
-    //     width auto
-
-    // size
-    // for size in $-size-array
-    //     &.kd-{size}
-    //         font-size lookup('$-pagination-' + size + '-font-size')
-    //         if lookup('$-pagination-' + size + '-btn-margin-right') != 0
-    //             .kd-pagination-btns
-    //                 .kd-pagination-btn
-    //                     margin-right lookup('$-pagination-' + size + '-btn-margin-right')
-
-    // noBorder
-    // &.kd-no-border
-    //     .kd-select
-    //         &
-    //         &:hover
-    //         &.kd-show
-    //             .kd-wrapper
-    //                 border none
-
-// .kd-pagination-large-first
-//     margin-right 10px
-// .kd-pagination-large-end
-//     margin-left 10px
-
-// .kd-pagination-small-first
-//     margin-right 8px
-// .kd-pagination-small-end
-//     margin-left 8px
-
-// .kd-pagination-mini-first
-//     margin-right 6px
-// .kd-pagination-mini-end
-//     margin-left 6px
+            border-right-width 1px !important
+.kd-btn-active.kd-pagination-btn-active
+    border-color $-pagination-btn-active-border-color
+    background $-pagination-btn-active-bg-color
+    color $-pagination-btn-active-text-color
+    &:before
+        width 0
+.kd-pagination-btns
+    display inline-block
+    &:last-child
+        margin-right 0
+// goto
+.kd-pagination-goto
+    font-size $-pagination-font-size
+    .kd-pagination-input
+        position relative
+        display inline-block
+        margin 0 $-pagination-goto-margin
+        padding-right 5px
+        padding-left 5px
+        width $-pagination-goto-width
+        height 20px
+        outline none
+        border 1px solid #d1d5de
+        background-color #fff
+        transition border 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out
+        .kd-inner
+            height 24px !important
+            line-height 24px !important

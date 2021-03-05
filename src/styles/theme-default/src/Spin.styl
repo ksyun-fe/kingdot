@@ -26,7 +26,6 @@ c = round(2 * 3.14 * r)
         animation kd-spin-rotate 2s linear infinite
     .kd-spin-roate
         color $-primary-color
-        // font-size $-spin-width
     .kd-spin-circle
         animation kd-spin-dash 1.5s ease-in-out infinite
         stroke-dasharray round(c * 0.75), c
@@ -47,12 +46,6 @@ for size in $-size-array
             height @width
         .kd-spin-roate
             font-size lookup('$-spin-' + size + '-width')
-// @keyframes kd-rotating
-// 0%
-// transform rotate(0deg)
-
-// 100%
-// transform rotate(360deg)
 @keyframes kd-spin-rotate
     0%
         transform rotate(0)

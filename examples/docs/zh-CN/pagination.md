@@ -40,7 +40,6 @@
         </div>
         <div>
             <kd-pagination
-                    :showTotal="false"
                     prevText="kd-icon-arrow-left"
                     nextText="kd-icon-arrow-right"
                     noBorder
@@ -49,18 +48,9 @@
                     :current="current"
                     :limits="limits"
                     :showGoto="false"
-                    @change="change"
-                />
-        </div>
-        <div>
-            <kd-pagination
                     :showTotal="false"
-                    noBorder
-                    :total="total"
-                    :limit="limit"
-                    :current="current"
-                    :counts="7"
-                    :showGoto="false"
+                    :showPageCount="false"
+                    :showLimits="false"
                     @change="change"
                 />
         </div>
@@ -138,6 +128,6 @@
 
 ### 事件 {.component__content}
 
-| 时间名称      | 说明    | 回调参数      |
-|:---------- |:-------- |:---------- |
-| change     | current和limit变化时触发，同时变化不会重复触发   |    |
+| 时间名称      | 说明    |
+|:---------- |:-------- |
+| change     | current和limit变化时触发，同时变化不会重复触发   |

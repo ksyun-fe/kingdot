@@ -6,7 +6,7 @@
                     'kd-spin': true,
                     [`kd-spin-${size}`]: size !== 'default',
                     'kd-spin-overlay': overlay,
-                    'kd-spin-local': isLocal
+                    'kd-spin-local': local
                 },
             ]"
             :style="[
@@ -91,7 +91,7 @@
                 default: false
             },
             // 局部
-            isLocal: {
+            local: {
                 type: Boolean,
                 default: false
             }
