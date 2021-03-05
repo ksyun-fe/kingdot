@@ -16,7 +16,7 @@
         <!-- limits -->
         <div class="kd-pagination-limits" v-if="!superMini && showLimits">
             <kd-dropdown size="mini">
-                {{innerLimit}}条 / 页 <i class="kd-icon-arrow-down"></i>
+                {{innerLimit}}条 / 页 <i class="kd-icon-caret-bottom"></i>
                 <kd-dropdown-menu slot="dropdown">
                     <kd-dropdown-item slot="dropdownItem" v-for="item in limits" :key="item" @click="selectSize(item)">{{item}}</kd-dropdown-item>
                 </kd-dropdown-menu>
@@ -63,7 +63,7 @@
         >
             <kd-button
                     key="superMini"
-                    :class="{'kd-pagination-btn': true, 'kd-pagination-btn-active': type == 'none'}"
+                    :class="{'kd-pagination-btn-mini': true, 'kd-pagination-btn': true, 'kd-pagination-btn-active': type == 'none'}"
                     type="text"
                     :size="size"
             >{{ innerCurrent }}</kd-button>
@@ -185,7 +185,7 @@
         },
         data() {
             return {
-                ellipsis: '...',
+                ellipsis: '···',
                 pageCount: 0,
                 showPageArray: [],
                 innerCurrent: this.current,

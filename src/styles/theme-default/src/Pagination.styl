@@ -28,7 +28,7 @@
             border-left-width 1px !important
         &:last-child
             border-right-width 1px !important
-.kd-btn-active.kd-pagination-btn-active
+.kd-btn-active.kd-pagination-btn-active,.kd-pagination-btn-mini.kd-pagination-btn-active
     border-color $-pagination-btn-active-border-color
     background $-pagination-btn-active-bg-color
     color $-pagination-btn-active-text-color
@@ -41,18 +41,18 @@
 // goto
 .kd-pagination-goto
     font-size $-pagination-font-size
+    color $-pagination-text-color
     .kd-pagination-input
         position relative
         display inline-block
         margin 0 $-pagination-goto-margin
-        padding-right 5px
-        padding-left 5px
         width $-pagination-goto-width
         height 20px
         outline none
-        border 1px solid #d1d5de
-        background-color #fff
+        border 1px solid $-pagination-goto-border-color
+        background-color $-pagination-input-bg-color
         transition border 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out
+        color $-pagination-text-color
         .kd-inner
             height 24px !important
             line-height 24px !important
