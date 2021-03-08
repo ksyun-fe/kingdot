@@ -100,7 +100,6 @@
                 const lastChildWidth = precent / childNum + '%';
                 const leftStyle = (precent / childNum) + 5 + '%';
                 const parent = this.$el;
-                console.log(isIe());
                 if (this.type === 'default' && this.direction === 'vertical') {
                     Array.from(parent.children)[childNum - 1].style[
                         'max-height'
@@ -114,7 +113,6 @@
                         const firstChild = item.children[0].children[0].children[1].children[0];
                         const titleWidth = firstChild ? isIe() ? firstChild.clientWidth : firstChild.offsetWidth : 0;
                         const secondChild = item.children[0].children[0].children[1].children[1];
-                        console.log(firstChild, titleWidth, headWidth);
                         if (!secondChild && firstChild) {
                             item.children[0].children[0].children[1].style.width = titleWidth + headWidth + 'px';
                         }

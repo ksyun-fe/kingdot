@@ -36,7 +36,7 @@ describe("Steps", () => {
       expect(
         vm.$el.querySelector('.kd-step').classList.contains("kd-step-spot")
       ).to.be.true;
-    }, 500);
+    });
   });
   //创建一个有状态的steps
   it("steps has status", async () => {
@@ -71,7 +71,7 @@ describe("Steps", () => {
           "kd-step-custom-status-active"
         )
       ).to.be.true;
-    }, 500);
+    });
   });
   //创建简约版的steps
   it("steps simple", async () => {
@@ -94,7 +94,7 @@ describe("Steps", () => {
     await vm.$nextTick().then((_) => {
       expect(vm.$el.querySelector('.kd-step').classList.contains("kd-step-simple")).to.be
         .true;
-    }, 500);
+    });
   });
   //自定义图标的steps
   it("steps custom icons", async () => {
@@ -113,13 +113,12 @@ describe("Steps", () => {
       },
     });
     await vm.$nextTick().then((_) => {
-      let _steps = vm.$el.querySelector('.kd-step-index').childNodes.length;
       expect(
-        vm.$el.querySelector('.kd-step-index').childNodes[_steps-1].classList.contains(
+        vm.$el.querySelector('.kd-step-index i').classList.contains(
           "kd-step-icon"
         )
       ).to.be.true;
-    }, 500);
+    });
   });
   //竖式steps
   it("steps vertical", async () => {
@@ -145,7 +144,7 @@ describe("Steps", () => {
       expect(
         vm.$el.querySelector('.kd-steps-container').classList.contains("kd-steps-container-vertical")
       ).to.be.true;
-    }, 500);
+    });
   });
   //可以点击的steps
   it("create a clickable step", async () => {
@@ -173,7 +172,7 @@ describe("Steps", () => {
     });
     await vm.$nextTick().then((_) => {
       vm.$el.querySelectorAll(".kd-step-cursor")[0].click();
-    }, 500);
+    });
   });
   //自定义宽度的steps
   it("create a custom width step", async () => {
@@ -195,6 +194,6 @@ describe("Steps", () => {
     //
     await vm.$nextTick().then((_) => {
       expect(vm.$el.style.width).to.equal("1280px");
-    }, 500);
+    });
   });
 });

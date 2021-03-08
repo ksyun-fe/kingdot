@@ -79,11 +79,7 @@ describe("dialog", () => {
       vm.$el.querySelector('.kd-dialog').classList.contains("kd-dialog-tips")
     ).to.be.true;
     //是否🈶️底部
-    let footerSecionIndex =
-      vm.$el.querySelector('.kd-dialog').childNodes.length;
-    let footerSection =
-      vm.$el.querySelector('.kd-dialog').childNodes[footerSecionIndex - 1];
-    expect(footerSection.classList.contains("kd-dialog-footer-height")).to.be
+    expect(vm.$el.querySelector('.kd-dialog-footer').classList.contains("kd-dialog-footer-height")).to.be
       .true;
   });
   //创建一个二次确认类dialog，且没有标题
@@ -145,13 +141,7 @@ describe("dialog", () => {
       },
       true
     );
-    const _dialog = vm.$el;
-    let footerSecionIndex =
-      _dialog.querySelector('.kd-dialog').childNodes.length;
-    let footerSectionBtn =
-      _dialog.querySelector('.kd-dialog').childNodes[footerSecionIndex - 1]
-        .childNodes[1].childNodes[0];
-    expect(footerSectionBtn.classList.contains("customBtn")).to.be.true;
+    expect(vm.$el.querySelector('.kd-dialog-footer').querySelector('button').classList.contains("customBtn")).to.be.true;
   });
   //自定义body
   it("create dialog of custom body", () => {
@@ -173,9 +163,7 @@ describe("dialog", () => {
       },
       true
     );
-    const _dialog =
-      vm.$el.querySelector('.kd-dialog').childNodes[1].childNodes[0];
-    expect(_dialog.classList.contains("confirmBody")).to.be.true;
+    expect(vm.$el.querySelector('.kd-dialog-body>div').classList.contains("confirmBody")).to.be.true;
   });
   //自定义按钮文案
   it("custom buttom text", () => {
@@ -185,17 +173,11 @@ describe("dialog", () => {
       cancelText: "上一步",
       okText: "关闭",
     });
-    let footerSecionIndex =
-      vm.$el.querySelector('.kd-dialog').childNodes.length;
     expect(
-      vm.$el.querySelector('.kd-dialog').childNodes[
-        footerSecionIndex - 1
-      ].childNodes[1].textContent.trim()
+      vm.$el.querySelectorAll('.kd-dialog-btn')[0].querySelector('span').textContent.trim()
     ).to.equal("上一步");
     expect(
-      vm.$el.querySelector('.kd-dialog').childNodes[
-        footerSecionIndex - 1
-      ].childNodes[2].childNodes[2].childNodes[0].textContent.trim()
+      vm.$el.querySelectorAll('.kd-dialog-btn')[1].querySelector('span').textContent.trim()
     ).to.equal("关闭");
   });
   //点击“X”，关闭dialog
@@ -223,7 +205,7 @@ describe("dialog", () => {
     ).to.equal("scroll");
   });
   //点击遮罩层关闭对话框
-  it("click mask to close the dialog", () => {
+  it("click mask to close the dialog", (done) => {
     vm = createCons(Dialog, {
       type: "default",
       value: true,
@@ -232,10 +214,11 @@ describe("dialog", () => {
     vm.$el.querySelector(".kd-dialog-mask").click();
     setTimeout(() => {
       expect(vm.visible).to.be.false;
+      done()
     }, 500);
   });
   //'取消'&‘确认’操作
-  it("cancel & ok", async () => {
+  it("cancel & ok", (done) => {
     vm = createVue({
       template: `
               <kd-dialog v-model="isShowDialog" :ok="OK" :cancel="close" width="800" height="800">
@@ -260,17 +243,16 @@ describe("dialog", () => {
       },
     });
     vm.isShowDialog = true;
-    await vm.$nextTick().then((_) => {
+    vm.$nextTick().then((_) => {
       vm.$el.querySelectorAll(".kd-dialog-btn")[1].click();
       setTimeout(function () {
-        expect(
-          vm.$el.querySelector(".kd-dialog-body").childNodes[0].innerText
-        ).to.equal("2");
-      }, 200);
+        expect(vm.num).to.equal(2);
+        done()
+      }, 300);
       vm.$el.querySelectorAll(".kd-dialog-btn")[0].click();
-    }, 300);
+    });
   });
-  it("ok is not a function", async () => {
+  it("ok is not a function", (done) => {
     vm = createVue({
       template: `
               <kd-dialog v-model="isShowDialog" width="800" height="800">
@@ -284,22 +266,24 @@ describe("dialog", () => {
         };
       },
     });
-    await vm.$nextTick().then((_) => {
+    vm.$nextTick().then((_) => {
       vm.$el.querySelectorAll(".kd-dialog-btn")[1].click();
       setTimeout(function () {
         expect(
-          vm.$el.querySelector(".kd-dialog-body").childNodes[0].innerText
-        ).to.equal("2");
+          vm.$el.querySelector(".kd-dialog-body>div").innerText
+        ).to.equal("1");
+        expect(vm.isShowDialog).to.be.false;
+        done()
       }, 200);
-    }, 300);
+    });
   });
   //dialog可以移动
-  it("dialog to move", async () => {
+  it("dialog to move", (done) => {
     vm = createCons(Dialog, {
       type: "default",
       value: true,
     });
-    await vm.$nextTick().then((_) => {
+    vm.$nextTick().then((_) => {
       triggerEvent(vm.$el.querySelector(".kd-dialog-header"), "mousedown");
       triggerEvent(
         vm.$el.querySelector(".kd-dialog-header"),
@@ -308,11 +292,12 @@ describe("dialog", () => {
         false,
         { x: 180, y: 160 }
       );
-      triggerEvent(document, "mouseup");
-      setTimeout(() => {
-        expect(vm.$el.querySelector(".kd-dialog").style.left).to.equal('600px')
+      let _dialog = vm.$el.querySelector(".kd-dialog")
+      setTimeout(function() {
+        expect(_dialog.style.left).to.equal('600px')
         triggerEvent(document, "mouseup");
-      }, 200);
-  },500)
+        done()
+      }, 300);
+  })
   });
 });
