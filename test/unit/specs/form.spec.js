@@ -123,8 +123,8 @@ describe('Form', () => {
         expect(hideMessageEl.querySelector('.kd-form-item-validate-error')).to.be.null;
         expect(vm.isValidateFail).to.be.false;
         vm.setValue('batchSize', 1000);
-        // triggerEvent(showMessageEl, 'change');
-        // triggerEvent(hideMessageEl, 'change');
+        triggerEvent(showMessageEl, 'change');
+        triggerEvent(hideMessageEl, 'change');
         vm.$refs.form.submit();
         setTimeout(() => {
             expect(showMessageEl.querySelector('.kd-form-item-validate-error')).to.be.exist;
