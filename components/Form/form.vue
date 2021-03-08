@@ -17,6 +17,10 @@
             labelWidth: {
                 type: [String, Number],
                 default: '200'
+            },
+            fluid: {
+                type: Boolean,
+                default: false
             }
         },
         data: function () {
@@ -24,14 +28,16 @@
                 formItems: []
             };
         },
+        computed: {
+            labelStyle() {
+                return this.labelWidth + 'px';
+            }
+        },
         methods: {
             submit(e) {
                 this.validate()
                     .then((isValid) => {
                         isValid ? this.$emit('submit', e, this) : this.$emit('validateFail', e, this);
-                    })
-                    .catch(error => {
-                        console.error('form submit: ', error);
                     });
             },
             validate() {
@@ -39,10 +45,7 @@
                 return Promise.all(items.map(item => {
                     return item.validate();
                 }))
-                    .then(values => values.every(value => value))
-                    .catch(error => {
-                        console.error('form validate: ', error);
-                    });
+                    .then(values => values.every(value => value));
             }
         }
 
