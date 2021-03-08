@@ -1,6 +1,7 @@
 <template>
     <div
             class="kd-pagination"
+            v-if="total>0"
     >
         <!-- total -->
         <div
@@ -67,6 +68,13 @@
                     type="text"
                     :size="size"
             >{{ innerCurrent }}</kd-button>
+            /
+            <kd-button
+                    key="superMiniCount"
+                    :class="{'kd-pagination-btn-mini': true, 'kd-pagination-btn': true}"
+                    type="none"
+                    :size="size"
+            >{{ pageCount }}</kd-button>
         </div>
         <!-- next -->
         <kd-button
@@ -162,7 +170,7 @@
             counts: {
                 type: Number,
                 validator(value) {
-                    return (value | 0) === value && value > 4 && value < 22 && (value % 2) === 1;
+                    return (value | 0) === value && value > 4 && value < 22;
                 },
                 default: 7
             },
