@@ -51,7 +51,10 @@
             <kd-button
                     v-for="item in showPageArray"
                     :key="getKey(item.value)"
-                    :class="{'kd-pagination-btn': true, 'kd-pagination-btn-active': type == 'none'}"
+                    :class="{
+                        'kd-pagination-btn': true,
+                        'kd-pagination-btn-active': type == 'none'
+                    }"
                     :value="item.value"
                     :type="type"
                     :size="size"
@@ -64,14 +67,21 @@
         >
             <kd-button
                     key="superMini"
-                    :class="{'kd-pagination-btn-mini': true, 'kd-pagination-btn': true, 'kd-pagination-btn-active': type == 'none'}"
+                    :class="{
+                        'kd-pagination-btn-mini': true,
+                        'kd-pagination-btn': true,
+                        'kd-pagination-btn-active': type == 'none'
+                    }"
                     type="text"
                     :size="size"
             >{{ innerCurrent }}</kd-button>
             /
             <kd-button
                     key="superMiniCount"
-                    :class="{'kd-pagination-btn-mini': true, 'kd-pagination-btn': true}"
+                    :class="{
+                        'kd-pagination-btn-mini': true,
+                        'kd-pagination-btn': true
+                    }"
                     type="none"
                     :size="size"
             >{{ pageCount }}</kd-button>
@@ -170,7 +180,7 @@
             counts: {
                 type: Number,
                 validator(value) {
-                    return (value | 0) === value && value > 4 && value < 22;
+                    return value > 4 && value < 22;
                 },
                 default: 7
             },
@@ -218,7 +228,6 @@
                 }, 100);
             },
             current(newV, oldV) {
-                // 若外部传入的值 != 当前值
                 if (newV != this.innerCurrent) {
                     this.innerCurrent = newV;
                     this.inputCurrent = newV;
