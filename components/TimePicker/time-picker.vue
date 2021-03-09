@@ -5,10 +5,12 @@
                 placement="bottom-start"
                 trigger="click"
                 :width-limit="false"
+                :disabled="disabled"
         >
             <kd-input
                     :placeholder="placeholder"
                     :value="timeString"
+                    :disabled="disabled"
             >
                 <template slot="prefix">
                     <i class="kd-icon-time"></i>
@@ -147,15 +149,21 @@
     import Lang from 'src/mixin/lang.js';
     import { parseTime, stringTime } from './utils.js';
     export default {
-        name: 'TimePicker',
+        name: 'KdTimePicker',
         mixins: [Lang],
         props: {
+            value: {
+                type: [String, Array]
+                // default: function () {
+                //     return '00:00:00';
+                // }
+            },
             disabled: {
                 type: Boolean,
                 default: false
             },
             // 满足某条件的时间将被禁用
-            disableCondition: {
+            disableTime: {
                 type: Function
             },
             // 显示模式: 'steped-time', 'anytime', 按步长显示时间, 任意时间点
@@ -190,23 +198,25 @@
                 minArr: Array(60).fill(0).map((x, i) => {
                     return this.addPreZero(i);
                 }),
+                // startTime: ['', '', ''],
                 startTime: {
-                    hour: '0',
-                    minute: '0',
-                    second: '0'
+                    hour: 0,
+                    minute: 0,
+                    second: 0
                 },
                 endTime: {
-                    hour: '0',
-                    minute: '0',
-                    second: '0'
+                    hour: '00',
+                    minute: '00',
+                    second: '00'
                 },
                 timeList: [],
-                selectedTime: '',
-                endSelectedTime: ''
+                selectedTime: '', // step 模式下的结果
+                endSelectedTime: '',
+                // timeString: '', // input value
             };
         },
         computed: {
-            timeString() {
+            timeString() { // selectedTime 变化,
                 let timeString = '';
                 if (!this.isRange) {
                     if (this.mode === 'steped-time') {
@@ -214,6 +224,10 @@
                     } else {
                         timeString = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
                     }
+                    if (timeString === '0:0:0') { // fix input中只有分隔符
+                        return '';
+                    }
+                    console.log('单点时间 timeString', timeString);
                     return timeString;
                 } else {
                     let start = '';
@@ -226,25 +240,63 @@
                         start = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
                         end = `${this.endTime.hour}:${this.endTime.minute}:${this.endTime.second}`;
                     }
+                    if (!start && !end) { // fix input中只有分隔符
+                        return '';
+                    }
                     return `${start}-${end}`;
                 }
             }
-            // rangeTimeString() {
-            //     let start = '';
-            //     let end = '';
-
-            //     if (this.mode === 'steped-time') {
-            //         start = this.selectedTime;
-            //         end = this.endSelectedTime;
-            //     } else {
-            //         start = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
-            //         end = `${this.endTime.hour}:${this.endTime.minute}:${this.endTime.second}`;
-            //     }
-            //     return `${start}-${end}`;
-            // }
         },
-        watch: {},
-        updated() {
+        watch: {
+            value: {
+                immediate: true,
+                handler(v) {
+                    console.log('init valve', v);
+                    if (typeof v === 'string') { // 单
+                        this.timeString = v;
+                        this.selectedTime = v;
+
+                        this.startTime.hour = v.split(':')[0];
+                        this.startTime.minute = v.split(':')[1];
+                        this.startTime.second = v.split(':')[2];
+                        console.log('set startTime', this.startTime);
+                    } else if (Array.isArray(v)) { // 范围
+                        this.timeString = v.join(' ~ ');
+                        this.startTime = v[0];
+                        this.endTime = v[1];
+
+                        this.startTime = v[0];
+                        this.endSelectedTime = v[1];
+                    }
+                }
+            }
+            // startTime: {
+            //     deep: true,
+            //     handler(v) {
+            //         console.log('startTime change', v);
+            //         this.timeString = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
+            //         this.$emit('input', this.timeString);
+            //     }
+            // },
+            // selectedTime: {
+            //     handler(v) {
+            //         console.log('selectedTime change', v);
+            //         if (this.isRange === false) {
+            //             this.timeString = v;
+            //             this.$emit('input', this.timeString);
+            //         } else {
+            //             this.timeString = `${v} - ${this.endSelectedTime}`;
+            //             this.$emit('input', this.timeString);
+            //         }
+            //     }
+            // },
+            // endSelectedTime: {
+            //     handler(v) {
+            //         console.log('endselectedTime change', v);
+            //         this.timeString = `${this.selectedTime} - ${v}`;
+            //         this.$emit('input', this.timeString);
+            //     }
+            // }
         },
         created() {
             this.init();
