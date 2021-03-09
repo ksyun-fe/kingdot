@@ -152,5 +152,5 @@
 | overlay     | 是否展示带遮罩层的加载动画   | Boolean    |     true / false     |    true     |
 | background  |   遮罩背景色   | String  |     -    |    rgba(255, 255, 255, .5)    |
 | text  |   显示在加载图标下方的加载文案   | String  |     -    |    -    |
-| spinner  |   是否自定义加载图标   | Boolean  |     -    |    false    |
+| spinner  |   是否自定义加载图标   | Boolean / String  |     -    |    false    |
 | local  |   局部spin，是否展示带遮罩层的加载动画，需要父元素为定位元素   | Boolean  |     -    |    false    |
