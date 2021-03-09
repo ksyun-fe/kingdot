@@ -2,7 +2,7 @@
 
 ### 示例
 
-:::demo #基本用法 ##`Pagination`的基本用法，通过`total`指定数据总条数，`limit`指定每页数据条数，`limits`数组定义可供选择的条数。可以通过`change`事件来监听组件`current`和`limit`的变化，组件会将`current`和`limit`以对象的方式传给事件回调函数。
+:::demo #基本用法 ##`Pagination`的基本用法，通过`total`指定数据总条数，`limit`指定每页数据条数，`limits`数组定义可供选择的条数，`limitsIcon`指定个数选择器的Icon。可以通过`change`事件来监听组件`current`和`limit`的变化，组件会将`current`和`limit`以对象的方式传给事件回调函数。
 
 ```html
 <template>
@@ -32,6 +32,7 @@
             <kd-pagination
                     prevText="kd-icon-arrow-left"
                     nextText="kd-icon-arrow-right"
+                    limitsIcon="kd-icon-arrow-down"
                     :total="total"
                     :limit="limit"
                     :current="current"
@@ -381,6 +382,7 @@
 | limit     | 页面条数   | Number   |    10    |
 | limits     | 页面条数选择框   | Array<Number>   |    [5, 10, 20, 50]    |
 | showLimits     | 是否显示个数选择器   | Boolean  |    true    |
+| limitsIcon     | 个数选择器icon   | String  |      kd-pagination-limits-icon    |
 | noBorder     | 是否展示无边框样式，默认有边框   | Boolean   |    false    |
 | prev-text     | 替代图标显示的上一页文字(字符串若以‘kd-icon’开头，则展示相应图标)   | String   |    ''    |
 | next-text     | 替代图标显示的下一页文字(字符串若以‘kd-icon’开头，则展示相应图标)   | String   |    ''    |

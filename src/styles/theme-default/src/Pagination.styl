@@ -23,11 +23,14 @@
     .kd-pagination-total
         color $-pagination-text-color
 .kd-pagination-limits
-    .kd-pagination-btn
-        &:first-child
-            border-left-width 1px !important
-        &:last-child
-            border-right-width 1px !important
+    &:hover
+        .kd-pagination-limits-icon
+            color $-pagination-limits-hover-color
+    .kd-pagination-limits-icon
+        color #ccc
+        padding-left 10px
+    .kd-btn
+        border-radius 2px !important
 .kd-btn-active.kd-pagination-btn-active,.kd-pagination-btn-mini.kd-pagination-btn-active
     border-color $-pagination-btn-active-border-color
     background $-pagination-btn-active-bg-color
@@ -52,6 +55,7 @@
         width $-pagination-goto-width
         height 20px
         outline none
+        border-radius 2px
         border 1px solid $-pagination-goto-border-color
         background-color $-pagination-input-bg-color
         transition border 0.25s ease-in-out, background 0.25s ease-in-out, box-shadow 0.25s ease-in-out

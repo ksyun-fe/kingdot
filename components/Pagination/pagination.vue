@@ -17,7 +17,7 @@
         <!-- limits -->
         <div class="kd-pagination-limits" v-if="!superMini && showLimits">
             <kd-dropdown size="mini">
-                {{innerLimit}}条 / 页 <i class="kd-icon-caret-bottom"></i>
+                {{innerLimit}}条 / 页 <i :class="['kd-pagination-limits-icon',limitsIcon]"></i>
                 <kd-dropdown-menu slot="dropdown">
                     <kd-dropdown-item slot="dropdownItem" v-for="item in limits" :key="item" @click="selectSize(item)">{{item}}</kd-dropdown-item>
                 </kd-dropdown-menu>
@@ -199,6 +199,10 @@
             showPageNum: {
                 type: Boolean,
                 default: true
+            },
+            limitsIcon: {
+                type: String,
+                default: 'kd-icon-caret-bottom'
             }
         },
         data() {
