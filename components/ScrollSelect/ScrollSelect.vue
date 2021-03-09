@@ -125,13 +125,13 @@
             // 初始化位置信息
             initPosition() {
                 const height = this.$el.offsetHeight;
-                console.log('initPosition marginTop', this.$el.offsetHeight);
+                // console.log('initPosition marginTop', this.$el.offsetHeight);
 
                 this.itemHeight = this.$refs.item[0].offsetHeight;
-                console.log('initPosition translateY', this.itemHeight);
+                // console.log('initPosition translateY', this.itemHeight);
 
                 this.translateY = -(Math.floor(this.count / 2) * this.itemHeight - (height - this.itemHeight) / 2);
-                console.log('initPosition translateY', this.translateY);
+                // console.log('initPosition translateY', this.translateY);
 
                 // this.translateY = this.initTranslateY;
 

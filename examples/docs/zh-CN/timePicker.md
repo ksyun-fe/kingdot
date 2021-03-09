@@ -5,16 +5,54 @@
 ```html
 <template>
     <div>
-        <TimePicker></TimePicker>
+        <kd-time-picker></kd-time-picker>
+        <kd-time-picker v-model='selectedTime'></kd-time-picker>
+        选中时间: {{ selectedTime }}
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                selectedTime: '10:00:00'
+            }
+        },
+    }
+</script>
+```
+:::
+
+### 禁用组件
+
+:::demo #禁用组件 ##组件级别的禁用
+
+```html
+<template>
+    <div>
+        <kd-time-picker :disabled="true"></kd-time-picker>
     </div>
     
+</template>
+```
+:::
+
+
+### 禁用部分时间
+
+:::demo #禁用组件 ##组件级别的禁用
+
+```html
+<template>
+    <div>
+        <kd-time-picker :disabled="true"></kd-time-picker>
+    </div>
     
 </template>
 <script>
     export default {
         data() {
             return {
-                
+                selectedTime: '10:00:00'
             }
         },
     }
@@ -29,8 +67,8 @@
 ```html
 <template>
     <div>
-        <TimePicker :mode="mode"></TimePicker>
-        <TimePicker :mode="mode" :minTime="minTime" :maxTime="maxTime" :step="step" ></TimePicker>
+        <kd-time-picker :mode="mode"></kd-time-picker>
+        <kd-time-picker :mode="mode" :minTime="minTime" :maxTime="maxTime" :step="step" ></kd-time-picker>
     </div>
 </template>
 <script>
@@ -56,9 +94,9 @@
 ```html
 <template>
     <div>
-        <TimePicker isRange="true"></TimePicker>
-        <TimePicker isRange="true" mode="steped-time"></TimePicker>
-        <!-- <TimePicker :mode="mode" :minTime="minTime" :maxTime="maxTime" :step="step" ></TimePicker> -->
+        <kd-time-picker :isRange="true"></kd-time-picker>
+        <kd-time-picker :isRange="true" mode="steped-time"></kd-time-picker>
+        <!-- <kd-time-picker :mode="mode" :minTime="minTime" :maxTime="maxTime" :step="step" ></kd-time-picker> -->
     </div>
 </template>
 <script>
@@ -69,7 +107,7 @@
                 minTime: '09:00:00',
                 maxTime: '17:00:00',
                 step: 15,
-                
+
             }
         },
     }
