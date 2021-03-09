@@ -299,18 +299,20 @@
             prev() {
                 if (this.innerCurrent == 1) return;
                 this.innerCurrent--;
+                this.inputCurrent--;
                 this.parseData();
             },
             // next
             next() {
                 if (this.innerCurrent == this.pageCount) return;
                 this.innerCurrent++;
+                this.inputCurrent++;
                 this.parseData();
             },
             // jump
             jumpEnterAction() {
                 var v = this.inputCurrent;
-                if (!/^\d{1,}$/.test(v)) {
+                if (!/^\d{1,}$/.test(v) || /^.{1,}$/.test(v)) {
                     this.innerCurrent = 1;
                     this.inputCurrent = 1;
                     return;

@@ -9,6 +9,7 @@
     <div>
         <div class="page-demo">
             <kd-pagination
+                    ref="pagination"
                     :total="total"
                     :limit="limit"
                     :current="current"
@@ -98,46 +99,6 @@
     .page-demo
         margin-bottom 10px
 </style>
-```
-
-:::
-
-### 带有背景色的分页
-
-:::demo #用法 ##通过`noBorder`指定是否展示边框，`superMini`指定是否是简洁版，`showPageNum`指定是否展示页码。
-
-```html
-<template>
-    <div>
-        <div>
-            <kd-pagination
-                    :total="total"
-                    :limit="limit"
-                    :current="current"
-                    @change="change"
-                />
-        </div>
-    </div>
-</template>
-<script>
-    export default  {
-        data() {
-            return {
-                total: 60,
-                limits: [5, 10, 20, 50],
-                limit: 10,
-                current: 1,
-            }
-        },
-        methods:{
-            change({ limit, current }) {
-                this.current = current;
-                this.limit = limit;
-                console.log(this.current,this.limit)
-            }
-        }
-    }
-</script>
 ```
 
 :::
@@ -287,16 +248,16 @@
 ```html
 <template>
     <div>
-        <div>
+        <div class="page-demo">
             <kd-pagination
                     :total="total"
                     :limit="limit"
                     :current="current"
-                    :counts="5"
+                    :counts="8"
                     @change="change"
                 />
         </div>
-        <div>
+        <div class="page-demo">
             <kd-pagination
                     :total="total"
                     :limit="limit"
@@ -430,11 +391,11 @@
 
 ### 方法 {.component__content}
 
-| 属性      | 说明    | 类型      |
-|:---------- |:-------- |:---------- |
-| changePage     | 切换页码   |  Function  |
-| prev     | 上一页   |  Function  |
-| next     | 下一页   |  Function  |
+| 属性      | 说明    | 类型      | 参数      |
+|:---------- |:-------- |:---------- |:---------- |
+| changePage     | 切换页码   |  Function  | `{value: 2, label: 2}` |
+| prev     | 上一页   |  Function  |  -  |
+| next     | 下一页   |  Function  |  -  |
 
 ### 事件 {.component__content}
 
