@@ -325,11 +325,12 @@
             // jump
             jumpEnterAction() {
                 var v = this.inputCurrent;
-                if (!/^\d{1,}$/.test(v) || /^.{1,}$/.test(v)) {
+                if (!/^[0-9]{1,}$/.test(v)) {
                     this.innerCurrent = 1;
                     this.inputCurrent = 1;
                     return;
                 }
+                v = Math.floor(this.inputCurrent);
                 // 是否等于当前高亮值
                 if (v != this.innerCurrent) {
                     if (v > 0 && v <= this.pageCount) {
