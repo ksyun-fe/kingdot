@@ -254,7 +254,7 @@
                     :total="total"
                     :limit="limit"
                     :current="current"
-                    :counts="8"
+                    :counts="9"
                     @change="change"
                 />
         </div>

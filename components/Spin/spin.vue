@@ -1,6 +1,5 @@
 <template>
     <div
-            a:transition="c-fade"
             :class="[
                 {
                     'kd-spin': true,

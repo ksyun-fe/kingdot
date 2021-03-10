@@ -210,6 +210,7 @@
                 ellipsis: '···',
                 pageCount: 0,
                 showPageArray: [],
+                innerCounts: this.counts,
                 innerCurrent: this.current,
                 type: this.noBorder ? 'none' : 'default',
                 size: this.noBorder ? 'mini' : 'default',
@@ -261,6 +262,7 @@
             }
         },
         created() {
+            this.innerCounts = this.counts < 5 ? 5 : this.counts;
             // init
             this.parseData();
             this.preValue = this.innerCurrent;
@@ -271,32 +273,32 @@
                 const _pageArrayData = [];
                 this.pageCount = Math.ceil(this.total / this.innerLimit);
                 // 显示页码数 大于 总页数
-                if (this.counts >= this.pageCount) {
+                if (this.innerCounts >= this.pageCount) {
                     for (let i = 1; i < this.pageCount + 1; i++) {
                         _pageArrayData.push(pageItem(i));
                     }
                 } else if (this.total != 0) {
                     // 前半部分全显，需要显示省略符'...'，总页数
-                    if (this.innerCurrent <= this.counts - 2) {
-                        for (let i = 1; i < this.counts; i++) {
+                    if (this.innerCurrent <= this.innerCounts - 2) {
+                        for (let i = 1; i < this.innerCounts; i++) {
                             _pageArrayData.push(pageItem(i));
                         }
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.right));
                         _pageArrayData.push(pageItem(this.pageCount));
-                    } else if (this.pageCount - this.innerCurrent <= this.counts - 3) {
+                    } else if (this.pageCount - this.innerCurrent <= this.innerCounts - 3) {
                         // 1，省略符'...'，后半部分全显
                         _pageArrayData.push(pageItem(1));
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.left));
-                        for (let i = this.counts - 1; i > 0; i--) {
+                        for (let i = this.innerCounts - 1; i > 0; i--) {
                             _pageArrayData.push(pageItem(this.pageCount - i + 1));
                         }
                     } else {
                         // 1，省略符'...'，中间部分，省略符'...'，总页数
                         _pageArrayData.push(pageItem(1));
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.left));
-                        let num = this.counts%2 == 0 ? Math.ceil((this.counts - 2) / 2) : Math.floor((this.counts - 2) / 2)
+                        let num = this.innerCounts%2 == 0 ? Math.ceil((this.innerCounts - 2) / 2) : Math.floor((this.innerCounts - 2) / 2)
                         const start = this.innerCurrent - num;
-                        let endNum = this.counts%2 == 0 ? (this.counts - 1) : (this.counts - 2)
+                        let endNum = this.innerCounts%2 == 0 ? (this.innerCounts - 1) : (this.innerCounts - 2)
                         for (let i = 0; i < endNum; i++) {
                             _pageArrayData.push(pageItem(i + start));
                         }
