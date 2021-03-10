@@ -137,21 +137,16 @@
                     : (this.movedisabledRight = false);
             }
         },
-        updated() {
-            this.Recapture();
-        },
         methods: {
             Recapture() {
-                this.$nextTick(() => {
-                    this.contentWidth = this.$refs.tabs.querySelector(
-                        '.kd-tabs-content'
-                    ).scrollWidth;
-                    this.regionWidth = this.$refs.tabs.clientWidth;
-                    this.showControl = this.regionWidth < this.contentWidth;
-                    if (!this.showControl) {
-                        this.marginLeft = 0;
-                    }
-                });
+                this.contentWidth = this.$refs.tabs.querySelector(
+                    '.kd-tabs-content'
+                ).scrollWidth;
+                this.regionWidth = this.$refs.tabs.clientWidth;
+                this.showControl = this.regionWidth < this.contentWidth;
+                if (!this.showControl) {
+                    this.marginLeft = 0;
+                }
             },
             tabsActive({ val = '', marginLeft = '', marginTop = '', width = 0, height = 0}) {
                 this.innerValue = val;
@@ -194,8 +189,8 @@
             },
             close(v) {
                 this.$emit('close', v);
-                this.Recapture();
                 this.$nextTick(() => {
+                    this.Recapture();
                     if (this.showControl) {
                         this.marginLeft = -(this.contentWidth - this.regionWidth);
                     }
@@ -203,8 +198,8 @@
             },
             addTab(v) {
                 this.$emit('addTab');
-                this.Recapture();
                 this.$nextTick(() => {
+                    this.Recapture();
                     if (this.showControl) {
                         this.marginLeft = -(this.contentWidth - this.regionWidth);
                     }
