@@ -1,9 +1,9 @@
 <template>
     <div
             class="kd-form-item"
-            @focusout="validate"
-            @change="validate"
-            @input="_dirty"
+            :class="{'kd-form-item-fluid' : isFluid}"
+            @change="_dirty"
+            @focusout="_dirty"
     >
         <label
                 v-if="!hideLabel"
@@ -19,8 +19,8 @@
             <slot></slot>
             <transition name="validateMessage">
                 <div
-                        v-if="!isValid"
-                        class="kd-form-Item-validate-error"
+                        v-if="!isValid && showWarning"
+                        class="kd-form-item-validate-error"
                 >
                     {{ message }}
                 </div>
@@ -28,7 +28,7 @@
         </div>
         <div
                 v-if="$slots.append"
-                class="kd-formItem-append"
+                class="kd-form-item-append"
         >
             <slot name="append"></slot>
         </div>
@@ -64,26 +64,40 @@
             },
             value: {
                 type: [Number, String]
+            },
+            showWarning: {
+                type: Boolean,
+                default: true
             }
         },
         data() {
             return {
+                promise: null,
                 forms: [],
                 isDirty: false,
                 isValid: true,
-                force: false,
                 oldValue: '',
-                message: ''
+                message: '',
+                timerForRuleChange: null,
+                timerForValidate: null
             };
         },
         computed: {
             labelStyle() {
                 return {width: this.labelWidth || this.form.labelStyle};
+            },
+            isFluid() {
+                return this.form.fluid;
             }
         },
         watch: {
             rules() {
-                this._dirty();
+                if (this.timerForRuleChange) {
+                    clearTimeout(this.timerForRuleChange);
+                }
+                this.timerForRuleChange = setTimeout(() => {
+                    this.validateIfDirty();
+                }, 100);
             }
         },
         created() {
@@ -95,9 +109,13 @@
             if (!form) {
                 return console.error('FormItem must be used as the descendant of Form');
             }
+            // 没有model，则不对对此formItem进行验证，所以不要push
             if (this.model) {
-                // 没有model，则不对对此formItem进行验证，所以不要push
-                form.formItems.push(this);
+                if (Array.isArray(this.form.formItems)) {
+                    this.form.formItems.push(this);
+                } else {
+                    this.form.formItems = [this];
+                }
             }
         },
         destroyed() {
@@ -106,79 +124,120 @@
             items.splice(items.indexOf(this), 1);
         },
         methods: {
-            _dirty() {
-                if (!this.isDirty) {
+            validateIfDirty() {
+                if (this.isDirty) {
                     this.validate();
                 }
+            },
+            _cancel() {
+                this.isValid = false;
+                // cancel the last promise
+                if (this.promise) {
+                    this.promise.cancelled = true;
+                }
+            },
+            _dirty(e) {
+                if (!this.model) return;
+                if (this.timerForValidate) {
+                    clearTimeout(this.timerForValidate);
+                }
+                this.timerForValidate = setTimeout(() => {
+                    const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
+                    const newValue = this.deepGetValue($data, this.model).value;
+                    if (this.oldValue !== newValue) {
+                        this.oldValue = newValue;
+                        this.validate();
+                    }
+                }, 200);
             },
             validate() {
                 if (!(this.model && this.form)) {
                     return;
                 }
+                this._cancel();
                 // 用当前规则验证当前value
-                const handlers = [];
-                const rules = Object.assign({}, this.rules);
+                const rules = this.getRules();
+                const promises = [];
                 const keys = [];
                 const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
                 const value = this.deepGetValue($data, this.model).value;
-                if (value !== this.oldValue) {
-                    this.oldValue = value;
-                } else {
-                    return;
-                }
-                // 先判断是否required, 并将required规则和校验结果先抽离出来
-                const valIsExist = _ruleHandlers.required(value);
+                // check value
+                const valueIsExist = _ruleHandlers.required(value);
+                // check required rule isTrue
                 if (rules.required) {
-                    handlers.push(valIsExist);
+                    promises.push(valueIsExist);
                     keys.push('required');
                 }
-                let handler = null;
-                if (valIsExist) {
+                if (valueIsExist) {
                     for (const key in rules) {
                         const rule = rules[key];
-                        if (key === 'required') continue;
-                        // 其他规则
-                        // rule是function说明是自定义规则
-                        if (typeof rule !== 'function') {
-                            handler = _ruleHandlers[key];
-                            if (!handler) {
+                        if (key === 'required' || rule === false) continue;
+                        let fn;
+                        if (typeof rule === 'function') {
+                            fn = rule;
+                        } else {
+                            fn = _ruleHandlers[key];
+                            if (!fn) {
+                                console.warn(`Can not find validate method: ${key}`);
                                 continue;
                             }
-                        } else {
-                            handler = rule;
                         }
-                        // 将除了required的校验函数执行结果都加到handlers中
-                        handlers.push(handler(value, this, rule));
+                        promises.push(fn(value, this, rule));
                         keys.push(key);
                     }
                 }
-                return Promise.all(handlers)
-                    .then(res => {
-                        for (let i = 0; i < res.length; i++) {
-                            if (res[i] !== true) {
-                                // 说明校验失败
-                                const message = res[i] || this.getMessage(keys[i], value);
-                                return [false, message];
+                const p = this.promise = Promise.all(promises)
+                    .then(values => {
+                        for (let i = 0; i < values.length; i++) {
+                            // 对每一项进行校验,查看校验结果,如果失败,则结果包含false以及提示信息
+                            if (values[i] !== true) {
+                                return [false, this.getMessage(keys[i] || values[i])];
                             }
                         }
                         return [true, ''];
+                    }, err => {
+                        let message;
+                        if (typeof err === 'string') {
+                            message = err;
+                        } else if (err) {
+                            message = err.message || this.getMessage(err.name);
+                        }
+                        return [false, message];
                     })
                     .then(([isValid, message]) => {
+                        if (p.cancelled) return;
+                        this.isDirty = true;
                         this.isValid = isValid;
                         this.message = message;
                         return isValid;
                     });
+                return p;
             },
-            getMessage(ruleName, value) {
-                const message = this.message && this.message[ruleName] ? this.message[ruleName] : defaultMessage[ruleName];
-                return typeof message === 'function' ? message(value, this, this.rules[ruleName]) : message;
+            getRules() {
+                const selfRules = this.rules;
+                return Object.assign({}, selfRules);
+            },
+            getMessage(ruleName) {
+                const customMessages = this.messages;
+                const rules = this.getRules();
+                const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
+                const value = this.deepGetValue($data, this.model).value;
+                const message = customMessages || defaultMessage[ruleName];
+                if (typeof message === 'function') {
+                    return message(value, this, rules[ruleName]);
+                }
+                if (message && message[ruleName]) {
+                    return message[ruleName];
+                } else {
+                    return defaultMessage[ruleName] ? defaultMessage[ruleName](value, this, rules[ruleName]) : '';
+                }
             },
             deepGetValue(data, path) {
                 path = Array.isArray(path) ? path : path.replace('[', '.').replace(']', '').split('.');
                 const res = path.reduce((initVal, current) => {
                     return initVal[current];
                 }, data);
-                return {value: res || ''};
+                return {value: res === false ? '' : res};
             }
         }
     };

@@ -40,7 +40,7 @@ describe('Tree', () => {
     it('create', () => {
         vm = getTreeVm();
         expect(document.querySelector('.kd-tree')).to.exist;
-        expect(document.querySelectorAll('.kd-tree > li > .kd-tree-node-el').length).to.equal(3);
+        expect(document.querySelectorAll('.kd-tree').length).to.equal(1);
     });
     // expand
     it('expand', function(done) {
