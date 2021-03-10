@@ -381,9 +381,9 @@
 | current     | 当前页码   | Number   |    1    |
 | limit     | 页面条数   | Number   |    10    |
 | limits     | 页面条数选择框   | Array<Number>   |    [5, 10, 20, 50]    |
-| showLimits     | 是否显示个数选择器   | Boolean  |    true    |
-| limitsIcon     | 个数选择器icon   | String  |      kd-pagination-limits-icon    |
-| noBorder     | 是否展示无边框样式，默认有边框   | Boolean   |    false    |
+| showLimits     | 是否显示条数选择框   | Boolean  |    true    |
+| limitsIcon     | 条数选择框icon   | String  |      kd-pagination-limits-icon    |
+| noBorder     | 无边框样式，默认有边框   | Boolean   |    false    |
 | prev-text     | 替代图标显示的上一页文字(字符串若以‘kd-icon’开头，则展示相应图标)   | String   |    ''    |
 | next-text     | 替代图标显示的下一页文字(字符串若以‘kd-icon’开头，则展示相应图标)   | String   |    ''    |
 | superMini     | 是否使用小型分页样式   | Boolean   |    false    |
