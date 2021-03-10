@@ -115,6 +115,7 @@
                     v-model.number="inputCurrent"
                     class="kd-pagination-input"
                     :size="size"
+                    @keyup="replaceValue"
                     @keyup.enter="jumpEnterAction"
             />页
         </div>
@@ -210,7 +211,7 @@
                 ellipsis: '···',
                 pageCount: 0,
                 showPageArray: [],
-                innerCounts: this.counts,
+                innerCounts: this.counts < 5 ? 5 : this.counts,
                 innerCurrent: this.current,
                 type: this.noBorder ? 'none' : 'default',
                 size: this.noBorder ? 'mini' : 'default',
@@ -345,6 +346,10 @@
                     }
                     this.parseData();
                 }
+            },
+            replaceValue(){
+                var v = this.inputCurrent;
+                this.inputCurrent = v == 0 ? '' : v.toString().replace(/[^0-9]*/g,"");
             },
             // click page btn
             checkPage(item) {
