@@ -222,15 +222,17 @@
             };
         },
         watch: {
-            total: function () {
-                if (this.timer) {
-                    clearInterval(this.timer);
-                    this.timer = null;
+            total(newV, oldV){
+                if(newV != oldV){
+                    if (this.timer) {
+                        clearInterval(this.timer);
+                        this.timer = null;
+                    }
+                    this.timer = setTimeout(() => {
+                        this.parseData();
+                        this.timer = null;
+                    }, 100);
                 }
-                this.timer = setTimeout(() => {
-                    this.parseData();
-                    this.timer = null;
-                }, 100);
             },
             current(newV, oldV) {
                 if (newV != this.innerCurrent) {
@@ -248,7 +250,7 @@
                 }
             },
             limit(newV) {
-                if (newV != this.innerCurrent) {
+                if (newV != this.innerLimit) {
                     this.innerLimit = newV;
                     if (this.timer) {
                         clearInterval(this.timer);
@@ -360,6 +362,7 @@
             },
             // change limit
             selectSize(pageSize) {
+                if(this.innerLimit == pageSize) return
                 this.innerLimit = pageSize;
                 // 当每页条数变动，页码自动变为1
                 this.innerCurrent = 1;
