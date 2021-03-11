@@ -14,7 +14,7 @@ describe('Timeline', () => {
             >{{ activity.content }}</kd-timeline-item>
         </kd-timeline>
     `;
-    it('reverse', done => {
+    it('reverse', function(done) {
         vm = createVue({
             template: `
                 <kd-timeline :reverse="reverse">
@@ -26,7 +26,7 @@ describe('Timeline', () => {
             `,
             data() {
                 return {
-                    reverse: true,
+                    reverse: false,
                     activities: [{
                         content: '创建成功',
                         timestamp: '2018-04-11'
@@ -40,18 +40,23 @@ describe('Timeline', () => {
                 }
             }
         });
-        const contentElms = vm.$el.querySelectorAll('.kd-timeline-item-content');
-        contentElms.forEach((elm, index) => {
-            expect(elm.innerText).to.equal(vm.activities[vm.activities.length - index - 1].content);
-        });
-        vm.reverse = false;
-        vm.$nextTick(() => {
+        this.timeout(8000);
+        setTimeout(() => {
             const contentElms = vm.$el.querySelectorAll('.kd-timeline-item-content');
-            contentElms.forEach((elm, index) => {
-                expect(elm.innerText).to.equal(vm.activities[index].content);
-            });
-            done();
-        });
+            expect(contentElms[0].innerText).to.equal(vm.activities[0].content);
+            // contentElms.forEach((elm, index) => {
+            //     expect(elm.innerText).to.equal(vm.activities[vm.activities.length - index - 1].content);
+            // });
+            vm.reverse = true;
+            setTimeout(() => {
+                const contentElms = vm.$el.querySelectorAll('.kd-timeline-item-content');
+                expect(contentElms[0].innerText).to.equal(vm.activities[2].content);
+                // contentElms.forEach((elm, index) => {
+                //     expect(elm.innerText).to.equal(vm.activities[index].content);
+                // });
+                done();
+            }, 3000);
+        }, 3000);
     });
     it('type', () => {
         vm = createVue({

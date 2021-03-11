@@ -39,7 +39,6 @@ function castPath(path) {
     }
     path.replace(rePropName, function (match, expression, quote, subString) {
         var key = match;
-        console.log(`quote: ${quote}`);
         if (expression) {
             key = expression;
         }

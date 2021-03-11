@@ -1,22 +1,4 @@
-// tooltip base
-$-font-size-base ?= 12px
-$-line-height-base ?= 1.5
-$-border-radius-base ?= 4px
-$-shadow-color ?= rgba(0, 0, 0, 0.15)
-$-box-shadow-base ?= 0 0 15px 0 $-shadow-color
-$-tooltip-max-width ?= calc(240px - 14px - 14px)
-$-tooltip-arrow-width ?= 5px
-$-tooltip-distance ?= $-tooltip-arrow-width - 1px + 4px
-// effect
-$-tooltip-theme = 'dark' 'light'
-$-tooltip-light-bg ?= #fff
-$-tooltip-light-color ?= #737373
-$-popover-content-light-color ?= #737373
-$-popover-titleline-light-color ?= #E5E5E5
-$-tooltip-dark-bg ?= #2C324D
-$-tooltip-dark-color ?= #fff
-$-popover-content-dark-color ?= #8D919B
-$-popover-titleline-dark-color ?= #414760
+@import "../variables.styl";
 // effect style
 for theme in $-tooltip-theme
     .kd-tooltip-{theme}

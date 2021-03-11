@@ -18,7 +18,7 @@
         7<br/>
         8<br/>
         9<br/>
-        <kd-spin isLocal></kd-spin>
+        <kd-spin local></kd-spin>
     </div>
 </template>
 <script>
@@ -57,7 +57,7 @@
         7<br/>
         8<br/>
         9<br/>
-        <kd-spin isLocal spinner="kd-icon-refresh" size="small" background="rgba(0,0,0,.6)"></kd-spin>
+        <kd-spin local spinner="kd-icon-refresh" size="small" background="rgba(0,0,0,.6)"></kd-spin>
     </div>
 </template>
 <script>
@@ -118,8 +118,8 @@
 ```html
 <template>
     <div>
-        <Button
-        @click="changeHandler">加载中</Button>
+        <kd-button
+        @click="changeHandler">加载中</kd-button>
         <kd-spin v-if="change" text="加载中"/>
     </div>
 </template>
@@ -152,5 +152,5 @@
 | overlay     | 是否展示带遮罩层的加载动画   | Boolean    |     true / false     |    true     |
 | background  |   遮罩背景色   | String  |     -    |    rgba(255, 255, 255, .5)    |
 | text  |   显示在加载图标下方的加载文案   | String  |     -    |    -    |
-| spinner  |   是否自定义加载图标   | Boolean  |     -    |    false    |
-| isLocal  |   局部spin，是否展示带遮罩层的加载动画，需要父元素为定位元素   | Boolean  |     -    |    false    |
+| spinner  |   是否自定义加载图标   | Boolean / String  |     -    |    false    |
+| local  |   局部spin，是否展示带遮罩层的加载动画，需要父元素为定位元素   | Boolean  |     -    |    false    |

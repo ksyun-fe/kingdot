@@ -1,10 +1,11 @@
+@import "../variables.styl"
 .kd-input, .kd-textarea
     box-sizing border-box
     display inline-block
     width $-input-default-width
     vertical-align middle
     input
-        appearance button;
+        appearance button
         -moz-appearance none
         -webkit-appearance none
     .kd-input-wrapper
@@ -74,7 +75,6 @@
         .kd-input-inner
             border-color $-danger-color
     .kd-textarea
-        padding $-input-textarea
         height auto
         line-height 1.5
 
@@ -130,3 +130,6 @@
         bottom $-textarea-count-bottom
         right $-textarea-count-right
         z-index 1
+
+input::-ms-clear, input::-ms-reveal
+    display none

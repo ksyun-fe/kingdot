@@ -19,9 +19,9 @@ const compiler = (fieldPath, outputPath) => {
         .pipe(stylus())
         .pipe(autoprefixer({
             overrideBrowserslist: [
-                "Chrome > 31",
-                "ff > 31",
-                "ie >= 8"
+                'Chrome > 31',
+                'ff > 31',
+                'ie >= 8'
             ]
         }))
         .pipe(cssmin())

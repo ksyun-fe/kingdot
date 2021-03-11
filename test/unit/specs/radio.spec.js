@@ -1,5 +1,5 @@
 import Radio from 'components/Radio/index.js';
-import { createCons, createVue, destroyVM } from '../util';
+import { createCons, createVue, destroyVM} from '../util';
 
 describe('Radio', () => {
     let vm;
@@ -65,6 +65,42 @@ describe('Radio', () => {
             expect(vm.changeCalled).to.be.true;
             expect(vm.changeFnValue).to.be.true;
             expect(el.classList.contains('kd-radio-checked')).to.be.true;
+        });
+    });
+    // disabled radio
+    it('disabled', async () => {
+        let el;
+        vm = createVue({
+            template: `
+                <KdRadio
+                        v-model="checked"
+                        :true-value="true"
+                        ref="radio"
+                        disabled
+                        @change="click"
+                >checked</KdRadio>
+            `,
+            data() {
+                return {
+                    checked: false,
+                    clicked: false
+                }
+            },
+            methods: {
+                click() {
+                    this.clicked = true;
+                }
+            }
+        }, true);
+
+        el = vm.$el;
+        expect(vm.$el.classList.contains('kd-radio-disabled')).to.be.true;
+        expect(vm.checked).to.be.equal(false);
+        vm.$refs.radio.clickSelf();
+        await vm.$nextTick().then(() => {
+            expect(vm.$el.classList.contains('kd-radio-disabled')).to.be.true;
+            expect(vm.checked).to.be.equal(false);
+            expect(vm.clicked).to.be.false;
         });
     });
 })

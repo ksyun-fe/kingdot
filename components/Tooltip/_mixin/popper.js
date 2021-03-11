@@ -20,6 +20,10 @@ export default {
         popperModifiers: {
             type: Array,
             default: () => []
+        },
+        hideDestroy: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -128,11 +132,11 @@ export default {
                 this._createPopper();
             }
         },
-        destroyPopper() {
+        destroyPopper(remove) {
             if (!this.popperJS) return;
             this.popperJS.destroy();
             this.popperJS = null;
-            if (this.popper && this.popper.parentNode === document.body) {
+            if (this.popper && this.popper.parentNode === document.body && (remove || this.hideDestroy)) {
                 document.body.removeChild(this.popper);
             }
             this.currentPlacement = this.placement; // reset
@@ -148,6 +152,6 @@ export default {
         }
     },
     beforeDestroy() {
-        this.destroyPopper();
+        this.destroyPopper(true);
     }
 };

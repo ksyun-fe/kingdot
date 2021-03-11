@@ -11,7 +11,6 @@
     <div>
         <i class="kd-icon-message-solid icon-demo"></i>
         <i class="kd-icon-success-solid icon-demo"></i>
-        <kd-button type='primary' icon='kd-icon-search'>搜索</kd-button>
     </div>
 </template>
 <style type="text/stylus" scoped rel="stylesheet/stylus" lang="stylus">
@@ -88,4 +87,12 @@ export default {
             display inline-block
             padding 0 3px
 </style>
+<style type="text/stylus" rel="stylesheet/stylus" lang="stylus">
+    .dark
+        .icon-name
+        .icon-list-block [class ^= kd-icon-]
+            color #fff !important
+</style>
 ```
+
+:::

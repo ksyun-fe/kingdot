@@ -119,7 +119,7 @@ describe('drawer', () => {
     })
 
     //点击X关闭 drawer
-    it('close drawer', async() => {
+    it('close drawer', (done) => {
             vm = createVue({
                 template: `
                 <kd-drawer  
@@ -132,12 +132,14 @@ describe('drawer', () => {
                         visible: true
                     }
                 }
-            }, true)
-            vm.$el.querySelector('span.kd-drawer-close-icon').click();
-            setTimeout(() => {
-                expect(vm.visible).to.be.false;
-                done();
-            }, 500);
+            }, true);
+             vm.$nextTick().then(() => {
+                vm.$el.querySelector('span.kd-drawer-close-icon').click();
+                setTimeout(() => {
+                    expect(vm.visible).to.be.false;
+                    done();
+                }, 500);
+            })
         })
         //自定义内容
     it('custom drawer content', () => {
@@ -180,12 +182,10 @@ describe('drawer', () => {
     })
 
     // 确认操作
-    it('ok', async() => {
+    it('ok', (done) => {
             vm = createVue({
                 template: `
-            <kd-drawer v-model="visible" :ok='okFn' :cancel='cancelFn'>
-            {{num}}
-            </kd-drawer>
+            <kd-drawer v-model="visible" :ok='okFn' :cancel='cancelFn'>{{num}}</kd-drawer>
           `,
                 data() {
                     return {
@@ -202,23 +202,22 @@ describe('drawer', () => {
                     }
                 }
             }, true)
-            await vm.$nextTick().then((_) => {
+             vm.$nextTick().then((_) => {
                 vm.$el.querySelector('.kd-drawer-truebutton').click();
                 setTimeout(function() {
                     expect(
                         vm.$el.querySelector('.kd-drawer-body').textContent
-                    ).to.equal(1);
+                    ).to.equal('1');
+                    done();
                 }, 200);
             })
 
         })
         // 取消操作
-    it('cancel', async() => {
+    it('cancel', (done) => {
             vm = createVue({
                 template: `
-            <kd-drawer v-model="visible"  :cancel='cancelFn'>
-            {{num}}
-            </kd-drawer>
+            <kd-drawer v-model="visible"  :cancel='cancelFn'>{{num}}</kd-drawer>
           `,
                 data() {
                     return {
@@ -232,12 +231,13 @@ describe('drawer', () => {
                     }
                 }
             }, true)
-            await vm.$nextTick().then((_) => {
+             vm.$nextTick().then((_) => {
                 vm.$el.querySelector('.kd-drawer-closbutton').click();
                 setTimeout(function() {
                     expect(
                         vm.$el.querySelector('.kd-drawer-body').textContent
-                    ).to.equal(-1);
+                    ).to.equal('-1');
+                    done();
                 }, 200);
             })
 
@@ -250,17 +250,18 @@ describe('drawer', () => {
             expect(vm.$el.querySelector('.kd-drawer-overlay')).to.be.have;
         })
         //点击遮罩关闭抽屉
-    it('close mask', async() => {
+    it('close mask', (done) => {
         vm = createCons(Drawer, {
             value: true,
             maskClosable: true
         })
-        await vm.$nextTick().then((_) => {
+         vm.$nextTick().then((_) => {
             vm.$el.querySelector('.kd-drawer-overlay').click();
             setTimeout(function() {
                 expect(
                     vm.$el.querySelector('.kd-drawer')
                 ).to.be.null
+                done();
             }, 200);
         })
     })

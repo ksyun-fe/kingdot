@@ -31,7 +31,7 @@ describe('Transition', () => {
             });
             let action = vm.show ? 'leave' : 'enter';
             vm.show = !show;
-            vm.$nextTick(() => {
+            await vm.$nextTick().then(() => {
                 expect(vm.$el.classList.contains(`${type}${motion ? '-' + motion : ''}-${action}`)).to.be.true;
                 expect(vm.$el.classList.contains(`${type}${motion ? '-' + motion : ''}-${action}-active`)).to.be.true;
             });
@@ -70,7 +70,7 @@ describe('Transition', () => {
             }
         });
         vm.show = false;
-        vm.$nextTick(() => {
+        await vm.$nextTick().then(() => {
             expect(vm.$el.classList.contains('kd-collapse-transition')).to.be.true;
         });
     });
@@ -87,7 +87,7 @@ describe('Transition', () => {
             }
         });
         vm.show = true;
-        vm.$nextTick(() => {
+        await vm.$nextTick().then(() => {
             expect(vm.$el.classList.contains('kd-collapse-transition')).to.be.true;
         });
     });

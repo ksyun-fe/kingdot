@@ -66,6 +66,10 @@
                             "name": "Checkbox 多选框"
                         },
                         {
+                            "path": "/slider",
+                            "name": "Slider 滑块"
+                        },
+                        {
                             "path": "/dropdown",
                             "name": "Dropdown 下拉菜单"
                         },
@@ -91,8 +95,16 @@
                             "name": "Timeline 时间轴"
                         },
                         {
+                            "path": "/tree",
+                            "name": "Tree 树"
+                        },
+                        {
                             "path": "/table",
                             "name": "Table 表格"
+                        },
+                        {
+                            "path": "/pagination",
+                            "name": "Pagination 分页"
                         }
                     ]
                 },
@@ -114,6 +126,10 @@
                         {
                             "path": "/popconfirm",
                             "name": "Popconfirm 气泡确认框"
+                        },
+                        {
+                            "path": "/spin",
+                            "name": "Spin 加载中"
                         }
                     ]
                 },
@@ -248,6 +264,10 @@
                         {
                             "path": "/table",
                             "name": "Table"
+                        },
+                        {
+                            "path": "/pagination",
+                            "name": "Pagination"
                         }
                     ]
                 },
@@ -257,6 +277,10 @@
                         {
                             "path": "/message",
                             "name": "Message"
+                        },
+                        {
+                            "path": "/spin",
+                            "name": "Spin"
                         }
                     ]
                 },
