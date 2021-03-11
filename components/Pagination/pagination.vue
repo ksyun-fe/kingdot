@@ -1,25 +1,35 @@
 <template>
     <div
-            class="kd-pagination"
             v-if="total>0"
+            class="kd-pagination"
     >
         <!-- total -->
         <div
-            v-if="!superMini && showTotal"
-            class="kd-pagination-total">
+                v-if="!superMini && showTotal"
+                class="kd-pagination-total">
             <span>共{{ total }}条</span>
         </div>
         <div
-            v-if="showPageCount"
-            class="kd-pagination-total">
+                v-if="showPageCount"
+                class="kd-pagination-total">
             <span>共{{ pageCount }}页</span>
         </div>
         <!-- limits -->
-        <div class="kd-pagination-limits" v-if="!superMini && showLimits">
+        <div
+                v-if="!superMini && showLimits"
+                class="kd-pagination-limits"
+        >
             <kd-dropdown size="mini">
-                {{innerLimit}}条 / 页 <i :class="['kd-pagination-limits-icon',limitsIcon]"></i>
+                {{ innerLimit }} 条 / 页 <i :class="['kd-pagination-limits-icon',limitsIcon]"></i>
                 <kd-dropdown-menu slot="dropdown">
-                    <kd-dropdown-item slot="dropdownItem" v-for="item in limits" :key="item" @click="selectSize(item)">{{item}}</kd-dropdown-item>
+                    <kd-dropdown-item
+                            v-for="item in limits"
+                            slot="dropdownItem"
+                            :key="item"
+                            @click="selectSize(item)"
+                    >
+                        {{ item }}
+                    </kd-dropdown-item>
                 </kd-dropdown-menu>
             </kd-dropdown>
         </div>
@@ -32,11 +42,11 @@
                 @click="prev"
         >
             <i
-                v-if="!prevText || prevText.includes('kd-icon')"
-                :class="[
-                    'kd-icon-caret-left',
-                    prevText.includes('kd-icon') ? prevText : 'kd-pagination-left'
-                ]"
+                    v-if="!prevText || prevText.includes('kd-icon')"
+                    :class="[
+                        'kd-icon-caret-left',
+                        prevText.includes('kd-icon') ? prevText : 'kd-pagination-left'
+                    ]"
             ></i>
             <span v-else>
                 {{ prevText }}
@@ -96,11 +106,11 @@
                 @click="next"
         >
             <i
-                v-if="!nextText || nextText.includes('kd-icon')"
-                :class="[
-                    'kd-pagination-right',
-                    nextText.includes('kd-icon') ? nextText : 'kd-icon-date-forward'
-                ]"
+                    v-if="!nextText || nextText.includes('kd-icon')"
+                    :class="[
+                        'kd-pagination-right',
+                        nextText.includes('kd-icon') ? nextText : 'kd-icon-date-forward'
+                    ]"
             ></i>
             <span v-else>
                 {{ nextText }}
@@ -123,9 +133,9 @@
 </template>
 
 <script>
-    import KdDropdown from "../Dropdown/dropdown";
-    import KdDropdownMenu from "../Dropdown/dropdown-menu";
-    import KdDropdownItem from "../Dropdown/dropdown-item";
+    import KdDropdown from '../Dropdown/dropdown';
+    import KdDropdownMenu from '../Dropdown/dropdown-menu';
+    import KdDropdownItem from '../Dropdown/dropdown-item';
     import KdButton from '../Button/button';
     import KdButtonGroup from '../ButtonGroup/button-group';
     const markDic = {
@@ -223,8 +233,8 @@
             };
         },
         watch: {
-            total(newV, oldV){
-                if(newV != oldV){
+            total(newV, oldV) {
+                if (newV != oldV) {
                     if (this.timer) {
                         clearInterval(this.timer);
                         this.timer = null;
@@ -299,9 +309,9 @@
                         // 1，省略符'...'，中间部分，省略符'...'，总页数
                         _pageArrayData.push(pageItem(1));
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.left));
-                        let num = this.innerCounts%2 == 0 ? Math.ceil((this.innerCounts - 2) / 2) : Math.floor((this.innerCounts - 2) / 2)
+                        const num = this.innerCounts % 2 == 0 ? Math.ceil((this.innerCounts - 2) / 2) : Math.floor((this.innerCounts - 2) / 2);
                         const start = this.innerCurrent - num;
-                        let endNum = this.innerCounts%2 == 0 ? (this.innerCounts - 1) : (this.innerCounts - 2)
+                        const endNum = this.innerCounts % 2 == 0 ? (this.innerCounts - 1) : (this.innerCounts - 2);
                         for (let i = 0; i < endNum; i++) {
                             _pageArrayData.push(pageItem(i + start));
                         }
@@ -347,9 +357,9 @@
                     this.parseData();
                 }
             },
-            replaceValue(){
+            replaceValue() {
                 var v = this.inputCurrent;
-                this.inputCurrent = v == 0 ? '' : v.toString().replace(/[^0-9]*/g,"");
+                this.inputCurrent = v == 0 ? '' : v.toString().replace(/[^0-9]*/g, '');
             },
             // click page btn
             checkPage(item) {
@@ -358,7 +368,7 @@
                     this.innerCurrent = this.preValue - 2;
                 } else if (item.value == this.markDic.right) {
                     this.innerCurrent = this.preValue + 2;
-                }else{
+                } else {
                     this.innerCurrent = item.value;
                 }
                 this.preValue = this.innerCurrent;
@@ -367,7 +377,7 @@
             },
             // change limit
             selectSize(pageSize) {
-                if(this.innerLimit == pageSize) return
+                if (this.innerLimit == pageSize) return;
                 this.innerLimit = pageSize;
                 // 当每页条数变动，页码自动变为1
                 this.innerCurrent = 1;
