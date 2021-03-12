@@ -48,7 +48,10 @@
                         prevText.includes('kd-icon') ? prevText : 'kd-pagination-left'
                     ]"
             ></i>
-            <span v-else>
+            <span
+                    v-else
+                    class="kd-pagination-prev-text"
+            >
                 {{ prevText }}
             </span>
         </kd-button>
@@ -112,7 +115,10 @@
                         nextText.includes('kd-icon') ? nextText : 'kd-icon-date-forward'
                     ]"
             ></i>
-            <span v-else>
+            <span
+                    v-else
+                    class="kd-pagination-next-text"
+            >
                 {{ nextText }}
             </span>
         </kd-button>
