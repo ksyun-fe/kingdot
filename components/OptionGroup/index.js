@@ -1,7 +1,7 @@
-import KdOptionGroup from './../Select/option-group.vue';
+import OptionGroup from './../Select/option-group.vue';
 
-KdOptionGroup.install = function (Vue) {
-    Vue.component(KdOptionGroup.name, KdOptionGroup);
+OptionGroup.install = function (Vue) {
+    Vue.component(OptionGroup.name, OptionGroup);
 };
 
-export default KdOptionGroup;
+export default OptionGroup;

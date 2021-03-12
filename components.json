@@ -25,6 +25,7 @@
     "Radio": "./components/Radio/index.js",
     "Row": "./components/Row/index.js",
     "Select": "./components/Select/index.js",
+    "Slider": "./components/Slider/index.js",
     "Spin": "./components/Spin/index.js",
     "Spinner": "./components/Spinner/index.js",
     "Step": "./components/Step/index.js",
@@ -38,5 +39,7 @@
     "TimelineItem": "./components/TimelineItem/index.js",
     "Tooltip": "./components/Tooltip/index.js",
     "Transfer": "./components/Transfer/index.js",
-    "Transition": "./components/Transition/index.js"
+    "Transition": "./components/Transition/index.js",
+    "Tree": "./components/Tree/index.js",
+    "Upload": "./components/Upload/index.js"
 }

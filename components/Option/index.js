@@ -1,7 +1,7 @@
-import KdOption from './../Select/option.vue';
+import Option from './../Select/option.vue';
 
-KdOption.install = function (Vue) {
-    Vue.component(KdOption.name, KdOption);
+Option.install = function (Vue) {
+    Vue.component(Option.name, Option);
 };
 
-export default KdOption;
+export default Option;

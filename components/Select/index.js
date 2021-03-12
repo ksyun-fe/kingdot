@@ -1,7 +1,7 @@
-import KdSelect from './select.vue';
+import Select from './select.vue';
 
-KdSelect.install = function (Vue) {
-    Vue.component(KdSelect.name, KdSelect);
+Select.install = function (Vue) {
+    Vue.component(Select.name, Select);
 };
 
-export default KdSelect;
+export default Select;
