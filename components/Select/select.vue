@@ -183,8 +183,11 @@
         },
         watch: {
             value: {
+                immediate: true,
                 handler(v) {
-                    this.initData(v);
+                    this.$nextTick(() => {
+                        this.initData(v);
+                    });
                 }
             },
             dropdownMenu: {
@@ -209,12 +212,10 @@
         },
         mounted() {
             this.defaultWidth = this.$refs.kdSelect.clientWidth + 'px';
-            this.$nextTick(() => {
-                this.initData(this.value);
-            });
         },
         methods: {
             initData(v) {
+                if (!this.$slots.default) return;
                 if (this.multiple) {
                     const tagList = [];
                     // 多选初始化添加tags
@@ -224,7 +225,6 @@
                             const value = options.propsData.value;
                             if (value === vItem) {
                                 const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
-                                console.log(item);
                                 tagList.push({
                                     value: value,
                                     label: label
@@ -262,6 +262,8 @@
                 const options = item.componentOptions;
                 const value = options.propsData.value;
                 const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
+                console.log(options.propsData.label);
+                console.log(item.componentInstance);
                 if (value === v) {
                     this.inputLabel = label;
                 }
@@ -318,6 +320,7 @@
                 this.$emit('input', this.selected);
                 this.$refs.kdDropdownTooltip.updatePopper();
                 this.inputFocus();
+                this.$emit('change', scope);
             },
             inputFocus() {
                 this.$refs.input.focus();

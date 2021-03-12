@@ -123,19 +123,21 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    let value = v;
-                    //  小数点
-                    if (this.precision !== null) {
-                        value = this.addPoint(value);
-                    }
-                    this.isMax = v === this.max;
-                    this.isMin = v === this.min;
-                    console.log(value);
-                    this.inputValue = value;
+                    this.valueFilter(v);
                 }
             }
         },
         methods: {
+            valueFilter(v) {
+                let value = v;
+                //  小数点
+                if (this.precision !== null) {
+                    value = this.addPoint(value);
+                }
+                this.isMax = v === this.max;
+                this.isMin = v === this.min;
+                this.inputValue = value;
+            },
             // 增加
             addNum() {
                 console.log(this.inputValue);
@@ -182,6 +184,12 @@
             handleBlur(e) {
                 const step = this.step;
                 let value = Number(this.inputValue);
+                console.log(this.value);
+                console.log(this.inputValue);
+                if (isNaN(value)) {
+                    this.valueFilter(this.value);
+                    return;
+                }
                 // 输入精准
                 if (this.inputStep && step !== null) {
                     const num = value / step;
@@ -192,7 +200,6 @@
                 if (this.precision !== null) {
                     this.inputValue = this.addPoint(value);
                 }
-                console.log(this.inputValue);
                 this.$emit('blur', e);
             },
             addPoint(value) {

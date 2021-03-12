@@ -1,7 +1,7 @@
 ### Upload
 将文件通过网页上传到服务器。
 
-:::demo #上传 ##介绍上传使用，tip提示用户的信息，accept属性限制上传文件的格式。
+:::demo #基本使用 ##介绍上传使用，tip提示用户的信息，accept属性限制上传文件的格式。
 
 ```html
 <template>
@@ -16,7 +16,7 @@
 ```
 :::
 
-:::demo #上传 ##添加multiple属性可以选择多个文件，同时上传。限制最多上传3个文件。
+:::demo #选择多个 ##添加multiple属性可以选择多个文件，同时上传。限制最多文件。
 
 ```html
 <template>
@@ -43,7 +43,6 @@
                 this.$message.error('超出文件个数');
             },
             beforeaUpload(file){
-                // console.log(file.type,'默认格式错误')
                 return true
             }
         }
@@ -51,8 +50,8 @@
 </script>
 ```
 :::
-### 分块上传
-:::demo #上传 ##支持分块上传，设置每块的上传大小，支持暂停，恢复功能。
+
+:::demo #分块上传 ##支持分块上传，设置每块的上传大小，支持暂停，恢复功能。
 
 ```html
 <template>
@@ -86,8 +85,8 @@
 ```
 :::
 
-### 用户头像上传
-:::demo #上传 ##头像格式上传,自定义限制规则。
+### 
+:::demo #用户头像 ##头像格式上传,自定义限制图片规则。
 
 ```html
 <template>
@@ -129,15 +128,16 @@
     }
 </script>
 ```
-https://jsonplaceholder.typicode.com/posts/ 
+
 :::
-### 照片墙上传
-:::demo #上传 ##照片墙格式上传,自定义限制规则。
+
+
+:::demo #照片墙上传 ##照片墙格式上传,使用list-type设置。
 
 ```html
 <template>
     <kd-upload multiple 
-        action="http://127.0.0.1/chunk/api/upload"
+        action="https://jsonplaceholder.typicode.com/posts/"
         :data="data"
         :init-file-list="fileList"
         :on-change="hanldeChange"
@@ -208,8 +208,7 @@ https://jsonplaceholder.typicode.com/posts/
 ```
 :::
 
-### 手动上传图片
-:::demo #上传 ##照片墙格式上传。
+:::demo #手动上传 ##手动触发submit()方法。
 
 ```html
 <template>
@@ -240,8 +239,7 @@ export default{
 ```
 :::
 
-### 拖拽上传文件
-:::demo #上传 ##拖拽上传文件。
+:::demo #拖拽上传文件 ##点击或者拖拽到方框中。
 
 ```html
 <template>
@@ -251,8 +249,6 @@ export default{
         :auto-upload="false"
         drag
     >
-        <!-- <i class="kd-upload-drag-icon kdicon kd-icon-plus"></i>
-        <span>点击或将文件拖拽到这里上传</span> -->
     </kd-upload>
 </template>
 ```
