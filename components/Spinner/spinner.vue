@@ -140,7 +140,6 @@
             },
             // 增加
             addNum() {
-                console.log(this.inputValue);
                 let value = Number(this.inputValue);
                 const max = this.max;
                 if (value === this.max || this.disabled) return;
@@ -149,24 +148,22 @@
                 } else {
                     value = (value * 10 + this.step * 10) / 10;
                 }
-                if (value > max) {
+                if (value > max && max !== null) {
                     value = max;
                 }
-                console.log(value);
+
                 this.$emit('input', value);
                 this.$emit('change', value, this.value);
             },
             //  减小
             minusNum() {
-                console.log(this.inputValue);
                 let value = Number(this.inputValue);
-                console.log(value);
                 const min = this.min;
                 if (value === this.min || this.disabled) return;
                 if (this.step === null) {
                     value -= 1;
                 } else {
-                    value -= this.step;
+                    value = (value * 10 - this.step * 10) / 10;
                 }
                 if (value < min && min !== null) {
                     value = min;
@@ -184,8 +181,6 @@
             handleBlur(e) {
                 const step = this.step;
                 let value = Number(this.inputValue);
-                console.log(this.value);
-                console.log(this.inputValue);
                 if (isNaN(value)) {
                     this.valueFilter(this.value);
                     return;

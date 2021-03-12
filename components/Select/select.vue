@@ -15,8 +15,8 @@
                 trigger="click"
                 placement="bottom"
                 :disabled="disabled"
+                :hide-destroy="hideDestroy"
                 :width-limit="false"
-
                 :content-class="tooltipClass"
         >
             <div
@@ -152,6 +152,10 @@
             contentClass: {
                 type: String,
                 default: ''
+            },
+            hideDestroy: {
+                type: Boolean,
+                default: false
             }
 
         },

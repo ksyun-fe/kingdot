@@ -210,6 +210,7 @@
 | clickHide  | 点击item是否隐藏菜单   | boolean |   —    |    true   
 | placement  | 菜单显示的位置   | string |   top / bottom    |    bottom   
 | contentClass | 	弹层内容添加类名 |	String | — | —  | 
+| hideDestroy    | 弹层隐藏后是否销毁dom   |  Boolean    |  —  | false |
 
 ### Dropdown Events {.component__content}
 | 属性      | 说明    | 回调   |

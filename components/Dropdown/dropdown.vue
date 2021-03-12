@@ -10,6 +10,7 @@
                 :disabled="disabled"
                 can-hover
                 :width-limit="false"
+                :hide-destroy="hideDestroy"
                 :content-class="dropdownClass"
         >
             <div v-if="!splitButton">
@@ -89,7 +90,12 @@
             contentClass: {
                 type: String,
                 default: ''
+            },
+            hideDestroy: {
+                type: Boolean,
+                default: false
             }
+
         },
         data() {
             return {
