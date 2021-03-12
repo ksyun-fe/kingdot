@@ -136,7 +136,7 @@ $-btn-disabled-border-color := $-disabled-border-color
 
 $-btn-default-border-color := $-border-base-color
 $-btn-default-bg := #fff
-$-btn-default-color := $-black-color
+$-btn-default-color := $-text-light-color
 
 $-btn-default-hover-color := #557DFC
 $-btn-default-hover-border-color := #557DFC
@@ -481,41 +481,44 @@ $-breadcrumb-item-link-active := $-primary-darker-color
 /******************************
          Tabs
 *******************************/
-$-tabs-color-active-bar := #557dfc
-$-tabs-color-active := #557dfc
-$-tabs-color-font := #4c4c4c
-$-tabs-color-background := #ffffff
-$-tabs-card-color-background := #ffffff
+$-tabs-color-active-bar := $-primary-color
+$-tabs-color-active := $-primary-color
+$-tabs-color-font := $-text-light-color
+$-tabs-after-backgroundColor := $-split-line-color //#e5e5e5
+$-tabs-after-borderColor := $-split-line-color
+$-tabs-after-borderColor-card := $-split-line-color
+$-kd-add-tab :=$-split-line-color//#e5e5e5
+$-tabs-font-size :=$-font-default-size// 14px
+$-tabs-color-background := $-white-color//#ffffff
+$-tabs-card-color-background := $-white-color//#ffffff
 $-tabs-color-guanbi := #C0C7CC
 $-tabs-after-backgroundColor := #e5e5e5
 $-tabs-after-borderColor := #e5e5e5
 $-tabs-after-borderColor-card := #e5e5e5
 $-tabs-after-disabledColor := $-border-base-color
+
 $-tabs-large-backgroundColor := #F0F0F3
 $-tabs-card-backgroundColor := #F3F4F7
 $-tabs-card-background := #F3F4F7
-$-kd-add-tab :=#e5e5e5
-$-tabs-font-size := 14px
-
 $-tabs-after-width :=100%
 $-tabs-border-width := 1px
-
 $-tabs-user-select :=none
 /******************************
           Drawer
 *******************************/
-$-drawer-active-color := #4464c9
-$-drawer-hover-color := #7797FC
-$-drawer-mian-backgroundColor := #ffffff
-$-drawer-trueButton-backgroundColor := #557DFC
-$-drawer-trueButton-fontColor := #fff
-$-drawer-closeButton-backgroundColor := #fff
-$-drawer-closeButton-borderColor := #ccc
-$-drawer-overlay-backgroundColor := #000
-$-drawer-titleBorder-color := #E5E5E5
-$-drawer-titleIcon-color := #ccc
-$-drawer-footerBorder-color := #E5E5E5
-$-drawer-txt-color := #262626
+$-drawer-active-color := $-primary-darker-color//#4464c9
+$-drawer-hover-color := $-primary-lighter-color //#7797FC
+$-drawer-trueButton-backgroundColor :=$-primary-color// #557DFC
+$-drawer-txt-color :=$-text-dark-color// #262626
+$-drawer-overlay-backgroundColor := $-black-color//#000
+$-drawer-mian-backgroundColor := $-white-color//#ffffff
+$-drawer-trueButton-fontColor :=$-white-color// #fff
+$-drawer-closeButton-backgroundColor :=$-white-color// #fff
+$-drawer-closeButton-borderColor :=$-border-base-color// #ccc
+
+$-drawer-titleBorder-color :=$-split-line-color// #E5E5E5
+$-drawer-titleIcon-color := $-border-base-color//#ccc
+$-drawer-footerBorder-color := $-split-line-color//#E5E5E5
 
 $-drawer-main-width := 100%
 $-drawer-main-height := 100%
@@ -630,6 +633,56 @@ $-transfer-btn-margin-left := 10px
 $-transfer-btn-vertical-mr := 10px 0 0
 $-transfer-footer-btn-padding := 4px 15px
 $-transfer-footer-btn-margin := 15px
+/******************************
+        select
+*******************************/
+$-select-height-large := 36px;
+$-select-height-default := 32px;
+$-select-height-small := 28px;
+$-select-height-mini := 26px;
+
+$-select-margin-large := 5px 0 5px 8px
+$-select-margin-default := 5px 0 5px 8px
+$-select-margin-small := 3px 0 3px 8px
+$-select-margin-mini := 2px 0 2px 8px
+
+$-select-radius := 4px
+
+$-select-bg := #fff
+$-select-input-color := #B2B2B2
+$-select-border-hover := #ccc
+$-select-active-color :=  #557DFC
+$-select-disabled-color := #F3F4F7
+$-select-disabled-bg := #F3F4F7
+
+$-select-group-color := #B2B2B2
+$-select-tag-bg := #F1F1F5
+
+$-select-tag-close-bg := #ccc
+$-select-tag-close-color := #fff
+
+$-select-data-color := #ccc
+
+$-select-item-hover-bg := #F3F4F7
+$-select-item-text-color :=  #404040
+
+$-select-option-disabled-bg := #F2F2F2
+
+/******************************
+        Upload
+*******************************/
+$-upload-default-text := #404040
+$-upload-text-hover-color := $-content-bg-hover-color
+$-upload-success-color := $-success-color
+$-upload-error-color := $-warning-color
+$-upload-primary-color := $-primary-color
+$-upload-border-radius := $-border-radius
+$-upload-border-color := $-border-base-color
+
+$-upload-tip-color := $-text-placeholder-color 
+$-upload-border-color := #ccc
+$-upload-progress-top := 28px
+$-upload-progress-text-top := -28px
 
 /******************************
         tooltip

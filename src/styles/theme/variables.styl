@@ -498,24 +498,24 @@ $-breadcrumb-item-link-active := $-primary-darker-color
 /******************************
          Tabs
 *******************************/
-$-tabs-color-active-bar := #ED3351
+$-tabs-color-active-bar :=$-danger-color// #ED3351
 $-tabs-color-active := #ffffff
 $-tabs-large-backgroundColor-active := #252D45
-$-tabs-card-color-background :=linear-gradient(180deg, #F8334C 0%, #4E284D 91%)
+$-tabs-card-color-background :=$-primary-linear-color//linear-gradient(180deg, #F8334C 0%, #4E284D 91%)
 $-tabs-color-background := #222A41
 $-kd-add-tab :=#2d354d
-$-tabs-color-font := #8D919B
+$-tabs-color-font := $-text-light-color//#8D919B
 
-$-tabs-after-backgroundColor := #2F374F;
+$-tabs-after-backgroundColor :=$-split-line-color// #2F374F;
 
 $-tabs-color-guanbi := #C0C7CC
 
 $-tabs-after-borderColor := transparent
-$-tabs-after-disabledColor := #4F576E
+$-tabs-after-disabledColor := $-disabled-color//#4F576E
 $-tabs-large-backgroundColor := #2D354D
 $-tabs-card-backgroundColor := #F3F4F7
 $-tabs-card-background := #222a41
-$-tabs-after-borderColor-card :=#525c77
+$-tabs-after-borderColor-card :=$-border-base-color//#525c77
 
 $-tabs-font-size := 14px
 
@@ -533,19 +533,19 @@ $-drawer-active-color := #4464c9
 $-drawer-hover-color := #7797FC
 $-drawer-mian-backgroundColor := #222A41
 
-$-drawer-trueButton-backgroundColor :=  linear-gradient(180deg, #F8334C 0%, #4E284D 91%)
-$-drawer-trueButton-fontColor := #fff
+$-drawer-trueButton-backgroundColor := $-primary-linear-color// linear-gradient(180deg, #F8334C 0%, #4E284D 91%)
+$-drawer-trueButton-fontColor := $-text-regular-color//#fff
 $-drawer-closeButton-backgroundColor := #222A41
 $-drawer-closeButton-borderColor := #525C77
-$-drawer-closeButton-fontColor :=#ffffff
+$-drawer-closeButton-fontColor :=$-text-regular-color//#ffffff
 
 $-drawer-overlay-backgroundColor := #000
 $-drawer-titleBorder-color := #2C314E
-$-drawer-title-backgroundColor := #2C314E
+$-drawer-title-backgroundColor := $-light-bg-color//#2C314E
 
 $-drawer-titleIcon-color := #ccc
-$-drawer-footerBorder-color := #2F374F
-$-drawer-txt-color := #ffffff
+$-drawer-footerBorder-color := $-split-line-color//#2F374F
+$-drawer-txt-color := $-text-regular-color//#ffffff
 
 $-drawer-main-width := 100%
 $-drawer-main-height := 100%
@@ -669,3 +669,48 @@ $-dropdown-item-disabled-bg := $-disabled-color
 $-dropdown-item-hover-bg := #F3F4F7
 $-dropdown-item-dividedLine := #ccc
 $-dropdown-item-disabled-hover := $-white-color
+
+/******************************
+        select
+*******************************/
+$-select-height-large := 36px;
+$-select-height-default := 32px;
+$-select-height-small := 28px;
+$-select-height-mini := 26px;
+
+$-select-margin-large := 5px 0 5px 8px
+$-select-margin-default := 5px 0 5px 8px
+$-select-margin-small := 3px 0 3px 8px
+$-select-margin-mini := 2px 0 2px 8px
+
+$-select-radius := 4px
+$-select-bg := #2c314e
+$-select-input-color := #8d919b
+$-select-border-hover := #8d919b
+$-select-active-color :=  #557DFC
+$-select-disabled-color := #F3F4F7
+$-select-disabled-bg := #F3F4F7
+
+$-select-group-color := #B2B2B2
+$-select-tag-bg := #F1F1F5
+
+$-select-tag-close-bg := #ccc
+$-select-tag-close-color := #ccc
+
+$-select-data-color := #ccc
+
+/******************************
+        Upload
+*******************************/
+$-upload-default-text := #404040
+$-upload-text-hover-color := $-content-bg-hover-color
+$-upload-success-color := $-success-color
+$-upload-error-color := $-warning-color
+$-upload-primary-color := $-primary-color
+$-upload-border-radius := $-border-radius
+$-upload-border-color := $-border-base-color
+
+$-upload-tip-color := $-text-placeholder-color 
+$-upload-border-color := #ccc
+$-upload-progress-top := 28px
+$-upload-progress-text-top := -28px

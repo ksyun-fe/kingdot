@@ -2,8 +2,8 @@
     <div
             ref="dropdownItem"
             class="kd-dropdown-item"
-            :class="{'kd-dropdown-dividedLine-item':dividedLine,'kd-dropdown-disabled-item':disabled}"
-            @click.stop="handleClick"
+            :class="{'kd-dropdown-dividedline-item':dividedLine,'kd-dropdown-disabled-item':disabled}"
+            @click="handleClick"
     >
         <slot/>
     </div>
@@ -32,11 +32,6 @@
                 type: [String, Number, Object],
                 default: ''
             }
-        },
-        data() {
-            return {};
-        },
-        computed: {
         },
         methods: {
             handleClick(e) {

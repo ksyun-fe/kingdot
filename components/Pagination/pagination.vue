@@ -149,87 +149,11 @@
     };
     export default {
         name: 'KdPagination',
-        components: { KdDropdown, KdDropdownMenu, KdDropdownItem, KdButtonGroup, KdButton },
         props: {
-            limit: {
-                type: Number,
-                default: 10
-            },
-            total: {
-                type: Number
-            },
-            showTotal: {
-                type: Boolean,
-                default: true
-            },
-            showPageCount: {
-                type: Boolean,
-                default: false
-            },
-            current: {
-                type: Number,
-                default: 1
-            },
-            showGoto: {
-                type: Boolean,
-                default: true
-            },
-            noBorder: {
-                type: Boolean,
-                default: false
-            },
-            limits: {
-                type: Array,
-                default() {
-                    return [10, 20, 50];
-                }
-            },
-            showLimits: {
-                type: Boolean,
-                default: true
-            },
-            counts: {
-                type: Number,
-                validator(value) {
-                    return value > 4 && value < 22;
-                },
-                default: 7
-            },
-            superMini: {
-                type: Boolean,
-                default: false
-            },
-            prevText: {
-                type: String,
-                default: ''
-            },
-            nextText: {
-                type: String,
-                default: ''
-            },
-            showPageNum: {
-                type: Boolean,
-                default: true
-            },
-            limitsIcon: {
-                type: String,
-                default: 'kd-icon-caret-bottom'
-            }
+
         },
         data() {
             return {
-                ellipsis: '···',
-                pageCount: 0,
-                showPageArray: [],
-                innerCounts: this.counts < 5 ? 5 : this.counts,
-                innerCurrent: this.current,
-                type: this.noBorder ? 'none' : 'default',
-                size: this.noBorder ? 'mini' : 'default',
-                innerLimit: this.limit,
-                markDic: markDic,
-                timer: null,
-                preValue: 0,
-                inputCurrent: this.current
             };
         },
         watch: {

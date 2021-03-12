@@ -1,0 +1,140 @@
+@import "../variables.styl";
+
+$-kd-select-size := large small mini
+
+for size in $-kd-select-size
+    .kd-select-{size}
+        min-height lookup('$-select-height-'+ size)
+        .kd-select-input-inner
+            height lookup('$-select-height-'+ size)
+        .kd-select-tags-item
+            margin lookup('$-select-margin-'+ size)
+
+.kd-select
+    position relative
+    cursor pointer
+    display inline-block
+    width 300px
+    border-radius $-select-radius;
+    background $-select-bg
+.kd-select-clear-hover
+    :hover
+        .kd-select-arrow-icon
+            display none
+        .kd-select-clear-icon
+            display block
+            &:hover
+                color $-select-border-hover
+
+.kd-select-input
+    position relative
+    border 1px solid $-select-border-hover
+    padding 0 32px 0 16px
+    display flex
+    align-items center
+    font-size 12px
+    transition all .2s
+    &:hover
+        border 1px solid $-select-active-color
+.kd-select-active
+    .kd-select-input
+        border 1px solid $-select-active-color
+.kd-select-input-text
+    line-height: 30px
+    display inline-block
+.kd-select-input-inner
+    display inline-block
+    width 100%
+    padding 0
+    height 30px
+    line-height 30px
+    font-size 12px
+    border none
+    color $-select-input-color
+    background $-select-bg
+.kd-select-clear-icon
+    display none 
+.kd-select-clear-icon
+.kd-select-arrow-icon
+    position absolute
+    right 10px
+    transition transform .3s
+    color #ccc
+.kd-select-arrow-icon-rotate
+    transform rotate(180deg)
+.kd-select-input[readonly] 
+    cursor pointer
+.kd-select-input-wrap
+    flex 1
+
+// tags
+.kd-select-multiple
+    display flex
+    flex-wrap wrap
+    padding 0px 32px 0 0
+    .kd-select-input-wrap
+        margin-left 10px
+        min-width 10px
+.kd-select-tags
+    width 100%
+    display flex
+    align-items center
+    flex-wrap wrap
+    li
+        float left
+.kd-select-tags-content
+    display contents
+.kd-select-tags-item
+    display inline-block
+    background  $-select-tag-bg;
+    height 20px
+    border-radius 4px
+    padding 0 8px
+    margin 5px 0 5px 8px 
+    display flex
+    align-items center
+.kd-select-tag-close
+    display inline-block
+    margin-left 8px;
+    width 20px
+    height 20px
+    line-height: 20px
+    vertical-align middle
+    text-align center
+    border-radius 50%
+    background $-select-tag-close-bg
+    color $-select-tag-close-color
+    transform scale(.7)
+.kd-select-disabled
+    background $-select-disabled-bg
+    cursor not-allowed
+    .kd-select-input
+        &:hover
+            border-color $-select-border-hover
+.kd-select-input-disabled
+    background $-select-disabled-color
+    cursor not-allowed
+.kd-select-no-data
+    height 32px;
+    line-height 32px
+    text-align center
+    color $-select-data-color
+
+
+.kd-select-dropdown
+    white-space nowrap
+    width min-content
+    max-height 290px
+    overflow-y auto
+//  option-group
+.kd-option-group-item
+    display inline-block
+    height 32px
+    line-height 32px
+    color $-select-group-color
+    padding 0 16px
+    font-size 12px
+.kd-option-group
+    .kd-option
+        padding 0 32px
+
