@@ -439,31 +439,31 @@ $-pagination-goto-border-color := #d1d5de
 /******************************
         steps
 *******************************/
-$-steps-container-background-color := #fff //主题色
-$-step-spot-done-background-color := #557DFC
-$-step-spot-line-border-color := #E5E5E5
+$-steps-container-background-color := $-light-bg-color  //主题色
+$-step-spot-done-background-color := $-primary-color
+$-step-spot-line-border-color := $-split-line-color
 $-step-spot-line-background-color := transparent
-$-step-spot-active-background-color := #557DFC ;
-$-step-spot-default-background-color := #E5E5E5
-$-step-line-background-color := #E5E5E5
-$-step-line-active-background-color := #557DFC;
-$-step-title-color := #4C4C4C
-$-step-title-active-color := #262626
-$-step-description-color :=   #B2B2B2
-$-step-description-active-color := #4C4C4C
-$-step-index-default-border-color := #ccc
-$-step-index-default-color := #737373
+$-step-spot-active-background-color := $-primary-color ;
+$-step-spot-default-background-color := $-split-line-color
+$-step-line-background-color := $-split-line-color
+$-step-line-active-background-color := $-primary-color;
+$-step-title-color := $-text-light-color
+$-step-title-active-color := $-text-dark-color
+$-step-description-color :=  $-text-placeholder-color 
+$-step-description-active-color := $-text-light-color
+$-step-index-default-border-color := $-border-base-color
+$-step-index-default-color := $-text-regular-color
 $-step-index-active-border-color := transparent
-$-step-index-active-background-color := #557DFC;
-$-step-index-done-color := #557DFC
-$-step-index-done-border-color := 2px solid #557DFC
+$-step-index-active-background-color := $-primary-color;
+$-step-index-done-color := $-primary-color
+$-step-index-done-border-color := 2px solid $-primary-color
 $-step-index-done-background-color := #DBE1F5
-$-step-simple-background-color := #F3F6FB
-$-step-simple-border-color := #fff //和主题色保持一直
-$-kd-step-simple-bgc := #F3F6FB
-$-step-index-icon-color := #CCC
-$-step-icon-active-color := #557DFC
-$-step-icon-done-color := #557DFC
+$-step-simple-background-color := $-table-header-bg-color
+$-step-simple-border-color := $-bg-base-color //和主题色保持一直
+$-kd-step-simple-bgc := $-table-header-bg-color
+$-step-index-icon-color := $-border-base-color
+$-step-icon-active-color := $-primary-color
+$-step-icon-done-color := $-primary-color
 $-step-custom-status-error-border-color := 2px solid #ED3351
 $-step-custom-status-error-background-color := #EFCECE
 $-step-custom-status-error-color := #ED3351
@@ -472,11 +472,11 @@ $-step-custom-status-wait-background-color := transparent
 /******************************
         breadcrumb
 *******************************/
-$-breadcrumb-item-text-color := #4c4c4c
-$-breadcrumb-item-text-last-color := #262626
-$-breadcrumb-item-link-color := #557dfc
-$-breadcrumb-item-link-hover := #7797fc
-$-breadcrumb-item-link-active := #4464c9
+$-breadcrumb-item-text-color := $-text-light-color
+$-breadcrumb-item-text-last-color := $-text-dark-color
+$-breadcrumb-item-link-color := $-primary-color
+$-breadcrumb-item-link-hover := $-primary-lighter-color
+$-breadcrumb-item-link-active := $-primary-darker-color
 
 /******************************
          Tabs
@@ -490,7 +490,7 @@ $-tabs-color-guanbi := #C0C7CC
 $-tabs-after-backgroundColor := #e5e5e5
 $-tabs-after-borderColor := #e5e5e5
 $-tabs-after-borderColor-card := #e5e5e5
-$-tabs-after-disabledColor := #ccc
+$-tabs-after-disabledColor := $-border-base-color
 $-tabs-large-backgroundColor := #F0F0F3
 $-tabs-card-backgroundColor := #F3F4F7
 $-tabs-card-background := #F3F4F7
@@ -524,19 +524,19 @@ $-drawer-animation-time := .5s
 /******************************
         Dialog
 *******************************/
-$-dialog-background-color := #fff
-$-dialog-header-background-color := #fff
+$-dialog-background-color := $-light-bg-color
+$-dialog-header-background-color := $-light-bg-color
 $-dialog-line-color := $-split-line-color
-$-dialog-title-color := #262626
-$-dialog-body-color := #4C4C4C
+$-dialog-title-color := $-text-dark-color
+$-dialog-body-color := $-text-light-color
 $-dialog-icon-title-color := #404040
 $-dialog-message-color := $-text-regular-color
-$-dialog-confirm-title-color := #262626
+$-dialog-confirm-title-color := $-text-dark-color
 $-dialog-confirm-tips-color := $-text-regular-color
 $-dialog-tips-title-color := #404040
 $-dialog-tips-message-color := $-text-regular-color
-$-dialog-scrollbar-background-color := #fff
-$-dialog-scrollbar-thumb-color := #ccc
+$-dialog-scrollbar-background-color := $-light-bg-color
+$-dialog-scrollbar-thumb-color := $-border-base-color
 
 /******************************
         spinner
