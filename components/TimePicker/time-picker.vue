@@ -16,52 +16,62 @@
                     <i class="kd-icon-time"></i>
                 </template>
             </kd-input>
-            <!-- </kd-tooltip> -->
-            <!-- <Input
-                    :placeholder="rangePlaceholder"
-                    :value="rangeTimeString"
-            >
-            <template v-slot:prefix>
-                <i class="kd-icon-time"></i>
-            </template>
-            </Input> -->
             <template slot="content">
                 <div
                         v-if="!isRange && mode === 'steped-time'"
                         class="dropdown"
                 >
-                    <!-- <div
-                            v-for="(item, i) in timeList"
-                            :key="i"
-                            class="item">
-                        {{ item }}
+                    <div class="k-step">
+                        <div v-if="true">
+                            <div
+                                    v-for="(item, index) in timeList"
+                                    :key="index"
+                                    :class="{
+                                        'k-item': true,
+                                        'k-disabled': !!disabledTime && disabledTime(item),
+                                        'k-active': selectedTime == item
+                                    }"
+                                    @click="selectTimeValue(item)"
+                            >
+                                {{ item }}
+                                <!-- <i
+                                        v-if="selectedValues.includes(item)"
+                                        class="k-checkmark ksicon-checkmark ksfont"
+                                ></i> -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="scroll-container">
+                        <ScrollSelect
+                                v-model="selectedTime"
+                                :data="timeList"
+                        ></ScrollSelect>
                     </div> -->
-                    <ScrollSelect
-                            v-model="selectedTime"
-                            :data="timeList"
-                    ></ScrollSelect>
                 </div>
                 <div
                         v-if="!isRange && mode === 'anytime'"
                         class="dropdown"
                 >
-                    <div class="column">
-                        <ScrollSelect
-                                v-model="startTime.hour"
-                                :data="hourArr"
-                        ></ScrollSelect>
-                    </div>
-                    <div class="column">
-                        <ScrollSelect
-                                v-model="startTime.minute"
-                                :data="minArr"
-                        ></ScrollSelect>
-                    </div>
-                    <div class="column">
-                        <ScrollSelect
-                                v-model="startTime.second"
-                                :data="minArr"
-                        ></ScrollSelect>
+                    <div class="scroll-container">
+                        <Time
+                                v-model="startTime"
+                                :min="minTime"
+                                :max="maxTime"
+                                @change="timeValueChange"
+                        >
+                        </Time>
+                        <!-- <div
+                                v-for="(item, index) in scrollTimeArr"
+                                :key="index"
+                                class="column"
+                        >
+                            <ScrollSelect
+                                    ref="ScrollSelect"
+                                    v-model="startTime[index]"
+                                    :data="item"
+                            >
+                            </ScrollSelect>
+                        </div> -->
                     </div>
                 </div>
                 <div
@@ -83,24 +93,26 @@
                                 v-if="mode === 'anytime'"
                                 class="selector-container"
                         >
-                            <div class="column">
+                            <Time
+                                    v-model="startTime"
+                                    :min="minTime"
+                                    :max="startTimeMaxLimit(maxTime, endTime)"
+                                    @change="timeValueChange"
+                            >
+                            </Time>
+                            <!-- <div
+                                    v-for="(item, index) in scrollTimeArr"
+                                    :key="index"
+                                    class="column"
+                            >
                                 <ScrollSelect
-                                        v-model="startTime.hour"
-                                        :data="hourArr"
-                                ></ScrollSelect>
-                            </div>
-                            <div class="column">
-                                <ScrollSelect
-                                        v-model="startTime.minute"
-                                        :data="minArr"
-                                ></ScrollSelect>
-                            </div>
-                            <div class="column">
-                                <ScrollSelect
-                                        v-model="startTime.second"
-                                        :data="minArr"
-                                ></ScrollSelect>
-                            </div>
+                                        ref="ScrollSelect"
+                                        v-model="startTime[index]"
+                                        :data="item"
+                                        :disable="getScrollDisable(index)"
+                                >
+                                </ScrollSelect>
+                            </div> -->
                         </div>
                     </div>
                     <div>
@@ -118,26 +130,25 @@
                                 v-if="mode === 'anytime'"
                                 class="selector-container"
                         >
-                            <div class="column">
+                            <Time
+                                    v-model="endTime"
+                                    :min="endTimeMinLimit(minTime, startTime)"
+                                    :max="maxTime"
+                                    @change="timeValueChange"
+                            >
+                            </Time>
+                            <!-- <div
+                                    v-for="(item,index) in scrollTimeArr"
+                                    :key="index"
+                                    class="column"
+                            >
                                 <ScrollSelect
-                                        v-model="endTime.hour"
-                                        :data="hourArr"
-                                        :item-disable="endHourLimit"
-                                ></ScrollSelect>
-                            </div>
-                            <div class="column">
-                                <ScrollSelect
-                                        v-model="endTime.minute"
-                                        :data="minArr"
-                                        :item-disable="endMinuteLimit"
-                                ></ScrollSelect>
-                            </div>
-                            <div class="column">
-                                <ScrollSelect
-                                        v-model="endTime.second"
-                                        :data="minArr"
-                                ></ScrollSelect>
-                            </div>
+                                        ref="ScrollSelect"
+                                        v-model="endTime[index]"
+                                        :data="item"
+                                >
+                                </ScrollSelect>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -146,10 +157,14 @@
     </div>
 </template>
 <script>
+    import Time from './Time.vue';
     import Lang from 'src/mixin/lang.js';
     import { parseTime, stringTime } from './utils.js';
     export default {
         name: 'KdTimePicker',
+        components: {
+            Time
+        },
         mixins: [Lang],
         props: {
             value: {
@@ -163,7 +178,7 @@
                 default: false
             },
             // 满足某条件的时间将被禁用
-            disableTime: {
+            disabledTime: {
                 type: Function
             },
             // 显示模式: 'steped-time', 'anytime', 按步长显示时间, 任意时间点
@@ -173,7 +188,7 @@
             },
             minTime: {
                 type: String,
-                default: '00:00:00'
+                default: '01:00:00'
             },
             maxTime: {
                 type: String,
@@ -198,54 +213,91 @@
                 minArr: Array(60).fill(0).map((x, i) => {
                     return this.addPreZero(i);
                 }),
-                // startTime: ['', '', ''],
-                startTime: {
-                    hour: 0,
-                    minute: 0,
-                    second: 0
-                },
-                endTime: {
-                    hour: '00',
-                    minute: '00',
-                    second: '00'
-                },
-                timeList: [],
+                scrollTimeArr: Array.apply(null, {length: 3}).map((item, index) => {
+                    const length = index === 0 ? 24 : 60;
+                    return Array(length).fill(0).map((x, i) => this.addPreZero(i));
+                }),
+                startTime: '00:00:00',
+                // startTime: ['00', '00', '00'],
+                endTime: '00:00:00',
+                // startTime: {
+                //     hour: '00',
+                //     minute: '00',
+                //     second: '00'
+                // },
+                // endTime: {
+                //     hour: '00',
+                //     minute: '00',
+                //     second: '00'
+                // },
+                // timeList: [],
                 selectedTime: '', // step 模式下的结果
                 endSelectedTime: '',
-                // timeString: '', // input value
+                timeString: '', // input value
             };
         },
         computed: {
-            timeString() { // selectedTime 变化,
-                let timeString = '';
-                if (!this.isRange) {
-                    if (this.mode === 'steped-time') {
-                        timeString = this.selectedTime;
-                    } else {
-                        timeString = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
-                    }
-                    if (timeString === '0:0:0') { // fix input中只有分隔符
-                        return '';
-                    }
-                    console.log('单点时间 timeString', timeString);
-                    return timeString;
-                } else {
-                    let start = '';
-                    let end = '';
+            timeList() {
+                if (this.mode === 'steped-time') {
+                    // if (!this.step) return [];
+                    const step = this.step;
+                    const max = parseTime(this.maxTime);
+                    const min = parseTime(this.minTime);
+                    console.log('生成 timeList()', min, max, step);
+                    const data = [];
 
-                    if (this.mode === 'steped-time') {
-                        start = this.selectedTime;
-                        end = this.endSelectedTime;
-                    } else {
-                        start = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
-                        end = `${this.endTime.hour}:${this.endTime.minute}:${this.endTime.second}`;
+                    for (let t = min; t <= max; t += step * 60) {
+                        data.push(stringTime(t, 'minute'));
+                        // data.push({
+                        //     label: stringTime(t, 'minute'),
+                        //     value: stringTime(t, 'minute'),
+                        //     // disabled: this.disabledTime && this.disabledTime(stringTime(t))
+                        //     // this.maxDateValue && t.isAfter() ||
+                        //     // this.minDateValue && t.isBefore(),
+                        // });
                     }
-                    if (!start && !end) { // fix input中只有分隔符
-                        return '';
-                    }
-                    return `${start}-${end}`;
+                    // this.timeList = data;
+                    // 固定时间点, 不展示秒..
+                    // console.log('timeList', this.timeList);
+                    return data;
+                } else {
+                    return [];
                 }
-            }
+            },
+            // timeString() { // selectedTime 变化, TODO: selectedTime 被禁用
+            //     let timeString = '';
+            //     if (!this.isRange) {
+            //         if (this.mode === 'steped-time') {
+            //             timeString = this.selectedTime;
+            //         } else {
+            //             timeString = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
+            //         }
+            //         if (timeString === '0:0:0') { // fix input中只有分隔符
+            //             return '';
+            //         }
+            //         // console.log('单点时间 timeString', timeString);
+            //         if (this.disabledTime && !this.disabledTime(timeString)) {
+            //             return timeString;
+            //         } else {
+            //             return ''; // 应该保持老的
+            //         }
+            //     } else {
+            //         let start = '';
+            //         let end = '';
+
+            //         if (this.mode === 'steped-time') {
+            //             start = this.selectedTime;
+            //             end = this.endSelectedTime;
+            //         } else {
+            //             start = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
+            //             end = `${this.endTime.hour}:${this.endTime.minute}:${this.endTime.second}`;
+            //         }
+            //         if (!start && !end) { // fix input中只有分隔符
+            //             return '';
+            //         }
+            //         return `${start}-${end}`;
+            //     }
+            // }
         },
         watch: {
             value: {
@@ -256,10 +308,8 @@
                         this.timeString = v;
                         this.selectedTime = v;
 
-                        this.startTime.hour = v.split(':')[0];
-                        this.startTime.minute = v.split(':')[1];
-                        this.startTime.second = v.split(':')[2];
-                        console.log('set startTime', this.startTime);
+                        this.startTime = v;
+                        // console.log('set startTime', this.startTime);
                     } else if (Array.isArray(v)) { // 范围
                         this.timeString = v.join(' ~ ');
                         this.startTime = v[0];
@@ -269,15 +319,46 @@
                         this.endSelectedTime = v[1];
                     }
                 }
-            }
-            // startTime: {
-            //     deep: true,
+            },
+            // selectTimeValue: {
             //     handler(v) {
-            //         console.log('startTime change', v);
-            //         this.timeString = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
-            //         this.$emit('input', this.timeString);
+            //         console.log('selectTimeValue change', v);
+            //         if (typeof v === 'string') { // 单
+            //             this.timeString = v.label;
+            //         }
             //     }
             // },
+            startTime: {
+                deep: true,
+                handler(v) {
+
+                    if (!this.isRange) {
+                        console.log('startTime change 单点时间', v);
+                        this.timeString = this.startTime; // innervalue 变化
+                        this.$emit('input', this.startTime);
+                    } else {
+                        console.log('startTime change 范围时间', v);
+
+                        this.timeString = `${v} - ${this.endTime}`;
+                        this.$emit('input', [v, this.endTime]);
+                    }
+                }
+            },
+            endTime: {
+                deep: true,
+                handler(v) {
+                    console.log('endTime change', v, this.startTime, this.timeString);
+                    if (!this.isRange) {
+                        // this.timeString = this.startTime.join(':'); // innervalue 变化
+                        // this.$emit('input', this.timeString);
+                    } else {
+                        this.timeString = `${this.startTime} - ${v}`;
+                        console.log('this.timeString', this.timeString);
+
+                        this.$emit('input', this.timeString);
+                    }
+                }
+            },
             // selectedTime: {
             //     handler(v) {
             //         console.log('selectedTime change', v);
@@ -290,49 +371,52 @@
             //         }
             //     }
             // },
-            // endSelectedTime: {
-            //     handler(v) {
-            //         console.log('endselectedTime change', v);
-            //         this.timeString = `${this.selectedTime} - ${v}`;
-            //         this.$emit('input', this.timeString);
-            //     }
-            // }
+            endSelectedTime: {
+                handler(v) {
+                    console.log('endselectedTime change', v);
+                    this.timeString = `${this.selectedTime} - ${v}`;
+                    this.$emit('input', this.timeString);
+                }
+            }
         },
         created() {
-            this.init();
+            console.log('scrollTimeArr', this.scrollTimeArr);
         },
         methods: {
+            selectTimeValue(item) {
+                console.log('click time', item);
+                this.timeString = item;
+                this.$emit('input', item); // 冒出去string 从value回来变成了array
+                // this.$emit('tooltipHide');
+            },
             addPreZero(num) {
                 return ('00' + String(num)).slice(-2);
             },
-            init() {
-                // if step, 生成datalist 并且渲染
-                if (this.mode === 'steped-time') {
-                    // if (!this.step) return [];
-                    const step = this.step;
-                    const max = parseTime(this.maxTime);
-                    const min = parseTime(this.minTime);
-                    const data = [];
-
-                    for (let i = min; i <= max; i += step * 60) {
-                        data.push(stringTime(i, 'minute'));
-                    }
-                    this.timeList = data;
-                    // 固定时间点, 不展示秒..
-                    console.log('timeList', this.timeList);
-                }
+            startTimeMaxLimit(...times) {
+                console.log('startTimeMaxLimit', times);
+                times = times.map(item => parseTime(item || '23:59:59'));
+                return stringTime(Math.min.apply(null, times));
             },
-            endHourLimit(value) {
-                return value < this.startTime.hour;
+            endTimeMinLimit(...times) {
+                times = times.map(item => parseTime(item || '00:00:00'));
+                return stringTime(Math.max.apply(null, times));
             },
-            endMinuteLimit(value) {
-                if (this.startTime.hour < this.endTime.hour) {
-                    return false;
-                } else if (this.startTime.hour > this.endTime.hour) {
-                    return true;
-                } else if (this.startTime.hour === this.endTime.hour) {
-                    return value < this.startTime.minute;
-                }
+            // endHourLimit(value) {
+            //     return value < this.startTime.hour;
+            // },
+            // endMinuteLimit(value) {
+            //     if (this.startTime.hour < this.endTime.hour) {
+            //         return false;
+            //     } else if (this.startTime.hour > this.endTime.hour) {
+            //         return true;
+            //     } else if (this.startTime.hour === this.endTime.hour) {
+            //         return value < this.startTime.minute;
+            //     }
+            // },
+            timeValueChange(value) {
+                // const length = this.selectedValues.length;
+                // const index = this.valueId || length && length - 1;
+                // this.$emit('selectTime', value, index); // 第几个 选了时间
             }
         }
     };
@@ -345,7 +429,13 @@
         /* border: 1px solid #e5e5e5;
         margin-bottom: 10px;
         padding: 20px; */
-        width: 200px;
+        width: 180px;
+        height: 200px;
+        overflow: scroll;
+        }
+    .dropdown .scroll-container {
+        width: 150px;
+        margin: 0 auto;
     }
     .range-container {
         /* border: 1px solid #e5e5e5; */

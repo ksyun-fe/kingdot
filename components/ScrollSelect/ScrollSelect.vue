@@ -8,7 +8,9 @@
         <!-- :style="{
                     transform: `translateY(${translateY}px)`,
                     marginTop: `${marginTop}px`,
-                }" -->
+                }"
+            @mousedown="moveStart"
+                -->
         <div
                 class="k-wrapper"
                 @wheel.prevent="mouseWheel"
@@ -19,8 +21,8 @@
                     ref="item"
                     class="k-scroll-item"
                     :class="{
-                        'k-active': currentValue === item.value,
-                        'k-disabled': isItemDisabled(item.value)
+                        'k-scroll-item-active': value === item.value,
+                        'k-scroll-item-disabled': isItemDisabled(item)
                     }"
                     @click="clickHandler(item, index)"
             >
@@ -33,11 +35,15 @@
 
 <script>
     import Lang from 'src/mixin/lang.js';
+    // import normalizeWheel from 'normalize-wheel';
 
     export default {
         name: 'ScrollSelect',
         mixins: [Lang],
         props: {
+            value: {
+                type: [String, Number]
+            },
             data: {
                 type: Array,
                 default() {
@@ -108,6 +114,14 @@
             }
         },
         watch: {
+            value: {
+                immediate: true,
+                handler(v) {
+                    if (v) {
+                        this.currentValue = v;
+                    }
+                }
+            },
             currentValue(value, oldValue) {
                 const itemDisable = this.itemDisable;
 
@@ -137,6 +151,68 @@
 
                 this.marginTop = 0;
             },
+            // moveStart(e) { // 拖动调整
+            //     // 设置初始值
+            //     if(e.which !== 1) return;
+            //     if(this.disabled) return;
+            //     this.moveFlag = true;
+            //     this.moved = false;
+            //     this.moveStartY = e.clientY;
+            //     this.initY = e.clientY;
+            //     this.itemHeight = this.$refs.item[0].offsetHeight;
+
+            //     // addEventListener(document, 'mousemove', this.moving)
+            //     // addEventListener(document, 'mouseup', this.moveEnd)
+            //     document.addEventListener('mousemove', this.moving)
+            //     document.addEventListener('mouseup', this.moveEnd)
+            // },
+            // moving(e) {
+            //     if(!this.moveFlag) return;
+            //     let moveY = e.clientY - this.moveStartY;
+            //     let detaY = e.clientY - this.initY;
+            //     this.moved = !!moveY;
+            //     let moveIndex = Math.floor(Math.abs(detaY) / this.itemHeight);
+            //     if (moveIndex) {
+            //         if (detaY < 0) {
+            //             moveIndex = -moveIndex;
+            //         }
+
+            //         this.setMoveValue(-moveIndex, -detaY);
+            //         this.initY = e.clientY;
+            //     }
+            //     this.moveStartY = e.clientY;
+
+            //     this.translateY += moveY;
+            // },
+            // setMoveValue(index, moveY, isSetTranslate) {
+
+            //     let length = this.selectList.length;
+            //     let currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
+            //     this.currentValue = this.selectList[(length + currentIndex + index) % length].value;
+            //     this.marginTop += moveY || index * this.itemHeight;
+
+            //     if (isSetTranslate) {
+            //         this.translateY -= this.itemHeight * index;
+            //     }
+            // },
+            // moveEnd(e) {
+            //     if (this.moveFlag) {
+            //         this.moveFlag = false;
+            //         this.translateY = -this.marginTop + this.initTranslateY;
+
+            //         // removeEventListener(document,'mousemove', this.moving);
+            //         // removeEventListener(document,'mouseup', this.moveEnd);
+            //         document.removeEventListener('mousemove', this.moving);
+            //         document.removeEventListener('mouseup', this.moveEnd);
+            //     }
+            // },
+            // mouseWheel(e) {
+            //     if (this.disabled) return;
+            //     const normalized = normalizeWheel(e);
+            //     this.setMoveValue(normalized.spinY < 0 ? -1 : 1, null, true)
+            // },
+
+            // =========
             mouseWheel(e) {
                 if (this.disabled) return;
                 // TODO: 拿滚动详细数据 (方向, 距离)
@@ -150,10 +226,11 @@
                 // 选中
                 this.currentValue = this.selectList[(length + currentIndex + index) % length].value;
 
-                // 如果滚动之后 下一条被禁用 => 同方向再滚动一次
-                if (this.isItemDisabled(this.currentValue)) {
-                    this.setMoveValue(index > 0 ? index++ : index--);
-                }
+                // 如果滚动之后 下一条被禁用 => 同方向再滚动一次 // 不用直接跳过. 不触发上层变化就行了
+                // if (this.isItemDisabled({value: this.currentValue})) {
+                //     this.setMoveValue(index > 0 ? index++ : index--);
+                // }
+
                 // this.marginTop += moveY || index * this.itemHeight; // 滚动一节. 上移或者下移 整个 itemHeight
 
                 // this.translateY -= this.itemHeight * index;
@@ -164,7 +241,7 @@
             },
             clickHandler(selectItem, index) {
                 if (this.disabled) return;
-                if (this.isItemDisabled(selectItem.value)) return;
+                if (this.isItemDisabled(selectItem)) return;
 
                 const half = Math.floor(this.count / 2);
                 const length = this.selectList.length;
@@ -172,9 +249,15 @@
 
                 this.currentValue = this.selectList[(length + currentIndex + index - half) % length].value;
             },
-            isItemDisabled(value) {
+            isItemDisabled(item) {
                 // 整个组件被禁用, 或者传入了 验证函数, 且验证后为禁用
-                return this.disabled || !!this.itemDisable && this.itemDisable(value);
+
+                // if (item.disabled) {
+                //     console.log('=====', item.disabled);
+
+                //     return true;
+                // }
+                return this.disabled || !!this.itemDisable && this.itemDisable(item.value);
             }
         }
     };
