@@ -4,7 +4,7 @@ set -e
 git checkout master
 
 if [[ -z $1 ]]; then
-  echo "Place input version: "
+  echo "Place enter version: "
   read -r VERSION
 else
   VERSION=$1
@@ -19,8 +19,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   VERSION=$VERSION npm run dist
 
   # commit
-  git add -A
-  git commit -m "build: build $VERSION"
   npm version "$VERSION" --message "build: release $VERSION"
 
   git push
