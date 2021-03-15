@@ -34,7 +34,7 @@
 :::
 
 ### 快捷选项
-:::demo #快捷选项 ## 快捷选项需配置shortcuts属性
+:::demo #快捷选项 ## 快捷选项需配置 `shortcuts` 属性. `shortcuts` 中 `label` 与 `offset` 属性可以接受自定义函数,
 
 ```html
 <template>
@@ -85,7 +85,7 @@
 :::
 
 ### 禁用组件
-:::demo #禁用组件 ## 以「日」为基本单位，基础的日期选择控件
+:::demo #禁用组件 ## 组件级别的禁用
 
 ```html
 <template>
@@ -96,7 +96,7 @@
 :::
 
 ### 禁用日期
-:::demo #禁用日期 ## 通过自定义方法设置禁用状态，参数为当前日期，返回布尔值
+:::demo #禁用日期 ## 通过自定义方法设置满足条件的日期禁用，传入参数为日期字符串，返回布尔值
 ```html
 <template>
     <kd-date-picker :disabled-date="disabledDate"> </kd-date-picker>
@@ -140,7 +140,7 @@
 :::
 
 ### 带快捷选项的日期范围
-:::demo #带快捷选项的日期范围 ## 选择日期范围
+:::demo #带快捷选项的日期范围 ## 可以通过自定义快捷选项, 选择日期范围. `shortcuts` 中 `label` 与 `offset` 属性可以接受自定义函数,
 
 ```html
 <template>
@@ -164,10 +164,12 @@
                         unit: 'week' 
                     }
                 }, {
-                    label: '近一个月',
-                    offset: {
-                        value: -1,
-                        unit: 'month'
+                    label: '最近一个月',
+                    offset() {
+                        return {
+                            value: -1,
+                            unit: 'month'
+                        }
                     }
                 },{
                     label: '未来一周',
@@ -193,11 +195,11 @@
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 | value / v-model  | 绑定值   | string, array    | - | - |
-| formatString  | 日期格式字符串   | string    | - | 'YYYY-MM-DD' |
-| isRange  | 是否为范围选择   | bool    | - | false |
+| format-string  | 日期格式字符串   | string    | - | 'YYYY-MM-DD' |
+| is-range  | 是否为范围选择   | bool    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
-| disabledDate  | 符合条件的日期将被禁用   | function    | - | - |
+| disabled-date  | 符合条件的日期将被禁用   | function    | - | - |
 
 
 ### shortcuts {.component__content}

@@ -81,6 +81,10 @@
                         {
                             "path": "/transfer",
                             "name": "Transfer 穿梭框"
+                        },
+                        {
+                            "path": "/datePicker",
+                            "name": "DatePicker 日期选择器"
                         }
                     ]
                 },
@@ -169,10 +173,6 @@
                         },{
                             "path": "/drawer",
                             "name": "Drawer 抽屉"
-                        },
-                        {
-                            "path": "/datePicker",
-                            "name": "DatePicker 日期选择器"
                         }
                     ]
                 }
