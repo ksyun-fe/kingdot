@@ -237,10 +237,15 @@ describe('Pagination', () => {
                 }
             }
         });
-        vm.$refs.pagination.current = 10;
+        vm.$refs.pagination.inputCurrent = 10;
         vm.$refs.pagination.jumpEnterAction();
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(10);
+        });
+        vm.$refs.pagination.inputCurrent = 40;
+        vm.$refs.pagination.jumpEnterAction();
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.current).to.be.equal(20);
         });
     });
     // jump
