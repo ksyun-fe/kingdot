@@ -18,6 +18,7 @@
         <div class="kd-step-wrap">
             <div class="kd-step-container">
                 <div
+                        ref="stepHead"
                         class="kd-step-head"
                         @click="_click"
                 >
@@ -78,6 +79,7 @@
                 <div class="kd-step-main">
                     <span
                             v-if="title != ''"
+                            ref="stepTitle"
                             class="kd-step-title"
                             :class="{
                                 'kd-step-title-active': index == activeIndex,
@@ -86,6 +88,7 @@
                                 'kd-step-title-spot': type == 'spot',
                                 'kd-step-title-vertical':direction == 'vertical',
                                 'kd-step-cursor':isClick,
+                                'kd-step-title-small':size == 'small',
                                 'kd-step-title-spot-active':index == activeIndex && type == 'spot'
                             }"
                             @click="_click"
@@ -177,6 +180,22 @@
                 if (this.type === 'spot') {
                     const _tranlateY = Math.ceil((this.$parent.spotLineLH + 4) / 2);
                     style.transform = `translate(6px, ${_tranlateY}px)`;
+                } else if (this.$parent.direction === 'horizontal') {
+                    const headW = this.$refs.stepHead.clientWidth;
+                    if (this.$parent.position === 'left') {
+                        const titleW = this.$refs.stepTitle.clientWidth;
+                        const _tranlateX = headW + titleW;
+                        style.transform = `translate(${_tranlateX}px, 16px)`;
+                        style.width = `calc(100% - ${_tranlateX}px)`;
+                    } else {
+                        const _tranlateX = headW;
+                        style.transform = `translate(${_tranlateX}px, 16px)`;
+                        style.width = `calc(100% - ${_tranlateX}px)`;
+                    }
+                } else if (this.$parent.direction !== 'horizontal') {
+                    const headH = this.$refs.stepHead.clientHeight;
+                    style.transform = `translate(15px, ${headH}px)`;
+                    style.height = `calc(100% - ${headH}px)`;
                 }
                 return style;
             }

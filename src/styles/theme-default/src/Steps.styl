@@ -5,7 +5,6 @@
     display flex
     flex-wrap nowrap
     min-height 32px
-    background-color $-steps-container-background-color
     padding  20px
     &.kd-steps-container-vertical
         flex-flow column
@@ -34,12 +33,12 @@
         z-index 1
         padding 0 8px 0 8px
         z-index 1
-        background-color $-steps-container-background-color
     .kd-step-index
         display inline-block
         width 30px
         height 30px
         border-radius 50%
+        background-color $-steps-container-background-color
         text-align center
         line-height 29px
         cursor default
@@ -64,7 +63,7 @@
         &.kd-step-custom-status-wait
             border 1px solid $-step-index-default-border-color
             color $-step-index-default-color
-            background $-step-custom-status-wait-background-color
+            background $-steps-container-background-color
         &.kd-step-custom-status-finished
             box-sizing border-box
             border $-step-index-done-border-color
@@ -86,6 +85,8 @@
             width 26px
             height 26px
             line-height 25px
+        &.kd-step-index-small
+            margin-top 3px
         .kd-step-icon
             display inline-block
             margin-top -4px
@@ -115,7 +116,7 @@
         height 14px
         border-radius 50%
         border 1px solid $-step-spot-line-border-color
-        background-color $-step-spot-line-background-color
+        background-color $-steps-container-background-color
         text-align center
         line-height 11px
         vertical-align middle
@@ -133,7 +134,7 @@
         float left
     .kd-step-title
         position absolute
-        left 42px
+        left 38px
         top 0px
         display inline-block
         width auto
@@ -144,9 +145,10 @@
         font-size 16px
         color $-step-title-color
         z-index 10
-        background-color $-steps-container-background-color
         &.kd-step-title-active
             color $-step-title-active-color
+        &.kd-step-title-small
+            left 32px
     .kd-step-title-bottom
         left -9px
         top 37px
@@ -210,7 +212,7 @@
         background-color $-kd-step-simple-bgc
         left 25%
     .kd-step-title-simple
-        left 40%
+        left 40% !important
         display inline-block
         height 40px
         line-height 40px
