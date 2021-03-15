@@ -126,12 +126,13 @@
             },
 
             timeValue(value, oldValue) {
-                console.log('time 变化', value, oldValue);
                 value = value.join(':');
 
                 oldValue = oldValue && oldValue.join(':');
 
                 if (this.value !== value) {
+                    console.log('time 变化', value, oldValue);
+
                     this.$emit('input', value); // 传递给上层的 触发 value 变化. 上层 value 是字符串
                     this.$emit('change', value, oldValue);
                 }
@@ -155,6 +156,13 @@
                 let s = time % 60;
                 return `${strPad(h, 2)}:${strPad(m, 2)}:${strPad(s, 2)}`;
             },
+            // getCurrentTime() {
+            //     let timeStr = ''
+            //     if (this.$refs.ScrollSelect && this.$refs.ScrollSelect[i]) {
+            //         return this.$refs.ScrollSelect[i].currentValue;
+            //     }
+            //     return 
+            // },
             getScrollDisable(index) {
                 return value => {
                     let time = [...this.timeValue].map((item, i) => {

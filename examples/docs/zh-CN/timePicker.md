@@ -5,7 +5,7 @@
 ```html
 <template>
     <div>
-        <kd-time-picker v-model='time1' mode="steped-time"></kd-time-picker>
+        <kd-time-picker v-model='time1' mode="steptime"></kd-time-picker>
         time1: {{ time1 }}
         <kd-time-picker v-model='time2'></kd-time-picker>
         time2: {{ time2 }}
@@ -31,9 +31,10 @@
 ```html
 <template>
     <div>
-        <kd-time-picker :isRange="true" mode="anytime"></kd-time-picker>
+        <kd-time-picker v-model='timeRange1' :isRange="true" mode="anytime"></kd-time-picker>
         timeRange1: {{ timeRange1 }}
-        <kd-time-picker :isRange="true" mode="steped-time"></kd-time-picker>
+        <kd-time-picker :isRange="true" mode="steptime"></kd-time-picker>
+        timeRange2: {{ timeRange2 }}
         <kd-time-picker :minTime="minTime" :maxTime="maxTime"></kd-time-picker>
     </div>
 </template>
@@ -44,7 +45,8 @@
                 minTime: '01:00:00',
                 maxTime: '7:00:00',
                 step: 15,
-                timeRange1: ['01:00:00', '02:00:00']
+                timeRange1: ['01:00:00', '02:00:00'],
+                timeRange2: ['02:00:00', '03:00:00']
             }
         },
     }
