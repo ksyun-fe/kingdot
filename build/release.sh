@@ -4,7 +4,7 @@ set -e
 git checkout master
 
 if [[ -z $1 ]]; then
-  echo "Place select version: "
+  echo "Place input version: "
   read -r VERSION
 else
   VERSION=$1
