@@ -1,7 +1,6 @@
 /src/styles
 /components/Table
 /components/TableColumn
-/components/Pagination
 *.sh
 docs
 node_modules
