@@ -205,7 +205,11 @@
             isRange: {
                 type: Boolean,
                 default: false
-            }
+            },
+            // placeholder: {
+            // type: String,
+            // default: '23:59:59'
+            // }
         },
         data() {
             return {
@@ -431,7 +435,6 @@
                 return time => { // "02:00"
                     let disabled = false;
                     // if (true) {
-                    console.log('startTimeSelectorLimit 字符串: ', time, this.endSelectedTime);
                     disabled = parseTime(time) > parseTime(this.endSelectedTime);
                     // }
                     return disabled;

@@ -1,5 +1,5 @@
 <template>
-    <div class="k-time k-scroll-select-group" v-if="!step">
+    <div class="k-time k-scroll-select-group">
         <div
                 v-for="(item, index) in data"
                 :key="index"
@@ -126,15 +126,15 @@
             },
 
             timeValue(value, oldValue) {
+                // timeValue 是数组, oldValue 和value 一样
+                // oldValue = oldValue && oldValue.join(':');
                 value = value.join(':');
 
-                oldValue = oldValue && oldValue.join(':');
-
                 if (this.value !== value) {
-                    console.log('time 变化', value, oldValue);
+                    // console.log('currenttime', this.getCurrentTime());
 
                     this.$emit('input', value); // 传递给上层的 触发 value 变化. 上层 value 是字符串
-                    this.$emit('change', value, oldValue);
+                    this.$emit('change', value);
                 }
             }
         },
@@ -147,8 +147,8 @@
                 this.$emit('tooltipHide');
             },
             parseTime(time) {
-              let [h = 0, m = 0, s = 0] = time.split(':').map(i => +i);
-              return (h * 60 + m) * 60 + s;
+                let [h = 0, m = 0, s = 0] = time.split(':').map(i => +i);
+                return (h * 60 + m) * 60 + s;
             },
             stringTime(time) {
                 let h = Math.floor(time / 3600);
@@ -157,11 +157,10 @@
                 return `${strPad(h, 2)}:${strPad(m, 2)}:${strPad(s, 2)}`;
             },
             // getCurrentTime() {
-            //     let timeStr = ''
-            //     if (this.$refs.ScrollSelect && this.$refs.ScrollSelect[i]) {
-            //         return this.$refs.ScrollSelect[i].currentValue;
+            //     if (this.$refs.ScrollSelect && this.$refs.ScrollSelect.length > 0) {
+            //         const currentArr = this.$refs.ScrollSelect.map(vm => vm.currentValue);
+            //         return currentArr.join(':');
             //     }
-            //     return 
             // },
             getScrollDisable(index) {
                 return value => {

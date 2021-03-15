@@ -126,8 +126,9 @@
                 const itemDisable = this.itemDisable;
 
                 // 判断 item 没有被禁用...
-                if (!(!!itemDisable && itemDisable.call(this, value)) && this.value !== value) {
+                if (!(!!itemDisable && itemDisable.call(this, value))) {
                     this.$emit('input', value);
+                    console.log('currentValue change', value, oldValue);
                     this.$emit('change', value, oldValue);
                 }
             }
@@ -257,7 +258,11 @@
 
                 //     return true;
                 // }
-                return this.disabled || !!this.itemDisable && this.itemDisable(item.value);
+                const disableFlag = this.disabled || !!this.itemDisable && this.itemDisable(item.value);
+                if (!disableFlag && item.value === this.currentValue && this.currentValue !== this.value) {
+                    this.$emit('input', this.currentValue);
+                }
+                return disableFlag;
             }
         }
     };
