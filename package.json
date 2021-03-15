@@ -29,7 +29,7 @@
         "build:entry": "node build/bin/build-index.js & node build/bin/iconInit.js",
         "version": "node build/bin/version.js",
         "dev": "npm run build:entry && cross-env NODE_ENV=development THEME=theme-default webpack-dev-server  --config build/webpack.demo.conf.js",
-        "dev:theme": "npm run build:entry && cross-env NODE_ENV=development THEME=theme webpack-dev-server  --config build/webpack.demo.conf.js",
+        "dev:theme": "npm run build:entry && cp-cli src/styles/theme-default/src src/styles/theme/src && cross-env NODE_ENV=development THEME=theme webpack-dev-server  --config build/webpack.demo.conf.js",
         "clean": "rimraf lib && rimraf src/*/lib && rimraf test/**/coverage",
         "lint": "eslint --ext .js,.vue src components build examples",
         "dist:locale": "babel src --out-dir lib --ignore src/index.js",
