@@ -342,6 +342,8 @@ export default{
 | disabled    | 禁用   |  boolean    | —  | false
 | size    | 大小   |  string    | large / default / small / mini | default
 | width    | 宽度   |  string    |  —  | — |
+| hideDestroy    | 弹层隐藏后是否销毁dom   |  Boolean    |  —  | false |
+
 
 ### Select Events {.component__content}
 | 事件      | 说明    | 回调参数
