@@ -102,7 +102,9 @@ describe('Pagination', () => {
             }
         });
         vm.$refs.pagination.selectSize(10);
-        expect(vm.$refs.pagination.limit).to.be.equal(10);
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.limit).to.be.equal(10);
+        });
     });
     // change limit
     it('change limit', async () => {
@@ -134,7 +136,7 @@ describe('Pagination', () => {
                 }
             }
         });
-        vm.$refs.pagination.limit = 20;
+        vm.limit = 20;
         vm.$refs.pagination.selectSize(20);
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.limit).to.be.equal(20);
