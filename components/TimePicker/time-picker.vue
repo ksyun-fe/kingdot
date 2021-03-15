@@ -18,7 +18,7 @@
             </kd-input>
             <template slot="content">
                 <div
-                        v-if="!isRange && mode === 'steped-time'"
+                        v-if="!isRange && mode === 'steptime'"
                         class="dropdown"
                 >
                     <div class="k-step">
@@ -81,7 +81,7 @@
                     <div>
                         <div class="sub-title">开始时间</div>
                         <div
-                                v-if="mode === 'steped-time'"
+                                v-if="mode === 'steptime'"
                                 class="selector-container"
                         >
                             <ScrollSelect
@@ -118,7 +118,7 @@
                     <div>
                         <div class="sub-title">结束时间</div>
                         <div
-                                v-if="mode === 'steped-time'"
+                                v-if="mode === 'steptime'"
                                 class="selector-container"
                         >
                             <ScrollSelect
@@ -181,7 +181,7 @@
             disabledTime: {
                 type: Function
             },
-            // 显示模式: 'steped-time', 'anytime', 按步长显示时间, 任意时间点
+            // 显示模式: 'steptime', 'anytime', 按步长显示时间, 任意时间点
             mode: {
                 type: String,
                 default: 'anytime'
@@ -217,9 +217,9 @@
                     const length = index === 0 ? 24 : 60;
                     return Array(length).fill(0).map((x, i) => this.addPreZero(i));
                 }),
-                startTime: '00:00:00',
+                startTime: '', // '00:00:00'
                 // startTime: ['00', '00', '00'],
-                endTime: '00:00:00',
+                endTime: '', // '00:00:00'
                 // startTime: {
                 //     hour: '00',
                 //     minute: '00',
@@ -238,7 +238,7 @@
         },
         computed: {
             timeList() {
-                if (this.mode === 'steped-time') {
+                if (this.mode === 'steptime') {
                     // if (!this.step) return [];
                     const step = this.step;
                     const max = parseTime(this.maxTime);
@@ -267,7 +267,7 @@
             // timeString() { // selectedTime 变化, TODO: selectedTime 被禁用
             //     let timeString = '';
             //     if (!this.isRange) {
-            //         if (this.mode === 'steped-time') {
+            //         if (this.mode === 'steptime') {
             //             timeString = this.selectedTime;
             //         } else {
             //             timeString = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
@@ -285,7 +285,7 @@
             //         let start = '';
             //         let end = '';
 
-            //         if (this.mode === 'steped-time') {
+            //         if (this.mode === 'steptime') {
             //             start = this.selectedTime;
             //             end = this.endSelectedTime;
             //         } else {
@@ -312,11 +312,13 @@
                         // console.log('set startTime', this.startTime);
                     } else if (Array.isArray(v)) { // 范围
                         this.timeString = v.join(' ~ ');
-                        this.startTime = v[0];
-                        this.endTime = v[1];
-
-                        this.startTime = v[0];
-                        this.endSelectedTime = v[1];
+                        if (this.mode === 'steptime') {
+                            this.selectedTime = v[0];
+                            this.endSelectedTime = v[1];
+                        } else {
+                            this.startTime = v[0];
+                            this.endTime = v[1];
+                        }
                     }
                 }
             },
@@ -359,18 +361,19 @@
                     }
                 }
             },
-            // selectedTime: {
-            //     handler(v) {
-            //         console.log('selectedTime change', v);
-            //         if (this.isRange === false) {
-            //             this.timeString = v;
-            //             this.$emit('input', this.timeString);
-            //         } else {
-            //             this.timeString = `${v} - ${this.endSelectedTime}`;
-            //             this.$emit('input', this.timeString);
-            //         }
-            //     }
-            // },
+            selectedTime: {
+                handler(v) {
+                    console.log('selectedTime change', v);
+                    if (this.isRange === false) {
+                        this.timeString = v;
+                        this.$emit('input', this.selectedTime);
+                    } else {
+                        this.timeString = `${v} - ${this.endSelectedTime}`;
+                        // this.$emit('input', this.timeString);
+                        this.$emit('input', [this.selectedTime, this.endSelectedTime]);
+                    }
+                }
+            },
             endSelectedTime: {
                 handler(v) {
                     console.log('endselectedTime change', v);
