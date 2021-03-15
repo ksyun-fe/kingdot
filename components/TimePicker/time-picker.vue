@@ -85,8 +85,10 @@
                                 class="selector-container"
                         >
                             <ScrollSelect
+                                    ref="startTimeSelector"
                                     v-model="selectedTime"
                                     :data="timeList"
+                                    :item-disable="startTimeSelectorLimit()"
                             ></ScrollSelect>
                         </div>
                         <div
@@ -122,8 +124,10 @@
                                 class="selector-container"
                         >
                             <ScrollSelect
+                                    ref="endTimeSelector"
                                     v-model="endSelectedTime"
                                     :data="timeList"
+                                    :item-disable="endTimeSelectorLimit()"
                             ></ScrollSelect>
                         </div>
                         <div
@@ -188,7 +192,7 @@
             },
             minTime: {
                 type: String,
-                default: '01:00:00'
+                default: '00:00:00'
             },
             maxTime: {
                 type: String,
@@ -233,7 +237,7 @@
                 // timeList: [],
                 selectedTime: '', // step 模式下的结果
                 endSelectedTime: '',
-                timeString: '', // input value
+                timeString: '' // input value
             };
         },
         computed: {
@@ -243,7 +247,7 @@
                     const step = this.step;
                     const max = parseTime(this.maxTime);
                     const min = parseTime(this.minTime);
-                    console.log('生成 timeList()', min, max, step);
+                    console.log('生成 timeList()', this.minTime, min, max, step);
                     const data = [];
 
                     for (let t = min; t <= max; t += step * 60) {
@@ -333,7 +337,6 @@
             startTime: {
                 deep: true,
                 handler(v) {
-
                     if (!this.isRange) {
                         console.log('startTime change 单点时间', v);
                         this.timeString = this.startTime; // innervalue 变化
@@ -368,22 +371,24 @@
                         this.timeString = v;
                         this.$emit('input', this.selectedTime);
                     } else {
-                        this.timeString = `${v} - ${this.endSelectedTime}`;
-                        // this.$emit('input', this.timeString);
-                        this.$emit('input', [this.selectedTime, this.endSelectedTime]);
+                        if (this.timeString !== `${v} - ${this.endSelectedTime}`) {
+                            this.timeString = `${v} - ${this.endSelectedTime}`;
+                            this.$emit('input', this.timeString.split(' - '));
+                        }
                     }
                 }
             },
             endSelectedTime: {
                 handler(v) {
-                    console.log('endselectedTime change', v);
-                    this.timeString = `${this.selectedTime} - ${v}`;
-                    this.$emit('input', this.timeString);
+                    if (this.timeString !== `${this.selectedTime} - ${v}`) {
+                        console.log('endSelectedTime change', v);
+                        this.timeString = `${this.selectedTime} - ${v}`;
+                        this.$emit('input', this.timeString.split(' - '));
+                    }
                 }
             }
         },
         created() {
-            console.log('scrollTimeArr', this.scrollTimeArr);
         },
         methods: {
             selectTimeValue(item) {
@@ -420,6 +425,24 @@
                 // const length = this.selectedValues.length;
                 // const index = this.valueId || length && length - 1;
                 // this.$emit('selectTime', value, index); // 第几个 选了时间
+            },
+            startTimeSelectorLimit() {
+                // let max =  生成的timelist 已经遵循 min max 限制
+                return time => { // "02:00"
+                    let disabled = false;
+                    // if (true) {
+                    console.log('startTimeSelectorLimit 字符串: ', time, this.endSelectedTime);
+                    disabled = parseTime(time) > parseTime(this.endSelectedTime);
+                    // }
+                    return disabled;
+                };
+            },
+            endTimeSelectorLimit() {
+                return time => { // "02:00"
+                    let disabled = false;
+                    disabled = parseTime(time) < parseTime(this.selectedTime);
+                    return disabled;
+                };
             }
         }
     };
