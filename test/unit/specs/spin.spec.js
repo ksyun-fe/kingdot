@@ -47,7 +47,7 @@ describe('Spin', () => {
     // local
     it('local', () => {
         vm = createCons(Spin, {
-            isLocal: true
+            local: true
         });
         expect(vm.$el.classList.contains('kd-spin-local')).to.be.true;
     });
