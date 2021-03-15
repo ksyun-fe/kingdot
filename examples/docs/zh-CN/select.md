@@ -1,8 +1,7 @@
 ## Select 选择器
 选项过多时，下拉显示数据并选择数据。
 
-### 基本使用
-:::demo #选择器 ##选择器的基本使用
+:::demo #基本使用 ##选择器的基本使用
 
 ```html
 <template>
@@ -35,8 +34,7 @@ export default{
 
 :::
 
-### 可搜索
-:::demo #选择器 ##可搜索筛选的选择器
+:::demo #可搜索 ##可搜索筛选的选择器，filterable属性为true变为可搜索。
 
 ```html
 <template>
@@ -79,8 +77,8 @@ export default{
 
 :::
 
-### 远程搜索
-:::demo #选择器 ##远程搜索
+
+:::demo #远程搜索 ##远程搜索需要传递remote-method方法属性。
 
 ```html
 <template>
@@ -127,8 +125,7 @@ export default{
 
 :::
 
-### 禁用
-:::demo #选择器 ##禁用选择器
+:::demo #禁用 ##禁用选择器
 
 ```html
 <template>
@@ -161,8 +158,7 @@ export default{
 
 :::
 
-### 多选
-:::demo #选择器 ##禁用选择器
+:::demo #多选 ##可以重复点击菜单，多次选择值。使用multiple属性控制。
 
 ```html
 <template>
@@ -194,8 +190,7 @@ export default{
 
 :::
 
-### 自定义option
-:::demo #选择器 ##自定义的菜单项,需要在option组件传入label参数。
+:::demo #自定义option ##自定义的菜单项,需要在option组件传入label参数。
 
 ```html
 <template>
@@ -236,8 +231,7 @@ export default{
 
 :::
 
-### 分组
-:::demo #选择器 ##分组选择器
+:::demo #分组 ##带有分组的选择器，，使用kd-option-group组件。
 
 ```html
 <template>
@@ -278,8 +272,7 @@ export default{
 ```
 :::
 
-### 大小
-:::demo #选择器 ##不同大小的选择器
+:::demo #选择器 ##不同大小的选择器。使用size属性控制。
 
 ```html
 <template>

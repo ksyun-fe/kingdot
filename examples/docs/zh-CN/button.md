@@ -1,4 +1,3 @@
-### 基础用法
 :::demo #基础用法 ##按钮主要有4中类型：主要按钮，次要按钮，虚线按钮，文字按钮。
 
 ```html
@@ -20,7 +19,6 @@
 ```
 :::
 
-### 按钮使用
 :::demo #按钮使用 ##主要按钮、次要按钮、文字按钮的使用方法。
 
 ```html
@@ -51,7 +49,6 @@
 :::
 
 
-### 禁用按钮
 :::demo #禁用按钮 ##使用disabled定义按钮是否可用，接受一个Boolean值。
 
 ```html
@@ -72,9 +69,6 @@
 ```
 :::
 
-
-
-### 图标按钮
 :::demo #图标按钮 ##使用icon属性给按钮添加图标。
 
 ```html
@@ -96,8 +90,7 @@
 
 :::
 
-### 圆形按钮
-:::demo #图标按钮 ##圆形按钮有circle和round两种类型。
+:::demo #圆形按钮 ##圆形按钮有circle和round两种类型。
 
 ```html
 <template>
@@ -115,7 +108,6 @@
 ```
 :::
 
-### 按钮大小
 :::demo #按钮大小 ##图标大小有两种类型，large、small。
 
 ```html
@@ -149,7 +141,6 @@
 ```
 :::
 
-### 按钮组合
 :::demo #按钮组合 ##button-group的按钮组合。
 
 ```html
@@ -180,13 +171,6 @@
                 <kd-button value="1" >按钮1</kd-button>
                 <kd-button value="2">按钮2</kd-button>
                 <kd-button value="3" >按钮3</kd-button>
-            </kd-button-group>
-        </div>
-        <div class='comp-top'>
-            <kd-button-group checkType="radio" v-model="checkboxValue">
-                <kd-button type="none" value="1" >按钮1</kd-button>
-                <kd-button type="none" value="2">按钮2</kd-button>
-                <kd-button type="none" value="3">按钮3</kd-button>
             </kd-button-group>
         </div>
         <div class='comp-top'>

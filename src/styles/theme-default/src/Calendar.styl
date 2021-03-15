@@ -1,0 +1,102 @@
+@import "../variables.styl";
+    
+.kd-calendar-header
+    text-align center
+    margin 15px 15px 
+    margin-bottom 30px
+    .kd-calendar-text-btn
+        &:hover 
+            color $-datepicker-day-blue-color
+    .left
+        float left
+    .right
+        float right
+    .kd-icon-skip-forward,.kd-icon-date-forward
+        margin 0 5px
+        cursor pointer
+        color $-datepicker-icon-color
+        &:first-child,&:nth-child(2)
+            transform rotate(-180deg)
+        &:hover 
+            color $-datepicker-day-blue-color
+    span
+        text-align center
+.kd-calendar-default
+    margin 0 15px 20px
+    width 270px
+    .kd-week
+        display flex
+        border-bottom 1px solid $-datepicker-disabled-border-color
+        span
+            flex 1
+            text-align center
+            margin-bottom 10px
+            font-size 12px
+.kd-calendar-table
+    .kd-calendar-row
+        margin-top: 10px
+        display flex
+    // div.kd-calendar-row
+    //     display flex
+        // margin-top: 10px
+        span.kd-month, span.kd-year
+            flex 0 0 25%
+            text-align center
+            line-height 40px
+            font-size $-font-base-size
+            cursor pointer
+            &.kd-blue
+                color $-datepicker-day-blue-color
+            &:hover
+                background $-datepicker-day-hover-bg-color
+                color $-datepicker-day-hover-color
+            
+            &.kd-selected
+                background $-datepicker-day-selected-bg-color
+                color $-datepicker-day-selected-color
+        div.kd-day-container
+            flex 1
+            justify-content center
+            display flex
+            &.kd-in-range
+                background-color $-datepicker-day-in-range-bg-color
+            &.kd-disMonth
+                background-color $-datepicker-day-disMonth-bg-color
+                // color $-datepicker-day-disMonth-color
+                // cursor no-drop
+                // &:hover
+                //     color $-datepicker-day-disMonth-color
+        span.kd-day
+            text-align center
+            line-height 24px
+            width 24px
+            font-size $-font-base-size
+            cursor pointer
+            /******** 动态样式 *******/ 
+            &.kd-blue
+                color $-datepicker-day-blue-color
+            &.kd-in-range
+                background-color $-datepicker-day-in-range-bg-color
+            &:hover
+                background $-datepicker-day-hover-bg-color
+                color $-datepicker-day-hover-color
+            
+                // font-weight $-header-font-weight
+            &.kd-selected
+                background $-datepicker-day-selected-bg-color
+                color $-datepicker-day-selected-color
+            &.kd-disabled
+                background $-datepicker-day-disabled-bg-color
+                cursor no-drop
+                &:hover
+                    color $-datepicker-day-disabled-color
+            &.kd-disMonth
+                background $-datepicker-day-disMonth-bg-color
+                color $-datepicker-day-disMonth-color
+                cursor no-drop
+                &:hover
+                    color $-datepicker-day-disMonth-color
+        // .kd-day
+        //     justify-content: space-between;
+        //     width 24px
+        //     // flex 1
