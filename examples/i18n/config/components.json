@@ -69,13 +69,22 @@
                             "path": "/slider",
                             "name": "Slider 滑块"
                         },
+                        
                         {
-                            "path": "/dropdown",
-                            "name": "Dropdown 下拉菜单"
+                            "path": "/select",
+                            "name": "Select 选择框"
+                        },
+                        {
+                            "path": "/upload",
+                            "name": "Upload 上传"
                         },
                         {
                             "path": "/transfer",
                             "name": "Transfer 穿梭框"
+                        },
+                        {
+                            "path": "/datePicker",
+                            "name": "DatePicker 日期选择器"
                         }
                     ]
                 },
@@ -140,7 +149,12 @@
                     },{
                         "path": "/tabs",
                         "name": "Tabs标签页"
-                    }]
+                    },
+                    {
+                        "path": "/dropdown",
+                        "name": "Dropdown 下拉菜单"
+                    }
+                ]
                 },
                 {
                     "name": "Others",
@@ -232,9 +246,14 @@
                             "path": "/checkbox",
                             "name": "Checkbox"
                         },
+                        
                         {
-                            "path": "/dropdown",
-                            "name": "Dropdown"
+                            "path": "/select",
+                            "name": "Select"
+                        },
+                        {
+                            "path": "/upload",
+                            "name": "Upload 上传"
                         },
                         {
                             "path": "/transfer",
@@ -287,7 +306,12 @@
                     },{
                         "path": "/tabs",
                         "name": "Tabs"
-                    }]
+                    },
+                    {
+                        "path": "/dropdown",
+                        "name": "Dropdown"
+                    }
+                ]
                 },
                 {
                     "name": "Others",
@@ -299,6 +323,10 @@
                         {
                             "path": "/dialog",
                             "name": "Dialog"
+                        },
+                        {
+                            "path": "/datePicker",
+                            "name": "DatePicker"
                         }
                     ]
                 }

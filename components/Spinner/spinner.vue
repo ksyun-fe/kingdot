@@ -123,22 +123,23 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    let value = v;
-                    //  小数点
-                    if (this.precision !== null) {
-                        value = this.addPoint(value);
-                    }
-                    this.isMax = v === this.max;
-                    this.isMin = v === this.min;
-                    console.log(value);
-                    this.inputValue = value;
+                    this.valueFilter(v);
                 }
             }
         },
         methods: {
+            valueFilter(v) {
+                let value = v;
+                //  小数点
+                if (this.precision !== null) {
+                    value = this.addPoint(value);
+                }
+                this.isMax = v === this.max;
+                this.isMin = v === this.min;
+                this.inputValue = value;
+            },
             // 增加
             addNum() {
-                console.log(this.inputValue);
                 let value = Number(this.inputValue);
                 const max = this.max;
                 if (value === this.max || this.disabled) return;
@@ -147,24 +148,22 @@
                 } else {
                     value = (value * 10 + this.step * 10) / 10;
                 }
-                if (value > max) {
+                if (value > max && max !== null) {
                     value = max;
                 }
-                console.log(value);
+
                 this.$emit('input', value);
                 this.$emit('change', value, this.value);
             },
             //  减小
             minusNum() {
-                console.log(this.inputValue);
                 let value = Number(this.inputValue);
-                console.log(value);
                 const min = this.min;
                 if (value === this.min || this.disabled) return;
                 if (this.step === null) {
                     value -= 1;
                 } else {
-                    value -= this.step;
+                    value = (value * 10 - this.step * 10) / 10;
                 }
                 if (value < min && min !== null) {
                     value = min;
@@ -182,6 +181,10 @@
             handleBlur(e) {
                 const step = this.step;
                 let value = Number(this.inputValue);
+                if (isNaN(value)) {
+                    this.valueFilter(this.value);
+                    return;
+                }
                 // 输入精准
                 if (this.inputStep && step !== null) {
                     const num = value / step;
@@ -192,7 +195,6 @@
                 if (this.precision !== null) {
                     this.inputValue = this.addPoint(value);
                 }
-                console.log(this.inputValue);
                 this.$emit('blur', e);
             },
             addPoint(value) {

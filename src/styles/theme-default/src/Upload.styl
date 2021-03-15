@@ -1,0 +1,182 @@
+
+.kd-upload
+    color $-upload-default-text
+    .kd-upload-input
+        display none
+.kd-upload-list-wrap
+    width 350px
+    font-size 12px
+    margin-top 10px
+
+.kd-upload-list-item
+    position relative
+    padding 0 10px
+    cursor pointer
+    transition all .3s
+    &:hover
+        background $-upload-text-hover-color
+        .kd-upload-icon
+            display inline-block
+        .kd-upload-icon+.kd-upload-icon
+            display none
+    .iconzhengque
+        color $-upload-success-color 
+    .iconcuowu
+        color $-upload-error-color 
+.kd-upload-item-wrap
+    height 30px
+    line-height 30px
+.kd-upload-list-delete
+    display none
+    opacity 0.7
+    &:hover
+        opacity 1
+.kd-upload-item-uploading
+    .kd-upload-list-delete
+        display inline-block
+.kd-upload-status-icon
+    position absolute
+    right 10px
+    top 0
+.kd-file-icon
+    margin-right 8px
+    color #ccc
+.kd-icon-left
+    right 8px
+.kd-upload-list-name
+    display block
+    // width 100%
+    margin-right 90px
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+    word-break break-all
+.kd-upload-photo-icon
+    color #EF4E76
+    font-size 16px
+    cursor pointer
+
+.kd-upload-add-icon
+    display inline-block
+    width 178px
+    height 178px
+    line-height 178px
+    text-align center
+    border 1px solid $-upload-border-color
+    border-radius $-upload-border-radius
+    cursor pointer
+    font-size 30px
+    color #ccc
+    &:hover 
+        // border 1px solid palette($-upload-primary-color, -1)
+.kd-upload-list-picture
+    display inline
+    vertical-align top
+.kd-upload-picture-item
+    position relative
+    display inline-block
+    width 178px 
+    height 178px
+    margin 0 8px 8px 0
+    border-radius $-upload-border-radius
+    border 1px solid $-upload-border-color
+    img 
+        width 100%
+        height 100%
+    &:hover
+        .kd-upload-pictureitem-pop
+            opacity 1
+.kd-upload-pictureitem-wrap
+    height 100%
+    border-radius $-upload-border-radius
+    overflow hidden
+.kd-upload-pictureitem-pop
+    position absolute
+    top 0
+    left 0
+    z-index 1
+    width 100%
+    height 100%
+    display flex
+    justify-content center
+    align-items center
+    opacity 0
+    background rgba(0,0,0,0.5)
+    border-radius $-upload-border-radius
+    transition all .5s
+    color #fff
+.kd-upload-pop-icon
+    cursor pointer
+
+.kd-upload-popState-icon
+    position absolute
+    top -3px
+    right -3px
+    z-index 1
+    cursor pointer
+    font-size 12px
+    color $-success-color
+.kd-upload-btn-wrap
+    display inline-block
+// 拖拽样式
+.kd-upload-drag
+    width 300px
+    height 170px
+    text-align center
+    border 1px dashed $-upload-border-color
+    cursor pointer
+    border-radius $-upload-border-radius
+    background $-white-color
+    &:hover
+        // border 1px dashed palette($-upload-primary-color, -1)
+.kd-upload-drag-icon
+    display block
+    margin 30px 0 20px 0
+    font-size 60px
+    color #ccc
+.kd-upload-drag-tip
+    font-size: 12px
+    color #666666
+
+.kd-upload-tip
+    color $-upload-tip-color
+    margin-top 10px
+    line-height 20px
+    overflow hidden
+    text-overflow ellipsis
+    font-size: 12px
+.kd-upload-head
+    width 178px
+    height 178px
+    cursor pointer
+    border-radius $-upload-border-radius
+    border 1px solid $-upload-border-color
+    &:hover
+        // border 1px solid palette($-upload-primary-color, -1)
+
+//进度条
+.kd-upload-progress
+    position absolute
+    top $-upload-progress-top
+    left 35px
+    border-radius 4px
+    line-height: 2px;
+    width calc(100% - 45px)
+.kd-upload-progress-line    
+    width 20%
+    background #000
+    height 2px
+
+.kd-upload-progress-wrap
+    position absolute
+    right 10px
+    line-height 30px
+    top -29px
+.kd-upload-progress-stop
+    margin-right 10px
+.kd-upload-progress-value
+    float left
+    margin-right 10px
+
+.kd-upload-photo-progress
+    height 100%

@@ -30,7 +30,7 @@
 <style scoped lang="stylus" type="text/stylus">
     .dark
         .bg-dark
-            background #252D45
+            background #1E253D
         .bg-light
             background #2D354D
         .col-content
@@ -70,7 +70,7 @@
 <style scoped lang="stylus" type="text/stylus">
     .dark
         .bg-dark
-            background #252D45
+            background #1E253D
         .bg-light
             background #2D354D
         .col-content
@@ -106,7 +106,7 @@
 <style scoped lang="stylus" type="text/stylus">
     .dark
         .bg-dark
-            background #252D45
+            background #1E253D
         .bg-light
             background #2D354D
         .col-content
@@ -178,7 +178,7 @@
         line-height 1.5
     .dark
         .bg-dark
-            background #252D45
+            background #1E253D
         .bg-light
             background #2D354D
         .col-content
@@ -250,7 +250,7 @@
         height 20px
     .dark
         .bg-dark
-            background #252D45
+            background #1E253D
         .bg-light
             background #2D354D
         .col-content
@@ -299,7 +299,7 @@
         line-height 1.5
     .dark
         .bg-dark
-            background #252D45
+            background #1E253D
         .bg-light
             background #2D354D
         .col-content

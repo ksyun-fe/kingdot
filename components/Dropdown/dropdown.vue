@@ -7,20 +7,27 @@
                 v-model="isShowMenu"
                 :trigger="trigger"
                 :placement="placement"
+                :disabled="disabled"
                 can-hover
                 :width-limit="false"
-                content-class="kd-dropdown-tooltip"
+                :hide-destroy="hideDestroy"
+                :content-class="dropdownClass"
         >
-            <kd-button
+            <div v-if="!splitButton">
+                <slot/>
+            </div>
+            <!-- <kd-button
                     v-if="!splitButton"
                     ref="defaultBtn"
                     :type="type"
                     :size="size"
+                    :disabled="disabled"
             >
-                <slot/>
-            </kd-button>
+            </kd-button> -->
             <!-- 按钮组合 带分割线 -->
-            <kd-button-group v-else>
+            <kd-button-group
+                    v-else
+            >
                 <kd-button
                         :size="size"
                         type="primary"
@@ -68,33 +75,39 @@
                 type: String,
                 default: 'bottom'
             },
-            menuChange: {
-                type: Function,
-                default() {
-                    return () => {};
-                }
-            },
             type: {
                 type: String,
                 default: 'default'
             },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
             size: {
                 type: String,
                 default: ''
+            },
+            contentClass: {
+                type: String,
+                default: ''
+            },
+            hideDestroy: {
+                type: Boolean,
+                default: false
             }
+
         },
         data() {
             return {
-                isShowMenu: false,
-                isMouseEvent: false,
-                timeout: {},
-                showtime: 300,
-                menuStyle: {},
-                triggerEl: {}
+                isShowMenu: false
             };
         },
+        computed: {
+            dropdownClass() {
+                return `kd-dropdown-tooltip ${this.contentClass}`;
+            }
+        },
         watch: {
-            //  菜单显示隐藏返回回调
             isShowMenu(v) {
                 this.$emit('menu-change', v);
             }

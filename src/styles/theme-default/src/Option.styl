@@ -1,0 +1,22 @@
+.kd-option
+    padding 0 32px 0 16px
+    line-height 32px
+    position relative
+    font-size 12px
+    color $-select-item-text-color
+    cursor pointer
+    overflow hidden
+    text-overflow ellipsis
+    &:hover:not(.kd-option-disabled)
+        background $-select-item-hover-bg
+    .kd-option-icon
+        color $-select-active-color
+.kd-option-icon
+    position absolute
+    right: 10px
+.kd-option-active
+    color $-select-active-color  
+
+.kd-option-disabled
+    cursor not-allowed
+    background $-select-option-disabled-bg
