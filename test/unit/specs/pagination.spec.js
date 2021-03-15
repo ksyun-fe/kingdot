@@ -354,4 +354,40 @@ describe('Pagination', () => {
             expect(vm.$refs.pagination.current).to.be.equal(8);
         });
     });
+    // superMini
+    it('superMini', async () => {
+        vm = createVue({
+            template: `
+                <div>
+                    <kd-pagination
+                            superMini
+                            :total="total"
+                            :limit="limit"
+                            :current="current"
+                            ref="pagination"
+                            @change="change"
+                    />
+                </div>
+            `,
+            data() {
+                return {
+                    current: 6,
+                    limit: 10,
+                    total: 120,
+                }
+            },
+            created() {
+            },
+            methods: {
+                change({current, limit}){
+                    this.current = current;
+                    this.limit = limit;
+                }
+            }
+        });
+        vm.$refs.pagination.changePage({value:'right',label:'···'});
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.current).to.be.equal(8);
+        });
+    });
 })

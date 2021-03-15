@@ -255,7 +255,7 @@
                 }
             },
             current(newV, oldV) {
-                if (newV !== this.innerCurrent) {
+                if (newV !== oldV) {
                     this.innerCurrent = newV;
                     this.inputCurrent = newV;
                     if (this.timer) {
@@ -269,8 +269,8 @@
                     this.preValue = this.innerCurrent;
                 }
             },
-            limit(newV) {
-                if (newV !== this.innerLimit) {
+            limit(newV, oldV) {
+                if (newV !== oldV) {
                     this.innerLimit = newV;
                     if (this.timer) {
                         clearInterval(this.timer);
@@ -327,9 +327,10 @@
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.right));
                         _pageArrayData.push(pageItem(this.pageCount));
                     }
-                } else {
-                    _pageArrayData.push(1);
                 }
+                //  else {
+                //     _pageArrayData.push(1);
+                // }
                 this.showPageArray = _pageArrayData;
             },
             // prev
