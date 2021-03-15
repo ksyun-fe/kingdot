@@ -1,8 +1,7 @@
 ## spinner 计数器
 通过鼠标或者键盘，定义范围内的数值。
 
-### 基本使用
-:::demo #计数器 ##计数器的基本使用
+:::demo #基础使用 ##计数器的基本使用
 
 ```html
 <template>
@@ -26,8 +25,7 @@ export default{
 
 :::
 
-### 禁用
-:::demo #计数器 ##禁用状态的计数器
+:::demo #禁用 ##禁用状态的计数器
 
 ```html
 <template>
@@ -47,8 +45,7 @@ export default{
 
 :::
 
-### 小数点
-:::demo #计数器 ##precision是设置小数点几位。必须是个非负数。带有小数点的计数器
+:::demo #小数点计数器 ##precision是设置小数点几位。必须是个非负数。带有小数点的计数器
 
 ```html
 <template>
@@ -68,8 +65,7 @@ export default{
 
 :::
 
-### 步数
-:::demo #计数器 ## 带有步数的计数器。
+:::demo #步数 ## 带有步数的计数器。使用step，每次加减对应的数值。
 
 ```html
 <template>
@@ -88,8 +84,7 @@ export default{
 
 :::
 
-### 按钮位置
-:::demo #计数器 ##不同的按钮位置展示。
+:::demo #按钮位置 ##不同的按钮位置展示。使用button-position属性设置。
 
 ```html
 <template>
@@ -111,8 +106,7 @@ export default{
 
 :::
 
-### 大小
-:::demo #计数器 ##不同大小的按钮展示
+:::demo #大小 ##不同大小的按钮展示。
 
 ```html
 <template>
@@ -150,8 +144,7 @@ export default{
 
 :::
 
-### 精准步数
-:::demo #计数器 ##在输入数字的时候，严格按照步数。
+:::demo #精准步数 ##在输入数字的时候，严格按照步数。
 
 ```html
 <template>
@@ -163,10 +156,6 @@ export default{
         return{
             value: 1
         }
-    },
-    mounted(){
-        // this.$refs.spinner.focus();
-        // this.$refs.spinner.select();
     },
     methods:{
         change(v,oldv){

@@ -33,7 +33,7 @@
 ```
 :::
 
-:::demo #带搜索框 ##带搜索框的，可以自定义搜索函数。
+:::demo #带搜索框 ##带搜索框的，showFilter属性控制搜索框显示隐藏，使用自定义需要传入filter-method方法属性。
 
 ```html
 <template>

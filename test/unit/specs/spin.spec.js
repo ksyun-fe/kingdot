@@ -20,7 +20,6 @@ describe('Spin', () => {
         vm = createCons(Spin, {
             text: '加载中'
         });
-        console.log(vm.$el.querySelector('.kd-spin-text'))
         expect(vm.$el.querySelector('.kd-spin-text').innerText).to.equal('加载中');
     });
     // size
