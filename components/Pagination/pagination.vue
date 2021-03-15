@@ -6,12 +6,14 @@
         <!-- total -->
         <div
                 v-if="!superMini && showTotal"
-                class="kd-pagination-total">
+                class="kd-pagination-total"
+        >
             <span>共{{ total }}条</span>
         </div>
         <div
                 v-if="showPageCount"
-                class="kd-pagination-total">
+                class="kd-pagination-total"
+        >
             <span>共{{ pageCount }}页</span>
         </div>
         <!-- limits -->
@@ -37,7 +39,7 @@
         <kd-button
                 class="kd-pagination-btn"
                 :size="size"
-                :disabled="innerCurrent == 1"
+                :disabled="innerCurrent === 1"
                 :type="type"
                 @click="prev"
         >
@@ -47,7 +49,8 @@
                         'kd-icon-caret-left',
                         prevText.includes('kd-icon') ? prevText : 'kd-pagination-left'
                     ]"
-            ></i>
+            >
+            </i>
             <span
                     v-else
                     class="kd-pagination-prev-text"
@@ -66,7 +69,7 @@
                     :key="getKey(item.value)"
                     :class="{
                         'kd-pagination-btn': true,
-                        'kd-pagination-btn-active': type == 'none'
+                        'kd-pagination-btn-active': type === 'none'
                     }"
                     :value="item.value"
                     :type="type"
@@ -83,7 +86,7 @@
                     :class="{
                         'kd-pagination-btn-mini': true,
                         'kd-pagination-btn': true,
-                        'kd-pagination-btn-active': type == 'none'
+                        'kd-pagination-btn-active': type === 'none'
                     }"
                     type="text"
                     :size="size"
@@ -104,7 +107,7 @@
                 :size="size"
                 class="kd-pagination-btn kd-pagination-btn-next"
                 icon
-                :disabled="innerCurrent == pageCount"
+                :disabled="innerCurrent === pageCount"
                 :type="type"
                 @click="next"
         >
@@ -240,7 +243,7 @@
         },
         watch: {
             total(newV, oldV) {
-                if (newV != oldV) {
+                if (newV !== oldV) {
                     if (this.timer) {
                         clearInterval(this.timer);
                         this.timer = null;
@@ -252,7 +255,7 @@
                 }
             },
             current(newV, oldV) {
-                if (newV != this.innerCurrent) {
+                if (newV !== this.innerCurrent) {
                     this.innerCurrent = newV;
                     this.inputCurrent = newV;
                     if (this.timer) {
@@ -267,7 +270,7 @@
                 }
             },
             limit(newV) {
-                if (newV != this.innerLimit) {
+                if (newV !== this.innerLimit) {
                     this.innerLimit = newV;
                     if (this.timer) {
                         clearInterval(this.timer);
@@ -296,7 +299,7 @@
                     for (let i = 1; i < this.pageCount + 1; i++) {
                         _pageArrayData.push(pageItem(i));
                     }
-                } else if (this.total != 0) {
+                } else if (this.total !== 0) {
                     // 前半部分全显，需要显示省略符'...'，总页数
                     if (this.innerCurrent <= this.innerCounts - 2) {
                         for (let i = 1; i < this.innerCounts; i++) {
@@ -315,9 +318,9 @@
                         // 1，省略符'...'，中间部分，省略符'...'，总页数
                         _pageArrayData.push(pageItem(1));
                         _pageArrayData.push(pageItem(this.ellipsis, this.markDic.left));
-                        const num = this.innerCounts % 2 == 0 ? Math.ceil((this.innerCounts - 2) / 2) : Math.floor((this.innerCounts - 2) / 2);
+                        const num = this.innerCounts % 2 === 0 ? Math.ceil((this.innerCounts - 2) / 2) : Math.floor((this.innerCounts - 2) / 2);
                         const start = this.innerCurrent - num;
-                        const endNum = this.innerCounts % 2 == 0 ? (this.innerCounts - 1) : (this.innerCounts - 2);
+                        const endNum = this.innerCounts % 2 === 0 ? (this.innerCounts - 1) : (this.innerCounts - 2);
                         for (let i = 0; i < endNum; i++) {
                             _pageArrayData.push(pageItem(i + start));
                         }
@@ -331,14 +334,14 @@
             },
             // prev
             prev() {
-                if (this.innerCurrent == 1) return;
+                if (this.innerCurrent === 1) return;
                 this.innerCurrent--;
                 this.inputCurrent--;
                 this.parseData();
             },
             // next
             next() {
-                if (this.innerCurrent == this.pageCount) return;
+                if (this.innerCurrent === this.pageCount) return;
                 this.innerCurrent++;
                 this.inputCurrent++;
                 this.parseData();
@@ -346,14 +349,14 @@
             // jump
             jumpEnterAction() {
                 var v = this.inputCurrent;
-                if (!/^[0-9]{1,}$/.test(v)) {
-                    this.innerCurrent = 1;
-                    this.inputCurrent = 1;
-                    return;
-                }
+                // if (!/^[0-9]{1,}$/.test(v)) {
+                //     this.innerCurrent = 1;
+                //     this.inputCurrent = 1;
+                //     return;
+                // }
                 v = Math.floor(this.inputCurrent);
                 // 是否等于当前高亮值
-                if (v != this.innerCurrent) {
+                if (v !== this.innerCurrent) {
                     if (v > 0 && v <= this.pageCount) {
                         this.innerCurrent = v;
                     } else {
@@ -365,14 +368,14 @@
             },
             replaceValue() {
                 var v = this.inputCurrent;
-                this.inputCurrent = v == 0 ? '' : v.toString().replace(/[^0-9]*/g, '');
+                this.inputCurrent = v === 0 ? '' : v.toString().replace(/[^0-9]*/g, '');
             },
             // click page btn
             checkPage(item) {
                 // click right ... or left ...
-                if (item.value == this.markDic.left) {
+                if (item.value === this.markDic.left) {
                     this.innerCurrent = this.preValue - 2;
-                } else if (item.value == this.markDic.right) {
+                } else if (item.value === this.markDic.right) {
                     this.innerCurrent = this.preValue + 2;
                 } else {
                     this.innerCurrent = item.value;
@@ -383,7 +386,7 @@
             },
             // change limit
             selectSize(pageSize) {
-                if (this.innerLimit == pageSize) return;
+                if (this.innerLimit === pageSize) return;
                 this.innerLimit = pageSize;
                 // 当每页条数变动，页码自动变为1
                 this.innerCurrent = 1;
@@ -395,7 +398,7 @@
             },
             // change event
             emitEvent() {
-                if (this.innerCurrent != this.current || this.innerLimit != this.limit) {
+                if (this.innerCurrent !== this.current || this.innerLimit !== this.limit) {
                     this.$emit('change', {
                         current: this.innerCurrent,
                         limit: this.innerLimit
@@ -403,7 +406,7 @@
                 }
             },
             getKey(keyStr) {
-                if (keyStr == this.markDic.left || keyStr == this.markDic.right) {
+                if (keyStr === this.markDic.left || keyStr === this.markDic.right) {
                     return Math.random() + keyStr;
                 }
                 return keyStr;

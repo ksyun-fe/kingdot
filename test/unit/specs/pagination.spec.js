@@ -21,10 +21,9 @@ describe('Pagination', () => {
         expect(vm.$el.querySelector('.kd-pagination-limits-icon').classList.contains('kd-icon-arrow-down')).to.be.true;
         expect(vm.$el.querySelector('.kd-pagination-prev-text').innerText).to.equal('上一页');
         expect(vm.$el.querySelector('.kd-pagination-next-text').innerText).to.equal('下一页');
-        // expect(vm.$el.querySelector('.kd-pagination-limits').classList.contains('kd-icon-arrow-down')).to.be.true;
     });
-    // change cureent
-    it('change current', async () => {
+    // change current
+    it('change current and total', async () => {
         vm = createVue({
             template: `
                 <div>
@@ -55,6 +54,7 @@ describe('Pagination', () => {
                 }
             }
         });
+        vm.$refs.pagination.changePage({value:1,label:1});
         vm.$refs.pagination.next();
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(2);
@@ -63,10 +63,12 @@ describe('Pagination', () => {
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(1);
         });
-        expect(vm.$refs.pagination.total).to.be.equal(200);
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.total).to.be.equal(200);
+        });
     });
-    // change cureent
-    it('change current', async () => {
+    // change limit
+    it('limit', async () => {
         vm = createVue({
             template: `
                 <div>
@@ -87,7 +89,6 @@ describe('Pagination', () => {
                 }
             },
             created() {
-
             },
             methods: {
                 change({current, limit}){
@@ -96,13 +97,256 @@ describe('Pagination', () => {
                 }
             }
         });
-        triggerEvent(document.querySelector('.kd-pagination-limits'), 'mouseover');
-        await vm.$nextTick().then(() => {
-            console.log(document.querySelectorAll('.kd-dropdown-item').length)
+        vm.$refs.pagination.selectSize(10);
+        expect(vm.$refs.pagination.limit).to.be.equal(10);
+    });
+    // change limit
+    it('change limit', async () => {
+        vm = createVue({
+            template: `
+                <div>
+                    <kd-pagination
+                            :total="total"
+                            :limit="limit"
+                            :current="current"
+                            ref="pagination"
+                            @change="change"
+                    />
+                </div>
+            `,
+            data() {
+                return {
+                    current: 1,
+                    limit: 10,
+                    total: 100,
+                }
+            },
+            created() {
+            },
+            methods: {
+                change({current, limit}){
+                    this.current = current;
+                    this.limit = limit;
+                }
+            }
         });
-        // setTimeout(() => {
-        //     console.log(document.querySelectorAll('.kd-dropdown-item').length)
-        //     done();
-        // }, 1500);
+        vm.$refs.pagination.limit = 20;
+        vm.$refs.pagination.selectSize(20);
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.limit).to.be.equal(20);
+        });
+    });
+    // click the first page
+    it('click the first page', async () => {
+        vm = createVue({
+            template: `
+                <div>
+                    <kd-pagination
+                            :total="total"
+                            :limit="limit"
+                            :current="current"
+                            ref="pagination"
+                            @change="change"
+                    />
+                </div>
+            `,
+            data() {
+                return {
+                    current: 1,
+                    limit: 10,
+                    total: 100,
+                }
+            },
+            created() {
+            },
+            methods: {
+                change({current, limit}){
+                    this.current = current;
+                    this.limit = limit;
+                }
+            }
+        });
+        vm.$refs.pagination.changePage({value:1,label:1});
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.current).to.be.equal(1);
+        });
+    });
+    // click the last page
+    it('click the last page', async () => {
+        vm = createVue({
+            template: `
+                <div>
+                    <kd-pagination
+                            :total="total"
+                            :limit="limit"
+                            :current="current"
+                            ref="pagination"
+                            @change="change"
+                    />
+                </div>
+            `,
+            data() {
+                return {
+                    current: 1,
+                    limit: 10,
+                    total: 100,
+                }
+            },
+            created() {
+            },
+            methods: {
+                change({current, limit}){
+                    this.current = current;
+                    this.limit = limit;
+                }
+            }
+        });
+        vm.$refs.pagination.changePage({value:10,label:10});
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.current).to.be.equal(10);
+        });
+    });
+    // jump
+    it('jump', async () => {
+        vm = createVue({
+            template: `
+                <div>
+                    <kd-pagination
+                            :total="total"
+                            :limit="limit"
+                            :current="current"
+                            ref="pagination"
+                            @change="change"
+                    />
+                </div>
+            `,
+            data() {
+                return {
+                    current: 1,
+                    limit: 10,
+                    total: 200,
+                }
+            },
+            created() {
+                // this.current = 10;
+            },
+            methods: {
+                change({current, limit}){
+                    this.current = current;
+                    this.limit = limit;
+                }
+            }
+        });
+        vm.$refs.pagination.current = 10;
+        vm.$refs.pagination.jumpEnterAction();
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.current).to.be.equal(10);
+        });
+    });
+    // jump
+    it('wrong value', async () => {
+        vm = createVue({
+            template: `
+                <div>
+                    <kd-pagination
+                            :total="total"
+                            :limit="limit"
+                            :current="current"
+                            ref="pagination"
+                            @change="change"
+                    />
+                </div>
+            `,
+            data() {
+                return {
+                    current: 1,
+                    limit: 10,
+                    total: 200,
+                }
+            },
+            created() {
+            },
+            methods: {
+                change({current, limit}){
+                    this.current = current;
+                    this.limit = limit;
+                }
+            }
+        });
+        vm.$refs.pagination.inputCurrent = 'a7b';
+        triggerEvent(vm.$el.querySelector('.kd-pagination-input'), 'keyup');
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.current).to.be.equal(1);
+        });
+    });
+    // click left ···
+    it('click left ···', async () => {
+        vm = createVue({
+            template: `
+                <div>
+                    <kd-pagination
+                            :total="total"
+                            :limit="limit"
+                            :current="current"
+                            ref="pagination"
+                            @change="change"
+                    />
+                </div>
+            `,
+            data() {
+                return {
+                    current: 6,
+                    limit: 10,
+                    total: 120,
+                }
+            },
+            created() {
+            },
+            methods: {
+                change({current, limit}){
+                    this.current = current;
+                    this.limit = limit;
+                }
+            }
+        });
+        vm.$refs.pagination.changePage({value:'left',label:'···'});
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.current).to.be.equal(4);
+        });
+    });
+    // click right ···
+    it('click right ···', async () => {
+        vm = createVue({
+            template: `
+                <div>
+                    <kd-pagination
+                            :total="total"
+                            :limit="limit"
+                            :current="current"
+                            ref="pagination"
+                            @change="change"
+                    />
+                </div>
+            `,
+            data() {
+                return {
+                    current: 6,
+                    limit: 10,
+                    total: 120,
+                }
+            },
+            created() {
+            },
+            methods: {
+                change({current, limit}){
+                    this.current = current;
+                    this.limit = limit;
+                }
+            }
+        });
+        vm.$refs.pagination.changePage({value:'right',label:'···'});
+        await vm.$nextTick().then(() => {
+            expect(vm.$refs.pagination.current).to.be.equal(8);
+        });
     });
 })
