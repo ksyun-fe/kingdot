@@ -1,4 +1,4 @@
-const hljs = require('highlight.js/lib/highlight.js');
+const hljs = require('highlight.js/lib/core.js');
 require('highlight.js/styles/color-brewer.css');
 
 hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));

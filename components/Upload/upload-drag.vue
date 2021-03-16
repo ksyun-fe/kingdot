@@ -21,10 +21,8 @@
                 this.$emit('dropFiles', files);
             },
             onDragover(e) {
-                // console.log('over', e);
             },
             onDragleave(e) {
-                // console.log('leave', e);
             }
         }
     };

@@ -10,10 +10,12 @@ export default {
             default: false
         },
         justify: {
-            type: String
+            type: String,
+            default: 'start'
         },
         align: {
-            type: String
+            type: String,
+            default: 'stretch'
         },
         tag: {
             type: String,

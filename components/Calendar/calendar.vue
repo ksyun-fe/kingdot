@@ -7,12 +7,12 @@
         >
             <i
                     v-show="mode==='select-year'"
-                    class="kd-icon-date-forward left"
+                    class="kd-icon-date-forward page-left-icon"
                     @click="setMonthOrYear('Year', -10)"
             ></i>
             <i
                     v-show="mode==='select-month'"
-                    class="kd-icon-date-forward left"
+                    class="kd-icon-date-forward page-left-icon"
                     @click="setMonthOrYear('Year', -1)"
             ></i>
             <span
@@ -30,12 +30,12 @@
             </span>
             <i
                     v-show="mode==='select-year'"
-                    class="kd-icon-date-forward right"
+                    class="kd-icon-date-forward page-right-icon"
                     @click="setMonthOrYear('Year',10)"
             ></i>
             <i
                     v-show="mode==='select-month'"
-                    class="kd-icon-date-forward right"
+                    class="kd-icon-date-forward page-right-icon"
                     @click="setMonthOrYear('Year',1)"
             ></i>
         </div>
@@ -45,12 +45,12 @@
         >
             <i
                     v-if="!isRange || isRange && !isEndCalendar"
-                    class="kd-icon-skip-forward left"
+                    class="kd-icon-skip-forward page-left-icon"
                     @click="setMonthOrYear('Year', -1)"
             ></i>
             <i
                     v-if="!isRange || isRange && !isEndCalendar"
-                    class="kd-icon-date-forward left"
+                    class="kd-icon-date-forward page-left-icon"
                     @click="setMonthOrYear('Month', -1)"
             ></i>
             <span
@@ -67,12 +67,12 @@
             >{{ month }} 月</span>
             <i
                     v-if="!isRange || isRange && isEndCalendar"
-                    class="kd-icon-skip-forward right"
+                    class="kd-icon-skip-forward page-right-icon"
                     @click="setMonthOrYear('Year',1)"
             ></i>
             <i
                     v-if="!isRange || isRange && isEndCalendar"
-                    class="kd-icon-date-forward right"
+                    class="kd-icon-date-forward page-right-icon"
                     @click="setMonthOrYear('Month',1)"
             ></i>
         </div>

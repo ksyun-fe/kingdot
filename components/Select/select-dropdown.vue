@@ -13,10 +13,8 @@
     export default {
         name: 'KdSelectDropdown',
         props: {
-            value: {
-                type: [String, Array],
-                default: ''
-            },
+            // eslint-disable-next-line vue/require-prop-type-constructor
+            value: '',
             isDropdown: {
                 type: Boolean,
                 default: false
