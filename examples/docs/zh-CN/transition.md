@@ -7,14 +7,14 @@
 <template>
     <div>
         <span>类型：</span>
-        <select v-model="type">
-            <option v-for="(item, index) in types" :value="item" :key="index">{{ item }}</option>
-        </select>
+        <kd-select v-model="type" class="demo-select" width="200px">
+            <kd-option v-for="(item, index) in types" :value="item" :key="index">{{ item }}</kd-option>
+        </kd-select>
 
         <span>动作：</span>
-        <select v-model="motion">
-            <option v-for="(item, index) in motions" :value="item" :key="index">{{ item }}</option>
-        </select>
+        <kd-select v-model="motion" class="demo-select" width="200px">
+            <kd-option v-for="(item, index) in motions" :value="item" :key="index">{{ item }}</kd-option>
+        </kd-select>
 
         <kd-button @click="handleClick">{{ isShow ? '隐藏' : '展示' }}</kd-button>
 
@@ -71,6 +71,8 @@
         padding 24px 48px
         border-radius 8px
         border 1px solid #ccc
+    .demo-select
+        margin-right 20px
 </style>
 ```
 :::

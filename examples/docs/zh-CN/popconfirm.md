@@ -54,8 +54,8 @@
 | tittle    | `标题内容` | `String` | `--` | `--` |
 | titleLine    | `是否展示标题和内容分割线` | `Boolean` | `true|false` | `true` |
 | content    | `内容` | `String` | `--` | `--` |
-| confirm    | `确认回调` | `Function` | `--` | `undefined` |
-| cancel    | `取消回调` | `Function` | `--` | `undefined` |
+| confirm    | `确认回调` | `Function` | `--` | `-` |
+| cancel    | `取消回调` | `Function` | `--` | `-` |
 | okText    | `确定按钮文案` | `String` | `--` | `确定` |
 | cancelText    | `取消按钮文案` | `String` | `--` | `取消` |
 | okType    | `确认按钮类型` | `String` | `同Button组件` | `primary` |

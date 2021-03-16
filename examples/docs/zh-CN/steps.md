@@ -1,9 +1,7 @@
 ## Steps步骤条
  用途： 引导用户按照流程完成任务的分步导航条，可根据实际应用场景设定步骤，步骤不得少于 2 步。
 
-#### 简单步骤条
-
-:::demo #基础用法 ##简单步骤条 该条件下，position/direction/size/status,均失效
+:::demo #简单步骤条 ##简单步骤条 该条件下，`position`/`direction`/`size`/`status`属性均失效
 
 ```html
 <template>
@@ -33,9 +31,8 @@
 </script>
 ```
 :::
-#### 有状态的步骤条
 
-:::demo #基础用法 ##有状态的步骤条  状态可以通过 Steps的finishStatus属性控制，也可以单独对Step的status属性进行设置，进而控制状态
+:::demo #有状态的步骤条 ##有状态的步骤条  状态可以通过 Steps的`finishStatus`属性控制，也可以单独对Step的`status`属性进行设置，进而控制状态
 ```html
 <template>
 <div>
@@ -82,9 +79,8 @@
 </script>
 ```
 :::
-#### 有描述的步骤条
 
-:::demo #基础用法 ##有描述步骤条 描述的位置和标题的位置始终保持一致
+:::demo #有描述的步骤条 ##有描述步骤条 描述的位置和标题的位置始终保持一致,通过`position`属性来控制描述和标题的位置
 ```html
 <template>
     <div>
@@ -120,9 +116,8 @@
 </script>
 ```
 :::
-#### 自定义图标的步骤条
 
-:::demo #基础用法 ##自定义图标的步骤条 通过icon属性直接传图标类名即可
+:::demo #自定义图标的步骤条 ##自定义图标的步骤条 通过`icon`属性直接传图标类名即可
 ```html
 <template>
     <div>
@@ -150,9 +145,8 @@
 </script>
 ```
 :::
-#### 简约版的步骤条
 
-:::demo #基础用法 ##简约版的步骤条 该条件下 position / description / direction / size 都将失效
+:::demo #简约版的步骤条 ##简约版的步骤条 该条件下 `position` / `description` / `direction` / `size` 属性都将失效
 ```html
 <template>
     <div>
@@ -185,9 +179,8 @@
 </script>
 ```
 :::
-#### 竖式的步骤条
 
-:::demo #基础用法 ##竖式的步骤条,其父元素一定要设置高度
+:::demo #竖式的步骤条 ##竖式的步骤条,其父元素一定要设置高度
 ```html
 <template>
     <div>
