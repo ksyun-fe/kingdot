@@ -2,10 +2,14 @@
 @import '../../common/motion/mixins.styl';
 .kd-tree
     font-size $-font-small-size
+    line-height 1.8
     ul
         padding-left calc(14px + 8px) // width + margin; variables
+    ul, li
+        list-style none
     .kd-tree-node-el
         margin-bottom 12px
+        height 24px
         &:hover
             background-color $-tree-node-bg-color
     .kd-tree-switcher, .kd-tree-loading
