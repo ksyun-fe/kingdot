@@ -195,14 +195,15 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    if (typeof v === 'string') {
-                        // this.$emit('input', v);
-                        // this.$emit('change', v);
+                    if (!!v && typeof v === 'string') {
+                        if (!Moment(v).isValid()) {
+                            v = '';
+                        }
                         this.inputDateString = v;
                         this.dateValue = [v];
                     } else if (Array.isArray(v)) {
-                        // this.$emit('input', v);
-                        // this.$emit('change', v);
+                        const tmpArr = v.filter(timeStr => Moment(timeStr).isValid());
+                        v = tmpArr.length > 2 ? tmpArr.slice(0, 2) : tmpArr;
                         this.inputDateString = v.join(' ~ ');
                         this.dateValue = v;
                     }
