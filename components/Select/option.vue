@@ -25,10 +25,8 @@
                     return {};
                 }
             },
-            value: {
-                type: String,
-                default: ''
-            },
+            // eslint-disable-next-line vue/require-prop-type-constructor
+            value: '',
             label: {
                 type: String,
                 default: ''

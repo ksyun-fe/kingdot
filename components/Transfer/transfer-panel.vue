@@ -88,7 +88,6 @@
                 render(h) {
                     // slot自定义数据项内容
                     const transfer = this.$parent.$parent;
-                    console.log(transfer.$scopedSlots);
                     const childrenLabel = transfer.$scopedSlots.default;
                     return childrenLabel ? (
                         transfer.$scopedSlots.default(
@@ -196,9 +195,7 @@
             },
             //  内容input改变
             itemInputChange(item) {
-                console.log(item);
                 const changeKeys = [item[this.dataKey.key]];
-
                 const noramlData = this.panelData.filter(
                     (child) => !child.disabled
                 );
