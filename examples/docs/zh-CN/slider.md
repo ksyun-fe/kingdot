@@ -119,7 +119,7 @@
 | showInput     | 是否展示输入框  | `Boolean`    |     `false`    |
 | showStop     | 是否展示间隔点  | `Boolean`    |     `false`    |
 | step     | 步长  | `Number`    |     `1`    |
-| marks     | `标注刻度(Object：key表示组件的值，value为该值对应展示的标注文案。)`  | `Object`    |     `undefined`    |
+| marks     | `标注刻度(Object：key表示组件的值，value为该值对应展示的标注文案。)`  | `Object`    |     `-`    |
 | showTip     | 是否展示tooltip  | `Boolean`    |     `true`    |
 | always     | 是否一直展示tooltip  | `Boolean`    |     `false`    |
 | range     | 是否为范围选择  | `Boolean`    |     `false`    |

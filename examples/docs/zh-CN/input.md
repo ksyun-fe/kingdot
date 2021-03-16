@@ -13,6 +13,7 @@
             class="input-gap1"
             width="200px"
             placeholder="请输入内容"
+            @enter="enterHandler"
             v-model="age"
     ></kd-input>
 </div>
@@ -24,7 +25,12 @@
             return {
                 age: 20
             }
-        }
+        },
+        methods: {
+            enterHandler(e) {
+                this.$message.success('entering')
+            }
+        }   
     }
 </script>
 <style scoped>
@@ -426,6 +432,7 @@
 | clear | 在点击由 clearable 属性生成的清空按钮时触发 | —
 | keydown | 在键盘按下时触发 | -
 | keyup | 在键盘弹起时触发 | -
+| enter | 按enter键时触发 | (event: Event)
 
 ### Methods {.component__content}
 | 方法名      | 说明    | 参数 |
@@ -433,3 +440,4 @@
 | focus | 使 input 获取焦点 | -
 | blur | 使 input 失去焦点 | -
 | select | 选中input内容 | -
+

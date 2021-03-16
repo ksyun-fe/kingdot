@@ -1,4 +1,4 @@
-import { createVue, triggerEvent, destroyVM } from '../util';
+import { createVue, destroyVM } from '../util';
 
 describe('Datepicker', () => {
     let vm;
@@ -53,26 +53,34 @@ describe('Datepicker', () => {
           `,
           data() {
             return {
-                data: [{
-                    label: '今天',
-                    value: 0,
-                    unit: 'day'
-                  }, {
-                      label: '昨天',
-                      value: -1,
-                      unit: 'day'
-                  }, {
-                      label: '明天',
-                      value: 1,
-                      unit: 'day'
-                  }]
-              }
-          }
-      });
-      vm.$el.querySelector('.kd-input-inner').click();
+                data: [
+                    {
+                        label: '今天',
+                        offset: {
+                            value: 0,
+                            unit: 'day'
+                        }
+                    }, {
+                        label: '昨天',
+                        offset: {
+                            value: -1,
+                            unit: 'day'
+                        }
+                    }, {
+                        label: '明天',
+                        offset: {
+                            value: 1,
+                            unit: 'day'
+                        }
+                    }
+                ]
+            }
+        }
+    });
+    vm.$el.querySelector('.kd-input-inner').click();
       
       
-      setTimeout(() => {
+    setTimeout(() => {
           expect(vm.$el.querySelector('.kd-input-inner')).to.be.ok;
 
           expect(document.querySelector('.kd-panel-sidebar')).to.be.exist;
@@ -96,16 +104,22 @@ describe('Datepicker', () => {
             return {
                 data: [{
                     label: '最近3天',
-                    value: -3,
-                    unit: 'day'
+                    offset: {
+                        value: -3,
+                        unit: 'day'
+                    }
                 }, {
                     label: '最近一周',
-                    value: -1,
-                    unit: 'week'
+                    offset: {
+                        value: -1,
+                        unit: 'week'
+                    }
                 }, {
                     label: '近一个月',
-                    value: -1,
-                    unit: 'month'
+                    offset: {
+                        value: -1,
+                        unit: 'month'
+                    }
                 }]
               }
           }

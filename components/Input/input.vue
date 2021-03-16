@@ -232,7 +232,11 @@
                 this.$emit('clear');
             },
             keydownHandler(e) {
-                this.$emit('keydown', e);
+                if (e.code === 'Enter') {
+                    this.$emit('enter', e);
+                } else {
+                    this.$emit('keydown', e);
+                }
             },
             keyupHandler(e) {
                 this.$emit('keyup', e);

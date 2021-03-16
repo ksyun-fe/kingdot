@@ -1,11 +1,11 @@
-### 基础用法
-:::demo #基础用法 ##Dialog主要有3种类型：默认弹窗、message类弹窗、提示弹窗。
+## Dialog 对话框
+:::demo #基础用法 ##Dialog主要有3种类型：默认弹窗、message类弹窗、提示弹窗。通过`v-model`进行数据双向绑定，控制Dialog的展示与隐藏
 
 ```html
 <template>
     <div>
         <kd-button @click="openDialog">点击打开默认Dialog</kd-button>
-        <kd-dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800">{{num}}</kd-dialog>
+        <kd-dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800">这是一个基础的Dialog</kd-dialog>
     </div>
 </template>
 <script>
@@ -34,8 +34,7 @@
 ```
 
 :::
-### Dialog使用
-:::demo #Dialog使用 ##message类弹窗、提示弹窗的使用方法。
+:::demo #Dialog使用 ##message类弹窗、提示弹窗的使用方法，可以通过`type`属性控制Dialog的类型。
 
 ```html
 <template>
@@ -147,8 +146,7 @@
 ```
 
 :::
-### 内容部分增加滚动
-:::demo #增加滚动的Dialog使用 ##该属性需结合height一起使用。设置一定的高度，超出部分增加滚动
+:::demo #增加滚动的Dialog使用 ##该属性需结合`height`属性一起使用。设置一定的高度，超出部分增加滚动
 ```html
 <template>
     <div>
