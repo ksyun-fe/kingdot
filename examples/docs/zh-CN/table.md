@@ -49,7 +49,7 @@
             <kd-table-column title="地址" props="efg" />
             <kd-table-column fixed="right" width="100" title="操作">
                 <template slot-scope="scope">
-                    <a @click="test(scope)">btn</a>
+                    <a @click="test(scope.row)">btn</a>
                 </template>
             </kd-table-column>
         </kd-table>
