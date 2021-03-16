@@ -178,13 +178,11 @@
             sourceCheckChange(checkedData, currentKey) {
                 this.toSourceDisabled = checkedData.length === 0;
                 this.$emit('checkChange', 'left', checkedData);
-                console.log(this.sourceData);
             },
             //  右侧选中状态检查
             targetCheckChange(checkedData, currentKey) {
                 this.toTargetDisabled = checkedData.length === 0;
                 this.$emit('checkChange', 'right', checkedData);
-                console.log(this.targetData);
             },
             //  点击到左侧按钮
             toSourceClick() {

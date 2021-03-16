@@ -266,8 +266,6 @@
                 const options = item.componentOptions;
                 const value = options.propsData.value;
                 const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
-                console.log(options.propsData.label);
-                console.log(item.componentInstance);
                 if (value === v) {
                     this.inputLabel = label;
                 }
