@@ -11,7 +11,13 @@
                 :data-key="dataKey"
                 @checkChange="sourceCheckChange"
         >
-            <slot name="left-bottom"></slot>
+
+            <template slot="children-label">
+                <slot></slot>
+            </template>
+            <template slot="panel-bottom">
+                <slot name="left-bottom"></slot>
+            </template>
         </transfer-panel>
         <!-- 中间按钮 -->
         <div
@@ -54,14 +60,12 @@
                 :data-key="dataKey"
                 @checkChange="targetCheckChange"
         >
-            <div slot="content">
-                <slot
-                        name="content"
-                        :targetData="targetData"
-                >
-                </slot>
-            </div>
-            <slot name="right-bottom"></slot>
+            <template slot="children-label">
+                <slot></slot>
+            </template>
+            <template slot="panel-bottom">
+                <slot name="right-bottom"></slot>
+            </template>
         </transfer-panel>
     </div>
 </template>
@@ -174,11 +178,13 @@
             sourceCheckChange(checkedData, currentKey) {
                 this.toSourceDisabled = checkedData.length === 0;
                 this.$emit('checkChange', 'left', checkedData);
+                console.log(this.sourceData);
             },
             //  右侧选中状态检查
             targetCheckChange(checkedData, currentKey) {
                 this.toTargetDisabled = checkedData.length === 0;
                 this.$emit('checkChange', 'right', checkedData);
+                console.log(this.targetData);
             },
             //  点击到左侧按钮
             toSourceClick() {
@@ -198,6 +204,16 @@
                 this.value.push(...selectedData);
                 this.$emit('input', this.value);
                 this.$emit('change', 'right', selectedData, this.value);
+            },
+            leftItemClick(data, index) {
+                this.$refs.sourcePanel.itemHandleClick(data, index);
+            },
+
+            rightItemClick(data, index) {
+                this.$refs.targetPanel.itemHandleClick(data, index);
+            },
+            rightCheckboxChange(data) {
+                this.$refs.targetPanel.itemInputChange(data);
             }
         }
     };

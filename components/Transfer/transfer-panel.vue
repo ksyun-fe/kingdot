@@ -36,12 +36,6 @@
                         class="kd-transfer-content-nonedata"
                 >无数据</p>
                 <ul v-show="panelData.length > 0">
-                    <slot
-                            name="content"
-                            :scope="panelData"
-                    >
-                    </slot>
-                    <!-- @click="itemHandleClick(item,index)" -->
                     <li
                             v-for="(item,index) in panelData"
                             :key="item[dataKey.key]"
@@ -64,18 +58,17 @@
                                     :data-key="dataKey"
                             ></content-label>
                         </div>
-                    </li>
 
-                </ul>
+                    </li></ul>
             </div>
 
         </div>
         <!-- 按钮区 -->
         <div
-                v-if="$slots.default"
+                v-if="$slots['panel-bottom']"
                 class="kd-transfer-panel-footer"
         >
-            <slot/>
+            <slot name="panel-bottom"/>
         </div>
     </div>
 </template>
@@ -95,9 +88,10 @@
                 render(h) {
                     // slot自定义数据项内容
                     const transfer = this.$parent.$parent;
-                    const childrenLabel = transfer.$scopedSlots['children-label'];
+                    console.log(transfer.$scopedSlots);
+                    const childrenLabel = transfer.$scopedSlots.default;
                     return childrenLabel ? (
-                        transfer.$scopedSlots['children-label'](
+                        transfer.$scopedSlots.default(
                             this.scope,
                             this.dataKey
                         )
@@ -200,15 +194,11 @@
                 });
                 this.$emit('checkChange', this.checkedList, allSelect);
             },
-            //  顶部点击一行
-            // handleClick() {
-            //     this.allChecked = !this.allChecked;
-            //     this.inputChange();
-            // },
             //  内容input改变
-
             itemInputChange(item) {
+                console.log(item);
                 const changeKeys = [item[this.dataKey.key]];
+
                 const noramlData = this.panelData.filter(
                     (child) => !child.disabled
                 );
