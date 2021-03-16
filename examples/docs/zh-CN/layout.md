@@ -322,8 +322,8 @@
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 | gutter     | 栅格间距，单位px   | Number    | —  | 0
-| justify     | 水平方向对其方式（启用flex布局）   | string    | start / end / center / between / around /evenly |   undefined   |
-| align  | 垂直方向对其方式（启用flex布局）  | string  | top / bottom / middle / stretch /  baseline  |    undefined  |
+| justify     | 水平方向对其方式（启用flex布局）   | string    | start / end / center / between / around /evenly |   start   |
+| align  | 垂直方向对其方式（启用flex布局）  | string  | top / bottom / middle / stretch /  baseline  |    stretch  |
 | tag  | 元素标签类型   | string  |     —     |    div   |
 
 
@@ -331,13 +331,13 @@
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 | span     | 栅格占据的列数   | Number    | —  | 24
-| offset    | 栅格左侧偏移   | String / Number  | — |   undefined   |
-| push  | 定义列距离左边界的栅格数  | String / Number  |   —  |    undefined    | 
-| pull  | 定义列距离右边界的栅格数   | String / Number  |     —     |    undefined   |
-| xs  | 响应式宽度 <768px   | String / Number / Object  |     —     |    undefined   |
-| sm  | 响应式宽度 >768px   | String / Number / Object  |     —     |    undefined   |
-| md  |  响应式宽度 >992px   | String / Number / Object  |     —     |    undefined   |
-| lg  |  响应式宽度 >1200px   | String / Number / Object  |     —     |    undefined   |
-| xl  |  响应式宽度 >1920px   | String / Number / Object  |     —     |    undefined   |
-| tag  | 元素标签类型   | string  |     —     |    div   |
+| offset    | 栅格左侧偏移   | String / Number  | — |   0   |
+| push  | 定义列距离左边界的栅格数  | String / Number  |   —  |    0    | 
+| pull  | 定义列距离右边界的栅格数   | String / Number  |     —     |    0   |
+| xs  | 响应式宽度 <768px   | String / Number / Object  |     —     |    -   |
+| sm  | 响应式宽度 >768px   | String / Number / Object  |     —     |    -   |
+| md  |  响应式宽度 >992px   | String / Number / Object  |     —     |    -   |
+| lg  |  响应式宽度 >1200px   | String / Number / Object  |     —     |    -   |
+| xl  |  响应式宽度 >1920px   | String / Number / Object  |     —     |    -   |
+| tag  | 元素标签类型   | string  |     *     |    div   |
 
