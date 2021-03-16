@@ -5,11 +5,18 @@
 
 ```html
 <template>
-        <kd-select v-model="defaultValue" placeholder="请选择内容" >
-            <kd-option ref="op" v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
-            </kd-option>
-        </kd-select>
-
+        <div>
+            <kd-select v-model="defaultValue" placeholder="请选择内容">
+                <kd-option value="">空数据</kd-option>
+                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
+                </kd-option>
+            </kd-select>
+            <kd-select v-model="defaultValue1" placeholder="请选择内容" class="select-ml">
+                <kd-option value="">空数据</kd-option>
+                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
+                </kd-option>
+            </kd-select>
+        </div>
 </template>
 <script>
 export default{
@@ -25,11 +32,17 @@ export default{
                     label:"item option 2"
                 }
             ],
-            defaultValue: "item1"
+            defaultValue: "",
+            defaultValue1: ""
         }   
     }
 }
 </script>
+<style>
+.select-ml{
+    margin-left:20px
+}
+</style>
 ```
 
 :::
