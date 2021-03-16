@@ -1,13 +1,13 @@
 ### 安装
 
-#### npm 安装
-推荐使用 npm 的方式安装，它能更好地和 webpack 打包工具配合使用。
+#### 手动引入
+使用 npm 的方式安装
 ```shell
 npm i kingdot -S
 ```
 
 #### CDN
-目前在页面上引入 js 和 css 文件即可开始使用。
+Direct <script> Include on unpkg
 ```html
 
 <!-- 引入样式 -->
@@ -15,6 +15,16 @@ npm i kingdot -S
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/kingdot/lib/index.js"></script>
 
+```
+
+Direct <script> Include on cdnjs：
+
+```html
+
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kingdot/lib/theme-default/index.css">
+<!-- 引入组件库 -->
+<script src="https://cdn.jsdelivr.net/npm/kingdot/lib/index.js"></script>
 ```
 #### Demo
 通过CDN的方式我们可以很容易的使用 Kingdot 写出一个页面。

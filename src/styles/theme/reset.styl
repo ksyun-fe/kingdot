@@ -28,3 +28,7 @@ select:focus
 for type in 1 2 3 4 5
     h{type}
         font-size lookup('$-h' + type)
+    h{type}:first-child
+        margin-top 0
+    h{type}:last-child
+        margin-bottom 0
