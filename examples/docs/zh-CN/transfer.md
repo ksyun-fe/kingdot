@@ -1,3 +1,5 @@
+### Transfer 穿梭框
+双栏穿梭选择框
 
 :::demo #基本使用 ##穿梭框的基本使用
 
@@ -73,25 +75,14 @@
 ```html
 <template>
     <kd-transfer v-model="value" :data="defaultData" buttonLevel :dataKey="keys">
-        <ul slot-scope="scope" slot="content">
-            <li v-for="item in scope.targetData" class='kd-transfer-content-item'>
-                <kd-checkbox
-                        v-model="item.checked"
-                        :disabled="item.disabled"
-                        @change="itemInputChange(item)"
-                ></kd-checkbox>
-                <span>{{item.name}}</span>
-                <i class="icon kd-icon-more"></i>
-            </li>
-        </ul>
+        <span slot-scope="option">{{option.name}}...</span>
+        <kd-button slot="left-bottom" @click='more'>更多</kd-button>
+        <kd-button slot="right-bottom" @click='more'>更多</kd-button>
     </kd-transfer>
 </template>
 <script>
-    import KdCheckbox from './../../../components/Checkbox/index.js';
     export default{
-        components:{
-            KdCheckbox
-        },
+
         data(){
             const defaultData = () =>{
                 const data = [];
@@ -113,8 +104,8 @@
             }
         },
         methods: {
-            itemInputChange(item){
-                console.log(item)
+            more(){
+                console.log('button click')
             }
         }
     }
@@ -199,7 +190,6 @@
 |---------- |-------- |
 | left-bottom | 左侧底部的内容 |
 | right-bottom | 右侧底部的内容 |
-| children-label | 数据项的内容 |
 
 
 ### 事件 {.component__content}

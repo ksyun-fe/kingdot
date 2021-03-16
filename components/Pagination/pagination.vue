@@ -21,12 +21,22 @@
                 v-if="!superMini && showLimits"
                 class="kd-pagination-limits"
         >
-            <kd-dropdown size="mini">
-                {{ innerLimit }} 条 / 页 <i :class="['kd-pagination-limits-icon',limitsIcon]"></i>
+            <kd-dropdown
+                    size="mini"
+            >
+                <kd-input
+                        size="mini"
+                        readonly
+                        :width="98"
+                        :value="innerLimit + '条 / 页'"
+                >
+                    <template v-slot:suffix>
+                        <i :class="['kd-pagination-limits-icon',limitsIcon]"></i>
+                    </template>
+                </kd-input>
                 <kd-dropdown-menu slot="dropdown">
                     <kd-dropdown-item
                             v-for="item in limits"
-                            slot="dropdownItem"
                             :key="item"
                             @click="selectSize(item)"
                     >
@@ -145,6 +155,7 @@
     import KdDropdown from '../Dropdown/dropdown';
     import KdDropdownMenu from '../Dropdown/dropdown-menu';
     import KdDropdownItem from '../Dropdown/dropdown-item';
+    import KdInput from '../Input/input';
     import KdButton from '../Button/button';
     import KdButtonGroup from '../ButtonGroup/button-group';
     const markDic = {
@@ -158,7 +169,7 @@
     };
     export default {
         name: 'KdPagination',
-        components: { KdDropdown, KdDropdownMenu, KdDropdownItem, KdButtonGroup, KdButton },
+        components: { KdDropdown, KdDropdownMenu, KdDropdownItem, KdButtonGroup, KdButton, KdInput },
         props: {
             limit: {
                 type: Number,
