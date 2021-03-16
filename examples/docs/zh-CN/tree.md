@@ -334,7 +334,7 @@
 | `loaded` | `是否已完成异步加载子节点(配合懒加载使用，为true后不会懒加载)` | `Boolean` | `N` | `false` |
 | `loading` | `开启加载效果` | `Boolean` | `Y` | `false` |
 | `children` |  `子节点` | `Array[Node Object]` | `Y` | `—` |
-| `parent` | `获取父节点：当allowGetParentNode=true时,增加parent方法,若父节点不存在时,会返回null` | `Function` | `-` | `undefined` |
+| `parent` | `获取父节点：当allowGetParentNode=true时,增加parent方法,若父节点不存在时,会返回null` | `Function` | `-` | `-` |
 | `__key__ ` | `组件内部标识，可指定Tree属性nodeKey为任一节点的属性（不重复）` | `String` | `N` | `—` |
 
 ### Tree scoped slot {.component__content}
