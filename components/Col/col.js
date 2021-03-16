@@ -35,7 +35,7 @@ export default {
             const classList = [];
 
             ['span', 'offset', 'pull', 'push'].forEach(prop => {
-                if (this[prop] != null) {
+                if (this[prop] || this[prop] === 0) {
                     classList.push(`kd-col-${prop}-${this[prop]}`);
                 }
             });
