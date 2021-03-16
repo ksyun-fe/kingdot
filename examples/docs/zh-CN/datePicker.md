@@ -123,7 +123,7 @@
 ```html
 <template>
     <div>
-        <kd-date-picker :is-range="true" v-model="dateArr"> </kd-date-picker>
+        <kd-date-picker range v-model="dateArr"> </kd-date-picker>
     </div>
 </template>
 <script>
@@ -144,7 +144,7 @@
 
 ```html
 <template>
-    <kd-date-picker :is-range="true" :shortcuts="data" placeholder="起始时间 ~ 结束时间"> </kd-date-picker>
+    <kd-date-picker range :shortcuts="data" placeholder="起始时间 ~ 结束时间"> </kd-date-picker>
 </template>
 <script>
     import Moment from 'dayjs';
@@ -196,7 +196,7 @@
 |---------- |-------- |---------- |-------------  |-------- |
 | value / v-model  | 绑定值   | string, array    | - | - |
 | format-string  | 日期格式字符串   | string    | - | 'YYYY-MM-DD' |
-| is-range  | 是否为范围选择   | bool    | - | false |
+| range  | 是否为范围选择   | bool    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
 | disabled-date  | 符合条件的日期将被禁用   | function    | - | - |

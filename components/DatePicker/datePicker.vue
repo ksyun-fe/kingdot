@@ -10,7 +10,7 @@
             <kd-input
                     v-model="inputDateString"
                     :placeholder="placeholder"
-                    :width="isRange ? 400 : 200"
+                    :width="range ? 400 : 200"
                     :disabled="disabled"
                     @keyup.enter="setDate(inputDateString)"
             >
@@ -20,7 +20,7 @@
             </kd-input>
             <template slot="content">
                 <div
-                        v-if="isRange===true"
+                        v-if="range===true"
                         :class="{
                             'kd-picker-panel': true,
                             'isRange': true,
@@ -78,7 +78,7 @@
                     </div>
                 </div>
                 <div
-                        v-if="isRange===false"
+                        v-if="range===false"
                         :class="{
                             'kd-picker-panel': true,
                             'has-sidebar': shortcuts.length>0
@@ -144,7 +144,7 @@
                 }
             },
             // 是否是范围区间
-            isRange: {
+            range: {
                 type: Boolean,
                 default() {
                     return false;
@@ -225,7 +225,7 @@
             onDayMouseenter(date) {
                 // const [begin, end] = this.dateValue;
                 // const isSetRange = this.range && begin && !end;
-                this.rangeEndDate = this.isRange ? date : '';
+                this.rangeEndDate = this.range ? date : '';
             },
             // 鼠标移出日历, 清空 rangeEndDate 信息 (hover )
             clearRangeDay() {
@@ -234,7 +234,7 @@
 
             // 日历翻页
             pageChange(v, unit) {
-                if (this.isRange) {
+                if (this.range) {
                     this.$refs.startCalendar.changePage(v, unit);
                     this.$refs.endCalendar.changePage(v, unit);
                 } else {
@@ -245,8 +245,8 @@
             // 底下上传上来的数据  在这里不给dateValue赋值. 从底下来的数据, 又通过props传下去不合理
             // 应该用 watch 监听value, 然后改变 inputDateString. 就没有select 的事情了 吗??
             popDateValue(dateArr, source = 'calendar') {
-                if (this.isRange && dateArr.length < 2) return;
-                if (this.isRange) {
+                if (this.range && dateArr.length < 2) return;
+                if (this.range) {
                     this.$emit('input', dateArr);
                     this.inputDateString = dateArr.join(' ~ ');
                 } else {
@@ -259,7 +259,7 @@
             },
             // input 回车和blur事件触发
             setDate(inputValue) {
-                if (this.isRange) {
+                if (this.range) {
                     return;
                 }
                 if (!inputValue.trim()) {
@@ -278,7 +278,7 @@
                 offset = typeof offset === 'function' ? offset() : offset;
                 const { value, unit } = offset;
 
-                if (this.isRange) {
+                if (this.range) {
                     const aimDateStr = Moment().add(value, unit).format(this.formatString);
                     const startDate = value > 0 ? Moment().format(this.formatString) : aimDateStr;
                     if (value > 0) {
