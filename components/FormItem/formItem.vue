@@ -188,10 +188,11 @@
                 }
                 const p = this.promise = Promise.all(promises)
                     .then(values => {
+                        debugger;
                         for (let i = 0; i < values.length; i++) {
                             // 对每一项进行校验,查看校验结果,如果失败,则结果包含false以及提示信息
                             if (values[i] !== true) {
-                                return [false, this.getMessage(keys[i] || values[i])];
+                                return [false, this.getMessage(keys[i]) || values[i]];
                             }
                         }
                         return [true, ''];
