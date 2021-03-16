@@ -111,10 +111,8 @@
                 type: String,
                 default: ''
             },
-            value: {
-                type: [String, Array],
-                default: ''
-            },
+            // eslint-disable-next-line vue/require-prop-type-constructor
+            value: '',
             placeholder: {
                 type: String,
                 default: ''
@@ -226,13 +224,15 @@
                     v.forEach((vItem) => {
                         this.$slots.default.forEach((item) => {
                             const options = item.componentOptions;
-                            const value = options.propsData.value;
-                            if (value === vItem) {
-                                const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
-                                tagList.push({
-                                    value: value,
-                                    label: label
-                                });
+                            if (options) {
+                                const value = options.propsData.value;
+                                if (value === vItem) {
+                                    const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
+                                    tagList.push({
+                                        value: value,
+                                        label: label
+                                    });
+                                }
                             }
                         });
                     });
@@ -242,13 +242,15 @@
                 } else {
                     // 获取label
                     this.$slots.default.forEach((item) => {
-                        if (item.componentOptions.tag === 'kd-option') {
-                            this.initLabel(item, v);
-                        } else {
-                            // 如果是group在遍历一遍
-                            item.componentOptions.children.forEach((item) => {
+                        if (item.componentOptions) {
+                            if (item.componentOptions.tag === 'kd-option') {
                                 this.initLabel(item, v);
-                            });
+                            } else {
+                                // 如果是group在遍历一遍
+                                item.componentOptions.children.forEach((item) => {
+                                    this.initLabel(item, v);
+                                });
+                            }
                         }
                     });
                     this.inputPlaceholder = this.inputLabel || this.placeholder;
