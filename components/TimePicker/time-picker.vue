@@ -2,6 +2,7 @@
     <div class="kd-time-picker">
         <!-- 根据 range 改变input长度 -->
         <kd-tooltip
+                v-model="isTooltipShow"
                 placement="bottom-start"
                 trigger="click"
                 :width-limit="false"
@@ -180,13 +181,6 @@
         },
         data() {
             return {
-                // rangePlaceholder: '开始时间-结束时间',
-                hourArr: Array(24).fill(0).map((x, i) => {
-                    return this.addPreZero(i);
-                }),
-                minArr: Array(60).fill(0).map((x, i) => {
-                    return this.addPreZero(i);
-                }),
                 scrollTimeArr: Array.apply(null, {length: 3}).map((item, index) => {
                     const length = index === 0 ? 24 : 60;
                     return Array(length).fill(0).map((x, i) => this.addPreZero(i));
@@ -195,7 +189,8 @@
                 endTime: '', // '00:00:00'
                 selectedTime: '', // step 模式下的结果
                 endSelectedTime: '',
-                timeString: '' // input value
+                timeString: '', // input value
+                isTooltipShow: false
             };
         },
         computed: {
@@ -346,7 +341,7 @@
                 console.log('click time', item);
                 this.timeString = item;
                 this.$emit('input', item); // 冒出去string 从value回来变成了array
-                // this.$emit('tooltipHide');
+                this.isTooltipShow = false;
             },
             addPreZero(num) {
                 return ('00' + String(num)).slice(-2);
