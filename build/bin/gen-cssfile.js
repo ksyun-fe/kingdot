@@ -22,6 +22,7 @@ themes.forEach((theme) => {
         if (!fileExists(filePath)) {
             const stylStr = '';
             fs.writeFileSync(filePath, stylStr, 'utf8');
+            // eslint-disable-next-line no-console
             console.log(theme, ' create the missing file ', fileName, '.styl');
         }
     });
