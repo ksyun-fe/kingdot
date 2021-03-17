@@ -1,6 +1,6 @@
 <template>
     <div class="kd-time-picker">
-        <!-- 根据 isrange 改变input长度 -->
+        <!-- 根据 range 改变input长度 -->
         <kd-tooltip
                 placement="bottom-start"
                 trigger="click"
@@ -11,14 +11,15 @@
                     :placeholder="placeholder"
                     :value="timeString"
                     :disabled="disabled"
+                    :width="range ? 400 : 200"
             >
-                <template slot="prefix">
+                <template slot="suffix">
                     <i class="kd-icon-time"></i>
                 </template>
             </kd-input>
             <template slot="content">
                 <div
-                        v-if="!isRange && mode === 'steptime'"
+                        v-if="!range && mode === 'steptime'"
                         class="dropdown"
                 >
                     <div class="k-step">
@@ -49,7 +50,7 @@
                     </div> -->
                 </div>
                 <div
-                        v-if="!isRange && mode === 'anytime'"
+                        v-if="!range && mode === 'anytime'"
                         class="dropdown"
                 >
                     <div class="scroll-container">
@@ -75,7 +76,7 @@
                     </div>
                 </div>
                 <div
-                        v-if="isRange"
+                        v-if="range"
                         class="range-container"
                 >
                     <div>
@@ -202,10 +203,10 @@
                 type: Number,
                 default: 30
             },
-            isRange: {
+            range: {
                 type: Boolean,
                 default: false
-            },
+            }
             // placeholder: {
             // type: String,
             // default: '23:59:59'
@@ -213,7 +214,7 @@
         },
         data() {
             return {
-                placeholder: this.isRange ? '开始时间-结束时间' : '选择时间',
+                placeholder: this.range ? '开始时间-结束时间' : '选择时间',
                 // rangePlaceholder: '开始时间-结束时间',
                 hourArr: Array(24).fill(0).map((x, i) => {
                     return this.addPreZero(i);
@@ -274,7 +275,7 @@
             },
             // timeString() { // selectedTime 变化, TODO: selectedTime 被禁用
             //     let timeString = '';
-            //     if (!this.isRange) {
+            //     if (!this.range) {
             //         if (this.mode === 'steptime') {
             //             timeString = this.selectedTime;
             //         } else {
@@ -341,7 +342,7 @@
             startTime: {
                 deep: true,
                 handler(v) {
-                    if (!this.isRange) {
+                    if (!this.range) {
                         console.log('startTime change 单点时间', v);
                         this.timeString = this.startTime; // innervalue 变化
                         this.$emit('input', this.startTime);
@@ -357,7 +358,7 @@
                 deep: true,
                 handler(v) {
                     console.log('endTime change', v, this.startTime, this.timeString);
-                    if (!this.isRange) {
+                    if (!this.range) {
                         // this.timeString = this.startTime.join(':'); // innervalue 变化
                         // this.$emit('input', this.timeString);
                     } else {
@@ -371,7 +372,7 @@
             selectedTime: {
                 handler(v) {
                     console.log('selectedTime change', v);
-                    if (this.isRange === false) {
+                    if (this.range === false) {
                         this.timeString = v;
                         this.$emit('input', this.selectedTime);
                     } else {
@@ -452,14 +453,14 @@
 </script>
 <style>
     .k-input i {
-        color: #e5e5e5;
+        color: #b2b2b2;
     }
     .dropdown {
         /* border: 1px solid #e5e5e5;
         margin-bottom: 10px;
         padding: 20px; */
-        width: 180px;
-        height: 200px;
+        width: 172px;
+        max-height: 200px;
         overflow: scroll;
         }
     .dropdown .scroll-container {
