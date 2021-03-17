@@ -42,12 +42,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="scroll-container">
-                        <ScrollSelect
-                                v-model="selectedTime"
-                                :data="timeList"
-                        ></ScrollSelect>
-                    </div> -->
                 </div>
                 <div
                         v-if="!range && mode === 'anytime'"
@@ -61,18 +55,6 @@
                                 @change="timeValueChange"
                         >
                         </Time>
-                        <!-- <div
-                                v-for="(item, index) in scrollTimeArr"
-                                :key="index"
-                                class="column"
-                        >
-                            <ScrollSelect
-                                    ref="ScrollSelect"
-                                    v-model="startTime[index]"
-                                    :data="item"
-                            >
-                            </ScrollSelect>
-                        </div> -->
                     </div>
                 </div>
                 <div
@@ -84,7 +66,8 @@
                         <div
                                 v-if="mode === 'steptime'"
                                 class="selector-container"
-                        >
+                        >   
+                            <!-- :item-disable 不能直接绑定一个函数. 可能有min max限制 有联动限制, 有外部定义的限制 -->
                             <ScrollSelect
                                     ref="startTimeSelector"
                                     v-model="selectedTime"
@@ -103,19 +86,6 @@
                                     @change="timeValueChange"
                             >
                             </Time>
-                            <!-- <div
-                                    v-for="(item, index) in scrollTimeArr"
-                                    :key="index"
-                                    class="column"
-                            >
-                                <ScrollSelect
-                                        ref="ScrollSelect"
-                                        v-model="startTime[index]"
-                                        :data="item"
-                                        :disable="getScrollDisable(index)"
-                                >
-                                </ScrollSelect>
-                            </div> -->
                         </div>
                     </div>
                     <div>
@@ -139,6 +109,7 @@
                                     v-model="endTime"
                                     :min="endTimeMinLimit(minTime, startTime)"
                                     :max="maxTime"
+
                                     @change="timeValueChange"
                             >
                             </Time>
@@ -163,20 +134,15 @@
 </template>
 <script>
     import Time from './Time.vue';
-    import Lang from 'src/mixin/lang.js';
     import { parseTime, stringTime } from './utils.js';
     export default {
         name: 'KdTimePicker',
         components: {
             Time
         },
-        mixins: [Lang],
         props: {
             value: {
                 type: [String, Array]
-                // default: function () {
-                //     return '00:00:00';
-                // }
             },
             disabled: {
                 type: Boolean,
@@ -200,21 +166,20 @@
                 default: '23:59:59'
             },
             step: {
-                type: Number,
+                type: [Number, String],
                 default: 30
             },
             range: {
                 type: Boolean,
                 default: false
+            },
+            placeholder: {
+                type: String,
+                default: '选择时间'
             }
-            // placeholder: {
-            // type: String,
-            // default: '23:59:59'
-            // }
         },
         data() {
             return {
-                placeholder: this.range ? '开始时间-结束时间' : '选择时间',
                 // rangePlaceholder: '开始时间-结束时间',
                 hourArr: Array(24).fill(0).map((x, i) => {
                     return this.addPreZero(i);
@@ -227,19 +192,7 @@
                     return Array(length).fill(0).map((x, i) => this.addPreZero(i));
                 }),
                 startTime: '', // '00:00:00'
-                // startTime: ['00', '00', '00'],
                 endTime: '', // '00:00:00'
-                // startTime: {
-                //     hour: '00',
-                //     minute: '00',
-                //     second: '00'
-                // },
-                // endTime: {
-                //     hour: '00',
-                //     minute: '00',
-                //     second: '00'
-                // },
-                // timeList: [],
                 selectedTime: '', // step 模式下的结果
                 endSelectedTime: '',
                 timeString: '' // input value
@@ -249,7 +202,7 @@
             timeList() {
                 if (this.mode === 'steptime') {
                     // if (!this.step) return [];
-                    const step = this.step;
+                    const step = !!Number(this.step) ? Number(this.step) : parseTime(this.step);
                     const max = parseTime(this.maxTime);
                     const min = parseTime(this.minTime);
                     console.log('生成 timeList()', this.minTime, min, max, step);
@@ -257,13 +210,6 @@
 
                     for (let t = min; t <= max; t += step * 60) {
                         data.push(stringTime(t, 'minute'));
-                        // data.push({
-                        //     label: stringTime(t, 'minute'),
-                        //     value: stringTime(t, 'minute'),
-                        //     // disabled: this.disabledTime && this.disabledTime(stringTime(t))
-                        //     // this.maxDateValue && t.isAfter() ||
-                        //     // this.minDateValue && t.isBefore(),
-                        // });
                     }
                     // this.timeList = data;
                     // 固定时间点, 不展示秒..
