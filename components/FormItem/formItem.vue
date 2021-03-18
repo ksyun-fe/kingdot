@@ -107,6 +107,7 @@
                 form = form.$parent;
             }
             if (!form) {
+                // eslint-disable-next-line no-console
                 return console.error('FormItem must be used as the descendant of Form');
             }
             // 没有model，则不对对此formItem进行验证，所以不要push
@@ -178,6 +179,7 @@
                         } else {
                             fn = _ruleHandlers[key];
                             if (!fn) {
+                                // eslint-disable-next-line no-console
                                 console.warn(`Can not find validate method: ${key}`);
                                 continue;
                             }
