@@ -395,7 +395,7 @@
 
 | 属性      | 说明    | 类型      | 参数      |
 |:---------- |:-------- |:---------- |:---------- |
-| changePage     | 切换页码   |  Function  | `{value: 2, label: 2}` |
+| changePage     | 切换页码   |  Function  | Number 1,2,3... |
 | prev     | 上一页   |  Function  |  -  |
 | next     | 下一页   |  Function  |  -  |
 

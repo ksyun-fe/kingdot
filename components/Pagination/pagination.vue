@@ -84,7 +84,7 @@
                     :value="item.value"
                     :type="type"
                     :size="size"
-                    @click="checkPage(item)"
+                    @click="checkPage(item.value)"
             >{{ item.label }}</kd-button>
         </kd-button-group>
         <div
@@ -383,14 +383,14 @@
                 this.inputCurrent = v === 0 ? '' : v.toString().replace(/[^0-9]*/g, '');
             },
             // click page btn
-            checkPage(item) {
+            checkPage(v) {
                 // click right ... or left ...
-                if (item.value === this.markDic.left) {
+                if (v === this.markDic.left) {
                     this.innerCurrent = this.preValue - 2;
-                } else if (item.value === this.markDic.right) {
+                } else if (v === this.markDic.right) {
                     this.innerCurrent = this.preValue + 2;
                 } else {
-                    this.innerCurrent = item.value;
+                    this.innerCurrent = v;
                 }
                 this.preValue = this.innerCurrent;
                 this.inputCurrent = this.innerCurrent;
