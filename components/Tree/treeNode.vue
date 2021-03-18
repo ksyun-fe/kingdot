@@ -38,22 +38,24 @@
             // }
 
             const _tree = ctx.injections.TREE;
+            const nodeItem = () => (
+                <span
+                    domPropsInnerHTML={node[_tree.titleKey]}
+                    title={node[_tree.titleKey]}
+                    class={titleClass}
+                    onMouseover={() => nodeMouseOver(node, index, parent)}
+                    onClick={() => {
+                        if (selDisabled) return;
+                        _tree.nodeSelected(node, { level, index });
+                    }}
+                ></span>
+            );
             return tpl
                 ? tpl(node, ctx, parent, index, ctx.props)
                 : _tree.$scopedSlots.default
-                    ? _tree.$scopedSlots.default(node)
-                    : (
-                        <span
-                            domPropsInnerHTML={node.title}
-                            title={node.title}
-                            class={titleClass}
-                            onMouseover={() => nodeMouseOver(node, index, parent)}
-                            onClick={() => {
-                                if (selDisabled) return;
-                                ctx.parent.nodeSelected(node, { level, index });
-                            }}
-                        ></span>
-            );
+                    ? <span>{nodeItem()}{_tree.$scopedSlots.default && _tree.$scopedSlots.default(node)}</span>
+                    : nodeItem()
+            ;
         }
     };
 </script>
