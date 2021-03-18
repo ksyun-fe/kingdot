@@ -14,7 +14,7 @@
         </label>
         <div
                 class="kd-form-item-content"
-                :class="{'kd-form-item-error': isValid}"
+                :class="{'kd-form-item-error': !isValid}"
         >
             <slot></slot>
             <transition name="validateMessage">
@@ -188,7 +188,6 @@
                 }
                 const p = this.promise = Promise.all(promises)
                     .then(values => {
-                        debugger;
                         for (let i = 0; i < values.length; i++) {
                             // 对每一项进行校验,查看校验结果,如果失败,则结果包含false以及提示信息
                             if (values[i] !== true) {
@@ -234,11 +233,13 @@
                 }
             },
             deepGetValue(data, path) {
-                path = Array.isArray(path) ? path : path.replace('[', '.').replace(']', '').split('.');
-                const res = path.reduce((initVal, current) => {
-                    return initVal[current];
-                }, data);
-                return {value: res === false ? '' : res};
+                const result = (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
+                    .reduce((o, k) => (o || {})[k], data);
+                if (result === false) {
+                    return {value: ''};
+                } else {
+                    return {value: result};
+                }
             }
         }
     };

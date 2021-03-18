@@ -66,4 +66,5 @@ fs.writeFileSync(path.resolve(process.cwd(), 'components.json'), `{
     }).join(',' + EOL + '    ')}
 }`);
 
+// eslint-disable-next-line no-console
 console.log('create src/index.js success');
