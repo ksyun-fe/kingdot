@@ -32,6 +32,10 @@
                 type: String,
                 default: 'id'
             },
+            titleKey: {
+                type: String,
+                default: 'title'
+            },
             expandedKeys: {
                 type: Array,
                 default: () => []

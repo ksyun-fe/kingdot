@@ -30,10 +30,10 @@
             :checkedKeys="checkedKeys"
             :chkDisabledKeys="['node-1-1']"
             :nocheckKeys="['node-1-1-2']"
+            @node-click="__test"
         >
             <span slot-scope="node">
-                {{ node.title }} ??
-                <kd-button type="mini">test</kd-button>
+                ??? <kd-button type="mini">test</kd-button>
             </span>
         </kd-tree>
     </div>
@@ -123,6 +123,9 @@
             },
         },
         methods: {
+            __test() {
+                this.$message.success('node-click');
+            },
             searchFn(node) {
                 // return node.id === this.search;
                 return node.title.includes(this.search);
