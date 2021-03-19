@@ -172,7 +172,7 @@
         components: { KdDropdown, KdDropdownMenu, KdDropdownItem, KdButtonGroup, KdButton, KdInput },
         props: {
             limit: {
-                type: Number,
+                type: [Number, String],
                 default: 10
             },
             total: {
@@ -187,7 +187,7 @@
                 default: false
             },
             current: {
-                type: Number,
+                type: [Number, String],
                 default: 1
             },
             showGoto: {
@@ -241,20 +241,20 @@
                 ellipsis: '···',
                 pageCount: 0,
                 showPageArray: [],
-                innerCounts: this.counts < 5 ? 5 : this.counts,
-                innerCurrent: this.current,
+                innerCounts: Number(this.counts) < 5 ? 5 : Number(this.counts),
+                innerCurrent: Number(this.current),
                 type: this.noBorder ? 'none' : 'default',
                 size: this.noBorder ? 'mini' : 'default',
-                innerLimit: this.limit,
+                innerLimit: Number(this.limit),
                 markDic: markDic,
                 timer: null,
                 preValue: 0,
-                inputCurrent: this.current
+                inputCurrent: Number(this.current)
             };
         },
         watch: {
             total(newV, oldV) {
-                if (newV !== oldV) {
+                if (Number(newV) !== oldV) {
                     if (this.timer) {
                         clearInterval(this.timer);
                         this.timer = null;
@@ -266,7 +266,7 @@
                 }
             },
             current(newV, oldV) {
-                if (newV !== oldV) {
+                if (Number(newV) !== oldV) {
                     this.innerCurrent = newV;
                     this.inputCurrent = newV;
                     if (this.timer) {
@@ -281,7 +281,7 @@
                 }
             },
             limit(newV, oldV) {
-                if (newV !== oldV) {
+                if (Number(newV) !== oldV) {
                     this.innerLimit = newV;
                     if (this.timer) {
                         clearInterval(this.timer);
