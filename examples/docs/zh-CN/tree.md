@@ -278,6 +278,7 @@
 | --------- | ---------------------------- | --------- | -------------- | ------- |
 | `data` | `要渲染的数据` | `Node Object[]` | `[]` | `[]` |
 | `nodeKey` | `指定树节点的唯一标识` | `String` | `--` | `id` |
+| `titleKey` | `指定树节点展示数据的key` | `String` | `--` | `title` |
 | `expandedKeys` | `通过nodeKey指定展开的节点` | `String[]` | `[]` | `[]` |
 | `checkedKeys` | `通过nodeKey指定勾选的节点` | `String[]` | `[]` | `[]` |
 | `checkbox` | `是否展示复选框` | `Boolean` | `true | false` | `false` |
