@@ -153,7 +153,6 @@
             change({ limit, current }) {
                 this.current = current;
                 this.limit = limit;
-                console.log(this.current,this.limit)
             }
         }
     }
@@ -229,7 +228,6 @@
             change({ limit, current }) {
                 this.current = current;
                 this.limit = limit;
-                console.log(this.current,this.limit)
             }
         }
     }
