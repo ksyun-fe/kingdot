@@ -23,8 +23,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm version "$VERSION" --message "build: release $VERSION"
 
   git push
-  git tag -a v"$VERSION"
-  git push refs/tags/v"$VERSION"
 
   if [[ -z $RELEASE_TAG ]]; then
     npm publish
@@ -34,5 +32,5 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
   git checkout dev
   git rebase master
-  git push dev
+  git push origin dev
 fi
