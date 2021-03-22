@@ -14,8 +14,19 @@
                     :disabled="disabled"
                     @keyup.enter="setDate(inputDateString)"
             >
-                <template slot="suffix">
+                <!-- <template slot="suffix">
                     <i class="kd-icon-date"></i>
+                </template> -->
+                <template slot="suffix">
+                    <i
+                            v-if="clearable && !disabled && !!inputDateString"
+                            class="k-clear kd-icon-close k-show ksfont"
+                            @click="onClear"
+                    ></i>
+                    <i
+                            v-else
+                            class="kd-icon-date ksfont"
+                    ></i>
                 </template>
             </kd-input>
             <template slot="content">
@@ -163,6 +174,12 @@
                     return [];
                 }
             },
+            clearable: {
+                type: Boolean,
+                default() {
+                    return true;
+                }
+            },
             // 组件级别禁用
             disabled: {
                 type: Boolean,
@@ -297,6 +314,19 @@
                     const aimDateStr = Moment().add(value, unit).format(this.formatString);
                     this.dateValue.splice(0, this.dateValue.length, aimDateStr);
                     this.$refs.calendar.jumpToDate(aimDateStr, 'shortcuts');
+                }
+            },
+            onClear(e) {
+                e.stopPropagation();
+                this.dateValue = [];
+                this.inputDateString = '';
+                // this.emitChange();
+                this.$emit('clear', '');
+                this.$emit('change', this.dateValue, 'clear');
+                if (this.range) {
+                    this.$emit('input', []);
+                } else {
+                    this.$emit('input', '');
                 }
             }
         }
