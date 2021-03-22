@@ -241,6 +241,7 @@
                     this.inputPlaceholder = v.length > 0 ? '' : this.placeholder;
                 } else {
                     // 获取label
+                    this.inputLabel = '';
                     this.$slots.default.forEach((item) => {
                         if (item.componentOptions) {
                             if (item.componentOptions.tag === 'kd-option') {

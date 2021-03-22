@@ -58,7 +58,7 @@ describe('Pagination', () => {
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(1);
         });
-        vm.$refs.pagination.changePage({value:1,label:1});
+        vm.$refs.pagination.changePage(1);
         vm.$refs.pagination.next();
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(2);
@@ -172,7 +172,7 @@ describe('Pagination', () => {
                 }
             }
         });
-        vm.$refs.pagination.changePage({value:1,label:1});
+        vm.$refs.pagination.changePage(1);
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(1);
         });
@@ -207,7 +207,7 @@ describe('Pagination', () => {
                 }
             }
         });
-        vm.$refs.pagination.changePage({value:10,label:10});
+        vm.$refs.pagination.changePage(10);
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(10);
         });
@@ -324,7 +324,7 @@ describe('Pagination', () => {
                 }
             }
         });
-        vm.$refs.pagination.changePage({value:'left',label:'···'});
+        vm.$refs.pagination.changePage('left');
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(4);
         });
@@ -359,7 +359,7 @@ describe('Pagination', () => {
                 }
             }
         });
-        vm.$refs.pagination.changePage({value:'right',label:'···'});
+        vm.$refs.pagination.changePage('right');
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(8);
         });
@@ -395,7 +395,7 @@ describe('Pagination', () => {
                 }
             }
         });
-        vm.$refs.pagination.changePage({value:'right',label:'···'});
+        vm.$refs.pagination.changePage('right');
         await vm.$nextTick().then(() => {
             expect(vm.$refs.pagination.current).to.be.equal(8);
         });
