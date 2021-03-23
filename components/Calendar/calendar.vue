@@ -425,17 +425,24 @@
                 }
             },
 
-            jumpToDate(dateStr, source) {
-                const formattedStr = Moment(dateStr).format(this.formatString);
-                this.selectedDate = [formattedStr];
-                if (this.disabledDate && this.disabledDate(formattedStr)) {
-                    this.$emit('select', 'Invalid Date');
-                    return;
-                }
+            jumpToDate(dateValue, source) {
+                // 接受 dateArr  this.selectedDate 可以是array
+                if (Array.isArray(dateValue)) {
+                    this.selectedDate = dateValue;
+                    this.$emit('select', this.selectedDate, source);
+                    this.moment = this.isEndCalendar ? Moment(dateValue[0]).add(1, 'month') : Moment(dateValue[0]);
+                } else if (typeof dateValue === 'string') {
+                    const formattedStr = Moment(dateValue).format(this.formatString);
+                    this.selectedDate = [formattedStr];
+                    if (this.disabledDate && this.disabledDate(formattedStr)) {
+                        this.$emit('select', 'Invalid Date');
+                        return;
+                    }
 
-                this.moment = Moment(dateStr); // 刷新日历的页面
-                // this.$emit('input', this.selectedDate);
-                this.$emit('select', this.selectedDate, source);
+                    this.moment = Moment(dateValue); // 刷新日历的页面
+                    // this.$emit('input', this.selectedDate);
+                    this.$emit('select', this.selectedDate, source);
+                }
             }
         }
     };
