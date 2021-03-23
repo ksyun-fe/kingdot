@@ -153,7 +153,7 @@ export default {
             }
             this.$nextTick(() => {
                 this.popper = this.$refs.popper;
-                if (this.trigger === 'hover' && this.canHover) {
+                if (this.popper && this.trigger === 'hover' && this.canHover) {
                     this.popper.addEventListener('mouseenter', () => {
                         clearTimeout(this.timeout);
                     });
