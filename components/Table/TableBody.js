@@ -49,6 +49,9 @@ export default {
             } else {
                 return null
             }
+        },
+        noData() {
+            return this.store.states.data.length == 0;
         }
     },
     components: {
@@ -480,10 +483,7 @@ export default {
                                 <td
                                     style="text-align: center;"
                                     colspan={
-                                        this.columns.length +
-                                        (this.store.states.showCheckbox
-                                            ? 1
-                                            : 0)
+                                        this.columns.length
                                     }
                                 >
                                     无数据
