@@ -144,13 +144,17 @@
 
 ```html
 <template>
-    <kd-date-picker range :shortcuts="data" placeholder="起始时间 ~ 结束时间"> </kd-date-picker>
+    <div>
+        <kd-date-picker v-model="dateValue" range :shortcuts="data" placeholder="起始时间 ~ 结束时间"> </kd-date-picker>
+        选中值: {{ dateValue }}
+    </div>
 </template>
 <script>
     import Moment from 'dayjs';
     export default{
         data() {
             return {
+                dateValue: [],
                 data: [{
                     label: '最近3天',
                     offset: {

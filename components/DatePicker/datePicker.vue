@@ -1,6 +1,7 @@
 <template>
     <div class="kd-date-picker">
         <kd-tooltip
+                v-model="isTooltipShow"
                 placement="bottom-start"
                 trigger="click"
                 :width-limit="false"
@@ -205,7 +206,8 @@
                 max: this.maxDate ? Moment(this.maxDate).format(this.formatString) : '',
                 min: this.minDate ? Moment(this.minDate).format(this.formatString) : '',
                 // 时间范围模式专用变量
-                rangeEndDate: '' // 选中第一个日期后, hover 的第二个日期, 用于 isInRange 状态计算
+                rangeEndDate: '', // 选中第一个日期后, hover 的第二个日期, 用于 isInRange 状态计算
+                isTooltipShow: false
             };
         },
         watch: {
@@ -263,7 +265,7 @@
             // 底下上传上来的数据  在这里不给dateValue赋值. 从底下来的数据, 又通过props传下去不合理
             // 应该用 watch 监听value, 然后改变 inputDateString. 就没有select 的事情了 吗??
             popDateValue(dateArr, source = 'calendar') {
-                if (this.range && dateArr.length < 2) return;
+                if (this.range && dateArr.length < 2) return console.log('range select', dateArr, source);
                 if (this.range) {
                     this.$emit('input', dateArr);
                     this.inputDateString = dateArr.join(' ~ ');
@@ -274,6 +276,9 @@
                 // console.log('emit change', this.inputDateString, source);
                 this.dateValue = dateArr;
                 this.$emit('change', this.dateValue, source);
+                if (source !== 'shortcuts') {
+                    this.isTooltipShow = false;
+                }
             },
             // input 回车和blur事件触发
             setDate(inputValue) {
@@ -307,8 +312,8 @@
                     this.inputDateString = this.dateValue.join(' ~ ');
 
                     // 调整两页的日历渲染月份
-                    this.$refs.startCalendar.jumpToDate(startDate, 'shortcuts');
-                    this.$refs.endCalendar.jumpToDate(Moment(startDate).add(1, 'month').format(this.formatString), 'shortcuts');
+                    this.$refs.startCalendar.jumpToDate(this.dateValue, 'shortcuts');
+                    this.$refs.endCalendar.jumpToDate(this.dateValue, 'shortcuts');
                 } else {
                     // 时间点模式
                     const aimDateStr = Moment().add(value, unit).format(this.formatString);
