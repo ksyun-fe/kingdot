@@ -85,7 +85,6 @@
 | data     | 选择器的内容   | Array <Object \| String \| Number> [{label, value}], [String \| Number]    |     —     | [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] |
 | disabled  | 设置禁用状态   | boolean  |     —     |    false   |
 | itemDisable  | 按条件设置禁用选项   | function  |     —     |    -   |
-<!-- | count  | 选择区域展示的项数, 最好是奇数个   | number  |     —     |    5   | -->
 
 
 

@@ -24,12 +24,12 @@
 
 ### 固定时间点
 
-:::demo #固定时间点 ##按设定的步长提供一类固定的时间点供用户选择. `step` 默认为 30 (单位:min)
+:::demo #固定时间点 ##按设定的`step`步长提供一类固定的时间点供用户选择. 可接受时间字符串如 `"01:00:00"` 或数值 `60`(min).  `step` 默认为 30 (min)
 
 ```html
 <template>
     <div>
-        <kd-time-picker v-model='time1' mode="steptime"></kd-time-picker>
+        <kd-time-picker v-model='time1' mode="steptime" step="01:00:00"></kd-time-picker>
         time1: {{ time1 }}
         <kd-time-picker v-model='time2' mode="steptime" step="120"></kd-time-picker>
         time2: {{ time2 }}
@@ -99,43 +99,19 @@
 ```
 :::
 
-### 设置禁用时间
-
-:::demo #设置禁用时间 ## 通过自定义方法 设置满足条件的时间禁用，传入参数为时间字符串，返回布尔值
-
-```html
-<template>
-    <div>
-        <kd-time-picker v-model="time" mode="steptime" :disabled-time="disabledTime"></kd-time-picker>
-    </div>
-</template>
-<script>
-    export default {
-        data() {
-            return {
-                time: '09:00:00',
-            }
-        },
-        methods: {
-            disabledTime(timeStr) {
-                if (timeStr.split(':')[0] < 8) {
-                    return true;
-                }
-            }
-        }
-    }
-</script>
-```
-:::
 ### 属性 {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |--------- |-------- |---------- |-------------  |-------- |
 | value    | 时间字符串   | string, array  |     —     |    -   |
 | placeholder    | 占位符   | string |     —     |    选择时间   |
 | disabled  | 设置组件的禁用状态   | boolean  |     —     |    false   |
-| disabled-time  | 按条件设置禁用时间   | array, function  |     —     |    -   |
 | min-time  | 最小可选时间   | string  |     —     |    -   |
 | max-time  | 最大可选时间   | string  |     —     |    -   |
 | mode  |  模式,    | string  |     'anytime', 'steptime'     |    'anytime'   |
 | step | 步长(min)  | number  |     —     |    30   |
 | range | 是否是时间范围  | boolean  |     —     |    false   |
+
+### Events {.component__content}
+| 事件名称      | 说明    | 回调参数 |
+|---------- |-------- |---------- |
+| change | 在选择完成, 绑定值改变时触发 | (dateArr: Array, source: String)
