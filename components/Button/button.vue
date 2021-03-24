@@ -97,7 +97,22 @@
                 return allClassAry;
             }
         },
+        mounted() {
+            this.initActive();
+        },
         methods: {
+            initActive() {
+                const parent = this.$parent;
+                if (parent.$options._componentTag === 'kd-button-group') {
+                    if (parent.checkType === 'radio') {
+                        if (parent.value === this.value) this.isActive = true;
+                    } else if (parent.checkType === 'checkbox') {
+                        parent.value.forEach(item => {
+                            if (item === this.value) this.isActive = true;
+                        });
+                    }
+                }
+            },
             //  点击事件
             handleClick(e) {
                 if (!this.disabled && !this.loading) {

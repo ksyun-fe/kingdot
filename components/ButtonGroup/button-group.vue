@@ -12,8 +12,7 @@
         name: 'KdButtonGroup',
         props: {
             value: {
-                type: [String, Number, Array, Boolean],
-                default: null
+                type: [String, Number, Array, Boolean]
             },
             checkType: {
                 type: String
@@ -31,37 +30,40 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    this.$nextTick(() => {
-                        if (!this.$slots.default) return;
-                        if (this.checkType === 'checkbox') {
-                            this.$slots.default.forEach((item) => {
-                                if (item.componentOptions) {
-                                    const some = v.some(value => {
-                                        return value === item.componentOptions.propsData.value;
-                                    });
-                                    if (some) {
-                                        item.componentInstance.active();
-                                    } else {
-                                        item.componentInstance.isActive = false;
-                                    }
-                                }
-                            });
-                        } else if (this.checkType === 'radio') {
-                            this.$slots.default.forEach((item) => {
-                                if (item.componentOptions) {
-                                    if (v === item.componentOptions.propsData.value) {
-                                        item.componentInstance.active();
-                                    } else {
-                                        item.componentInstance.isActive = false;
-                                    }
-                                }
-                            });
-                        }
-                    });
+                    this.init(v);
                 }
             }
         },
         methods: {
+            init(v) {
+                this.$nextTick(() => {
+                    if (!this.$slots.default) return;
+                    if (this.checkType === 'checkbox') {
+                        this.$slots.default.forEach((item) => {
+                            if (item.componentOptions) {
+                                const some = v.some(value => {
+                                    return value === item.componentOptions.propsData.value;
+                                });
+                                if (some) {
+                                    item.componentInstance.active();
+                                } else {
+                                    item.componentInstance.isActive = false;
+                                }
+                            }
+                        });
+                    } else if (this.checkType === 'radio') {
+                        this.$slots.default.forEach((item) => {
+                            if (item.componentOptions) {
+                                if (v === item.componentOptions.propsData.value) {
+                                    item.componentInstance.active();
+                                } else {
+                                    item.componentInstance.isActive = false;
+                                }
+                            }
+                        });
+                    }
+                });
+            },
             emit(v, active) {
                 let value = '';
                 if (this.checkType === 'checkbox') {
