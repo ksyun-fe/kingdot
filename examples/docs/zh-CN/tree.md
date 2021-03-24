@@ -33,7 +33,7 @@
             @node-click="__test"
         >
             <span slot-scope="node">
-                ??? <kd-button type="mini">test</kd-button>
+                ??? <kd-button size="mini">test</kd-button>
             </span>
         </kd-tree>
     </div>
