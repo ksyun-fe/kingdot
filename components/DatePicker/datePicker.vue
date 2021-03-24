@@ -265,7 +265,7 @@
             // 底下上传上来的数据  在这里不给dateValue赋值. 从底下来的数据, 又通过props传下去不合理
             // 应该用 watch 监听value, 然后改变 inputDateString. 就没有select 的事情了 吗??
             popDateValue(dateArr, source = 'calendar') {
-                if (this.range && dateArr.length < 2) return console.log('range select', dateArr, source);
+                if (this.range && dateArr.length < 2) return;
                 if (this.range) {
                     this.$emit('input', dateArr);
                     this.inputDateString = dateArr.join(' ~ ');
@@ -303,8 +303,8 @@
 
                 if (this.range) {
                     const aimDateStr = Moment().add(value, unit).format(this.formatString);
-                    const startDate = value > 0 ? Moment().format(this.formatString) : aimDateStr;
                     if (value > 0) {
+                        // TODO: 快捷选项的时间 不一定是以当前时间为起止点.
                         this.dateValue.splice(0, this.dateValue.length, Moment().format(this.formatString), aimDateStr);
                     } else {
                         this.dateValue.splice(0, this.dateValue.length, aimDateStr, Moment().format(this.formatString));
