@@ -66,6 +66,7 @@
                     <div
                             v-if="type == 'confirm'"
                             class="kd-dialog-body"
+                            :class="`kd-dialog-body-${type}`"
                     >
                         <slot>
                             <span
@@ -77,8 +78,14 @@
                                         :style="{ color: iconColorObj }"
                                 ></i>
                             </span>
-                            <p class="kd-dialog-confirm-title">{{ confirmTitle }}</p>
-                            <p class="kd-dialog-confirm-tips">{{ confirmTips }}</p>
+                            <p
+                                    v-if="confirmTitle!==''"
+                                    class="kd-dialog-confirm-title"
+                            >{{ confirmTitle }}</p>
+                            <p
+                                    v-if="confirmTips!==''"
+                                    class="kd-dialog-confirm-tips"
+                            >{{ confirmTips }}</p>
                         </slot>
                     </div>
                     <!-- 提示类内容区域 -->
