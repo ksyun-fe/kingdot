@@ -31,8 +31,20 @@
             <!-- loading -->
             <span
                     v-if="item.loading && item.expanded"
-                    class="kd-tree-loading kd-icon-loading"
-            ></span>
+                    class="kd-tree-loading"
+            >
+                <svg
+                        viewBox="0 0 120 120"
+                        class="kd-tree-loading-svg"
+                >
+                    <circle
+                            cx="60"
+                            cy="60"
+                            class="kd-tree-loading-circle"
+                            r="57"
+                    ></circle>
+                </svg>
+            </span>
             <!-- node -->
             <TreeNode
                     :node="item"
