@@ -67,8 +67,8 @@
         },
         data() {
             return {
-                translateY: 0,
-                marginTop: 0,
+                // translateY: 0,
+                // marginTop: 0,
                 curIndex: 0,
                 currentValue: this.data[0].value || this.data[0],
                 count: 5 // 展示范围, 默认5
@@ -125,11 +125,11 @@
             currentValue(value, oldValue) {
                 const itemDisable = this.itemDisable;
 
-                // 判断 item 没有被禁用...
+                // 判断 currentValue 没有被禁用...
                 if (!(!!itemDisable && itemDisable.call(this, value))) {
                     this.$emit('input', value);
-                    console.log('currentValue change', value, oldValue);
                     this.$emit('change', value, oldValue);
+                    console.log('currentValue change', value, oldValue);
                 }
             }
         },
@@ -227,15 +227,10 @@
                 // 选中
                 this.currentValue = this.selectList[(length + currentIndex + index) % length].value;
 
-                // 如果滚动之后 下一条被禁用 => 同方向再滚动一次 // 不用直接跳过. 不触发上层变化就行了
-                // if (this.isItemDisabled({value: this.currentValue})) {
-                //     this.setMoveValue(index > 0 ? index++ : index--);
-                // }
-
                 // this.marginTop += moveY || index * this.itemHeight; // 滚动一节. 上移或者下移 整个 itemHeight
 
                 // this.translateY -= this.itemHeight * index;
-                // ??? 改变 this.translateY
+                // 改变 this.translateY 使得选中项在中间
                 // if (isSetTranslate) {
                 //     this.translateY -= this.itemHeight * index;
                 // }
@@ -252,12 +247,6 @@
             },
             isItemDisabled(item) {
                 // 整个组件被禁用, 或者传入了 验证函数, 且验证后为禁用
-
-                // if (item.disabled) {
-                //     console.log('=====', item.disabled);
-
-                //     return true;
-                // }
                 const disableFlag = this.disabled || !!this.itemDisable && this.itemDisable(item.value);
                 if (!disableFlag && item.value === this.currentValue && this.currentValue !== this.value) {
                     this.$emit('input', this.currentValue);
