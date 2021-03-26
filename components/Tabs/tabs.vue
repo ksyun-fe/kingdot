@@ -137,6 +137,9 @@
                     : (this.movedisabledRight = false);
             }
         },
+        updated() {
+            this.Recapture();
+        },
         methods: {
             Recapture() {
                 this.contentWidth = this.$refs.tabs.querySelector(
