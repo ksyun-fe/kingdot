@@ -69,7 +69,7 @@
                             "path": "/slider",
                             "name": "Slider 滑块"
                         },
-                        
+
                         {
                             "path": "/select",
                             "name": "Select 选择框"
@@ -246,7 +246,7 @@
                             "path": "/checkbox",
                             "name": "Checkbox"
                         },
-                        
+
                         {
                             "path": "/select",
                             "name": "Select"
