@@ -88,6 +88,9 @@
                         :multiple="multiple"
                         :default-width="defaultWidth"
                         :filter-data="filterData"
+                        :lazy="lazy"
+                        :lazy-load-count="lazyLoadCount"
+                        :default-count="defaultCount"
                         @setValue="setValue"
                 >
                     <slot/>
@@ -154,8 +157,15 @@
             hideDestroy: {
                 type: Boolean,
                 default: false
+            },
+            lazy: {
+                type: Boolean,
+                default: false
+            },
+            lazyLoadCount: {
+                type: [String, Number],
+                default: 10
             }
-
         },
         data() {
             return {

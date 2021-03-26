@@ -86,6 +86,57 @@ export default{
 
 :::
 
+:::demo #懒加载 ##懒加载使用
+
+```html
+<template>
+        <div>
+            <kd-select lazy lazy-load-count="10" v-model="defaultValue" placeholder="请选择内容">
+                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.value }}
+                </kd-option>
+            </kd-select>
+            
+        </div>
+</template>
+<script>
+export default{
+    data(){
+        return{
+            options: [],
+            options1: [
+            ],
+            defaultValue: "",
+            defaultValue1: "",
+
+        }   
+    },
+    watch:{
+        
+    },
+    methods:{
+        
+    },
+    mounted(){
+        const that = this;
+        for(let i = 0; i <= 100; i++){
+            that.options.push(
+                {
+                                value:"item" + i,
+                                label:"item option " + i
+                            }
+            )
+        }
+    }
+}
+</script>
+<style>
+.select-ml{
+    margin-left:20px
+}
+</style>
+```
+:::
+
 :::demo #可搜索 ##可搜索筛选的选择器，filterable属性为true变为可搜索。
 
 ```html
@@ -388,6 +439,8 @@ export default{
 | size    | 大小   |  string    | large / default / small / mini | default
 | width    | 宽度   |  string    |  —  | — |
 | hideDestroy    | 弹层隐藏后是否销毁dom   |  Boolean    |  —  | false |
+| lazy    | 是否开启懒加载   |  Boolean    |  —  | false |
+| lazyLoadCount    | 触发懒加载时每次加载数，和lazy属性一起使用  |  String / Number    |  —  | 10 |
 
 
 ### Select Events {.component__content}
