@@ -24,14 +24,14 @@
 
 ### 固定时间点
 
-:::demo #固定时间点 ##按设定的`step`步长提供一类固定的时间点供用户选择. 可接受时间字符串如 `"01:00:00"` 或数值 `60`(min).  `step` 默认为 30 (min)
+:::demo #固定时间点 ##按设定的`step`步长提供一类固定的时间点供用户选择. 可接受时间字符串如 `"01:00:00"` 或数值 `60`(min).  `step` 默认为 30 (min). 或者通过 `optional-times` 属性直接列出可选时间列表
 
 ```html
 <template>
     <div>
         <kd-time-picker v-model='time1' mode="steptime" step="01:00:00"></kd-time-picker>
         time1: {{ time1 }}
-        <kd-time-picker v-model='time2' mode="steptime" step="120"></kd-time-picker>
+        <kd-time-picker v-model='time2' mode="steptime" :optional-times="times" ></kd-time-picker>
         time2: {{ time2 }}
     </div>
 </template>
@@ -40,7 +40,8 @@
         data() {
             return {
                 time1: '08:00:00',
-                time2: '10:00'
+                time2: '10:00',
+                times: ['10:00', '15:00', '19:00']
             }
         },
     }
@@ -108,7 +109,8 @@
 | min-time  | 最小可选时间   | string  |     —     |    -   |
 | max-time  | 最大可选时间   | string  |     —     |    -   |
 | mode  |  模式,    | string  |     'anytime', 'steptime'     |    'anytime'   |
-| step | 步长(min)  | number  |     —     |    30   |
+| step | 步长  | number, string  |     —     |    -   |
+| optional-times | 可选时间列表  | array  |     —     |    -   |
 | range | 是否是时间范围  | boolean  |     —     |    false   |
 
 ### Events {.component__content}

@@ -67,7 +67,7 @@
                         <div
                                 v-if="mode === 'steptime'"
                                 class="selector-container"
-                        >   
+                        >
                             <!-- :item-disable 不能直接绑定一个函数. 可能有min max限制 有联动限制, 有外部定义的限制 -->
                             <ScrollSelect
                                     ref="startTimeSelector"
@@ -164,6 +164,9 @@
             placeholder: {
                 type: String,
                 default: '选择时间'
+            },
+            optionalTimes: {
+                type: Array
             }
         },
         data() {
@@ -182,7 +185,9 @@
         },
         computed: {
             timeList() {
-                if (this.mode === 'steptime') {
+                if (!!this.optionalTimes && Array.isArray(this.optionalTimes)) { // 传入不规则的时间列表
+                    return this.optionalTimes;
+                } else if (this.mode === 'steptime') {
                     const step = !!Number(this.step) ? Number(this.step) * 60 : parseTime(this.step);
                     const max = parseTime(this.maxTime);
                     const min = parseTime(this.minTime);
@@ -239,12 +244,9 @@
                 deep: true,
                 handler(v) {
                     if (!this.range) {
-                        console.log('startTime change 单点时间', v);
                         this.timeString = this.startTime; // innervalue 变化
                         this.$emit('input', this.startTime);
                     } else {
-                        console.log('startTime change 范围时间', v);
-
                         this.timeString = `${v} - ${this.endTime}`;
                         this.$emit('input', [v, this.endTime]);
                     }
@@ -258,14 +260,12 @@
                         // this.$emit('input', this.timeString);
                     } else {
                         this.timeString = `${this.startTime} - ${v}`;
-                        console.log('this.timeString', this.timeString);
                         this.$emit('input', [this.startTime, v]);
                     }
                 }
             },
             selectedTime: {
                 handler(v) {
-                    console.log('selectedTime change', v);
                     if (this.range === false) {
                         this.timeString = v;
                         this.$emit('input', this.selectedTime);
@@ -280,7 +280,6 @@
             endSelectedTime: {
                 handler(v) {
                     if (this.timeString !== `${this.selectedTime} - ${v}`) {
-                        console.log('endSelectedTime change', v);
                         this.timeString = `${this.selectedTime} - ${v}`;
                         this.$emit('input', this.timeString.split(' - '));
                     }
@@ -291,7 +290,6 @@
         },
         methods: {
             selectTimeValue(item) {
-                console.log('click time', item);
                 if (this.timeString != item) {
                     this.timeString = item;
                     this.$emit('input', item);
