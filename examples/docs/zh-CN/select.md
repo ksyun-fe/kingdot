@@ -1,19 +1,21 @@
 ## Select 选择器
 选项过多时，下拉显示数据并选择数据。
 
+
 :::demo #基本使用 ##选择器的基本使用
 
 ```html
 <template>
         <div>
+            <kd-button @click="test">ac</kd-button>
             <kd-select v-model="defaultValue" placeholder="请选择内容">
-                <kd-option value="">空数据</kd-option>
+                <!-- <kd-option value="">空数据</kd-option> -->
                 <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
                 </kd-option>
             </kd-select>
-            <kd-select v-model="defaultValue1" placeholder="请选择内容" class="select-ml">
-                <kd-option value="">空数据</kd-option>
-                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
+            <kd-select v-model="defaultValue1" placeholder="请选择内容" width="200px"  class="select-ml">
+                <!-- <kd-option value="">空数据</kd-option> -->
+                <kd-option v-for="item in options1" :key="item.value" :value="item.value">{{ item.label }}
                 </kd-option>
             </kd-select>
         </div>
@@ -30,12 +32,48 @@ export default{
                 {
                     value:"item2",
                     label:"item option 2"
+                },
+                {
+                    value:"item3",
+                    label:"item option 3"
                 }
+            ],
+            options1: [
             ],
             defaultValue: "",
             defaultValue1: "",
-            select:23,
+
         }   
+    },
+    watch:{
+        defaultValue(v){
+            if(v == 'item1'){
+                let data = []
+                for(let i=0;i <= 30;i++){
+                    data.push({
+                        value:  i,
+                        label: 'item'+ i
+                    })
+                }
+                this.options1 = data
+
+            }else if(v === 'item2'){
+                let data = []
+                for(let i=0;i <= 30;i++){
+                    data.push({
+                        value: i,
+                        label: i
+                    })
+                }
+                this.options1 = data
+            }
+            this.defaultValue1 = '';
+        }
+    },
+    methods:{
+        test(){
+            this.defaultValue1 = '';
+        }
     }
 }
 </script>
