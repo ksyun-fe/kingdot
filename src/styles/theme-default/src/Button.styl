@@ -7,7 +7,9 @@ $-btn-size-types := large small mini
 $-btn-text-types := none text
 $-btn-gradient := $-btn-type == 'gradient'
 
-
+width = 6
+r = 120 - 60 - (width / 2)
+c = round(2 * 3.14 * r)
 .kd-btn
   position relative
   padding $-btn-default-padding
@@ -120,17 +122,31 @@ for textItem in $-btn-text-types
         border-radius $-btn-border-radius
         background rgba(255,255,255,0.3)
 .kd-btn-loading-icon
-    // i
-    display inline-block
-    transform-origin center
-    animation kd-btn-loading-dash 1s linear infinite
+    display: inline-block
+    width 10px
+    height 10px; 
+    text-align center
+    color: #fff
+    transform scale(1.2)
+.kd-spin-circle
+    animation kd-spin-dash 1.5s ease-in-out infinite
+    stroke-dasharray round(c * 0.75), c
+    stroke-dashoffset 0
+    fill none
+    stroke-width width
+    stroke #fff
+    r r
 //size
 for s in $-btn-size-types
+    $-btn-loading-size = lookup('$-btn-'+ s +'-font-size')
     .kd-btn-{s}
         padding lookup('$-btn-'+ s +'-padding')
         font-size lookup('$-btn-'+ s +'-font-size')
         [class*=kd-icon]
             font-size lookup('$-btn-'+ s +'-font-size')
+        .kd-btn-loading-icon
+            width unit($-btn-loading-size - 2, 'px')
+            height unit($-btn-loading-size - 2, 'px')
     .kd-btn-circle.kd-btn-{s}
         padding lookup('$-btn-'+ s +'-circle-padding')
     
@@ -154,9 +170,13 @@ for s in $-btn-size-types
 .kd-btn-split
     padding $-btn-split-padding
 
-@keyframes kd-btn-loading-dash {
-    100%{
-        transform-origin center
-        transform: rotate(360deg)
-    }
-}
+@keyframes kd-spin-dash
+    0%
+        stroke-dasharray 1, c
+        stroke-dashoffset 0
+    50%
+        stroke-dasharray round(c * 0.75), c
+        stroke-dashoffset -(c * 0.25)
+    to
+        stroke-dasharray round(c * 0.75), c
+        stroke-dashoffset -(c)
