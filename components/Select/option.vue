@@ -1,6 +1,7 @@
 <template>
     <li
             v-show="optionShow"
+            v-if="ifLoadOption"
             class="kd-option"
             :class="{'kd-option-active': active,'kd-option-disabled': disabled}"
             @click.stop="optionClick"
@@ -43,7 +44,8 @@
         data() {
             return {
                 optionShow: true,
-                labelText: ''
+                labelText: '',
+                optionIndex: null
                 // active: false
             };
         },
@@ -58,9 +60,26 @@
                 } else {
                     return parent.value === this.value;
                 }
+            },
+            lazy() {
+                const parent = this.$parent || this.$root;
+                return parent.lazy;
+            },
+            loadCount() {
+                const parent = this.$parent || this.$root;
+                return parent.loadCount;
+            },
+            ifLoadOption() {
+                if (this.lazy) {
+                    return this.lazy && this.optionShow && this.optionIndex <= this.loadCount;
+                } else {
+                    return true;
+                }
             }
         },
         mounted() {
+            const parent = this.$parent || this.$root;
+            this.optionIndex = parent.getOptionIndex();
             const defaultSlot = this.$slots.default;
             if (defaultSlot) {
                 this.labelText = defaultSlot[0].text;
