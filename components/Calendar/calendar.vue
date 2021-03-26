@@ -401,13 +401,16 @@
                     if (this.selectedDate.length >= 2) {
                         this.value.splice(0, this.value.length);
                     }
-                    // 点击已选中的日期, 取消选中
-                    const pos = this.selectedDate.indexOf(date.dateStr);
-                    if (pos < 0) {
-                        this.selectedDate.push(date.dateStr);
-                    } else {
-                        this.selectedDate.splice(pos, 1);
-                    }
+                    // 点击已选中的日期, 取消选中 (仅多选模式需要该功能)
+                    // const pos = this.selectedDate.indexOf(date.dateStr);
+                    // if (pos < 0) {
+                    //     this.selectedDate.push(date.dateStr);
+                    // } else {
+                    //     this.selectedDate.splice(pos, 1);
+                    // }
+
+                    // 范围日期模式 允许 选择一天: 2021-01-01 ~ 2021-01-01
+                    this.selectedDate.push(date.dateStr);
 
                     // 使时间字符串数组保持 左值早于右值
                     if (Moment(this.selectedDate[0]).isAfter(Moment(this.selectedDate[1]))) { // 左时间晚于右时间
