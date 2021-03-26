@@ -6,12 +6,22 @@
             @click="handleClick"
     >
         <!-- 加载中 -->
-        <i
+        <span
                 v-if="loading"
-                class="kd-btn-loading-icon kd-icon-loading1"
+                class="kd-btn-loading-icon"
                 :class="{ 'kd-icon-left': $slots.default }"
         >
-        </i>
+            <svg
+                    viewBox="0 0 120 120"
+            >
+                <circle
+                        cx="60"
+                        cy="60"
+                        class="kd-spin-circle"
+                        r="57"
+                ></circle>
+            </svg>
+        </span>
         <!-- 传入icon -->
         <i
                 v-if="icon"
