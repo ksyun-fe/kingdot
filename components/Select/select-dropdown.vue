@@ -1,9 +1,11 @@
 <template>
     <div
+            ref="kdDropdown"
             class="kd-select-dropdown"
+            @scroll="scroll"
             :style="{ width:defaultWidth }"
     >
-        <ul>
+        <ul ref="kdDropdownContent">
             <slot><li class="kd-select-no-data">无数据</li></slot>
         </ul>
     </div>
@@ -29,7 +31,21 @@
             },
             filterData: {
                 type: Object
+            },
+            lazy: {
+                type: Boolean,
+                default: false
+            },
+            lazyLoadCount: {
+                type: [String, Number],
+                default: 10
             }
+        },
+        data() {
+            return {
+                optionIndex: 0,
+                loadCount: 30
+            };
         },
         watch: {
             'filterData': function (v) {
@@ -52,8 +68,19 @@
         methods: {
             setValue(v) {
                 this.$emit('setValue', v);
+            },
+            getOptionIndex() {
+                this.optionIndex += 1;
+                return this.optionIndex;
+            },
+            scroll() {
+                if (!this.lazy) return false;
+                let scrollTop = this.$refs.kdDropdown.scrollTop;
+                let contentHeight = this.$refs.kdDropdownContent.offsetHeight;
+                if (contentHeight - scrollTop <= 390) {
+                    this.loadCount += parseInt(this.lazyLoadCount);
+                }
             }
-
         }
     };
 </script>

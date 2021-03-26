@@ -175,7 +175,7 @@
             },
             hasChildren() {
                 const item = this.item;
-                return item.children && item.children.length >= 0; // empty children to show switcher
+                return item.children && item.children.length > 0;
             },
             showExpand() {
                 const item = this.item;
