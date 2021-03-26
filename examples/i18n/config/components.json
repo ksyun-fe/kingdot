@@ -83,8 +83,12 @@
                             "name": "Transfer 穿梭框"
                         },
                         {
-                            "path": "/scrollselect",
+                            "path": "/scrollSelect",
                             "name": "ScrollSelect 滚动选择器"
+                        },
+                        {
+                            "path": "/timePicker",
+                            "name": "TimePicker 时间选择器"
                         },
                         {
                             "path": "/datePicker",
@@ -177,13 +181,6 @@
                         },{
                             "path": "/drawer",
                             "name": "Drawer 抽屉"
-                        },{
-                            "path": "/scrollSelect",
-                            "name": "ScrollSelect 滚动选择器"
-                        },
-                        {
-                            "path": "/timePicker",
-                            "name": "TimePicker 时间选择器"
                         }
                     ]
                 }
@@ -271,8 +268,8 @@
                             "name": "Transfer"
                         },
                         {
-                            "path": "/scrollselect",
-                            "name": "ScrollSelect"
+                            "path": "/timePicker",
+                            "name": "TimePicker"
                         },
                         {
                             "path": "/datePicker",
@@ -342,18 +339,6 @@
                         {
                             "path": "/dialog",
                             "name": "Dialog"
-                        },
-                        {
-                            "path": "/datePicker",
-                            "name": "DatePicker"
-                        },
-                        {
-                            "path": "/scrollSelect",
-                            "name": "ScrollSelect"
-                        },
-                        {
-                            "path": "/timePicker",
-                            "name": "TimePicker"
                         }
                     ]
                 }

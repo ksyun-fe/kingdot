@@ -110,22 +110,9 @@
                                     v-model="endTime"
                                     :min="endTimeMinLimit(minTime, startTime)"
                                     :max="maxTime"
-
                                     @change="timeValueChange"
                             >
                             </Time>
-                            <!-- <div
-                                    v-for="(item,index) in scrollTimeArr"
-                                    :key="index"
-                                    class="column"
-                            >
-                                <ScrollSelect
-                                        ref="ScrollSelect"
-                                        v-model="endTime[index]"
-                                        :data="item"
-                                >
-                                </ScrollSelect>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -187,7 +174,7 @@
                 }),
                 startTime: '', // '00:00:00'
                 endTime: '', // '00:00:00'
-                selectedTime: '', // step 模式下的结果
+                selectedTime: '', // step 模式下的选择结果
                 endSelectedTime: '',
                 timeString: '', // input value
                 isTooltipShow: false
@@ -196,58 +183,22 @@
         computed: {
             timeList() {
                 if (this.mode === 'steptime') {
-                    // if (!this.step) return [];
-                    const step = !!Number(this.step) ? Number(this.step) : parseTime(this.step);
+                    const step = !!Number(this.step) ? Number(this.step) * 60 : parseTime(this.step);
                     const max = parseTime(this.maxTime);
                     const min = parseTime(this.minTime);
                     console.log('生成 timeList()', this.minTime, min, max, step);
                     const data = [];
 
-                    for (let t = min; t <= max; t += step * 60) {
+                    for (let t = min; t <= max; t += step) {
                         data.push(stringTime(t, 'minute'));
                     }
                     // this.timeList = data;
                     // 固定时间点, 不展示秒..
-                    // console.log('timeList', this.timeList);
                     return data;
                 } else {
                     return [];
                 }
             },
-            // timeString() { // selectedTime 变化, TODO: selectedTime 被禁用
-            //     let timeString = '';
-            //     if (!this.range) {
-            //         if (this.mode === 'steptime') {
-            //             timeString = this.selectedTime;
-            //         } else {
-            //             timeString = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
-            //         }
-            //         if (timeString === '0:0:0') { // fix input中只有分隔符
-            //             return '';
-            //         }
-            //         // console.log('单点时间 timeString', timeString);
-            //         if (this.disabledTime && !this.disabledTime(timeString)) {
-            //             return timeString;
-            //         } else {
-            //             return ''; // 应该保持老的
-            //         }
-            //     } else {
-            //         let start = '';
-            //         let end = '';
-
-            //         if (this.mode === 'steptime') {
-            //             start = this.selectedTime;
-            //             end = this.endSelectedTime;
-            //         } else {
-            //             start = `${this.startTime.hour}:${this.startTime.minute}:${this.startTime.second}`;
-            //             end = `${this.endTime.hour}:${this.endTime.minute}:${this.endTime.second}`;
-            //         }
-            //         if (!start && !end) { // fix input中只有分隔符
-            //             return '';
-            //         }
-            //         return `${start}-${end}`;
-            //     }
-            // }
         },
         watch: {
             value: {
@@ -255,13 +206,17 @@
                 handler(v) {
                     console.log('init valve', v);
                     if (typeof v === 'string') { // 单
+                        // TODO: 检查合法性
                         this.timeString = v;
-                        this.selectedTime = v;
-
-                        this.startTime = v;
-                        // console.log('set startTime', this.startTime);
+                        // this.selectedTime = v;
+                        // this.startTime = v;
+                        if (this.mode === 'steptime') {
+                            this.selectedTime = v;
+                        } else {
+                            this.startTime = v;
+                        }
                     } else if (Array.isArray(v)) { // 范围
-                        this.timeString = v.join(' ~ ');
+                        this.timeString = v.join(' - ');
                         if (this.mode === 'steptime') {
                             this.selectedTime = v[0];
                             this.endSelectedTime = v[1];
@@ -298,15 +253,13 @@
             endTime: {
                 deep: true,
                 handler(v) {
-                    console.log('endTime change', v, this.startTime, this.timeString);
                     if (!this.range) {
                         // this.timeString = this.startTime.join(':'); // innervalue 变化
                         // this.$emit('input', this.timeString);
                     } else {
                         this.timeString = `${this.startTime} - ${v}`;
                         console.log('this.timeString', this.timeString);
-
-                        this.$emit('input', this.timeString);
+                        this.$emit('input', [this.startTime, v]);
                     }
                 }
             },
@@ -339,15 +292,17 @@
         methods: {
             selectTimeValue(item) {
                 console.log('click time', item);
-                this.timeString = item;
-                this.$emit('input', item); // 冒出去string 从value回来变成了array
-                this.isTooltipShow = false;
+                if (this.timeString != item) {
+                    this.timeString = item;
+                    this.$emit('input', item);
+                    this.$emit('change', item, 'select');
+                    this.isTooltipShow = false;
+                }
             },
             addPreZero(num) {
                 return ('00' + String(num)).slice(-2);
             },
             startTimeMaxLimit(...times) {
-                console.log('startTimeMaxLimit', times);
                 times = times.map(item => parseTime(item || '23:59:59'));
                 return stringTime(Math.min.apply(null, times));
             },
@@ -355,22 +310,9 @@
                 times = times.map(item => parseTime(item || '00:00:00'));
                 return stringTime(Math.max.apply(null, times));
             },
-            // endHourLimit(value) {
-            //     return value < this.startTime.hour;
-            // },
-            // endMinuteLimit(value) {
-            //     if (this.startTime.hour < this.endTime.hour) {
-            //         return false;
-            //     } else if (this.startTime.hour > this.endTime.hour) {
-            //         return true;
-            //     } else if (this.startTime.hour === this.endTime.hour) {
-            //         return value < this.startTime.minute;
-            //     }
-            // },
+
             timeValueChange(value) {
-                // const length = this.selectedValues.length;
-                // const index = this.valueId || length && length - 1;
-                // this.$emit('selectTime', value, index); // 第几个 选了时间
+                this.$emit('change', value, 'scroll'); // 通过点击选中的时间
             },
             startTimeSelectorLimit() {
                 // let max =  生成的timelist 已经遵循 min max 限制
@@ -397,9 +339,6 @@
         color: #b2b2b2;
     }
     .dropdown {
-        /* border: 1px solid #e5e5e5;
-        margin-bottom: 10px;
-        padding: 20px; */
         width: 172px;
         max-height: 200px;
         overflow: scroll;
@@ -409,15 +348,13 @@
         margin: 0 auto;
     }
     .range-container {
-        /* border: 1px solid #e5e5e5; */
         margin-bottom: 10px;
-        /* padding: 20px; */
         width: 500px;
         display: flex;
         justify-content: space-around;
     }
     .sub-title {
-        margin: 20px 0px 10px;
+        margin: 10px 0px;
         text-align:center
     }
     .selector-container {
