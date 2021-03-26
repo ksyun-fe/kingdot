@@ -16,11 +16,13 @@
         margin-right 8px
         display inline-block
         width 14px
-        height 20px
+        height @width
+        vertical-align -4px
         text-align center
         transition all $-animation-duration-base $-ease-in-out
     .kd-tree-switcher-icon
         cursor pointer
+        vertical-align 4px
     .kd-tree-switcher-border
         border 1px solid #ccc
     .tree-open
@@ -53,9 +55,17 @@
 .kd-tree-switcher
     color #ccc
 // loading
-.kd-tree-loading
+.kd-tree-loading-circle
+    stroke-dasharray 269, 358
+    stroke-dashoffset 0
+    fill none
+    stroke-width 6
+    stroke $-primary-color
+    r 57
+.kd-tree-loading-svg
+    margin-top 3px
     color $-primary-color
-    animation rotating 1.2s linear infinite // todo: loading
+    animation rotating 1.2s linear infinite
 @keyframes rotating
     from
         transform rotate(0)

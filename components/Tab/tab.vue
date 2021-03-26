@@ -7,9 +7,9 @@
             }"
             @click="clickTab"
     >
-        <a class="kd-tab-text">
+        <span class="kd-tab-text">
             <slot>标签页</slot>
-        </a>
+        </span>
         <div
                 v-if="this.$parent.closable && this.$parent.size !== 'mini' && !this.$parent.isVertical"
                 class="kd-guanbi"
