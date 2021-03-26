@@ -217,7 +217,10 @@
         },
         methods: {
             initData(v) {
-                if (!this.$slots.default) return;
+                if (this.multiple) this.inputPlaceholder = v.length > 0 ? '' : this.placeholder;
+                if (!this.$slots.default) {
+                    return;
+                }
                 if (this.multiple) {
                     const tagList = [];
                     // 多选初始化添加tags
@@ -238,7 +241,6 @@
                     });
                     this.selected = v;
                     this.tagList = tagList;
-                    this.inputPlaceholder = v.length > 0 ? '' : this.placeholder;
                 } else {
                     // 获取label
                     this.inputLabel = '';
@@ -289,7 +291,6 @@
                 }, this.searchTime);
             },
             selectClick(e) {
-                // e.stopPropagation();
                 if (this.disabled) return;
                 if (typeof this.remoteMethod === 'function') return;
                 if (this.filterable || this.remoteMethod) {
