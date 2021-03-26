@@ -120,10 +120,10 @@
             <kd-button type='primary' size='mini'>小按钮</kd-button>
         </div>
         <div class='row comp-top'>
-            <kd-button type='primary' size='large' shape='round'>大按钮</kd-button>
-            <kd-button type='primary' shape='round'>默认按钮</kd-button>
-            <kd-button type='primary' size='small' shape='round'>小按钮</kd-button>
-            <kd-button type='primary' size='mini' shape='round'>小按钮</kd-button>
+            <kd-button type='primary' size='large' loading shape='round'>大按钮</kd-button>
+            <kd-button type='primary' shape='round' loading>默认按钮</kd-button>
+            <kd-button type='primary' size='small' loading shape='round'>小按钮</kd-button>
+            <kd-button type='primary' size='mini' loading shape='round'>小按钮</kd-button>
         </div>
         <div class='row comp-top'>
             <kd-button type='primary' size='large' icon='kd-icon-arrow-right' shape='circle'></kd-button>
