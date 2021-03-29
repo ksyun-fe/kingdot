@@ -18,7 +18,6 @@
 <script>
     export default {
         name: 'KdOption',
-        // inject: ['select'],
         props: {
             scope: {
                 type: Object,
@@ -78,11 +77,14 @@
             }
         },
         mounted() {
-            const parent = this.$parent || this.$root;
-            this.optionIndex = parent.getOptionIndex();
-            const defaultSlot = this.$slots.default;
-            if (defaultSlot) {
-                this.labelText = defaultSlot[0].text;
+            const parent = this.getParent('kd-select-dropdown');
+            if (parent.getOptionIndex) this.optionIndex = parent.getOptionIndex();
+            this.labelText = this.label || this.labelFomat(this.$slots.default[0].text);
+            if (typeof parent.value === 'object') {
+                const value = parent.value.find(item => item === this.value);
+                value && parent.updateLabel({label: this.labelText, value: this.value});
+            } else {
+                parent.value === this.value && parent.updateLabel({label: this.labelText, value: this.value});
             }
         },
         methods: {
@@ -98,6 +100,10 @@
                     active: this.active
                 };
                 this.dispatch('kd-select-dropdown', 'setValue', data);
+            },
+            labelFomat(label) {
+                if (!label) return '';
+                return label.replace(/\n/g, '').trim();
             },
             getParent(componentName) {
                 let parent = this.$parent || this.$root;
