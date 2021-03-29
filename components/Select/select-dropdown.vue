@@ -2,8 +2,8 @@
     <div
             ref="kdDropdown"
             class="kd-select-dropdown"
-            @scroll="scroll"
             :style="{ width:defaultWidth }"
+            @scroll="scroll"
     >
         <ul ref="kdDropdownContent">
             <slot><li class="kd-select-no-data">无数据</li></slot>
@@ -73,10 +73,13 @@
                 this.optionIndex += 1;
                 return this.optionIndex;
             },
+            updateLabel(v) {
+                this.$emit('updateLabel', v);
+            },
             scroll() {
                 if (!this.lazy) return false;
-                let scrollTop = this.$refs.kdDropdown.scrollTop;
-                let contentHeight = this.$refs.kdDropdownContent.offsetHeight;
+                const scrollTop = this.$refs.kdDropdown.scrollTop;
+                const contentHeight = this.$refs.kdDropdownContent.offsetHeight;
                 if (contentHeight - scrollTop <= 390) {
                     this.loadCount += parseInt(this.lazyLoadCount);
                 }

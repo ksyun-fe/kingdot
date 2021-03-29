@@ -90,8 +90,8 @@
                         :filter-data="filterData"
                         :lazy="lazy"
                         :lazy-load-count="lazyLoadCount"
-                        :default-count="defaultCount"
                         @setValue="setValue"
+                        @updateLabel="updateLabel"
                 >
                     <slot/>
                 </kd-select-dropdown>
@@ -172,7 +172,6 @@
                 isFocus: false,
                 inputLabel: '',
                 tagList: [],
-                oldinputLabel: '',
                 inputPlaceholder: '',
                 clickOption: false,
                 dropdownMenu: false,
@@ -197,9 +196,17 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    this.$nextTick(() => {
-                        this.initData(v);
-                    });
+                    this.selected = v;
+                }
+            },
+            placeholder: {
+                immediate: true,
+                handler(v) {
+                    if (this.multiple) {
+                        this.inputPlaceholder = this.value.length > 0 ? '' : v;
+                    } else {
+                        this.inputPlaceholder = v;
+                    }
                 }
             },
             dropdownMenu: {
@@ -226,50 +233,6 @@
             this.defaultWidth = this.$refs.kdSelect.clientWidth + 'px';
         },
         methods: {
-            initData(v) {
-                if (this.multiple) this.inputPlaceholder = v.length > 0 ? '' : this.placeholder;
-                if (!this.$slots.default) {
-                    return;
-                }
-                if (this.multiple) {
-                    const tagList = [];
-                    // 多选初始化添加tags
-                    v.forEach((vItem) => {
-                        this.$slots.default.forEach((item) => {
-                            const options = item.componentOptions;
-                            if (options) {
-                                const value = options.propsData.value;
-                                if (value === vItem) {
-                                    const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
-                                    tagList.push({
-                                        value: value,
-                                        label: label
-                                    });
-                                }
-                            }
-                        });
-                    });
-                    this.selected = v;
-                    this.tagList = tagList;
-                } else {
-                    // 获取label
-                    this.inputLabel = '';
-                    this.$slots.default.forEach((item) => {
-                        if (item.componentOptions) {
-                            if (item.componentOptions.tag === 'kd-option') {
-                                this.initLabel(item, v);
-                            } else {
-                                // 如果是group在遍历一遍
-                                item.componentOptions.children.forEach((item) => {
-                                    this.initLabel(item, v);
-                                });
-                            }
-                        }
-                    });
-                    this.inputPlaceholder = this.inputLabel || this.placeholder;
-                    this.dropdownMenu = false;
-                }
-            },
             handleInput() {
                 if (!this.multiple) {
                     this.optionFilter(this.inputLabel);
@@ -277,18 +240,18 @@
                     this.optionFilter(this.multipleSerach);
                 }
             },
-            initLabel(item, v) {
-                const options = item.componentOptions;
-                const value = options.propsData.value;
-                const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
-                if (value === v) {
-                    this.inputLabel = label;
-                }
-            },
-            labelFomat(label) {
-                if (!label) return '';
-                return label.replace(/\n/g, '').trim();
-            },
+            // initLabel(item, v) {
+            //     const options = item.componentOptions;
+            //     const value = options.propsData.value;
+            //     const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
+            //     if (value === v) {
+            //         this.inputLabel = label;
+            //     }
+            // },
+            // labelFomat(label) {
+            //     if (!label) return '';
+            //     return label.replace(/\n/g, '').trim();
+            // },
             optionFilter(v) {
                 clearTimeout(this.serachTimeout);
                 this.serachTimeout = setTimeout(() => {
@@ -319,17 +282,32 @@
                         this.tagList.push(scope);
                         this.$emit('input', [...this.selected, scope.value]);
                     }
+                    this.inputPlaceholder = this.tagList.length > 0 ? '' : this.placeholder;
                     this.$refs.kdDropdownTooltip.updatePopper();
                     this.$refs.input.focus();
                 } else {
+                    this.inputPlaceholder = scope.label;
+                    this.dropdownMenu = false;
                     this.$emit('input', scope.value);
                 }
                 this.$emit('change', scope);
+            },
+            updateLabel(v) {
+                if (this.multiple) {
+                    this.tagList.push(v);
+                } else {
+                    this.inputLabel = v.label;
+                }
             },
             deleteTag(scope) {
                 this.selected.forEach((item, index) => {
                     if (item === scope.value) {
                         this.selected.splice(index, 1);
+                    }
+                });
+                this.tagList.forEach((item, index) => {
+                    if (item.value === scope.value) {
+                        this.tagList.splice(index, 1);
                     }
                 });
                 this.$emit('remove-tag', scope);

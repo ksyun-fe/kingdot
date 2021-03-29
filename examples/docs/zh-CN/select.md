@@ -12,7 +12,7 @@
                 <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
                 </kd-option>
             </kd-select>
-            <kd-select v-model="defaultValue1" placeholder="请选择内容" width="200px"  class="select-ml">
+            <kd-select v-model="defaultValue1" placeholder="请选择内容" width="200px" multiple  class="select-ml">
                 <kd-option value="">空数据</kd-option>
                 <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
                 </kd-option>
@@ -23,25 +23,28 @@
 export default{
     data(){
         return{
-            options: [
-                {
-                    value:"item1",
-                    label:"item option 1"
-                },
-                {
-                    value:"item2",
-                    label:"item option 2"
-                },
-                {
-                    value:"item3",
-                    label:"item option 3"
-                }
-            ],
-            defaultValue: "",
-            defaultValue1: "",
+            options: [],
+            defaultValue: "item1",
+            defaultValue1: ['item1'],
 
-        }   
+        }
     },
+    mounted(){
+        setTimeout(()=>{
+            this.options = [{
+                value:"item1",
+                label:"item option 1"
+            },
+            {
+                value:"item2",
+                label:"item option 2"
+            },
+            {
+                value:"item3",
+                label:"item option 3"
+            }]
+        },3000)
+    }
 }
 </script>
 <style>
@@ -88,9 +91,9 @@ export default{
         for(let i = 0; i <= 100; i++){
             that.options.push(
                 {
-                                value:"item" + i,
-                                label:"item option " + i
-                            }
+                    value:"item" + i,
+                    label:"item option " + i
+                }
             )
         }
     }
