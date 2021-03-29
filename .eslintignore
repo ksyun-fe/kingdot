@@ -1,6 +1,7 @@
 /src/styles
 /components/Table
 /components/TableColumn
+/components/Select
 *.sh
 docs
 node_modules
