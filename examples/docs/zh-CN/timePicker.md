@@ -7,13 +7,16 @@
     <div>
         <kd-time-picker v-model='time1'></kd-time-picker>
         time1: {{ time1 }}
+        <kd-time-picker v-model='time2'></kd-time-picker>
+        time2: {{ time2 }}
     </div>
 </template>
 <script>
     export default {
         data() {
             return {
-                time1: '08:00:00',
+                time1: '',
+                time2: '08:00:00',
             }
         },
     }
@@ -117,3 +120,4 @@
 | 事件名称      | 说明    | 回调参数 |
 |---------- |-------- |---------- |
 | change | 在选择完成, 绑定值改变时触发 | (dateArr: Array, source: String)
+| clear | 清空选中时间时触发 | -

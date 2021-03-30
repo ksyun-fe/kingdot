@@ -71,6 +71,7 @@
                 // marginTop: 0,
                 curIndex: 0,
                 currentValue: this.data[0].value || this.data[0],
+                // currentValue: '',
                 count: 5 // 展示范围, 默认5
                 // isDisabled: this.disabled
             };
@@ -117,19 +118,22 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    if (v) {
+                    console.log('scroll props value change', v, typeof v);
+                    // if (v) {
                         this.currentValue = v;
-                    }
+                    // }
                 }
             },
             currentValue(value, oldValue) {
                 const itemDisable = this.itemDisable;
 
                 // 判断 currentValue 没有被禁用...
-                if (!(!!itemDisable && itemDisable.call(this, value))) {
+                // !!value &&
+                // value 是假值的时候就不再 emit 事件, 不然会被处理成 00:00:00
+                if (!!value && !(!!itemDisable && itemDisable.call(this, value))) {
                     this.$emit('input', value);
                     this.$emit('change', value, oldValue);
-                    console.log('currentValue change', value, oldValue);
+                    console.log('scroll emit value oldV', value, oldValue);
                 }
             }
         },
@@ -249,6 +253,10 @@
                 // 整个组件被禁用, 或者传入了 验证函数, 且验证后为禁用
                 const disableFlag = this.disabled || !!this.itemDisable && this.itemDisable(item.value);
                 if (!disableFlag && item.value === this.currentValue && this.currentValue !== this.value) {
+                    // if (this.value) { // 初始化没有value时, 不把
+                    //     this.$emit('input', this.currentValue);
+                    // }
+                    console.log('计算禁用, 更新input')
                     this.$emit('input', this.currentValue);
                 }
                 return disableFlag;
