@@ -21,34 +21,30 @@
             <template slot="content">
                 <div
                         v-if="!range && mode === 'steptime'"
-                        class="dropdown"
+                        class="kd-timepicker-panel"
                 >
-                    <div class="k-step">
+                    <div class="kd-steptime-container">
                         <div v-if="true">
                             <div
                                     v-for="(item, index) in timeList"
                                     :key="index"
                                     :class="{
-                                        'k-item': true,
-                                        'k-disabled': !!disabledTime && disabledTime(item),
-                                        'k-active': selectedTime == item
+                                        'kd-steptime-item': true,
+                                        'kd-disabled': !!disabledTime && disabledTime(item),
+                                        'kd-active': selectedTime == item
                                     }"
                                     @click="selectTimeValue(item)"
                             >
                                 {{ item }}
-                                <!-- <i
-                                        v-if="selectedValues.includes(item)"
-                                        class="k-checkmark ksicon-checkmark ksfont"
-                                ></i> -->
                             </div>
                         </div>
                     </div>
                 </div>
                 <div
                         v-if="!range && mode === 'anytime'"
-                        class="dropdown"
+                        class="kd-timepicker-panel"
                 >
-                    <div class="scroll-container">
+                    <div class="kd-common-selector-container">
                         <Time
                                 v-model="startTime"
                                 :min="minTime"
@@ -60,13 +56,13 @@
                 </div>
                 <div
                         v-if="range"
-                        class="range-container"
+                        class="kd-timepicker-panel range"
                 >
                     <div>
-                        <div class="sub-title">开始时间</div>
+                        <div class="kd-timepicker-title">开始时间</div>
                         <div
                                 v-if="mode === 'steptime'"
-                                class="selector-container"
+                                class="kd-range-selector-container"
                         >
                             <!-- :item-disable 不能直接绑定一个函数. 可能有min max限制 有联动限制, 有外部定义的限制 -->
                             <ScrollSelect
@@ -78,7 +74,7 @@
                         </div>
                         <div
                                 v-if="mode === 'anytime'"
-                                class="selector-container"
+                                class="kd-range-selector-container"
                         >
                             <Time
                                     v-model="startTime"
@@ -90,10 +86,10 @@
                         </div>
                     </div>
                     <div>
-                        <div class="sub-title">结束时间</div>
+                        <div class="kd-timepicker-title">结束时间</div>
                         <div
                                 v-if="mode === 'steptime'"
-                                class="selector-container"
+                                class="kd-range-selector-container"
                         >
                             <ScrollSelect
                                     ref="endTimeSelector"
@@ -104,7 +100,7 @@
                         </div>
                         <div
                                 v-if="mode === 'anytime'"
-                                class="selector-container"
+                                class="kd-range-selector-container"
                         >
                             <Time
                                     v-model="endTime"
@@ -332,47 +328,3 @@
         }
     };
 </script>
-<style>
-    .k-input i {
-        color: #b2b2b2;
-    }
-    .dropdown {
-        width: 172px;
-        max-height: 200px;
-        overflow: scroll;
-        }
-    .dropdown .scroll-container {
-        width: 150px;
-        margin: 0 auto;
-    }
-    .range-container {
-        margin-bottom: 10px;
-        width: 500px;
-        display: flex;
-        justify-content: space-around;
-    }
-    .sub-title {
-        margin: 10px 0px;
-        text-align:center
-    }
-    .selector-container {
-        border: 1px solid #e5e5e5;
-        margin-bottom: 20px;
-        padding: 5px 10px;
-        width: 180px;
-        /* display: flex;
-        justify-content: center; */
-    }
-    .item {
-        padding: 0px 20px;
-        height: 25px;
-        line-height: 25px;
-    }
-    .item:hover {
-        background-color: #e5e5e5;
-    }
-    .column {
-        display: inline-block;
-        width: 50px;
-    }
-</style>
