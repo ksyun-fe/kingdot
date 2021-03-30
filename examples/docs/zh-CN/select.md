@@ -24,7 +24,7 @@ export default{
     data(){
         return{
             options: [],
-            defaultValue: "item1",
+            defaultValue: "",
             defaultValue1: ['item1'],
 
         }
@@ -43,7 +43,7 @@ export default{
                 value:"item3",
                 label:"item option 3"
             }]
-        },3000)
+        },1000)
     }
 }
 </script>
@@ -73,8 +73,7 @@ export default{
     data(){
         return{
             options: [],
-            options1: [
-            ],
+            options1: [],
             defaultValue: "",
             defaultValue1: "",
 
@@ -198,15 +197,20 @@ export default{
 
 :::
 
-:::demo #禁用 ##禁用选择器
+:::demo #禁用 ##select禁用选择器和option禁用。在标签上添加disaled
 
 ```html
 <template>
-    <kd-select v-model="defaultValue" placeholder="请选择内容" filterable disabled>
-        <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
-        </kd-option>
-    </kd-select>
-
+    <div>
+        <kd-select v-model="defaultValue" placeholder="请选择内容" filterable disabled>
+            <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
+            </kd-option>
+        </kd-select>
+        <kd-select v-model="defaultValue" placeholder="请选择内容" filterable class="select-ml">
+            <kd-option v-for="item in options" :key="item.value" :value="item.value" :disabled="item.disabled">{{ item.label }}
+            </kd-option>
+        </kd-select>
+    </div>
 </template>
 <script>
 export default{
@@ -219,7 +223,8 @@ export default{
                 },
                 {
                     value:"item2",
-                    label:"item option 2"
+                    label:"item option 2",
+                    disabled:true
                 }
             ],
             defaultValue: ""
@@ -304,7 +309,7 @@ export default{
 
 :::
 
-:::demo #分组 ##带有分组的选择器，，使用kd-option-group组件。
+:::demo #分组 ##带有分组的选择器，使用kd-option-group组件。
 
 ```html
 <template>
