@@ -41,7 +41,6 @@
 <template>
     <kd-transfer v-model="value" :data="defaultData" showFilter :filter-method="filterMethod">
     </kd-transfer>
-
 </template>
 <script>
     export default{
@@ -69,7 +68,39 @@
 </script>
 ```
 :::
+:::demo #禁用 ##禁用所有可点击选项,选中所有值、搜索框、文本、 按钮
 
+```html
+<template>
+    <kd-transfer v-model="value" :data="defaultData" showFilter :filter-method="filterMethod" disabled>
+    </kd-transfer>
+</template>
+<script>
+    export default{
+        data(){
+            const defaultData = () =>{
+                const data = [];
+                for(let i = 0;i<12;i++){
+                    data.push({
+                        key:i,
+                        label:`item${i}`,
+                        disabled:false
+                    })
+                }
+                return data;
+            }
+            return{
+                defaultData:defaultData(),
+                value:[1],
+                filterMethod(item, serachText){
+                    return item.label.indexOf(serachText) > -1;
+                }
+            }
+        },
+    }
+</script>
+```
+:::
 :::demo #自定义内容 ##自定义操作按钮和渲染数据项。
 
 ```html
@@ -175,6 +206,7 @@
 |---------- |-------- |---------- |-------------  |-------- |
 | value/v-model | 更新值 | array  | —            | —     |
 | data | 默认数据 | array  |     —        |    []  |
+| disabled | 禁用 | boolean  |     —        |    false  |
 | dataKey | 数据的key值 | object  |     —        |   key:'key',label:'label' 
 | titles |	定义列表标题 |	array	|  —    |   —   |
 | button-texts |	定义按钮文字    |	array   |   —   |		[]
