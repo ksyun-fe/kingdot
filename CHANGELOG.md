@@ -1,4 +1,12 @@
-## 更新日志
+## 更新日志 
+
+### New features
+    
+### Bug fixes
+  
+### Optimization
+* Dialog
+    * 滚动条增加宽度样式
 
 ## v1.0.4 
 
@@ -22,4 +30,5 @@
     * Button 修改loading示例
 * Select
     * 初始化label显示问题
-    
+* Dialog
+    * 滚动条增加宽度样式
