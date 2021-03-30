@@ -1,5 +1,6 @@
 <template>
-    <div class="k-time k-scroll-select-group">
+    <div class="kd-time-panel">
+        <!-- k-scroll-select-group -->
         <div
                 v-for="(item, index) in data"
                 :key="index"
@@ -200,6 +201,3 @@
         }
     };
 </script>
-<style scoped rel="stylesheet/stylus" lang="stylus" type="text/stylus">
-// @require('./time.styl')
-</style>
