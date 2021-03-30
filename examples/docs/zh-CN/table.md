@@ -691,7 +691,7 @@
         <button @click="prevPage">上一页</button>
         <button @click="nextPage">下一页</button>
         <button @click="getCheckData">获取选中数据</button>
-        <kd-table ref="storekd-table" stored nodeKey="id" :data="data" :overFlowAuto="false">
+        <kd-table ref="storekdTable" stored nodeKey="id" :data="data" :overFlowAuto="false">
             <kd-table-column width="300" title="ID" props="id" />
             <kd-table-column width="200" title="名称" props="name" />
             <kd-table-column title="规划" props="tbl" />
@@ -753,7 +753,7 @@
                 this.data = data;
             },
             getCheckData(){
-                console.log(this.$refs.storekd-table.getCheckedData())
+                console.log(this.$refs.storekdTable.getCheckedData())
             }        
         }
     }
