@@ -8,6 +8,7 @@
                 :select-all="selectAll"
                 :show-filter="showFilter"
                 :filter-method="filterMethod"
+                :disabled="disabled"
                 :data-key="dataKey"
                 @checkChange="sourceCheckChange"
         >
@@ -25,7 +26,7 @@
                 :class="{'kd-transfer-btn-vertical': !buttonLevel}"
         >
             <kd-button
-                    :disabled="toTargetDisabled"
+                    :disabled="toTargetDisabled || disabled"
                     type="primary"
                     :shape="buttonTexts[0]?'':'circle'"
                     icon="kd-icon-arrow-left"
@@ -34,7 +35,7 @@
             <!-- 图标按钮在后 -->
             <kd-button
                     v-if="!buttonTexts[1]"
-                    :disabled="toSourceDisabled"
+                    :disabled="toSourceDisabled || disabled"
                     type="primary"
                     :shape="'circle'"
                     icon="kd-icon-arrow-right"
@@ -58,6 +59,7 @@
                 :show-filter="showFilter"
                 :filter-method="filterMethod"
                 :data-key="dataKey"
+                :disabled="disabled"
                 @checkChange="targetCheckChange"
         >
             <template slot="children-label">
@@ -87,6 +89,10 @@
                         label: 'label'
                     };
                 }
+            },
+            disabled: {
+                type: Boolean,
+                defautl: false
             },
             value: {
                 type: Array,

@@ -8,6 +8,8 @@
 
 * Select
     * 新增懒加载功能
+* transfer
+    * 新增全局禁用功能
     
 ### Bug fixes
 
@@ -18,4 +20,6 @@
 
 * Docs
     * Button 修改loading示例
+* Select
+    * 初始化label显示问题
     
