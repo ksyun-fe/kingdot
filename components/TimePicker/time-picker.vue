@@ -15,7 +15,15 @@
                     :width="range ? 400 : 200"
             >
                 <template slot="suffix">
-                    <i class="kd-icon-time"></i>
+                    <i
+                            v-if="clearable && !disabled && !!timeString"
+                            class="kd-icon-close ksfont"
+                            @click="onClear"
+                    ></i>
+                    <i
+                            v-else
+                            class="kd-icon-time ksfont"
+                    ></i>
                 </template>
             </kd-input>
             <template slot="content">
@@ -128,7 +136,7 @@
             value: {
                 type: [String, Array]
             },
-            disabled: {
+            disabled: { // 组件禁用
                 type: Boolean,
                 default: false
             },
@@ -163,6 +171,12 @@
             },
             optionalTimes: {
                 type: Array
+            },
+            clearable: {
+                type: Boolean,
+                default() {
+                    return true;
+                }
             }
         },
         data() {
@@ -187,7 +201,6 @@
                     const step = !!Number(this.step) ? Number(this.step) * 60 : parseTime(this.step);
                     const max = parseTime(this.maxTime);
                     const min = parseTime(this.minTime);
-                    console.log('生成 timeList()', this.minTime, min, max, step);
                     const data = [];
 
                     for (let t = min; t <= max; t += step) {
@@ -199,7 +212,7 @@
                 } else {
                     return [];
                 }
-            },
+            }
         },
         watch: {
             value: {
@@ -217,6 +230,7 @@
                             this.startTime = v;
                         }
                     } else if (Array.isArray(v)) { // 范围
+                        if (v.length < 2) return;
                         this.timeString = v.join(' - ');
                         if (this.mode === 'steptime') {
                             this.selectedTime = v[0];
@@ -228,14 +242,6 @@
                     }
                 }
             },
-            // selectTimeValue: {
-            //     handler(v) {
-            //         console.log('selectTimeValue change', v);
-            //         if (typeof v === 'string') { // 单
-            //             this.timeString = v.label;
-            //         }
-            //     }
-            // },
             startTime: {
                 deep: true,
                 handler(v) {
@@ -264,7 +270,7 @@
                 handler(v) {
                     if (this.range === false) {
                         this.timeString = v;
-                        this.$emit('input', this.selectedTime);
+                        this.$emit('input', this.timeString);
                     } else {
                         if (this.timeString !== `${v} - ${this.endSelectedTime}`) {
                             this.timeString = `${v} - ${this.endSelectedTime}`;
@@ -285,8 +291,35 @@
         created() {
         },
         methods: {
+            onClear(e) {
+                e.stopPropagation();
+                this.timeString = '';
+
+                this.$emit('clear');
+                // this.$emit('change', this.dateValue, 'clear');
+                if (this.range) {
+                    console.log('clear range');
+                    // inner value
+                    this.startTime = '';
+                    this.endTime = '';
+                    this.selectedTime = '';
+                    this.endselectedTime = '';
+
+                    this.$emit('input', []);
+                    this.$emit('change', [], 'clear');
+                    this.timeString = '';
+                } else {
+                    this.selectedTime = '';
+                    this.startTime = '';
+
+                    console.log('clear norange');
+                    this.$emit('input', '');
+                    this.$emit('change', '', 'clear');
+                    this.timeString = '';
+                }
+            },
             selectTimeValue(item) {
-                if (this.timeString != item) {
+                if (this.timeString !== item) {
                     this.timeString = item;
                     this.$emit('input', item);
                     this.$emit('change', item, 'select');
@@ -306,7 +339,7 @@
             },
 
             timeValueChange(value) {
-                this.$emit('change', value, 'scroll'); // 通过点击选中的时间
+                this.$emit('change', value, 'scroll'); // 通过滚动选的时间
             },
             startTimeSelectorLimit() {
                 // let max =  生成的timelist 已经遵循 min max 限制

@@ -18,16 +18,12 @@
     </div>
 </template>
 <script>
-    // import ScrollSelect from '../ScrollSelect/ScrollSelect.vue';
     // import { parseTime, stringTime } from './utils.js';
-    import { strPad, range, getDateString } from './utils.js';
+    import { strPad, range, getDateString, stringTime } from './utils.js';
 
     export default {
         // components: { ScrollSelect },
         props: {
-            // title: {
-            //     type: String
-            // },
             value: {
                 type: [String, Array]
             },
@@ -94,11 +90,18 @@
             value: {
                 immediate: true,
                 handler(v) {
+                    // if (!v) {
+                    //     this.timeValue = [];
+                    //     return;
+                    // }
+                    console.log('Time props value', v, typeof v);
+
                     if (Array.isArray(v)) {
                         this.timeValue = v; // 给 innerValue 赋值
-                    } else {
+                    } else if (!!v && typeof v === 'string') {
+                        console.log('typeof v === string', v, typeof v);
                         this.timeValue = (v || '00:00:00').split(':');
-                    }
+                    } 
                 }
             },
             disabled: {
@@ -130,39 +133,33 @@
                 // timeValue 是数组, oldValue 和value 一样
                 // oldValue = oldValue && oldValue.join(':');
                 value = value.join(':');
+                value = stringTime(value);
 
-                if (this.value !== value) {
-                    // console.log('currenttime', this.getCurrentTime());
-
+                if (this.value !== value) { // 防止多次change
+                    console.log('TIME emit value', value);
                     this.$emit('input', value); // 传递给上层的 触发 value 变化. 上层 value 是字符串
                     this.$emit('change', value);
                 }
             }
         },
         created() {
-            console.log('time created', this.min, this.max);
         },
         methods: {
             selectTimeValue(item) {
                 this.$emit('input', [item]);
                 this.$emit('tooltipHide');
             },
-            parseTime(time) {
-                let [h = 0, m = 0, s = 0] = time.split(':').map(i => +i);
-                return (h * 60 + m) * 60 + s;
-            },
-            stringTime(time) {
-                let h = Math.floor(time / 3600);
-                let m = Math.floor((time % 3600) / 60);
-                let s = time % 60;
-                return `${strPad(h, 2)}:${strPad(m, 2)}:${strPad(s, 2)}`;
-            },
-            // getCurrentTime() {
-            //     if (this.$refs.ScrollSelect && this.$refs.ScrollSelect.length > 0) {
-            //         const currentArr = this.$refs.ScrollSelect.map(vm => vm.currentValue);
-            //         return currentArr.join(':');
-            //     }
+            // parseTime(time) {
+            //     let [h = 0, m = 0, s = 0] = time.split(':').map(i => +i);
+            //     return (h * 60 + m) * 60 + s;
             // },
+            // stringTime(time) {
+            //     let h = Math.floor(time / 3600);
+            //     let m = Math.floor((time % 3600) / 60);
+            //     let s = time % 60;
+            //     return `${strPad(h, 2)}:${strPad(m, 2)}:${strPad(s, 2)}`;
+            // },
+
             getScrollDisable(index) {
                 return value => {
                     let time = [...this.timeValue].map((item, i) => {
