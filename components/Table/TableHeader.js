@@ -324,11 +324,11 @@ export default {
                                                             ?
                                                             (
                                                                 <kd-dropdown
-                                                                    hover
+                                                                    trigger='click'
                                                                     type='text'
                                                                     stype=""
                                                                 >
-                                                                    <span>
+                                                                    <span style="cursor: pointer;">
                                                                         {
                                                                             this.groupSelect[item.key]
                                                                                 ?
@@ -342,14 +342,13 @@ export default {
                                                                                     ""
                                                                                 )
                                                                         }
-                                                                        <i class="kd-icon-arrow-down"></i>
+                                                                        <i class="kd-icon-arrow-down" style="margin-left: 4px;"></i>
                                                                     </span>
                                                                     <kd-dropdown-menu slot="dropdown">
                                                                         {
                                                                             item.group.map(groupItem => {
                                                                                 return (
                                                                                     <kd-dropdown-item
-                                                                                        slot="dropdownItem"
                                                                                         key={Math.random()}
                                                                                         value={groupItem.value}
                                                                                         on-click={() => {

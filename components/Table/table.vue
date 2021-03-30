@@ -10,6 +10,7 @@
         </div>
 
         <kd-dropdown
+            trigger='hover'
             v-if="columnFilter"
             class="kd-table-column-content"
             stype=""
@@ -19,7 +20,6 @@
             </div>
             <kd-dropdown-menu slot="dropdown">
                 <kd-dropdown-item
-                    slot="dropdownItem"
                     v-for="columnItem in store.states._columns"
                     :value="columnItem.title"
                     :key="showColumns[columnItem.key]"
