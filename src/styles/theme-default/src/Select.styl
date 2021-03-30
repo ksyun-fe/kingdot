@@ -140,8 +140,14 @@ for size in $-kd-select-size
 .kd-option-group
     .kd-option
         padding 0 32px
+$-select-arrow := top bottom
 .kd-tooltip-light
     .kd-dropdown-tooltip
         .kd-tooltip-inner
             background $-select-menu-bg
+for item in $-select-arrow
+    .kd-tooltip-light[data-popper-placement^={item}] 
+        .kd-dropdown-tooltip
+            .kd-tooltip-arrow
+                border-{item}-color $-select-menu-bg
 

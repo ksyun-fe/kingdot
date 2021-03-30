@@ -7,6 +7,7 @@
             <kd-checkbox
                     v-if="selectAll"
                     v-model="allChecked"
+                    :disabled="disabled"
                     @change="inputChange"
             >
                 <div>
@@ -23,6 +24,7 @@
             >
                 <kd-input
                         v-model="serachText"
+                        :disabled="disabled"
                         class="kd-transfer-search"
                         name="serach"
                         @input="handleChange"
@@ -112,6 +114,10 @@
                     };
                 }
             },
+            disabled: {
+                type: Boolean,
+                defautl: false
+            },
             data: {
                 type: Array,
                 default() {
@@ -155,6 +161,16 @@
                     this.panelData = v;
                 },
                 immediate: true
+            },
+            disabled: {
+                immediate: true,
+                handler(v) {
+                    if (v) {
+                        this.panelData.forEach(item => {
+                            item.disabled = true;
+                        });
+                    }
+                }
             }
         },
         mounted() {
