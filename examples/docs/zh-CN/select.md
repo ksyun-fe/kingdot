@@ -86,15 +86,16 @@ export default{
         
     },
     mounted(){
-        const that = this;
-        for(let i = 0; i <= 100; i++){
-            that.options.push(
+        let data = []
+        for(let i = 0; i <= 1000; i++){
+            data.push(
                 {
                     value:"item" + i,
                     label:"item option " + i
                 }
             )
         }
+        this.options = data;
     }
 }
 </script>
