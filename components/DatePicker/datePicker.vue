@@ -21,7 +21,7 @@
                 <template slot="suffix">
                     <i
                             v-if="clearable && !disabled && !!inputDateString"
-                            class="k-clear kd-icon-close k-show ksfont"
+                            class="kd-icon-close ksfont"
                             @click="onClear"
                     ></i>
                     <i
