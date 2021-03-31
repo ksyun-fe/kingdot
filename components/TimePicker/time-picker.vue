@@ -186,10 +186,6 @@
                     return Array(length).fill(0).map((x, i) => this.addPreZero(i));
                 }),
                 timeValue: [], // innervalue
-                startTime: '', // '00:00:00'
-                endTime: '', // '00:00:00'
-                selectedTime: '', // step 模式下的选择结果
-                endSelectedTime: '',
                 timeString: '', // input value
                 isTooltipShow: false
             };
@@ -199,7 +195,7 @@
                 if (!!this.optionalTimes && Array.isArray(this.optionalTimes)) { // 传入不规则的时间列表
                     return this.optionalTimes;
                 } else if (this.mode === 'steptime') {
-                    const step = !!Number(this.step) ? Number(this.step) * 60 : parseTime(this.step);
+                    const step = Number(this.step) ? Number(this.step) * 60 : parseTime(this.step);
                     const max = parseTime(this.maxTime);
                     const min = parseTime(this.minTime);
                     const data = [];
@@ -219,33 +215,18 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    console.log('timepicker props valve change', v);
                     if (!v) {
                         v = '';
                     }
                     if (typeof v === 'string') { // 单
-                        // TODO: 检查合法性. 不规范字符串, 空值 null undefined 
+                        // TODO: 检查合法性. 不规范字符串, 空值 null undefined
                         // A: 转成空字符串
                         this.timeString = v;
-                        // this.selectedTime = v;
-                        // this.startTime = v;
-                        // if (this.mode === 'steptime') {
-                        //     this.selectedTime = v;
-                        // } else {
-                        //     this.startTime = v;
-                        // }
                         this.timeValue = [v];
                     } else if (Array.isArray(v)) { // 范围
                         if (v.length < 2) return;
                         this.timeValue = v;
                         this.timeString = v.join(' - ');
-                        // if (this.mode === 'steptime') {
-                        //     this.selectedTime = v[0];
-                        //     this.endSelectedTime = v[1];
-                        // } else {
-                        //     this.startTime = v[0];
-                        //     this.endTime = v[1];
-                        // }
                     }
                 }
             },
@@ -261,51 +242,6 @@
                     }
                 }
             }
-            // startTime: {
-            //     deep: true,
-            //     handler(v) {
-            //         if (!this.range) {
-            //             this.timeString = this.startTime; // innervalue 变化
-            //             this.$emit('input', this.startTime);
-            //         } else {
-            //             this.timeString = `${v} - ${this.endTime}`;
-            //             this.$emit('input', [v, this.endTime]);
-            //         }
-            //     }
-            // },
-            // endTime: {
-            //     deep: true,
-            //     handler(v) {
-            //         if (!this.range) {
-            //             // this.timeString = this.startTime.join(':'); // innervalue 变化
-            //             // this.$emit('input', this.timeString);
-            //         } else {
-            //             this.timeString = `${this.startTime} - ${v}`;
-            //             this.$emit('input', [this.startTime, v]);
-            //         }
-            //     }
-            // },
-            // selectedTime: {
-            //     handler(v) {
-            //         if (this.range === false) {
-            //             this.timeString = v;
-            //             this.$emit('input', this.timeString);
-            //         } else {
-            //             if (this.timeString !== `${v} - ${this.endSelectedTime}`) {
-            //                 this.timeString = `${v} - ${this.endSelectedTime}`;
-            //                 this.$emit('input', this.timeString.split(' - '));
-            //             }
-            //         }
-            //     }
-            // },
-            // endSelectedTime: {
-            //     handler(v) {
-            //         if (this.timeString !== `${this.selectedTime} - ${v}`) {
-            //             this.timeString = `${this.selectedTime} - ${v}`;
-            //             this.$emit('input', this.timeString.split(' - '));
-            //         }
-            //     }
-            // }
         },
         created() {
         },
@@ -317,25 +253,12 @@
                 this.$emit('clear');
                 // this.$emit('change', this.dateValue, 'clear');
                 if (this.range) {
-                    console.log('clear range');
                     // inner value
-
-                    // this.startTime = '';
-                    // this.endTime = '';
-                    // this.selectedTime = '';
-                    // this.endselectedTime = '';
                     this.timeValue = [];
-                    // this.$emit('input', []);
                     this.$emit('change', [], 'clear');
-                    // this.timeString = '';
                 } else {
-                    // this.selectedTime = '';
-                    // this.startTime = '';
                     this.timeValue = [];
-                    console.log('clear norange');
-                    // this.$emit('input', '');
                     this.$emit('change', '', 'clear');
-                    // this.timeString = '';
                 }
             },
             selectTimeValue(item) {

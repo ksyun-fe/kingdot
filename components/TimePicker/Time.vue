@@ -18,8 +18,7 @@
     </div>
 </template>
 <script>
-    // import { parseTime, stringTime } from './utils.js';
-    import { strPad, range, getDateString, stringTime } from './utils.js';
+    import { strPad, getDateString, stringTime } from './utils.js';
 
     export default {
         // components: { ScrollSelect },
@@ -94,14 +93,12 @@
                     //     this.timeValue = [];
                     //     return;
                     // }
-                    console.log('Time props value', v, typeof v);
 
                     if (Array.isArray(v)) {
                         this.timeValue = v; // 给 innerValue 赋值
                     } else if (!!v && typeof v === 'string') {
-                        console.log('typeof v === string', v, typeof v);
                         this.timeValue = (v || '00:00:00').split(':');
-                    } 
+                    }
                 }
             },
             disabled: {
@@ -136,7 +133,6 @@
                 value = stringTime(value);
 
                 if (this.value !== value) { // 防止多次change
-                    console.log('TIME emit value', value);
                     this.$emit('input', value); // 传递给上层的 触发 value 变化. 上层 value 是字符串
                     this.$emit('change', value);
                 }
