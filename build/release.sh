@@ -29,6 +29,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   else
     npm publish --tag "$RELEASE_TAG"
   fi
+  git push --tags
+  git push https://github.com/ksyun-fe/kingdot.git master --force
 
   git checkout dev
   git rebase master
