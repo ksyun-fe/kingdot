@@ -118,9 +118,8 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    console.log('scroll props value change', v, typeof v);
                     // if (v) {
-                        this.currentValue = v;
+                    this.currentValue = v;
                     // }
                 }
             },
@@ -133,7 +132,6 @@
                 if (!!value && !(!!itemDisable && itemDisable.call(this, value))) {
                     this.$emit('input', value);
                     this.$emit('change', value, oldValue);
-                    console.log('scroll emit value oldV', value, oldValue);
                 }
             }
         },
@@ -256,7 +254,7 @@
                     // if (this.value) { // 初始化没有value时, 不把
                     //     this.$emit('input', this.currentValue);
                     // }
-                    console.log('计算禁用, 更新input')
+                    // console.log('计算禁用, 更新input');
                     this.$emit('input', this.currentValue);
                 }
                 return disableFlag;
