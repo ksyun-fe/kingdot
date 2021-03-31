@@ -1,14 +1,23 @@
 ## 更新日志 
+    
+## v1.0.5 
+
+*2021-04-01*
 
 ### New features
 * TimePicker
     * 发布时间选择器
+* transfer
+    * 新增全局禁用功能
 ### Bug fixes
   
 ### Optimization
 * Dialog
     * 滚动条增加宽度样式
-
+* Select
+    * 初始化label显示问题
+    
+    
 ## v1.0.4 
 
 *2021-03-29*
@@ -29,7 +38,5 @@
 
 * Docs
     * Button 修改loading示例
-* Select
-    * 初始化label显示问题
 * Dialog
     * 滚动条增加宽度样式
