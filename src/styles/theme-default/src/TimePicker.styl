@@ -1,0 +1,49 @@
+@import('../variables.styl')
+// .k-time-picker.k-select-dropdown.k-tooltip-content
+//     min-width auto
+//     max-height $select-dropdown-max-height
+//     overflow auto
+.kd-time-picker .kd-icon-time {
+    color:#CCCCCC;
+}
+
+.kd-timepicker-panel // 
+    width: 172px;
+    // max-height: 200px;
+    // overflow-y: scroll;
+    .kd-timepicker-title {
+        margin: 10px 0px;
+        text-align: center;
+    }
+    .kd-common-selector-container 
+        width: 150px;
+        margin: 0 auto;
+        padding: 0px 10px;
+        
+    .kd-steptime-container
+        max-height: 200px;
+        overflow-y: scroll;
+        .kd-steptime-item
+            padding: 0 1.333333333333333em;
+            height: 32px;
+            line-height: 32px;
+            cursor: pointer;
+
+            &:hover
+                background $-timepicker-item-hover-bg-color
+            &.kd-active
+                color $-timepicker-time-active-color
+            &.kd-disabled
+                color $-timepicker-time-disabled-color
+
+.kd-timepicker-panel.range
+    width: 450px;
+    max-height: 250px;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+    .kd-range-selector-container // 
+        border: 1px solid #e5e5e5;
+        margin-bottom: 20px;
+        padding: 5px 10px;
+        width: 150px;

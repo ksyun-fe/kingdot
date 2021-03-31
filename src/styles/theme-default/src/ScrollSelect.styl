@@ -1,0 +1,42 @@
+@import('../variables.styl')
+
+.k-scroll-select
+    text-align center
+    overflow hidden
+    max-height 100%
+    height $scroll-select-height
+    user-select none
+    position relative
+    .k-wrapper
+        transition transform $transition
+    &.k-dragging
+        .k-wrapper
+            transition none
+
+    // disabled
+    &.k-disabled
+        .k-scroll-item
+            color $scroll-select-item-disabled-color
+
+    .k-scroll-item
+        line-height $scroll-select-item-height
+        color $scroll-select-item-color
+        cursor pointer
+        white-space nowrap
+        &.k-scroll-item-active
+            color $scroll-select-item-active-color
+            font-size $scroll-select-item-active-font-size
+        &.k-scroll-item-disabled
+            color $scroll-select-item-disabled-color
+
+    // border
+    .k-border
+        position absolute
+        width 100%
+        top 50%
+        margin-top -($scroll-select-item-height / 2)
+        height $scroll-select-item-height
+        border none
+        border-top $scroll-select-border
+        border-bottom $scroll-select-border
+        pointer-events none
