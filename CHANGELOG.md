@@ -1,7 +1,8 @@
 ## 更新日志 
 
 ### New features
-    
+* TimePicker
+    * 发布时间选择器
 ### Bug fixes
   
 ### Optimization
