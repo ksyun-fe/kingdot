@@ -39,7 +39,7 @@
                                     :class="{
                                         'kd-steptime-item': true,
                                         'kd-disabled': !!disabledTime && disabledTime(item),
-                                        'kd-active': selectedTime == item
+                                        'kd-active': timeValue[0] == item
                                     }"
                                     @click="selectTimeValue(item)"
                             >
@@ -54,7 +54,7 @@
                 >
                     <div class="kd-common-selector-container">
                         <Time
-                                v-model="startTime"
+                                v-model="timeValue[0]"
                                 :min="minTime"
                                 :max="maxTime"
                                 @change="timeValueChange"
@@ -75,7 +75,7 @@
                             <!-- :item-disable 不能直接绑定一个函数. 可能有min max限制 有联动限制, 有外部定义的限制 -->
                             <ScrollSelect
                                     ref="startTimeSelector"
-                                    v-model="selectedTime"
+                                    v-model="timeValue[0]"
                                     :data="timeList"
                                     :item-disable="startTimeSelectorLimit()"
                             ></ScrollSelect>
@@ -85,9 +85,9 @@
                                 class="kd-range-selector-container"
                         >
                             <Time
-                                    v-model="startTime"
+                                    v-model="timeValue[0]"
                                     :min="minTime"
-                                    :max="startTimeMaxLimit(maxTime, endTime)"
+                                    :max="startTimeMaxLimit(maxTime, timeValue[1])"
                                     @change="timeValueChange"
                             >
                             </Time>
@@ -101,7 +101,7 @@
                         >
                             <ScrollSelect
                                     ref="endTimeSelector"
-                                    v-model="endSelectedTime"
+                                    v-model="timeValue[1]"
                                     :data="timeList"
                                     :item-disable="endTimeSelectorLimit()"
                             ></ScrollSelect>
@@ -111,8 +111,8 @@
                                 class="kd-range-selector-container"
                         >
                             <Time
-                                    v-model="endTime"
-                                    :min="endTimeMinLimit(minTime, startTime)"
+                                    v-model="timeValue[1]"
+                                    :min="endTimeMinLimit(minTime, timeValue[0])"
                                     :max="maxTime"
                                     @change="timeValueChange"
                             >
@@ -185,6 +185,7 @@
                     const length = index === 0 ? 24 : 60;
                     return Array(length).fill(0).map((x, i) => this.addPreZero(i));
                 }),
+                timeValue: [], // innervalue
                 startTime: '', // '00:00:00'
                 endTime: '', // '00:00:00'
                 selectedTime: '', // step 模式下的选择结果
@@ -218,75 +219,93 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    console.log('init valve', v);
+                    console.log('timepicker props valve change', v);
+                    if (!v) {
+                        v = '';
+                    }
                     if (typeof v === 'string') { // 单
-                        // TODO: 检查合法性
+                        // TODO: 检查合法性. 不规范字符串, 空值 null undefined 
+                        // A: 转成空字符串
                         this.timeString = v;
                         // this.selectedTime = v;
                         // this.startTime = v;
-                        if (this.mode === 'steptime') {
-                            this.selectedTime = v;
-                        } else {
-                            this.startTime = v;
-                        }
+                        // if (this.mode === 'steptime') {
+                        //     this.selectedTime = v;
+                        // } else {
+                        //     this.startTime = v;
+                        // }
+                        this.timeValue = [v];
                     } else if (Array.isArray(v)) { // 范围
                         if (v.length < 2) return;
+                        this.timeValue = v;
                         this.timeString = v.join(' - ');
-                        if (this.mode === 'steptime') {
-                            this.selectedTime = v[0];
-                            this.endSelectedTime = v[1];
-                        } else {
-                            this.startTime = v[0];
-                            this.endTime = v[1];
-                        }
+                        // if (this.mode === 'steptime') {
+                        //     this.selectedTime = v[0];
+                        //     this.endSelectedTime = v[1];
+                        // } else {
+                        //     this.startTime = v[0];
+                        //     this.endTime = v[1];
+                        // }
                     }
                 }
             },
-            startTime: {
+            timeValue: {
                 deep: true,
                 handler(v) {
                     if (!this.range) {
-                        this.timeString = this.startTime; // innervalue 变化
-                        this.$emit('input', this.startTime);
+                        this.timeString = this.timeValue[0];
+                        this.$emit('input', this.timeValue[0]);
                     } else {
-                        this.timeString = `${v} - ${this.endTime}`;
-                        this.$emit('input', [v, this.endTime]);
-                    }
-                }
-            },
-            endTime: {
-                deep: true,
-                handler(v) {
-                    if (!this.range) {
-                        // this.timeString = this.startTime.join(':'); // innervalue 变化
-                        // this.$emit('input', this.timeString);
-                    } else {
-                        this.timeString = `${this.startTime} - ${v}`;
-                        this.$emit('input', [this.startTime, v]);
-                    }
-                }
-            },
-            selectedTime: {
-                handler(v) {
-                    if (this.range === false) {
-                        this.timeString = v;
-                        this.$emit('input', this.timeString);
-                    } else {
-                        if (this.timeString !== `${v} - ${this.endSelectedTime}`) {
-                            this.timeString = `${v} - ${this.endSelectedTime}`;
-                            this.$emit('input', this.timeString.split(' - '));
-                        }
-                    }
-                }
-            },
-            endSelectedTime: {
-                handler(v) {
-                    if (this.timeString !== `${this.selectedTime} - ${v}`) {
-                        this.timeString = `${this.selectedTime} - ${v}`;
-                        this.$emit('input', this.timeString.split(' - '));
+                        this.timeString = this.timeValue.join(' - ');
+                        this.$emit('input', this.timeValue);
                     }
                 }
             }
+            // startTime: {
+            //     deep: true,
+            //     handler(v) {
+            //         if (!this.range) {
+            //             this.timeString = this.startTime; // innervalue 变化
+            //             this.$emit('input', this.startTime);
+            //         } else {
+            //             this.timeString = `${v} - ${this.endTime}`;
+            //             this.$emit('input', [v, this.endTime]);
+            //         }
+            //     }
+            // },
+            // endTime: {
+            //     deep: true,
+            //     handler(v) {
+            //         if (!this.range) {
+            //             // this.timeString = this.startTime.join(':'); // innervalue 变化
+            //             // this.$emit('input', this.timeString);
+            //         } else {
+            //             this.timeString = `${this.startTime} - ${v}`;
+            //             this.$emit('input', [this.startTime, v]);
+            //         }
+            //     }
+            // },
+            // selectedTime: {
+            //     handler(v) {
+            //         if (this.range === false) {
+            //             this.timeString = v;
+            //             this.$emit('input', this.timeString);
+            //         } else {
+            //             if (this.timeString !== `${v} - ${this.endSelectedTime}`) {
+            //                 this.timeString = `${v} - ${this.endSelectedTime}`;
+            //                 this.$emit('input', this.timeString.split(' - '));
+            //             }
+            //         }
+            //     }
+            // },
+            // endSelectedTime: {
+            //     handler(v) {
+            //         if (this.timeString !== `${this.selectedTime} - ${v}`) {
+            //             this.timeString = `${this.selectedTime} - ${v}`;
+            //             this.$emit('input', this.timeString.split(' - '));
+            //         }
+            //     }
+            // }
         },
         created() {
         },
@@ -300,28 +319,31 @@
                 if (this.range) {
                     console.log('clear range');
                     // inner value
-                    this.startTime = '';
-                    this.endTime = '';
-                    this.selectedTime = '';
-                    this.endselectedTime = '';
 
-                    this.$emit('input', []);
+                    // this.startTime = '';
+                    // this.endTime = '';
+                    // this.selectedTime = '';
+                    // this.endselectedTime = '';
+                    this.timeValue = [];
+                    // this.$emit('input', []);
                     this.$emit('change', [], 'clear');
-                    this.timeString = '';
+                    // this.timeString = '';
                 } else {
-                    this.selectedTime = '';
-                    this.startTime = '';
-
+                    // this.selectedTime = '';
+                    // this.startTime = '';
+                    this.timeValue = [];
                     console.log('clear norange');
-                    this.$emit('input', '');
+                    // this.$emit('input', '');
                     this.$emit('change', '', 'clear');
-                    this.timeString = '';
+                    // this.timeString = '';
                 }
             },
             selectTimeValue(item) {
                 if (this.timeString !== item) {
-                    this.timeString = item;
-                    this.$emit('input', item);
+                    this.timeValue = [item];
+                    // this.timeString = item;
+
+                    // this.$emit('input', item);
                     this.$emit('change', item, 'select');
                     this.isTooltipShow = false;
                 }
@@ -346,7 +368,7 @@
                 return time => { // "02:00"
                     let disabled = false;
                     // if (true) {
-                    disabled = parseTime(time) > parseTime(this.endSelectedTime);
+                    disabled = parseTime(time) > parseTime(this.timeValue[1]);
                     // }
                     return disabled;
                 };
@@ -354,7 +376,7 @@
             endTimeSelectorLimit() {
                 return time => { // "02:00"
                     let disabled = false;
-                    disabled = parseTime(time) < parseTime(this.selectedTime);
+                    disabled = parseTime(time) < parseTime(this.timeValue[0]);
                     return disabled;
                 };
             }

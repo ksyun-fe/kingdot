@@ -61,6 +61,7 @@
     <div>
         <kd-time-picker v-model="time" mode="steptime" :minTime="minTime" :maxTime="maxTime"></kd-time-picker>
         <kd-time-picker v-model="time" :minTime="minTime" :maxTime="maxTime"></kd-time-picker>
+        选中值: {{ time }}
     </div>
 </template>
 <script>
