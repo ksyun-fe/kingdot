@@ -204,6 +204,8 @@
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
 | disabled-date  | 符合条件的日期将被禁用   | function    | - | - |
+| clearable | 是否能清空当前值   | Boolean   | true, false | true |
+
 
 
 ### shortcuts {.component__content}
