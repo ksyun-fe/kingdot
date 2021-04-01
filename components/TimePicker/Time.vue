@@ -1,6 +1,6 @@
 <template>
     <div class="kd-time-panel">
-        <!-- k-scroll-select-group -->
+        <!-- kd-scroll-select-group -->
         <div
                 v-for="(item, index) in data"
                 :key="index"

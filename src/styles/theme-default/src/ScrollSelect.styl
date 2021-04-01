@@ -1,36 +1,36 @@
 @import('../variables.styl')
 
-.k-scroll-select
+.kd-scroll-select
     text-align center
     overflow hidden
     max-height 100%
     height $scroll-select-height
     user-select none
     position relative
-    .k-wrapper
+    .kd-wrapper
         transition transform $transition
-    &.k-dragging
-        .k-wrapper
+    &.kd-dragging
+        .kd-wrapper
             transition none
 
     // disabled
-    &.k-disabled
-        .k-scroll-item
+    &.kd-disabled
+        .kd-scroll-item
             color $scroll-select-item-disabled-color
 
-    .k-scroll-item
+    .kd-scroll-item
         line-height $scroll-select-item-height
         color $scroll-select-item-color
         cursor pointer
         white-space nowrap
-        &.k-scroll-item-active
+        &.kd-scroll-item-active
             color $scroll-select-item-active-color
             font-size $scroll-select-item-active-font-size
-        &.k-scroll-item-disabled
+        &.kd-scroll-item-disabled
             color $scroll-select-item-disabled-color
 
     // border
-    .k-border
+    .kd-border
         position absolute
         width 100%
         top 50%
