@@ -83,6 +83,10 @@
                             "name": "Transfer 穿梭框"
                         },
                         {
+                            "path": "/timePicker",
+                            "name": "TimePicker 时间选择器"
+                        },
+                        {
                             "path": "/datePicker",
                             "name": "DatePicker 日期选择器"
                         }
@@ -258,6 +262,14 @@
                         {
                             "path": "/transfer",
                             "name": "Transfer"
+                        },
+                        {
+                            "path": "/timePicker",
+                            "name": "TimePicker"
+                        },
+                        {
+                            "path": "/datePicker",
+                            "name": "DatePicker"
                         }
                     ]
                 },
@@ -323,10 +335,6 @@
                         {
                             "path": "/dialog",
                             "name": "Dialog"
-                        },
-                        {
-                            "path": "/datePicker",
-                            "name": "DatePicker"
                         }
                     ]
                 }

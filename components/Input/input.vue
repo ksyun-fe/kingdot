@@ -7,7 +7,7 @@
                     'kd-input-disabled': disabled,
                     'kd-input-group': $slots.prepend || $slots.append,
                     'kd-with-prefix': $slots.prefix,
-                    'kd-with-suffix': $slots.suffix || success || warning || error,
+                    'kd-with-suffix': $slots.suffix || success || warning || error || clearable,
                     'kd-input-fluid': fluid,
                     ['kd-input-status-' + (status === 'error' ? 'err' : status)]: success || warning || error,
                     'kd-textarea-show-count': showCount,
@@ -80,7 +80,7 @@
                         v-else-if="showClearable"
                         class="kd-icon-error-solid kd-input-clearable"
                         :class="{'kd-input-show': value}"
-                        @click="clear"
+                        @click.stop="clear"
                 >
                 </i>
                 <slot name="suffix"></slot>
