@@ -113,6 +113,7 @@
         methods: {
             initActive() {
                 const parent = this.$parent;
+                if (!parent) return;
                 if (parent.$options._componentTag === 'kd-button-group') {
                     if (parent.checkType === 'radio') {
                         if (parent.value === this.value) this.isActive = true;
@@ -125,10 +126,12 @@
             },
             //  点击事件
             handleClick(e) {
+                const parent = this.$parent;
                 if (!this.disabled && !this.loading) {
                     this.$emit('click', e);
                 }
-                if (this.$parent.$options._componentTag === 'kd-button-group') {
+                if (!parent) return;
+                if (parent.$options._componentTag === 'kd-button-group') {
                     this.$parent.emit(this.value, this.isActive);
                 }
             },
