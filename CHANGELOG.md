@@ -14,6 +14,7 @@
 ### Optimization
 * Dialog
     * 滚动条增加宽度样式
+    * 测试用例修改
 * Select
     * 初始化label显示问题
     
