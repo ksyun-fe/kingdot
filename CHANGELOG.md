@@ -14,6 +14,8 @@
     * 测试用例修改
 * Tabs 
     * 测试用例修改
+* button 
+    * 修改找父级button-group报错
 ### Optimization
 * Dialog
     * 滚动条增加宽度样式
