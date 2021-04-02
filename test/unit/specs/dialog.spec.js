@@ -96,8 +96,7 @@ describe("dialog", () => {
       vm.$el.querySelector('.kd-dialog').classList.contains("kd-dialog-confirm")
     ).to.be.true;
     //是否有标题
-    let confirmTitle =vm.$el.querySelector('.kd-dialog-confirm-title');
-    expect(confirmTitle.textContent).to.equal("");
+    expect(vm.showTitle).to.be.false;
   });
   //创建一个二次确认类dialog，且有标题
   it("create dialog of confirm,it has title", () => {
