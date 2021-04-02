@@ -276,42 +276,4 @@ describe('tabs', () => {
         }, 200);
 
     })
-    // 左右滑动tabs
-    it('left right move tab', (done) => {
-        vm = createVue({
-            template: `
-            <kd-tabs v-model='key'>
-               <kd-tab value='block1'>block1</kd-tab>
-               <kd-tab value='block2'>block2</kd-tab>
-               <kd-tab value='block3'>block3</kd-tab>
-               <kd-tab value='block4'>block4</kd-tab>
-               <kd-tab value='block5'>block5</kd-tab>
-               <kd-tab value='block6'>block6</kd-tab>
-               <kd-tab value='block7'>block7</kd-tab>
-               <kd-tab value='block8'>block8</kd-tab>
-               <kd-tab value='block9'>block9</kd-tab>
-               <kd-tab value='block10'>block10</kd-tab>
-               <kd-tab value='block11'>block11</kd-tab>
-               <kd-tab value='block12'>block12</kd-tab>
-               <kd-tab value='block13'>block13</kd-tab>
-               <kd-tab value='block14'>block14</kd-tab>
-               <kd-tab value='block15'>block15</kd-tab>
-            </kd-tabs>
-        `,
-            data() {
-                return {
-                    key: 'block1'
-                }
-            },
-        }, true)
-        vm.$nextTick().then(() => {
-            vm.$el.querySelector('.right').click();
-            setTimeout(() => {
-                expect(
-                    vm.$el.querySelector('.kd-tabs-content').style.marginLeft
-                ).to.equal('0px')
-                done();
-            }, 200);
-        })
-    })
 })
