@@ -2,14 +2,6 @@
     
 ## v1.0.5 
 
-*2021-04-02*
-
-### New features
-### Bug fixes
-### Optimization
-* Tabs 
-    * 测试用例优化
-
 *2021-04-01*
 
 ### New features
@@ -19,6 +11,8 @@
     * 新增全局禁用功能
 ### Bug fixes
 * Dialog
+    * 测试用例修改
+* Tabs 
     * 测试用例修改
 ### Optimization
 * Dialog
