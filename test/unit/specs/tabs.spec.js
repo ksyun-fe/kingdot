@@ -309,7 +309,7 @@ describe('tabs', () => {
             setTimeout(() => {
                 expect(
                     vm.$el.querySelector('.kd-tabs-content').style.marginLeft
-                ).to.equal('0px')
+                ).not.to.equal('0px')
                 done();
             }, 200);
         })
