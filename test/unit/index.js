@@ -15,7 +15,7 @@ describe('use component', () => {
 });
 Vue.use(kingdot);
 
-const testsContext = require.context('./spec', true, /\button.spec$/);
+const testsContext = require.context('./spec', true, /\.spec$/);
 
 
 testsContext.keys().forEach(testsContext);
