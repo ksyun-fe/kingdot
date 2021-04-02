@@ -1,8 +1,8 @@
 <template>
     <div
             :class="{
-                'k-scroll-select': true,
-                'k-disabled': disabled
+                'kd-scroll-select': true,
+                'kd-disabled': disabled
             }"
     >
         <!-- :style="{
@@ -12,24 +12,24 @@
             @mousedown="moveStart"
                 -->
         <div
-                class="k-wrapper"
+                class="kd-wrapper"
                 @wheel.prevent="mouseWheel"
         >
             <div
                     v-for="(item, index) in selectList"
                     :key="index"
                     ref="item"
-                    class="k-scroll-item"
+                    class="kd-scroll-item"
                     :class="{
-                        'k-scroll-item-active': value === item.value,
-                        'k-scroll-item-disabled': isItemDisabled(item)
+                        'kd-scroll-item-active': value === item.value,
+                        'kd-scroll-item-disabled': isItemDisabled(item)
                     }"
                     @click="clickHandler(item, index)"
             >
                 {{ item.label }}
             </div>
         </div>
-        <div class="k-border"></div>
+        <div class="kd-border"></div>
     </div>
 </template>
 
