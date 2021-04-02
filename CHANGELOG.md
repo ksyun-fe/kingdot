@@ -10,11 +10,11 @@
 * transfer
     * 新增全局禁用功能
 ### Bug fixes
-  
+* Dialog
+    * 测试用例修改
 ### Optimization
 * Dialog
     * 滚动条增加宽度样式
-    * 测试用例修改
 * Select
     * 初始化label显示问题
     
@@ -39,5 +39,3 @@
 
 * Docs
     * Button 修改loading示例
-* Dialog
-    * 滚动条增加宽度样式
