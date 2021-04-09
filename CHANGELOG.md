@@ -1,5 +1,7 @@
 ## 更新日志 
-    
+### Bug fixes
+* Select
+    * 修改延迟赋值value不显示label   
 ## v1.0.5 
 
 *2021-04-01*
