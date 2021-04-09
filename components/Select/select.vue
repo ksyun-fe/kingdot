@@ -197,6 +197,9 @@
                 immediate: true,
                 handler(v) {
                     this.selected = v;
+                    this.$nextTick(() => {
+                        this.initData(v);
+                    });
                 }
             },
             placeholder: {
@@ -233,6 +236,48 @@
             this.defaultWidth = this.$refs.kdSelect.clientWidth + 'px';
         },
         methods: {
+            initData(v) {
+                if (!this.$slots.default) return;
+                if (this.multiple) {
+                    const tagList = [];
+                    // 多选初始化添加tags
+                    v.forEach((vItem) => {
+                        this.$slots.default.forEach((item) => {
+                            const options = item.componentOptions;
+                            if (options) {
+                                const value = options.propsData.value;
+                                if (value === vItem) {
+                                    const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
+                                    tagList.push({
+                                        value: value,
+                                        label: label
+                                    });
+                                }
+                            }
+                        });
+                    });
+                    this.selected = v;
+                    this.tagList = tagList;
+                    this.inputPlaceholder = v.length > 0 ? '' : this.placeholder;
+                } else {
+                    // 获取label
+                    this.inputLabel = '';
+                    this.$slots.default.forEach((item) => {
+                        if (item.componentOptions) {
+                            if (item.componentOptions.tag === 'kd-option') {
+                                this.initLabel(item, v);
+                            } else {
+                                // 如果是group在遍历一遍
+                                item.componentOptions.children.forEach((item) => {
+                                    this.initLabel(item, v);
+                                });
+                            }
+                        }
+                    });
+                    this.inputPlaceholder = this.inputLabel || this.placeholder;
+                    this.dropdownMenu = false;
+                }
+            },
             handleInput() {
                 if (!this.multiple) {
                     this.optionFilter(this.inputLabel);
@@ -240,18 +285,18 @@
                     this.optionFilter(this.multipleSerach);
                 }
             },
-            // initLabel(item, v) {
-            //     const options = item.componentOptions;
-            //     const value = options.propsData.value;
-            //     const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
-            //     if (value === v) {
-            //         this.inputLabel = label;
-            //     }
-            // },
-            // labelFomat(label) {
-            //     if (!label) return '';
-            //     return label.replace(/\n/g, '').trim();
-            // },
+            initLabel(item, v) {
+                const options = item.componentOptions;
+                const value = options.propsData.value;
+                const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
+                if (value === v) {
+                    this.inputLabel = label;
+                }
+            },
+            labelFomat(label) {
+                if (!label) return '';
+                return label.replace(/\n/g, '').trim();
+            },
             optionFilter(v) {
                 clearTimeout(this.serachTimeout);
                 this.serachTimeout = setTimeout(() => {
