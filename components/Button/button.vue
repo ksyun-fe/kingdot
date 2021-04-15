@@ -81,7 +81,7 @@
             },
             nativeType: {
                 type: String,
-                default: ''
+                default: 'button'
             }
         },
         data() {
