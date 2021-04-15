@@ -7,7 +7,7 @@
                 'kd-select-clear-hover': clearAll,
                 'kd-select-active': clickOption,
             }]"
-            :style="{'width': width}"
+            :style="{'width': inputWidth}"
     >
         <kd-tooltip
                 ref="kdDropdownTooltip"
@@ -190,6 +190,14 @@
         computed: {
             tooltipClass() {
                 return `kd-dropdown-tooltip`;
+            },
+            inputWidth(){
+                let width = this.width
+                if(width.indexOf('px') > -1 || width.indexOf('%') > -1){
+                    return width
+                }else {
+                    return width + 'px'
+                }
             }
         },
         watch: {
