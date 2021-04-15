@@ -117,7 +117,7 @@
             },
             type: {
                 type: String,
-                default: 'input'
+                default: 'text'
             },
             readonly: {
                 type: Boolean,
