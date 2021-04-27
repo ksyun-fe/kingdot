@@ -139,6 +139,10 @@
                         {
                             "path": "/spin",
                             "name": "Spin 加载中"
+                        },
+                        {
+                          "path": "/offline",
+                          "name": "offline 网络判断"
                         }
                     ]
                 },
