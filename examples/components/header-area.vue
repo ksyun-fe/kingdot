@@ -155,6 +155,12 @@
 <style scoped ref="stylesheet/stylus" lang="stylus" type="text/stylus">
     $headerHeight = 74px
     .header-area
+        position fixed
+        top 0
+        left 0
+        right 0
+        z-index 1
+        background #fff
         height: $headerHeight
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05)
 
