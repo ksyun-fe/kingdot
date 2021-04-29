@@ -1,7 +1,6 @@
-import {  createVue, destroyVM } from "../util";
 import ajax from "components/Upload/ajax";
 
-describe("ajax", () => {
+describe("upload", () => {
     let noop = () => {};
     let options = {
         onSuccess: noop,
@@ -40,8 +39,8 @@ describe("ajax", () => {
         reqs[0].respond(404, {}, "not found");
     });
     it("res header", (done) => {
-        ajax(option);
-        expect(reqs[0].headers).to.eql({
+        ajax(options);
+        expect(reqs[0].requestHeaders).to.eql({
             user: "rdx",
         });
         done();
