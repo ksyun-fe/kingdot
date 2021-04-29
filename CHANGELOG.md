@@ -1,10 +1,20 @@
 ## 更新日志 
+
+## v1.0.6
+
+*2021-04-29*
+
+### New features
+* Offline
+    * add Offline component
 ### Bug fixes
 * Select
     * 修改延迟赋值value不显示label   
     * 添加单测用例
 * Button
     * 默认原生type修改成button
+    
+    
 ## v1.0.5 
 
 *2021-04-01*
