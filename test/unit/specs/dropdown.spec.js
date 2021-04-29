@@ -1,7 +1,4 @@
-// import Spinner from "components/Spinner/index.js";
-import { expect } from "chai";
-import { result } from "lodash";
-import { createCons, createVue, destroyVM, triggerEvent } from "../util";
+import { createVue, destroyVM} from "../util";
 describe("dropdown", () => {
     let vm;
     afterEach(() => {
@@ -42,7 +39,7 @@ describe("dropdown", () => {
         setTimeout(() => {
             el.click();
             setTimeout(() => {
-                menu = document.querySelector(".kd-tooltip");
+                const menu = document.querySelector(".kd-tooltip");
                 expect(menu.style.display).to.eql('none')
                 el.click();
                 done();

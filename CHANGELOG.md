@@ -17,6 +17,9 @@
     * 测试用例fix bug
 * Spinner
     * 测试用例fix bug
+* dropdown
+    * 测试用例fix bug  
+    
     
 ## v1.0.5 
 
