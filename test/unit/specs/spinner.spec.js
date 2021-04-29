@@ -38,15 +38,14 @@ describe("Spinner", () => {
         minus.click();
         expect(input.value).be.equal("1");
     });
-    it("size", () => {
-        const size = ["large", "mini", "small"];
-        size.forEach((item) => {
+    ["large", "mini", "small"].forEach((item) => {
+        it(`${item} size`, () => {
             vm = createCons(Spinner, {
                 size: item,
             });
             let el = vm.$el.classList.contains(`kd-spinner-${item}`);
             expect(el).to.true;
-        });
+        })
     });
     it("btn position", () => {
         vm = createCons(Spinner, {
