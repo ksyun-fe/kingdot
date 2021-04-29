@@ -55,8 +55,3 @@ npm run publish
 ## License 
 
 [MIT](LICENSE)
-
-
-## Links
-
-* [KFC](http://ks3-cn-beijing.ksyun.com/bigdata-fe/project/kfc/index.html)
