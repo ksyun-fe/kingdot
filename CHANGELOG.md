@@ -15,7 +15,8 @@
     * 默认原生type修改成button
 * Upload
     * 测试用例fix bug
-
+* Spinner
+    * 测试用例fix bug
     
 ## v1.0.5 
 
