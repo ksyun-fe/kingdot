@@ -1,12 +1,12 @@
 <template>
     <div
             v-transfer-dom
+            class="kd-offline-fixed"
     >
         <div
                 v-if="mask"
                 :class="{
                     'kd-offline-mask': true,
-                    'kd-offline-fixed': true,
                     'kd-message-warning': type === 'error',
                     'kd-message-success': type === 'success'
                 }"
@@ -53,7 +53,8 @@
             return {
                 mask: false,
                 title: '',
-                type: ''
+                type: '',
+                timer: null
             };
         },
         watch: {
@@ -78,7 +79,8 @@
                 this.title = type === 'error' ? this.offlineTitle : this.onlineTitle;
                 this.mask = true;
                 if (this.duration > 0) {
-                    setTimeout(() => {
+                    this.timer && clearTimeout(this.timer);
+                    this.timer = setTimeout(() => {
                         this.mask = false;
                     }, this.duration);
                 }
