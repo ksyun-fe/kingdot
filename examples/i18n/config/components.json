@@ -261,7 +261,7 @@
                         },
                         {
                             "path": "/upload",
-                            "name": "Upload 上传"
+                            "name": "Upload"
                         },
                         {
                             "path": "/transfer",
