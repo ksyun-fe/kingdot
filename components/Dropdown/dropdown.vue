@@ -115,6 +115,9 @@
         mounted() {
             bus.$on('item-click', this.itemClick);
         },
+        beforeDestroy() {
+            bus.$off('item-click');
+        },
         methods: {
             //  左侧菜单点击回调事件
             onClick(e) {
