@@ -10,7 +10,8 @@
 * transfer
     * 修复showFilter不传filter-method会报错
     * 优化初始化代码
-
+* dropdown
+    * 卸载组件之前解绑方法
 
 ## v1.0.6
 
