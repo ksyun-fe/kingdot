@@ -57,22 +57,22 @@
             // 判断选项是否需要禁用
             itemDisable: {
                 type: Function
+            },
+            count: { //  展示范围, 最好奇数位. 默认5
+                type: Number,
+                default() {
+                    return 5;
+                }
             }
-            // count: { //  展示范围, 最好奇数位. 默认5
-            //     type: Number,
-            //     default() {
-            //         return 5;
-            //     }
-            // }
         },
         data() {
             return {
                 // translateY: 0,
                 // marginTop: 0,
                 curIndex: 0,
-                currentValue: this.data[0].value || this.data[0],
+                currentValue: this.data[0].value || this.data[0]
                 // currentValue: '',
-                count: 5 // 展示范围, 默认5
+                // count: 5 // 展示范围, 默认5
                 // isDisabled: this.disabled
             };
         },
@@ -136,6 +136,7 @@
             }
         },
         mounted() {
+            console.log('count', this.count);
             this.initPosition();
         },
         methods: {
