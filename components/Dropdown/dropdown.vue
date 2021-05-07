@@ -116,7 +116,7 @@
             bus.$on('item-click', this.itemClick);
         },
         beforeDestroy() {
-            bus.$off('item-click');
+            bus.$off('item-click', this.itemClick);
         },
         methods: {
             //  左侧菜单点击回调事件
