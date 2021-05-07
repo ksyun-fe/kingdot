@@ -89,6 +89,10 @@
                         {
                             "path": "/datePicker",
                             "name": "DatePicker 日期选择器"
+                        },
+                        {
+                            "path": "/dateTimePicker",
+                            "name": "DateTimePicker 日期时间选择器"
                         }
                     ]
                 },
@@ -274,6 +278,10 @@
                         {
                             "path": "/datePicker",
                             "name": "DatePicker"
+                        },
+                        {
+                            "path": "/dateTimePicker",
+                            "name": "DateTimePicker"
                         }
                     ]
                 },
