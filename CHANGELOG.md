@@ -7,6 +7,9 @@
 ### Bug fixes
 * Offline
     * 修复显示层级bug  
+* transfer
+    * 修复showFilter不传filter-method会报错
+    * 优化初始化代码
 
 
 ## v1.0.6

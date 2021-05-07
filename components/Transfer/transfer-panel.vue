@@ -1,8 +1,6 @@
 <template>
     <div class="kd-transfer-panel">
-        <div
-                class="kd-transfer-panel-row"
-        >
+        <div class="kd-transfer-panel-row">
             <!-- 顶部 -->
             <kd-checkbox
                     v-if="selectAll"
@@ -61,7 +59,8 @@
                             ></content-label>
                         </div>
 
-                    </li></ul>
+                    </li>
+                </ul>
             </div>
 
         </div>
@@ -92,10 +91,7 @@
                     const transfer = this.$parent.$parent;
                     const childrenLabel = transfer.$scopedSlots.default;
                     return childrenLabel ? (
-                        transfer.$scopedSlots.default(
-                            this.scope,
-                            this.dataKey
-                        )
+                        transfer.$scopedSlots.default(this.scope, this.dataKey)
                     ) : (
                     <span>{this.scope[this.dataKey.label]}</span>
                     );
@@ -166,7 +162,7 @@
                 immediate: true,
                 handler(v) {
                     if (v) {
-                        this.panelData.forEach(item => {
+                        this.panelData.forEach((item) => {
                             item.disabled = true;
                         });
                     }
@@ -179,22 +175,19 @@
         methods: {
             // 初始化回调函数
             init() {
-                this.panelData.forEach((item) => {
-                    if (item.checked) {
-                        this.itemInputChange(item);
-                    }
-                });
+                this.allCheckedChange();
             },
             handleChange() {
                 //  是否执行自定义过滤
                 this.panelData = this.data.filter((item) => {
-                    const result = this.filterMethod(item, this.serachText);
-                    if (typeof result !== 'boolean') {
+                    if (this.filterMethod) {
+                        const result = this.filterMethod(item, this.serachText);
+                        return result;
+                    } else {
                         return (
                             item[this.dataKey.label].indexOf(this.serachText) > -1
                         );
                     }
-                    return result;
                 });
             },
             // 顶部checked值改变
@@ -212,13 +205,14 @@
             //  内容input改变
             itemInputChange(item) {
                 const changeKeys = [item[this.dataKey.key]];
-                const noramlData = this.panelData.filter(
-                    (child) => !child.disabled
-                );
+                this.allCheckedChange();
+                this.$emit('checkChange', this.checkedList, changeKeys);
+            },
+            allCheckedChange() {
+                const noramlData = this.panelData.filter((child) => !child.disabled);
                 this.allChecked =
                     noramlData.length === this.checkedList.length &&
                     this.checkedList.length !== 0;
-                this.$emit('checkChange', this.checkedList, changeKeys);
             },
             //  内容一行的点击 事件
             itemHandleClick(data, index) {
