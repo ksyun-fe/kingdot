@@ -19,7 +19,7 @@
                         key:i,
                         label:`item${i}`,
                         disabled: i % 5 === 1,
-                        checked: true
+                        checked: false
                     })
                 }
                 return data;
