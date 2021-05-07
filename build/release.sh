@@ -30,6 +30,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     npm publish --tag "$RELEASE_TAG"
   fi
   git push --tags
+
+  npm run demo:build
+  git add .
+  git commit -m 'build: build docs'
+  git push
   git push https://github.com/ksyun-fe/kingdot.git master --force
 
   git checkout dev
