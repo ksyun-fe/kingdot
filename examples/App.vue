@@ -49,9 +49,11 @@
 <style ref="stylesheet/stylus" lang="stylus" type="text/stylus">
     @import "./styl/common.styl"
     #app
-        height: 100%
+        height 100%
+        padding-top 74px
+        box-sizing border-box
         .main-area
-            height calc(100% - 74px)
+            height 100%
     body.dark
         #app
             .main-area
