@@ -7,7 +7,8 @@
 ```html
 <template>
     <div>
-        <kd-date-time-picker v-model="dateTimeString"> </kd-date-time-picker> 选中值: {{ dateTimeString }}
+        <kd-date-time-picker v-model="dateTimeString"> </kd-date-time-picker> 
+        选中值: {{ dateTimeString }}
     </div>
 </template>
 <script>
@@ -38,12 +39,16 @@
 
 ```html
 <template>
-    <kd-date-time-picker :shortcuts="data"> </kd-date-time-picker>
+    <div>
+        <kd-date-time-picker v-model="dateTimeString" :shortcuts="data"> </kd-date-time-picker>
+        选中值: {{ dateTimeString }}
+    </div>
 </template>
 <script >
     export default {
         data() {
             return {
+                dateTimeString: '',
                 data: [{
                     label: '今天',
                     offset: {
@@ -75,6 +80,41 @@
                             value: -1,
                             unit: 'month'
                         }
+                    }
+                }]
+            }
+        }
+    }
+</script>
+```
+:::
+
+### 选择日期时间范围
+:::demo #基础用法 ## 选择日期-时间
+
+```html
+<template>
+    <div>
+        <kd-date-time-picker range v-model="dateTimeArray" :shortcuts="data"> </kd-date-time-picker> 
+        选中值: {{ dateTimeArray }}
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                dateTimeArray: [],
+                data: [{
+                    label: '今天',
+                    offset: {
+                        value: 0,
+                        unit: 'day'
+                    }
+                }, {
+                    label: '昨天',
+                    offset: {
+                        value: -1,
+                        unit: 'day'
                     }
                 }]
             }

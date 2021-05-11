@@ -180,7 +180,7 @@
         props: {
             // 选中的日期列表
             value: {
-                type: Array,
+                type: [String, Array],
                 default: function () {
                     return [];
                 }
@@ -326,8 +326,10 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    if (v) {
+                    if (Array.isArray(v)) {
                         this.selectedDate = v;
+                    } else if (typeof v === 'string') {
+                        this.selectedDate = [v];
                     }
                 }
             },
@@ -426,6 +428,10 @@
                     this.selectedDate.splice(0, this.value.length, date.dateStr); // 清空, 然后第一位赋值
                     this.$emit('select', this.selectedDate, 'calendar');
                 }
+            },
+
+            turnPageTo(dateStr) {
+                this.moment = Moment(dateStr);
             },
 
             jumpToDate(dateValue, source) {
