@@ -3,11 +3,14 @@
 .kd-date-time-picker
     .kd-icon-date 
         color $-input-clear-color
-    .kd-picker-panel
+    .kd-datetime-picker-panel
         box-shadow $-box-shadow
-    
+
+.kd-datetime-range-container
+    display flex
 // 日历组件
-.kd-picker-panel
+.kd-datetime-picker-panel
+    display flex
     background-color $-datepicker-bg-color
     position relative
     margin-top: 5px
@@ -15,25 +18,24 @@
     min-height 312px
     overflow hidden
 
-.kd-picker-panel.has-sidebar {
+.kd-datetime-picker-panel.has-sidebar {
     width 400px
 }
-.kd-picker-panel.isRange {
-    width 600px
-    display flex
-}
-.kd-picker-panel.isRange {
+.kd-datetime-picker-panel.isRange {
     width 600px
 }
-.kd-picker-panel.isRange.has-sidebar {
+.kd-datetime-picker-panel.isRange {
+    width 600px
+}
+.kd-datetime-picker-panel.isRange.has-sidebar {
     width 700px
 }
 
 // 快捷侧边栏
-.kd-panel-sidebar
-    position: absolute;
-    top: 0;
-    bottom: 0;
+.kd-datetime-picker-sidebar
+    // position: absolute;
+    // top: 0;
+    // bottom: 0;
     width: 100px;
     background-color: $-datepicker-bg-color
     border-right: 1px solid #e4e4e4;
@@ -55,24 +57,38 @@
     outline: none;
     cursor: pointer;
 
-.kd-datetime-panel-body
+.kd-datetime-panel
     display flex
     flex-direction column
     width 300px
 
-.kd-panel-sidebar+.kd-datetime-panel-body
-    margin-left 100px
-
-.kd-datetime-panel-body .kd-datetime-tabs
+.kd-datetime-panel .kd-datetime-tabs
     display flex
+    margin 0px 10px
 
 .kd-datetime-tabs .kd-datetime-tab
     width 50%
 
-.kd-datetime-panel-body .kd-picker-wrapper
-    height 320px
+.kd-datetime-panel .kd-picker-wrapper
+    display flex
+    justify-content center
+    // height 320px
+    margin-top 10px
+
+.kd-datetime-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.kd-datetime-footer .kd-datetime-confirm-button{
+    margin-right 10px
+}
 
 // 其余组件
+// 引用其他组件时, 改变其样式
 .kd-tooltip-inner {
     padding: 0px;
 }
+
+.kd-datetime-picker-panel .kd-time-panel
+  width 200px
