@@ -91,6 +91,7 @@
                         :lazy="lazy"
                         :lazy-load-count="lazyLoadCount"
                         :optimize-scroll="optimizeScroll"
+                        :dropdownMenu="dropdownMenu"
                         @setValue="setValue"
                         @updateLabel="updateLabel"
                 >
