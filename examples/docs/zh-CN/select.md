@@ -400,6 +400,59 @@ export default{
 
 :::
 
+:::demo #scroll显示优化 ##大数据量下永远只渲染可视区域的数据
+
+```html
+<template>
+        <div>
+            <kd-select optimize-scroll v-model="defaultValue" placeholder="请选择内容">
+                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.value }}
+                </kd-option>
+            </kd-select>
+            
+        </div>
+</template>
+<script>
+export default{
+    data(){
+        return{
+            options: [],
+            options1: [],
+            defaultValue: "",
+            defaultValue1: "",
+
+        }   
+    },
+    watch:{
+        
+    },
+    methods:{
+        
+    },
+    mounted(){
+        let data = []
+        for(let i = 0; i <= 1000; i++){
+            data.push(
+                {
+                    value:"item" + i,
+                    label:"item option " + i
+                }
+            )
+        }
+        this.options = data;
+    }
+}
+</script>
+<style>
+.select-ml{
+    margin-left:20px
+}
+</style>
+```
+:::
+
+
+
 ### Select Attributes {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
@@ -417,6 +470,7 @@ export default{
 | hideDestroy    | 弹层隐藏后是否销毁dom   |  Boolean    |  —  | false |
 | lazy    | 是否开启懒加载   |  Boolean    |  —  | false |
 | lazyLoadCount    | 触发懒加载时每次加载数，和lazy属性一起使用  |  String / Number    |  —  | 10 |
+| optimize-scroll    | 是否开启大数据量下显示优化，只渲染可视区域的data。  |  Boolean    |  —  | false |
 
 
 ### Select Events {.component__content}

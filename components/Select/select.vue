@@ -90,6 +90,7 @@
                         :filter-data="filterData"
                         :lazy="lazy"
                         :lazy-load-count="lazyLoadCount"
+                        :optimize-scroll="optimizeScroll"
                         @setValue="setValue"
                         @updateLabel="updateLabel"
                 >
@@ -165,6 +166,10 @@
             lazyLoadCount: {
                 type: [String, Number],
                 default: 10
+            },
+            optimizeScroll: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
