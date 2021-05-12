@@ -1,7 +1,7 @@
 <template>
     <li
             v-show="optionShow"
-            v-if="ifLoadOption"
+            v-if="ifLoadOption && ifShowOption"
             class="kd-option"
             :class="{'kd-option-active': active,'kd-option-disabled': disabled}"
             @click.stop="optionClick"
@@ -60,6 +60,7 @@
                     return parent.value === this.value;
                 }
             },
+            //懒加载相关
             lazy() {
                 const parent = this.$parent || this.$root;
                 return parent.lazy;
@@ -72,6 +73,23 @@
                 if (this.lazy) {
                     return this.lazy && this.optionShow && this.optionIndex <= this.loadCount;
                 } else {
+                    return true;
+                }
+            },
+            //大数据量scroll优化相关
+            optimizeScroll() {
+                const parent = this.$parent || this.$root;
+                return parent.optimizeScroll;
+            },
+            getShowIndex() {
+                const parent = this.$parent || this.$root;
+                return parent.getShowIndex;
+            },
+            ifShowOption() {
+                if(this.optimizeScroll){
+                    return this.optionIndex >= this.getShowIndex.start && this.optionIndex <= this.getShowIndex.end  && this.optionShow;
+                }
+                else{
                     return true;
                 }
             }
