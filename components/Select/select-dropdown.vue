@@ -57,6 +57,9 @@
             optimizeScroll: {
                 type: Boolean,
                 default: false
+            },
+            dropdownMenu: {
+
             }
         },
         data() {
@@ -110,6 +113,12 @@
                             child.isGroup = !test;
                         });
                     }
+                }
+            },
+            dropdownMenu(val) {
+                if(!val){
+                    //关闭dropdown后重置偏移量
+                    this.startOffset = 0;
                 }
             }
         },
