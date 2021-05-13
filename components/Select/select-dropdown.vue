@@ -80,6 +80,7 @@
                 end: null,
                 //scroll偏移量
                 startOffset: 0,
+                scrollInitFlag: true
             };
         },
         computed: {
@@ -119,6 +120,7 @@
                 if(!val){
                     //关闭dropdown后重置偏移量
                     this.startOffset = 0;
+                    this.scrollInitFlag = true;
                 }
             }
         },
@@ -126,10 +128,13 @@
 
         },
         updated() {
-            this.screenHeight = this.$el.clientHeight;
-            this.listHeight =  this.itemSize * this.$children.length;
-            this.start = 0;
-            this.end = this.start + this.visibleCount;
+            if(this.dropdownMenu && this.scrollInitFlag) {
+                this.screenHeight = this.$el.clientHeight;
+                this.listHeight =  this.itemSize * this.$children.length;
+                this.start = 0;
+                this.end = this.start + this.visibleCount;
+                this.scrollInitFlag = false;
+            }
         },
         methods: {
             setValue(v) {
@@ -160,7 +165,7 @@
                     this.end = this.start + this.visibleCount;
                     //此时的偏移量
                     this.startOffset = scrollTop - (scrollTop % this.itemSize);
-                    // console.log(this.start, this.end);
+                    console.log(this.start, this.end);
                 }
             }
         }
