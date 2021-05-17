@@ -1,5 +1,8 @@
 ## 更新日志 
 
+### New features
+* Button
+    * add authid/clickDelay/delayTime attribute
 ### Bug fixes
 * 弹层zIndex层级
     * 修复弹层zIndex自定义无效
