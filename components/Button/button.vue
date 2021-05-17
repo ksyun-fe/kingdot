@@ -82,11 +82,26 @@
             nativeType: {
                 type: String,
                 default: 'button'
+            },
+            authid: {
+                type: String,
+                default: ''
+            },
+            clickDelay: {
+                type: Boolean,
+                default: false
+            },
+            delayTime: {
+                type: Number,
+                default: 3000
             }
         },
         data() {
             return {
-                isActive: false
+                isActive: false,
+                disabledStatus: this.disabled || this.loading,
+                authAbeld: false,
+                delayDisable: false
             };
         },
         computed: {
@@ -99,7 +114,7 @@
                     {
                         'kd-btn-active': this.isActive,
                         'kd-btn-split': this.split,
-                        'kd-btn-disabled': this.disabled,
+                        'kd-btn-disabled': this.disabledStatus || this.delayDisable,
                         'kd-btn-hollow': this.hollow,
                         'kd-btn-loading': this.loading
                     }
@@ -107,10 +122,27 @@
                 return allClassAry;
             }
         },
+        watch: {
+            disabled(v) {
+                if (!this.authAbeld) return;
+                this.disabledStatus = v;
+            }
+        },
         mounted() {
             this.initActive();
+            this.checkAuth();
         },
         methods: {
+            checkAuth() {
+                if (!this.authid) return;
+                if (window.Header && window.Header.getButtonType(this.authid)) {
+                    this.disabledStatus = false;
+                    this.authAbeld = false;
+                } else {
+                    this.disabledStatus = true;
+                    this.authAbeld = false;
+                }
+            },
             initActive() {
                 const parent = this.$parent;
                 if (!parent) return;
@@ -127,6 +159,12 @@
             //  点击事件
             handleClick(e) {
                 const parent = this.$parent;
+                if (this.clickDelay) {
+                    this.delayDisable = true;
+                    window.setTimeout(() => {
+                        this.delayDisable = false;
+                    }, this.delayTime);
+                }
                 if (!this.disabled && !this.loading) {
                     this.$emit('click', e);
                 }
