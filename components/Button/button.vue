@@ -137,7 +137,7 @@
                 if (!this.authid) return;
                 if (window.Header && window.Header.getButtonType(this.authid)) {
                     this.disabledStatus = false;
-                    this.authAbeld = false;
+                    this.authAbeld = true;
                 } else {
                     this.disabledStatus = true;
                     this.authAbeld = false;
