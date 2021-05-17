@@ -4,7 +4,7 @@
 <template>
     <div class='row'>
         <kd-button>默认按钮</kd-button>
-        <kd-button type='dashed'>默认按钮</kd-button>
+        <kd-button type='dashed' clickDelay>默认按钮</kd-button>
         <kd-button type='primary'>主要按钮</kd-button>
         <kd-button hollow>空心按钮</kd-button>
         <kd-button type='none'>文字按钮</kd-button>
@@ -226,3 +226,6 @@
 | split  | 按钮组合icon的样式   | boolean  |     —     |    false   |
 | check-type  | 按钮组合样式只能在group中使用   | string  |    radio/checkbox     |    false   |
 | native-type  | 原生type属性   | string  |    submit / button / reset     |    —   |
+| clickDelay  | 延时属性：点击按钮后有delayTime毫秒，按钮处于禁用状态   | Boolean  |    true/false     |    false   |
+| delayTime  | 延时时长属性：点击按钮后，按钮处于禁用状态的时长   | Number  |    -     |    3000   |
+| authid  | 权限属性   | String  |    -     |    -   |
