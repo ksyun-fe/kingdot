@@ -6,6 +6,10 @@
 ### Bug fixes
 * 弹层zIndex层级
     * 修复弹层zIndex自定义无效
+### Optimization
+* Button
+    * 优化Button中authid的判断方法，增加全局配置：getEnabledStatus方法
+    * 优化【快速上手】文档
     
     
 ## v1.0.7

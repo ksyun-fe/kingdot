@@ -135,7 +135,7 @@
         methods: {
             checkAuth() {
                 if (!this.authid) return;
-                if (window.Header && window.Header.getButtonType(this.authid)) {
+                if (this.$KD && this.$KD.getEnabledStatus && this.$KD.getEnabledStatus(this.authid)) {
                     this.disabledStatus = false;
                     this.authAbeld = true;
                 } else {
