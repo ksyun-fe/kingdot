@@ -27,96 +27,99 @@
                 </template>
             </kd-input>
             <template slot="content">
-                <div
-                        v-if="!range && mode === 'steptime'"
-                        class="kd-timepicker-panel"
-                >
-                    <div class="kd-steptime-container">
-                        <div v-if="true">
-                            <div
-                                    v-for="(item, index) in timeList"
-                                    :key="index"
-                                    :class="{
-                                        'kd-steptime-item': true,
-                                        'kd-disabled': !!disabledTime && disabledTime(item),
-                                        'kd-active': timeValue[0] == item
-                                    }"
-                                    @click="selectTimeValue(item)"
-                            >
-                                {{ item }}
+                <div></div>
+                <div v-if="isTooltipShow">
+                    <div
+                            v-if="!range && mode === 'steptime'"
+                            class="kd-timepicker-panel"
+                    >
+                        <div class="kd-steptime-container">
+                            <div v-if="true">
+                                <div
+                                        v-for="(item, index) in timeList"
+                                        :key="index"
+                                        :class="{
+                                            'kd-steptime-item': true,
+                                            'kd-disabled': !!disabledTime && disabledTime(item),
+                                            'kd-active': timeValue[0] == item
+                                        }"
+                                        @click="selectTimeValue(item)"
+                                >
+                                    {{ item }}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div
-                        v-if="!range && mode === 'anytime'"
-                        class="kd-timepicker-panel"
-                >
-                    <div class="kd-common-selector-container">
-                        <Time
-                                v-model="timeValue[0]"
-                                :min="minTime"
-                                :max="maxTime"
-                                @change="timeValueChange"
-                        >
-                        </Time>
-                    </div>
-                </div>
-                <div
-                        v-if="range"
-                        class="kd-timepicker-panel range"
-                >
-                    <div>
-                        <div class="kd-timepicker-title">开始时间</div>
-                        <div
-                                v-if="mode === 'steptime'"
-                                class="kd-range-selector-container"
-                        >
-                            <!-- :item-disable 不能直接绑定一个函数. 可能有min max限制 有联动限制, 有外部定义的限制 -->
-                            <ScrollSelect
-                                    ref="startTimeSelector"
-                                    v-model="timeValue[0]"
-                                    :data="timeList"
-                                    :item-disable="startTimeSelectorLimit()"
-                            ></ScrollSelect>
-                        </div>
-                        <div
-                                v-if="mode === 'anytime'"
-                                class="kd-range-selector-container"
-                        >
+                    <div
+                            v-if="!range && mode === 'anytime'"
+                            class="kd-timepicker-panel"
+                    >
+                        <div class="kd-common-selector-container">
                             <Time
                                     v-model="timeValue[0]"
                                     :min="minTime"
-                                    :max="startTimeMaxLimit(maxTime, timeValue[1])"
-                                    @change="timeValueChange"
-                            >
-                            </Time>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="kd-timepicker-title">结束时间</div>
-                        <div
-                                v-if="mode === 'steptime'"
-                                class="kd-range-selector-container"
-                        >
-                            <ScrollSelect
-                                    ref="endTimeSelector"
-                                    v-model="timeValue[1]"
-                                    :data="timeList"
-                                    :item-disable="endTimeSelectorLimit()"
-                            ></ScrollSelect>
-                        </div>
-                        <div
-                                v-if="mode === 'anytime'"
-                                class="kd-range-selector-container"
-                        >
-                            <Time
-                                    v-model="timeValue[1]"
-                                    :min="endTimeMinLimit(minTime, timeValue[0])"
                                     :max="maxTime"
                                     @change="timeValueChange"
                             >
                             </Time>
+                        </div>
+                    </div>
+                    <div
+                            v-if="range"
+                            class="kd-timepicker-panel range"
+                    >
+                        <div>
+                            <div class="kd-timepicker-title">开始时间</div>
+                            <div
+                                    v-if="mode === 'steptime'"
+                                    class="kd-range-selector-container"
+                            >
+                                <!-- :item-disable 不能直接绑定一个函数. 可能有min max限制 有联动限制, 有外部定义的限制 -->
+                                <ScrollSelect
+                                        ref="startTimeSelector"
+                                        v-model="timeValue[0]"
+                                        :data="timeList"
+                                        :item-disable="startTimeSelectorLimit()"
+                                ></ScrollSelect>
+                            </div>
+                            <div
+                                    v-if="mode === 'anytime'"
+                                    class="kd-range-selector-container"
+                            >
+                                <Time
+                                        v-model="timeValue[0]"
+                                        :min="minTime"
+                                        :max="startTimeMaxLimit(maxTime, timeValue[1])"
+                                        @change="timeValueChange"
+                                >
+                                </Time>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="kd-timepicker-title">结束时间</div>
+                            <div
+                                    v-if="mode === 'steptime'"
+                                    class="kd-range-selector-container"
+                            >
+                                <ScrollSelect
+                                        ref="endTimeSelector"
+                                        v-model="timeValue[1]"
+                                        :data="timeList"
+                                        :item-disable="endTimeSelectorLimit()"
+                                ></ScrollSelect>
+                            </div>
+                            <div
+                                    v-if="mode === 'anytime'"
+                                    class="kd-range-selector-container"
+                            >
+                                <Time
+                                        v-model="timeValue[1]"
+                                        :min="endTimeMinLimit(minTime, timeValue[0])"
+                                        :max="maxTime"
+                                        @change="timeValueChange"
+                                >
+                                </Time>
+                            </div>
                         </div>
                     </div>
                 </div>

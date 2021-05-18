@@ -17,7 +17,8 @@
             return {
                 dateTimeString: ''
             }
-        }
+        },
+        
     }
 </script>
 ```
@@ -89,6 +90,36 @@
 ```
 :::
 
+### 禁用日期
+:::demo #禁用日期 ## 通过自定义方法设置满足条件的日期禁用，传入参数为日期字符串，返回布尔值
+```html
+<template>
+    <div>
+        <kd-date-time-picker v-model="dateTimeString" :disabled-date="disabledDate"> </kd-date-time-picker>
+        选中值: {{ dateTimeString }}
+    </div>
+</template>
+<script>
+    import Day from 'dayjs';
+    export default {
+        data() {
+            return {
+                dateTimeString: ''
+            }
+        },
+        methods: {
+            disabledDate(dateStr) {
+                const timeObj = Day(dateStr);
+                if (timeObj.day() === 0 || timeObj.day() === 6) {
+                    return true
+                }
+            }
+        }
+    }
+</script>
+```
+:::
+
 ### 选择日期时间范围
 :::demo #基础用法 ## 选择日期-时间
 
@@ -105,16 +136,16 @@
             return {
                 dateTimeArray: [],
                 data: [{
-                    label: '今天',
-                    offset: {
-                        value: 0,
-                        unit: 'day'
-                    }
-                }, {
-                    label: '昨天',
+                    label: '最近一周',
                     offset: {
                         value: -1,
-                        unit: 'day'
+                        unit: 'week'
+                    }
+                }, {
+                    label: '最近三个月',
+                    offset: {
+                        value: -3,
+                        unit: 'month'
                     }
                 }]
             }

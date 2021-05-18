@@ -83,6 +83,10 @@
                             "name": "Transfer 穿梭框"
                         },
                         {
+                            "path": "/scrollSelect",
+                            "name": "scrollSelect 滚动选择器"
+                        },
+                        {
                             "path": "/timePicker",
                             "name": "TimePicker 时间选择器"
                         },
