@@ -4,11 +4,11 @@
                 v-model="isTooltipShow"
                 placement="bottom-start"
                 trigger="click"
+                content-class="kd-date-time-tooltip"
                 :width-limit="false"
                 :disabled="disabled"
                 can-hover
         >
-            <!-- @keyup.enter="setDate(inputDateString)" -->
             <kd-input
                     v-model="inputDateString"
                     :placeholder="placeholder"
@@ -55,23 +55,33 @@
                     <!-- 选择器主体 -->
                     <div class="kd-datetime-panel">
                         <div class="kd-datetime-tabs">
-                            <kd-button
-                                    class="kd-datetime-tab"
+                            <!-- kd-tabs-content -->
+                            <div
+                                    :class="{
+                                        'kd-datetime-tab': true,
+                                        'kd-not-active': tabSelectValue!=='date'
+                                    }"
                                     @click="tabSelectValue='date'"
-                            >{{ tabDateArr[0] || '0000-00-00' }}</kd-button>
-                            <kd-button
-                                    class="kd-datetime-tab"
+                            >
+                                <span class="kd-datetime-tab-text">{{ tabDateArr[0] || '0000-00-00' }}</span>
+                            </div>
+                            <div
+                                    :class="{
+                                        'kd-datetime-tab': true,
+                                        'kd-not-active': tabSelectValue!=='time'
+                                    }"
                                     @click="tabSelectValue='time'"
-                            >{{ tabTimeArr[0] || '00:00:00' }}</kd-button>
+                            >
+                                <div class="kd-datetime-tab-text">{{ tabTimeArr[0] || '00:00:00' }}</div>
+                            </div>
                         </div>
-                        <!-- :selected-date="inputDateString" -->
                         <div
                                 v-show="tabSelectValue === 'date'"
                                 class="kd-picker-wrapper"
                         >
                             <Calendar
                                     ref="calendar"
-                                    v-model="dateValue"
+                                    v-model="tabDateArr"
                                     :format-string="formatString"
                                     :disabled-date="disabledDate"
                                     :max-date="max"
@@ -81,11 +91,12 @@
                             ></Calendar>
                         </div>
                         <div
-                                v-show="tabSelectValue === 'time'"
+                                v-if="tabSelectValue === 'time'"
                                 class="kd-picker-wrapper"
                         >
                             <Time
                                     v-model="tabTimeArr[0]"
+                                    :date="tabDateArr[0]"
                                     :count="9"
                                     @change="timeValueChange"
                             >
@@ -128,16 +139,33 @@
                                 class="kd-datetime-panel"
                                 @mouseleave="clearRangeDay"
                         >
-                            <!-- :selected-date="inputDateString" -->
                             <div class="kd-datetime-tabs">
-                                <kd-button
+                                <div
+                                        :class="{
+                                            'kd-datetime-tab': true,
+                                            'kd-not-active': tabSelectValue!=='date'
+                                        }"
+                                        @click="tabSelectValue='date'"
+                                >
+                                    <span class="kd-datetime-tab-text">{{ tabDateArr[0] || '0000-00-00' }}</span>
+                                </div>
+                                <div
+                                        :class="{
+                                            'kd-datetime-tab': true,
+                                            'kd-not-active': tabSelectValue!=='time'
+                                        }"
+                                        @click="tabSelectValue='time'"
+                                >
+                                    <div class="kd-datetime-tab-text">{{ tabTimeArr[0] || '00:00:00' }}</div>
+                                </div>
+                                <!-- <kd-button
                                         class="kd-datetime-tab"
                                         @click="tabSelectValue='date'"
                                 >{{ tabDateArr[0] || '0000-00-00' }}</kd-button>
                                 <kd-button
                                         class="kd-datetime-tab"
                                         @click="tabSelectValue='time'"
-                                >{{ tabTimeArr[0] || '00:00:00' }}</kd-button>
+                                >{{ tabTimeArr[0] || '00:00:00' }}</kd-button> -->
                             </div>
                             <div
                                     v-show="tabSelectValue === 'date'"
@@ -145,7 +173,7 @@
                             >
                                 <Calendar
                                         ref="startCalendar"
-                                        v-model="dateValue"
+                                        v-model="tabDateArr"
                                         :format-string="formatString"
                                         :disabled-date="disabledDate"
                                         :max-date="max"
@@ -158,11 +186,12 @@
                                 ></Calendar>
                             </div>
                             <div
-                                    v-show="tabSelectValue === 'time'"
+                                    v-if="tabSelectValue === 'time'"
                                     class="kd-picker-wrapper"
                             >
                                 <Time
                                         v-model="tabTimeArr[0]"
+                                        :date="tabDateArr[0]"
                                         :count="9"
                                         @change="timeValueChange"
                                 >
@@ -174,14 +203,32 @@
                                 @mouseleave="clearRangeDay"
                         >
                             <div class="kd-datetime-tabs">
-                                <kd-button
+                                <div
+                                        :class="{
+                                            'kd-datetime-tab': true,
+                                            'kd-not-active': tabSelectValue!=='date'
+                                        }"
+                                        @click="tabSelectValue='date'"
+                                >
+                                    <span class="kd-datetime-tab-text">{{ tabDateArr[1] || '0000-00-00' }}</span>
+                                </div>
+                                <div
+                                        :class="{
+                                            'kd-datetime-tab': true,
+                                            'kd-not-active': tabSelectValue!=='time'
+                                        }"
+                                        @click="tabSelectValue='time'"
+                                >
+                                    <div class="kd-datetime-tab-text">{{ tabTimeArr[1] || '00:00:00' }}</div>
+                                </div>
+                                <!-- <kd-button
                                         class="kd-datetime-tab"
                                         @click="tabSelectValue='date'"
                                 >{{ tabDateArr[1] || '0000-00-00' }}</kd-button>
                                 <kd-button
                                         class="kd-datetime-tab"
                                         @click="tabSelectValue='time'"
-                                >{{ tabTimeArr[1] || '00:00:00' }}</kd-button>
+                                >{{ tabTimeArr[1] || '00:00:00' }}</kd-button> -->
                             </div>
                             <div
                                     v-show="tabSelectValue === 'date'"
@@ -189,7 +236,7 @@
                             >
                                 <Calendar
                                         ref="endCalendar"
-                                        v-model="dateValue"
+                                        v-model="tabDateArr"
                                         :format-string="formatString"
                                         :is-end-calendar="true"
                                         :disabled-date="disabledDate"
@@ -203,11 +250,12 @@
                                 ></Calendar>
                             </div>
                             <div
-                                    v-show="tabSelectValue === 'time'"
+                                    v-if="tabSelectValue === 'time'"
                                     class="kd-picker-wrapper"
                             >
                                 <Time
                                         v-model="tabTimeArr[1]"
+                                        :date="tabDateArr[1]"
                                         :count="9"
                                         @change="timeValueChange"
                                 >
@@ -223,10 +271,6 @@
                             type="primary"
                             @click="confirmDateTime"
                     >确认</kd-button>
-                    <!-- <kd-button
-                            class="kd-datetime-confirm-button"
-                            @click="isTooltipShow=false"
-                    >关闭</kd-button> -->
                 </div>
             </template>
         </kd-tooltip>
@@ -249,13 +293,7 @@
                     return [];
                 }
             },
-            // dateTimeValue: {
-            //     type: Array,
-            //     default: function () {
-            //         return [];
-            //     }
-            // },
-            // 格式字符串
+            // 日期格式字符串
             formatString: {
                 type: String,
                 default: function () {
@@ -272,7 +310,7 @@
             placeholder: {
                 type: String,
                 default() {
-                    return '请选择日期';
+                    return '请选择日期时间';
                 }
             },
             // 配置的快捷菜单
@@ -295,30 +333,19 @@
                     return false;
                 }
             },
-            // 条件禁用
+            // 日期条件禁用
             disabledDate: {
                 type: Function
-            },
-            maxDate: {
-                type: String
-            },
-            minDate: {
-                type: String
             }
         },
         data() {
             return {
                 dateTimeValue: [],
-                dateValue: [],
                 inputDateString: '',
-                max: this.maxDate ? Moment(this.maxDate).format(this.formatString) : '',
-                min: this.minDate ? Moment(this.minDate).format(this.formatString) : '',
                 // 时间范围模式专用变量
                 rangeEndDate: '', // 选中第一个日期后, hover 的第二个日期, 用于 isInRange 状态计算
                 isTooltipShow: false,
-                tabSelectValue: 'date'
-                // tabDateString: '0000-00-00',
-                // tabTimeString: '00:00:00'
+                tabSelectValue: 'date' // 默认是 date 的 tab 页面
             };
         },
         computed: {
@@ -329,48 +356,28 @@
             tabTimeArr() {
                 return this.dateTimeValue.map(x => x && x.split(' ')[1]) || ['00:00:00'];
             }
-            // tabDateString() {
-
-            // },
-            // hoverDate() {
-            //     return this.rangeEndDate;
-            // },
         },
         watch: {
             value: {
                 immediate: true,
                 handler(v) {
                     // TODO: 接受时间戳, 其余格式的时间(使用moment 转换)
+                    if (!v) {
+                        this.inputDateString = v;
+                        this.dateTimeValue = [];
+                    }
                     if (!!v && typeof v === 'string') {
                         if (!Moment(v).isValid()) {
                             v = '';
                         }
                         this.inputDateString = v;
-                        // this.tabDateString = v.split(' ')[0];
-                        this.dateValue = [v.split(' ')[0]];
-                        // this.tabTimeString = v.split(' ')[1];
-                        console.log('value => innerV');
                         this.dateTimeValue = [v];
                     } else if (Array.isArray(v)) {
                         const tmpArr = v.filter(timeStr => Moment(timeStr).isValid());
                         v = tmpArr.length > 2 ? tmpArr.slice(0, 2) : tmpArr;
                         this.inputDateString = v.join(' ~ ');
-                        console.log('range value => innerV');
                         this.dateTimeValue = v;
-                        this.dateValue = v.map(x => x.split(' ')[0]);
                     }
-                }
-            },
-            maxDate: {
-                immediate: true,
-                handler(v) {
-                    this.max = this.maxDate ? Moment(this.maxDate).format(this.formatString) : '';
-                }
-            },
-            minDate: {
-                immediate: true,
-                handler(v) {
-                    this.min = this.minDate ? Moment(this.minDate).format(this.formatString) : '';
                 }
             }
         },
@@ -381,11 +388,13 @@
             confirmDateTime() {
                 this.isTooltipShow = false;
                 this.tabSelectValue = 'date';
-                this.$emit('input', this.dateTimeValue);
+                if (!this.range) {
+                    this.$emit('input', this.dateTimeValue[0]);
+                } else {
+                    this.$emit('input', this.dateTimeValue);
+                }
             },
             onDayMouseenter(date) {
-                // const [begin, end] = this.dateTimeValue;
-                // const isSetRange = this.range && begin && !end;
                 this.rangeEndDate = this.range ? date : '';
             },
             // 鼠标移出日历, 清空 rangeEndDate 信息 (hover )
@@ -404,10 +413,18 @@
             },
 
             mergeDateTime(arr, type) { // 改变日期的时候, 不改已选中的时间
-                if (this.dateTimeValue.length === 0) {
-                    this.dateTimeValue = arr.map(date => {
-                        return `${date} 00:00:00`;
-                    });
+                // TODO: 增加默认值. 没有日期则自动填充 '今天', 没有时间则自动填充 '零点'
+                if (this.dateTimeValue.length === 0) { // 也要区分type
+                    if (type === 'date') {
+                        this.dateTimeValue = arr.map(date => {
+                            return `${date} 00:00:00`;
+                        });
+                    }
+                    if (type === 'time') {
+                        this.dateTimeValue = arr.map(time => {
+                            return `${Moment().format('YYYY-MM-DD')} ${time}`;
+                        });
+                    }
                 } else {
                     this.dateTimeValue = this.dateTimeValue.map((datetime, i) => {
                         const newDatetime = datetime.split(' ');
@@ -420,17 +437,13 @@
                         return newDatetime.join(' ');
                     });
                 }
-                console.log('after', this.dateTimeValue);
             },
 
-            // 底下上传上来的数据  在这里不给dateTimeValue赋值. 从底下来的数据, 又通过props传下去不合理
-            // 应该用 watch 监听value, 然后改变 inputDateString. 就没有select 的事情了 吗??
-            // 只是日期改变
+            // 日期改变
             popDateTimeValue(dateArr, source = 'calendar') {
                 if (this.range === false) {
                     this.tabSelectValue = 'time';
                     this.mergeDateTime(dateArr, 'date');
-                    // this.tabDateString = dateArr[0]; // 改变外层的 dateTimeValue 再改变tabDateString
                 }
                 if (this.range === true) {
                     if (dateArr.length === 2) {
@@ -438,39 +451,6 @@
                         this.tabSelectValue = 'time';
                     }
                 }
-
-                // if (this.range && dateArr.length < 2) return;
-                // if (this.range) {
-                //     this.$emit('input', dateArr);
-                //     this.inputDateString = dateArr.join(' ~ ');
-                // } else {
-                //     this.$emit('input', dateArr[0]);
-                //     this.inputDateString = dateArr[0];
-                //     this.tabDateString = dateArr[0];
-                // }
-                // this.dateTimeValue = dateArr;
-                // if (source !== 'shortcuts') {
-                //     // this.isTooltipShow = false;
-                //     // 切到 time 页面
-                //     this.tabSelectValue = 'time';
-                // }
-            },
-            // input 回车和blur事件触发
-            setDate(inputValue) {
-                if (this.range) {
-                    return;
-                }
-                if (!inputValue.trim()) {
-                    this.inputDateString = '';
-                    return;
-                }
-                if (Moment(inputValue).isValid() === false) {
-                    // 回显作为信息提示
-                    this.inputDateString = 'Invalid Date';
-                    return;
-                }
-                this.$refs.calendar.jumpToDate(inputValue, 'input');
-                this.$emit('input', inputValue); // 通过 input 改变时间.
             },
             rapidSelect(offset) { // value, unit
                 offset = typeof offset === 'function' ? offset() : offset;
@@ -484,30 +464,23 @@
                     } else {
                         newDates = [aimDateStr, Moment().format(this.formatString)];
                     }
-                    this.dateValue = newDates; // 更新日历的 model
 
                     // 调整两页的日历渲染月份
-                    this.$refs.startCalendar.turnPageTo(this.dateTimeValue[0]);
-                    this.$refs.endCalendar.turnPageTo(Moment(this.dateTimeValue[0]).add(1, 'month').format('YYYY-MM-DD'));
+                    this.$refs.startCalendar.turnPageTo(newDates[0]);
+                    this.$refs.endCalendar.turnPageTo(Moment(newDates[0]).add(1, 'month').format('YYYY-MM-DD'));
 
                     this.mergeDateTime(newDates, 'date');
-                    // this.$emit('input', this.dateTimeValue);
-                    // this.$refs.startCalendar.jumpToDate(this.dateTimeValue, 'shortcuts');
-                    // this.$refs.endCalendar.jumpToDate(this.dateTimeValue, 'shortcuts');
                 } else {
                     // 时间点模式
                     const aimDateTimeStr = Moment().add(value, unit).format('YYYY-MM-DD hh:mm:ss');
-                    this.$emit('input', aimDateTimeStr);
-                    // this.dateTimeValue.splice(0, this.dateTimeValue.length, aimDateTimeStr);
                     this.$refs.calendar.turnPageTo(aimDateTimeStr);
                     this.isTooltipShow = false;
+                    this.$emit('input', aimDateTimeStr);
                 }
             },
             onClear(e) {
                 e.stopPropagation();
-                this.dateTimeValue = [];
-                this.inputDateString = '';
-                // this.emitChange();
+
                 this.$emit('clear', '');
                 this.$emit('change', this.dateTimeValue, 'clear');
                 if (this.range) {
