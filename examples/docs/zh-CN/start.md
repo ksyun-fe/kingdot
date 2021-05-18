@@ -8,7 +8,9 @@
 
 ### 引入King Dot
 
-全部引入的方式直接使用以下代码：
+在引入 king Dot 时，可以传入一个全局配置对象。该对象目前支持 zIndex 与 getEnabledStatus 字段。zIndex 设置弹框的初始 z-index（默认值：2000）；部分组件可通过getEnabledStatus方法的返回值（Boolean）来判断启用还是禁用。
+
+#### 全部引入
 
 ```js
 import Vue from 'vue';
@@ -16,7 +18,13 @@ import kingdot from 'kingdot';
 import 'kingdot/lib/theme-default/index.css';
 import App from './App.vue';
 
-Vue.use(kingdot);
+Vue.use(kingdot, {
+  zIndex: 2000,
+  getEnabledStatus: (authid)=>{
+    ...
+    return true;
+  }
+});
 
 new Vue({
   el: '#app',
@@ -24,7 +32,7 @@ new Vue({
 });
 ```
 
-### 按需引入
+#### 按需引入
 
 借助 babel-plugin-component，只引入需要的组件，以达到减少文件体积。先安装babel-plugin-component：
 
@@ -76,7 +84,13 @@ Vue.component(Button.name, Button);
 /* 或写为
  * Vue.use(Button)
  */
-
+Vue.prototype.$KD = {
+  zIndex: 2000,
+  getEnabledStatus: (authid)=>{
+    ...
+    return true;
+  }
+}
 new Vue({
   el: '#app',
   render: h => h(App)

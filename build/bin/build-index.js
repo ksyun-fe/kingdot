@@ -17,13 +17,13 @@ const components = [
 ];
 
 const install = (Vue, opts = {}) => {
+    const $KD = Vue.prototype.$KD = {};
+    $KD.zIndex = opts.zIndex || 2000;
+    $KD.getEnabledStatus = opts.getEnabledStatus;
     Vue.prototype.$message = Message.creators;
     components.forEach(c => {
         Vue.component(c.name, c);
     });
-    Vue.prototype.$KD = {
-        zIndex: opts.zIndex || 2000
-    };
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
