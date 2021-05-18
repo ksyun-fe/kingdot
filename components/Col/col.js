@@ -1,4 +1,4 @@
-const mediaBreakSize = require('../../src/media.js').mediaBreakSize;
+const mediaBreakSize = require('../../src/utils/media.js').mediaBreakSize;
 const mediaBreakSizeProp = mediaBreakSize.reduce((props, size) => {
     props[size] = {type: [String, Number, Object]};
     return props;
