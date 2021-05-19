@@ -5,7 +5,7 @@
     <div class='row'>
         <kd-button>默认按钮</kd-button>
         <kd-button type='dashed' clickDelay>默认按钮</kd-button>
-        <kd-button type='primary'>主要按钮</kd-button>
+        <kd-button type='primary' authid="zzz">主要按钮</kd-button>
         <kd-button hollow>空心按钮</kd-button>
         <kd-button type='none'>文字按钮</kd-button>
         <kd-button type='text'>链接按钮</kd-button>

@@ -10,6 +10,7 @@
 * Button
     * 优化Button中authid的判断方法，增加全局配置：getEnabledStatus方法
     * 优化【快速上手】文档
+    * 测试用例优化以及增加延时和权限的测试用力
     
     
 ## v1.0.7

@@ -11,7 +11,7 @@ const importTemplate = 'import {{name}} from \'{{path}}\';';
 const componentFiles = fs.readdirSync(componentsPath, {encoding: 'utf-8'});
 const template =
 `{{import}}
-
+import enable from './utils/enabled.js';
 const components = [
     {{components}}
 ];
@@ -19,7 +19,7 @@ const components = [
 const install = (Vue, opts = {}) => {
     const $KD = Vue.prototype.$KD = {};
     $KD.zIndex = opts.zIndex || 2000;
-    $KD.getEnabledStatus = opts.getEnabledStatus;
+    $KD.getEnabledStatus = enable.createEnabled(opts.getEnabledStatus);
     Vue.prototype.$message = Message.creators;
     components.forEach(c => {
         Vue.component(c.name, c);
@@ -33,6 +33,8 @@ if (typeof window !== 'undefined' && window.Vue) {
 export default {
     version: '{{version}}',
     install,
+    getAuthList: enable.getAuthList,
+    changeAuthList: enable.changeAuthList,
     {{components}}
 };
 `;
