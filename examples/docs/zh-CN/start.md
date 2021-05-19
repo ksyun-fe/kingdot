@@ -154,3 +154,60 @@ Vue.use(Timeline);
 Vue.use(TimelineItem);
 
 ```
+###  权限功能
+#### 全部引入
+
+```js
+import Vue from 'vue';
+import kingdot from 'kingdot';
+import 'kingdot/lib/theme-default/index.css';
+import App from './App.vue';
+
+Vue.use(kingdot, {
+  zIndex: 2000
+});
+// 调用changeAuthList注入权限列表
+kingdot.changeAuthList(list);
+
+// 如需自定义权限逻辑处理方法，可通过全局配置参数getEnabledStatus
+Vue.use(kingdot, {
+  getEnabledStatus: (authList, authid)=>{
+    ...
+    return true;
+  }
+});
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+```
+#### 按需引入
+
+```js
+import Vue from 'vue';
+import { Button, enable} from 'kingdot';
+import App from './App.vue';
+
+Vue.component(Button.name, Button);
+/* 或写为
+ * Vue.use(Button)
+ */
+Vue.prototype.$KD = {
+  zIndex: 2000,
+  getEnabledStatus: enable.createEnabled()
+  // 或者
+  // getEnabledStatus: enable.createEnabled((authid)=>{
+  //   ...
+  //   return true;
+  // }
+}
+// 调用changeAuthList注入权限列表
+enable.changeAuthList(list);
+
+new Vue({
+  el: '#app',
+  render: h => h(App)
+});
+
+```
