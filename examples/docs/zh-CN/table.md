@@ -11,8 +11,9 @@
         <p style="margin-bottom: 10px">
             <kd-button @click="prevPage">上一页</kd-button>
             <kd-button @click="nextPage">下一页</kd-button>
+            <kd-button @click="toggleSelection">全选</kd-button>
         </p>
-        <kd-table :data="data" 
+        <kd-table :data="data" ref="baseTable"
                 stored nodeKey="id" columnFilter
                 :disableRow="disableRow" 
                 @loadExpand="lazyLoad"
@@ -249,7 +250,10 @@
                     this.clickCount += 1;
                     if(this.clickCount >= 3){this.clickCount = 1}
                 }, 1500);
-            }   
+            },
+            toggleSelection(){
+                this.$refs.baseTable.toggleSelection(true);
+            }      
         }
     }
 </script>
@@ -1026,6 +1030,7 @@
 | 属性      | 说明    | 参数      |
 |---------- |-------- |---------- |
 | getCheckedData     | 获取选中的数据  |    — 
+| toggleSelection     | 全选/反选table  |    true/false 
 
 ### kd-table-column属性
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |

@@ -539,6 +539,14 @@ export default {
             let _columnsData = {}
             this.store.states._columns.forEach(item => _columnsData[item.key] = true)
             this.showColumns = _columnsData;
+        },
+        toggleSelection(flag){
+            if(typeof(flag) === 'boolean'){
+                this.store.checkboxAllAction(flag);
+            }
+            else{
+                throw new Error('table 全选/反选传参必须为boolean类型')
+            }
         }
     }
 }
