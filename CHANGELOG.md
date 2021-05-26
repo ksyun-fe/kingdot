@@ -3,6 +3,8 @@
 ### New features
 * Button
     * add authid/clickDelay/delayTime attribute
+* Table
+    * 新增切换全选反选方法    
 ### Bug fixes
 * 弹层zIndex层级
     * 修复弹层zIndex自定义无效
