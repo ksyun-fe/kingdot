@@ -124,7 +124,7 @@
         },
         watch: {
             disabled(v) {
-                if (!this.authAbeld) return;
+                if (this.authAbeld) return;
                 this.disabledStatus = v;
             }
         },
@@ -140,7 +140,7 @@
                     this.authAbeld = true;
                 } else {
                     this.disabledStatus = true;
-                    this.authAbeld = false;
+                    this.authAbeld = true;
                 }
             },
             initActive() {
