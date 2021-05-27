@@ -6,6 +6,8 @@
 * Table
     * 新增切换全选反选方法    
 ### Bug fixes
+* transfer
+    * 修复设置selectedKeys属性，向右穿梭按钮激活
 * 弹层zIndex层级
     * 修复弹层zIndex自定义无效
 * Button

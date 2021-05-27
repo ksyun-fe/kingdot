@@ -171,6 +171,7 @@
                         if (!item.checked) {
                             if (v.indexOf(item[this.dataKey.key]) > -1 && !item.disabled) {
                                 item.checked = true;
+                                this.toSourceDisabled = false;
                             } else {
                                 item.checked = false;
                             }
