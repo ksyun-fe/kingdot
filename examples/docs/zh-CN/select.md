@@ -65,7 +65,7 @@ export default{
                 <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.value }}
                 </kd-option>
             </kd-select>
-            
+
         </div>
 </template>
 <script>
@@ -77,13 +77,13 @@ export default{
             defaultValue: "",
             defaultValue1: "",
 
-        }   
+        }
     },
     watch:{
-        
+
     },
     methods:{
-        
+
     },
     mounted(){
         let data = []
@@ -409,7 +409,7 @@ export default{
                 <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.value }}
                 </kd-option>
             </kd-select>
-            
+
         </div>
 </template>
 <script>
@@ -421,13 +421,13 @@ export default{
             defaultValue: "",
             defaultValue1: "",
 
-        }   
+        }
     },
     watch:{
-        
+
     },
     methods:{
-        
+
     },
     mounted(){
         let data = []
@@ -475,7 +475,7 @@ export default{
 
 ### Select Events {.component__content}
 | 事件      | 说明    | 回调参数
-|---------- |-------- |---------- |-------------  |-------- | 
+|---------- |-------- |---------- |-------------  |-------- |
 | change    | 选中值发生变化时触发   |  选中值    |
 | remove-tag    | 多选移除tag触发   |  移除的tag值    |
 | clear  | 单选清空内容，多选清空tag   |  —    |
@@ -484,12 +484,12 @@ export default{
 
 ### Option Group Attributes {.component__content}
 | 属性      | 说明    | 类型      | 可选值      | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- | 
+|---------- |-------- |---------- |-------------  |-------- |
 | label     | 分组的别名   | string  | — | —
 
 ### Option Attributes {.component__content}
 | 属性      | 说明    | 类型      | 可选值      | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- | 
+|---------- |-------- |---------- |-------------  |-------- |
 | label     | 选项的别名   | string  | — | —
 | value     | 选项值   | string  / object  | — | —
 | disabled     | 是否禁用该选项   | boolean  | — |  false
