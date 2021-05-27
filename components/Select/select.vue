@@ -4,7 +4,7 @@
             class="kd-select"
             :class="[{
                 'kd-select-disabled':disabled,
-                'kd-select-clear-hover': clearAll,
+                'kd-select-clear-hover': clearAll && !disabled,
                 'kd-select-active': clickOption,
             }]"
             :style="{'width': inputWidth}"
@@ -30,6 +30,7 @@
                         :class="{'kd-select-arrow-icon-rotate':dropdownMenu}"
                 />
                 <i
+                        v-if="!disabled"
                         class="kd-icon-close kd-select-clear-icon"
                         @click.stop="clear"
                 ></i>
@@ -46,6 +47,7 @@
                         >
                             <span>{{ item.label }}</span>
                             <span
+                                    v-if="!disabled"
                                     class="kd-select-tag-close kd-icon-close"
                                     @click.stop="deleteTag(item)"
                             ></span>
@@ -60,6 +62,7 @@
                             type="text"
                             :disabled="disabled"
                             class="kd-select-input-wrap kd-select-input-inner"
+                            :class="{'kd-select-input-disabled':disabled }"
                             :placeholder="inputPlaceholder"
                             @blur="handleBlur"
                             @focus="multipleInputFocus"
