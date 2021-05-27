@@ -8,6 +8,8 @@
 ### Bug fixes
 * 弹层zIndex层级
     * 修复弹层zIndex自定义无效
+* Button
+    * 修复disabled的value变更失效问题
 ### Optimization
 * Button
     * 优化Button中authid的判断方法，增加全局配置：getEnabledStatus方法
