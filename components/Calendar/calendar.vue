@@ -149,6 +149,7 @@
                                 'kd-day-container': true,
                                 'kd-in-range': item.isInRange,
                                 'kd-disMonth': item.disMonth,
+                                'kd-disabled': item.isDisabled,
                             }"
                     >
                         <span
@@ -309,8 +310,8 @@
                             tmpTime.month() === Moment().month() &&
                             tmpTime.year() === Moment().year(),
                         isDisabled: this.disabledDate && this.disabledDate(tmpTime.format(this.formatString)) ||
-                            this.maxDateValue && tmpTime.isAfter(Moment(this.maxDateValue)) ||
-                            this.minDateValue && tmpTime.isBefore(Moment(this.minDateValue)),
+                            this.maxDateValue && tmpTime.isAfter(Moment(this.maxDateValue), 'day') ||
+                            this.minDateValue && tmpTime.isBefore(Moment(this.minDateValue), 'day'),
                         isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpTime.isBetween(this.selectedDate[0], rangeEndDate, 'day', '[]') || false
                     });
                     tmpTime = tmpTime.add(1, 'day');

@@ -2,12 +2,13 @@
 用于选择日期-时间
 
 ### 基础用法
-:::demo #基础用法 ## 选择日期-时间
+:::demo #基础用法 ## 选择日期-时间. 可以使用 hideConfirmBtn 隐藏确认按钮
 
 ```html
 <template>
     <div>
-        <kd-date-time-picker v-model="dateTimeString"> </kd-date-time-picker> 
+        <kd-date-time-picker class="row" v-model="dateTimeString"> </kd-date-time-picker> 
+        <kd-date-time-picker class="row" v-model="dateTimeString" hideConfirmBtn> </kd-date-time-picker> 
         选中值: {{ dateTimeString }}
     </div>
 </template>
@@ -15,7 +16,9 @@
     export default {
         data() {
             return {
-                dateTimeString: ''
+                dateTimeString: '',
+                minDateTime: '2021-06-11 12:00:00',
+                maxDateTime: '2021-06-21 12:00:00'
             }
         },
         
@@ -35,6 +38,32 @@
 ```
 :::
 
+### 范围约束
+:::demo #范围约束 ## 使用 minDateTime, maxDateTime 设置范围约束
+
+```html
+<template>
+    <div>
+        <kd-date-time-picker class="row" v-model="dateTimeString" hideConfirmBtn :minDateTime="minDateTime" :maxDateTime="maxDateTime"> </kd-date-time-picker> 
+        <kd-date-time-picker class="row" v-model="dateTimeArr" hideConfirmBtn range :minDateTime="minDateTime" :maxDateTime="maxDateTime"> </kd-date-time-picker> 
+        选中值: {{ dateTimeString }}
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                dateTimeString: '',
+                dateTimeArr:[],
+                minDateTime: '2021-06-11 12:00:00',
+                maxDateTime: '2021-07-21 12:00:00'
+            }
+        },
+        
+    }
+</script>
+```
+:::
 ### 快捷选项
 :::demo #快捷选项 ## 快捷选项需配置 `shortcuts` 属性. `shortcuts` 中 `label` 与 `offset` 属性可以接受自定义函数,
 
@@ -159,12 +188,13 @@
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 | value / v-model  | 绑定值   | string, array    | - | - |
-| format-string  | 日期格式字符串   | string    | - | 'YYYY-MM-DD' |
-| range  | 是否为范围选择   | bool    | - | false |
-| placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
+| range  | 是否为范围选择   | Boolean    | - | false |
+| placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期时间' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
-| disabled-date  | 符合条件的日期将被禁用   | function    | - | - |
-| clearable | 是否能清空当前值   | Boolean   | true, false | true |
+| minDateTime  |  可选的最小日期时间  | string  | - | - |
+| maxDateTime  | 可选的最大日期时间   | string  | - | - |
+| hideConfirmBtn  | 隐藏确认按钮   | Boolean  | true, false | false |
+| clearable | 是否能清空当前值   | Boolean  | true, false | true |
 
 
 
@@ -177,5 +207,5 @@
 ### Events {.component__content}
 | 事件名称      | 说明    | 回调参数 |
 |---------- |-------- |---------- |
-| change | 在选择完成, 绑定值改变时触发 | (dateArr: Array, source: String)
+| change | 在选择完成, 绑定值改变时触发 | (dateTimeValue: Array/String)
 | clear | 清空选中日期时触发 | -
