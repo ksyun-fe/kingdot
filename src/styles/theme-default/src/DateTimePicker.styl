@@ -1,7 +1,7 @@
 @import "../variables.styl";
 
 .kd-date-time-picker
-    .kd-icon-date 
+    .ksfont
         color $-input-clear-color
     .kd-datetime-picker-panel
         box-shadow $-box-shadow
@@ -50,7 +50,7 @@
     border: 0;
     background-color: transparent;
     line-height: 28px;
-    font-size: 14px;
+    font-size: $-font-base-size;
     color: #606266;
     padding-left: 12px;
     text-align: left;
@@ -70,7 +70,7 @@
     text-align center
     padding 7px 0px
 
-.kd-datetime-tabs .kd-datetime-tab.kd-not-active
+.kd-datetime-tabs .kd-datetime-tab.kd-datetime-tab-not-active
     background #F1F1F5
     border 2px solid #F1F1F5
 
@@ -78,7 +78,7 @@
     display flex
     justify-content center
     height 320px
-    margin-top 10px
+    margin 10px
 
 .kd-datetime-footer {
     display flex

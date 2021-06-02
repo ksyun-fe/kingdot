@@ -5,6 +5,7 @@
     margin 15px 15px 
     margin-bottom 30px
     .kd-calendar-text-btn
+        cursor pointer
         &:hover 
             color $-datepicker-day-blue-color
     .page-left-icon
@@ -21,6 +22,8 @@
             color $-datepicker-day-blue-color
     span
         text-align center
+        font-size: $-font-default-size;
+        color: $-datepicker-header-text-default-color;
 .kd-calendar-default
     margin 0 15px 20px
     width 270px
@@ -31,7 +34,7 @@
             flex 1
             text-align center
             margin-bottom 10px
-            font-size 12px
+            font-size $-font-base-size
 .kd-calendar-table
     .kd-calendar-row
         margin-top: 10px
@@ -60,9 +63,12 @@
             display flex
             &.kd-in-range
                 background-color $-datepicker-day-in-range-bg-color
+            &.kd-disabled
+                background $-datepicker-day-disabled-bg-color
+                color $-datepicker-day-disMonth-color
             &.kd-disMonth
                 background-color $-datepicker-day-disMonth-bg-color
-                // color $-datepicker-day-disMonth-color
+                color $-datepicker-day-disMonth-color
                 // cursor no-drop
                 // &:hover
                 //     color $-datepicker-day-disMonth-color
@@ -72,6 +78,7 @@
             width 24px
             font-size $-font-base-size
             cursor pointer
+            color $-datepicker-day-text-default-color
             /******** 动态样式 *******/ 
             &.kd-blue
                 color $-datepicker-day-blue-color
@@ -87,9 +94,10 @@
                 color $-datepicker-day-selected-color
             &.kd-disabled
                 background $-datepicker-day-disabled-bg-color
+                color $-datepicker-day-disMonth-color
                 cursor no-drop
-                &:hover
-                    color $-datepicker-day-disabled-color
+                // &:hover
+                //     color $-datepicker-day-disabled-color
             &.kd-disMonth
                 background $-datepicker-day-disMonth-bg-color
                 color $-datepicker-day-disMonth-color
