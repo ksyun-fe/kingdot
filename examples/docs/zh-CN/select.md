@@ -9,7 +9,7 @@
         <div>
             <kd-select v-model="defaultValue" placeholder="请选择内容">
                 <kd-option value="">空数据</kd-option>
-                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
+                <kd-option v-for="item in options" :key="item.value" :title="item.label" :value="item.value">{{ item.label }}
                 </kd-option>
             </kd-select>
             <kd-select v-model="defaultValue1" placeholder="请选择内容" width="200px" multiple  class="select-ml">
@@ -33,7 +33,7 @@ export default{
         setTimeout(()=>{
             this.options = [{
                 value:"item1",
-                label:"item option 1"
+                label:"item option 1item option 1item option 1item option 1item option 1item option 1item option 1item option 1"
             },
             {
                 value:"item2",
