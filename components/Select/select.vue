@@ -45,7 +45,7 @@
                                 :key="item.value"
                                 class="kd-select-tags-item"
                         >
-                            <span>{{ item.label }}</span>
+                            <span class="kd-select-tag-label" :title="item.label">{{ item.label }}</span>
                             <span
                                     v-if="!disabled"
                                     class="kd-select-tag-close kd-icon-close"
