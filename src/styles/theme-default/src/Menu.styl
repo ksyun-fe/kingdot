@@ -1,0 +1,22 @@
+@import '../variables.styl'
+
+.kd-menu:after
+    clear both
+.kd-menu:after, .kd-menu:before
+    display table
+    content ''
+// horizontal
+.kd-menu-horizontal
+    .kd-menu-item
+        float left
+.kd-menu-item
+    border-radius $-menu-item-border-radius
+    font-size $-menu-item-font-size
+    // padding 0 24px
+    overflow hidden
+.kd-menu-item-horizontal
+    height $-menu-item-horizontal-height
+    line-height $-menu-item-horizontal-line-height
+.kd-menu-item-vertical
+    height $-menu-item-vertical-height
+    line-height $-menu-item-vertical-line-height
