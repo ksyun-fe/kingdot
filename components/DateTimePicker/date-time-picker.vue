@@ -14,6 +14,8 @@
                     :placeholder="placeholder"
                     :width="range ? 400 : 200"
                     :disabled="disabled"
+                    readonly
+                    @keyup.enter="setDate(inputDateString)"
             >
                 <template slot="suffix">
                     <i
@@ -44,7 +46,7 @@
                                 v-for="(item, i) in shortcuts"
                                 :key="i"
                                 class="kd-sidebar-row"
-                                @click="rapidSelect(item.offset)"
+                                @click="rapidSelect(item.value)"
                         >
                             <span>{{ typeof item.label === 'function' ? item.label() : item.label }}</span>
                         </div>
@@ -120,7 +122,7 @@
                                 v-for="(item, i) in shortcuts"
                                 :key="i"
                                 class="kd-sidebar-row"
-                                @click="rapidSelect(item.offset)"
+                                @click="rapidSelect(item.value)"
                         >
                             <span>{{ item.label }}</span>
                         </div>
@@ -374,6 +376,58 @@
             }
         },
         methods: {
+            // input 回车和blur事件触发
+            setDate(inputValue) {
+                if (this.range) {
+                    const charArr = ['~', '-'];
+                    let delimiter = '';
+                    // 解析范围的日期时间字符串
+                    // ['~', '-', ' '].forEach(char => {
+                    for (let i = 0; i < charArr.length; i++) {
+                        const char = charArr[i];
+                        // 分隔符只有一个
+                        if (inputValue.indexOf(char) > -1 && inputValue.indexOf(char) === inputValue.lastIndexOf(char)) {
+                            delimiter = char;
+                            break;
+                        }
+                    }
+                    // console.log('delimiter', delimiter);
+                    if (!delimiter) {
+                        return this.$message.error("无法解析范围时间字符串, 建议以'~', '-'作为时间点分隔符");
+                    }
+                    let isValid = true;
+                    const dateTimeArr = inputValue.split(delimiter).map(x => {
+                        if (Moment(x).isValid() === false) {
+                            isValid = false;
+                        }
+                        return Moment(x).format('YYYY-MM-DD hh:mm:ss');
+                    });
+                    if (!isValid) {
+                        this.dateTimeValue = [];
+                        this.emitChange(); // 是否需要清空
+                        this.inputDateString = 'Invalid Date';
+                    }
+
+                    if (Moment(dateTimeArr[0]).isAfter(Moment(dateTimeArr[1]))) { // 左时间晚于右时间
+                        const tmp = dateTimeArr.pop();
+                        dateTimeArr.unshift(tmp);
+                    }
+                    this.dateTimeValue = dateTimeArr;
+                    this.emitChange();  // TODO:需要日历翻页
+                } else { // 单点时间
+                    if (!inputValue.trim()) {
+                        this.inputDateString = '';
+                        return;
+                    }
+                    if (Moment(inputValue).isValid() === false) {
+                        // 回显作为信息提示
+                        this.inputDateString = 'Invalid Date';
+                        return;
+                    }
+                    this.$refs.calendar.jumpToDate(inputValue, 'input');
+                    this.$emit('input', inputValue); // 通过 input 改变时间.
+                }
+            },
             timeValueChange() {
                 this.mergeDateTime(this.tabTimeArr, 'time');
                 if (this.hideConfirmBtn) {
@@ -448,30 +502,47 @@
                     }
                 }
             },
-            rapidSelect(offset) { // value, unit  {label, dateTimeValue}
-                offset = typeof offset === 'function' ? offset() : offset;
-                const { value, unit } = offset;
-                let newDates = [];
+            rapidSelect(aimDateTime) { // value, unit  {label, Value}
+                aimDateTime = typeof aimDateTime === 'function' ? aimDateTime() : aimDateTime; // 可能是 arr, string
                 if (this.range) {
-                    const aimDateStr = Moment().add(value, unit).format(this.formatString);
-                    if (value > 0) {
-                        // TODO: 快捷选项的时间 不一定是以当前时间为起止点. 可能是某个日期, 或某个日期至今
-                        newDates = [Moment().format(this.formatString), aimDateStr];
-                    } else {
-                        newDates = [aimDateStr, Moment().format(this.formatString)];
+                    // 正常的 范围日期
+                    let newDates = [];
+                    if (Array.isArray(aimDateTime) && aimDateTime.length === 2) {
+                        // 使时间字符串数组保持 左值早于右值
+                        if (Moment(aimDateTime[0]).isAfter(Moment(aimDateTime[1]))) { // 左时间晚于右时间
+                            const tmp = aimDateTime.pop();
+                            aimDateTime.unshift(tmp);
+                        }
+                        newDates = aimDateTime.map(x => {
+                            return Moment(x).format('YYYY-MM-DD hh:mm:ss'); // TODO: 加上精度之后, formatStr 格式变化
+                        });
+                        this.$refs.startCalendar.turnPageTo(newDates[0]);
+                        this.$refs.endCalendar.turnPageTo(Moment(newDates[0]).add(1, 'month').format(this.formatString));
+                        this.mergeDateTime(newDates, 'date');
                     }
-
-                    // 调整两页的日历渲染月份
-                    this.$refs.startCalendar.turnPageTo(newDates[0]);
-                    this.$refs.endCalendar.turnPageTo(Moment(newDates[0]).add(1, 'month').format(this.formatString));
-
-                    this.mergeDateTime(newDates, 'date');
-                } else {
-                    // 时间点模式
-                    const aimDateTimeStr = Moment().add(value, unit).format('YYYY-MM-DD hh:mm:ss');
-                    this.$refs.calendar.turnPageTo(aimDateTimeStr);
-                    this.dateTimeValue = [aimDateTimeStr];
+                    // 表示需要清空dateTimeValue
+                    if (Array.isArray(aimDateTime) && aimDateTime.length === 0) {
+                        this.$refs.startCalendar.turnPageTo(Moment().format(this.formatString));
+                        this.$refs.endCalendar.turnPageTo(Moment().add(1, 'month').format(this.formatString));
+                    }
+                    this.dateTimeValue = newDates;
+                } else { // 时间点模式
+                    let newDateTime = '';
+                    if (!aimDateTime) {
+                        // newDateTime = '';
+                        this.$refs.calendar.turnPageTo(Moment().format(this.formatString));
+                    }
+                    if (!!aimDateTime && typeof aimDateTime === 'string') { // 空字符串? 需要单独逻辑
+                        newDateTime = Moment(aimDateTime).format('YYYY-MM-DD hh:mm:ss');
+                        this.$refs.calendar.turnPageTo(newDateTime);
+                    }
+                    if (Array.isArray(aimDateTime) && aimDateTime.length === 1) {
+                        newDateTime = Moment(aimDateTime[0]).format('YYYY-MM-DD hh:mm:ss');
+                        this.$refs.calendar.turnPageTo(newDateTime);
+                    }
+                    this.dateTimeValue = [newDateTime];
                 }
+
                 if (this.hideConfirmBtn) {
                     this.emitChange();
                 }
