@@ -309,7 +309,7 @@
                         isTodayFlag: tmpTime.date() === Moment().date() && // 试试用 equal代替
                             tmpTime.month() === Moment().month() &&
                             tmpTime.year() === Moment().year(),
-                        isDisabled: this.disabledDate && this.disabledDate(tmpTime.format(this.formatString)) ||
+                        isDisabled: this.disabledDate && this.disabledDate(tmpTime.format(this.formatString), this.selectedDate[0]) ||
                             this.maxDateValue && tmpTime.isAfter(Moment(this.maxDateValue), 'day') ||
                             this.minDateValue && tmpTime.isBefore(Moment(this.minDateValue), 'day'),
                         isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpTime.isBetween(this.selectedDate[0], rangeEndDate, 'day', '[]') || false
@@ -444,7 +444,7 @@
                 } else if (typeof dateValue === 'string') {
                     const formattedStr = Moment(dateValue).format(this.formatString);
                     this.selectedDate = [formattedStr];
-                    if (this.disabledDate && this.disabledDate(formattedStr)) {
+                    if (this.disabledDate && this.disabledDate(formattedStr, this.selectedDate[0])) {
                         this.$emit('select', 'Invalid Date');
                         return;
                     }
