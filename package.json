@@ -144,7 +144,7 @@
         "ora": "^4.0.4",
         "paper": "^0.11.4",
         "paper-loader": "^0.1.2",
-        "postcss": "^7.0.32",
+        "postcss": "^8.2.10",
         "postcss-loader": "^3.0.0",
         "prettier": "2.0.5",
         "progress-bar-webpack-plugin": "^2.1.0",
