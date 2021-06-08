@@ -254,12 +254,12 @@
         },
         methods: {
             initData(v) {
-                if (!this.$slots.default) return;
+                let defSlot = this.$slots.default || [];
                 if (this.multiple) {
                     const tagList = [];
                     // 多选初始化添加tags
                     v.forEach((vItem) => {
-                        this.$slots.default.forEach((item) => {
+                        defSlot.forEach((item) => {
                             const options = item.componentOptions;
                             if (options) {
                                 const value = options.propsData.value;
@@ -279,7 +279,7 @@
                 } else {
                     // 获取label
                     this.inputLabel = '';
-                    this.$slots.default.forEach((item) => {
+                    defSlot.forEach((item) => {
                         if (item.componentOptions) {
                             if (item.componentOptions.tag === 'kd-option') {
                                 this.initLabel(item, v);
