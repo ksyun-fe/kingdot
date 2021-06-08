@@ -1,5 +1,9 @@
 ## 更新日志 
 
+## v1.0.8
+
+*2021-06-08*
+
 ### New features
 * Button
     * add authid/clickDelay/delayTime attribute
