@@ -182,19 +182,23 @@
                     style.transform = `translate(6px, ${_tranlateY}px)`;
                 } else if (this.$parent.direction === 'horizontal') {
                     const headW = this.$refs.stepHead.clientWidth;
+                    const headH = this.$refs.stepHead.clientHeight;
+                    const _tranlateY = Math.ceil((headH + 1) / 2);
                     if (this.$parent.position === 'left') {
                         const titleW = this.$refs.stepTitle.clientWidth;
                         const _tranlateX = headW + titleW;
-                        style.transform = `translate(${_tranlateX}px, 16px)`;
+                        style.transform = `translate(${_tranlateX}px, ${_tranlateY}px)`;
                         style.width = `calc(100% - ${_tranlateX}px)`;
                     } else {
                         const _tranlateX = headW;
-                        style.transform = `translate(${_tranlateX}px, 16px)`;
+                        style.transform = `translate(${_tranlateX}px, ${_tranlateY}px)`;
                         style.width = `calc(100% - ${_tranlateX}px)`;
                     }
                 } else if (this.$parent.direction !== 'horizontal') {
                     const headH = this.$refs.stepHead.clientHeight;
-                    style.transform = `translate(15px, ${headH}px)`;
+                    const headW = this.$refs.stepHead.clientWidth;
+                    const _tranlateX = Math.ceil(headW / 2);
+                    style.transform = `translate(${_tranlateX}px, ${headH}px)`;
                     style.height = `calc(100% - ${headH}px)`;
                 }
                 return style;

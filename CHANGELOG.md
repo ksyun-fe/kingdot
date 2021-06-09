@@ -1,5 +1,12 @@
 ## 更新日志 
 
+### New features 
+### Bug fixes
+### Optimization
+* Steps
+    * 优化Steps中各step之间连线样式，动态获取连线位置
+   
+   
 ## v1.0.8
 
 *2021-06-08*
