@@ -177,12 +177,12 @@
             },
             stepLineStyle() {
                 const style = {};
+                const headW = this.$refs.stepHead.clientWidth;
+                const headH = this.$refs.stepHead.clientHeight;
                 if (this.type === 'spot') {
                     const _tranlateY = Math.ceil((this.$parent.spotLineLH + 4) / 2);
                     style.transform = `translate(6px, ${_tranlateY}px)`;
                 } else if (this.$parent.direction === 'horizontal') {
-                    const headW = this.$refs.stepHead.clientWidth;
-                    const headH = this.$refs.stepHead.clientHeight;
                     const _tranlateY = Math.ceil((headH + 1) / 2);
                     if (this.$parent.position === 'left') {
                         const titleW = this.$refs.stepTitle.clientWidth;
@@ -195,8 +195,6 @@
                         style.width = `calc(100% - ${_tranlateX}px)`;
                     }
                 } else if (this.$parent.direction !== 'horizontal') {
-                    const headH = this.$refs.stepHead.clientHeight;
-                    const headW = this.$refs.stepHead.clientWidth;
                     const _tranlateX = Math.ceil(headW / 2);
                     style.transform = `translate(${_tranlateX}px, ${headH}px)`;
                     style.height = `calc(100% - ${headH}px)`;

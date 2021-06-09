@@ -30,9 +30,7 @@
     .kd-step-head
         position absolute
         flex 1
-        z-index 1
         padding 0 8px 0 8px
-        z-index 1
     .kd-step-index
         display inline-block
         width 30px
@@ -101,7 +99,6 @@
         width 7px
         height 7px
         border-radius 50%
-        vertical-align middle
         &.kd-step-spot-default
             background $-step-spot-default-background-color
         &.kd-step-spot-active
@@ -111,15 +108,15 @@
         &.kd-step-spot-done
             background-color $-step-spot-done-background-color
     .kd-step-spot-line
-        display inline-block
+        display flex
+        justify-content center
+        align-items: center;
+        margin-top 4px
         width 14px
         height 14px
         border-radius 50%
         border 1px solid $-step-spot-line-border-color
         background-color $-steps-container-background-color
-        text-align center
-        line-height 11px
-        vertical-align middle
     .kd-step-line
         display flex
         flex 1
@@ -144,7 +141,6 @@
         padding 0 8px
         font-size 16px
         color $-step-title-color
-        z-index 10
         &.kd-step-title-active
             color $-step-title-active-color
         &.kd-step-title-small
