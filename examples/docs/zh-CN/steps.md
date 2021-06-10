@@ -160,6 +160,11 @@
             <kd-step title="步骤二" ></kd-step>
             <kd-step title="步骤三" ></kd-step>
         </kd-steps>
+        <kd-steps v-model="stepIndex1" type='simple'>
+            <kd-step title="" ></kd-step>
+            <kd-step title="" ></kd-step>
+            <kd-step title="" ></kd-step>
+        </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>

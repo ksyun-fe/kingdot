@@ -4,7 +4,7 @@
             :class="`kd-step-${type}`"
     >
         <span
-                v-if="!isLast() && type != 'simple'"
+                v-if="!isLast()"
                 :id="'kd-step-line' + index"
                 class="kd-step-line"
                 :class="{
@@ -20,6 +20,7 @@
                 <div
                         ref="stepHead"
                         class="kd-step-head"
+                        :style="handleSimpleFlex"
                         @click="_click"
                 >
                     <!-- head部分 -->
@@ -76,7 +77,10 @@
                     </slot>
                 </div>
                 <!-- 标题和描述 -->
-                <div class="kd-step-main">
+                <div
+                        v-if="title != ''||description != ''"
+                        class="kd-step-main"
+                >
                     <span
                             v-if="title != ''"
                             ref="stepTitle"
@@ -169,6 +173,17 @@
                 }
                 return style;
             },
+            handleSimpleFlex() {
+                const style = {};
+                if (this.type === 'simple') {
+                    if (this.title !== '') {
+                        style.flex = '30% 0 0 ';
+                    } else {
+                        style.flex = '50% 0 0';
+                    }
+                }
+                return style;
+            },
             iconObj() {
                 return {
                     'kd-icon-success': this._status === 'finished',
@@ -176,6 +191,7 @@
                 };
             },
             stepLineStyle() {
+                if (this.type === 'simple') return;
                 const style = {};
                 const headW = this.$refs.stepHead.clientWidth;
                 const headH = this.$refs.stepHead.clientHeight;
