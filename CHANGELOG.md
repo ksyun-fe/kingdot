@@ -5,6 +5,8 @@
 ### Optimization
 * Steps
     * 优化Steps中各step之间连线样式，动态获取连线位置
+* Dialog
+    * dialog.md文档优化
    
    
 ## v1.0.8
