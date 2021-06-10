@@ -128,15 +128,12 @@
             },
             disabledDate1(dateStr, firstDate) {
                 if (!!firstDate) {
-                    if (Day(dateStr).isAfter(Day(firstDate).add(-3, 'day')) && Day(dateStr).isBefore(Day(firstDate).add(5, 'day'))) {
+                    if (Day(dateStr).isAfter(Day(firstDate).add(-3, 'day')) && Day(dateStr).isBefore(Day(firstDate).add(3, 'day'))) {
                         return false
                     } else {
                         return true
                     }
-                } 
-                // else {
-                //     return false
-                // }
+                }
             }
         }
     }
