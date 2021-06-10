@@ -110,9 +110,10 @@
                     ] = lastChildWidth;
                     Array.from(parent.children).forEach(item => {
                         const headWidth = isIe() ? item.children[0].children[0].children[0].clientWidth : item.children[0].children[0].children[0].offsetWidth;
-                        const firstChild = item.children[0].children[0].children[1].children[0];
+                        const mainElement = item.children[0].children[0].children[1];
+                        const firstChild = mainElement ? item.children[0].children[0].children[1].children[0] : null;
                         const titleWidth = firstChild ? isIe() ? firstChild.clientWidth : firstChild.offsetWidth : 0;
-                        const secondChild = item.children[0].children[0].children[1].children[1];
+                        const secondChild = mainElement ? item.children[0].children[0].children[1].children[1] : null;
                         if (!secondChild && firstChild) {
                             item.children[0].children[0].children[1].style.width = titleWidth + headWidth + 'px';
                         }

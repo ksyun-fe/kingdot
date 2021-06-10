@@ -168,47 +168,45 @@
         margin 69px 0 0 0px
 .kd-step
     &.kd-step-simple
-        position relative
         display inline-block
         height 40px
-        text-align center
         background-color $-step-simple-background-color
+        overflow: hidden
         &:last-child
             flex-basis 20%
         &:not(:last-child)
-            &:after
+            .kd-step-line
+                background-color: $-step-simple-background-color
                 position absolute
-                top 0
-                right 10px
-                content ' '
-                width 0
-                height 0
-                border 20px solid $-step-simple-border-color
-                border-left 10px solid $-step-simple-background-color;
-    &.kd-step-simple+.kd-step-simple
-        &:before
-            position absolute
-            top 0
-            left -31px
-            content ' '
-            width 0
-            height 0
-            border 20px solid $-step-simple-background-color
-            border-left 10px solid transparent
+                top: 0px;
+                right: 7px;
+                width 0px !important
+                border: solid $-step-simple-border-color;
+                border-width: 0 8px 8px 0;
+                display: inline-block;
+                padding: 16px;
+                transform: rotate(-45deg) !important;
+                &.kd-step-line-active
+                    animation unset
 .kd-step-simple
     .kd-step-container
+        display flex
         width 100%
         height 100%
         max-width none
         text-align center
     .kd-step-head
+        position unset
+        flex 30% 0 0
+        text-align right
         height 40px
-        float none
         line-height 40px
         background-color $-kd-step-simple-bgc
-        left 25%
+    .kd-step-main
+        flex: 33% 0 0
+        text-align left
     .kd-step-title-simple
-        left 40% !important
+        position unset
         display inline-block
         height 40px
         line-height 40px
