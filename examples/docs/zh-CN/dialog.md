@@ -190,22 +190,22 @@
 | title  | 标题   | String  |     —     |    -   |
 | showTitle  |  是否显示标题  | Boolean  |     true/false     |    true   |
 | modal     | 是否显示遮罩层   | Boolean    | true/false |     true    |
+| clickModalToClose| 点击遮罩，关闭对话框 | Boolean | true/false | false |
 | showClose  | 是否显示关闭按钮   | Boolean  |     true/false    |    true   |
 | showFooter  | 是否显示底部   | Boolean  |     true/false     |    true   |
-| type  | 类型   | String  |     default/message/tips     |    default   |
-| icon  | 图标类名 type为message，tips   | string  |     —     |    —   |
-| width | 宽度 | String/Number | - |-|
-| height | 内容部分高度 | String/Number | - |-|
 | isScroll | dialog的内容部分，是否滚动，需与height结合使用 | Boolean | true/false | false|
 | center | 是否对头部和底部采用居中布局 | Boolean | true/false | false |
-| clickModalToClose| 点击遮罩，关闭对话框 | Boolean | true/false | false |
+| type  | 类型   | String  |     default/tips/confirm     |    default   |
+| icon  | 图标类型   | string  |     success/failed/warning/info     |    —   |
+| width | 宽度 | String/Number | - |-|
+| height | 内容部分高度 | String/Number | - |-|
 | cancelText | 取消按钮的文案 | String | - | 取消 |
 | okText | 确认按钮的文案 | String | - | 确认 |
 | disableOk | 确认按钮是否禁用 | Boolean | true/false | false |
-| confirmTitle | 二次确认的标题，type为message | String | - | - |
-| confirmTips | 二次确认的附加消息，type为message | String | - | - |
-| tipsTitle | 图标的标题 | String | - | - |
-| tipsMessage | 附加信息 | String | - | - |
+| confirmTitle | 二次确认的标题，type为confirm | String | - | - |
+| confirmTips | 二次确认的附加消息，type为confirm | String | - | - |
+| tipsTitle | 图标的标题，type为tips | String | - | - |
+| tipsMessage | 附加信息，type为tips | String | - | - |
 
 ### 事件 {.component__content}
 | 事件名 | 说明|
