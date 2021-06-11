@@ -2,25 +2,25 @@
     <div
             :class="{
                 'kd-scroll-select': true,
+                'kd-dragging': moveFlag,
                 'kd-disabled': disabled
             }"
     >
-        <!-- :style="{
+        <div
+                class="kd-wrapper"
+                :style="{
                     transform: `translateY(${translateY}px)`,
                     marginTop: `${marginTop}px`,
                 }"
-            @mousedown="moveStart"
-                -->
-        <div
-                class="kd-wrapper"
+                @mousedown="moveStart"
                 @wheel.prevent="mouseWheel"
         >
             <div
                     v-for="(item, index) in selectList"
                     :key="index"
                     ref="item"
-                    class="kd-scroll-item"
                     :class="{
+                        'kd-scroll-item': true,
                         'kd-scroll-item-active': value === item.value,
                         'kd-scroll-item-disabled': isItemDisabled(item)
                     }"
@@ -34,12 +34,10 @@
 </template>
 
 <script>
-    import Lang from 'src/mixin/lang.js';
-    // import normalizeWheel from 'normalize-wheel';
+    import normalizeWheel from 'normalize-wheel';
 
     export default {
         name: 'ScrollSelect',
-        mixins: [Lang],
         props: {
             value: {
                 type: [String, Number]
@@ -57,22 +55,25 @@
             // 判断选项是否需要禁用
             itemDisable: {
                 type: Function
+            },
+            count: { //  展示范围, 最好奇数位. 默认5
+                type: Number,
+                default() {
+                    return 17;
+                }
             }
-            // count: { //  展示范围, 最好奇数位. 默认5
-            //     type: Number,
-            //     default() {
-            //         return 5;
-            //     }
-            // }
         },
         data() {
             return {
-                // translateY: 0,
-                // marginTop: 0,
+                translateY: 0,
+                marginTop: 0,
                 curIndex: 0,
                 currentValue: this.data[0].value || this.data[0],
+                // 拖动相关
+                moveFlag: false,
+                moveStartY: 0
                 // currentValue: '',
-                count: 5 // 展示范围, 默认5
+                // count: 5 // 展示范围, 默认5
                 // isDisabled: this.disabled
             };
         },
@@ -99,13 +100,16 @@
                     }
                     return item;
                 });
-                // return data;
 
                 const length = data.length;
                 const half = Math.floor(this.count / 2);
                 if (length < 1) {
                     return [];
                 }
+                // if (!~curIndex) { // ~-1 == 0
+                //     curIndex = 0;
+                //     this.currentValue = data[0].value;
+                // }
 
                 // list 是能展示出来的几个元素的集合. 与当前选中的 curValue 有关
                 list = Array(this.count).fill(0).map((item, index) => {
@@ -145,52 +149,55 @@
                 // console.log('initPosition marginTop', this.$el.offsetHeight);
 
                 this.itemHeight = this.$refs.item[0].offsetHeight;
-                // console.log('initPosition translateY', this.itemHeight);
+                // console.log('initPosition itemHeight', this.itemHeight);
 
-                this.translateY = -(Math.floor(this.count / 2) * this.itemHeight - (height - this.itemHeight) / 2);
+                this.initTranslateY = -(Math.floor(this.count / 2) * this.itemHeight - (height - this.itemHeight) / 2);
                 // console.log('initPosition translateY', this.translateY);
 
-                // this.translateY = this.initTranslateY;
+                this.translateY = this.initTranslateY;
 
                 this.marginTop = 0;
             },
-            // moveStart(e) { // 拖动调整
-            //     // 设置初始值
-            //     if(e.which !== 1) return;
-            //     if(this.disabled) return;
-            //     this.moveFlag = true;
-            //     this.moved = false;
-            //     this.moveStartY = e.clientY;
-            //     this.initY = e.clientY;
-            //     this.itemHeight = this.$refs.item[0].offsetHeight;
+            moveStart(e) { // 拖动调整
+                // 设置初始值
+                if (e.which !== 1) return;
+                if (this.disabled) return;
+                this.moveFlag = true;
+                this.moved = false;
+                this.moveStartY = e.clientY;
+                this.initY = e.clientY;
+                this.itemHeight = this.$refs.item[0].offsetHeight;
 
-            //     // addEventListener(document, 'mousemove', this.moving)
-            //     // addEventListener(document, 'mouseup', this.moveEnd)
-            //     document.addEventListener('mousemove', this.moving)
-            //     document.addEventListener('mouseup', this.moveEnd)
-            // },
-            // moving(e) {
-            //     if(!this.moveFlag) return;
-            //     let moveY = e.clientY - this.moveStartY;
-            //     let detaY = e.clientY - this.initY;
-            //     this.moved = !!moveY;
-            //     let moveIndex = Math.floor(Math.abs(detaY) / this.itemHeight);
-            //     if (moveIndex) {
-            //         if (detaY < 0) {
-            //             moveIndex = -moveIndex;
-            //         }
+                document.addEventListener('mousemove', this.moving);
+                document.addEventListener('mouseup', this.moveEnd);
+            },
+            moving(e) {
+                if (!this.moveFlag) return;
+                const moveY = e.clientY - this.moveStartY;
+                if (!moveY) {
+                    return;
+                }
+                const detaY = e.clientY - this.initY;
+                this.moved = !!moveY;
 
-            //         this.setMoveValue(-moveIndex, -detaY);
-            //         this.initY = e.clientY;
-            //     }
-            //     this.moveStartY = e.clientY;
+                let moveIndex = Math.floor(Math.abs(detaY) / this.itemHeight);
 
-            //     this.translateY += moveY;
-            // },
+                if (moveIndex) {
+                    if (detaY < 0) {
+                        moveIndex = -moveIndex;
+                    }
+
+                    this.setMoveValue(-moveIndex, -detaY);
+                    // console.log('move change', -moveIndex, -detaY);
+                    this.initY = e.clientY;
+                }
+                this.moveStartY = e.clientY;
+                this.translateY += moveY;
+            },
             // setMoveValue(index, moveY, isSetTranslate) {
 
-            //     let length = this.selectList.length;
-            //     let currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
+            //     const length = this.selectList.length;
+            //     const currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
             //     this.currentValue = this.selectList[(length + currentIndex + index) % length].value;
             //     this.marginTop += moveY || index * this.itemHeight;
 
@@ -198,54 +205,59 @@
             //         this.translateY -= this.itemHeight * index;
             //     }
             // },
-            // moveEnd(e) {
-            //     if (this.moveFlag) {
-            //         this.moveFlag = false;
-            //         this.translateY = -this.marginTop + this.initTranslateY;
+            moveEnd(e) {
+                if (this.moveFlag) {
+                    this.moveFlag = false;
+                    this.translateY = -this.marginTop + this.initTranslateY;
 
-            //         // removeEventListener(document,'mousemove', this.moving);
-            //         // removeEventListener(document,'mouseup', this.moveEnd);
-            //         document.removeEventListener('mousemove', this.moving);
-            //         document.removeEventListener('mouseup', this.moveEnd);
-            //     }
-            // },
-            // mouseWheel(e) {
-            //     if (this.disabled) return;
-            //     const normalized = normalizeWheel(e);
-            //     this.setMoveValue(normalized.spinY < 0 ? -1 : 1, null, true)
-            // },
-
-            // =========
+                    document.removeEventListener('mousemove', this.moving);
+                    document.removeEventListener('mouseup', this.moveEnd);
+                }
+            },
             mouseWheel(e) {
                 if (this.disabled) return;
-                // TODO: 拿滚动详细数据 (方向, 距离)
-
-                this.setMoveValue(e.deltaY < 0 ? -1 : 1);
+                const normalized = normalizeWheel(e);
+                this.setMoveValue(normalized.spinY < 0 ? -1 : 1, null, true);
             },
-            setMoveValue(index) {
-                // +-1, null true()
+
+            // =========
+            // mouseWheel(e) {
+            //     if (this.disabled) return;
+            //     // TODO: 拿滚动详细数据 (方向, 距离)
+
+            //     this.setMoveValue(e.deltaY < 0 ? -1 : 1);
+            // },
+            setMoveValue(index, moveY, isSetTranslate) {
                 const length = this.selectList.length;
                 const currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
                 // 选中
                 this.currentValue = this.selectList[(length + currentIndex + index) % length].value;
 
-                // this.marginTop += moveY || index * this.itemHeight; // 滚动一节. 上移或者下移 整个 itemHeight
+                // 支持拖动
+                this.marginTop += moveY || index * this.itemHeight; // 滚动一节. 上移或者下移 整个 itemHeight
 
-                // this.translateY -= this.itemHeight * index;
-                // 改变 this.translateY 使得选中项在中间
-                // if (isSetTranslate) {
-                //     this.translateY -= this.itemHeight * index;
-                // }
+                // 滚动时 改变 this.translateY 使得选中项在中间
+                if (isSetTranslate) {
+                    this.translateY -= this.itemHeight * index;
+                }
             },
             clickHandler(selectItem, index) {
+                if (this.moved) return;
                 if (this.disabled) return;
                 if (this.isItemDisabled(selectItem)) return;
 
                 const half = Math.floor(this.count / 2);
-                const length = this.selectList.length;
-                const currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
+                const itemHeight = this.$refs.item[0].offsetHeight;
 
-                this.currentValue = this.selectList[(length + currentIndex + index - half) % length].value;
+                this.translateY -= (index - half) * itemHeight;
+                this.marginTop += (index - half) * itemHeight;
+
+                this.currentValue = selectItem.value;
+
+                // const length = this.selectList.length;
+                // const currentIndex = this.selectList.findIndex(item => item.value === this.currentValue);
+
+                // this.currentValue = this.selectList[(length + currentIndex + index - half) % length].value;
             },
             isItemDisabled(item) {
                 // 整个组件被禁用, 或者传入了 验证函数, 且验证后为禁用

@@ -48,11 +48,11 @@ export function getDateString(date, type) {
     if (type === 'year') {
         return year;
     }
-    const month = `${year}/${strPad(date.getMonth() + 1, 2)}`;
+    const month = `${year}-${strPad(date.getMonth() + 1, 2)}`;
     if (type === 'month') {
         return month;
     }
-    const _date = `${month}/${strPad(date.getDate(), 2)}`;
+    const _date = `${month}-${strPad(date.getDate(), 2)}`;
 
     if (type !== 'datetime') {
         return _date;

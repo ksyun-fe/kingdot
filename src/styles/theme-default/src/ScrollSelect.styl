@@ -1,14 +1,14 @@
 @import('../variables.styl')
 
 .kd-scroll-select
+    position relative
     text-align center
     overflow hidden
     max-height 100%
     height $-scroll-select-height
     user-select none
-    position relative
-    // .kd-wrapper
-    //     transition transform $transition
+    .kd-wrapper
+        transition transform $-scroll-transition
     &.kd-dragging
         .kd-wrapper
             transition none
@@ -34,7 +34,8 @@
         position absolute
         width 100%
         top 50%
-        margin-top -($-scroll-select-item-height / 2)
+        transform translateY(-50%)
+        // margin-top -($-scroll-select-item-height / 2)
         height $-scroll-select-item-height
         border none
         border-top $-scroll-select-border
