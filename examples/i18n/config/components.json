@@ -83,12 +83,20 @@
                             "name": "Transfer 穿梭框"
                         },
                         {
+                            "path": "/scrollSelect",
+                            "name": "scrollSelect 滚动选择器"
+                        },
+                        {
                             "path": "/timePicker",
                             "name": "TimePicker 时间选择器"
                         },
                         {
                             "path": "/datePicker",
                             "name": "DatePicker 日期选择器"
+                        },
+                        {
+                            "path": "/dateTimePicker",
+                            "name": "DateTimePicker 日期时间选择器"
                         }
                     ]
                 },
@@ -274,6 +282,10 @@
                         {
                             "path": "/datePicker",
                             "name": "DatePicker"
+                        },
+                        {
+                            "path": "/dateTimePicker",
+                            "name": "DateTimePicker"
                         }
                     ]
                 },
