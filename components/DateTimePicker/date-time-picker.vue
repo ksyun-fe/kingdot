@@ -261,7 +261,7 @@
 
 <script>
     import Moment from 'dayjs';
-    import { isEqual } from 'lodash';
+    import _isEqual from 'lodash/isEqual';
     import Time from '../TimePicker/Time.vue';
 
     export default {
@@ -556,7 +556,7 @@
                 }
 
                 this.$emit('input', v);
-                if (!isEqual(v, this.value)) {
+                if (!_isEqual(v, this.value)) {
                     this.$emit('change', v);
                 }
             },
