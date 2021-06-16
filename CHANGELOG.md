@@ -1,13 +1,19 @@
 ## 更新日志 
+## v1.0.9
 
+*2021-06-16*
 ### New features 
-### Bug fixes
+* DateTimePicker
+    新增日期时间选择器
+    支持范围选择, 支持配置快捷选项, 支持自定义禁用日期
 ### Optimization
 * Steps
     * 优化Steps中各step之间连线样式，动态获取连线位置
 * Dialog
     * dialog.md文档优化
     * dialog 样式优化
+* TimePicker
+    优化: 时间面板中的滚动选择器支持拖动
    
 ## v1.0.8
 
