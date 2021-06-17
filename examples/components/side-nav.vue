@@ -110,7 +110,7 @@
         .type-title
             font-weight bold
         .type-title,.group-title,.nav-item
-            width 165px
+            width 200px
             height 37px
             line-height @height
         .group-title,.nav-item
