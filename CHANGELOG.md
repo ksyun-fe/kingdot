@@ -14,6 +14,8 @@
     * dialog 样式优化
 * TimePicker
     * 时间面板中的滚动选择器支持拖动
+* transfer
+    * style样式优化
 * 官网
     * style样式优化
     
