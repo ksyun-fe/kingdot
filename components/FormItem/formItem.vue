@@ -53,7 +53,7 @@
                 type: [String, Number]
             },
             model: {
-                type: String
+                type: [String, Array]
             },
             rules: {
                 type: Object,
