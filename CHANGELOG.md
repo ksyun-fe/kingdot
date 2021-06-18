@@ -1,6 +1,10 @@
 ## 更新日志 
 ## v1.0.9
 
+### New features
+* FormItem
+    v-model支持传入数组
+
 *2021-06-17*
 ### New features 
 * DateTimePicker
