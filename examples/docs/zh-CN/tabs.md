@@ -72,11 +72,11 @@
 ```html
 <template>
  <div>
- <kd-tabs  v-model='key' type='card'>
+  <kd-tabs  v-model='key' type='card'>
     <kd-tab value='1'>标签页一</kd-tab>
     <kd-tab value='2'>标签页二</kd-tab>
     <kd-tab value='3'>标签页三</kd-tab>
- </kd-tabs>   
+  </kd-tabs>   
  </div>   
 </template>   
 <script>
