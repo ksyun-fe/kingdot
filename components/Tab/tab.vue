@@ -2,7 +2,7 @@
     <div
             class="kd-tab"
             :class="{
-                'kd-active':checked,
+                'kd-tab-active':checked,
                 'kd-disabled':disabled,
             }"
             @click="clickTab"
@@ -12,7 +12,7 @@
         </span>
         <div
                 v-if="this.$parent.closable && this.$parent.size !== 'mini' && !this.$parent.isVertical"
-                class="kd-guanbi"
+                class="kd-close"
                 @click.stop="closTab"
         >
             <i class="kd-icon-close"></i>
