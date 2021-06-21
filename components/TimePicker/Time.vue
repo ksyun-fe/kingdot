@@ -10,7 +10,6 @@
                     ref="ScrollSelect"
                     v-model="timeValue[index]"
                     :data="item"
-                    :count="count"
                     :item-disable="getScrollDisable(index)"
                     :disabled="scrollDisabled[index]"
             >
@@ -51,9 +50,9 @@
                     return [];
                 }
             },
-            count: {
-                type: Number
-            }
+            // count: {
+            //     type: Number
+            // }
         },
         data() {
             return {

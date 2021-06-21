@@ -27,54 +27,48 @@
 
 ```html
 <template>
-    <kd-date-picker format-string="MM/DD/YYYY"> </kd-date-picker>
+    <kd-date-picker v-model="dateString" format-string="MM/DD/YYYY"> </kd-date-picker>
 </template>
-
+<script>
+    export default {
+        data() {
+            return {
+                dateString: ''
+            }
+        }
+    }
+</script>
 ```
 :::
 
 ### 快捷选项
-:::demo #快捷选项 ## 快捷选项需配置 `shortcuts` 属性. `shortcuts` 中 `label` 与 `offset` 属性可以接受自定义函数,
+:::demo #快捷选项 ## 快捷选项需配置 `shortcuts` 属性. `shortcuts` 中 `label` 与 `value` 属性可以接受自定义函数,
 
 ```html
 <template>
-    <kd-date-picker :shortcuts="data"> </kd-date-picker>
+    <kd-date-picker v-model="dateString" :shortcuts="data"> </kd-date-picker>
 </template>
 <script >
+    import Day from 'dayjs';
     export default {
         data() {
             return {
+                dateString: '',
                 data: [{
-                    label: '今天',
-                    offset: {
-                        value: 0,
-                        unit: 'day'
-                    }
+                    label: '元旦',
+                    value: ['2021-01-01 12:00:00']
+                },{
+                    label: '儿童节',
+                    value: '2021-06-01 00:00:00'
                 }, {
-                    label: '昨天',
-                    offset: {
-                        value: -1,
-                        unit: 'day'
-                    }
-                }, {
-                    label: '明天',
-                    offset: {
-                        value: 1,
-                        unit: 'day'
+                    label: '全部(字符型)',
+                    value() {
+                        return ''
                     }
                 },{
-                    label: '一周前',
-                    offset: {
-                        value: -1,
-                        unit: 'week'
-                    }
-                }, {
-                    label: '一个月前',
-                    offset() {
-                        return {
-                            value: -1,
-                            unit: 'month'
-                        }
+                    label: '全部(数组类型)',
+                    value() {
+                        return []
                     }
                 }]
             }
@@ -99,16 +93,35 @@
 :::demo #禁用日期 ## 通过自定义方法设置满足条件的日期禁用，传入参数为日期字符串，返回布尔值
 ```html
 <template>
-    <kd-date-picker :disabled-date="disabledDate"> </kd-date-picker>
+    <div>
+        <kd-date-picker v-model="dateString" class="row" :disabled-date="disabledDate"> </kd-date-picker>
+        <kd-date-picker v-model="dateString1" class="row" range :disabled-date="disabledDate1"> </kd-date-picker>
+    </div>
+    
 </template>
 <script>
     import Day from 'dayjs';
-    export default{
+    export default {
+        data() {
+            return {
+                dateString: '',
+                dateString1: [''],
+            }
+        },
         methods: {
             disabledDate(dateStr) {
                 const timeObj = Day(dateStr);
                 if (timeObj.day() === 0 || timeObj.day() === 6) {
                     return true
+                }
+            },
+            disabledDate1(dateStr, firstDate) {
+                if (!!firstDate) {
+                    if (Day(dateStr).isAfter(Day(firstDate).add(-3, 'day')) && Day(dateStr).isBefore(Day(firstDate).add(3, 'day'))) {
+                        return false
+                    } else {
+                        return true
+                    }
                 }
             }
         }
@@ -150,43 +163,26 @@
     </div>
 </template>
 <script>
-    import Moment from 'dayjs';
+    import Day from 'dayjs';
     export default{
         data() {
             return {
                 dateValue: [],
                 data: [{
-                    label: '最近3天',
-                    offset: {
-                        value: -3,
-                        unit: 'day'
-                    }
-                }, {
-                    label: '最近一周',
-                    offset: {
-                        value: -1,
-                        unit: 'week' 
-                    }
+                    label: '端午假期',
+                    value: ['2021-06-12', '2021-06-14']
                 }, {
                     label: '最近一个月',
-                    offset() {
-                        return {
-                            value: -1,
-                            unit: 'month'
-                        }
-                    }
-                },{
-                    label: '未来一周',
-                    offset: {
-                        value: 1,
-                        unit: 'week'
-                    }
+                    value() {
+                        let start = Day().format();
+                        let end = Day().add(-1, 'month').format()
+                        return [start, end]
+                    } 
                 }, {
-                    label: '未来一个月',
-                    offset: {
-                        value: 1,
-                        unit: 'month'
-                    }
+                    label: '全部',
+                    value() {
+                        return []
+                    } 
                 }]
             }
         }
@@ -203,16 +199,21 @@
 | range  | 是否为范围选择   | bool    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
-| disabled-date  | 符合条件的日期将被禁用   | function    | - | - |
+| disabled-date  | 设置禁用的日期   | Function    | - | - |
 | clearable | 是否能清空当前值   | Boolean   | true, false | true |
 
 
+### disabled-date {.component__content}
+| 参数      | 说明    | 类型      | 可选值       | 默认值   |
+|---------- |-------- |---------- |-------------  |-------- |
+| dateStr   | 待判断是否禁用的日期 | string  | - | - |
+| firstDate  | 选中的第一个日期 | string  | - | - |
 
 ### shortcuts {.component__content}
 | 参数      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 | label  | 快捷选项展示的标签文本 | string, function  | - | - |
-| offset  | 快捷选项展示的标签文本 | object, function  | - | - |
+| value  | 快捷选项跳转的值 | string, array, function  | - | - |
 
 ### Events {.component__content}
 | 事件名称      | 说明    | 回调参数 |

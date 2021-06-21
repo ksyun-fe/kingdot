@@ -12,6 +12,7 @@
                     v-model="inputDateString"
                     :placeholder="placeholder"
                     :width="range ? 400 : 200"
+                    :readonly="range"
                     :disabled="disabled"
                     @keyup.enter="setDate(inputDateString)"
             >
@@ -48,7 +49,7 @@
                                 v-for="(item, i) in shortcuts"
                                 :key="i"
                                 class="kd-sidebar-row"
-                                @click="rapidSelect(item.offset)"
+                                @click="rapidSelect(item.value)"
                         >
                             <span>{{ item.label }}</span>
                         </div>
@@ -105,7 +106,7 @@
                                 v-for="(item, i) in shortcuts"
                                 :key="i"
                                 class="kd-sidebar-row"
-                                @click="rapidSelect(item.offset)"
+                                @click="rapidSelect(item.value)"
                         >
                             <span>{{ typeof item.label === 'function' ? item.label() : item.label }}</span>
                         </div>
@@ -132,6 +133,7 @@
 
 <script>
     import Moment from 'dayjs';
+    import _isEqual from 'lodash/isEqual';
 
     export default {
         name: 'KdDatePicker',
@@ -142,12 +144,6 @@
                     return [];
                 }
             },
-            // dateValue: {
-            //     type: Array,
-            //     default: function () {
-            //         return [];
-            //     }
-            // },
             // 格式字符串
             formatString: {
                 type: String,
@@ -214,6 +210,10 @@
             value: {
                 immediate: true,
                 handler(v) {
+                    if (!v) { // 空字符
+                        this.inputDateString = v;
+                        this.dateTimeValue = [];
+                    }
                     if (!!v && typeof v === 'string') {
                         if (!Moment(v).isValid()) {
                             v = '';
@@ -266,16 +266,9 @@
             // 应该用 watch 监听value, 然后改变 inputDateString. 就没有select 的事情了 吗??
             popDateValue(dateArr, source = 'calendar') {
                 if (this.range && dateArr.length < 2) return;
-                if (this.range) {
-                    this.$emit('input', dateArr);
-                    this.inputDateString = dateArr.join(' ~ ');
-                } else {
-                    this.$emit('input', dateArr[0]);
-                    this.inputDateString = dateArr[0];
-                }
-                // console.log('emit change', this.inputDateString, source);
                 this.dateValue = dateArr;
-                this.$emit('change', this.dateValue, source);
+                this.emitChange();
+
                 if (source !== 'shortcuts') {
                     this.isTooltipShow = false;
                 }
@@ -294,45 +287,72 @@
                     this.inputDateString = 'Invalid Date';
                     return;
                 }
-                this.$refs.calendar.jumpToDate(inputValue, 'input');
-                this.$emit('input', inputValue); // 通过 input 改变时间.
+                // 都验证通过了
+                this.dateValue = [inputValue];
+                this.emitChange();
+                // this.$refs.calendar.jumpToDate(inputValue, 'input');
+                // this.$emit('input', inputValue); // 通过 input 改变时间.
             },
-            rapidSelect(offset) { // value, unit
-                offset = typeof offset === 'function' ? offset() : offset;
-                const { value, unit } = offset;
-
-                if (this.range) {
-                    const aimDateStr = Moment().add(value, unit).format(this.formatString);
-                    if (value > 0) {
-                        // TODO: 快捷选项的时间 不一定是以当前时间为起止点.
-                        this.dateValue.splice(0, this.dateValue.length, Moment().format(this.formatString), aimDateStr);
-                    } else {
-                        this.dateValue.splice(0, this.dateValue.length, aimDateStr, Moment().format(this.formatString));
+            rapidSelect(aimDate) { // value, unit
+                aimDate = typeof aimDate === 'function' ? aimDate() : aimDate;
+                // const { value, unit } = offset;
+                if (this.range) { // 对应的是数组
+                    // 正常的 范围日期
+                    let newDates = [];
+                    if (Array.isArray(aimDate) && aimDate.length === 2) {
+                        // 使时间字符串数组保持 左值早于右值
+                        if (Moment(aimDate[0]).isAfter(Moment(aimDate[1]))) { // 左时间晚于右时间
+                            const tmp = aimDate.pop();
+                            aimDate.unshift(tmp);
+                        }
+                        newDates = aimDate.map(x => {
+                            return Moment(x).format('YYYY-MM-DD');
+                        });
+                        this.$refs.startCalendar.turnPageTo(newDates[0]);
+                        this.$refs.endCalendar.turnPageTo(Moment(newDates[0]).add(1, 'month').format(this.formatString));
                     }
-                    this.inputDateString = this.dateValue.join(' ~ ');
-
-                    // 调整两页的日历渲染月份
-                    this.$refs.startCalendar.jumpToDate(this.dateValue, 'shortcuts');
-                    this.$refs.endCalendar.jumpToDate(this.dateValue, 'shortcuts');
+                    if (Array.isArray(aimDate) && aimDate.length === 0) { // 传入空数组表示清空.
+                        this.$refs.startCalendar.turnPageTo(Moment().format(this.formatString));
+                        this.$refs.endCalendar.turnPageTo(Moment().add(1, 'month').format(this.formatString));
+                    }
+                    this.dateValue = newDates;
                 } else {
+                    let newDate = '';
+                    if (!aimDate) { // 空字符串
+                        // newDate = '';
+                        this.$refs.calendar.turnPageTo(Moment().format(this.formatString));
+                    }
+                    if (!!aimDate && typeof aimDate === 'string') {
+                        newDate = Moment(aimDate).format('YYYY-MM-DD');
+                        this.$refs.calendar.turnPageTo(newDate);
+                    }
+                    if (Array.isArray(aimDate) && aimDate.length === 1) {
+                        newDate = Moment(aimDate[0]).format('YYYY-MM-DD');
+                        this.$refs.calendar.turnPageTo(newDate);
+                    }
+                    this.dateValue = [newDate];
                     // 时间点模式
-                    const aimDateStr = Moment().add(value, unit).format(this.formatString);
-                    this.dateValue.splice(0, this.dateValue.length, aimDateStr);
-                    this.$refs.calendar.jumpToDate(aimDateStr, 'shortcuts');
+                }
+                this.emitChange();
+            },
+            emitChange() { // 对外 emit 的部分. 可以在此处format
+                let v = this.dateValue;
+                if (this.range) {
+                    v = (v && v.length < 2) ? [] : v;
+                } else {
+                    v = v[0] || '';
+                }
+
+                this.$emit('input', v);
+                if (!_isEqual(v, this.value)) {
+                    this.$emit('change', v);
                 }
             },
             onClear(e) {
                 e.stopPropagation();
                 this.dateValue = [];
-                this.inputDateString = '';
-                // this.emitChange();
+                this.emitChange();
                 this.$emit('clear', '');
-                this.$emit('change', this.dateValue, 'clear');
-                if (this.range) {
-                    this.$emit('input', []);
-                } else {
-                    this.$emit('input', '');
-                }
             }
         }
     };
