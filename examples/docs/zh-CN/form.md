@@ -1,33 +1,6 @@
 ## Form表单
 表单
 
-:::demo #基础用法
-```html
-<template>
-    <kd-form
-        ref="form"
-    >
-        <kd-form-item
-            model="age"
-            label="年龄："
-        >
-       <kd-input
-            v-model.trim="age"/>
-       </kd-form-item>
-    </kd-form>
-</template>
-<script >
-export default {
-    data() {
-        return {
-            age: 10
-        }   
-    }
-}
-</script>
-```
-:::
-
 :::demo #基础用法 ##表单验证,支持自定义`rules`和`messages`,默认的`rules`和`messages`支持(required, digits, email, url, date, dateISO [YYYY-MM-DD]格式, number, maxLength, minLength, rangeLength, max, min, range, equalTo)的验证及提示.
 ```html
 <template>
@@ -86,6 +59,17 @@ export default {
                     >{{item.text}}
                 </kd-radio>
             </kd-form-item>
+            <kd-form-item>
+                 <template slot="label"> 自我介绍：</template>
+                <kd-input
+                        type="textarea"
+                        placeholder="最大输入长度10"
+                        v-model="desc"
+                        name="ten"
+                        maxlength="10"
+                        size="large"
+                ></kd-input>
+            </kd-form-item>
         </kd-form>
         <kd-button
             class="submit-btn"
@@ -97,6 +81,7 @@ export default {
     export default{
         data() {
             return {
+                desc: '',
                 babel: '精度',
                 age: 20,
                 positiveInteger: 10,
