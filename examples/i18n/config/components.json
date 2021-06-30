@@ -186,9 +186,18 @@
                         {
                             "path": "/dialog",
                             "name": "Dialog 对话框"
-                        },{
+                        },
+                        {
                             "path": "/drawer",
                             "name": "Drawer 抽屉"
+                        },
+                        {
+                          "path": "/draggable",
+                          "name": "draggable 拖拽"
+                        },
+                        {
+                          "path": "/selection",
+                          "name": "selection 鼠标框选"
                         }
                     ]
                 }
