@@ -4,6 +4,7 @@
 ### New features
 * FormItem
     v-model支持传入数组
+    label默认在首行
 
 *2021-06-17*
 ### New features 
