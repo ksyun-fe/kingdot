@@ -1,4 +1,12 @@
 ## 更新日志 
+
+
+
+### Bug fixes
+* button
+    * 修改权限authid与disabled的逻辑关系
+
+    
 ## v1.0.9
 
 ### New features
