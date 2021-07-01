@@ -99,7 +99,7 @@
         data() {
             return {
                 isActive: false,
-                disabledStatus: this.disabled || this.loading,
+                disabledStatus: this.disabled,
                 authAbeld: false,
                 delayDisable: false
             };
