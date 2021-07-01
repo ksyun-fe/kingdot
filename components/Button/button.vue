@@ -100,7 +100,7 @@
             return {
                 isActive: false,
                 disabledStatus: this.disabled,
-                authAbeld: false,
+                authAbled: false,
                 delayDisable: false
             };
         },
@@ -124,7 +124,7 @@
         },
         watch: {
             disabled(v) {
-                if (this.authAbeld) return;
+                if (!this.authAbled) return;
                 this.disabledStatus = v;
             }
         },
@@ -137,10 +137,10 @@
                 if (!this.authid) return;
                 if (this.$KD && this.$KD.getEnabledStatus && this.$KD.getEnabledStatus(this.authid)) {
                     this.disabledStatus = false;
-                    this.authAbeld = true;
+                    this.authAbled = true;
                 } else {
                     this.disabledStatus = true;
-                    this.authAbeld = true;
+                    this.authAbled = true;
                 }
             },
             initActive() {
