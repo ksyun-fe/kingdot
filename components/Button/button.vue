@@ -100,7 +100,7 @@
             return {
                 isActive: false,
                 disabledStatus: this.disabled,
-                authAbled: false,
+                authAbled: true,
                 delayDisable: false
             };
         },
@@ -140,7 +140,7 @@
                     this.authAbled = true;
                 } else {
                     this.disabledStatus = true;
-                    this.authAbled = true;
+                    this.authAbled = false;
                 }
             },
             initActive() {
