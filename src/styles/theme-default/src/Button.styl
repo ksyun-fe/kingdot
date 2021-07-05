@@ -54,6 +54,12 @@ for border in $-btn-border-types
         background $-btn-disabled-bg-color
         border-color $-btn-border-color
         color $-btn-disabled-color
+        &:hover
+        &:focus
+        &:active
+            color $-disabled-color 
+            border-color $-btn-border-color
+
     
 //4种状态
 for type in $-btn-types
@@ -93,6 +99,11 @@ for type in $-btn-types
         background $-btn-disabled-bg-color
         border-color $-btn-border-color
         color $-btn-disabled-color
+        &:hover
+        &:focus
+        &:active
+            color $-disabled-color 
+            border-color $-btn-border-color
 
 //  text types
 for textItem in $-btn-text-types
@@ -108,6 +119,7 @@ for textItem in $-btn-text-types
             color lookup('$-btn-'+ textItem +'-active-color')
     .kd-btn-{textItem}.kd-btn-disabled
         color $-disabled-color
+        border 0 none
 //  加载
 .kd-btn-loading
     pointer-events none
