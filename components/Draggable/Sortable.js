@@ -679,17 +679,17 @@
             moved = true;
 
             if (activeSortable && !options.disabled &&
-				(isOwner
-				    ? canSort || (revert = !rootEl.contains(dragEl)) // Reverting item into the original list
-				    : (
-				        putSortable === this ||
-						(
-						    (activeSortable.lastPullMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) &&
-							group.checkPut(this, activeSortable, dragEl, evt)
-						)
-				    )
-				) &&
-				(evt.rootEl === void 0 || evt.rootEl === this.el) // touch fallback
+                (isOwner
+                    ? canSort || (revert = !rootEl.contains(dragEl)) // Reverting item into the original list
+                    : (
+                        putSortable === this ||
+                        (
+                            (activeSortable.lastPullMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) &&
+                            group.checkPut(this, activeSortable, dragEl, evt)
+                        )
+                    )
+                ) &&
+                (evt.rootEl === void 0 || evt.rootEl === this.el) // touch fallback
             ) {
                 // Smart auto-scrolling
                 _autoScroll(evt, options, this.el);

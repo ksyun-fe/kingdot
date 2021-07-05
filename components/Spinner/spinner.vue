@@ -172,10 +172,20 @@
                 this.$emit('change', value, this.value);
             },
             handleChange(v) {
-                const newv = Number(v);
+                let newv = Number(v);
                 if (v === '' || isNaN(newv)) return;
+
+                if (newv < this.min && this.min !== null) {
+                    newv = this.min;
+                }
+                if (newv > this.max && this.max !== null) {
+                    newv = this.max;
+                }
+
+                this.valueFilter(newv);
                 // 小数点转换number,会导致值为整数
-                this.inputValue = v;
+                this.inputValue = newv;
+                this.$emit('input', newv);
                 this.$emit('change', newv, this.value);
             },
             handleBlur(e) {

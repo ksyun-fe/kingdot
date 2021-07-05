@@ -224,6 +224,7 @@
                 this.$emit('change', event.target.value);
             },
             blurHandler(event) {
+                this.innerValue = this.value;
                 this.$emit('blur', event);
             },
             clear() {
