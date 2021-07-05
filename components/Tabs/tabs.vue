@@ -35,7 +35,7 @@
             >
                 <slot></slot>
                 <div
-                        v-if="type == 'default'"
+                        v-if="type === 'default'"
                         class="kd-move-bar"
                         :style="{
                             width: activeWidth + 'px',
@@ -43,10 +43,11 @@
                         }"
                 ></div>
                 <div
-                        v-if="type == 'vertical'"
+                        v-if="type === 'vertical'"
                         class="kd-move-vertical"
-                        :style="{ 'margin-top': marginTop + 'px',
-                                  height:activeHeight+'px'
+                        :style="{
+                            'margin-top': marginTop + 'px',
+                            height:activeHeight+'px'
                         }"
                 ></div>
             </div>
@@ -68,8 +69,8 @@
     export default {
         name: 'KdTabs',
         props: {
-            // eslint-disable-next-line vue/require-prop-types
             value: {
+                type: [String, Number],
                 default: ''
             },
             type: {
@@ -151,12 +152,15 @@
                     this.marginLeft = 0;
                 }
             },
-            tabsActive({ val = '', marginLeft = '', marginTop = '', width = 0, height = 0}) {
-                this.innerValue = val;
+            setMoveBarPosition({marginLeft = '', marginTop = '', width = 0, height = 0}) {
                 this.marginTop = marginTop;
                 this.activeMarginLeft = marginLeft;
                 this.activeWidth = width;
                 this.activeHeight = height;
+            },
+            tabsActive({ val = '', marginLeft = '', marginTop = '', width = 0, height = 0}) {
+                this.innerValue = val;
+                this.setMoveBarPosition({marginLeft, marginTop, width, height});
                 this.$emit('click', val);
                 this.$emit('input', val);
             },
