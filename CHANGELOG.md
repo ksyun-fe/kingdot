@@ -1,6 +1,6 @@
 ## 更新日志
 
-*2021-06-08*
+*2021-07-05*
 
 ### Bug fixes
 
@@ -9,12 +9,8 @@
 * Slider
   * 修复输入框model无效的问题
 
-### Bug fixes
-
 * button
   * 修改权限authid与disabled的逻辑关系
-
-## v1.0.9
 
 ### New features
 
@@ -22,7 +18,14 @@
     v-model支持传入数组
     label默认在首行
 
+### Optimization
+
+* drawer
+    优化代码
+
 *2021-06-17*
+
+## v1.0.9
 
 ### New features
 

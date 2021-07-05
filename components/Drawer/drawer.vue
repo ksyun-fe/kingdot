@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 <template>
     <div
             v-transfer-dom
@@ -10,7 +9,6 @@
             <div
                     v-if="flag && mask"
                     class="kd-drawer-overlay"
-                    :style="MaskStyles"
                     @click="cancelCloseMask(maskClosable)"
             ></div>
         </transition>
@@ -122,6 +120,9 @@
             // 抽屉弹出位置（left，right，top ，bottom）
             position: {
                 type: String,
+                validator(v) {
+                    return ['left', 'right', 'top', 'bottom'].includes(v);
+                },
                 default: 'right'
             },
             // 确认执行事件
@@ -149,14 +150,11 @@
             showMask() {
                 return this.mask;
             },
-            MaskStyles() {
-                const style = {};
-                this.mask ? (style.opacity = 0.3) : (style.opacity = 0);
-                return style;
-            },
             MainStyles() {
                 const style = {};
-                this.mask ? '' : (style.border = '1px solid #e5e5e5');
+                if (this.mask) {
+                    style.border = '1px solid #e5e5e5';
+                }
                 if (this.position === 'right') {
                     style.width = `${this.width > 800 ? '800' : this.width}px`;
                     style.right = 0;
@@ -170,9 +168,6 @@
                     style.width = '100%';
                     style.height = `${this.height}px`;
                     style.bottom = 0;
-                } else {
-                    // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-                    this.flag = '';
                 }
                 return style;
             }
@@ -195,8 +190,7 @@
             cancelCloseMask(value) {
                 if (value) {
                     if (typeof this.cancel === 'function') {
-                        // eslint-disable-next-line no-useless-call
-                        this.cancel.call(this, this);
+                        this.cancel(this);
                     } else {
                         this.flag = false;
                         this.$emit('cancel');
@@ -205,8 +199,7 @@
             },
             cancelClose() {
                 if (typeof this.cancel === 'function') {
-                    // eslint-disable-next-line no-useless-call
-                    this.cancel.call(this, this);
+                    this.cancel(this);
                 } else {
                     this.flag = false;
                     this.$emit('cancel');
@@ -214,8 +207,7 @@
             },
             running() {
                 if (typeof this.ok === 'function') {
-                    // eslint-disable-next-line no-useless-call
-                    this.ok.call(this, this);
+                    this.ok(this);
                 }
             }
         }
