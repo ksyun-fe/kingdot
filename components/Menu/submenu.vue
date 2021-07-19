@@ -1,33 +1,46 @@
 <template>
     <li
-            class="kd-submenu"
+            :class="classNameList"
     >
         <div
                 :class="classNameObj"
                 :style="[paddingStyle,styleObj]"
                 @mouseover="hover = true"
                 @mouseout="hover = false"
+                @click="clickSubMenu"
         >
             <slot name="title"></slot>
-            <i class="kd-submenu-icon-arrow kd-icon-caret-bottom"></i>
+            <i
+                    v-show="!menu.collapse"
+                    class="kd-submenu-icon-arrow kd-icon-caret-bottom"
+            ></i>
         </div>
-        <ul class="kd-submenu-item">
-            <slot></slot>
-        </ul>
+        <kd-transition
+                type="collapse"
+        >
+            <ul
+                    v-show="isOpened"
+                    :class="{
+                        'kd-submenu-item': true,
+                    }"
+            >
+                <slot></slot>
+            </ul>
+        </kd-transition>
     </li>
 </template>
 
 <script>
+    // import { EventBus } from './eventBus.js';
     import Menu from './menu-mixin';
     export default {
         name: 'KdSubmenu',
         componentName: 'KdSubmenu',
         mixins: [Menu],
         props: {
-            index: {
-                type: String
+            name: {
+                type: [String, Number]
             },
-            // required: true
             disabled: {
                 type: Boolean,
                 default: false
@@ -44,25 +57,57 @@
                     this.active ? 'kd-submenu-active' : '',
                     this.menu.mode === 'horizontal' ? 'kd-submenu-title-horizontal' : 'kd-submenu-title-vertical'
                 ],
-                styleObj: {
-                    'backgroundColor': this.menu.backgroundColor,
-                    'color': this.menu.textColor,
-                    'cursor': this.disabled ? 'not-allowed' : 'pointer'
-                }
+                isActive: false,
+                isOpened: false,
+                defaultOpenedsList: []
             };
         },
         computed: {
-
-        },
-        watch: {
-            hover(v) {
-                if (this.disabled) return;
-                this.styleObj.backgroundColor === v ? this.menu.hoverBackgroundColor : this.menu.backgroundColor;
-                this.styleObj.color === v ? this.menu.hoverTextColor : this.menu.textColor;
+            classNameList() {
+                return {
+                    'kd-submenu': true,
+                    'kd-submenu-opened': this.isOpened
+                };
+            },
+            // 折叠收起菜单状态下高亮
+            highlight() {
+                return (this.isActive) && !this.disabled && this.menu.collapse;
+            },
+            styleObj() {
+                return {
+                    'backgroundColor': this.highlight ? this.menu.activeBackgroundColor : (this.hover ? this.menu.hoverBackgroundColor : this.menu.backgroundColor),
+                    'color': this.highlight ? this.menu.activeTextColor : (this.hover ? this.menu.hoverTextColor : this.menu.textColor),
+                    'cursor': this.disabled ? 'not-allowed' : 'pointer'
+                };
             }
         },
+        watch: {
+            'menu.collapse'(v) {
+                if (v) {
+                    this.isOpened = false;
+                }
+            }
+        },
+        created() {
+            this.defaultOpenedsList = this.menu.defaultOpeneds;
+            this.isOpened = this.defaultOpenedsList.includes(this.name);
+        },
+        mounted() {
+        },
         methods: {
-
+            isActiveFun() {
+                if (this.$parent.$options.componentName === 'KdSubmenu') {
+                    this.isActive = false;
+                    this.$parent.isActiveFun();
+                } else {
+                    this.isActive = true;
+                }
+            },
+            clickSubMenu() {
+                if (!this.$children.length || this.disabled) return;
+                this.isOpened = !this.isOpened;
+                this.menu.toggleItemValue(this.name);
+            }
         }
     };
 </script>

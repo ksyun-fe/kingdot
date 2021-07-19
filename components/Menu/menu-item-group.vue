@@ -44,7 +44,11 @@
 
         },
         methods: {
-
+            isActiveFun() {
+                if (this.$parent.$options.componentName === 'KdSubmenu') {
+                    this.$parent.isActiveFun();
+                }
+            }
         }
     };
 </script>

@@ -7,42 +7,66 @@
 ```html
 <template>
     <div class="menu-demo">
-        <kd-menu :selectedIndex="selectedIndex">
+        <kd-button @click="collapseChange" type="primary">{{ collapse ? '展开' : '收起' }}</kd-button>
+        当前选中的菜单:{{selectedMenu}}
+        <kd-menu
+            class="demo-menu-block"
+            :selectedMenu.sync="selectedMenu" :defaultOpeneds="defaultOpeneds" accordion :collapse="collapse">
             <kd-menu-item
                 v-for="(value,key) in menuList"
                 :key="key"
                 :disabled="value.disabled"
-                index="select"
+                :name="value.key"
             >
-                <i :class="value.icon"></i>{{ value.name }}
+                <i :class="value.icon"></i>
+                <span>{{ value.name }}</span>
             </kd-menu-item>
-            <kd-submenu>
+            <kd-submenu name="2">
                 <template slot="title">
-                    <i class="kd-icon-menu-more"></i>子菜单
+                    <i class="kd-icon-menu-more"></i>
+                    <span slot="title">子菜单</span>
                 </template>
-                <kd-menu-item disabled index="1">
-                    <i class="kd-icon-menu-more"></i>1
+                <kd-menu-item disabled name="2-1">
+                    <i class="kd-icon-menu-more"></i>
+                    <span>1</span>
                 </kd-menu-item>
-                <kd-menu-item index="2">
-                    <i class="kd-icon-menu-more"></i>2
+                <kd-menu-item name="2-2">
+                    <i class="kd-icon-menu-more"></i>
+                    <span>2</span>
                 </kd-menu-item>
-                <kd-menu-item index="3">
-                    <i class="kd-icon-menu-more"></i>3
+                <kd-menu-item name="2-3">
+                    <i class="kd-icon-menu-more"></i>
+                    <span>3</span>
                 </kd-menu-item>
             </kd-submenu>
-            <kd-submenu>
-                <template slot="title">分组导航一</template>
+            <kd-submenu name="3">
+                <template slot="title">
+                    <i class="kd-icon-menu-more"></i>
+                    <span slot="title">分组导航一</span>
+                </template>
                 <kd-menu-item-group>
                     <template slot="title">分组一</template>
-                    <kd-menu-item index="4">
-                        <i class="kd-icon-menu-more"></i>分组菜单1
+                    <kd-menu-item name="3-1">
+                        <i class="kd-icon-menu-more"></i>
+                        <span>分组菜单1</span>
                     </kd-menu-item>
                 </kd-menu-item-group>
                 <kd-menu-item-group title="分组二">
-                    <kd-menu-item index="5">
-                        <i class="kd-icon-menu-more"></i>分组菜单2
+                    <kd-menu-item name="3-2">
+                        <i class="kd-icon-menu-more"></i>
+                        <span>分组菜单2</span>
                     </kd-menu-item>
                 </kd-menu-item-group>
+            </kd-submenu>
+            <kd-submenu name="4" disabled>
+                <template slot="title">
+                    <i class="kd-icon-menu-more"></i>
+                    <span slot="title">禁用子菜单</span>
+                </template>
+                <kd-menu-item disabled name="2-1">
+                    <i class="kd-icon-menu-more"></i>
+                    <span>1</span>
+                </kd-menu-item>
             </kd-submenu>
         </kd-menu>
     </div>
@@ -56,27 +80,34 @@
                         name: '菜单1',
                         disabled: true,
                         icon: 'kd-icon-menu-more',
-                        children:[]
+                        children:[],
+                        key: '1'
                     },{
                         name: '菜单2',
                         icon: 'kd-icon-menu-more',
-                        children:[{
-                            name: '菜单2-1',
-                            disabled: true,
-                            icon: 'kd-icon-menu-more'
-                        },{
-                            name: '菜单2-2',
-                            icon: 'kd-icon-menu-more'
-                        }]
+                        key: '2'
                     }
                 ],
-                selectedIndex: 'select'
+                selectedMenu: '2-2',
+                defaultOpeneds: ['2'],
+                collapse: false,
+            }
+        },
+        methods: {
+            collapseChange() {
+                this.collapse = !this.collapse;
+            }
+        },
+        watch: {
+            selectedMenu(v){
+                console.log(v)
             }
         }
     }
 </script>
 <style type="text/stylus" scoped rel="stylesheet/stylus" lang="stylus">
     .menu-demo
+    .demo-menu-block
         width 400px
 </style>
 ```

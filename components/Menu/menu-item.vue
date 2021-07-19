@@ -4,6 +4,7 @@
             :style="[paddingStyle,itemStyleObj]"
             @mouseover="hover = true"
             @mouseout="hover = false"
+            @click="clickItemHandler"
     >
         <slot></slot>
     </li>
@@ -16,8 +17,8 @@
         componentName: 'KdMenuItem',
         mixins: [Menu],
         props: {
-            index: {
-                type: String
+            name: {
+                type: [String, Number]
             },
             disabled: {
                 type: Boolean,
@@ -27,27 +28,44 @@
         inject: ['menu'],
         data() {
             return {
-                itemClassNameObj: [
-                    'kd-menu-item',
-                    this.disabled ? 'kd-menu-item-disabled' : '',
-                    this.menu.mode === 'horizontal' ? 'kd-menu-item-horizontal' : 'kd-menu-item-vertical'
-                ],
-                itemStyleObj: {
-                    'backgroundColor': this.menu.backgroundColor,
-                    'color': this.menu.textColor,
-                    'cursor': this.disabled ? 'not-allowed' : 'pointer'
-                },
                 hover: false
             };
         },
         computed: {
+            // 是否被选中
+            selectedFlag() {
+                return this.name === this.menu.selectedMenu && !this.disabled;
+            },
+            itemClassNameObj() {
+                return [
+                    'kd-menu-item',
+                    this.disabled ? 'kd-menu-item-disabled' : '',
+                    this.menu.mode === 'horizontal' ? 'kd-menu-item-horizontal' : 'kd-menu-item-vertical',
+                    this.selectedFlag ? 'kd-menu-item-active' : ''
+                ];
+            },
+            itemStyleObj() {
+                if (this.disabled) {
+                    return {
+                        'cursor': 'not-allowed',
+                        'backgroundColor': this.menu.backgroundColor,
+                        'color': this.menu.textColor
+                    };
+                }
+                return {
+                    'backgroundColor': this.selectedFlag ? this.menu.activeBackgroundColor : (this.hover ? this.menu.hoverBackgroundColor : this.menu.backgroundColor),
+                    'color': this.selectedFlag ? this.menu.activeTextColor : (this.hover ? this.menu.hoverTextColor : this.menu.textColor),
+                    'cursor': this.disabled ? 'not-allowed' : 'pointer'
+                };
+            }
         },
         watch: {
-            hover(v) {
-                if (this.disabled) return;
-                this.itemStyleObj.backgroundColor === v ? this.menu.hoverBackgroundColor : this.menu.backgroundColor;
-                this.itemStyleObj.color === v ? this.menu.hoverTextColor : this.menu.textColor;
+            selectedFlag(v) {
+                if (!v) return;
+                this.$parent.isActiveFun();
             }
+        },
+        created() {
         },
         mounted() {
 
@@ -55,7 +73,11 @@
         beforeDestroy() {
         },
         methods: {
-
+            clickItemHandler() {
+                if (this.selectedFlag) return;
+                this.menu.$emit('update:selectedMenu', this.name);
+                // this.menu.changSelectedMenu(this.name);
+            }
         }
     };
 </script>

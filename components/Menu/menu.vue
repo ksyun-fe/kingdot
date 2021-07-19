@@ -19,7 +19,7 @@
                 type: String,
                 default: 'vertical'
             },
-            selectedIndex: {
+            selectedMenu: {
                 type: String,
                 default: ''
             },
@@ -51,20 +51,29 @@
             // If you hover the menu, the text color of the menu
             hoverTextColor: {
                 type: String,
-                default: '#fff'
+                default: '#557dfc'
             },
             // If you hover the menu, the background color of the menu
             hoverBackgroundColor: {
                 type: String,
-                default: '#557dfc'
+                default: '#fff'
+            },
+            // the name list of the open submenu
+            defaultOpeneds: {
+                type: Array,
+                default: () => {
+                    return [];
+                }
+            },
+            // accordion mode
+            accordion: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
             return {
-                classNameObj: {
-                    'kd-menu': true,
-                    'kd-menu-horizontal': this.mode === 'horizontal'
-                }
+                defaultOpenedsList: []
             };
         },
         provide() {
@@ -73,15 +82,37 @@
             };
         },
         computed: {
-
+            classNameObj() {
+                return {
+                    'kd-menu': true,
+                    'kd-menu-horizontal': this.mode === 'horizontal',
+                    'kd-menu-collapse': this.collapse
+                };
+            }
         },
         watch: {
-
+            defaultOpeneds(v) {
+                this.defaultOpenedsList = v;
+            },
+            collapse(v) {
+                if (v) this.defaultOpenedsList = [];
+            }
         },
         created() {
+            // this.$on('toggleItemValue', this.changeValue);
         },
         methods: {
-
+            toggleItemValue(item) {
+                if (!this.accordion || this.mode == 'horizontal') return;
+                this.$children.forEach(v => {
+                    if (v.$options.componentName == 'KdSubmenu' && v.name != item) {
+                        v._data.isOpened = false;
+                    }
+                });
+            },
+            changSelectedMenu(v) {
+                // console.log(v);
+            }
         }
     };
 </script>
