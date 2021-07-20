@@ -50,6 +50,12 @@
                     return [];
                 }
             },
+            accuracy: {
+                type: String,
+                default() {
+                    return 'secend';
+                }
+            }
             // count: {
             //     type: Number
             // }
@@ -65,7 +71,7 @@
         },
         computed: {
             data() {
-                return Array.apply(null, {length: 3}).map((item, index) => {
+                return Array.apply(null, {length: this.accuracy === 'minute' ? 2 : 3}).map((item, index) => {
                     const length = index === 0 ? 24 : 60;
                     return Array(length).fill(0).map((x, i) => strPad(i, 2));
                 });
@@ -133,7 +139,8 @@
                 // timeValue 是数组, oldValue 和value 一样
                 // oldValue = oldValue && oldValue.join(':');
                 value = value.join(':');
-                value = stringTime(value);
+
+                value = stringTime(value, this.accuracy);
 
                 if (this.value !== value) { // 防止多次change
                     this.$emit('input', value); // 传递给上层的 触发 value 变化. 上层 value 是字符串

@@ -7,16 +7,18 @@
 ```html
 <template>
     <div>
-        <kd-date-time-picker class="row" v-model="dateTimeString"> </kd-date-time-picker> 
-        <kd-date-time-picker class="row" v-model="dateTimeString" hideConfirmBtn> </kd-date-time-picker> 
-        选中值: {{ dateTimeString }}
+        选中值: {{ dateTimeString1 }}
+        <kd-date-time-picker class="row" v-model="dateTimeString1" accuracy="minute"> </kd-date-time-picker> 
+        选中值: {{ dateTimeString2 }}
+        <kd-date-time-picker class="row" v-model="dateTimeString2" hideConfirmBtn> </kd-date-time-picker>
     </div>
 </template>
 <script>
     export default {
         data() {
             return {
-                dateTimeString: '',
+                dateTimeString1: '',
+                dateTimeString2: '',
             }
         },
         
@@ -106,9 +108,10 @@
 ```html
 <template>
     <div>
-        <kd-date-time-picker v-model="dateTimeString" :disabled-date="disabledDate"> </kd-date-time-picker>
-        <kd-date-time-picker v-model="dateTimeString" range :disabled-date="disabledDate1"> </kd-date-time-picker>
         选中值: {{ dateTimeString }}
+        <kd-date-time-picker class="row" v-model="dateTimeString" :disabled-date="disabledDate"> </kd-date-time-picker>
+        选中值: {{ dateTimeArr }}
+        <kd-date-time-picker class="row" v-model="dateTimeArr" range :disabled-date="disabledDate1"> </kd-date-time-picker>
     </div>
 </template>
 <script>
@@ -116,7 +119,8 @@
     export default {
         data() {
             return {
-                dateTimeString: ''
+                dateTimeString: '',
+                dateTimeArr: []
             }
         },
         methods: {
@@ -147,8 +151,10 @@
 ```html
 <template>
     <div>
-        <kd-date-time-picker class="row" range v-model="dateTimeArray" :shortcuts="data"> </kd-date-time-picker> 
         选中值: {{ dateTimeArray }}
+        <kd-date-time-picker class="row" range v-model="dateTimeArray" accuracy="minute"> </kd-date-time-picker> 
+        选中值: {{ dateTimeArray }}
+        <kd-date-time-picker class="row" range v-model="dateTimeArray1" :shortcuts="data"> </kd-date-time-picker> 
     </div>
 </template>
 <script>
@@ -157,6 +163,7 @@
         data() {
             return {
                 dateTimeArray: [],
+                dateTimeArray1: [],
                 data: [{
                     label: '端午假期',
                     value: ['2021-06-12', '2021-06-14']
@@ -186,6 +193,7 @@
 | value / v-model  | 绑定值   | string, array    | - | - |
 | range  | 是否为范围选择   | Boolean    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期时间' |
+| accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
 | disabled-date  | 设置禁用的日期   | Function    | - | - |
 | minDateTime  |  可选的最小日期时间  | string  | - | - |

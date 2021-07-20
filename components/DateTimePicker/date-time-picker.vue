@@ -62,7 +62,7 @@
                                     }"
                                     @click="tabSelectValue='date'"
                             >
-                                <span class="kd-datetime-tab-text">{{ tabDateArr[0] || '0000-00-00' }}</span>
+                                <span class="kd-datetime-tab-text">{{ tabDateArr[0] || tabDateText }}</span>
                             </div>
                             <div
                                     :class="{
@@ -71,7 +71,7 @@
                                     }"
                                     @click="tabSelectValue='time'"
                             >
-                                <div class="kd-datetime-tab-text">{{ tabTimeArr[0] || '00:00:00' }}</div>
+                                <div class="kd-datetime-tab-text">{{ tabTimeArr[0] || tabTimeText }}</div>
                             </div>
                         </div>
                         <div
@@ -98,6 +98,7 @@
                                     :date="tabDateArr[0]"
                                     :min="minDateTime"
                                     :max="maxDateTime"
+                                    :accuracy="accuracy"
                                     @change="timeValueChange"
                             >
                             </Time>
@@ -141,7 +142,7 @@
                                         }"
                                         @click="tabSelectValue='date'"
                                 >
-                                    <span class="kd-datetime-tab-text">{{ tabDateArr[0] || '0000-00-00' }}</span>
+                                    <span class="kd-datetime-tab-text">{{ tabDateArr[0] || tabDateText }}</span>
                                 </div>
                                 <div
                                         :class="{
@@ -150,7 +151,7 @@
                                         }"
                                         @click="tabSelectValue='time'"
                                 >
-                                    <div class="kd-datetime-tab-text">{{ tabTimeArr[0] || '00:00:00' }}</div>
+                                    <div class="kd-datetime-tab-text">{{ tabTimeArr[0] || tabTimeText }}</div>
                                 </div>
                             </div>
                             <div
@@ -180,6 +181,7 @@
                                         :date="tabDateArr[0]"
                                         :min="minDateTime"
                                         :max="maxDateTime"
+                                        :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
                                 </Time>
@@ -197,7 +199,7 @@
                                         }"
                                         @click="tabSelectValue='date'"
                                 >
-                                    <span class="kd-datetime-tab-text">{{ tabDateArr[1] || '0000-00-00' }}</span>
+                                    <span class="kd-datetime-tab-text">{{ tabDateArr[1] || tabDateText }}</span>
                                 </div>
                                 <div
                                         :class="{
@@ -206,7 +208,7 @@
                                         }"
                                         @click="tabSelectValue='time'"
                                 >
-                                    <div class="kd-datetime-tab-text">{{ tabTimeArr[1] || '00:00:00' }}</div>
+                                    <div class="kd-datetime-tab-text">{{ tabTimeArr[1] || tabTimeText }}</div>
                                 </div>
                             </div>
                             <div
@@ -237,6 +239,7 @@
                                         :date="tabDateArr[1]"
                                         :min="minDateTime"
                                         :max="maxDateTime"
+                                        :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
                                 </Time>
@@ -330,6 +333,12 @@
                 default() {
                     return '';
                 }
+            },
+            accuracy: {
+                type: String,
+                default() {
+                    return 'secend';
+                }
             }
         },
         data() {
@@ -340,15 +349,17 @@
                 // 时间范围模式专用变量
                 rangeEndDate: '', // 选中第一个日期后, hover 的第二个日期, 用于 isInRange 状态计算
                 isTooltipShow: false,
+                tabDateText: '0000-00-00',
+                tabTimeText: this.accuracy === 'minute' ? '00:00' : '00:00:00',
                 tabSelectValue: 'date' // 默认是 date 的 tab 页面
             };
         },
         computed: {
             tabDateArr() {
-                return this.dateTimeValue.map(x => x && x.split(' ')[0]) || ['0000-00-00'];
+                return this.dateTimeValue.map(x => x && x.split(' ')[0]) || [this.tabDateText];
             },
             tabTimeArr() {
-                return this.dateTimeValue.map(x => x && x.split(' ')[1]) || ['00:00:00'];
+                return this.dateTimeValue.map(x => x && x.split(' ')[1]) || [this.tabTimeText];
             }
         },
         watch: {

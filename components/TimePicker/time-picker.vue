@@ -59,6 +59,7 @@
                                     v-model="timeValue[0]"
                                     :min="minTime"
                                     :max="maxTime"
+                                    :accuracy="accuracy"
                                     @change="timeValueChange"
                             >
                             </Time>
@@ -90,6 +91,7 @@
                                         v-model="timeValue[0]"
                                         :min="minTime"
                                         :max="startTimeMaxLimit(maxTime, timeValue[1])"
+                                        :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
                                 </Time>
@@ -116,6 +118,7 @@
                                         v-model="timeValue[1]"
                                         :min="endTimeMinLimit(minTime, timeValue[0])"
                                         :max="maxTime"
+                                        :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
                                 </Time>
@@ -179,6 +182,12 @@
                 type: Boolean,
                 default() {
                     return true;
+                }
+            },
+            accuracy: {
+                type: String,
+                default() {
+                    return 'secend';
                 }
             }
         },

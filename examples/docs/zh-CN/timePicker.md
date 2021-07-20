@@ -1,13 +1,13 @@
 ### 基础用法
 
-:::demo #基础用法 ##选择任意时间点.
+:::demo #基础用法 ##选择任意时间点.`accuracy`属性可以设定时间精度
 
 ```html
 <template>
     <div>
         <kd-time-picker v-model='time1'></kd-time-picker>
         time1: {{ time1 }}
-        <kd-time-picker v-model='time2'></kd-time-picker>
+        <kd-time-picker v-model='time2' accuracy="minute"></kd-time-picker>
         time2: {{ time2 }}
     </div>
 </template>
@@ -16,7 +16,7 @@
         data() {
             return {
                 time1: '',
-                time2: '08:00:00',
+                time2: '08:00',
             }
         },
     }
@@ -109,6 +109,7 @@
 |--------- |-------- |---------- |-------------  |-------- |
 | value    | 时间字符串   | string, array  |     —     |    -   |
 | placeholder    | 占位符   | string |     —     |    选择时间   |
+| accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
 | disabled  | 设置组件的禁用状态   | boolean  |     —     |    false   |
 | min-time  | 最小可选时间   | string  |     —     |    -   |
 | max-time  | 最大可选时间   | string  |     —     |    -   |
