@@ -1,10 +1,10 @@
 @import "../variables.styl";
 
 .kd-date-picker
-    .kd-icon-date 
-        color $-input-clear-color
+    .ksfont 
+        color $-datetimepicker-icon-color
     .kd-picker-panel
-        box-shadow $-box-shadow
+        box-shadow $-datetimepicker-box-shadow
     
 // 日历组件
 .kd-picker-panel
@@ -62,3 +62,11 @@
     outline: none;
     cursor: pointer;
         
+.kd-datepicker-input
+    .kd-datepicker-close-icon
+        display none
+    &:hover
+        .kd-datepicker-close-icon
+            display block
+        .kd-datepicker-date-icon
+            display none

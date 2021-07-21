@@ -3,9 +3,14 @@
 //     min-width auto
 //     max-height $select-dropdown-max-height
 //     overflow auto
-.kd-time-picker .kd-icon-time {
-    color:#CCCCCC;
-}
+// .kd-time-picker .kd-icon-time {
+//     color:#CCCCCC;
+// }
+.kd-time-picker
+    .ksfont
+        color $-datetimepicker-icon-color
+    .kd-timepicker-panel
+        box-shadow $-datetimepicker-box-shadow
 
 .kd-timepicker-panel // 
     width: 172px;
@@ -38,7 +43,6 @@
 
 .kd-timepicker-panel.range
     width: 450px;
-    max-height: 250px;
     display: flex;
     justify-content: space-around;
     overflow: hidden;
@@ -47,3 +51,12 @@
         margin-bottom: 20px;
         padding: 5px 10px;
         width: 150px;
+
+.kd-timepicker-input
+    .kd-timepicker-close-icon
+        display none
+    &:hover
+        .kd-timepicker-close-icon
+            display block
+        .kd-timepicker-time-icon
+            display none

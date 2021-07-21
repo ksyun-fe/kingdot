@@ -13,11 +13,17 @@
                     :value="timeString"
                     :disabled="disabled"
                     :width="range ? 400 : 200"
+                    class="kd-timepicker-input"
             >
                 <template slot="suffix">
                     <i
                             v-if="clearable && !disabled && !!timeString"
-                            class="kd-icon-close ksfont"
+                            class="kd-icon-close kd-timepicker-close-icon ksfont"
+                            @click="onClear"
+                    ></i>
+                    <i
+                            v-if="clearable && !disabled && !!timeString"
+                            class="kd-icon-time kd-timepicker-time-icon ksfont"
                             @click="onClear"
                     ></i>
                     <i

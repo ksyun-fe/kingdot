@@ -14,6 +14,7 @@
                     :width="range ? 400 : 200"
                     :readonly="range"
                     :disabled="disabled"
+                    class="kd-datepicker-input"
                     @keyup.enter="setDate(inputDateString)"
             >
                 <!-- <template slot="suffix">
@@ -22,7 +23,12 @@
                 <template slot="suffix">
                     <i
                             v-if="clearable && !disabled && !!inputDateString"
-                            class="kd-icon-close ksfont"
+                            class="kd-icon-close kd-datepicker-close-icon ksfont"
+                            @click="onClear"
+                    ></i>
+                    <i
+                            v-if="clearable && !disabled && !!inputDateString"
+                            class="kd-icon-date kd-datepicker-date-icon ksfont"
                             @click="onClear"
                     ></i>
                     <i

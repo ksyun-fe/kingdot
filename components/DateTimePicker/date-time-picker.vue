@@ -15,13 +15,19 @@
                     :width="range ? 400 : 200"
                     :disabled="disabled"
                     readonly
+                    class="kd-datetime-picker-input"
+                    @focus="syncDateTime(inputDateString)"
                     @keyup.enter="setDate(inputDateString)"
             >
                 <template slot="suffix">
                     <i
                             v-if="clearable && !disabled && !!inputDateString"
-                            class="kd-icon-close ksfont"
+                            class="kd-icon-close kd-datetime-close-icon ksfont"
                             @click="onClear"
+                    ></i>
+                    <i
+                            v-if="clearable && !disabled && !!inputDateString"
+                            class="kd-icon-date kd-datetime-date-icon ksfont"
                     ></i>
                     <i
                             v-else
@@ -387,6 +393,12 @@
             }
         },
         methods: {
+            // 点击 input, 将 input value 和 innerValue 同步
+            syncDateTime(inputValue) {
+                if (!inputValue) {
+                    this.dateTimeValue = [];
+                }
+            },
             // input 回车和blur事件触发
             setDate(inputValue) {
                 if (this.range) {
@@ -472,7 +484,7 @@
                 if (this.dateTimeValue.length === 0) {
                     if (type === 'date') {
                         this.dateTimeValue = arr.map(date => {
-                            return `${date} 00:00:00`;
+                            return `${date} ${this.tabTimeText}`;
                         });
                     }
                     if (type === 'time') {
