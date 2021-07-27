@@ -1,5 +1,13 @@
 ## 更新日志
 
+## v1.0.12
+### New features
+
+* DropDown
+    add showArrow pop
+  
+  
+  
 *2021-07-05*
 ## v1.0.11
 ### Bug fixes

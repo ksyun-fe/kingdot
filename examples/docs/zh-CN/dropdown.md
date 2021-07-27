@@ -208,6 +208,7 @@
 | trigger  | 触发按钮的下拉操作   | string |     hover / click     |    hover   
 | splitButton  | 按钮组合   | boolean |   —    |    false   
 | clickHide  | 点击item是否隐藏菜单   | boolean |   —    |    true   
+| showArrow  | 是否显示箭头   | boolean |   true｜false    |    true   
 | placement  | 菜单显示的位置   | string |   top / bottom    |    bottom   
 | contentClass | 	弹层内容添加类名 |	String | — | —  | 
 | hideDestroy    | 弹层隐藏后是否销毁dom   |  Boolean    |  —  | false |
