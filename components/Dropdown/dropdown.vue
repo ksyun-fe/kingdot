@@ -8,6 +8,7 @@
                 :trigger="trigger"
                 :placement="placement"
                 :disabled="disabled"
+                :showArrow="showArrow"
                 can-hover
                 :width-limit="false"
                 :hide-destroy="hideDestroy"
@@ -62,6 +63,10 @@
             trigger: {
                 type: String,
                 default: 'hover'
+            },
+            showArrow: {
+                type: Boolean,
+                default: true
             },
             splitButton: {
                 type: Boolean,
