@@ -1,5 +1,27 @@
 ## 更新日志
 
+*2021-07-28*
+## v1.0.12
+
+### New features
+
+* TimePicker, DateTimePicker
+    支持分钟精度
+* DatePicker, DateTimePicker
+    扩展 shoutcuts 和 disabledDate 方法
+
+### Optimization
+
+* TimePicker, DatePicker, DateTimePicker
+    样式优化
+
+### Bug fixes
+
+* DateTimePicker
+  * 未完成选择时, value和innerValue 不一致问题
+
+
+
 *2021-07-05*
 ## v1.0.11
 ### Bug fixes
