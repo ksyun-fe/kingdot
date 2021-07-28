@@ -152,19 +152,20 @@
                                 'kd-disabled': item.isDisabled,
                             }"
                     >
-                        <span
+                        <div
                                 :class="{
                                     'kd-day': true,
-                                    'kd-blue':item.isTodayFlag,
+                                    'kd-today':item.isTodayFlag,
                                     'kd-disMonth': item.disMonth,
                                     'kd-disabled': item.isDisabled,
+                                    'kd-in-range': item.isInRange,
                                     'kd-selected': selectedDate.indexOf(item.dateStr) > -1
                                 }"
                                 @click="selectDate(item)"
                                 @mouseenter="onDayMouseenter(item)"
                         >
                             {{ item.day }}
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -312,7 +313,7 @@
                         isDisabled: this.disabledDate && this.disabledDate(tmpTime.format(this.formatString), this.selectedDate[0]) ||
                             this.maxDateValue && tmpTime.isAfter(Moment(this.maxDateValue), 'day') ||
                             this.minDateValue && tmpTime.isBefore(Moment(this.minDateValue), 'day'),
-                        isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpTime.isBetween(this.selectedDate[0], rangeEndDate, 'day', '[]') || false
+                        isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpTime.isBetween(this.selectedDate[0], rangeEndDate, 'day', '()') || false
                     });
                     tmpTime = tmpTime.add(1, 'day');
                 }
