@@ -7,10 +7,10 @@
 ```html
 <template>
     <div>
-        选中值: {{ dateTimeString1 }}
-        <kd-date-time-picker class="row" v-model="dateTimeString1" accuracy="minute"> </kd-date-time-picker> 
-        选中值: {{ dateTimeString2 }}
-        <kd-date-time-picker class="row" v-model="dateTimeString2" hideConfirmBtn> </kd-date-time-picker>
+        <kd-date-time-picker v-model="dateTimeString1" accuracy="minute"> </kd-date-time-picker>  选中值: {{ dateTimeString1 }}
+        <br>
+        <br>
+        <kd-date-time-picker v-model="dateTimeString2" hideConfirmBtn> </kd-date-time-picker> 选中值: {{ dateTimeString2 }}
     </div>
 </template>
 <script>
@@ -44,8 +44,10 @@
 ```html
 <template>
     <div>
-        <kd-date-time-picker class="row" v-model="dateTimeString" hideConfirmBtn :minDateTime="minDateTime" :maxDateTime="maxDateTime"> </kd-date-time-picker> 
-        <kd-date-time-picker class="row" v-model="dateTimeArr" hideConfirmBtn range :minDateTime="minDateTime" :maxDateTime="maxDateTime"> </kd-date-time-picker> 
+        <kd-date-time-picker v-model="dateTimeString" hideConfirmBtn :minDateTime="minDateTime" :maxDateTime="maxDateTime"> </kd-date-time-picker> 
+        <br>
+        <br>
+        <kd-date-time-picker v-model="dateTimeArr" hideConfirmBtn range :minDateTime="minDateTime" :maxDateTime="maxDateTime"> </kd-date-time-picker> 
         选中值: {{ dateTimeString }}
     </div>
 </template>
@@ -108,10 +110,10 @@
 ```html
 <template>
     <div>
-        选中值: {{ dateTimeString }}
-        <kd-date-time-picker class="row" v-model="dateTimeString" :disabled-date="disabledDate"> </kd-date-time-picker>
-        选中值: {{ dateTimeArr }}
-        <kd-date-time-picker class="row" v-model="dateTimeArr" range :disabled-date="disabledDate1"> </kd-date-time-picker>
+        <kd-date-time-picker v-model="dateTimeString" :disabled-date="disabledDate"> </kd-date-time-picker> 选中值: {{ dateTimeString }}
+        <br>
+        <br>
+        <kd-date-time-picker v-model="dateTimeArr" range :disabled-date="disabledDate1"> </kd-date-time-picker> 选中值: {{ dateTimeArr }}
     </div>
 </template>
 <script>
@@ -151,10 +153,10 @@
 ```html
 <template>
     <div>
-        选中值: {{ dateTimeArray }}
-        <kd-date-time-picker class="row" range v-model="dateTimeArray" accuracy="minute"> </kd-date-time-picker> 
-        选中值: {{ dateTimeArray }}
-        <kd-date-time-picker class="row" range v-model="dateTimeArray1" :shortcuts="data"> </kd-date-time-picker> 
+        <kd-date-time-picker range v-model="dateTimeArray" accuracy="minute"> </kd-date-time-picker> 选中值: {{ dateTimeArray }} 
+        <br>
+        <br>
+        <kd-date-time-picker range v-model="dateTimeArray1" :shortcuts="data"> </kd-date-time-picker> 选中值: {{ dateTimeArray1 }}
     </div>
 </template>
 <script>

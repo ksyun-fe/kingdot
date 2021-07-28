@@ -7,6 +7,8 @@
     <div>
         <kd-time-picker v-model='time1'></kd-time-picker>
         time1: {{ time1 }}
+        <br>
+        <br>
         <kd-time-picker v-model='time2' accuracy="minute"></kd-time-picker>
         time2: {{ time2 }}
     </div>
@@ -34,6 +36,8 @@
     <div>
         <kd-time-picker v-model='time1' mode="steptime" step="01:00:00"></kd-time-picker>
         time1: {{ time1 }}
+        <br>
+        <br>
         <kd-time-picker v-model='time2' mode="steptime" :optional-times="times" ></kd-time-picker>
         time2: {{ time2 }}
     </div>
@@ -60,6 +64,8 @@
 <template>
     <div>
         <kd-time-picker v-model="time" mode="steptime" :minTime="minTime" :maxTime="maxTime"></kd-time-picker>
+        <br>
+        <br>
         <kd-time-picker v-model="time" :minTime="minTime" :maxTime="maxTime"></kd-time-picker>
         选中值: {{ time }}
     </div>
@@ -86,6 +92,8 @@
     <div>
         <kd-time-picker v-model='timeRange1' range></kd-time-picker>
         timeRange1: {{ timeRange1 }}
+        <br>
+        <br>
         <kd-time-picker v-model='timeRange2' range mode="steptime" step="60"></kd-time-picker>
         timeRange2: {{ timeRange2 }}
     </div>

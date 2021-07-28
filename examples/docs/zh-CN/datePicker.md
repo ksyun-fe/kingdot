@@ -94,8 +94,10 @@
 ```html
 <template>
     <div>
-        <kd-date-picker v-model="dateString" class="row" :disabled-date="disabledDate"> </kd-date-picker>
-        <kd-date-picker v-model="dateString1" class="row" range :disabled-date="disabledDate1"> </kd-date-picker>
+        <kd-date-picker v-model="dateString":disabled-date="disabledDate"> </kd-date-picker>
+        <br>
+        <br>
+        <kd-date-picker v-model="dateString1" range :disabled-date="disabledDate1"> </kd-date-picker>
     </div>
     
 </template>
