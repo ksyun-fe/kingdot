@@ -1,11 +1,11 @@
 ### 基础用法
 
-:::demo #基础用法 ##可使用鼠标滚轮 点击目标的方式选中item
+:::demo #基础用法 ##可使用鼠标滚轮 点击目标的方式选中`item`
 
 ```html
 <template>
     <div>
-        <ScrollSelect :data="dataArr" v-model="selectedVal"></ScrollSelect>
+        <kd-scroll-select :data="dataArr" v-model="selectedVal"></kd-scroll-select>
         <div>
             选中值: {{selectedVal}}
         </div>
@@ -33,7 +33,7 @@
 ```html
 <template>
     <div>
-        <ScrollSelect disabled v-model=selectedVal></ScrollSelect>
+        <kd-scroll-select disabled v-model=selectedVal></kd-scroll-select>
         选中值: {{selectedVal}}
     </div>
 </template>
@@ -52,12 +52,12 @@
 
 ### 部分选项禁用
 
-:::demo #部分选项禁用  ##通过给 itemDisable 属性 传入一个方法, 控制选项的禁用状态
+:::demo #部分选项禁用  ##通过给 `disable` 属性 传入一个方法, 控制选项的禁用状态
 
 ```html
 <template>
     <div>
-        <ScrollSelect :itemDisable="disable" v-model=selectedVal></ScrollSelect>
+        <kd-scroll-select :disable="disable" v-model=selectedVal></kd-scroll-select>
         选中值: {{selectedVal}}
     </div>
 </template>
@@ -84,7 +84,7 @@
 | value    | 选中选项   | string  |     —     |    -   |
 | data     | 选择器的内容   | Array <Object \| String \| Number> [{label, value}], [String \| Number]    |     —     | [1, 2, 3, 4, 5, 6, 7, 8, 9, 0] |
 | disabled  | 设置禁用状态   | boolean  |     —     |    false   |
-| itemDisable  | 按条件设置禁用选项   | function  |     —     |    -   |
+| disable  | 按条件设置禁用选项   | function  |     —     |    -   |
 
 
 

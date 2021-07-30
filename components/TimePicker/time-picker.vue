@@ -81,13 +81,13 @@
                                     v-if="mode === 'steptime'"
                                     class="kd-range-selector-container"
                             >
-                                <!-- :item-disable 不能直接绑定一个函数. 可能有min max限制 有联动限制, 有外部定义的限制 -->
-                                <ScrollSelect
+                                <!-- :disable 不能直接绑定一个函数. 可能有min max限制 有联动限制, 有外部定义的限制 -->
+                                <kd-scroll-select
                                         ref="startTimeSelector"
                                         v-model="timeValue[0]"
                                         :data="timeList"
-                                        :item-disable="startTimeSelectorLimit()"
-                                ></ScrollSelect>
+                                        :disable="startTimeSelectorLimit()"
+                                ></kd-scroll-select>
                             </div>
                             <div
                                     v-if="mode === 'anytime'"
@@ -109,12 +109,12 @@
                                     v-if="mode === 'steptime'"
                                     class="kd-range-selector-container"
                             >
-                                <ScrollSelect
+                                <kd-scroll-select
                                         ref="endTimeSelector"
                                         v-model="timeValue[1]"
                                         :data="timeList"
-                                        :item-disable="endTimeSelectorLimit()"
-                                ></ScrollSelect>
+                                        :disable="endTimeSelectorLimit()"
+                                ></kd-scroll-select>
                             </div>
                             <div
                                     v-if="mode === 'anytime'"

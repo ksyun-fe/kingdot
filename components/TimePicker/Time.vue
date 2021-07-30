@@ -6,14 +6,14 @@
                 :key="index"
                 class="column"
         >
-            <ScrollSelect
+            <kd-scroll-select
                     ref="ScrollSelect"
                     v-model="timeValue[index]"
                     :data="item"
-                    :item-disable="getScrollDisable(index)"
+                    :disable="getScrollDisable(index)"
                     :disabled="scrollDisabled[index]"
             >
-            </ScrollSelect>
+            </kd-scroll-select>
         </div>
     </div>
 </template>
@@ -21,7 +21,7 @@
     import { strPad, getDateString, stringTime } from './utils.js';
 
     export default {
-        // components: { ScrollSelect },
+
         props: {
             value: {
                 type: [String, Array]

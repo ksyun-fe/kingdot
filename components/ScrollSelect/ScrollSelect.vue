@@ -37,7 +37,7 @@
     import normalizeWheel from 'normalize-wheel';
 
     export default {
-        name: 'ScrollSelect',
+        name: 'KdScrollSelect',
         props: {
             value: {
                 type: [String, Number]
@@ -53,7 +53,7 @@
                 default: false
             },
             // 判断选项是否需要禁用
-            itemDisable: {
+            disable: {
                 type: Function
             },
             count: { //  展示范围, 最好奇数位. 默认5
@@ -128,12 +128,12 @@
                 }
             },
             currentValue(value, oldValue) {
-                const itemDisable = this.itemDisable;
+                const disable = this.disable;
 
                 // 判断 currentValue 没有被禁用...
                 // !!value &&
                 // value 是假值的时候就不再 emit 事件, 不然会被处理成 00:00:00
-                if (!!value && !(!!itemDisable && itemDisable.call(this, value))) {
+                if (!!value && !(!!disable && disable.call(this, value))) {
                     this.$emit('input', value);
                     this.$emit('change', value, oldValue);
                 }
@@ -261,7 +261,7 @@
             },
             isItemDisabled(item) {
                 // 整个组件被禁用, 或者传入了 验证函数, 且验证后为禁用
-                const disableFlag = this.disabled || !!this.itemDisable && this.itemDisable(item.value);
+                const disableFlag = this.disabled || !!this.disable && this.disable(item.value);
                 if (!disableFlag && item.value === this.currentValue && this.currentValue !== this.value) {
                     // if (this.value) { // 初始化没有value时, 不把
                     //     this.$emit('input', this.currentValue);
