@@ -26,6 +26,7 @@
         "url": "https://github.com/ksyun-fe/kingdot/issues"
     },
     "scripts": {
+        "updateicon": "rimraf src/styles/common/iconfont.styl && node build/bin/updateicon.js",
         "build:entry": "node build/bin/build-index.js & node build/bin/iconInit.js",
         "dev": "npm run build:entry && cross-env NODE_ENV=development THEME=theme-default webpack-dev-server  --config build/webpack.demo.conf.js",
         "dev:theme": "npm run build:entry && cp-cli src/styles/theme-default/src src/styles/theme/src && cross-env NODE_ENV=development THEME=theme webpack-dev-server  --config build/webpack.demo.conf.js",
