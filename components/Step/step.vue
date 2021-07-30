@@ -220,10 +220,17 @@
         },
         watch: {},
         created() {
-            this.index = this.$parent.getChildrenIndex(this);
+            this.$parent.children.push(this);
             this.position = this.$parent.position;
             this.direction = this.$parent.orientation;
             this.type = this.getType();
+        },
+        beforeDestroy() {
+            const steps = this.$parent.children;
+            const index = steps.indexOf(this);
+            if (index >= 0) {
+                steps.splice(index, 1);
+            }
         },
         methods: {
             _click() {

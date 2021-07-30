@@ -74,6 +74,11 @@
             },
             direction(v) {
                 this.orientation = v;
+            },
+            children(steps) {
+                steps.forEach((child, index) => {
+                    child.index = index + 1;
+                });
             }
         },
         created() {
@@ -87,12 +92,6 @@
                 if (this.type !== 'default') {
                     this.orientation = 'horizontal';
                 }
-            },
-            getChildrenIndex(child) {
-                if (child) {
-                    this.children.push(child);
-                }
-                return this.children.length;
             },
             getChildWidth() {
                 const childNum = this.children.length;
