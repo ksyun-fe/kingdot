@@ -11,10 +11,12 @@
             <kd-input
                     v-model="inputDateString"
                     :placeholder="placeholder"
-                    :width="range ? 400 : 200"
                     :readonly="range"
                     :disabled="disabled"
-                    class="kd-datepicker-input"
+                    :class="{
+                        'kd-datepicker-input': true,
+                        'range': range
+                    }"
                     @keyup.enter="setDate(inputDateString)"
             >
                 <!-- <template slot="suffix">
