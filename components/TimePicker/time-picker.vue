@@ -12,8 +12,10 @@
                     :placeholder="placeholder"
                     :value="timeString"
                     :disabled="disabled"
-                    :width="range ? 400 : 200"
-                    class="kd-timepicker-input"
+                    :class="{
+                        'kd-timepicker-input': true,
+                        'range': range
+                    }"
             >
                 <template slot="suffix">
                     <i
