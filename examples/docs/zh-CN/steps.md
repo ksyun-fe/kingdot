@@ -40,8 +40,8 @@
         <kd-steps v-model="stepIndex1" finishStatus='finished' :width="width">
             <kd-step title="步骤一" status="wait"></kd-step>
             <kd-step title="步骤二" status="error"></kd-step>
-            <kd-step title="步骤三" status="active"></kd-step>
-            <kd-step title="完成完成完成完成"></kd-step>
+             <!-- <kd-step title="步骤三" status="active"></kd-step> -->
+            <!--<kd-step title="完成完成完成完成"></kd-step> -->
         </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
@@ -87,11 +87,11 @@
         <kd-steps v-model="stepIndex1">
             <kd-step title="步骤一" :description="description"></kd-step>
             <kd-step title="步骤二" :description="description"></kd-step>
-            <kd-step title="步骤三" :description="description"></kd-step>
-            <kd-step title="完成" :description="description"></kd-step>
+            <!-- <kd-step title="步骤三" :description="description"></kd-step>
+            <kd-step title="完成" :description="description"></kd-step> -->
         </kd-steps>
         <kd-steps v-model="stepIndex1" position="bottom">
-            <kd-step title="步骤一" :description="description"></kd-step>
+            <kd-step title="步骤一步骤一步骤一步骤一步骤一" :description="description"></kd-step>
             <kd-step title="步骤二" :description="description"></kd-step>
             <kd-step title="步骤三" :description="description"></kd-step>
             <kd-step title="完成" :description="description"></kd-step>
