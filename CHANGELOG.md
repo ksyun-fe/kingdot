@@ -8,7 +8,8 @@
 ## v1.0.12
 
 ### New features
-
+* DropDown
+    add showArrow pop
 * TimePicker, DateTimePicker
     支持分钟精度
 * DatePicker, DateTimePicker
@@ -23,9 +24,9 @@
 
 * DateTimePicker
   * 未完成选择时, value和innerValue 不一致问题
-
-
-
+  
+  
+  
 *2021-07-05*
 ## v1.0.11
 ### Bug fixes
