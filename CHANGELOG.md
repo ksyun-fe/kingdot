@@ -1,10 +1,6 @@
 ## 更新日志
 
-### Optimization
-*Steps
-  样式优化
-
-*2021-07-28*
+*2021-08-5*
 ## v1.0.12
 
 ### New features
@@ -16,7 +12,8 @@
     扩展 shoutcuts 和 disabledDate 方法
 
 ### Optimization
-
+*Steps
+  样式优化
 * TimePicker, DatePicker, DateTimePicker
     样式优化
 
