@@ -165,7 +165,7 @@
                         this.delayDisable = false;
                     }, this.delayTime);
                 }
-                if (!this.disabled && !this.loading) {
+                if (!this.disabledStatus && !this.loading) {
                     this.$emit('click', e);
                 }
                 if (!parent) return;

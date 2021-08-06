@@ -1,5 +1,10 @@
 ## 更新日志
 
+### Bug fixes
+* Button
+  fixed button 权限 disabled
+
+
 *2021-08-5*
 ## v1.0.12
 
