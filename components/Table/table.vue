@@ -22,7 +22,7 @@
                 <kd-dropdown-item
                     v-for="columnItem in store.states._columns"
                     :value="columnItem.title"
-                    :key="showColumns[columnItem.key]"
+                    :key="columnItem.key"
                 >
                     <kd-checkbox
                         v-model="showColumns[columnItem.key]"

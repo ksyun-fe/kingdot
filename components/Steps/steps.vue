@@ -99,6 +99,11 @@
                 const lastChildWidth = precent / childNum + '%';
                 const leftStyle = (precent / childNum) + 5 + '%';
                 const parent = this.$el;
+                if (childNum === 2) {
+                    Array.from(parent.children)[0].style[
+                        'flex-basis'
+                    ] = 90 + '%';
+                }
                 if (this.type === 'default' && this.direction === 'vertical') {
                     Array.from(parent.children)[childNum - 1].style[
                         'max-height'
