@@ -3,6 +3,8 @@
 ### Bug fixes
 * Button
   fixed button 权限 disabled
+* Table
+  fixed table 展示列columnFilter key值
 
 
 *2021-08-5*
