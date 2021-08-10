@@ -121,7 +121,8 @@
 | disabled  | 设置组件的禁用状态   | boolean  |     —     |    false   |
 | min-time  | 最小可选时间   | string  |     —     |    -   |
 | max-time  | 最大可选时间   | string  |     —     |    -   |
-| mode  |  模式,    | string  |     'anytime', 'steptime'     |    'anytime'   |
+| disabled-time  | 设置禁用的日期   | Function  |     —     |    -   |
+| mode  |  模式    | string  |     'anytime', 'steptime'     |    'anytime'   |
 | step | 步长  | number, string  |     —     |    -   |
 | optional-times | 可选时间列表  | array  |     —     |    -   |
 | range | 是否是时间范围  | boolean  |     —     |    false   |
