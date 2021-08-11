@@ -262,6 +262,7 @@
                 >
                     <kd-button
                             type="primary"
+                            size="mini"
                             @click="confirmDateTime"
                     >确认</kd-button>
                 </div>
