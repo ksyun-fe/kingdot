@@ -202,6 +202,8 @@
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
 | disabled-date  | 设置禁用的日期   | Function    | - | - |
+| minDate  |  可选的最小日期  | string  | - | - |
+| maxDate  |  可选的最大日期  | string  | - | - |
 | clearable | 是否能清空当前值   | Boolean   | true, false | true |
 
 
