@@ -11,7 +11,8 @@
         当前选中的菜单:{{selectedMenu}}
         <kd-menu
             class="demo-menu-block"
-            :selectedMenu.sync="selectedMenu" :defaultOpeneds="defaultOpeneds" accordion :collapse="collapse">
+            :selectedMenu.sync="selectedMenu" :defaultOpeneds="defaultOpeneds"
+            :collapse="collapse">
             <kd-menu-item
                 v-for="(value,key) in menuList"
                 :key="key"
@@ -106,7 +107,7 @@
     }
 </script>
 <style type="text/stylus" scoped rel="stylesheet/stylus" lang="stylus">
-    .menu-demo
+.menu-demo
     .demo-menu-block
         width 400px
 </style>

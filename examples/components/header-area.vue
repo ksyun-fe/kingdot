@@ -159,7 +159,7 @@
         top 0
         left 0
         right 0
-        z-index 1
+        z-index 100
         background #fff
         height: $headerHeight
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.05)
@@ -258,7 +258,7 @@
                 position absolute
                 top 0
                 bottom 0
-                width 213px
+                width 250px
                 left -(@width)
                 background: #fff
                 transition left ease-in-out 0.3s

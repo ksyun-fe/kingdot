@@ -10,6 +10,7 @@
                     ref="ScrollSelect"
                     v-model="timeValue[index]"
                     :data="item"
+                    :count="count"
                     :item-disable="getScrollDisable(index)"
                     :disabled="scrollDisabled[index]"
             >
@@ -49,6 +50,9 @@
                 default() {
                     return [];
                 }
+            },
+            count: {
+                type: Number
             }
         },
         data() {
@@ -56,7 +60,7 @@
                 timeValue: [],
                 disabledItems: this.disabled || [false, false, false],
                 baseDate: '',
-                maxTime: this.max,
+                maxTime: this.max, // 完整的时间日期字符串, 或者 "00:00:00"
                 minTime: this.min
             };
         },
@@ -119,7 +123,7 @@
                     this.maxTime = v;
                 }
             },
-            min: {
+            min: { // 00:00:00
                 immediate: true,
                 handler(v) {
                     this.minTime = v;
@@ -164,7 +168,8 @@
                         }
                         return item;
                     });
-
+                    // this.minTime 09:00:00, 或者 mintime 是完整的时间字符串, 并且给date
+                    // baseDate: 给了 this.date , 一致. 没给this.date 今天
                     const min = this.date ? this.minTime : `${this.baseDate} ${this.minTime}`;
                     const max = this.date ? this.maxTime : `${this.baseDate} ${this.maxTime}`;
                     let disable = false;

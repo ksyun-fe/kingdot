@@ -4,7 +4,7 @@
             class="kd-select"
             :class="[{
                 'kd-select-disabled':disabled,
-                'kd-select-clear-hover': clearAll,
+                'kd-select-clear-hover': clearAll && !disabled,
                 'kd-select-active': clickOption,
             }]"
             :style="{'width': inputWidth}"
@@ -30,6 +30,7 @@
                         :class="{'kd-select-arrow-icon-rotate':dropdownMenu}"
                 />
                 <i
+                        v-if="!disabled"
                         class="kd-icon-close kd-select-clear-icon"
                         @click.stop="clear"
                 ></i>
@@ -44,8 +45,9 @@
                                 :key="item.value"
                                 class="kd-select-tags-item"
                         >
-                            <span>{{ item.label }}</span>
+                            <span class="kd-select-tag-label" :title="item.label">{{ item.label }}</span>
                             <span
+                                    v-if="!disabled"
                                     class="kd-select-tag-close kd-icon-close"
                                     @click.stop="deleteTag(item)"
                             ></span>
@@ -60,6 +62,7 @@
                             type="text"
                             :disabled="disabled"
                             class="kd-select-input-wrap kd-select-input-inner"
+                            :class="{'kd-select-input-disabled':disabled }"
                             :placeholder="inputPlaceholder"
                             @blur="handleBlur"
                             @focus="multipleInputFocus"
@@ -90,6 +93,8 @@
                         :filter-data="filterData"
                         :lazy="lazy"
                         :lazy-load-count="lazyLoadCount"
+                        :optimize-scroll="optimizeScroll"
+                        :dropdownMenu="dropdownMenu"
                         @setValue="setValue"
                         @updateLabel="updateLabel"
                 >
@@ -165,6 +170,10 @@
             lazyLoadCount: {
                 type: [String, Number],
                 default: 10
+            },
+            optimizeScroll: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -245,12 +254,12 @@
         },
         methods: {
             initData(v) {
-                if (!this.$slots.default) return;
+                let defSlot = this.$slots.default || [];
                 if (this.multiple) {
                     const tagList = [];
                     // 多选初始化添加tags
                     v.forEach((vItem) => {
-                        this.$slots.default.forEach((item) => {
+                        defSlot.forEach((item) => {
                             const options = item.componentOptions;
                             if (options) {
                                 const value = options.propsData.value;
@@ -270,7 +279,7 @@
                 } else {
                     // 获取label
                     this.inputLabel = '';
-                    this.$slots.default.forEach((item) => {
+                    defSlot.forEach((item) => {
                         if (item.componentOptions) {
                             if (item.componentOptions.tag === 'kd-option') {
                                 this.initLabel(item, v);

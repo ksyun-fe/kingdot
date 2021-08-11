@@ -3,6 +3,8 @@ const VueLoaderPlugin = require('vue-loader').VueLoaderPlugin;
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const Components = require('../components.json');
 
+Components.enable = './src/utils/enabled.js';
+
 module.exports = {
     mode: 'production',
     entry: Components,

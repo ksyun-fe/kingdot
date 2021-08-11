@@ -9,7 +9,7 @@
         <div>
             <kd-select v-model="defaultValue" placeholder="请选择内容">
                 <kd-option value="">空数据</kd-option>
-                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.label }}
+                <kd-option v-for="item in options" :key="item.value" :title="item.label" :value="item.value">{{ item.label }}
                 </kd-option>
             </kd-select>
             <kd-select v-model="defaultValue1" placeholder="请选择内容" width="200px" multiple  class="select-ml">
@@ -33,7 +33,7 @@ export default{
         setTimeout(()=>{
             this.options = [{
                 value:"item1",
-                label:"item option 1"
+                label:"item option 1item option 1item option 1item option 1item option 1item option 1item option 1item option 1"
             },
             {
                 value:"item2",
@@ -65,7 +65,7 @@ export default{
                 <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.value }}
                 </kd-option>
             </kd-select>
-            
+
         </div>
 </template>
 <script>
@@ -77,13 +77,13 @@ export default{
             defaultValue: "",
             defaultValue1: "",
 
-        }   
+        }
     },
     watch:{
-        
+
     },
     methods:{
-        
+
     },
     mounted(){
         let data = []
@@ -400,6 +400,59 @@ export default{
 
 :::
 
+:::demo #scroll显示优化 ##大数据量下永远只渲染可视区域的数据
+
+```html
+<template>
+        <div>
+            <kd-select optimize-scroll v-model="defaultValue" placeholder="请选择内容">
+                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.value }}
+                </kd-option>
+            </kd-select>
+
+        </div>
+</template>
+<script>
+export default{
+    data(){
+        return{
+            options: [],
+            options1: [],
+            defaultValue: "",
+            defaultValue1: "",
+
+        }
+    },
+    watch:{
+
+    },
+    methods:{
+
+    },
+    mounted(){
+        let data = []
+        for(let i = 0; i <= 1000; i++){
+            data.push(
+                {
+                    value:"item" + i,
+                    label:"item option " + i
+                }
+            )
+        }
+        this.options = data;
+    }
+}
+</script>
+<style>
+.select-ml{
+    margin-left:20px
+}
+</style>
+```
+:::
+
+
+
 ### Select Attributes {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
@@ -417,11 +470,12 @@ export default{
 | hideDestroy    | 弹层隐藏后是否销毁dom   |  Boolean    |  —  | false |
 | lazy    | 是否开启懒加载   |  Boolean    |  —  | false |
 | lazyLoadCount    | 触发懒加载时每次加载数，和lazy属性一起使用  |  String / Number    |  —  | 10 |
+| optimize-scroll    | 是否开启大数据量下显示优化，只渲染可视区域的data。  |  Boolean    |  —  | false |
 
 
 ### Select Events {.component__content}
 | 事件      | 说明    | 回调参数
-|---------- |-------- |---------- |-------------  |-------- | 
+|---------- |-------- |---------- |-------------  |-------- |
 | change    | 选中值发生变化时触发   |  选中值    |
 | remove-tag    | 多选移除tag触发   |  移除的tag值    |
 | clear  | 单选清空内容，多选清空tag   |  —    |
@@ -430,12 +484,12 @@ export default{
 
 ### Option Group Attributes {.component__content}
 | 属性      | 说明    | 类型      | 可选值      | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- | 
+|---------- |-------- |---------- |-------------  |-------- |
 | label     | 分组的别名   | string  | — | —
 
 ### Option Attributes {.component__content}
 | 属性      | 说明    | 类型      | 可选值      | 默认值   |
-|---------- |-------- |---------- |-------------  |-------- | 
+|---------- |-------- |---------- |-------------  |-------- |
 | label     | 选项的别名   | string  | — | —
 | value     | 选项值   | string  / object  | — | —
 | disabled     | 是否禁用该选项   | boolean  | — |  false

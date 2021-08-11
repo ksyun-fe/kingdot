@@ -40,7 +40,7 @@
       display: inline-block;
       padding: 10px 16px;
       min-width: 88px;
-   .kd-active  
+   .kd-tab-active  
       .kd-tab-text  
          color: $-tabs-color-active;
 .kd-tabs-pagination  
@@ -58,7 +58,7 @@
          top: 15px; 
    .kd-tabs-content  
       display: flex;
-   .kd-active  
+   .kd-tab-active  
       .kd-tab-text  
          display: inline-block;
          border-bottom: $-tabs-border-width solid $-tabs-color-active-bar;
@@ -79,7 +79,7 @@
       display: inline-block;
       font-size: 0;
       border-radius: 4px 0 0 4px;
-      .kd-active  
+      .kd-tab-active  
          background:  $-tabs-card-color-background !important;
          .kd-tab-text  
             color: $-tabs-color-active;
@@ -97,13 +97,18 @@
       padding: 14px 16px;
       border: $-tabs-border-width solid $-tabs-after-borderColor;
       background: $-tabs-large-backgroundColor;
-   .kd-active  
-      position relative
-      top:1px
+   .kd-tab-active:before
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: -1px;
+      width: calc( 100% + 2px );
+      height: 2px;
+      background: $-tabs-color-active-bar;
+   .kd-tab-active  
       background: $-tabs-color-background !important;
-      border-top: 2px solid $-tabs-color-active-bar;
       border-bottom: 1px solid transparent;
-      border-left:1px solid transparent;
+      border-left:1px solid transparent; 
       .kd-tab-text  
          color: $-tabs-color-active;
 .kd-tabs-vertical  
@@ -119,9 +124,8 @@
       background: $-tabs-color-active-bar;
       right: 0;
       top: 0px;
-      z-index: 99999;
       height: 50px;
-      width: 2px;
+      width: 3px;
    &:after  
       position: absolute;
       content: '';
@@ -130,7 +134,7 @@
       height: $-tabs-after-width;
       width: 1px;
       background: $-tabs-after-backgroundColor;
-   .kd-active  
+   .kd-tab-active  
       .kd-tab-text  
          color: $-tabs-color-active;  
 .kd-tabs-show-control  
@@ -140,11 +144,10 @@
       padding: 0px 20px;
    .kd-control
      position: absolute
-     top: 1px
      display:flex; 
      justify-content:center 
      align-items:center
-     height: 100%
+     height: calc(100% - 2px)
      cursor: pointer
      background:$-tabs-large-backgroundColor;
      border: 1px solid $-tabs-after-borderColor
@@ -160,7 +163,7 @@
    left: 16px;
    z-index: 99;
    height: 2px;
-.kd-guanbi  
+.kd-close  
    display: inline;
    margin-left: 10px;
    color: $-tabs-color-guanbi;

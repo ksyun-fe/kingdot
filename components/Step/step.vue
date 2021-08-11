@@ -4,7 +4,7 @@
             :class="`kd-step-${type}`"
     >
         <span
-                v-if="!isLast() && type != 'simple'"
+                v-if="!isLast()"
                 :id="'kd-step-line' + index"
                 class="kd-step-line"
                 :class="{
@@ -20,6 +20,7 @@
                 <div
                         ref="stepHead"
                         class="kd-step-head"
+                        :style="handleSimpleFlex"
                         @click="_click"
                 >
                     <!-- head部分 -->
@@ -76,7 +77,10 @@
                     </slot>
                 </div>
                 <!-- 标题和描述 -->
-                <div class="kd-step-main">
+                <div
+                        v-if="title != ''||description != ''"
+                        class="kd-step-main"
+                >
                     <span
                             v-if="title != ''"
                             ref="stepTitle"
@@ -169,6 +173,17 @@
                 }
                 return style;
             },
+            handleSimpleFlex() {
+                const style = {};
+                if (this.type === 'simple') {
+                    if (this.title !== '') {
+                        style.flex = '30% 0 0 ';
+                    } else {
+                        style.flex = '50% 0 0';
+                    }
+                }
+                return style;
+            },
             iconObj() {
                 return {
                     'kd-icon-success': this._status === 'finished',
@@ -176,25 +191,28 @@
                 };
             },
             stepLineStyle() {
+                if (this.type === 'simple') return;
                 const style = {};
+                const headW = this.$refs.stepHead.clientWidth;
+                const headH = this.$refs.stepHead.clientHeight;
                 if (this.type === 'spot') {
                     const _tranlateY = Math.ceil((this.$parent.spotLineLH + 4) / 2);
                     style.transform = `translate(6px, ${_tranlateY}px)`;
                 } else if (this.$parent.direction === 'horizontal') {
-                    const headW = this.$refs.stepHead.clientWidth;
+                    const _tranlateY = Math.ceil((headH + 1) / 2);
                     if (this.$parent.position === 'left') {
                         const titleW = this.$refs.stepTitle.clientWidth;
                         const _tranlateX = headW + titleW;
-                        style.transform = `translate(${_tranlateX}px, 16px)`;
+                        style.transform = `translate(${_tranlateX}px, ${_tranlateY}px)`;
                         style.width = `calc(100% - ${_tranlateX}px)`;
                     } else {
                         const _tranlateX = headW;
-                        style.transform = `translate(${_tranlateX}px, 16px)`;
+                        style.transform = `translate(${_tranlateX}px, ${_tranlateY}px)`;
                         style.width = `calc(100% - ${_tranlateX}px)`;
                     }
                 } else if (this.$parent.direction !== 'horizontal') {
-                    const headH = this.$refs.stepHead.clientHeight;
-                    style.transform = `translate(15px, ${headH}px)`;
+                    const _tranlateX = Math.ceil(headW / 2);
+                    style.transform = `translate(${_tranlateX}px, ${headH}px)`;
                     style.height = `calc(100% - ${headH}px)`;
                 }
                 return style;

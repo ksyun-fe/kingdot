@@ -60,10 +60,16 @@
             }
         },
         watch: {
-            selectedFlag(v) {
-                if (!v) return;
-                this.$parent.isActiveFun();
-            }
+            // selectedFlag(v) {
+            //     if (!v) return;
+            //     this.$parent.isActiveFun();
+            //     if (this.$parent.$options.componentName === 'KdSubmenu') {
+            //         this.isActive = false;
+            //         this.$parent.isActiveFun();
+            //     } else {
+            //         this.isActive = true;
+            //     }
+            // }
         },
         created() {
         },
@@ -74,7 +80,7 @@
         },
         methods: {
             clickItemHandler() {
-                if (this.selectedFlag) return;
+                if (this.selectedFlag || this.disabled) return;
                 this.menu.$emit('update:selectedMenu', this.name);
                 // this.menu.changSelectedMenu(this.name);
             }

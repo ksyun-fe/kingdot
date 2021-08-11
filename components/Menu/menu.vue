@@ -103,9 +103,9 @@
         },
         methods: {
             toggleItemValue(item) {
-                if (!this.accordion || this.mode == 'horizontal') return;
+                if (!this.accordion || this.mode === 'horizontal') return;
                 this.$children.forEach(v => {
-                    if (v.$options.componentName == 'KdSubmenu' && v.name != item) {
+                    if (v.$options.componentName === 'KdSubmenu' && v.name !== item) {
                         v._data.isOpened = false;
                     }
                 });

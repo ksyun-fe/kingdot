@@ -36,11 +36,13 @@
     padding $-transfer-items-padding 
     cursor pointer
     font-size $-font-small-size
-    display: flex
+    display flex
+    flex-direction row
     &:hover
         color $-primary-color
 .kd-transfer-content-temp
-    width 100%
+    flex-grow 1
+    min-width 0
 .kd-transfer-content-label
     width 100%
     display inline-block

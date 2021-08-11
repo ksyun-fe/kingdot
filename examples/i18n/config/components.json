@@ -83,12 +83,20 @@
                             "name": "Transfer 穿梭框"
                         },
                         {
+                            "path": "/scrollSelect",
+                            "name": "scrollSelect 滚动选择器"
+                        },
+                        {
                             "path": "/timePicker",
                             "name": "TimePicker 时间选择器"
                         },
                         {
                             "path": "/datePicker",
                             "name": "DatePicker 日期选择器"
+                        },
+                        {
+                            "path": "/dateTimePicker",
+                            "name": "DateTimePicker 日期时间选择器"
                         }
                     ]
                 },
@@ -183,9 +191,18 @@
                         {
                             "path": "/dialog",
                             "name": "Dialog 对话框"
-                        },{
+                        },
+                        {
                             "path": "/drawer",
                             "name": "Drawer 抽屉"
+                        },
+                        {
+                          "path": "/draggable",
+                          "name": "draggable 拖拽"
+                        },
+                        {
+                          "path": "/selection",
+                          "name": "selection 鼠标框选"
                         }
                     ]
                 }
@@ -279,6 +296,10 @@
                         {
                             "path": "/datePicker",
                             "name": "DatePicker"
+                        },
+                        {
+                            "path": "/dateTimePicker",
+                            "name": "DateTimePicker"
                         }
                     ]
                 },

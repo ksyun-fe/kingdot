@@ -1,4 +1,5 @@
 ## spinner 计数器
+
 通过鼠标或者键盘，定义范围内的数值。
 
 :::demo #基础使用 ##计数器的基本使用
@@ -123,7 +124,7 @@ export default{
             <kd-spinner v-model="value" size="small"></kd-spinner>
             <kd-spinner v-model="value" size="mini"></kd-spinner>
         </div>
-        
+
     </div>
 </template>
 <script>
@@ -172,9 +173,11 @@ export default{
 }
 </script>
 ```
+
 :::
 
 ### 属性 {.component__content}
+
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 | value/v-model | 更新值 | number  | — | — |
@@ -189,6 +192,7 @@ export default{
 | inputStep | 精准严格步数 | boolean | — | false |
 
 ### 事件 {.component__content}
+
 | 属性      | 说明    | 回调参数 |
 |---------- |-------- |-------- |
 | change | 值改变时触发 | currentValue,oldValue
@@ -196,6 +200,7 @@ export default{
 | blur | input失去焦点时触发 | event
 
 ### 方法 {.component__content}
+
 | 属性      | 说明    | 参数 |
 |---------- |-------- |-------- |
 | focus | input获得焦点 | —

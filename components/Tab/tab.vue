@@ -2,7 +2,7 @@
     <div
             class="kd-tab"
             :class="{
-                'kd-active':checked,
+                'kd-tab-active':checked,
                 'kd-disabled':disabled,
             }"
             @click="clickTab"
@@ -11,8 +11,8 @@
             <slot>标签页</slot>
         </span>
         <div
-                v-if="this.$parent.closable && this.$parent.size !== 'mini' && !this.$parent.isVertical"
-                class="kd-guanbi"
+                v-if="$parent.closable && $parent.size !== 'mini' && !$parent.isVertical"
+                class="kd-close"
                 @click.stop="closTab"
         >
             <i class="kd-icon-close"></i>
@@ -41,30 +41,25 @@
         },
         computed: {
             checked() {
-                let flag = false;
-                flag = this.$parent.value === this.value;
-                return flag;
+                return this.$parent.value === this.value;
             },
             innerValue() {
                 return this.$parent.value;
             }
         },
         watch: {
-            innerValue: function (v) {
-                if (this.$parent.value === this.value) {
+            innerValue: function () {
+                if (this.checked) {
                     this.autoMove();
                 }
             }
         },
-        created() {
-            this.$nextTick(() => {
-                this.checked && this.$parent.tabsActive({
-                    val: this.value,
-                    marginLeft: this.$el.offsetLeft,
-                    marginTop: this.$el.offsetTop,
-                    width: this.$el.offsetWidth,
-                    height: this.$el.offsetHeight
-                });
+        mounted() {
+            this.checked && this.$parent.setMoveBarPosition({
+                marginLeft: this.$el.offsetLeft,
+                marginTop: this.$el.offsetTop,
+                width: this.$el.offsetWidth,
+                height: this.$el.offsetHeight
             });
         },
         methods: {
@@ -87,7 +82,6 @@
                 });
             },
             closTab(v) {
-                v.event && v.event.stopPropagation();
                 this.$parent.close(this.value);
                 this.$el.remove();
             }

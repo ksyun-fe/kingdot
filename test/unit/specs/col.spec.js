@@ -1,6 +1,6 @@
 import {createVue, destroyVM} from '../util';
 
-const mediaBreakSize = require('../../../src/media.js').mediaBreakSize;
+const mediaBreakSize = require('../../../src/utils/media.js').mediaBreakSize;
 describe('Col', () => {
     let vm;
     afterEach(() => {

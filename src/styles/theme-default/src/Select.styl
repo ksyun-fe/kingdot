@@ -54,7 +54,7 @@ for size in $-kd-select-size
     color $-select-input-color
     background $-select-bg
 .kd-select-clear-icon
-    display none 
+    display none
 .kd-select-clear-icon
 .kd-select-arrow-icon
     position absolute
@@ -63,7 +63,7 @@ for size in $-kd-select-size
     color #ccc
 .kd-select-arrow-icon-rotate
     transform rotate(180deg)
-.kd-select-input[readonly] 
+.kd-select-input[readonly]
     cursor pointer
 .kd-select-input-wrap
     flex 1
@@ -91,9 +91,16 @@ for size in $-kd-select-size
     height 20px
     border-radius 4px
     padding 0 8px
-    margin 5px 0 5px 8px 
+    margin 5px 0 5px 8px
     display flex
     align-items center
+    .kd-select-tag-label
+        display inline-block
+        height 20px
+        width calc(100% - 28px)
+        overflow hidden
+        text-overflow ellipsis
+        word-break break-all
 .kd-select-tag-close
     display inline-block
     margin-left 8px;
@@ -129,6 +136,20 @@ for size in $-kd-select-size
     overflow-y auto
     background $-select-menu-bg
     color $-select-menu-color
+.kd-select-optimize
+    position relative
+    height 290px
+    .kd-select-phantom
+        position absolute
+        left 0
+        top 0
+        right 0
+        z-index: -1
+    .kd-select-lists
+        position absolute
+        left 0
+        top 0
+        right 0
 //  option-group
 .kd-option-group-item
     display inline-block
@@ -146,7 +167,7 @@ $-select-arrow := top bottom
         .kd-tooltip-inner
             background $-select-menu-bg
 for item in $-select-arrow
-    .kd-tooltip-light[data-popper-placement^={item}] 
+    .kd-tooltip-light[data-popper-placement^={item}]
         .kd-dropdown-tooltip
             .kd-tooltip-arrow
                 border-{item}-color $-select-menu-bg
