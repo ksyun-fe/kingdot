@@ -125,6 +125,26 @@
                 handler(v) {
                     this.valueFilter(v);
                 }
+            },
+            min: {
+                immediate: true,
+                handler(v) {
+                    if (v > this.value) {
+                        this.value = v;
+                    } else {
+                        this.isMin = this.value === v;
+                    }
+                }
+            },
+            max: {
+                immediate: true,
+                handler(v) {
+                    if (v < this.value) {
+                        this.value = v;
+                    } else {
+                        this.isMax = this.value === v;
+                    }
+                }
             }
         },
         methods: {

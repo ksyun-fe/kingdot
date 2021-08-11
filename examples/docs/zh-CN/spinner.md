@@ -131,7 +131,7 @@ export default{
 export default{
     data(){
         return{
-            value: 1
+            value: 1,
         }
     },
 }
