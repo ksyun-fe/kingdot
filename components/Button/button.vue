@@ -161,7 +161,7 @@
             },
             //  点击事件
             handleClick(e) {
-                if (this.disabled || this.loading) {
+                if (!this.authAbled || this.disabled || this.loading) {
                     return;
                 }
                 this.$emit('click', e);
