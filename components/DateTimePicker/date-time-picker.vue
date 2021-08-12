@@ -24,16 +24,16 @@
                 <template slot="suffix">
                     <i
                             v-if="clearable && !disabled && !!inputDateString"
-                            class="kd-icon-close kd-datetime-close-icon ksfont"
+                            class="kd-icon-close kd-datetime-close-icon kdicon"
                             @click="onClear"
                     ></i>
                     <i
                             v-if="clearable && !disabled && !!inputDateString"
-                            class="kd-icon-date kd-datetime-date-icon ksfont"
+                            class="kd-icon-date kd-datetime-date-icon kdicon"
                     ></i>
                     <i
                             v-else
-                            class="kd-icon-date ksfont"
+                            class="kd-icon-date kdicon"
                     ></i>
                 </template>
             </kd-input>

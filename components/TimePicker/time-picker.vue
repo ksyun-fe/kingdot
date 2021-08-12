@@ -20,17 +20,17 @@
                 <template slot="suffix">
                     <i
                             v-if="clearable && !disabled && !!timeString"
-                            class="kd-icon-close kd-timepicker-close-icon ksfont"
+                            class="kd-icon-close kd-timepicker-close-icon kdicon"
                             @click="onClear"
                     ></i>
                     <i
                             v-if="clearable && !disabled && !!timeString"
-                            class="kd-icon-time kd-timepicker-time-icon ksfont"
+                            class="kd-icon-time kd-timepicker-time-icon kdicon"
                             @click="onClear"
                     ></i>
                     <i
                             v-else
-                            class="kd-icon-time ksfont"
+                            class="kd-icon-time kdicon"
                     ></i>
                 </template>
             </kd-input>
