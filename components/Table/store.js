@@ -241,6 +241,8 @@ const TableStore = function (table, initState = {}) {
         expand: null,
     }
 
+    this.selectCallback = initState.selectCallback || null;
+
     //覆盖states里属性
     for (let prop in initState) {
         if (
@@ -519,6 +521,7 @@ TableStore.prototype.checkboxAllAction = function (v) {
         }
     });
     this.update();
+    this.selectCallback && this.selectCallback(this.getCheckedData())
 };
 
 //单选
@@ -566,6 +569,9 @@ TableStore.prototype.checkboxSingle = function (rowData, checked) {
         }
     }
     this.update();
+    if(checked === true || checked === false){
+        this.selectCallback && this.selectCallback(this.getCheckedData())
+    }
 };
 
 //radio

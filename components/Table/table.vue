@@ -231,7 +231,8 @@ export default {
             isRadio: this.checkboxType == "radio",
             disableRow: this.disableRow,
             _keyStr: this.nodeKey,
-            stored: this.stored
+            stored: this.stored,
+            selectCallback: this.selectCallback
         });
         tableStore.commit("updateData", this.data);
         let useHeight = Number.parseInt(this.height || this.fixHeader);
@@ -547,6 +548,10 @@ export default {
             else{
                 throw new Error('table 全选/反选传参必须为boolean类型')
             }
+        },
+        //checkbox选中回调
+        selectCallback(data){
+            this.$emit('select', data)
         }
     }
 }

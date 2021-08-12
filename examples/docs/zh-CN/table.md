@@ -20,6 +20,7 @@
                 :treeProps="{children: 'children', hasChildren: 'hasChildren'}"
                 :treeLoad="load"
                 :disableCache="true"
+                @select="slect"
                 >
             <!--<kd-table-column type="expand">
                             <template slot-scope="scope">
@@ -253,7 +254,10 @@
             },
             toggleSelection(){
                 this.$refs.baseTable.toggleSelection(true);
-            }      
+            },
+            slect(data){
+                console.log(data)
+            }   
         }
     }
 </script>
