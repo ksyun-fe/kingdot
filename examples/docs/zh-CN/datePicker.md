@@ -205,6 +205,7 @@
 | minDate  |  可选的最小日期  | string  | - | - |
 | maxDate  |  可选的最大日期  | string  | - | - |
 | clearable | 是否能清空当前值   | Boolean   | true, false | true |
+| iconPosition | 图标在input中的位置   | String   | 'prefix', 'suffix' | 'prefix' |
 
 
 ### disabled-date {.component__content}

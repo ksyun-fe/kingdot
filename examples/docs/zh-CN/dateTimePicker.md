@@ -202,6 +202,7 @@
 | maxDateTime  | 可选的最大日期时间   | string  | - | - |
 | hide-confirm-btn  | 隐藏确认按钮   | boolean  | true, false | false |
 | clearable | 是否能清空当前值   | boolean  | true, false | true |
+| iconPosition | 图标在input中的位置   | String   | 'prefix', 'suffix' | 'prefix' |
 
 
 ### disabled-date {.component__content}

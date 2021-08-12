@@ -19,10 +19,26 @@
                     }"
                     @keyup.enter="setDate(inputDateString)"
             >
-                <!-- <template slot="suffix">
-                    <i class="kd-icon-date"></i>
-                </template> -->
-                <template slot="suffix">
+                <template
+                        v-if="iconPosition==='prefix'"
+                        slot="prefix"
+                >
+                    <i class="kd-icon-date kdicon"></i>
+                </template>
+                <template
+                        v-if="iconPosition==='prefix'"
+                        slot="suffix"
+                >
+                    <i
+                            v-if="clearable && !disabled && !!inputDateString"
+                            class="kd-icon-close kd-datepicker-close-icon kdicon"
+                            @click="onClear"
+                    ></i>
+                </template>
+                <template
+                        v-if="iconPosition==='suffix'"
+                        slot="suffix"
+                >
                     <i
                             v-if="clearable && !disabled && !!inputDateString"
                             class="kd-icon-close kd-datepicker-close-icon kdicon"
@@ -31,7 +47,6 @@
                     <i
                             v-if="clearable && !disabled && !!inputDateString"
                             class="kd-icon-date kd-datepicker-date-icon kdicon"
-                            @click="onClear"
                     ></i>
                     <i
                             v-else
@@ -201,6 +216,13 @@
             },
             minDate: {
                 type: String
+            },
+            // prefix, suffix
+            iconPosition: {
+                type: String,
+                default: function () {
+                    return 'prefix';
+                }
             }
         },
         data() {

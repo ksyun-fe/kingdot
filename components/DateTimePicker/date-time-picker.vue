@@ -21,7 +21,26 @@
                     @focus="syncDateTime(inputDateString)"
                     @keyup.enter="setDate(inputDateString)"
             >
-                <template slot="suffix">
+                <template
+                        v-if="iconPosition==='prefix'"
+                        slot="prefix"
+                >
+                    <i class="kd-icon-date kdicon"></i>
+                </template>
+                <template
+                        v-if="iconPosition==='prefix'"
+                        slot="suffix"
+                >
+                    <i
+                            v-if="clearable && !disabled && !!inputDateString"
+                            class="kd-icon-close kd-datetime-close-icon kdicon"
+                            @click="onClear"
+                    ></i>
+                </template>
+                <template
+                        v-if="iconPosition==='suffix'"
+                        slot="suffix"
+                >
                     <i
                             v-if="clearable && !disabled && !!inputDateString"
                             class="kd-icon-close kd-datetime-close-icon kdicon"
@@ -348,6 +367,13 @@
                 default() {
                     return 'secend';
                 }
+            },
+            // prefix, suffix
+            iconPosition: {
+                type: String,
+                default: function () {
+                    return 'prefix';
+                }
             }
         },
         data() {
@@ -512,7 +538,8 @@
             // 日期改变
             popDateTimeValue(dateArr, source = 'calendar') {
                 if (this.range === false) {
-                    this.tabSelectValue = 'time';
+                    // 不自动跳到 time tab
+                    // this.tabSelectValue = 'time';
                     this.mergeDateTime(dateArr, 'date');
                     if (this.hideConfirmBtn) {
                         this.emitChange();

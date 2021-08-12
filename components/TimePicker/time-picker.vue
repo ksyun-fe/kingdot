@@ -17,7 +17,26 @@
                         'range': range
                     }"
             >
-                <template slot="suffix">
+                <template
+                        v-if="iconPosition==='prefix'"
+                        slot="prefix"
+                >
+                    <i class="kd-icon-time kdicon"></i>
+                </template>
+                <template
+                        v-if="iconPosition==='prefix'"
+                        slot="suffix"
+                >
+                    <i
+                            v-if="clearable && !disabled && !!timeString"
+                            class="kd-icon-close kd-timepicker-close-icon kdicon"
+                            @click="onClear"
+                    ></i>
+                </template>
+                <template
+                        v-if="iconPosition==='suffix'"
+                        slot="suffix"
+                >
                     <i
                             v-if="clearable && !disabled && !!timeString"
                             class="kd-icon-close kd-timepicker-close-icon kdicon"
@@ -196,6 +215,13 @@
                 type: String,
                 default() {
                     return 'secend';
+                }
+            },
+            // prefix, suffix
+            iconPosition: {
+                type: String,
+                default: function () {
+                    return 'prefix';
                 }
             }
         },

@@ -127,6 +127,7 @@
 | optional-times | 可选时间列表  | array  |     —     |    -   |
 | range | 是否是时间范围  | boolean  |     —     |    false   |
 | clearable | 是否能清空当前值   | Boolean   | true, false | true |
+| iconPosition | 图标在input中的位置   | String   | 'prefix', 'suffix' | 'prefix' |
 
 ### Events {.component__content}
 | 事件名称      | 说明    | 回调参数 |
