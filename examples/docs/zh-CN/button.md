@@ -5,12 +5,21 @@
     <div class='row'>
         <kd-button>默认按钮</kd-button>
         <kd-button type='dashed' clickDelay>默认按钮</kd-button>
-        <kd-button type='primary' authid="zzz">主要按钮</kd-button>
+        <kd-button type='primary' :authid="authid">主要按钮</kd-button>
         <kd-button hollow>空心按钮</kd-button>
         <kd-button type='none'>文字按钮</kd-button>
         <kd-button type='text'>链接按钮</kd-button>
     </div>
 </template>
+<script>
+    export default {
+        data(){
+            return{
+                authid:'zzz',
+            }
+        },
+    }
+</script>
 <style scoped>
 .row button{
     margin-left:20px
@@ -97,7 +106,7 @@
     <div class='row'>
         <kd-button icon='kd-icon-arrow-right' shape='circle'></kd-button>
         <kd-button type='primary' icon='kd-icon-arrow-right' shape='circle'></kd-button>
-        <kd-button type='primary' shape='round'>按钮</kd-button> 
+        <kd-button type='primary' shape='round'>按钮</kd-button>
     </div>
 </template>
 <style scoped>

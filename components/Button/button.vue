@@ -114,7 +114,7 @@
                     {
                         'kd-btn-active': this.isActive,
                         'kd-btn-split': this.split,
-                        'kd-btn-disabled': this.disabledStatus || this.delayDisable,
+                        'kd-btn-disabled': this.disabledStatus || !this.authAbled,
                         'kd-btn-hollow': this.hollow,
                         'kd-btn-loading': this.loading
                     }
@@ -123,23 +123,26 @@
             }
         },
         watch: {
-            disabled(v) {
-                if (!this.authAbled) return;
-                this.disabledStatus = v;
+            disabled: {
+                immediate: true,
+                handler(v) {
+                    this.checkAuth();
+                    this.disabledStatus = v;
+                }
+            },
+            authid() {
+                this.checkAuth();
             }
         },
         mounted() {
             this.initActive();
-            this.checkAuth();
         },
         methods: {
             checkAuth() {
-                if (!this.authid) return;
+                if (!this.authid || this.disabled) return;
                 if (this.$KD && this.$KD.getEnabledStatus && this.$KD.getEnabledStatus(this.authid)) {
-                    this.disabledStatus = false;
                     this.authAbled = true;
                 } else {
-                    this.disabledStatus = true;
                     this.authAbled = false;
                 }
             },
@@ -158,16 +161,18 @@
             },
             //  点击事件
             handleClick(e) {
-                const parent = this.$parent;
+                if (this.disabled || this.loading) {
+                    return;
+                }
+                this.$emit('click', e);
                 if (this.clickDelay) {
-                    this.delayDisable = true;
+                    this.disabledStatus = true;
                     window.setTimeout(() => {
-                        this.delayDisable = false;
+                        this.disabledStatus = false;
                     }, this.delayTime);
                 }
-                if (!this.disabledStatus && !this.loading) {
-                    this.$emit('click', e);
-                }
+
+                const parent = this.$parent;
                 if (!parent) return;
                 if (parent.$options._componentTag === 'kd-button-group') {
                     this.$parent.emit(this.value, this.isActive);
