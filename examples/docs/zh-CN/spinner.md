@@ -6,13 +6,17 @@
 
 ```html
 <template>
-    <kd-spinner v-model="value" :min="0" :max="10" @change="change"></kd-spinner>
+    <div>
+        <kd-spinner v-model="value" :min="min" :max="max" @change="change"></kd-spinner>
+    </div>
 </template>
 <script>
 export default{
     data(){
         return{
-            value: 0
+            value: 1,
+            min: 0,
+            max: 13
         }
     },
     methods:{
@@ -30,14 +34,17 @@ export default{
 
 ```html
 <template>
-    <kd-spinner v-model="value" :min="0" :max="10" disabled></kd-spinner>
-
+    <div>
+        <kd-spinner v-model="value" :min="min" :max="max" disabled></kd-spinner>
+    </div>
 </template>
 <script>
 export default{
     data(){
         return{
-            value: 1
+            value: 1,
+            max: 10,
+            min: 0
         }
     },
 }

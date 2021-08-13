@@ -48,12 +48,10 @@
                 default: 0
             },
             min: {
-                type: Number,
-                default: null
+                type: Number
             },
             max: {
-                type: Number,
-                default: null
+                type: Number
             },
             step: {
                 type: Number,
@@ -127,22 +125,26 @@
                 }
             },
             min: {
-                immediate: true,
+                immediate: false,
                 handler(v) {
+                    if (v == undefined) return;
                     if (v > this.value) {
-                        this.value = v;
-                    } else {
-                        this.isMin = this.value === v;
+                        this.isMin = true;
+                    }
+                    if (v < this.value || v === this.value) {
+                        this.isMin = this.value === v || this.value < this.min;
                     }
                 }
             },
             max: {
-                immediate: true,
+                immediate: false,
                 handler(v) {
+                    if (v == undefined) return;
                     if (v < this.value) {
-                        this.value = v;
-                    } else {
-                        this.isMax = this.value === v;
+                        this.isMax = true;
+                    }
+                    if (v > this.value || v === this.value) {
+                        this.isMax = this.value === v || this.value > this.max;
                     }
                 }
             }
@@ -154,14 +156,15 @@
                 if (this.precision !== null) {
                     value = this.addPoint(value);
                 }
-                this.isMax = v === this.max;
-                this.isMin = v === this.min;
+                this.isMax = v === this.max || v > this.max;
+                this.isMin = v === this.min || v < this.min;
                 this.inputValue = value;
             },
             // 增加
             addNum() {
                 let value = Number(this.inputValue);
                 const max = this.max;
+                const min = this.min;
                 if (value === this.max || this.disabled) return;
                 if (this.step === null) {
                     value += 1;
@@ -171,7 +174,9 @@
                 if (value > max && max !== null) {
                     value = max;
                 }
-
+                if (value < min && value != undefined) {
+                    value = min;
+                }
                 this.$emit('input', value);
                 this.$emit('change', value, this.value);
             },
@@ -179,6 +184,7 @@
             minusNum() {
                 let value = Number(this.inputValue);
                 const min = this.min;
+                const max = this.max;
                 if (value === this.min || this.disabled) return;
                 if (this.step === null) {
                     value -= 1;
@@ -187,6 +193,9 @@
                 }
                 if (value < min && min !== null) {
                     value = min;
+                }
+                if (value > max && min != undefined) {
+                    value = max;
                 }
                 this.$emit('input', value);
                 this.$emit('change', value, this.value);
