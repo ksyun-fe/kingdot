@@ -2,10 +2,11 @@
 
 ### Bug fixes
 * Button
-  fixed button 权限 disabled
+    fixed button 权限 disabled
 * Table
-  fixed table 展示列columnFilter key值
-
+    fixed table 展示列columnFilter key值
+* Spinner
+    fixed spinner 监听属性min,max的变化
 
 *2021-08-5*
 ## v1.0.12
@@ -28,9 +29,9 @@
 
 * DateTimePicker
   * 未完成选择时, value和innerValue 不一致问题
-  
-  
-  
+
+
+
 *2021-07-05*
 ## v1.0.11
 ### Bug fixes
