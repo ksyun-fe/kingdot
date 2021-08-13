@@ -1,5 +1,6 @@
 ## 更新日志
-
+*2021-08-13*
+## v1.0.13
 ### Bug fixes
 * Button
     fixed button 权限 disabled
@@ -7,8 +8,11 @@
     fixed table 展示列columnFilter key值
 * Spinner
     fixed spinner 监听属性min,max的变化
+### Optimization
+* zIndex
+    可初始化为函数，支持外部设定zIndex
 
-*2021-08-5*
+*2021-08-05*
 ## v1.0.12
 
 ### New features
