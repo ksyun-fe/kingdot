@@ -44,6 +44,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
   git checkout master
   sleep 2
-  git push https://github.com/ksyun-fe/kingdot.git master --force
+  git push https://github.com/ksyun-fe/kingdot.git master
 
 fi
