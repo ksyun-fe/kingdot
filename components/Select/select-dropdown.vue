@@ -101,7 +101,7 @@
         },
         watch: {
             'filterData': function (v) {
-                if (this.$children) {
+                if (this.$children.length) {
                     if (this.$children[0].$options._componentTag === 'kd-option') {
                         this.$children.forEach(item => {
                             item.isShow(v);
