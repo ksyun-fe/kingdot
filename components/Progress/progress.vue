@@ -31,7 +31,6 @@
         </div>
         <div
                 v-else
-                class="kd-progress-circle"
                 :style="{width: width+'px', height: width+'px'}"
         >
             <svg viewBox="0 0 100 100">
