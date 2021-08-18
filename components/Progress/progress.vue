@@ -55,12 +55,14 @@
                 class="kd-progress-text"
                 :style="{fontSize: progressTextSize + 'px'}"
         >
-            <template v-if="!status">{{ value }}</template>
+            <slot v-if="showCustomText"></slot>
+            <template v-if="!status && !showCustomText">{{ value }}</template>
             <i
-                    v-else
+                    v-if="status && !showCustomText"
                     :class="iconClass"
                     :style="iconStyle"
             ></i>
+
         </div>
     </div>
 </template>
@@ -111,6 +113,10 @@
             },
             progressTextSize: {
                 type: [Number, String]
+            },
+            showCustomText: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {

@@ -234,7 +234,7 @@ margin-bottom: 10px;
             color="#4fcc6f"
             :showText="true"
             :status="status"
-    />
+    ></kd-progress>
     <kd-progress
             type="circle"
             :percentage="20"
@@ -279,6 +279,49 @@ margin-bottom: 10px;
 ```
 :::
 
+:::demo #环形进度条 ##Progress 组件可通过 showCustomText 属性来指定是否在环形进度条中显示自定义内容。
+```html
+<template>
+<div>
+    <kd-progress
+            type="circle"
+            :percentage="percentage"
+            color="#4fcc6f"
+            :showText="true"
+            :showCustomText="true"
+    >
+        <p>进度: {{percentage}}%</p>
+    </kd-progress>
+</div>
+   
+</template>
+<script >
+    export default{
+        data() {
+            return {
+                percentage: 0,
+                status: '',
+            }
+        },
+        mounted() {
+            let interval = setInterval(() => {
+                this.percentage++;
+                if(this.percentage === 100) {
+                    clearInterval(interval);
+                    this.status = 'success'
+                }
+            }, 60)
+        } 
+    }
+</script>
+<style>
+.kd-progress {
+    margin-right: 10px;
+}
+</style>
+```
+:::
+
 ### 属性 {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
@@ -286,6 +329,7 @@ margin-bottom: 10px;
 | percentage | 百分比 | number | 0 <= percentage <= 100  |  0
 | strokeWidth | 进度条宽度 | number | -- | 4
 | showText | 是否显示百分比 | boolean | true/false | false
+| showCustomText | 是否系那是自定义内容 | boolean | true/false | false
 | textInside | 是否内置显示百分比 | boolean | true/false | false
 | status | 进度条当前状态 | string | success/error/warning
 | color | 进度条背景颜色 | string/function/array | -- | --
