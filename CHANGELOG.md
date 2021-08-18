@@ -1,5 +1,10 @@
 ## 更新日志
-*2021-08-13*
+*2021-08-18*
+## v1.0.14
+### New features
+* Progress
+    feat 支持环形进度条中自定义内容
+
 ## v1.0.13
 ### Bug fixes
 * Button
