@@ -146,7 +146,7 @@
                             <kd-button
                                     class="kd-dialog-btn"
                                     type="primary"
-                                    :disabled="disableOk"
+                                    :disabled="isDisabledOK"
                                     :loading="selfDisableOk"
                                     @click="_ok"
                             >
@@ -292,6 +292,7 @@
                 visible: this.value,
                 mask: this.modal,
                 selfDisableOk: false,
+                isDisabledOK: false,
                 closed: false,
                 iconColor_obj: {
                     success: '#38C482',
@@ -347,6 +348,14 @@
                     this.$el.style.zIndex = nextZIndex();
                 }
                 this.$emit('input', newValue);
+            },
+            disableOk: {
+                immediate: true,
+                handler(newValue) {
+                    if (newValue) {
+                        this.isDisabledOK = newValue;
+                    }
+                }
             }
         },
 
@@ -354,7 +363,7 @@
         methods: {
             // 确认按钮的回调，默认关闭dialogue
             _ok() {
-                if (this.disableOk) return;
+                if (this.isDisabledOK) return;
                 const callback = this.ok;
                 if (typeof callback === 'function') {
                     callback.call(this, this);
@@ -378,9 +387,11 @@
             // 展示和隐藏加载图标
             hideLoading() {
                 this.selfDisableOk = false;
+                this.isDisabledOK = false;
             },
             showLoading() {
                 this.selfDisableOk = true;
+                this.isDisabledOK = true;
             },
             // 点击遮罩层关闭对话框
             handleModalClick() {
