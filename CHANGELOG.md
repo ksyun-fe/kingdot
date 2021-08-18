@@ -1,5 +1,14 @@
 ## 更新日志
 *2021-08-18*
+
+### New features
+* Editable
+    add Editable component
+### Bug fixes
+* Select
+    修复group options中搜索过滤问题
+    优化过滤后无数据的展示
+*2021-08-18*
 ## v1.0.14
 ### New features
 * Progress

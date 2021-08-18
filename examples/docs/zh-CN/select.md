@@ -316,7 +316,7 @@ export default{
 <template>
     <kd-select v-model="defaultValue" placeholder="请选择内容" filterable>
         <kd-option-group v-for="child in options" :key="child.value" :scope="child">
-            <kd-option v-for="item in child.options" :key="item.value" :value="item.value" >{{item.label}}</kd-option>
+            <kd-option v-for="item in child.options" :key="item.value" :value="item.value" :label="item.label" >{{item.label}}</kd-option>
         </kd-option-group>
     </kd-select>
 </template>
@@ -490,6 +490,6 @@ export default{
 ### Option Attributes {.component__content}
 | 属性      | 说明    | 类型      | 可选值      | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
-| label     | 选项的别名   | string  | — | —
+| label     | 选项的别名(有过滤搜索的必须加上)   | string  | — | —
 | value     | 选项值   | string  / object  | — | —
 | disabled     | 是否禁用该选项   | boolean  | — |  false

@@ -22,6 +22,9 @@
         >
             <slot><li class="kd-select-no-data">无数据</li></slot>
         </ul>
+        <ul v-if="$children.length && allHide">
+            <li class="kd-select-no-data">无数据</li>
+        </ul>
     </div>
 </template>
 
@@ -80,7 +83,9 @@
                 end: null,
                 //scroll偏移量
                 startOffset: 0,
-                scrollInitFlag: true
+                scrollInitFlag: true,
+                // 兼容: 搜索结果为空的时候展示空数据
+                allHide: false,
             };
         },
         computed: {
@@ -101,20 +106,43 @@
         },
         watch: {
             'filterData': function (v) {
-                if (this.$children.length) {
-                    if (this.$children[0].$options._componentTag === 'kd-option') {
-                        this.$children.forEach(item => {
-                            item.isShow(v);
-                        });
-                    } else {
-                        this.$children.forEach(child => {
-                            const test = child.$children.every(item => {
-                                return !item.isShow(v);
-                            });
-                            child.isGroup = !test;
-                        });
+                this.$children.forEach(item => {
+                    if (item.$options._componentTag === 'kd-option') {
+                        item.isShow(v);
                     }
-                }
+                    if (item.$options._componentTag === 'kd-option-group') {
+                        // only one level options in group
+                        item.$children.forEach(c => {
+                            if (c.$options._componentTag === 'kd-option') {
+                                c.isShow(v);
+                            }
+                        });
+                        const hideGroup = item.$children.every(c => {
+                            if (c.$options._componentTag === 'kd-option') {
+                                return !c.isShow(v);
+                            }
+                            return false;
+                        });
+                        item.isGroup = !hideGroup;
+                    }
+                });
+                // fix: 全部不显示时候
+                let allHide = this.$children.every(item => {
+                    if (item.$options._componentTag === 'kd-option') {
+                        return !item.isShow(v);
+                    }
+                    if (item.$options._componentTag === 'kd-option-group') {
+                        const hideGroup = item.$children.every(c => {
+                            if (c.$options._componentTag === 'kd-option') {
+                                return !c.isShow(v);
+                            }
+                            return true;
+                        });
+                        return hideGroup;
+                    }
+                });
+                this.allHide = allHide;
+                console.log('xxxx', allHide);
             },
             dropdownMenu(val) {
                 if(!val){
