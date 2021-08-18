@@ -149,8 +149,8 @@
                             "name": "Spin 加载中"
                         },
                         {
-                          "path": "/offline",
-                          "name": "offline 网络判断"
+                            "path": "/offline",
+                            "name": "offline 网络判断"
                         }
                     ]
                 },
@@ -192,12 +192,16 @@
                             "name": "Drawer 抽屉"
                         },
                         {
-                          "path": "/draggable",
-                          "name": "draggable 拖拽"
+                            "path": "/draggable",
+                            "name": "draggable 拖拽"
                         },
                         {
-                          "path": "/selection",
-                          "name": "selection 鼠标框选"
+                            "path": "/selection",
+                            "name": "selection 鼠标框选"
+                        },
+                        {
+                            "path": "/editable",
+                            "name": "editable 可编辑文本"
                         }
                     ]
                 }
