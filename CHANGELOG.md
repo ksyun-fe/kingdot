@@ -1,4 +1,10 @@
 ## 更新日志
+
+### New features
+* buttonGroup
+  add disabled attribute
+
+
 *2021-08-18*
 
 ### New features

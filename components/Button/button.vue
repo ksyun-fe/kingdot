@@ -157,6 +157,7 @@
                             if (item === this.value) this.isActive = true;
                         });
                     }
+                    if (parent.disabledStatus) this.disabledStatus = true;
                 }
             },
             //  点击事件

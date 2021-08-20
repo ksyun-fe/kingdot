@@ -1,3 +1,11 @@
+<!--
+ * @Description:
+ * @Author:
+ * @Date: 2021-07-05 15:34:00
+ * @LastEditTime: 2021-08-20 16:15:56
+ * @LastEditors: fangwenjing
+ * @Usage:
+-->
 <template>
     <div
             ref="kdBtnGroup"
@@ -16,7 +24,15 @@
             },
             checkType: {
                 type: String
+            },
+            disabled: {
+                type: Boolean
             }
+        },
+        data() {
+            return {
+                disabledStatus: false
+            };
         },
         computed: {
             checkStyle() {
@@ -31,6 +47,17 @@
                 immediate: true,
                 handler(v) {
                     this.init(v);
+                }
+            },
+            disabled: {
+                immediate: true,
+                handler(v) {
+                    this.disabledStatus = v;
+                    if (this.$children.length > 0) {
+                        this.$children.forEach(child => {
+                            child.disabledStatus = v;
+                        });
+                    }
                 }
             }
         },
@@ -65,6 +92,7 @@
                 });
             },
             emit(v, active) {
+                if (this.disabled) return;
                 let value = '';
                 if (this.checkType === 'checkbox') {
                     if (active) {

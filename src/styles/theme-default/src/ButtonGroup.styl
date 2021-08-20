@@ -74,3 +74,24 @@ $-btn-gradient := $-btn-type == 'gradient'
     .kd-btn-active:first-child
         &:before
             display: none
+    .kd-btn-disabled
+        background $-btn-disabled-bg-color
+        border-color $-btn-border-color
+        color $-btn-disabled-color
+        &:hover
+        &:focus
+        &:active
+            background $-btn-disabled-bg-color !important
+            color $-disabled-color  !important
+            border-color $-btn-border-color !important
+            cursor: not-allowed
+        &.kd-btn-active
+            background $-btn-primary-color
+            color $-btn-active-color
+            border-color $-btn-primary-color
+            &:hover
+            &:focus
+            &:active
+                background $-btn-primary-color !important
+                color $-btn-active-color !important
+                border-color $-btn-primary-color !important

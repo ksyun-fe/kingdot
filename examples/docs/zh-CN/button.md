@@ -183,12 +183,13 @@
             </kd-button-group>
         </div>
         <div class='comp-top'>
-            <kd-button-group checkType="checkbox" v-model="checkboxValue">
+            <kd-button-group checkType="checkbox" v-model="checkboxValue" :disabled="disabled">
                 <kd-button value="1" >按钮1</kd-button>
                 <kd-button value="2">按钮2</kd-button>
                 <kd-button value="3">按钮3</kd-button>
             </kd-button-group>
         </div>
+         <kd-button @click="handleClick">按钮1</kd-button>
     </div>
 </template>
 <script>
@@ -196,13 +197,16 @@
         data(){
             return{
                 radioValue:'1',
-                checkboxValue:['1']
+                checkboxValue:['1'],
+                disabled:true,
             }
         },
         methods:{
             handleClick(e){
                 console.log('handleClick');
+                this.disabled = false
             }
+
         },
         watch:{
             checkboxValue(v){
