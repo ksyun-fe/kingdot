@@ -5,21 +5,22 @@
   add disabled attribute
 
 
-*2021-08-18*
-
+*2021-08-19*
+## v1.0.14
 ### New features
 * Editable
     add Editable component
+* Progress
+    feat 支持环形进度条中自定义内容
 ### Bug fixes
 * Select
     修复group options中搜索过滤问题
     优化过滤后无数据的展示
-*2021-08-18*
-## v1.0.14
-### New features
-* Progress
-    feat 支持环形进度条中自定义内容
-
+### Optimization
+* dependencies
+    repair modified dependencies
+    
+*2021-08-13*
 ## v1.0.13
 ### Bug fixes
 * Button
