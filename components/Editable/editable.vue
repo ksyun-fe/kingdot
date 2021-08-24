@@ -26,7 +26,7 @@
                     'kd-editable-hover': hover,
                     'kd-editable-icon-follow': follow
                 }"
-                type="none"
+                type="text"
                 :authid="authid"
                 @click="_edit"
         >
