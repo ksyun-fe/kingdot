@@ -1,5 +1,11 @@
 ## 更新日志
 *2021-08-25*
+## v1.0.16
+### Bug fixes
+* FormItem
+  * 修复validate时,bug
+
+*2021-08-25*
 ## v1.0.15
 ### New features
 * buttonGroup
