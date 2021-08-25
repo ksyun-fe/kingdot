@@ -76,7 +76,7 @@
                 forms: [],
                 isDirty: false,
                 isValid: true,
-                oldValue: '',
+                oldValue: undefined,
                 message: '',
                 timerForRuleChange: null,
                 timerForValidate: null
