@@ -9,6 +9,7 @@
                 can-hover
         >
             <kd-input
+                    v-if="!calendar"
                     v-model="inputDateString"
                     :placeholder="placeholder"
                     :readonly="range"
@@ -151,6 +152,23 @@
                 </div>
             </template>
         </kd-tooltip>
+        <div
+                v-if="calendar"
+                class="kd-panel-body"
+        >
+            <Calendar
+                    ref="calendar"
+                    v-model="markDate"
+                    is-multiple
+                    read-only
+                    :format-string="formatString"
+                    :disabled-date="disabledDate"
+                    :max-date="max"
+                    :min-date="min"
+                    @pageChange="pageChange"
+                    @select="popDateValue"
+            ></Calendar>
+        </div>
     </div>
 </template>
 
@@ -222,6 +240,19 @@
                 type: String,
                 default: function () {
                     return 'prefix';
+                }
+            },
+            // 日历模式
+            calendar: {
+                type: Boolean,
+                default() {
+                    return false;
+                }
+            },
+            markDate: {
+                type: [String, Array],
+                default: function () {
+                    return [];
                 }
             }
         },

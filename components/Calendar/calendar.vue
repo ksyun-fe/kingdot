@@ -215,12 +215,18 @@
                     return false;
                 }
             },
-            // isMultiple: { // 多选模式
-            //     type: Boolean,
-            //     default: function () {
-            //         return false;
-            //     }
-            // },
+            isMultiple: { // 多选模式
+                type: Boolean,
+                default: function () {
+                    return false;
+                }
+            },
+            readOnly: {
+                type: Boolean,
+                default: function () {
+                    return false;
+                }
+            },
             minDate: {
                 type: String
             },
@@ -365,8 +371,13 @@
                 this.$emit('onDayMouseenter', dayItem.dateStr);
             },
             // 日历翻页
-            setMonthOrYear(k, v) {
-                this.$emit('pageChange', v, k); // 由外层统一执行
+            setMonthOrYear(unit, v) {
+                // 如果是 isRange 状态, 应该由外层判断效果
+                if (this.isRange) {
+                    this.$emit('pageChange', v, unit); // 由外层统一执行
+                } else {
+                    this.changePage(v, unit);
+                }
             },
             changePage(v, unit) {
                 this.moment = this.moment.add(v, unit);
@@ -384,6 +395,7 @@
 
             // 点击选中日期
             selectDate(date) {
+                if (this.readOnly) return;
                 if (date.isDisabled) return;
                 if (date.disMonth) return; // 不能点击另外月份的日期进行翻页
                 if (this.isRange && date.disMonth) return;
@@ -422,6 +434,15 @@
                         this.selectedDate.unshift(tmp);
                     }
                     this.$emit('select', this.selectedDate, 'calendar');
+                } else if (this.isMultiple) { // 单点 多选
+                    const pos = this.value.indexOf(date.dateStr);
+                    if (pos < 0) {
+                        this.value.push(date.dateStr);
+                    } else {
+                        this.value.splice(pos, 1);
+                    }
+                    // this.selectedDate.push(date.dateStr);
+                    this.$emit('select', this.value);
                 } else { // 非时间范围(单点时间)
                     if (date.disMonth) {
                         this.moment = Moment(date.dateStr); // 点击其他月份日期, 需要刷新日历的页面

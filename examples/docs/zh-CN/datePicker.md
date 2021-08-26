@@ -193,6 +193,27 @@
 ```
 :::
 
+### 日历模式
+:::demo #日历模式 ## 仅用于回显日期.
+
+```html
+<template>
+    <div>
+        <kd-date-picker calendar :markDate="markDate"> </kd-date-picker>
+    </div>
+</template>
+<script>
+    export default{
+        data() {
+            return {
+                markDate: ['2021-09-29', '2021-09-27', '2021-09-26'],
+            }
+        }
+    }
+</script>
+```
+:::
+
 ### 属性 {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
@@ -206,6 +227,8 @@
 | maxDate  |  可选的最大日期  | string  | - | - |
 | clearable | 是否能清空当前值   | Boolean   | true, false | true |
 | iconPosition | 图标在input中的位置   | String   | 'prefix', 'suffix' | 'prefix' |
+| calendar | 是否为日历模式   | Boolean   | true, false | false |
+| markDate | 日历模式下被标记的日期   | array   | - | - |
 
 
 ### disabled-date {.component__content}
