@@ -5,7 +5,7 @@
     display flex
     flex-wrap nowrap
     min-height 32px
-    padding  20px
+    padding  20px 0
     &.kd-steps-container-vertical
         flex-flow column
     .kd-step
@@ -16,6 +16,15 @@
             flex-grow 0
         &:last-of-type
             flex 0 0 auto
+        &:first-child
+            .kd-step-head
+                padding-left: 0 
+            .kd-step-title
+                left 30px
+            .kd-step-title-small
+                left 24px
+            .kd-step-title-bottom
+                left 0
     .kd-step-spot
         &:first-child
             margin-left 20px
