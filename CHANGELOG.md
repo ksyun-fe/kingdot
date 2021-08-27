@@ -1,6 +1,9 @@
 ## 更新日志
 *2021-08-25*
 ## v1.0.16
+### New features
+* Datepicker
+    feat 支持日历模式
 ### Bug fixes
 * FormItem
   * 修复validate时,bug
