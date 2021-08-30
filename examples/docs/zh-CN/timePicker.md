@@ -83,6 +83,35 @@
 </script>
 ```
 :::
+
+### 设置时间精度
+
+:::demo #设置时间精度 ## 可以通过 `disabled-column` `accuracy` 属性设置边界值
+
+```html
+<template>
+    <div>
+        <kd-time-picker v-model="time" accuracy="minute"></kd-time-picker>
+        <br>
+        <br>
+        <kd-time-picker v-model="time" :disabled-column="arr"></kd-time-picker>
+        选中值: {{ time }}
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                minTime: '09:00:00',
+                maxTime: '17:00:00',
+                time: '09:00:00',
+                arr: [false, true, true],
+            }
+        },
+    }
+</script>
+```
+:::
 ### 选择时间范围
 
 :::demo #时间范围 ##将 `range` 设置为 `true`, 表示时间范围
@@ -117,8 +146,9 @@
 |--------- |-------- |---------- |-------------  |-------- |
 | value    | 时间字符串   | string, array  |     —     |    -   |
 | placeholder    | 占位符   | string |     —     |    选择时间   |
-| accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
 | disabled  | 设置组件的禁用状态   | boolean  |     —     |    false   |
+| disabled-column    | 设置内部滚动选择器的禁用状态  | array |  -  |    [false, false, false]   
+| accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
 | min-time  | 最小可选时间   | string  |     —     |    -   |
 | max-time  | 最大可选时间   | string  |     —     |    -   |
 | disabled-time  | 设置禁用的日期   | Function  |     —     |    -   |

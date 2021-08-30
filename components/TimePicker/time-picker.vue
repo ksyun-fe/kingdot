@@ -86,6 +86,7 @@
                                     v-model="timeValue[0]"
                                     :min="minTime"
                                     :max="maxTime"
+                                    :disabled="disabledColumn"
                                     :accuracy="accuracy"
                                     @change="timeValueChange"
                             >
@@ -118,6 +119,7 @@
                                         v-model="timeValue[0]"
                                         :min="minTime"
                                         :max="startTimeMaxLimit(maxTime, timeValue[1])"
+                                        :disabled="disabledColumn"
                                         :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
@@ -145,6 +147,7 @@
                                         v-model="timeValue[1]"
                                         :min="endTimeMinLimit(minTime, timeValue[0])"
                                         :max="maxTime"
+                                        :disabled="disabledColumn"
                                         :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
@@ -209,6 +212,12 @@
                 type: Boolean,
                 default() {
                     return true;
+                }
+            },
+            disabledColumn: {
+                type: Array,
+                default() {
+                    return [false, false, false];
                 }
             },
             accuracy: {
