@@ -4,6 +4,8 @@
 ### New features
 * Datepicker
     feat 支持日历模式
+* Timepicker
+    perf 支持通过禁用列的方式控制精度
 ### Bug fixes
 * FormItem
   * 修复validate时,bug
