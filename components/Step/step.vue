@@ -2,6 +2,7 @@
     <div
             class="kd-step"
             :class="`kd-step-${type}`"
+            :style="handleFlex"
     >
         <span
                 v-if="!isLast()"
@@ -92,7 +93,7 @@
                                 'kd-step-title-spot': type == 'spot',
                                 'kd-step-title-vertical':direction == 'vertical',
                                 'kd-step-cursor':isClick,
-                                'kd-step-title-small':size == 'small',
+                                'kd-step-title-small':size == 'small'&& position == 'left',
                                 'kd-step-title-spot-active':index == activeIndex && type == 'spot'
                             }"
                             @click="_click"
@@ -107,7 +108,8 @@
                                 'kd-step-desc-bottom': position == 'bottom',
                                 'kd-step-desc-spot': type == 'spot',
                                 'kd-step-desc-vertical-notitle':title==''&&direction == 'vertical',
-                                'kd-step-desc-vertical':direction == 'vertical'
+                                'kd-step-desc-vertical':direction == 'vertical',
+                                'kd-step-desc-small':size == 'small' && position == 'left'&&direction != 'vertical'
                             }"
                     >
                         {{ description }}
@@ -196,12 +198,12 @@
                 const headW = this.$refs.stepHead.clientWidth;
                 const headH = this.$refs.stepHead.clientHeight;
                 if (this.type === 'spot') {
-                    const _tranlateY = Math.ceil((this.$parent.spotLineLH + 4) / 2);
+                    const _tranlateY = Math.ceil((this.$parent.spotLineLH + 5) / 2);
                     style.transform = `translate(6px, ${_tranlateY}px)`;
                 } else if (this.$parent.direction === 'horizontal') {
                     const _tranlateY = Math.ceil((headH + 1) / 2);
                     if (this.$parent.position === 'left') {
-                        const titleW = this.$refs.stepTitle.clientWidth;
+                        const titleW = this.$refs.stepTitle ? this.$refs.stepTitle.clientWidth : 0;
                         const _tranlateX = headW + titleW;
                         style.transform = `translate(${_tranlateX}px, ${_tranlateY}px)`;
                         style.width = `calc(100% - ${_tranlateX}px)`;
@@ -214,6 +216,20 @@
                     const _tranlateX = Math.ceil(headW / 2);
                     style.transform = `translate(${_tranlateX}px, ${headH}px)`;
                     style.height = `calc(100% - ${headH}px)`;
+                }
+                return style;
+            },
+            handleFlex() {
+                const style = {};
+                if (this.title === '') {
+                    if (!this.isLast()) {
+                        if (this.$parent.children.length === 2) {
+                            style['flex-basis'] = 98 + '%';
+                        } else {
+                            const flex = 100 / (this.$parent.children.length - 1) - 1;
+                            style['flex-basis'] = flex + '%';
+                        }
+                    }
                 }
                 return style;
             }

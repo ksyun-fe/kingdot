@@ -113,6 +113,7 @@
                         'max-width'
                     ] = lastChildWidth;
                     Array.from(parent.children).forEach(item => {
+                        // debugger;
                         const headWidth = isIe() ? item.children[0].children[0].children[0].clientWidth : item.children[0].children[0].children[0].offsetWidth;
                         const mainElement = item.children[0].children[0].children[1];
                         const firstChild = mainElement ? item.children[0].children[0].children[1].children[0] : null;

@@ -12,6 +12,12 @@
             <kd-step title="步骤三" ></kd-step>
             <kd-step title="完成" ></kd-step>
         </kd-steps>
+        <kd-steps v-model="stepIndex1" type="spot" :isClick="true">
+            <kd-step title="" ></kd-step>
+            <kd-step title="" ></kd-step>
+            <kd-step title="" ></kd-step>
+            <kd-step title="" ></kd-step>
+        </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
 </template>
@@ -54,6 +60,16 @@
         </kd-steps>
         <kd-button @click="_next1">下一步</kd-button>
     </div>
+    <div>
+        <kd-steps v-model="stepIndex2" size="small">
+            <kd-step title="" ></kd-step>
+            <kd-step title="" ></kd-step>
+            <kd-step title="" ></kd-step>
+             <kd-step title=""></kd-step>
+             <kd-step title=""></kd-step>
+        </kd-steps>
+        <kd-button @click="_next1">下一步</kd-button>
+    </div>
 </div>
 </template>
 <script>
@@ -90,7 +106,19 @@
             <!-- <kd-step title="步骤三" :description="description"></kd-step>
             <kd-step title="完成" :description="description"></kd-step> -->
         </kd-steps>
+        <kd-steps v-model="stepIndex1" size="small">
+            <kd-step title="步骤一" :description="description"></kd-step>
+            <kd-step title="步骤二" :description="description"></kd-step>
+            <!-- <kd-step title="步骤三" :description="description"></kd-step>
+            <kd-step title="完成" :description="description"></kd-step> -->
+        </kd-steps>
         <kd-steps v-model="stepIndex1" position="bottom">
+            <kd-step title="步骤一步骤一步骤一步骤一步骤一" :description="description"></kd-step>
+            <kd-step title="步骤二" :description="description"></kd-step>
+            <kd-step title="步骤三" :description="description"></kd-step>
+            <kd-step title="完成" :description="description"></kd-step>
+        </kd-steps>
+        <kd-steps v-model="stepIndex1" position="bottom" size="small">
             <kd-step title="步骤一步骤一步骤一步骤一步骤一" :description="description"></kd-step>
             <kd-step title="步骤二" :description="description"></kd-step>
             <kd-step title="步骤三" :description="description"></kd-step>
@@ -197,7 +225,13 @@
                 <kd-step title="步骤三" :description="description"></kd-step>
             </kd-steps>
         </div>
-        
+        <div style="height:300px">
+            <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical" size="small">
+                <kd-step title="步骤一"></kd-step>
+                <kd-step title="步骤二"></kd-step>
+                <kd-step title="步骤三" :description="description"></kd-step>
+            </kd-steps>
+        </div>
     </div>
 </template>
 <script>

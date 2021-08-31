@@ -1,4 +1,8 @@
 ## 更新日志
+
+### New features
+* step支持没有title功能
+
 *2021-08-25*
 ## v1.0.16
 ### New features
