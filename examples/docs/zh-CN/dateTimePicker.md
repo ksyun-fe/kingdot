@@ -10,7 +10,7 @@
         <kd-date-time-picker v-model="dateTimeString1" accuracy="minute"> </kd-date-time-picker>  选中值: {{ dateTimeString1 }}
         <br>
         <br>
-        <kd-date-time-picker v-model="dateTimeString2" hideConfirmBtn> </kd-date-time-picker> 选中值: {{ dateTimeString2 }}
+        <kd-date-time-picker v-model="dateTimeString2" hideConfirmBtn :disabled-column="arr"> </kd-date-time-picker> 选中值: {{ dateTimeString2 }}
     </div>
 </template>
 <script>
@@ -19,6 +19,7 @@
             return {
                 dateTimeString1: '',
                 dateTimeString2: '',
+                arr: [false, true, true]
             }
         },
         
@@ -195,6 +196,7 @@
 | value / v-model  | 绑定值   | string, array    | - | - |
 | range  | 是否为范围选择   | Boolean    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期时间' |
+| disabled-column    | 设置内部滚动选择器的禁用状态  | array |  -  |    [false, false, false]   
 | accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
 | disabled-date  | 设置禁用的日期   | Function    | - | - |

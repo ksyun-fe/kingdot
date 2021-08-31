@@ -125,6 +125,7 @@
                                     :date="tabDateArr[0]"
                                     :min="minDateTime"
                                     :max="maxDateTime"
+                                    :disabled="disabledColumn"
                                     :accuracy="accuracy"
                                     @change="timeValueChange"
                             >
@@ -208,6 +209,7 @@
                                         :date="tabDateArr[0]"
                                         :min="minDateTime"
                                         :max="maxDateTime"
+                                        :disabled="disabledColumn"
                                         :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
@@ -266,6 +268,7 @@
                                         :date="tabDateArr[1]"
                                         :min="minDateTime"
                                         :max="maxDateTime"
+                                        :disabled="disabledColumn"
                                         :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
@@ -360,6 +363,12 @@
                 type: String,
                 default() {
                     return '';
+                }
+            },
+            disabledColumn: {
+                type: Array,
+                default() {
+                    return [false, false, false];
                 }
             },
             accuracy: {
