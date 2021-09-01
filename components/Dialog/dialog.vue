@@ -352,9 +352,7 @@
             disableOk: {
                 immediate: true,
                 handler(newValue) {
-                    if (newValue) {
-                        this.isDisabledOK = newValue;
-                    }
+                    this.isDisabledOK = newValue;
                 }
             }
         },

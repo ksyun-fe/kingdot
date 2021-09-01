@@ -5,7 +5,10 @@
 <template>
     <div>
         <kd-button @click="openDialog">点击打开默认Dialog</kd-button>
-        <kd-dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800">这是一个基础的Dialog</kd-dialog>
+        <kd-dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800">
+            这是一个基础的Dialog{{num}}
+            <kd-button @click="changeNum">改变确认按钮状态</kd-button>
+        </kd-dialog>
     </div>
 </template>
 <script>
@@ -13,11 +16,15 @@
         data(){
             return{
                 showDialog:false,
-                disableOk:false,
+                disableOk:true,
                 num:1
             }
         },
         methods:{
+            changeNum(){
+                this.disableOk = this.disableOk === false;
+                this.num++
+            },
             openDialog(){
                 this.showDialog = true;
             },
