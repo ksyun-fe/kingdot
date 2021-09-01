@@ -6,6 +6,7 @@
                 'kd-select-disabled':disabled,
                 'kd-select-clear-hover': clearAll && !disabled,
                 'kd-select-active': clickOption,
+                'kd-select-fluid': fluid
             }]"
             :style="{'width': inputWidth}"
     >
@@ -172,6 +173,10 @@
                 default: 10
             },
             optimizeScroll: {
+                type: Boolean,
+                default: false
+            },
+            fluid: {
                 type: Boolean,
                 default: false
             }
