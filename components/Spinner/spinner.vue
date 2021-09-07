@@ -44,7 +44,7 @@
         },
         props: {
             value: {
-                type: Number,
+                type: [Number, String],
                 default: 0
             },
             min: {
@@ -121,7 +121,7 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    this.valueFilter(v);
+                    this.valueFilter(Number(v));
                 }
             },
             min: {
