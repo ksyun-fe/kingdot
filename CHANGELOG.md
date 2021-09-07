@@ -1,11 +1,11 @@
 ## 更新日志
 
-### New features
-* step支持没有title功能
-
-*2021-08-25*
+*2021-09-07*
 ## v1.0.16
+
 ### New features
+* step
+    支持没有title功能
 * Datepicker
     feat 支持日历模式
 * Timepicker
