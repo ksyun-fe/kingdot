@@ -105,14 +105,24 @@
                     ] = 90 + '%';
                 }
                 if (this.type === 'default' && this.direction === 'vertical') {
-                    Array.from(parent.children)[childNum - 1].style[
-                        'max-height'
-                    ] = lastChildWidth;
+                    const lastChild = Array.from(parent.children)[childNum - 1];
+                    const headH = lastChild.children[0].children[0].children[0].clientHeight;
+                    const mainElement = lastChild.children[0].children[0].children[1];
+                    lastChild.style['max-height'] = lastChildWidth;
+                    if (!mainElement) {
+                        lastChild.style.height = headH + 'px';
+                    } else {
+                        if (!mainElement.children[1]) {
+                            if (Array.from(mainElement.children[0].classList).indexOf('kd-step-title') !== -1) {
+                                lastChild.style.height = headH + 'px';
+                            }
+                        }
+                    }
                 } else {
                     Array.from(parent.children)[childNum - 1].style[
                         'max-width'
                     ] = lastChildWidth;
-                    Array.from(parent.children).forEach(item => {
+                    Array.from(parent.children).forEach((item, index) => {
                         // debugger;
                         const headWidth = isIe() ? item.children[0].children[0].children[0].clientWidth : item.children[0].children[0].children[0].offsetWidth;
                         const mainElement = item.children[0].children[0].children[1];
@@ -122,8 +132,14 @@
                         if (!secondChild && firstChild) {
                             item.children[0].children[0].children[1].style.width = titleWidth + headWidth + 'px';
                         }
+                        if (this.type === 'default' && this.direction === 'horizontal' && index === Array.from(parent.children).length - 1) {
+                            if (!mainElement) {
+                                item.style.width = headWidth + 'px';
+                            }
+                        }
                     });
                 }
+
                 if (this.type === 'simple') {
                     Array.from(parent.children)[childNum - 1].style[
                         'flex-basis'
@@ -136,22 +152,32 @@
                     });
                 }
                 if (this.type === 'spot') {
-                    Array.from(parent.children).forEach(item => {
+                    Array.from(parent.children).forEach((item, index) => {
                         const headHeight = isIe() ? item.children[0].children[0].children[0].clientHeight : item.children[0].children[0].children[0].offsetHeight;
                         this.spotLineLH = headHeight;
-                        const firstChild = item.children[0].children[0].children[1].children[0];
-                        const secondChild = item.children[0].children[0].children[1].children[1];
-                        const titleHeight = firstChild ? isIe() ? firstChild.clientHeight : firstChild.offsetHeight : 0;
-                        const descHeight = secondChild ? isIe() ? secondChild.clientHeight : secondChild.offsetHeight : 0;
-                        if (firstChild && secondChild) {
-                            item.children[0].children[0].children[1].style.height = titleHeight + descHeight + 'px';
-                            item.children[0].children[0].style.height = headHeight + titleHeight + descHeight + 'px';
-                        } else if (firstChild && !secondChild) {
-                            item.children[0].children[0].children[1].style.height = titleHeight + 'px';
-                            item.children[0].children[0].style.height = headHeight + titleHeight + 'px';
-                        } else {
-                            item.children[0].children[0].children[1].style.height = 'auto';
-                            item.children[0].children[0].style.height = headHeight + 'px';
+                        const mainSection = item.children[0].children[0].children[1];
+                        if (mainSection) {
+                            const firstChild = item.children[0].children[0].children[1].children[0];
+                            const secondChild = item.children[0].children[0].children[1].children[1];
+                            const titleHeight = firstChild ? isIe() ? firstChild.clientHeight : firstChild.offsetHeight : 0;
+                            const descHeight = secondChild ? isIe() ? secondChild.clientHeight : secondChild.offsetHeight : 0;
+                            if (firstChild && secondChild) {
+                                item.children[0].children[0].children[1].style.height = titleHeight + descHeight + 'px';
+                                item.children[0].children[0].style.height = headHeight + titleHeight + descHeight + 'px';
+                            } else if (firstChild && !secondChild) {
+                                item.children[0].children[0].children[1].style.height = titleHeight + 'px';
+                                item.children[0].children[0].style.height = headHeight + titleHeight + 'px';
+                            } else {
+                                item.children[0].children[0].children[1].style.height = 'auto';
+                                item.children[0].children[0].style.height = headHeight + 'px';
+                            }
+                        }
+                        if (index === Array.from(parent.children).length - 1) {
+                            if (mainSection) {
+                                item.style.width = mainSection.style.width;
+                            } else {
+                                item.style.width = 16 + 'px';
+                            }
                         }
                     });
                 }

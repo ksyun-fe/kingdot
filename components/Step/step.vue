@@ -81,6 +81,7 @@
                 <div
                         v-if="title != ''||description != ''"
                         class="kd-step-main"
+                        :class="`kd-step-main-${size}`"
                 >
                     <span
                             v-if="title != ''"
@@ -196,7 +197,10 @@
                 if (this.type === 'simple') return;
                 const style = {};
                 const headW = this.$refs.stepHead.clientWidth;
-                const headH = this.$refs.stepHead.clientHeight;
+                let headH = this.$refs.stepHead.clientHeight;
+                if (this.size === 'small') {
+                    headH = headH + 4;
+                }
                 if (this.type === 'spot') {
                     const _tranlateY = Math.ceil((this.$parent.spotLineLH + 5) / 2);
                     style.transform = `translate(6px, ${_tranlateY}px)`;
@@ -213,7 +217,7 @@
                         style.width = `calc(100% - ${_tranlateX}px)`;
                     }
                 } else if (this.$parent.direction !== 'horizontal') {
-                    const _tranlateX = Math.ceil(headW / 2);
+                    const _tranlateX = Math.ceil((headW + 2) / 2);
                     style.transform = `translate(${_tranlateX}px, ${headH}px)`;
                     style.height = `calc(100% - ${headH}px)`;
                 }

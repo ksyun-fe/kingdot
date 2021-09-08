@@ -18,24 +18,35 @@
             flex 0 0 auto
         &:first-child
             .kd-step-head
-                padding-left: 0 
+                padding-left 4px
             .kd-step-title
-                left 30px
+                left 34px
+            .kd-step-title-vertical
+                left 35px
             .kd-step-title-small
-                left 24px
+                left 28px
             .kd-step-title-bottom
                 left 0
             .kd-step-description
                 margin-left 40px
+            .kd-step-desc-notitle
+                margin-left 5px
             .kd-step-desc-bottom
                 margin-left 8px
             .kd-step-desc-small
                 margin-left 33px
+        &:last-child
+            .kd-step-head
+                padding-right 4px
+                padding-left 8px
     .kd-step-spot
         &:first-child
-            margin-left 20px
-        &:last-child
-            margin-right 120px
+            .kd-step-title-bottom
+                left -9px
+    //     &:first-child
+    //         margin-left 20px
+    //     &:last-child
+    //         margin-right 120px
 .kd-step
     position relative
     min-height 32px
@@ -55,6 +66,7 @@
         text-align center
         line-height 29px
         cursor default
+        margin-top 1px
         &.kd-step-index-default
             border 1px solid $-step-index-default-border-color
             color $-step-index-default-color
@@ -86,7 +98,7 @@
             i
                 color $-step-index-done-color
         &.kd-step-custom-status-active
-            border $-step-index-active-border-color
+            border 1px solid $-step-index-active-background-color
             background $-step-index-active-background-color
             color  #ffff
         &.kd-step-index-icon
@@ -98,8 +110,6 @@
             width 26px
             height 26px
             line-height 25px
-        &.kd-step-index-small
-            margin-top 3px
         .kd-step-icon
             display inline-block
             margin-top -4px
@@ -153,7 +163,7 @@
         white-space nowrap
         height 32px
         line-height 32px
-        padding 0 8px
+        padding 0 0 0 8px
         font-size 16px
         color $-step-title-color
         &.kd-step-title-active
@@ -176,11 +186,20 @@
         &.kd-step-desc-active
             color $-step-description-active-color
         &.kd-step-desc-notitle
-            margin-left 0px
+            margin-left 5px
     .kd-step-description-vertical-small
         font-size 12px
     .kd-step-desc-bottom
         margin 69px 0 0 8px
+    .kd-step-main-small
+        .kd-step-title
+            font-size: 14px
+        .kd-step-description
+            font-size: 12px
+        .kd-step-title-vertical
+            top 7px
+        .kd-step-desc-vertical-notitle
+            margin-top 12px 
 .kd-step
     &.kd-step-simple
         display inline-block
@@ -228,13 +247,14 @@
         background-color $-kd-step-simple-bgc
 .kd-steps-container-vertical
     height 100%
+    padding: 0
     .kd-step-wrap
         display flex
         height 100%
         flex-flow column
         .kd-step-head
             flex 0 0 auto
-            padding 8px 0px
+            padding 8px 4px
     .kd-step-content
         display inline-block
         flex 0 0 auto
@@ -244,12 +264,9 @@
         flex 1
         height 100%
         background-color $-step-line-background-color
-        transform: translate(15px, 32px);
-    .kd-step-line-vertical-small
-        transform: translate(12px, 32px);
     .kd-step-title-vertical
         left 35px
-        top 8px
+        top 9px
     .kd-step-desc-vertical
         margin-top 40px
         margin-left 40px !important
@@ -261,13 +278,13 @@
 .kd-step-spot
     .kd-step-main
         position absolute
-        transform translateX(-25%)
+        // transform translateX(-25%)
         width 140px
     .kd-step-head
         padding 0
     .kd-step-title-spot
         top 20px
-        left 9px
+        left -9px
     .kd-step-desc-spot
         margin-top 50px
         margin-left 7px

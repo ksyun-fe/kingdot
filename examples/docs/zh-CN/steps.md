@@ -101,6 +101,12 @@
 <template>
     <div>
         <kd-steps v-model="stepIndex1">
+            <kd-step title="" :description="description"></kd-step>
+            <kd-step title="" :description="description"></kd-step>
+            <!-- <kd-step title="步骤三" :description="description"></kd-step>
+            <kd-step title="完成" :description="description"></kd-step> -->
+        </kd-steps>
+        <kd-steps v-model="stepIndex1">
             <kd-step title="步骤一" :description="description"></kd-step>
             <kd-step title="步骤二" :description="description"></kd-step>
             <!-- <kd-step title="步骤三" :description="description"></kd-step>
@@ -218,19 +224,34 @@
 <template>
     <div>
         <kd-button @click="_next">下一步</kd-button>
-        <div style="height:300px">
+        <div style="display:flex">
+        <div style="height:300px; flex:1">
             <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
                 <kd-step title="步骤一"></kd-step>
                 <kd-step title="步骤二"></kd-step>
-                <kd-step title="步骤三" :description="description"></kd-step>
+                <kd-step title="" :description="description"></kd-step>
             </kd-steps>
         </div>
-        <div style="height:300px">
+        <div style="height:300px;flex:1">
             <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical" size="small">
                 <kd-step title="步骤一"></kd-step>
                 <kd-step title="步骤二"></kd-step>
                 <kd-step title="步骤三" :description="description"></kd-step>
             </kd-steps>
+        </div>
+        <div style="height:300px;flex:1">
+            <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical" size="small">
+                <kd-step title="步骤一"></kd-step>
+                <kd-step title="" :description="description"></kd-step>
+            </kd-steps>
+        </div>
+        <div style="height:300px;flex:1">
+            <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical" size="small">
+                <kd-step title=""></kd-step>
+                <kd-step title=""></kd-step>
+                <kd-step title=""></kd-step>
+            </kd-steps>
+        </div>
         </div>
     </div>
 </template>
@@ -239,7 +260,7 @@
         data(){
             return{
                 stepIndex1:1,
-                description:'这里是描述文案，超出折行显示'
+                description:'这里是描述文案 ，超出折行显示'
             }
         },
         methods:{
