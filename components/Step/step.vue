@@ -230,7 +230,7 @@
                         if (this.$parent.children.length === 2) {
                             style['flex-basis'] = 98 + '%';
                         } else {
-                            const flex = 100 / (this.$parent.children.length - 1) - 1;
+                            const flex = 100 / (this.$parent.children.length - 1);
                             style['flex-basis'] = flex + '%';
                         }
                     }
