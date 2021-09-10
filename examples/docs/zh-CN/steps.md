@@ -38,11 +38,13 @@
 ```
 :::
 
-:::demo #有状态的步骤条 ##有状态的步骤条  状态可以通过 Steps的`finishStatus`属性控制，也可以单独对Step的`status`属性进行设置，进而控制状态
+:::demo #有状态的步骤条 ##有状态的步骤条  状态可以通过 Steps的`finishStatus`属性控制，也可以单独对Step的`status`属性进行设置，进而控制状态； 如果同一个`kd-steps`中`kd-step`个数是动态变化的，需要给 `kd-steps`增加`key`属性
+       
 ```html
 <template>
 <div>
-    <div>
+    <div style="margin-bottom:20px">
+        <h5>设置宽度</h5>
         <kd-steps v-model="stepIndex1" finishStatus='finished' :width="width">
             <kd-step title="步骤一" status="wait"></kd-step>
             <kd-step title="步骤二" status="error"></kd-step>
@@ -51,7 +53,8 @@
         </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>
-    <div>
+    <div style="margin-bottom:20px">
+        <h5>size为small</h5>
         <kd-steps v-model="stepIndex2" size="small">
             <kd-step title="步骤一" ></kd-step>
             <kd-step title="步骤二" ></kd-step>
@@ -60,15 +63,12 @@
         </kd-steps>
         <kd-button @click="_next1">下一步</kd-button>
     </div>
-    <div>
-        <kd-steps v-model="stepIndex2" size="small">
-            <kd-step title="" ></kd-step>
-            <kd-step title="" ></kd-step>
-            <kd-step title="" ></kd-step>
-             <kd-step title=""></kd-step>
-             <kd-step title=""></kd-step>
+    <div style="margin-bottom:20px">
+        <h5>没有title & kd-step个数动态变化</h5>
+        <kd-steps v-model="stepIndex3" size="small" :key="key">
+            <kd-step v-for="item in stepsList" :title="item.title" ></kd-step>
         </kd-steps>
-        <kd-button @click="_next1">下一步</kd-button>
+        <kd-button @click="_next2">下一步</kd-button>
     </div>
 </div>
 </template>
@@ -78,8 +78,19 @@
             return{
                 stepIndex1:2,
                 stepIndex2:2,
+                stepIndex3:1,
                 description:'这里是描述文案，超出折行显示',
-                width:800
+                width:800,
+                key:'steps',
+                stepsList:[{
+                    title:''
+                },{
+                    title:''
+                },{
+                    title:''
+                },{
+                    title:''
+                }]
             }
         },
         methods:{
@@ -89,6 +100,28 @@
             },
             _next1(){
                 this.stepIndex2 = this.stepIndex2<=4 ? this.stepIndex2+1:1;
+            },
+            _next2(){
+                if(this.stepIndex3<this.stepsList.length){
+                    this.stepIndex3 = this.stepIndex3 + 1
+                }else{
+                    this.key = this.key + 1
+                    this.stepIndex3 = 1
+                    if(this.stepsList.length==2){
+                        this.stepsList = [{
+                                title:''
+                            },{
+                                title:''
+                            },{
+                                title:''
+                            },{
+                                title:''
+                            }]
+                    }else{
+                        this.stepsList.splice(this.stepsList.length-1,1)
+                    }
+                }
+                
             }
         }
     }
