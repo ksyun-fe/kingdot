@@ -1,4 +1,9 @@
 ## 更新日志
+
+### Optimization
+* buttonGroup
+    disabled状态时，选中的button增加50%的透明度，表示置灰
+
 *2021-09-09*
 ## v1.0.17
 ### Optimization
