@@ -246,7 +246,9 @@
                             this.multipleSerach = '';
                             this.optionFilter('');
                         } else if (!this.multiple && this.filterable) {
-                            this.inputLabel = this.inputPlaceholder;
+                            if (this.value) {
+                                this.inputLabel = this.inputPlaceholder;
+                            }
                             this.inputPlaceholder = this.placeholder;
                             this.optionFilter('');
                         }

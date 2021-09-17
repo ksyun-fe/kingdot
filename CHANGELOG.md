@@ -1,5 +1,10 @@
 ## 更新日志
 
+*2021-09-17*
+### Bugfix
+* Select
+    修复单选可过滤条件下，placeholder错误赋值的问题
+
 ### Optimization
 * buttonGroup
     disabled状态时，选中的button增加50%的透明度，表示置灰
@@ -46,7 +51,7 @@
 ### Optimization
 * dependencies
     repair modified dependencies
-    
+
 *2021-08-13*
 ## v1.0.13
 ### Bug fixes
