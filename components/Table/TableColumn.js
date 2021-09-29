@@ -5,6 +5,7 @@ const defaults = {
     props: "",
     width: "",
     renderColumnFn: null,
+    renderColumnHeaderFn: null,
     isShow: true,
     checked: true
 };
@@ -91,6 +92,11 @@ export default {
                 propsData._slotColumn = true;
                 propsData.renderColumnFn = (h, data) =>
                     this.$vnode.data.scopedSlots.default(data);
+            }
+            if (this.$vnode.data.scopedSlots.header) {
+                propsData._slotColumnHeader = true;
+                propsData.renderColumnHeaderFn = (h, data) =>
+                    this.$vnode.data.scopedSlots.header(data);
             }
             // this.$vnode.data.scopedSlots.default &&
             // ((propsData._slotColumn = true),

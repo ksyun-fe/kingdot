@@ -1003,7 +1003,64 @@
 ```
 :::
 
+### header 自定义
 
+:::demo #自定义 ##kd-table-column slot="header" 插槽
+```html
+<template>
+    <div>
+        
+        <kd-table :data="data" :overFlowAuto="false">
+            <kd-table-column width="300" props="id">
+                <template slot="header" slot-scope="scope">
+                    <span @click="show(scope)">我是自定义</span>
+                </template>
+            </kd-table-column>
+            <kd-table-column width="200" title="名称" props="name" />
+            <kd-table-column title="规划" props="tbl" />
+            <kd-table-column title="内容" props="abc" />
+            <kd-table-column title="邮编" props="def" />
+            <kd-table-column width="400" title="地址1" props="efg" />
+            <kd-table-column title="操作">
+                <template slot-scope="scope">
+                    <a @click="btn(scope)">btn</a>
+                </template>
+            </kd-table-column>
+        </kd-table>
+    </div>
+</template>
+<script>
+    const data = [
+                              
+                                 {
+                                     id: 4, name: 'name2', msg: 'msg2', tbl: 'hive', abc: 'dasds', def: 'ddsadas', efg: 'efg',
+                                 }, 
+                                 {
+                                     id: 5, name: 'name1', msg: 'msg1', tbl: 'kafka', abc: 'ccc', def: 'test', efg: 'xdf'
+                                 },
+                                 {
+                                     id: 6, name: 'name2', msg: 'msg2', tbl: 'hive', abc: 'dasds', def: 'ddsadas', efg: 'efg',
+                                 }
+                             ]
+    export default {
+        data() {
+            return {
+                data: data,
+                clickCount: 1,
+            }
+        },
+        methods: {
+            btn(scope){
+                console.log(scope.row, scope.$index)
+            },
+            show(scope){
+                console.log(scope)
+            }
+        }
+    }
+</script>
+```
+:::
 
 
 

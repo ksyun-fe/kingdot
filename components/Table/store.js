@@ -238,7 +238,7 @@ const TableStore = function (table, initState = {}) {
         _sortProps: '',
         //存储是否在排序
         _sortIsAsc: '',
-        expand: null,
+        expand: null
     }
 
     this.selectCallback = initState.selectCallback || null;

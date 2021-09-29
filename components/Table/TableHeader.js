@@ -231,6 +231,12 @@ export default {
                                 <tr>
                                     {
                                         columns.map((item, cellIndex) => {
+                                            let scopeData = {
+                                                $index: cellIndex,
+                                                row: item,
+                                                store: this.store,
+                                                _self: this.$parent.$vnode.context
+                                            };
                                             let isFilterGroup = item.group && item.group.length > 0;
                                             return (
                                                 <th
@@ -264,6 +270,18 @@ export default {
                                                                     _self: this.$parent.$vnode
                                                                         .context
                                                                 }
+                                                            )
+                                                            :
+                                                            ''
+                                                    }
+
+                                                    {
+                                                        item._slotColumnHeader
+                                                            ?
+                                                            item.renderColumnHeaderFn.call(
+                                                                this._renderProxy,
+                                                                h,
+                                                                scopeData
                                                             )
                                                             :
                                                             item.title
