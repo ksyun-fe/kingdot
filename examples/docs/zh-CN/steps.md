@@ -39,7 +39,7 @@
 :::
 
 :::demo #有状态的步骤条 ##有状态的步骤条  状态可以通过 Steps的`finishStatus`属性控制，也可以单独对Step的`status`属性进行设置，进而控制状态； 如果同一个`kd-steps`中`kd-step`个数是动态变化的，需要给 `kd-steps`增加`key`属性
-       
+
 ```html
 <template>
 <div>
@@ -66,7 +66,7 @@
     <div style="margin-bottom:20px">
         <h5>没有title & kd-step个数动态变化</h5>
         <kd-steps v-model="stepIndex3" size="small" :key="key">
-            <kd-step v-for="item in stepsList" :title="item.title" ></kd-step>
+            <kd-step v-for="(item, index) in stepsList" :key="index" :title="item.title" ></kd-step>
         </kd-steps>
         <kd-button @click="_next2">下一步</kd-button>
     </div>
@@ -96,7 +96,7 @@
         methods:{
             _next(){
                 this.stepIndex1 = this.stepIndex1<=4 ? this.stepIndex1+1:1;
-                
+
             },
             _next1(){
                 this.stepIndex2 = this.stepIndex2<=4 ? this.stepIndex2+1:1;
@@ -121,7 +121,7 @@
                         this.stepsList.splice(this.stepsList.length-1,1)
                     }
                 }
-                
+
             }
         }
     }
