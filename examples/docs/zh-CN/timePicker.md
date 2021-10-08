@@ -188,7 +188,7 @@
 | accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
 | min-time  | 最小可选时间   | string  |     —     |    -   |
 | max-time  | 最大可选时间   | string  |     —     |    -   |
-| disabled-time  | 设置禁用的时间   | Function  |     —     |    -   |
+| disabled-time  | 设置禁用的时间   | Array, Function  |     —     |    -   |
 | mode  |  模式    | string  |     'anytime', 'steptime'     |    'anytime'   |
 | step | 步长  | number, string  |     —     |    -   |
 | optional-times | 可选时间列表  | array  |     —     |    -   |

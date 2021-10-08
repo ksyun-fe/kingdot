@@ -94,10 +94,13 @@
 ```html
 <template>
     <div>
-        <kd-date-picker v-model="dateString":disabled-date="disabledDate"> </kd-date-picker>
+        <kd-date-picker v-model="dateString" :disabled-date="dateArr"> </kd-date-picker>
         <br>
         <br>
-        <kd-date-picker v-model="dateString1" range :disabled-date="disabledDate1"> </kd-date-picker>
+        <kd-date-picker v-model="dateString1" :disabled-date="disabledDate"> </kd-date-picker>
+        <br>
+        <br>
+        <kd-date-picker v-model="dateString2" range :disabled-date="disabledDate1"> </kd-date-picker>
     </div>
     
 </template>
@@ -107,7 +110,9 @@
         data() {
             return {
                 dateString: '',
-                dateString1: [''],
+                dateString1: '',
+                dateString2: [''],
+                dateArr: ['2021-10-01', '2021-10-05']
             }
         },
         methods: {
@@ -222,7 +227,7 @@
 | range  | 是否为范围选择   | bool    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
-| disabled-date  | 设置禁用的日期   | Function    | - | - |
+| disabled-date  | 设置禁用的日期   | Array, Function    | - | - |
 | minDate  |  可选的最小日期  | string  | - | - |
 | maxDate  |  可选的最大日期  | string  | - | - |
 | clearable | 是否能清空当前值   | Boolean   | true, false | true |

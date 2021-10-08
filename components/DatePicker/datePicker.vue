@@ -227,7 +227,10 @@
             },
             // 条件禁用
             disabledDate: {
-                type: Function
+                type: [Array, Function],
+                default() {
+                    return [];
+                }
             },
             maxDate: {
                 type: String

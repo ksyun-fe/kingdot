@@ -207,7 +207,10 @@
             },
             // 条件禁用, 可以接受日期字符串, 以及筛选条件
             disabledDate: {
-                type: Function
+                type: [Array, Function],
+                default() {
+                    return [];
+                }
             },
             isRange: { // 范围选择模式
                 type: Boolean,
@@ -316,7 +319,8 @@
                         isTodayFlag: tmpTime.date() === Moment().date() && // 试试用 equal代替
                             tmpTime.month() === Moment().month() &&
                             tmpTime.year() === Moment().year(),
-                        isDisabled: this.disabledDate && this.disabledDate(tmpTime.format(this.formatString), this.selectedDate[0]) ||
+                        // isDisabled: this.disabledDate && this.disabledDate(tmpTime.format(this.formatString), this.selectedDate[0]) ||
+                        isDisabled: this.checkDisabled(tmpTime.format(this.formatString), this.selectedDate[0]) ||
                             this.maxDateValue && tmpTime.isAfter(Moment(this.maxDateValue), 'day') ||
                             this.minDateValue && tmpTime.isBefore(Moment(this.minDateValue), 'day'),
                         isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpTime.isBetween(this.selectedDate[0], rangeEndDate, 'day', '()') || false
@@ -393,6 +397,19 @@
                 this.mode = 'select-day';
             },
 
+            checkDisabled(dateStr, firstDate) {
+                let disable = false;
+                if (this.disabledDate) {
+                    if (Array.isArray(this.disabledDate)) {
+                        disable = disable || this.disabledDate.includes(dateStr);
+                    }
+                    if (typeof this.disabledDate === 'function') {
+                        disable = disable || this.disabledDate(dateStr, firstDate);
+                    }
+                }
+                return disable;
+            },
+
             // 点击选中日期
             selectDate(date) {
                 if (this.readOnly) return;
@@ -466,7 +483,8 @@
                 } else if (typeof dateValue === 'string') {
                     const formattedStr = Moment(dateValue).format(this.formatString);
                     this.selectedDate = [formattedStr];
-                    if (this.disabledDate && this.disabledDate(formattedStr, this.selectedDate[0])) {
+                    // if (this.disabledDate && this.disabledDate(formattedStr, this.selectedDate[0])) {
+                    if (this.checkDisabled(formattedStr, this.selectedDate[0])) {
                         this.$emit('select', 'Invalid Date');
                         return;
                     }

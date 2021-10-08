@@ -111,7 +111,7 @@
 ```html
 <template>
     <div>
-        <kd-date-time-picker v-model="dateTimeString" :disabled-date="disabledDate"> </kd-date-time-picker> 选中值: {{ dateTimeString }}
+        <kd-date-time-picker v-model="dateTimeString" :disabled-date="disableDateArr"> </kd-date-time-picker> 选中值: {{ dateTimeString }}
         <br>
         <br>
         <kd-date-time-picker v-model="dateTimeArr" range :disabled-date="disabledDate1"> </kd-date-time-picker> 选中值: {{ dateTimeArr }}
@@ -123,7 +123,8 @@
         data() {
             return {
                 dateTimeString: '',
-                dateTimeArr: []
+                dateTimeArr: [],
+                disableDateArr: ['2021-10-01', '2021-10-03']
             }
         },
         methods: {
@@ -199,7 +200,7 @@
 | disabled-column    | 设置内部滚动选择器的禁用状态  | array |  -  |    [false, false, false]   
 | accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |
-| disabled-date  | 设置禁用的日期   | Function    | - | - |
+| disabled-date  | 设置禁用的日期   | Array, Function    | - | - |
 | minDateTime  |  可选的最小日期时间  | string  | - | - |
 | maxDateTime  | 可选的最大日期时间   | string  | - | - |
 | hide-confirm-btn  | 隐藏确认按钮   | boolean  | true, false | false |

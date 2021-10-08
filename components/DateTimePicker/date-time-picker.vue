@@ -351,7 +351,10 @@
             },
             // 日期条件禁用
             disabledDate: {
-                type: Function
+                type: [Array, Function],
+                default() {
+                    return [];
+                }
             },
             minDateTime: {
                 type: String,
