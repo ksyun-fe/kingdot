@@ -1,4 +1,16 @@
 ## 更新日志
+
+*2021-10-??*
+## v1.0.21
+### New features
+* Timepicker
+    disableTime 条件禁用支持 Array 类型参数
+* Datepicker
+    disableDate 条件禁用支持 Array 类型参数
+### Bugfix
+* Timepicker
+    修复 disableTime 对于滚动选择器未生效问题
+
 *2021-10-08*
 ## v1.0.20
 ### New features
