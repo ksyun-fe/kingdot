@@ -249,6 +249,7 @@ module.exports = {
                 "allowFirstLine": false
             }
         }],
+        "vue/attribute-hyphenation": [0],
         "vue/mustache-interpolation-spacing": [2, "always"],
         "vue/no-spaces-around-equal-signs-in-attribute": [2],
         "vue/prop-name-casing": [2, "camelCase"],
