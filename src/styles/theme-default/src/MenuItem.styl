@@ -1,9 +1,48 @@
 @import '../variables.styl'
 
 .kd-menu-item
+    border-radius $-menu-item-border-radius
     font-size $-menu-item-font-size
+    height $-menu-item-vertical-height
+    line-height $-menu-item-vertical-line-height
+    color $-menu-color
+    cursor pointer
+    &:hover
+        color $-menu-item-horizontal-active-color
+    &.kd-menu-item-active
+        background $-menu-item-active-background
+        background-image $-menu-item-active-background-image
+        color $-menu-item-active-color
+    &.kd-menu-item-disabled
+        cursor not-allowed
+        color $-menu-disabled-color
 .kd-menu-item [class^=kd-icon-]
     font-size 14px
     padding-right 10px
-.kd-menu-item-disabled
-    color $-menu-disabled-color !important
+.kd-menu-item-horizontal
+    height $-menu-item-horizontal-height
+    line-height $-menu-item-horizontal-line-height
+.kd-menu-item-title-horizontal
+    height $-menu-item-title-horizontal-height
+    line-height $-menu-item-title-horizontal-height
+    font-size $-menu-item-title-horizontal-font-size
+    padding 0 $-menu-item-title-horizontal-padding
+    text-align center
+    position relative
+    &.kd-menu-item-active
+        background $-menu-item-horizontal-active-background
+        background-image $-menu-item-horizontal-active-background-image
+        color $-menu-item-horizontal-active-color
+        border-radius 0px
+    &.kd-menu-item-active:after
+        height 2px
+        background $-menu-item-active-background
+        background-image $-menu-item-active-background-image
+        content ''
+        display block
+        position absolute
+        bottom 0px
+        left 0px
+        width 100%
+.kd-menu-item-popper
+    text-align left

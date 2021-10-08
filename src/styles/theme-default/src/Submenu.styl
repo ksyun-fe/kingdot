@@ -1,22 +1,78 @@
 @import '../variables.styl'
 
-// .kd-submenu
-    // transition height 1s
-//     padding-left 24px
-.kd-submenu-disabled
-    color $-menu-disabled-color !important
 .kd-submenu-title
-    position relative
-    height $-menu-item-height
-    border-radius $-menu-item-border-radius
-    font-size $-menu-item-font-size
+    display flex
+    flex-direction row
+    align-items center
+    color $-menu-color
+    cursor pointer
+.kd-submenu-title-content
+    display flex
     overflow hidden
-.kd-submenu-title-horizontal
-    line-height $-menu-item-height-horizontal
-.kd-submenu-title-vertical
-    line-height $-menu-item-height-vertical
+    text-overflow ellipsis
+    white-space nowrap
+    flex-grow 1
+.kd-submenu-active
+    .kd-submenu-title
+        background $-menu-item-active-background
+        background-image $-menu-item-active-background-image
+        color $-menu-item-active-color
 .kd-submenu-icon-arrow
-    position absolute
-    right 24px
-    font-size 12px
-    vertical-align middle
+    margin-left 10px
+    margin-right 16px
+.kd-submenu-disabled
+    cursor not-allowed
+    color $-menu-disabled-color
+.kd-submenu-popper-content
+    .kd-menu-item
+        padding 0
+.kd-submenu-icon-arrow
+    transition all $-transition
+    transform-origin center
+    transform rotate(-90deg)
+.kd-submenu-opened
+    .kd-submenu-icon-arrow
+        transform rotate(0deg)
+.kd-submenu-popper-title
+    .kd-submenu-icon-arrow
+        transform rotate(-90deg)
+.kd-submenu-tooltip-content.kd-tooltip-content
+    width $-submenu-popper-content-width
+    .kd-tooltip-inner
+        padding 0
+        background $-submenu-popper-content-background
+.kd-submenu-horizontal
+    height $-menu-item-horizontal-height
+    line-height $-menu-item-horizontal-height
+.kd-submenu-title-horizontal
+    display flex
+    flex-direction row
+    height $-menu-item-title-horizontal-height
+    line-height $-menu-item-title-horizontal-height
+    font-size $-menu-item-title-horizontal-font-size
+    padding 0 $-menu-item-title-horizontal-padding
+    .kd-submenu-title-content
+        justify-content center
+    .kd-submenu-icon-arrow
+        transform rotate(0deg)
+        margin-right 0
+.kd-submenu-popper-horizontal
+    &.kd-submenu-tooltip-content
+        width $-submenu-popper-horizontal-content-width
+.kd-submenu-active
+    .kd-submenu-title-horizontal
+        position relative
+        background $-menu-item-horizontal-active-background
+        background-image $-menu-item-horizontal-active-background-image
+        color $-menu-item-horizontal-active-color
+        border-radius 0px
+        &:after
+            height 2px
+            background $-menu-item-active-background
+            background-image $-menu-item-active-background-image
+            content ''
+            display block
+            position absolute
+            bottom 0px
+            left 0px
+            width 100%

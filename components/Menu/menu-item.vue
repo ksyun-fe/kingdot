@@ -6,7 +6,17 @@
             @mouseout="hover = false"
             @click="clickItemHandler"
     >
-        <slot></slot>
+        <kd-tooltip
+                v-if="showTooltip"
+                v-model="toolTipValue"
+                placement="right-start"
+                trigger="hover"
+                :content="tips"
+                :widthLimit="false"
+        >
+            <slot>{{ tips }}</slot>
+        </kd-tooltip>
+        <slot v-else>{{ tips }}</slot>
     </li>
 </template>
 
@@ -23,66 +33,98 @@
             disabled: {
                 type: Boolean,
                 default: false
+            },
+            tips: {
+                type: String,
+                default: ''
             }
         },
-        inject: ['menu'],
+        inject: {
+            subMenu: {
+                default: null
+            }
+        },
         data() {
             return {
-                hover: false
+                hover: false,
+                toolTipValue: false
             };
         },
         computed: {
+            showTooltip() {
+                return this.menu.collapse && !(this.subMenu && this.subMenu.isPopperMode);
+            },
             // 是否被选中
-            selectedFlag() {
-                return this.name === this.menu.selectedMenu && !this.disabled;
+            isActive() {
+                return this.name === this.menu.activeItem && !this.disabled;
+            },
+            isHorizontal() {
+                return this.$parent.$options.componentName === 'KdMenu' && this.$parent.isHorizontalMode;
             },
             itemClassNameObj() {
-                return [
-                    'kd-menu-item',
-                    this.disabled ? 'kd-menu-item-disabled' : '',
-                    this.menu.mode === 'horizontal' ? 'kd-menu-item-horizontal' : 'kd-menu-item-vertical',
-                    this.selectedFlag ? 'kd-menu-item-active' : ''
-                ];
+                return {
+                    'kd-menu-item': true,
+                    'kd-menu-item-popper': !!this.subMenu,
+                    'kd-menu-item-disabled': this.disabled,
+                    'kd-menu-item-horizontal': this.menu.isHorizontalMode,
+                    'kd-menu-item-title-horizontal': this.isHorizontal,
+                    'kd-menu-item-vertical': this.menu.isVerticalMode,
+                    'kd-menu-item-active': this.isActive
+                };
             },
             itemStyleObj() {
-                if (this.disabled) {
-                    return {
-                        'cursor': 'not-allowed',
-                        'backgroundColor': this.menu.backgroundColor,
-                        'color': this.menu.textColor
-                    };
+                const style = {};
+                style.backgroundColor = this.menu.backgroundColor;
+                style.color = this.menu.textColor;
+                if (this.isActive && (this.menu.activeBackgroundColor || this.menu.activeBackgroundImage)) {
+                    style.backgroundColor = this.menu.activeBackgroundColor;
+                    style.backgroundImage = this.menu.activeBackgroundImage;
+                    style.color = this.menu.activeTextColor;
                 }
-                return {
-                    'backgroundColor': this.selectedFlag ? this.menu.activeBackgroundColor : (this.hover ? this.menu.hoverBackgroundColor : this.menu.backgroundColor),
-                    'color': this.selectedFlag ? this.menu.activeTextColor : (this.hover ? this.menu.hoverTextColor : this.menu.textColor),
-                    'cursor': this.disabled ? 'not-allowed' : 'pointer'
-                };
+                if (this.hover && this.menu.hoverBackgroundColor) {
+                    style.backgroundColor = this.menu.hoverBackgroundColor;
+                    style.color = this.menu.hoverTextColor;
+                }
+                return style;
+                // if (this.disabled) {
+                //     return {
+                //         'cursor': 'not-allowed',
+                //         'backgroundColor': this.menu.backgroundColor,
+                //         'color': this.menu.textColor
+                //     };
+                // }
+                // return {
+                //     'backgroundColor': this.isActive ? this.menu.activeBackgroundColor : (this.hover ? this.menu.hoverBackgroundColor : this.menu.backgroundColor),
+                //     'color': this.isActive ? this.menu.activeTextColor : (this.hover ? this.menu.hoverTextColor : this.menu.textColor),
+                //     'cursor': this.disabled ? 'not-allowed' : 'pointer'
+                // };
             }
         },
-        watch: {
-            // selectedFlag(v) {
-            //     if (!v) return;
-            //     this.$parent.isActiveFun();
-            //     if (this.$parent.$options.componentName === 'KdSubmenu') {
-            //         this.isActive = false;
-            //         this.$parent.isActiveFun();
-            //     } else {
-            //         this.isActive = true;
-            //     }
-            // }
-        },
         created() {
-        },
-        mounted() {
-
+            this.toggleMenuItem(true);
         },
         beforeDestroy() {
+            this.toggleMenuItem();
         },
         methods: {
+            toggleMenuItem(flag) {
+                let parent = this.$parent;
+                while (parent && parent.$options.componentName !== 'KdMenu') {
+                    if (parent.$options.componentName === 'KdSubmenu') {
+                        if (flag) {
+                            parent.addMenuItem(this.name);
+                        } else {
+                            parent.removeMenuItem(this.name);
+                        }
+                    }
+                    parent = parent.$parent;
+                }
+            },
             clickItemHandler() {
-                if (this.selectedFlag || this.disabled) return;
-                this.menu.$emit('update:selectedMenu', this.name);
-                // this.menu.changSelectedMenu(this.name);
+                if (this.isActive || this.disabled) return;
+                this.menu.$emit('changeSelectedItem', this.name);
+                this.subMenu && this.subMenu.hidePopper();
+                this.hover = false;
             }
         }
     };

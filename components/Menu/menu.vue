@@ -30,38 +30,35 @@
             },
             // the background color of the menu
             backgroundColor: {
-                type: String,
-                default: '#fff'
+                type: String
             },
             // the text color of the menu
             textColor: {
-                type: String,
-                default: '#778088'
+                type: String
             },
             // the text color of the active menu
             activeTextColor: {
-                type: String,
-                default: '#fff'
+                type: String
             },
             // the background color of the active menu
             activeBackgroundColor: {
-                type: String,
-                default: '#557dfc'
+                type: String
+            },
+            activeBackgroundImage: {
+                type: String
             },
             // If you hover the menu, the text color of the menu
             hoverTextColor: {
-                type: String,
-                default: '#557dfc'
+                type: String
             },
             // If you hover the menu, the background color of the menu
             hoverBackgroundColor: {
-                type: String,
-                default: '#fff'
+                type: String
             },
             // the name list of the open submenu
             defaultOpeneds: {
                 type: Array,
-                default: () => {
+                default() {
                     return [];
                 }
             },
@@ -73,7 +70,8 @@
         },
         data() {
             return {
-                defaultOpenedsList: []
+                openedSubList: this.defaultOpeneds || [],
+                activeItem: this.selectedMenu
             };
         },
         provide() {
@@ -82,36 +80,64 @@
             };
         },
         computed: {
+            isHorizontalMode() {
+                return this.mode === 'horizontal';
+            },
+            isVerticalMode() {
+                return this.mode === 'vertical';
+            },
             classNameObj() {
                 return {
                     'kd-menu': true,
-                    'kd-menu-horizontal': this.mode === 'horizontal',
+                    'kd-menu-horizontal': this.isHorizontalMode,
                     'kd-menu-collapse': this.collapse
                 };
             }
         },
         watch: {
+            selectedMenu(v) {
+                this.activeItem = v;
+            },
+            activeItem(v) {
+                if (v !== this.selectedMenu) {
+                    this.$emit('update:selectedMenu', v);
+                }
+            },
             defaultOpeneds(v) {
-                this.defaultOpenedsList = v;
+                this.openedSubList = v;
             },
             collapse(v) {
-                if (v) this.defaultOpenedsList = [];
+                if (v) this.openedSubList = [];
             }
         },
         created() {
-            // this.$on('toggleItemValue', this.changeValue);
+            this.$on('changeSelectedItem', this.changeSelectedItem);
+            this.$on('toggleSubOpened', this.toggleSubOpened);
+        },
+        beforeDestroy() {
+            this.$off('changeSelectedItem', this.changeSelectedItem);
+            this.$off('toggleSubOpened', this.toggleSubOpened);
         },
         methods: {
-            toggleItemValue(item) {
-                if (!this.accordion || this.mode === 'horizontal') return;
-                this.$children.forEach(v => {
-                    if (v.$options.componentName === 'KdSubmenu' && v.name !== item) {
-                        v._data.isOpened = false;
-                    }
-                });
+            addSubOpened(subName) {
+                if (this.accordion) {
+                    this.openedSubList = [subName];
+                } else if (!this.openedSubList.includes(subName)) {
+                    this.openedSubList.push(subName);
+                }
             },
-            changSelectedMenu(v) {
-                // console.log(v);
+            toggleSubOpened(subName) {
+                const index = this.openedSubList.findIndex(i => i === subName);
+                if (index > -1) {
+                    this.openedSubList.splice(index, 1);
+                    this.$emit('close', subName);
+                } else {
+                    this.addSubOpened(subName);
+                    this.$emit('open', subName);
+                }
+            },
+            changeSelectedItem(item) {
+                this.activeItem = item;
             }
         }
     };

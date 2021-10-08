@@ -22,7 +22,6 @@
         name: 'KdMenuItemGroup',
         componentName: 'KdMenuItemGroup',
         mixins: [Menu],
-        inject: ['menu'],
         props: {
             title: {
                 type: String,
@@ -31,23 +30,15 @@
         },
         data() {
             return {
-                classNameObj: [
-                    'kd-menu-item-group-title',
-                    this.menu.mode === 'horizontal' ? 'kd-menu-item-group-title-horizontal' : 'kd-menu-item-group-title-vertical'
-                ]
+
             };
         },
         computed: {
-
-        },
-        watch: {
-
-        },
-        methods: {
-            isActiveFun() {
-                if (this.$parent.$options.componentName === 'KdSubmenu') {
-                    this.$parent.isActiveFun();
-                }
+            classNameObj() {
+                return [
+                    'kd-menu-item-group-title',
+                    this.menu.mode === 'horizontal' ? 'kd-menu-item-group-title-horizontal' : 'kd-menu-item-group-title-vertical'
+                ];
             }
         }
     };
