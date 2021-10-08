@@ -54,6 +54,16 @@ export default {
         contentClass: {
             type: String,
             default: ''
+        },
+        popperParentToTooltip: {
+            type: Boolean,
+            default: false
+        },
+        popperMixins: {
+            type: [Array],
+            default() {
+                return [];
+            }
         }
     },
     data() {
@@ -98,12 +108,17 @@ export default {
         }
     },
     beforeCreate() {
+        const mixins = this.$options.propsData.popperMixins || this.$options.props.popperMixins.default() || [];
         this.popperVM = new Vue({
+            mixins: mixins,
             data: { vnode: '' },
             render() {
                 return this.vnode;
             }
         }).$mount();
+        if (this.$options.propsData.popperParentToTooltip) {
+            this.popperVM.$parent = this;
+        }
     },
     render(h) {
         this.popperVM.vnode = (
