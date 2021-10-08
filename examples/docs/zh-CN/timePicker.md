@@ -86,7 +86,7 @@
 
 ### 设置时间精度
 
-:::demo #设置时间精度 ## 可以通过 `disabled-column` `accuracy` 属性设置边界值
+:::demo #设置时间精度 ## 可以通过 `disabled-column` `accuracy` 属性设置时间精度
 
 ```html
 <template>
@@ -112,6 +112,43 @@
 </script>
 ```
 :::
+### 设置禁用时间
+
+:::demo #设置禁用时间 ## 可以通过 `disabled-time` 属性设置禁用时间. `disabled-time` 接受数组或函数.
+
+```html
+<template>
+    <div>
+        <kd-time-picker v-model="time" mode="steptime" :disabled-time="disabledTime"></kd-time-picker>
+        选中值1: {{ time }}
+        <br>
+        <br>
+        <kd-time-picker v-model="time1" :disabled-time="timeArr"></kd-time-picker>
+        选中值2: {{ time1 }}
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                time: '',
+                time1: '',
+                timeArr: ['01:00:00', '02:00:00', '03:00:00']
+            }
+        },
+        methods: {
+            disabledTime(timeStr) {
+                let hour = timeStr.split(':')[0];
+                if (hour < 6) {
+                    return true
+                }
+            },
+        }
+    }
+</script>
+```
+:::
+
 ### 选择时间范围
 
 :::demo #时间范围 ##将 `range` 设置为 `true`, 表示时间范围
@@ -151,7 +188,7 @@
 | accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
 | min-time  | 最小可选时间   | string  |     —     |    -   |
 | max-time  | 最大可选时间   | string  |     —     |    -   |
-| disabled-time  | 设置禁用的日期   | Function  |     —     |    -   |
+| disabled-time  | 设置禁用的时间   | Function  |     —     |    -   |
 | mode  |  模式    | string  |     'anytime', 'steptime'     |    'anytime'   |
 | step | 步长  | number, string  |     —     |    -   |
 | optional-times | 可选时间列表  | array  |     —     |    -   |

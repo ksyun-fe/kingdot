@@ -67,7 +67,7 @@
                                         :key="index"
                                         :class="{
                                             'kd-steptime-item': true,
-                                            'kd-disabled': !!disabledTime && disabledTime(item),
+                                            'kd-disabled': checkDisabled(item),
                                             'kd-active': timeValue[0] == item
                                         }"
                                         @click="selectTimeValue(item)"
@@ -87,6 +87,7 @@
                                     :min="minTime"
                                     :max="maxTime"
                                     :disabled="disabledColumn"
+                                    :disabled-list="disabledTime"
                                     :accuracy="accuracy"
                                     @change="timeValueChange"
                             >
@@ -120,6 +121,7 @@
                                         :min="minTime"
                                         :max="startTimeMaxLimit(maxTime, timeValue[1])"
                                         :disabled="disabledColumn"
+                                        :disabled-list="disabledTime"
                                         :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
@@ -148,6 +150,7 @@
                                         :min="endTimeMinLimit(minTime, timeValue[0])"
                                         :max="maxTime"
                                         :disabled="disabledColumn"
+                                        :disabled-list="disabledTime"
                                         :accuracy="accuracy"
                                         @change="timeValueChange"
                                 >
@@ -178,7 +181,10 @@
             },
             // 满足某条件的时间将被禁用
             disabledTime: {
-                type: Function
+                type: [Array, Function],
+                default() {
+                    return [];
+                }
             },
             // 显示模式: 'steptime', 'anytime', 按步长显示时间, 任意时间点
             mode: {
@@ -317,6 +323,7 @@
                 }
             },
             selectTimeValue(item) {
+                if (this.checkDisabled(item)) return;
                 if (this.timeString !== item) {
                     this.timeValue = [item];
                     // this.timeString = item;
@@ -341,13 +348,23 @@
             timeValueChange(value) {
                 this.$emit('change', value, 'scroll'); // 通过滚动选的时间
             },
+            checkDisabled(timeStr) {
+                let disable = false;
+                if (this.disabledTime) {
+                    if (Array.isArray(this.disabledTime)) {
+                        disable = disable || this.disabledTime.includes(timeStr);
+                    }
+                    if (typeof this.disabledTime === 'function') {
+                        disable = disable || this.disabledTime(timeStr);
+                    }
+                }
+                return disable;
+            },
             startTimeSelectorLimit() {
                 // let max =  生成的timelist 已经遵循 min max 限制
                 return time => { // "02:00"
                     let disabled = false;
-                    // if (true) {
                     disabled = parseTime(time) > parseTime(this.timeValue[1]);
-                    // }
                     return disabled;
                 };
             },
