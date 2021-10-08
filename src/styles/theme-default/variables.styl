@@ -1,17 +1,17 @@
 
 /******************************
-             media
+                media
 *******************************/
 use('../../utils/media.js')
 
 /******************************
-             Colors
+                Colors
 *******************************/
 $-white-color := #FFF
 $-black-color := #000
 
 /******************************
-            Page
+                Page
 *******************************/
 // let height be odd 20 / 14
 $-line-height := 1
@@ -480,7 +480,7 @@ $-breadcrumb-item-link-hover := $-primary-lighter-color
 $-breadcrumb-item-link-active := $-primary-darker-color
 
 /******************************
-         Tabs
+                Tabs
 *******************************/
 $-tabs-color-active-bar := $-primary-color
 $-tabs-color-active := $-primary-color
@@ -505,7 +505,7 @@ $-tabs-after-width :=100%
 $-tabs-border-width := 1px
 $-tabs-user-select :=none
 /******************************
-          Drawer
+                Drawer
 *******************************/
 $-drawer-active-color := $-primary-darker-color//#4464c9
 $-drawer-hover-color := $-primary-lighter-color //#7797FC
@@ -657,7 +657,7 @@ $-select-active-color :=  #557DFC
 $-select-disabled-color := #F3F4F7
 $-select-disabled-bg := #F3F4F7
 $-select-menu-bg := #fff
-$-select-menu-color := #404040 
+$-select-menu-color := #404040
 $-select-group-color := #B2B2B2
 $-select-tag-bg := #F1F1F5
 
@@ -737,7 +737,7 @@ $-datepicker-day-disabled-bg-color := #f7f8fa
 $-datepicker-day-disabled-color := #4c4c4c
 
 /******************************
-            ScrollSelect
+                ScrollSelect
 *******************************/
 
 $-scroll-select-height := unit(210 / 14, rem)
@@ -754,14 +754,49 @@ $-scroll-transition := .25s ease-in-out
 
 
 /******************************
-            TimePicker
+                TimePicker
 *******************************/
 $-timepicker-time-active-color := $-primary-color
 $-timepicker-time-disabled-color := #CCCCCC
 $-timepicker-item-hover-bg-color := #F3F4F7
 
 /******************************
-            DateTimePicker
+                Menu
+*******************************/
+$-menu-horizontal-background := none
+$-menu-item-horizontal-height := 32px
+$-menu-item-vertical-height := 44px
+$-menu-item-horizontal-line-height := $-menu-item-horizontal-height
+$-menu-item-vertical-line-height := $-menu-item-vertical-height
+$-menu-item-border-radius := 4px
+$-menu-item-font-size := $-font-small-size
+$-menu-item-height-horizontal := $-menu-item-horizontal-height
+$-menu-item-height-vertical := $-menu-item-vertical-height
+
+$-menu-disabled-color := $-disabled-color
+
+$-menu-item-group-title-font-size := $-font-small-size
+$-menu-item-group-title-color:= $-text-list-color
+
+$-menu-item-group-title-horizontal-line-height := $-menu-item-horizontal-height
+$-menu-item-group-title-vertical-line-height := $-menu-item-vertical-height
+
+$-menu-item-title-horizontal-height := 68px
+$-menu-item-title-horizontal-padding := 24px
+$-menu-item-title-horizontal-font-size := 14px
+$-menu-item-active-background := $-primary-color
+$-menu-item-active-background-image := none
+$-menu-item-active-color := #fff
+$-menu-item-horizontal-active-background := #fff
+$-menu-item-horizontal-active-background-image := none
+$-menu-item-horizontal-active-color := $-primary-color
+
+$-submenu-popper-content-width := 200px
+$-submenu-popper-content-background := #fff
+$-submenu-popper-content-color := #778088
+$-submenu-popper-horizontal-content-width := 200px
+/******************************
+                DateTimePicker
 *******************************/
 $-datetimepicker-bg-color := $-white-color
 $-datetimepicker-icon-color := $-icon-default-color

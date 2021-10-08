@@ -156,21 +156,26 @@
                 },
                 {
                     "name": "Navigation",
-                    "children": [{
-                        "path": "/steps",
-                        "name": "Steps 步骤条"
-                    },{
-                        "path": "/breadcrumb",
-                        "name": "Breadcrumb面包屑"
-                    },{
-                        "path": "/tabs",
-                        "name": "Tabs标签页"
-                    },
-                    {
-                        "path": "/dropdown",
-                        "name": "Dropdown 下拉菜单"
-                    }
-                ]
+                    "children": [
+                        {
+                            "path": "/steps",
+                            "name": "Steps 步骤条"
+                        },{
+                            "path": "/breadcrumb",
+                            "name": "Breadcrumb面包屑"
+                        },{
+                            "path": "/tabs",
+                            "name": "Tabs标签页"
+                        },
+                        {
+                            "path": "/dropdown",
+                            "name": "Dropdown 下拉菜单"
+                        },
+                        {
+                            "path": "/menu",
+                            "name": "Menu 菜单"
+                        }
+                    ]
                 },
                 {
                     "name": "Others",
@@ -351,6 +356,10 @@
                     {
                         "path": "/dropdown",
                         "name": "Dropdown"
+                    },
+                    {
+                        "path": "/menu",
+                        "name": "Menu"
                     }
                 ]
                 },
