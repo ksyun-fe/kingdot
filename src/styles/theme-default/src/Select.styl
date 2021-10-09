@@ -96,11 +96,13 @@ for size in $-kd-select-size
     margin 5px 0 5px 8px
     display flex
     align-items center
+    border 1px solid #e9e9eb
+    box-sizing border-box
     .kd-select-tag-label
-        display inline-block
+        display flex
+        flex 1
         height 20px
         line-height 20px
-        width calc(100% - 28px)
         overflow hidden
         text-overflow ellipsis
         word-break break-all
