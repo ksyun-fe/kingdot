@@ -54,7 +54,10 @@
             },
             // 判断选项是否需要禁用
             disable: {
-                type: Function
+                type: Function,
+                default: function _default() {
+                    return false;
+                }
             },
             count: { //  展示范围, 最好奇数位. 默认5
                 type: Number,
@@ -106,10 +109,11 @@
                 if (length < 1) {
                     return [];
                 }
-                // if (!~curIndex) { // ~-1 == 0
-                //     curIndex = 0;
-                //     this.currentValue = data[0].value;
-                // }
+                if (!~curIndex) { // ~-1 == 0
+                    curIndex = 0;
+                    // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+                    this.currentValue = data[0].value;
+                }
 
                 // list 是能展示出来的几个元素的集合. 与当前选中的 curValue 有关
                 list = Array(this.count).fill(0).map((item, index) => {
@@ -263,10 +267,6 @@
                 // 整个组件被禁用, 或者传入了 验证函数, 且验证后为禁用
                 const disableFlag = this.disabled || !!this.disable && this.disable(item.value);
                 if (!disableFlag && item.value === this.currentValue && this.currentValue !== this.value) {
-                    // if (this.value) { // 初始化没有value时, 不把
-                    //     this.$emit('input', this.currentValue);
-                    // }
-                    // console.log('计算禁用, 更新input');
                     this.$emit('input', this.currentValue);
                 }
                 return disableFlag;
