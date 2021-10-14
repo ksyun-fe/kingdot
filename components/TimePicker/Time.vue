@@ -62,7 +62,7 @@
         },
         data() {
             return {
-                timeValue: [],
+                timeValue: ['00', '00', '00'], // 设定 time 面板被框选的默认值
                 disabledItems: this.disabled || [false, false, false],
                 baseDate: '',
                 maxTime: this.max, // 完整的时间日期字符串, 或者 "00:00:00"
@@ -151,10 +151,6 @@
         created() {
         },
         methods: {
-            selectTimeValue(item) {
-                this.$emit('input', [item]);
-                this.$emit('tooltipHide');
-            },
             // parseTime(time) {
             //     let [h = 0, m = 0, s = 0] = time.split(':').map(i => +i);
             //     return (h * 60 + m) * 60 + s;
@@ -180,9 +176,9 @@
                     const max = this.date ? this.maxTime : `${this.baseDate} ${this.maxTime}`;
                     let disable = false;
                     time[index] = value;
-                    const timeValue = time.join(':');
+                    const timeStr = time.join(':');
 
-                    time = new Date(`${this.baseDate} ${timeValue}`);
+                    time = new Date(`${this.baseDate} ${timeStr}`);
 
                     if (this.minTime && this.maxTime) {
                         disable = time < new Date(`${min}`) || time > new Date(`${max}`);
@@ -193,10 +189,10 @@
                     }
                     if (this.disabledList) {
                         if (Array.isArray(this.disabledList)) {
-                            disable = disable || this.disabledList.includes(timeValue); // string 格式的时间
+                            disable = disable || this.disabledList.includes(timeStr); // string 格式的时间
                         }
                         if (typeof this.disabledList === 'function') {
-                            disable = disable || this.disabledList(timeValue);
+                            disable = disable || this.disabledList(timeStr);
                         }
                     }
                     return disable;
