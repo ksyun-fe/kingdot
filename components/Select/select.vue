@@ -244,15 +244,14 @@
                     } else {
                         if (this.multiple && this.multipleSerach) {
                             this.multipleSerach = '';
-                            this.optionFilter('');
                         } else if (!this.multiple && this.filterable) {
                             if (this.value) {
                                 this.inputLabel = this.inputPlaceholder;
                             }
                             this.inputPlaceholder = this.placeholder;
-                            this.optionFilter('');
                         }
                     }
+                    this.optionFilter('');
                 }
             }
         },

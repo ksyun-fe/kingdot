@@ -1,5 +1,9 @@
 ## 更新日志
 
+*2021-10-14*
+### Bugfix
+* Select
+    修复在filterable下空数据显示异常问题（临时解决）
 *2021-10-??*
 ## v1.0.21
 ### New features
@@ -18,7 +22,7 @@
     add the way to communicate with popper vm
 * menu
     add menu
-    
+
 *2021-09-30*
 ## v1.0.19
 ### New features
