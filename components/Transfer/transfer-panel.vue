@@ -25,6 +25,7 @@
                         :disabled="disabled"
                         class="kd-transfer-search"
                         name="serach"
+                        :placeholder="placeholder"
                         @input="handleChange"
                 />
             </div>
@@ -130,6 +131,10 @@
             title: {
                 type: [String, Number],
                 default: ''
+            },
+            placeholder: {
+                type: String,
+                default: '请输入搜索内容'
             },
             selectAll: {
                 type: Boolean,

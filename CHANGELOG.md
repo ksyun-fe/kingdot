@@ -1,5 +1,10 @@
 ## 更新日志
 
+*2021-10-15*
+### New features
+* Transfer
+    filterPlaceholder 搜索框占位文字 Array 类型参数
+
 *2021-10-14*
 ### Bugfix
 * Select

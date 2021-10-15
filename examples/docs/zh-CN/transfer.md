@@ -39,7 +39,7 @@
 
 ```html
 <template>
-    <kd-transfer v-model="value" :data="defaultData" showFilter :filter-method="filterMethod">
+    <kd-transfer v-model="value" :data="defaultData" showFilter :filter-method="filterMethod" :filter-placeholder="['请输入','请输入']">
     </kd-transfer>
 </template>
 <script>
@@ -148,11 +148,11 @@
 
 ```html
 <template>
-    <kd-transfer 
-        v-model="value" 
-        :data="defaultData" 
-        buttonLevel 
-        :titles="titles" 
+    <kd-transfer
+        v-model="value"
+        :data="defaultData"
+        buttonLevel
+        :titles="titles"
         :buttonTexts="buttonTexts"
         @change="handleChange"
         @checkChange="handleCheckChange"
@@ -207,12 +207,12 @@
 | value/v-model | 更新值 | array  | —            | —     |
 | data | 默认数据 | array  |     —        |    []  |
 | disabled | 禁用 | boolean  |     —        |    false  |
-| dataKey | 数据的key值 | object  |     —        |   key:'key',label:'label' 
+| dataKey | 数据的key值 | object  |     —        |   key:'key',label:'label'
 | titles |	定义列表标题 |	array	|  —    |   —   |
 | button-texts |	定义按钮文字    |	array   |   —   |		[]
 |   showFilter  |	是否显示搜索框|	boolean	| — |	false
 |   filter-methods  |	自定义搜索方法|	function	|	—   |   —
-|   filter-placeholder	|   搜索框占位文字  |    text	|   —	|   请输入搜索内容
+|   filter-placeholder	|   搜索框占位文字  |    array	|   —	|  ['请输入搜索内容','输入搜索内容']
 |   select-all  |	是否显示全选勾选框    |	boolean |   —  |  true
 |   buttonLevel |   按钮横向排序    |   boolean |   —   |   false
 |   selectedKeys |  哪些选择项被选中    |   array   |   —   |   []

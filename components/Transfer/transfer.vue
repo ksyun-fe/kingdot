@@ -8,6 +8,7 @@
                 :select-all="selectAll"
                 :show-filter="showFilter"
                 :filter-method="filterMethod"
+                :placeholder="leftPlaceholder"
                 :disabled="disabled"
                 :data-key="dataKey"
                 @checkChange="sourceCheckChange"
@@ -57,6 +58,7 @@
                 :title="rightTitle"
                 :select-all="selectAll"
                 :show-filter="showFilter"
+                :placeholder="rightPlaceholder"
                 :filter-method="filterMethod"
                 :data-key="dataKey"
                 :disabled="disabled"
@@ -110,6 +112,12 @@
                 type: Boolean,
                 default: false
             },
+            filterPlaceholder: {
+                type: Array,
+                default() {
+                    return ['请输入搜索内容', '请输入搜索内容'];
+                }
+            },
             filterMethod: {
                 type: Function
             },
@@ -153,6 +161,12 @@
             },
             rightTitle() {
                 return this.titles[1];
+            },
+            leftPlaceholder() {
+                return this.filterPlaceholder[0] || '请输入搜索内容';
+            },
+            rightPlaceholder() {
+                return this.filterPlaceholder[1] || '请输入搜索内容';
             },
             //  左侧初始化数据
             sourceData() {
