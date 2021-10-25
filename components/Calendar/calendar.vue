@@ -244,7 +244,9 @@
                     month: Moment().month() + 1,
                     date: Moment().date()
                 },
-                moment: this.isEndCalendar ? Moment(this.value[0]).add(1, 'month') : Moment(this.value[0]), // 第二日历 默认渲染下个月的日期
+                moment: this.value[0]
+                    ? this.isEndCalendar ? Moment(this.value[0]).add(1, 'month') : Moment(this.value[0]) // 第二日历 默认渲染下个月的日期
+                    : this.isEndCalendar ? Moment().add(1, 'month') : Moment(), // 没有初始值时, 默认展示当前月份
                 selectedDate: this.value,
                 maxDateValue: this.maxDate,
                 minDateValue: this.minDate,
