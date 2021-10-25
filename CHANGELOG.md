@@ -1,16 +1,15 @@
 ## 更新日志
+*2021-10-25*
+## v1.0.21
 
-*2021-10-15*
 ### New features
 * Transfer
     filterPlaceholder 搜索框占位文字 Array 类型参数
 
-*2021-10-14*
 ### Bugfix
 * Select
     修复在filterable下空数据显示异常问题（临时解决）
-*2021-10-??*
-## v1.0.21
+
 ### New features
 * Timepicker
     disableTime 条件禁用支持 Array 类型参数
