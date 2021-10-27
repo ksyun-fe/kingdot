@@ -236,6 +236,7 @@
             },
             dropdownMenu: {
                 handler(v, old) {
+                    this.defaultWidth = this.$refs.kdSelect.clientWidth + 'px';
                     if (v) {
                         if (this.filterable && this.inputLabel && !this.multiple) {
                             this.inputPlaceholder = this.inputLabel;
