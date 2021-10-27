@@ -372,27 +372,15 @@
                         newDates = aimDate.map(x => {
                             return Moment(x).format('YYYY-MM-DD');
                         });
-                        this.$refs.startCalendar.turnPageTo(newDates[0]);
-                        this.$refs.endCalendar.turnPageTo(Moment(newDates[0]).add(1, 'month').format(this.formatString));
-                    }
-                    if (Array.isArray(aimDate) && aimDate.length === 0) { // 传入空数组表示清空.
-                        this.$refs.startCalendar.turnPageTo(Moment().format(this.formatString));
-                        this.$refs.endCalendar.turnPageTo(Moment().add(1, 'month').format(this.formatString));
                     }
                     this.dateValue = newDates;
                 } else {
                     let newDate = '';
-                    if (!aimDate) { // 空字符串
-                        // newDate = '';
-                        this.$refs.calendar.turnPageTo(Moment().format(this.formatString));
-                    }
                     if (!!aimDate && typeof aimDate === 'string') {
                         newDate = Moment(aimDate).format('YYYY-MM-DD');
-                        this.$refs.calendar.turnPageTo(newDate);
                     }
                     if (Array.isArray(aimDate) && aimDate.length === 1) {
                         newDate = Moment(aimDate[0]).format('YYYY-MM-DD');
-                        this.$refs.calendar.turnPageTo(newDate);
                     }
                     this.dateValue = [newDate];
                     // 时间点模式

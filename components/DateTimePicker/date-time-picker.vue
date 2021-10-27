@@ -581,29 +581,16 @@
                         newDates = aimDateTime.map(x => {
                             return Moment(x).format('YYYY-MM-DD hh:mm:ss'); // TODO: 加上精度之后, formatStr 格式变化
                         });
-                        this.$refs.startCalendar.turnPageTo(newDates[0]);
-                        this.$refs.endCalendar.turnPageTo(Moment(newDates[0]).add(1, 'month').format(this.formatString));
                         this.mergeDateTime(newDates, 'date');
-                    }
-                    // 表示需要清空dateTimeValue
-                    if (Array.isArray(aimDateTime) && aimDateTime.length === 0) {
-                        this.$refs.startCalendar.turnPageTo(Moment().format(this.formatString));
-                        this.$refs.endCalendar.turnPageTo(Moment().add(1, 'month').format(this.formatString));
                     }
                     this.dateTimeValue = newDates;
                 } else { // 时间点模式
                     let newDateTime = '';
-                    if (!aimDateTime) {
-                        // newDateTime = '';
-                        this.$refs.calendar.turnPageTo(Moment().format(this.formatString));
-                    }
                     if (!!aimDateTime && typeof aimDateTime === 'string') { // 空字符串? 需要单独逻辑
                         newDateTime = Moment(aimDateTime).format('YYYY-MM-DD hh:mm:ss');
-                        this.$refs.calendar.turnPageTo(newDateTime);
                     }
                     if (Array.isArray(aimDateTime) && aimDateTime.length === 1) {
                         newDateTime = Moment(aimDateTime[0]).format('YYYY-MM-DD hh:mm:ss');
-                        this.$refs.calendar.turnPageTo(newDateTime);
                     }
                     this.dateTimeValue = [newDateTime];
                 }

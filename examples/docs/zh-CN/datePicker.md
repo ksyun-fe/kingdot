@@ -208,11 +208,16 @@
     </div>
 </template>
 <script>
-    export default{
+    export default {
         data() {
             return {
-                markDate: ['2021-09-29', '2021-09-27', '2021-09-26'],
+                markDate: ['2020-01-01', '2020-01-11']
             }
+        },
+        mounted() {
+            setTimeout(() => {
+                this.markDate = ['2021-09-29', '2021-09-27', '2021-09-26'];
+            }, 5000)
         }
     }
 </script>

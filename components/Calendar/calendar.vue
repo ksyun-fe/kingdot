@@ -342,6 +342,12 @@
                 handler(v) {
                     if (Array.isArray(v)) {
                         this.selectedDate = v;
+                        // fix: 当日历用来回显接口返回的日期时, 应当重新渲染日历页面
+                        if (!this.isRange) {
+                            this.refreshCalendar();
+                        } else if (this.isRange && v.length === 2) {
+                            this.refreshCalendar();
+                        }
                     } else if (typeof v === 'string') {
                         this.selectedDate = [v];
                     }
@@ -368,6 +374,11 @@
         },
 
         methods: {
+            refreshCalendar() {
+                this.moment = this.value[0]
+                    ? this.isEndCalendar ? Moment(this.value[0]).add(1, 'month') : Moment(this.value[0]) // 第二日历 默认渲染下个月的日期
+                    : this.isEndCalendar ? Moment().add(1, 'month') : Moment();
+            },
             setMode(mode) {
                 if (this.isRange) return;
                 this.mode = mode;
@@ -470,10 +481,6 @@
                     this.selectedDate.splice(0, this.value.length, date.dateStr); // 清空, 然后第一位赋值
                     this.$emit('select', this.selectedDate, 'calendar');
                 }
-            },
-
-            turnPageTo(dateStr) {
-                this.moment = Moment(dateStr);
             },
 
             jumpToDate(dateValue, source) {
