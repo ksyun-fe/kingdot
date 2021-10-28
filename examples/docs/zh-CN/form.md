@@ -284,3 +284,21 @@ export default {
 | 方法名      | 说明    | 参数 |
 |---------- |-------- |---------- |
 | validate | 对当前表单字段进行校验，返回一个promise，数据是验证结果 true / false | -
+
+### Rules {.component__content}
+| 方法名      | 说明    | 参数 |
+|---------- |-------- |---------- |
+| required | 必须填写 | -
+| digits | 正整数 | -
+| email | 邮箱地址 | -
+| url | 网址 | -
+| date | 日期 | -
+| dateISO | YYYY-MM-DD形式日期 | -
+| number | 数字 | -
+| minLength | 长度不小于 n 的字符串 | -
+| maxLength | 长度不大于 n 的字符串 | -
+| min | 不小于 n 的数 | -
+| max | 不大于 n 的数 | -
+| rangeLength | 长度为 n 到 m 的数组或字符串 | -
+| range | n 到 m 之间的数 | -
+
