@@ -75,7 +75,7 @@
                         v-if="!multiple"
                         ref="input"
                         v-model="inputLabel"
-                        :readonly="!filterable"
+                        :readonly="!filterable || !dropdownMenu"
                         type="text"
                         :disabled="disabled"
                         class="kd-select-input-inner"
