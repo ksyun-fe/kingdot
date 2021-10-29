@@ -7,7 +7,7 @@
 ```html
 <template>
         <div>
-            <kd-select v-model="defaultValue" placeholder="请选择内容">
+            <kd-select v-model="defaultValue" placeholder="请选择内容" filterable>
                 <kd-option value="">空数据</kd-option>
                 <kd-option v-for="item in options" :key="item.value" :title="item.label" :value="item.value">{{ item.label }}
                 </kd-option>
