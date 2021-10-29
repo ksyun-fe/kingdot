@@ -234,6 +234,7 @@
                 if (this.precision !== null) {
                     this.inputValue = this.addPoint(value);
                 }
+                this.$emit('input', this.inputValue);
                 this.$emit('blur', e);
             },
             addPoint(value) {

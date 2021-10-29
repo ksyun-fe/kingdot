@@ -7,7 +7,7 @@
 ```html
 <template>
     <div>
-        <kd-spinner v-model="value" :min="min" :max="max" @change="change"></kd-spinner>
+        <kd-spinner v-model="value" :min="min" :max="max" @change="change" @blur="blur"></kd-spinner>
     </div>
 </template>
 <script>
@@ -22,6 +22,9 @@ export default{
     methods:{
         change(v,oldv){
             console.log(v, oldv)
+        },
+        blur(v){
+            console.log(this.value)
         }
     }
 }
