@@ -2,8 +2,6 @@
 *2021-10-27*
 * Select
     修复宽度问题
-* From
-    支持扩展全局验证方法 Form.addValidateMethod
 *2021-10-25*
 ## v1.0.21
 
