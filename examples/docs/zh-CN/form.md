@@ -25,22 +25,6 @@
                         v-model.trim="age"/>
             </kd-form-item>
             <kd-form-item
-                    model="word"
-                    ref="word"
-                    :rules="{
-                        required: true,
-                        letter: true,
-                        minLength: 2,
-                        maxLength: 10
-                    }"
-            >
-                <template v-slot:label><i class="required">* </i> 英文单词：</template>
-                <kd-input
-                        :fluid="true"
-                        placeholder="请输入一个英文单词"
-                        v-model.trim="word"/>
-            </kd-form-item>
-            <kd-form-item
                 model="positiveInteger"
                 :rules="{
                     min: 1,
@@ -94,9 +78,6 @@
     </div>
 </template>
 <script >
-    import Kingdot from '../../../src/index.js'
-    
-    Kingdot.Form.addValidateMethod('letter', /^[a-z|A-Z]+$/, '必须是字母');
     export default{
         data() {
             return {
@@ -112,7 +93,6 @@
                 },
                 messages: {max: '目前吉尼斯纪录中最长寿命134岁呦'},
                 isLikeFruit: false,
-                word: '',
                 fruit: 0,
                 fruits: [
                     {
@@ -304,11 +284,6 @@ export default {
 | 方法名      | 说明    | 参数 |
 |---------- |-------- |---------- |
 | validate | 对当前表单字段进行校验，返回一个promise，数据是验证结果 true / false | -
-
-### Form Static Methods {.component__content}
-| 方法名      | 说明    | 参数 |
-|---------- |-------- |---------- |
-| addValidateMethod | 添加验证规则,在任一 FormItem 的 rules 中配置此规则,即可进行验证 | 1. name: 规则名称 2. method: 规则验证函数,返回 true / false 该值可以为 正则 或者 函数 3. message: 规则错误时的提示文案, 该值可以为 函数 或者 字符串
 
 ### Rules {.component__content}
 | 方法名      | 说明    | 参数 |

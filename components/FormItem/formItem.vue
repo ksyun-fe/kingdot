@@ -60,8 +60,7 @@
                 default: () => ({})
             },
             messages: {
-                type: [Object, String],
-                default: () => ({})
+                type: [Object, String]
             },
             value: {
                 type: [Number, String]
@@ -138,7 +137,7 @@
                     this.promise.cancelled = true;
                 }
             },
-            _dirty() {
+            _dirty(e) {
                 if (!this.model) return;
                 if (this.timerForValidate) {
                     clearTimeout(this.timerForValidate);
@@ -174,26 +173,18 @@
                     for (const key in rules) {
                         const rule = rules[key];
                         if (key === 'required' || rule === false) continue;
-                        let ruleConfig;
+                        let fn;
                         if (typeof rule === 'function') {
-                            ruleConfig = rule;
+                            fn = rule;
                         } else {
-                            ruleConfig = _ruleHandlers[key];
-                            if (!ruleConfig) {
+                            fn = _ruleHandlers[key];
+                            if (!fn) {
                                 // eslint-disable-next-line no-console
                                 console.warn(`Can not find validate method: ${key}`);
                                 continue;
                             }
                         }
-                        if (Object.prototype.toString.call(ruleConfig) === '[object RegExp]') {
-                            promises.push(ruleConfig.test(value));
-                        } else if (Object.prototype.toString.call(ruleConfig) === '[object Function]') {
-                            promises.push(ruleConfig(value, this, rule));
-                        } else {
-                            // eslint-disable-next-line no-console
-                            console.warn(`validate method must be function or regexp`);
-                            continue;
-                        }
+                        promises.push(fn(value, this, rule));
                         keys.push(key);
                     }
                 }
@@ -233,14 +224,18 @@
                 const rules = this.getRules();
                 const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
                 const value = this.deepGetValue($data, this.model).value;
-                const message = customMessages[ruleName] || defaultMessage[ruleName];
+                const message = customMessages || defaultMessage[ruleName];
                 if (typeof message === 'function') {
                     return message(value, this, rules[ruleName]);
                 }
-                return message;
+                if (message && message[ruleName]) {
+                    return message[ruleName];
+                } else {
+                    return defaultMessage[ruleName] ? defaultMessage[ruleName](value, this, rules[ruleName]) : '';
+                }
             },
             deepGetValue(data, path) {
-                const result = (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/]/g, '').split('.') : path)
+                const result = (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/\]/g, '').split('.') : path)
                     .reduce((o, k) => (o || {})[k], data);
                 if (result === false) {
                     return {value: ''};
