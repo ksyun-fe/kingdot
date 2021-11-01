@@ -4,6 +4,8 @@
 ### Bugfix
 * Spinner
     修复触发blur事件时，value值未更新的问题
+* Select
+    优化value非空值判断
 
 *2021-10-27*
 ## v1.0.22
