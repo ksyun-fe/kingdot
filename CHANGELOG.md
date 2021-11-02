@@ -1,6 +1,13 @@
 ## 更新日志
 
 *2021-11-01*
+## v1.0.24
+
+### Bugfix
+* Transfer
+    fix filter list bug
+
+*2021-11-01*
 ## v1.0.23
 
 ### Bugfix

@@ -153,13 +153,16 @@
                 return this.panelData.filter(
                     (item) => !item.disabled && item.checked
                 );
+            },
+            isCheckedAll() {
+                return this.panelData.length > 0 && this.panelData.every(i => i.checked || i.disabled);
             }
         },
         watch: {
             //  panelData初始化数据
             data: {
-                handler(v) {
-                    this.panelData = v;
+                handler() {
+                    this.handleChange();
                 },
                 immediate: true
             },
@@ -172,16 +175,15 @@
                         });
                     }
                 }
+            },
+            isCheckedAll: {
+                immediate: true,
+                handler(v) {
+                    this.allChecked = !!v;
+                }
             }
         },
-        mounted() {
-            this.init();
-        },
         methods: {
-            // 初始化回调函数
-            init() {
-                this.allCheckedChange();
-            },
             handleChange() {
                 //  是否执行自定义过滤
                 this.panelData = this.data.filter((item) => {
@@ -210,14 +212,7 @@
             //  内容input改变
             itemInputChange(item) {
                 const changeKeys = [item[this.dataKey.key]];
-                this.allCheckedChange();
                 this.$emit('checkChange', this.checkedList, changeKeys);
-            },
-            allCheckedChange() {
-                const noramlData = this.panelData.filter((child) => !child.disabled);
-                this.allChecked =
-                    noramlData.length === this.checkedList.length &&
-                    this.checkedList.length !== 0;
             },
             //  内容一行的点击 事件
             itemHandleClick(data, index) {
@@ -233,20 +228,13 @@
             //  获取当前点击的数据
             getSelectedData() {
                 const data = [];
-                this.panelData.forEach((item) => {
+                this.data.forEach((item) => {
                     if (item.checked === true && !item.disabled) {
                         item.checked = false;
                         data.push(item[this.dataKey.key]);
                     }
                 });
-                this.allChecked = false;
                 return data;
-            },
-            // 获取当前所有点击的数据
-            getAllSelectedData() {
-                return this.panelData.filter(
-                    (item) => !item.disabled && item.checked
-                );
             }
         }
     };
