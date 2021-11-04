@@ -43,7 +43,8 @@
                 >
                     <slot name="footer">
                         <div
-                                class="kd-defult-footerbtn">
+                                class="kd-defult-footerbtn"
+                        >
                             <kd-button
                                     class="kd-drawer-closbutton"
                                     @click="cancelClose"
