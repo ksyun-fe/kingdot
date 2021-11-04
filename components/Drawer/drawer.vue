@@ -42,16 +42,19 @@
                         class="kd-drawer-footer"
                 >
                     <slot name="footer">
-                        <kd-button
-                                class="kd-drawer-closbutton"
-                                @click="cancelClose"
-                        >{{ cancelText }}</kd-button>
+                        <div
+                                class="kd-defult-footerbtn">
+                            <kd-button
+                                    class="kd-drawer-closbutton"
+                                    @click="cancelClose"
+                            >{{ cancelText }}</kd-button>
 
-                        <kd-button
-                                type="primary"
-                                class="kd-drawer-truebutton"
-                                @click="running"
-                        >{{ okText }}</kd-button>
+                            <kd-button
+                                    type="primary"
+                                    class="kd-drawer-truebutton"
+                                    @click="running"
+                            >{{ okText }}</kd-button>
+                        </div>
                     </slot>
                 </section>
             </div>

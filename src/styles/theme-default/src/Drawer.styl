@@ -68,18 +68,17 @@ $-drawer-position := 'left' 'top' 'bottom' 'right';
   color: $-drawer-txt-color;
 
 .kd-drawer-footer
-  position: relative;
-  flex: 0 0 64px;
-  border-top: 1px solid $-drawer-footerBorder-color;
-  justify-content: flex-end;
-  display: flex;
-
-  button
-    margin-top: 16px;
-    outline: none;
-
-    &:hover
-      cursor: pointer;
+   min-height: 50px
+   border-top: 1px solid $-drawer-footerBorder-color;
+  .kd-defult-footerbtn
+    position: relative;
+    justify-content: flex-end;
+    display: flex;
+    button
+     margin-top: 10px;
+     outline: none;
+     &:hover
+       cursor: pointer;
 
   .kd-drawer-closbutton
     width: 60px;

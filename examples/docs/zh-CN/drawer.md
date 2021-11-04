@@ -101,11 +101,12 @@
     <kd-drawer 
             v-model='flag' 
              >
-            <div slot="footer" class='footerBtn'>
-               <kd-button>
-                 自定义
+               <kd-button slot="footer">
+                 自定义1
                </kd-button>
-            </div>
+                <kd-button slot="footer">
+                 自定义2
+               </kd-button>
     </kd-drawer>
     <kd-drawer 
             v-model='flagOther' 
@@ -137,9 +138,6 @@
 <style scoped lang="stylus">
     .box .kd-btn{
         margin-left: 10px
-    }
-    .footerBtn{
-        margin-right:20px
     }
 </style>
 ```
