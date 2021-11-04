@@ -1,4 +1,7 @@
 ## 更新日志
+## Bugfix
+* Drawer
+    修复drawer自定义footer插槽层级问题
 
 *2021-11-01*
 ## v1.0.24
