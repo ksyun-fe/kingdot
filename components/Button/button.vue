@@ -1,40 +1,53 @@
 <template>
-    <button
-            class="kd-btn"
-            :class="allClassList"
-            :type="nativeType"
-            @click="handleClick"
-    >
-        <!-- 加载中 -->
-        <span
-                v-if="loading"
-                class="kd-btn-loading-icon"
-                :class="{ 'kd-icon-left': $slots.default }"
+    <div class="kd-btn-container">
+        <button
+                v-if="type!=='text'"
+                class="kd-btn"
+                :class="allClassList"
+                :type="nativeType"
+                @click="handleClick"
         >
-            <svg
-                    viewBox="0 0 120 120"
+            <!-- 加载中 -->
+            <span
+                    v-if="loading"
+                    class="kd-btn-loading-icon"
+                    :class="{ 'kd-icon-left': $slots.default }"
             >
-                <circle
-                        cx="60"
-                        cy="60"
-                        class="kd-spin-circle"
-                        r="57"
-                ></circle>
-            </svg>
-        </span>
-        <!-- 传入icon -->
-        <i
-                v-if="icon"
-                :class="icon"
-        />
-        <!-- 默认按钮 -->
-        <span
-                v-if="$slots.default"
-                :class="{'kd-icon-right': icon && $slots.default[0].text }"
+                <svg
+                        viewBox="0 0 120 120"
+                >
+                    <circle
+                            cx="60"
+                            cy="60"
+                            class="kd-spin-circle"
+                            r="57"
+                    ></circle>
+                </svg>
+            </span>
+            <!-- 传入icon -->
+            <i
+                    v-if="icon"
+                    :class="icon"
+            />
+            <!-- 默认按钮 -->
+            <span
+                    v-if="$slots.default"
+                    :class="{'kd-icon-right': icon && $slots.default[0].text }"
+            >
+                <slot/>
+            </span>
+        </button>
+        <a
+                v-if="type==='text'"
+                :href="link"
+                :class="allClassList"
+                class="kd-btn"
+                :target="linkTarget"
         >
             <slot/>
-        </span>
-    </button>
+        </a>
+    </div>
+
 </template>
 
 <script>
@@ -94,6 +107,14 @@
             delayTime: {
                 type: Number,
                 default: 3000
+            },
+            href: {
+                type: String,
+                default: 'javascript:;'
+            },
+            target: {
+                type: String,
+                default: '_self'
             }
         },
         data() {
@@ -101,7 +122,9 @@
                 isActive: false,
                 disabledStatus: this.disabled,
                 authAbled: true,
-                delayDisable: false
+                delayDisable: false,
+                link: 'javascript:;',
+                linkTarget: '_self'
             };
         },
         computed: {
@@ -132,6 +155,20 @@
             },
             authid() {
                 this.checkAuth();
+            },
+            href: {
+                immediate: true,
+                handler(v) {
+                    this.link = v;
+                    this.handleHerf();
+                }
+            },
+            target: {
+                immediate: true,
+                handler(v) {
+                    this.linkTarget = v;
+                    this.handleHerf();
+                }
             }
         },
         mounted() {
@@ -144,6 +181,17 @@
                     this.authAbled = true;
                 } else {
                     this.authAbled = false;
+                }
+            },
+            handleHerf() {
+                if (!this.authAbled || this.disabled) {
+                    this.link = 'javascript:;';
+                    this.linkTarget = '_self';
+                    this.disabledStatus = true;
+                } else {
+                    if (this.$KD && this.$KD.setButtonLink) {
+                        this.link = this.$KD.setButtonLink(this.href);
+                    }
                 }
             },
             initActive() {

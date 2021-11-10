@@ -1,4 +1,4 @@
-let authList = ['zzz'];
+let authList = [];
 const defaultEnabledStatus = (authList, authid) => {
     if (authid) {
         return authList.indexOf(authid) >= 0;

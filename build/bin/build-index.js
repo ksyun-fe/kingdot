@@ -12,6 +12,7 @@ const componentFiles = fs.readdirSync(componentsPath, {encoding: 'utf-8'});
 const template =
 `{{import}}
 import enable from './utils/enabled.js';
+import handleButtonLink from './utils/handleButtonLink.js';
 const components = [
     {{components}}
 ];
@@ -20,6 +21,7 @@ const install = (Vue, opts = {}) => {
     const $KD = Vue.prototype.$KD = {};
     $KD.zIndex = opts.zIndex || 2000;
     $KD.getEnabledStatus = enable.createEnabled(opts.getEnabledStatus);
+    $KD.setButtonLink = handleButtonLink.createLink(opts.setButtonLink);
     Vue.prototype.$message = Message.creators;
     components.forEach(c => {
         Vue.component(c.name, c);
@@ -35,6 +37,8 @@ export default {
     install,
     getAuthList: enable.getAuthList,
     changeAuthList: enable.changeAuthList,
+    getLink: handleButtonLink.getLink,
+    changeLink: handleButtonLink.changeLink,
     {{components}}
 };
 `;

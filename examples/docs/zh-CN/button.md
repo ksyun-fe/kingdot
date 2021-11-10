@@ -8,7 +8,8 @@
         <kd-button type='primary' :authid="authid" disabled>主要按钮</kd-button>
         <kd-button hollow>空心按钮</kd-button>
         <kd-button type='none'>文字按钮</kd-button>
-        <kd-button type='text'>链接按钮</kd-button>
+        <kd-button type='text' href="#/zh-CN/component/installation" target="_blank">链接按钮</kd-button>
+        <kd-button type='text'>无链接按钮</kd-button>
     </div>
 </template>
 <script>
@@ -21,7 +22,7 @@
     }
 </script>
 <style scoped>
-.row button{
+.row .kd-btn-container{
     margin-left:20px
 }
 </style>
@@ -50,7 +51,7 @@
     </div>
 </template>
 <style scoped>
-.row button{
+.row .kd-btn-container{
     margin-left:20px
 }
 </style>
@@ -71,7 +72,7 @@
     </div>
 </template>
 <style scoped>
-.row button{
+.row .kd-btn-container{
     margin-left:20px
 }
 </style>
@@ -91,7 +92,7 @@
     </div>
 </template>
 <style scoped>
-.row button{
+.row .kd-btn-container{
     margin-left:20px
 }
 </style>
@@ -110,7 +111,7 @@
     </div>
 </template>
 <style scoped>
-.row button{
+.row .kd-btn-container{
     margin-left:20px
 }
 </style>
@@ -143,7 +144,7 @@
     </div>
 </template>
 <style scoped>
-.row button{
+.row .kd-btn-container{
     margin-left:20px
 }
 </style>

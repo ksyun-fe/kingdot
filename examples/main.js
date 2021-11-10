@@ -8,7 +8,12 @@ import ComponentDemo from './components/component-demo';
 import components from '../src/index.js';
 import Highlight from './directives/highlight.js';
 
-Vue.use(components);
+// Vue.use(components);
+Vue.use(components, {
+    setButtonLink: (href) => {
+        return href;
+    }
+});
 Vue.use(Highlight);
 
 Vue.component('header-area', HeaderArea);

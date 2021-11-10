@@ -1,4 +1,11 @@
 ## 更新日志
+
+### New features
+  * Button
+    链接按钮增加【herf】【target】属性，增加setButtonLink方法，设置button的herf
+
+
+
 *2021-11-04*
 ## v1.0.25
 
