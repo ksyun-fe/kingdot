@@ -207,6 +207,10 @@
                         {
                             "path": "/editable",
                             "name": "editable 可编辑文本"
+                        },
+                        {
+                            "path":"/skeleton",
+                            "name":"Skeleton 骨架屏"
                         }
                     ]
                 }
