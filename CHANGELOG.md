@@ -1,5 +1,8 @@
 ## 更新日志
 
+*2021-11-11*
+  * Select
+      优化禁用状态样式
 ### New features
   * Button
     链接按钮增加【herf】【target】属性，增加setButtonLink方法，设置button的herf
