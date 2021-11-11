@@ -39,6 +39,7 @@
                     :readonly="readonly"
                     :disabled="disabled"
                     :tabindex="tabindex"
+                    :maxlength="lengthLimit ? maxLength : ''"
                     @focus="focusHandler"
                     @change="changeHandler"
                     @blur="blurHandler"
@@ -55,6 +56,7 @@
                     :readonly="readonly"
                     :disabled="disabled"
                     :rows="rows"
+                    :maxlength="lengthLimit ? maxLength : ''"
                     :style="textareaStyle"
                     :tabindex="tabindex"
                     @focus="focusHandler"
@@ -152,6 +154,14 @@
             showCount: {
                 type: Boolean,
                 default: false
+            },
+            lengthLimit: {
+                type: Boolean,
+                default: false
+            },
+            maxLength: {
+                type: Number,
+                default: 512
             }
         },
         data() {

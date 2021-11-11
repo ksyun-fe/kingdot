@@ -402,6 +402,7 @@
 | size           | 尺寸              | string                    | mini / small / default / large |     default
 | maxlength      | 原生属性，最大输入长度 | number | - | -
 | minlength | 原生属性，最小输入长度 | number | - | -
+| length-limit | 是否开启默认最大输入长度限制 | boolean | - | false
 | show-count | 是否显示输入字数统计，只在Textarea中生效 | - | -
 | placeholder | 输入框占位符 | string | - | -
 | clearable  | 是否可清空（只在text中生效） | boolean | - | false
