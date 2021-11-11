@@ -5,7 +5,11 @@
       优化禁用状态样式
 ### New features
   * Button
-    链接按钮增加【herf】【target】属性，增加setButtonLink方法，设置button的herf
+    链接按钮增加【href】【target】属性，增加setButtonLink方法，设置button的href
+  * Form
+    增加静态方法 addValidateMethod, 支持在 Form 扩展验证规则
+  * Input
+    增加 length-limit(prop), 开启后 Input 最大输入长度为 512 
 
 
 
