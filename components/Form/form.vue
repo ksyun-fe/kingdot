@@ -8,8 +8,13 @@
 </template>
 
 <script>
+    import {defaultMessage, methods} from '../FormItem/ruleHandlers';
     export default {
         name: 'KdForm',
+        addValidateMethod: (name, method, message) => {
+            methods[name] = method;
+            defaultMessage[name] = message !== undefined ? message : defaultMessage[name];
+        },
         provide() {
             return { 'form': this };
         },
