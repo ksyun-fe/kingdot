@@ -264,8 +264,9 @@ export default{
 | drag     | 是否拖动 | boolean  | —            | false     |
 | show-file-list | 是否禁用  | boolean | — | true |
 | accept | 接受上传的文件类型 | string | — | — |
+| name | 上传的文件字段名 | string | — | — |
 | limit | 接受文件最大上传的个数 | Number | — | — |
-| action | 接受上传地址 | stirng | — | — |
+| action | 接受上传地址 | string | — | — |
 | http-request | 自定义的上传方法 | function | — | — |
 | data | 附带的额外参数 | object | — | — |
 | init-file-list | 默认的列表数据 | object | — | — |

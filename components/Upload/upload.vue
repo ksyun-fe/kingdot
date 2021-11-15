@@ -82,6 +82,10 @@
         props: {
             disabled: Boolean,
             multiple: Boolean,
+            name: {
+                type: String,
+                default: 'file'
+            },
             listType: {
                 type: String,
                 default: ''
@@ -329,7 +333,7 @@
                     withCredentials: this.withCredentials,
                     file: rawFile,
                     data: data,
-                    filename: file.name,
+                    filename: this.name || file.name,
                     action: this.action,
                     onProgress: e => {
                         that.handleProgress(e, file);
