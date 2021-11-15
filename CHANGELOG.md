@@ -1,5 +1,9 @@
 ## 更新日志
 
+### New features
+  * Skeleton
+    新增骨架屏组件
+
 *2021-11-11*
   * Select
       优化禁用状态样式
