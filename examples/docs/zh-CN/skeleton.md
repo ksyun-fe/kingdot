@@ -118,7 +118,7 @@
           <kd-skeleton-item type="button" class="button" />
         </div>
         <div class="table">
-          <kd-skeleton-item type="p" class="tableclume" v-for="i in rows" />
+          <kd-skeleton-item type="p" class="tablecolumn" v-for="i in rows" />
         </div>
       </div>
     </div>
@@ -150,7 +150,7 @@
       display:flex
       width: 100%
       height : 60px
-      border-bottom 3px solid #f2f2f2
+      border-bottom 2px solid #f2f2f2
       div
         margin 20px 0 0 20px;
       .button 
@@ -159,7 +159,7 @@
       width: 100%
       height : calc(100% - 80px);
       padding 0 20px
-      .tableclume
+      .tablecolumn
          height 40px
          width calc(100% - 40px)
 </style>
