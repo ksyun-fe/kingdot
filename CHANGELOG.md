@@ -10,6 +10,8 @@
     增加静态方法 addValidateMethod, 支持在 Form 扩展验证规则
   * Input
     增加 length-limit(prop), 开启后 Input 最大输入长度为 512 
+  * Upload
+    增加 name(prop), 上传的文件字段名
 
 
 
