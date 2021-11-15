@@ -1,45 +1,46 @@
 @import '../variables.styl';
 
- $-kd-skeleton-type := 'p' 'frist' 'last' 'button' 'box' 'round' 'title' 'img';
+ $-kd-skeleton-bg-type := 'p' 'frist' 'last' 'button' 'box' 'round' 'title' 'img';
 
- for types in $-kd-skeleton-type
+ $-kd-skeleton-height-type := 'p' 'frist' 'last' 'title';
+
+ for types in $-kd-skeleton-bg-type
       .kd_skeleton_item_{types}
-          background: #f2f2f2
+          background: $-skeleton-bg-color
+
+for types in $-kd-skeleton-height-type
+      .kd_skeleton_item_{types}
+          height: 20px          
 
 .kd_skeleton_box
-    background #fff
     .kd_skeleton_item_p
-        height: 20px
         width: 100%
         margin-top: 20px
-        border-radius: 10px
+        border-radius: $-skeleton-other-borderRadius
     .kd_skeleton_item_frist
-        height: 20px
         width: 33%
-        border-radius: 10px
+        border-radius: $-skeleton-other-borderRadius
     .kd_skeleton_item_last
-        height: 20px
         width: 66%
-        border-radius: 10px
+        border-radius: $-skeleton-other-borderRadius
     .kd_skeleton_item_button    
         height: 40px
         width: 60px
-        border-radius: 10%
+        border-radius: $-skeleton-other-borderRadius
     .kd_skeleton_item_box    
         height: 100px
         width: 100px  
     .kd_skeleton_item_round    
         height: 100px
         width: 100px  
-        border-radius: 100%      
+        border-radius: $-skeleton-round-borderRadius
     .kd_skeleton_item_title    
-        height: 20px
         width: 200px 
     .kd_skeleton_item_img    
         height: 200px
         width: 200px  
         .kd_skeleton_item_img_path  
-            fill: #bfbfbf;
+            fill: $-skeleton-item-img-color
             
                      
 .kd_skeleton_box_active 
@@ -52,7 +53,7 @@
                 left: 0%;
                 width: 100%;
                 height: 100%;
-                background: linear-gradient(90deg,#f2f2f2 25%,#e9e9e9 37%,#f2f2f2 63%);
+                background: $-skeleton-active-color
                 background-size: 400% 100%;
                 animation: sheen 1.4s ease infinite
                 border-radius: 10px
