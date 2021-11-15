@@ -3,7 +3,7 @@
         <template v-if="visible">
             <div :class="['kd_skeleton_box', active ? 'kd_skeleton_box_active' : '']">
                 <slot name="skeleton">
-                    <kd-skeleton-item class="kd_skeleton_item_frist"/>
+                    <kd-skeleton-item class="kd_skeleton_item_first"/>
                     <kd-skeleton-item
                             v-for="item in rows"
                             :key="item"
