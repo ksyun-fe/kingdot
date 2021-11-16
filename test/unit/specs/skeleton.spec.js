@@ -13,7 +13,7 @@ describe("skeleton", () => {
     vm = createCons(Skeleton, {
       value: true,
     });
-    expect(vm.$el.querySelector(".skeleton_box")).to.be.have;
+    expect(vm.$el.querySelector(".kd_skeleton_box")).to.be.have;
   });
 
   //开启动画效果
@@ -22,7 +22,7 @@ describe("skeleton", () => {
       value: true,
       active:true
     });
-    expect(vm.$el.querySelector(".skeleton_box_active")).to.be.have;
+    expect(vm.$el.querySelector(".kd_skeleton_box_active")).to.be.have;
   });
   //验证rows
   it("create Skeleton of default active", () => {
@@ -31,7 +31,7 @@ describe("skeleton", () => {
       active:true,
       rows:1
     });
-    expect(vm.$el.querySelector(".skeleton_item_last")).to.be.null;
+    expect(vm.$el.querySelector(".kd_skeleton_item_last")).to.be.null;
   });
 
   //创建round类型的骨架形状
@@ -54,7 +54,7 @@ describe("skeleton", () => {
       },
       true
     );
-    expect(vm.$el.querySelector(".skeleton_item_round")).to.be.have;
+    expect(vm.$el.querySelector(".kd_skeleton_item_round")).to.be.have;
   });
 
   //创建img类型的骨架形状
@@ -77,7 +77,7 @@ describe("skeleton", () => {
       },
       true
     );
-    expect(vm.$el.querySelector(".skeleton_item_img")).to.be.have;
+    expect(vm.$el.querySelector(".kd_skeleton_item_img")).to.be.have;
   });
 
   //改变宽高
@@ -101,7 +101,7 @@ describe("skeleton", () => {
       },
       true
     );
-    let el = vm.$el.querySelector(".skeleton_item_img");
+    let el = vm.$el.querySelector(".kd_skeleton_item_img");
     expect(el.style["width"]).to.equal(
       "200px"
     );
