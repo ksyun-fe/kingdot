@@ -1,13 +1,13 @@
 <template>
     <div>
         <template v-if="visible">
-            <div :class="['kd_skeleton_box', active ? 'kd_skeleton_box_active' : '']">
+            <div :class="['kd-skeleton-box', active ? 'kd-skeleton-box-active' : '']">
                 <slot name="skeleton">
-                    <kd-skeleton-item class="kd_skeleton_item_first"/>
+                    <kd-skeleton-item class="kd-skeleton-item-first"/>
                     <kd-skeleton-item
                             v-for="item in rows"
                             :key="item"
-                            :class="(item==rows&&item>1)?'kd_skeleton_item_last':''"
+                            :class="(item==rows&&item>1)?'kd-skeleton-item-last':''"
                     />
                 </slot>
             </div>

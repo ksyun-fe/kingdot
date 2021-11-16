@@ -1,6 +1,6 @@
 <template>
     <div
-            :class="[`kd_skeleton_item_${itemType}`,'kd_skeleton_item']"
+            :class="[`kd-skeleton-item-${itemType}`,'kd-skeleton-item']"
             :style="MainStyles"
     >
         <svg
@@ -11,7 +11,7 @@
         >
             <path
                     d="M 64 896 V 128 h 896 v 768 H 64 Z m 64 -128 l 192 -192 l 116.352 116.352 L 640 448 l 256 307.2 V 192 H 128 v 576 Z m 224 -480 a 96 96 0 1 1 -0.064 192.064 A 96 96 0 0 1 352 288 Z"
-                    class="kd_skeleton_item_img_path"
+                    class="kd-skeleton-item-img-path"
             ></path>
         </svg>
     </div>

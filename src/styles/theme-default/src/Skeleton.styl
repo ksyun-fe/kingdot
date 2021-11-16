@@ -5,46 +5,46 @@
  $-kd-skeleton-height-type := 'p' 'first' 'last' 'title';
 
  for types in $-kd-skeleton-bg-type
-      .kd_skeleton_item_{types}
+      .kd-skeleton-item-{types}
           background: $-skeleton-bg-color
 
 for types in $-kd-skeleton-height-type
-      .kd_skeleton_item_{types}
+      .kd-skeleton-item-{types}
           height: 20px          
 
-.kd_skeleton_box
-    .kd_skeleton_item_p
+.kd-skeleton-box
+    .kd-skeleton-item-p
         width: 100%
         margin-top: 20px
         border-radius: $-skeleton-other-borderRadius
-    .kd_skeleton_item_first
+    .kd-skeleton-item-first
         width: 33%
         border-radius: $-skeleton-other-borderRadius
-    .kd_skeleton_item_last
+    .kd-skeleton-item-last
         width: 66%
         border-radius: $-skeleton-other-borderRadius
-    .kd_skeleton_item_button    
+    .kd-skeleton-item-button    
         height: 40px
         width: 60px
         border-radius: $-skeleton-other-borderRadius
-    .kd_skeleton_item_box    
+    .kd-skeleton-item-box    
         height: 100px
         width: 100px  
-    .kd_skeleton_item_round    
+    .kd-skeleton-item-round    
         height: 100px
         width: 100px  
         border-radius: $-skeleton-round-borderRadius
-    .kd_skeleton_item_title    
+    .kd-skeleton-item-title    
         width: 200px 
-    .kd_skeleton_item_img    
+    .kd-skeleton-item-img    
         height: 200px
         width: 200px  
-        .kd_skeleton_item_img_path  
+        .kd-skeleton-item-img-path  
             fill: $-skeleton-item-img-color
             
                      
-.kd_skeleton_box_active 
-     .kd_skeleton_item
+.kd-skeleton-box-active 
+     .kd-skeleton-item
       position: relative
       &::before{
                 content: '';
