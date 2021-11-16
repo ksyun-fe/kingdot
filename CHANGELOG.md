@@ -1,13 +1,21 @@
 ## 更新日志
 
 *2021-11-16*
-  * Select
-      model可直接操作弹层显示，不受disabled影响
+## v1.0.26
 
-*2021-11-11*
+### Optimization
   * Select
       优化禁用状态样式
+  * checkbox
+    修改默认字体大小
+
+## Bugfix
+  * tooltip
+      model可直接操作弹层显示，不受disabled影响
+
 ### New features
+  * skeleton
+    add skeleton
   * Button
     链接按钮增加【href】【target】属性，增加setButtonLink方法，设置button的href
   * Form
