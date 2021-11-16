@@ -173,10 +173,10 @@ describe("dialog", () => {
       okText: "关闭",
     });
     expect(
-      vm.$el.querySelectorAll('.kd-dialog-btn')[0].querySelector('span').textContent.trim()
+      vm.$el.querySelectorAll('.kd-dialog-btn .kd-btn')[0].querySelector('span').textContent.trim()
     ).to.equal("上一步");
     expect(
-      vm.$el.querySelectorAll('.kd-dialog-btn')[1].querySelector('span').textContent.trim()
+      vm.$el.querySelectorAll('.kd-dialog-btn .kd-btn')[1].querySelector('span').textContent.trim()
     ).to.equal("关闭");
   });
   //点击“X”，关闭dialog
@@ -243,12 +243,12 @@ describe("dialog", () => {
     });
     vm.isShowDialog = true;
     vm.$nextTick().then((_) => {
-      vm.$el.querySelectorAll(".kd-dialog-btn")[1].click();
+      vm.$el.querySelectorAll(".kd-dialog-btn .kd-btn")[1].click();
       setTimeout(function () {
         expect(vm.num).to.equal(2);
         done()
       }, 300);
-      vm.$el.querySelectorAll(".kd-dialog-btn")[0].click();
+      vm.$el.querySelectorAll(".kd-dialog-btn .kd-btn")[0].click();
     });
   });
   it("ok is not a function", (done) => {
@@ -266,7 +266,7 @@ describe("dialog", () => {
       },
     });
     vm.$nextTick().then((_) => {
-      vm.$el.querySelectorAll(".kd-dialog-btn")[1].click();
+      vm.$el.querySelectorAll(".kd-dialog-btn kd-btn")[1].click();
       setTimeout(function () {
         expect(
           vm.$el.querySelector(".kd-dialog-body>div").innerText
