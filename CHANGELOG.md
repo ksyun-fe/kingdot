@@ -1,5 +1,9 @@
 ## 更新日志
 
+*2021-11-16*
+  * Select
+      model可直接操作弹层显示，不受disabled影响
+
 *2021-11-11*
   * Select
       优化禁用状态样式
@@ -9,7 +13,7 @@
   * Form
     增加静态方法 addValidateMethod, 支持在 Form 扩展验证规则
   * Input
-    增加 length-limit(prop), 开启后 Input 最大输入长度为 512 
+    增加 length-limit(prop), 开启后 Input 最大输入长度为 512
   * Upload
     增加 name(prop), 上传的文件字段名
 
