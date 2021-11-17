@@ -18,7 +18,7 @@
             return{
                 authid:'zzz',
             }
-        },
+        }
     }
 </script>
 <style scoped>

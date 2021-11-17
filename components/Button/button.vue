@@ -43,6 +43,7 @@
                 :class="allClassList"
                 class="kd-btn"
                 :target="linkTarget"
+                @click="handleClick"
         >
             <slot/>
         </a>
