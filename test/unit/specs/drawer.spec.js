@@ -203,7 +203,7 @@ describe('drawer', () => {
                 }
             }, true)
              vm.$nextTick().then((_) => {
-                vm.$el.querySelector('.kd-drawer-truebutton .kd-btn').click();
+                vm.$el.querySelector('.kd-drawer-truebutton').click();
                 setTimeout(function() {
                     expect(
                         vm.$el.querySelector('.kd-drawer-body').textContent
@@ -232,7 +232,7 @@ describe('drawer', () => {
                 }
             }, true)
              vm.$nextTick().then((_) => {
-                vm.$el.querySelector('.kd-drawer-closbutton .kd-btn').click();
+                vm.$el.querySelector('.kd-drawer-closbutton').click();
                 setTimeout(function() {
                     expect(
                         vm.$el.querySelector('.kd-drawer-body').textContent

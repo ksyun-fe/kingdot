@@ -11,7 +11,7 @@ module.exports = function (config) {
             './index.js': ['webpack', 'sourcemap']
         },
         webpack: webpackConfig,
-        exclude: ['node_modules', 'test/unit/specs/button.spec.js'],
+        exclude: ['node_modules'],
         webpackMiddleware: {
             noInfo: true,
             stats: 'errors-only'
