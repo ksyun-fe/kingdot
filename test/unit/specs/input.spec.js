@@ -83,7 +83,8 @@ describe('Input', () => {
                     <kd-input
                             placeholder="请输入内容"
                             v-model="age"
-                            :maxlength="12"
+                            length-limit
+                            :max-length="12"
                             :disabled="disabled"
                     />
                     <Button @click="changeStatus">switch disabled</Button>

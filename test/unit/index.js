@@ -15,7 +15,7 @@ describe('use component', () => {
 });
 Vue.use(kingdot);
 kingdot.changeAuthList(['xxx']);//测试用例button,权限功能点
-const testsContext = require.context('./specs', true, /input\.spec$/);
+const testsContext = require.context('./specs', true, /\.spec$/);
 
 
 testsContext.keys().forEach(testsContext);
