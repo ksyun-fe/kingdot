@@ -14,7 +14,7 @@ describe('Input', () => {
                     <kd-input
                             placeholder="请输入内容"
                             v-model="age"
-                            :maxlength="12"
+                            length-limit
                             ref="input"
                     />
                     <Button ref="focusBtn" @click="inputFocus">switch focus</Button>
@@ -41,7 +41,7 @@ describe('Input', () => {
         const inputElem = vm.$el.querySelector('.kd-input-inner');
         // expect(document.defaultView.getComputedStyle(inputElem, null).border).to.equal('1px solid rgb(204, 204, 204)');
         expect(inputElem.getAttribute('placeholder')).to.equal('请输入内容');
-        expect(inputElem.getAttribute('maxlength')).to.equal('12');
+        expect(inputElem.getAttribute('maxlength')).to.equal('512');
         vm.inputFocus();
         expect(vm.isFocus).to.be.true;
         await vm.$nextTick().then(() => {
@@ -51,6 +51,28 @@ describe('Input', () => {
         }).then(() => {
             expect(document.defaultView.getComputedStyle(inputElem, null).border).to.equal('1px solid rgb(204, 204, 204)');
         });
+    });
+
+    it('length-limit & max-length', async () => {
+        vm = createVue({
+            template: `
+                <kd-input
+                        :type="type"
+                        v-model="password"
+                        length-limit
+                        :max-length="20"
+                >
+                </kd-input>
+            `,
+            data() {
+                return {
+                    password: '1234567',
+                    type: 'password'
+                }
+            }
+        });
+        const psdElem = vm.$el.querySelector('.kd-input-inner');
+        expect(psdElem.getAttribute('maxlength')).to.equal('20');
     });
 
     // disabled
