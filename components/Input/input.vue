@@ -39,7 +39,7 @@
                     :readonly="readonly"
                     :disabled="disabled"
                     :tabindex="tabindex"
-                    :maxlength="lengthLimit ? maxLength : ''"
+                    :maxlength="maxlength"
                     @focus="focusHandler"
                     @change="changeHandler"
                     @blur="blurHandler"
@@ -56,7 +56,7 @@
                     :readonly="readonly"
                     :disabled="disabled"
                     :rows="rows"
-                    :maxlength="lengthLimit ? maxLength : ''"
+                    :maxlength="maxlength"
                     :style="textareaStyle"
                     :tabindex="tabindex"
                     @focus="focusHandler"
@@ -158,15 +158,12 @@
             lengthLimit: {
                 type: Boolean,
                 default: false
-            },
-            maxLength: {
-                type: Number,
-                default: 512
             }
         },
         data() {
             return {
                 innerValue: '',
+                maxlength: '',
                 currentTextareaStyle: {}
             };
         },
@@ -213,6 +210,11 @@
         },
         created() {
             this.innerValue = this.value;
+            if (this.$attrs.maxlength) {
+                this.maxlength = this.$attrs.maxlength;
+            } else if (this.lengthLimit) {
+                this.maxlength = 512;
+            }
         },
         methods: {
             getInputElem() {
