@@ -8,8 +8,9 @@
         <kd-button type='primary' :authid="authid" disabled>主要按钮</kd-button>
         <kd-button hollow>空心按钮</kd-button>
         <kd-button type='none'>文字按钮</kd-button>
-        <!-- <kd-button type='text' href="#/zh-CN/component/installation" target="_blank">链接按钮</kd-button> -->
+        <kd-button type='text' href="#/zh-CN/component/installation" target="_blank">链接按钮</kd-button>
         <kd-button type='text'>链接按钮</kd-button>
+        <kd-button type='text' @click="doSomething">链接按钮</kd-button>
     </div>
 </template>
 <script>
@@ -17,6 +18,11 @@
         data(){
             return{
                 authid:'zzz',
+            }
+        },
+        methods:{
+            doSomething(){
+                location.href="http://localhost:8001/#/zh-CN/component/table"
             }
         }
     }
@@ -68,7 +74,8 @@
         <kd-button disabled type='dashed'>默认禁用按钮</kd-button>
         <kd-button disabled type='primary'>主要禁用按钮</kd-button>
         <kd-button disabled type='text'>text禁用按钮</kd-button>
-        <kd-button disabled type='none'>text禁用按钮</kd-button>
+        <kd-button disabled type='none'>none禁用按钮</kd-button>
+        <kd-button disabled type='text' href="#/zh-CN/component/installation" target="_blank">链接按钮</kd-button>
     </div>
 </template>
 <style scoped>

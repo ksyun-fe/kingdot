@@ -14,6 +14,13 @@ describe('Button', () => {
         });
         expect(vm.$el.classList.contains('kd-btn-primary')).to.be.true;
     });
+    // 链接按钮
+    it('button text', () => {
+        vm = createCons(Button, {
+            type: 'text'
+        });
+        expect(vm.$el.classList.contains('kd-btn-text')).to.be.true;
+    });
     // 禁用按钮
     it('button disabled', () => {
         vm = createCons(Button, {
