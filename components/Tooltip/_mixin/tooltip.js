@@ -90,7 +90,7 @@ export default {
                 if (this.visible === value) return;
                 this.$nextTick(() => {
                     if (value) {
-                        this.showPopper();
+                        this.showDirect();
                     } else {
                         this.closePopper();
                     }
@@ -195,6 +195,15 @@ export default {
     methods: {
         toggle() {
             return this.visible ? this.closePopper() : this.showPopper();
+        },
+        showDirect() {
+            if (this.visible) return;
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(() => {
+                const hasContent = !!(this.$slots.content || this.content);
+                this.visible = hasContent;
+                this.$emit('input', this.visible);
+            }, this.currentMouseEnterDelay);
         },
         showPopper() {
             if (this.visible) return;

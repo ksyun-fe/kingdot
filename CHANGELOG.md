@@ -1,15 +1,38 @@
 ## 更新日志
 
-*2021-11-11*
+ ## revert
+  * Button 
+      回滚：去掉href相关功能，下一版重新开发
+
+*2021-11-17*
+## v1.0.27
+
+## Bugfix
+ * Button
+      链接类型button增加click事件
+      
+*2021-11-16*
+## v1.0.26
+
+### Optimization
   * Select
       优化禁用状态样式
+  * checkbox
+    修改默认字体大小
+
+## Bugfix
+  * tooltip
+      model可直接操作弹层显示，不受disabled影响
+
 ### New features
+  * skeleton
+    add skeleton
   * Button
     链接按钮增加【href】【target】属性，增加setButtonLink方法，设置button的href
   * Form
     增加静态方法 addValidateMethod, 支持在 Form 扩展验证规则
   * Input
-    增加 length-limit(prop), 开启后 Input 最大输入长度为 512 
+    增加 length-limit(prop), 开启后 Input 最大输入长度为 512
   * Upload
     增加 name(prop), 上传的文件字段名
 

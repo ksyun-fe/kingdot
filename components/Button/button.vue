@@ -1,52 +1,53 @@
 <template>
-    <div class="kd-btn-container">
-        <button
-                v-if="type!=='text'"
-                class="kd-btn"
-                :class="allClassList"
-                :type="nativeType"
-                @click="handleClick"
+    <!-- <div class="kd-btn-container"> -->
+    <!-- v-if="type!=='text'" -->
+    <button
+            class="kd-btn"
+            :class="allClassList"
+            :type="nativeType"
+            @click="handleClick"
+    >
+        <!-- 加载中 -->
+        <span
+                v-if="loading"
+                class="kd-btn-loading-icon"
+                :class="{ 'kd-icon-left': $slots.default }"
         >
-            <!-- 加载中 -->
-            <span
-                    v-if="loading"
-                    class="kd-btn-loading-icon"
-                    :class="{ 'kd-icon-left': $slots.default }"
+            <svg
+                    viewBox="0 0 120 120"
             >
-                <svg
-                        viewBox="0 0 120 120"
-                >
-                    <circle
-                            cx="60"
-                            cy="60"
-                            class="kd-spin-circle"
-                            r="57"
-                    ></circle>
-                </svg>
-            </span>
-            <!-- 传入icon -->
-            <i
-                    v-if="icon"
-                    :class="icon"
-            />
-            <!-- 默认按钮 -->
-            <span
-                    v-if="$slots.default"
-                    :class="{'kd-icon-right': icon && $slots.default[0].text }"
-            >
-                <slot/>
-            </span>
-        </button>
-        <a
+                <circle
+                        cx="60"
+                        cy="60"
+                        class="kd-spin-circle"
+                        r="57"
+                ></circle>
+            </svg>
+        </span>
+        <!-- 传入icon -->
+        <i
+                v-if="icon"
+                :class="icon"
+        />
+        <!-- 默认按钮 -->
+        <span
+                v-if="$slots.default"
+                :class="{'kd-icon-right': icon && $slots.default[0].text }"
+        >
+            <slot/>
+        </span>
+    </button>
+    <!-- <a
                 v-if="type==='text'"
                 :href="link"
                 :class="allClassList"
                 class="kd-btn"
                 :target="linkTarget"
+                @click="handleClick"
         >
             <slot/>
-        </a>
-    </div>
+        </a> -->
+    <!-- </div> -->
 
 </template>
 
@@ -107,15 +108,15 @@
             delayTime: {
                 type: Number,
                 default: 3000
-            },
-            href: {
-                type: String,
-                default: 'javascript:;'
-            },
-            target: {
-                type: String,
-                default: '_self'
             }
+            // href: {
+            //     type: String,
+            //     default: 'javascript:;'
+            // },
+            // target: {
+            //     type: String,
+            //     default: '_self'
+            // }
         },
         data() {
             return {
@@ -155,21 +156,21 @@
             },
             authid() {
                 this.checkAuth();
-            },
-            href: {
-                immediate: true,
-                handler(v) {
-                    this.link = v;
-                    this.handleHerf();
-                }
-            },
-            target: {
-                immediate: true,
-                handler(v) {
-                    this.linkTarget = v;
-                    this.handleHerf();
-                }
             }
+            // href: {
+            //     immediate: true,
+            //     handler(v) {
+            //         this.link = v;
+            //         this.handleHerf();
+            //     }
+            // },
+            // target: {
+            //     immediate: true,
+            //     handler(v) {
+            //         this.linkTarget = v;
+            //         this.handleHerf();
+            //     }
+            // }
         },
         mounted() {
             this.initActive();
@@ -183,17 +184,17 @@
                     this.authAbled = false;
                 }
             },
-            handleHerf() {
-                if (!this.authAbled || this.disabled) {
-                    this.link = 'javascript:;';
-                    this.linkTarget = '_self';
-                    this.disabledStatus = true;
-                } else {
-                    if (this.$KD && this.$KD.setButtonLink) {
-                        this.link = this.$KD.setButtonLink(this.href);
-                    }
-                }
-            },
+            // handleHerf() {
+            //     if (!this.authAbled || this.disabled) {
+            //         this.link = 'javascript:;';
+            //         this.linkTarget = '_self';
+            //         this.disabledStatus = true;
+            //     } else {
+            //         if (this.$KD && this.$KD.setButtonLink) {
+            //             this.link = this.$KD.setButtonLink(this.href);
+            //         }
+            //     }
+            // },
             initActive() {
                 const parent = this.$parent;
                 if (!parent) return;

@@ -109,7 +109,7 @@
 <template>
   <kd-skeleton v-model="flag" active>
     <div slot="skeleton" class="box">
-      <kd-skeleton-item type="box" class="left_menu" />
+      <kd-skeleton-item type="box" class="left-menu-box" />
       <div class="content">
         <div class="header">
           <kd-skeleton-item type="title" />
@@ -139,9 +139,9 @@
   .box
     display flex
     border 2px solid #f2f2f2
-  .left_menu
-     width 200px
-     height 500px
+  .left-menu-box
+     width 200px !important
+     height 500px !important
   .content
     border-left 2px solid #f2f2f2
     width calc( 100% - 200px )
@@ -174,7 +174,7 @@
 ```html
 <template>
   <div>
-    <kd-switch @change="changeFlag" class="sleleton_switch"/>
+    <kd-switch @change="changeFlag" class="sleleton-switch"/>
     <kd-skeleton v-model="flag" active>
       <div slot="skeleton">
         <kd-skeleton-item type="img"   :width='styleNum' :height='styleNum'/>
@@ -205,7 +205,7 @@
   };
 </script>
 <style scoped lang="stylus">
-  .sleleton_switch
+  .sleleton-switch
       margin-bottom 10px
 </style>
 ```
