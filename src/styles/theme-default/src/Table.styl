@@ -26,27 +26,29 @@ $-table-border-color := #edeff4
       z-index 1
       overflow hidden
       width 100%
-      th
-        padding 7px 6px
-        font-size 14px
-        font-weight 400
-        position relative
-        text-align left
-        user-select none
-        text-overflow ellipsis
-        white-space nowrap
-        &:after
-          content ''
-          background-color $-table-border-color
-          height 14px
-          width 1px
-          position absolute
-          top 50%
-          right -1px
-          margin-top -7px
+      tr
+        border-bottom 1px solid $-table-border-color
+        th
+          padding 7px 6px
+          font-size 14px
+          font-weight 400
+          position relative
+          text-align left
+          user-select none
+          text-overflow ellipsis
+          white-space nowrap
+          &:after
+            content ''
+            background-color $-table-border-color
+            height 14px
+            width 1px
+            position absolute
+            top 50%
+            right -1px
+            margin-top -7px
 
-        &.kd-th-noborder:after
-          content none
+          &.kd-th-noborder:after
+            content none
 
     tbody
       display table-row-group
