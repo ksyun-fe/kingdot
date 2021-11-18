@@ -14,6 +14,7 @@
         </label>
         <div
                 class="kd-form-item-content"
+                :style="contentStyle"
                 :class="{'kd-form-item-error': !isValid}"
         >
             <slot></slot>
@@ -86,6 +87,9 @@
         computed: {
             labelStyle() {
                 return {width: this.labelWidth || this.form.labelStyle};
+            },
+            contentStyle() {
+                return {marginLeft: this.labelWidth || this.form.labelStyle};
             },
             isFluid() {
                 return this.form.fluid;

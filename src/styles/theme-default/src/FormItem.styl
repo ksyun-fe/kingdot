@@ -1,19 +1,19 @@
 @import "../variables.styl"
 .kd-form-item
-    display table
     position relative
     margin 0 0 16px
+    clearfix()
     &.kd-form-item-fluid
         width 100%
     .kd-label
-        display table-cell
+        box-sizing border-box
+        float left
         padding-right 10px
         font-size 12px
         line-height 32px
         text-align right
     .kd-form-item-content
-        display table-cell
-        vertical-align middle
+        line-height 32px
         &.kd-form-item-error
             input
                 border-color #f43
