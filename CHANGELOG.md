@@ -5,8 +5,10 @@
   * Table
       合并表头增加插槽功能
 ### Optimization
-  * form
-      优化form样式
+  * Form
+    优化Form样式
+  * Checkbox
+    优化Checkbox样式
       
 
 *2021-11-17*
