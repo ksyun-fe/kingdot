@@ -4,6 +4,10 @@
 ### New features
   * Table
       合并表头增加插槽功能
+### Optimization
+  * form
+      优化form样式
+      
 
 *2021-11-17*
 ## v1.0.29
