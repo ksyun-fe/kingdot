@@ -89,6 +89,9 @@
                 return {width: this.labelWidth || this.form.labelStyle};
             },
             contentStyle() {
+                if (this.hideLabel) {
+                    return '';
+                }
                 return {marginLeft: this.labelWidth || this.form.labelStyle};
             },
             isFluid() {
