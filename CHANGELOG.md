@@ -10,6 +10,13 @@
 ### New features
   * Table
       合并表头增加插槽功能
+### Optimization
+  * Form
+    优化Form样式
+  * Checkbox
+    优化Checkbox样式
+  * Radio
+    优化Radio样式
 
 *2021-11-17*
 ## v1.0.29
