@@ -1,5 +1,14 @@
 ## 更新日志
 *2021-11-19*
+## v1.0.32
+## Bugfix
+* Form
+      hideLabel场景下,fix content样式 bug
+* Radio
+      修改样式
+* checkbox
+      修改样式
+*2021-11-19*
 ## v1.0.31
 
 ## Bugfix

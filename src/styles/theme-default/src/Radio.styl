@@ -4,6 +4,7 @@
     display inline-flex
     cursor pointer
     align-items center
+    vertical-align middle
     .kd-radio-wrapper
         position relative
         display inline-block
@@ -15,6 +16,7 @@
         border-radius 50%
         transition all $-transition
         background $-radio-bg-color
+        box-sizing border-box
         // inner
         &:before
             content ""
@@ -43,7 +45,7 @@
         font-size $-radio-text-size
         color $-radio-text-color
         flex 0 1 auto
-        line-height 16px
+        line-height 20px
 // checked
 .kd-radio-checked
     .kd-radio-wrapper
