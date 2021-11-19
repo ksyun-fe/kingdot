@@ -1,5 +1,12 @@
 ## 更新日志
 *2021-11-19*
+## v1.0.31
+
+## Bugfix
+* Form
+      hideLabel场景下,fix content样式 bug
+
+*2021-11-19*
 ## v1.0.30
 
 ## Bugfix
