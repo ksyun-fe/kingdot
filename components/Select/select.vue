@@ -246,7 +246,7 @@
                         if (this.multiple && this.multipleSerach) {
                             this.multipleSerach = '';
                         } else if (!this.multiple && this.filterable) {
-                            if (this.value !== null || this.value !== undefined) {
+                            if (this.value) {
                                 this.inputLabel = this.inputPlaceholder;
                             }
                             this.inputPlaceholder = this.placeholder;

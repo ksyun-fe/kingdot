@@ -1,4 +1,21 @@
 ## 更新日志
+*2021-11-19*
+## v1.0.30
+
+## Bugfix
+ * Select
+      修复内部input的值导致的样式问题
+### New features
+  * Table
+      合并表头增加插槽功能
+### Optimization
+  * Form
+    优化Form样式
+  * Checkbox
+    优化Checkbox样式
+  * Radio
+    优化Radio样式
+
 *2021-11-17*
 ## v1.0.29
 ### New features
@@ -8,7 +25,7 @@
 *2021-11-17*
 ## v1.0.28
  ## revert
-  * Button 
+  * Button
       回滚：去掉href相关功能，下一版重新开发
 
 *2021-11-17*
@@ -17,7 +34,7 @@
 ## Bugfix
  * Button
       链接类型button增加click事件
-      
+
 *2021-11-16*
 ## v1.0.26
 

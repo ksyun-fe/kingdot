@@ -472,6 +472,11 @@
                     <kd-table-column title="内容" props="abc" />
                     <kd-table-column title="邮编" props="def" />
                     <kd-table-column width="400" title="地址1" props="efg" />
+                    <kd-table-column width="400" title="操作">
+                        <template slot-scope="scope">
+                                            <a @click="btn(scope)">内容集合 btn</a>
+                                        </template>
+                    </kd-table-column>
                 </kd-table-column>
             </kd-table-column>
             <kd-table-column title="操作">

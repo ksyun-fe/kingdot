@@ -1,6 +1,7 @@
 @import "../variables.styl";
 
 .kd-checkbox
+    display inline-block
     font-size $-checkbox-font-size
     white-space nowrap
     cursor pointer
@@ -27,7 +28,9 @@
     position relative
     display inline-block
     box-sizing border-box
-    vertical-align -2px
+    vertical-align middle
+    line-height 1
+    outline none
     width $-checkbox-input-width
     height $-checkbox-input-height
     border 1px solid $-checkbox-default-input-border-color
@@ -61,3 +64,4 @@
 .kd-checkbox-text
     display inline-block
     margin-left 8px
+    line-height 20px

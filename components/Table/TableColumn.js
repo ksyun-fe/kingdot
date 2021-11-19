@@ -120,6 +120,12 @@ export default {
             data.map(item => {
                 if(item.componentOptions && item.componentOptions.propsData){
                     let propsData = Object.assign({}, item.componentOptions.propsData);
+                    // 如果没有props 且有插槽
+                    if(!item.componentOptions.propsData.props && item.data.scopedSlots && item.data.scopedSlots.default) {
+                        propsData._slotColumn = true;
+                        propsData.renderColumnFn = (h, data) =>
+                            item.data.scopedSlots.default(data);
+                    }
                     if(item.componentOptions.children){
                         propsData.children = this.getChildren(item.componentOptions.children);
                     }

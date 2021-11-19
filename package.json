@@ -1,6 +1,6 @@
 {
     "name": "kingdot",
-    "version": "1.0.29",
+    "version": "1.0.30",
     "description": "A UI Components Library For Vue",
     "author": "kingsoft",
     "main": "lib/kingdot.js",
