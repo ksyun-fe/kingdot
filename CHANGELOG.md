@@ -1,5 +1,10 @@
 ## 更新日志
 *2021-11-22*
+
+### Optimization
+  * Button
+      type为text时，a标签改为行内块
+
 ## v1.0.33
 ## Bugfix
 * Radio
