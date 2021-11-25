@@ -24,6 +24,10 @@ export default {
         hideDestroy: {
             type: Boolean,
             default: true
+        },
+        sameWidth: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -116,6 +120,21 @@ export default {
                     phase: 'main',
                     fn({ state }) {
                         self.currentPlacement = state.placement;
+                    }
+                },
+                // make your popper the same width as the reference
+                {
+                    name: 'sameWidth',
+                    enabled: this.sameWidth,
+                    phase: 'beforeWrite',
+                    requires: ['computeStyles'],
+                    fn: ({ state }) => {
+                        state.styles.popper.width = `${state.rects.reference.width}px`;
+                    },
+                    effect: ({ state }) => {
+                        state.elements.popper.style.width = `${
+                            state.elements.reference.offsetWidth
+                        }px`;
                     }
                 }
             ];

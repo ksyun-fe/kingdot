@@ -328,6 +328,7 @@
 | widthLimit    | 弹层宽度是否有限制（其他情况下使用可取消tip最大宽度限制） | `Boolean` | `true|false` | `true` |
 | hideDestroy    | 弹层隐藏后是否销毁dom | `Boolean` | `true|false` | `true` |
 | contentClass    | 弹层内容添加类名 | `String` | `-` | `-` |
+| sameWidth    | 弹层宽度与参考元素宽度相同 | `Boolean` | `true|false` | `false` |
 
 ### Tooltip slot {.component__content}
 
