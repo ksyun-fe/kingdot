@@ -3,6 +3,8 @@
 ### New features
   * Tooltip
       新增属性sameWidth：弹层宽度与参考元素宽度相同
+  * Tree
+    * 新增加icon slot：支持在名称前插入自定义图标
 
 *2021-11-24*
 ## v1.0.33

@@ -346,3 +346,4 @@
 | 名称       | 说明           |
 |---------- |--------        |
 | --   | 自定义树节点的内容，参数slot-scope="node"，优先级低于props tpl   |
+| icon   | 自定义树节点的icon，参数slot-scope="node"，位置在title左侧   |

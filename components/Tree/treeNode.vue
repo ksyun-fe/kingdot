@@ -40,7 +40,6 @@
             const _tree = ctx.injections.TREE;
             const nodeItem = () => (
                 <span
-                    domPropsInnerHTML={node[_tree.titleKey]}
                     title={node[_tree.titleKey]}
                     class={titleClass}
                     onMouseover={() => nodeMouseOver(node, index, parent)}
@@ -48,7 +47,10 @@
                         if (selDisabled) return;
                         _tree.nodeSelected(node, { level, index });
                     }}
-                ></span>
+                >
+                {_tree.$scopedSlots.icon && _tree.$scopedSlots.icon(node)}
+                {node[_tree.titleKey]}
+                </span>
             );
             return tpl
                 ? tpl(node, ctx, parent, index, ctx.props)

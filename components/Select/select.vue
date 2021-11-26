@@ -121,7 +121,7 @@
                 default: ''
             },
             // eslint-disable-next-line vue/require-prop-type-constructor
-            value: '',
+            value: null,
             placeholder: {
                 type: String,
                 default: ''
@@ -246,7 +246,7 @@
                         if (this.multiple && this.multipleSerach) {
                             this.multipleSerach = '';
                         } else if (!this.multiple && this.filterable) {
-                            if (this.value) {
+                            if (this.value !== null) {
                                 this.inputLabel = this.inputPlaceholder;
                             }
                             this.inputPlaceholder = this.placeholder;
