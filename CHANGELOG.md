@@ -1,4 +1,7 @@
 ## 更新日志
+## Bugfix
+* tabs
+      修复tab自定义文字变换时伪类元素不自动跟随更新
 *2021-11-25*
 ### New features
   * Tooltip
