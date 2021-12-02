@@ -55,14 +55,22 @@
             }
         },
         mounted() {
-            this.checked && this.$parent.setMoveBarPosition({
-                marginLeft: this.$el.offsetLeft,
-                marginTop: this.$el.offsetTop,
-                width: this.$el.offsetWidth,
-                height: this.$el.offsetHeight
-            });
+            this.updatedStatus();
+        },
+        updated() {
+            if (this.checked) {
+                this.updatedStatus();
+            }
         },
         methods: {
+            updatedStatus() {
+                this.checked && this.$parent.setMoveBarPosition({
+                    marginLeft: this.$el.offsetLeft,
+                    marginTop: this.$el.offsetTop,
+                    width: this.$el.offsetWidth,
+                    height: this.$el.offsetHeight
+                });
+            },
             clickTab() {
                 if (this.disabled) return;
                 if (this.$parent.handleTabMove) {
