@@ -154,7 +154,6 @@
                 if (this.type === 'spot') {
                     Array.from(parent.children).forEach((item, index) => {
                         const headHeight = isIe() ? item.children[0].children[0].children[0].clientHeight : item.children[0].children[0].children[0].offsetHeight;
-                        this.spotLineLH = headHeight;
                         const mainSection = item.children[0].children[0].children[1];
                         if (mainSection) {
                             const firstChild = item.children[0].children[0].children[1].children[0];

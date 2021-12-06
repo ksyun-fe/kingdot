@@ -6,6 +6,12 @@
     <div>
         <kd-button @click="openDialog">点击打开默认Dialog</kd-button>
         <kd-dialog v-model="showDialog" :disableOk="disableOk" :ok="OK" width="800" height="800">
+             <kd-steps v-model="stepIndex1" type="spot" :isClick="true">
+                <kd-step title="步骤一" ></kd-step>
+                <kd-step title="步骤二" ></kd-step>
+                <kd-step title="步骤三" ></kd-step>
+                <kd-step title="完成" ></kd-step>
+            </kd-steps>
             这是一个基础的Dialog{{num}}
             <kd-button @click="changeNum">改变确认按钮状态</kd-button>
         </kd-dialog>
@@ -17,7 +23,8 @@
             return{
                 showDialog:false,
                 disableOk:true,
-                num:1
+                num:1,
+                stepIndex1:1
             }
         },
         methods:{

@@ -37,11 +37,11 @@
                                         'kd-step-index-small': size == 'small',
                                         'kd-step-index-simple': type == 'simple',
                                         'kd-step-index-icon': icon != '',
-                                        'kd-step-cursor':isClick
+                                        'kd-step-cursor':isClick,
+                                        'kd-step-icon-lh':size == 'small'&& icon == '' && (_status == 'finished' || _status == 'error' )
                                     },
                                     _status != '' ? customStatusClass : '',
                                 ]"
-                                :style="handleLH"
                         >
                             <span v-if="icon == '' && _status != 'error' && _status != 'finished'">{{ index }}</span>
                             <i
@@ -167,15 +167,6 @@
             customStatusClass() {
                 return 'kd-step-custom-status-' + this._status;
             },
-            handleLH() {
-                const style = {};
-                if (this.size === 'small' && this.icon === '') {
-                    if (this._status === 'finished' || this._status === 'error') {
-                        style['line-height'] = '20px';
-                    }
-                }
-                return style;
-            },
             handleSimpleFlex() {
                 const style = {};
                 if (this.type === 'simple') {
@@ -202,7 +193,9 @@
                     headH = headH + 4;
                 }
                 if (this.type === 'spot') {
-                    const _tranlateY = Math.ceil((this.$parent.spotLineLH + 5) / 2);
+                    let diff = 0; const spotLineLH = this.$el.children[0].children[0].children[0].offsetHeight;
+                    diff = spotLineLH % 2 === 0 ? 4 : 5;
+                    const _tranlateY = Math.round(((spotLineLH + diff) / 2) * 100) / 100;
                     style.transform = `translate(6px, ${_tranlateY}px)`;
                 } else if (this.$parent.direction === 'horizontal') {
                     const _tranlateY = Math.ceil((headH + 1) / 2);
