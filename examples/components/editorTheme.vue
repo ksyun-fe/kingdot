@@ -16,7 +16,7 @@
                         class="mr-mini"
                         :loading="loadingTheme"
                         :disabled="uploading"
-                        @click="loadTheme"
+                        @click="loadTheme()"
                 >加载</kd-button>
                 <kd-button
                         type="primary"
