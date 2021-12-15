@@ -206,6 +206,43 @@
                         font-size="14"
                 ></kd-switch>
             </div>
+            <h4>Upload</h4>
+            <div>
+                <kd-upload
+                        :auto-upload="false"
+                        tip="只能上传jpg/png文件，且不超过500kb"
+                        accept=".png,.jpg"
+                >
+                    <kd-button>点击上传</kd-button>
+                </kd-upload>
+            </div>
+            <div>
+                <kd-upload
+                        multiple
+                        :file-change="handleFileChange"
+                        :auto-upload="false"
+                        :show-file-list="isFileList"
+                >
+                    <img
+                            v-if="headImage"
+                            :src="headImage"
+                            class="kd-upload-head"
+                    >
+                    <i
+                            v-else
+                            class="kd-upload-add-icon kdicon kd-icon-plus"
+                    ></i>
+                </kd-upload>
+            </div>
+            <div>
+                <kd-upload
+                        multiple
+                        tip="只能上传jpg/png文件，且不超过500kb"
+                        :auto-upload="false"
+                        drag
+                >
+                </kd-upload>
+            </div>
         </div>
     </div>
 </template>
@@ -215,6 +252,8 @@
         name: 'ComponentPreview',
         data() {
             return {
+                isFileList: false,
+                headImage: '',
                 inputType: 'password',
                 inputVal: 'Kingdot',
                 inputUrl: 'kingdot',
@@ -249,6 +288,21 @@
             },
             switchType() {
                 this.inputType = this.inputType === 'password' ? 'text' : 'password';
+            },
+            handleFileChange(file) {
+                const isImage = file.type.indexOf('image') > -1;
+                const isSize = file.size / 1024 / 1024 < 3;
+                if (!isImage) {
+                    this.$message.error('上传图片只能是 image 格式!');
+                }
+                if (!isSize) {
+                    this.$message.error('上传图片不能超过3MB!');
+                }
+                const rules = isImage && isSize;
+                if (rules) {
+                    this.headImage = URL.createObjectURL(file);
+                }
+                return rules;
             }
         }
     };
