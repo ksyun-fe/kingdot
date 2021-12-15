@@ -34,23 +34,107 @@
                 <kd-radio>radio</kd-radio>
                 <kd-radio disabled>radio</kd-radio>
             </div>
-            <h4>Switch</h4>
-            <div>
-                <kd-switch
-                        v-model="switchVal"
-                        size="default"
-                ></kd-switch>
-                <kd-switch
-                        v-model="switchVal"
-                        size="default"
-                        disabled
-                ></kd-switch>
-                <kd-switch
-                        v-model="switchVal"
-                        active-text="开"
-                        inactive-text="关"
-                        font-size="14"
-                ></kd-switch>
+            <h4>Input</h4>
+            <div class="input-area">
+                <div>
+                    <kd-input
+                            v-model="inputVal"
+                            placeholder="请输入内容"
+                            length-limit
+                    ></kd-input>
+                </div>
+                <div>
+                    <kd-input
+                            v-model="inputVal"
+                            placeholder="请输入内容"
+                            :disabled="true"
+                    ></kd-input>
+                </div>
+                <div>
+                    <kd-input
+                            v-model="inputVal"
+                            type="text"
+                            clearable
+                    ></kd-input>
+                </div>
+                <div>
+                    <kd-input
+                            v-model="inputVal"
+                            :type="inputType"
+                    >
+                        <template v-slot:suffix>
+                            <i
+                                    :class="iconClass"
+                                    @click="switchType"
+                            ></i>
+                        </template>
+                    </kd-input>
+                </div>
+                <div>
+                    <kd-input
+                            v-model="inputUrl"
+                            name="url"
+                            size="mini"
+                    >
+                        <template v-slot:prepend>
+                            <span>http://</span>
+                        </template>
+                        <template v-slot:append>
+                            <span>.com</span>
+                        </template>
+                    </kd-input>
+                </div>
+                <div>
+                    <kd-input
+                            v-model="inputUrl"
+                            name="url"
+                            size="small"
+                    >
+                        <template v-slot:prepend>
+                            <span>http://</span>
+                        </template>
+                        <template v-slot:append>
+                            <span>.com</span>
+                        </template>
+                    </kd-input>
+                </div>
+                <div>
+                    <kd-input
+                            v-model="inputUrl"
+                            name="url"
+                            size="default"
+                    >
+                        <template v-slot:prepend>
+                            <span>http://</span>
+                        </template>
+                        <template v-slot:append>
+                            <span>.com</span>
+                        </template>
+                    </kd-input>
+                </div>
+                <div>
+                    <kd-input
+                            v-model="inputUrl"
+                            name="url"
+                            size="large"
+                    >
+                        <template v-slot:prepend>
+                            <span>http://</span>
+                        </template>
+                        <template v-slot:append>
+                            <span>.com</span>
+                        </template>
+                    </kd-input>
+                </div>
+                <div>
+                    <kd-input
+                            v-model="inputVal"
+                            type="textarea"
+                            name="desc"
+                            :rows="5"
+                            width="300px"
+                    ></kd-input>
+                </div>
             </div>
             <h4>Progress</h4>
             <div class="progress-area">
@@ -104,6 +188,24 @@
                         :progressTextSize="12"
                 />
             </div>
+            <h4>Switch</h4>
+            <div>
+                <kd-switch
+                        v-model="switchVal"
+                        size="default"
+                ></kd-switch>
+                <kd-switch
+                        v-model="switchVal"
+                        size="default"
+                        disabled
+                ></kd-switch>
+                <kd-switch
+                        v-model="switchVal"
+                        active-text="开"
+                        inactive-text="关"
+                        font-size="14"
+                ></kd-switch>
+            </div>
         </div>
     </div>
 </template>
@@ -113,13 +215,18 @@
         name: 'ComponentPreview',
         data() {
             return {
+                inputType: 'password',
+                inputVal: 'Kingdot',
+                inputUrl: 'kingdot',
                 switchVal: false,
                 progressPercentage: 0,
                 progressStatus: ''
             };
         },
         computed: {
-
+            iconClass() {
+                return this.inputType === 'password' ? 'kd-icon-view' : 'kd-icon-hide';
+            }
         },
         watch: {
 
@@ -139,6 +246,9 @@
         methods: {
             formatPercentage(percentage) {
                 return percentage === 100 ? 'fulfill' : `${percentage}%`;
+            },
+            switchType() {
+                this.inputType = this.inputType === 'password' ? 'text' : 'password';
             }
         }
     };
@@ -164,7 +274,7 @@
 .demo-preview-wrap >>>
     .kd-btn, .kd-checkbox, .kd-radio, .kd-switch
         margin-right 10px
-.progress-area
+.input-area, .progress-area
     max-width 500px
     & > div
         margin-bottom 10px
