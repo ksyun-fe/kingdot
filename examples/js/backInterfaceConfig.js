@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-undef
-const host = isProd ? 'http://kingdot-api.ksyun.com' : 'http://localhost:8100';
+// const host = isProd ? 'http://kingdot-api.ksyun.com' : 'http://localhost:8100';
+const host = 'http://kingdot-api.ksyun.com';
 const prefix = '/theme';
 export default {
     host,
