@@ -54,13 +54,13 @@ for border in $-btn-border-types
                 background $-button-default-active-background-color
     .kd-btn-{border}.kd-btn-disabled
         background $-button-disabled-background-color
-        border-color $-button-border-color
+        border-color $-button-disabled-border-color
         color $-button-disabled-color
         &:hover
         &:focus
         &:active
-            color $-disabled-color 
-            border-color $-button-border-color
+            color $-button-disabled-color
+            border-color $-button-disabled-border-color
 
     
 //4种状态
@@ -78,11 +78,11 @@ for type in $-btn-types
             border 1px solid lookup('$-button-'+ type +'-color')
         &:hover
         &:focus
-            background lookup('$-button-'+ type +'-hover-bg')
-            border-color lookup('$-button-'+ type +'-hover-border')
+            background lookup('$-button-'+ type +'-hover-background-color')
+            border-color lookup('$-button-'+ type +'-hover-border-color')
         &:active
-            background lookup('$-button-'+ type +'-active-bg')
-            border-color lookup('$-button-'+ type +'-active-border')
+            background lookup('$-button-'+ type +'-active-background-color')
+            border-color lookup('$-button-'+ type +'-active-border-color')
     //空心
     .kd-btn-{type}.kd-btn-hollow
         background transparent
@@ -93,19 +93,19 @@ for type in $-btn-types
             border 1px solid lookup('$-button-'+ type +'-color')
         &:hover
         &:focus
-            background lookup('$-btn-hollow-'+ type +'-hover-bg')
+            background lookup('$-btn-hollow-'+ type +'-hover-background-color')
         &:active
             background lookup('$-button-'+ type +'-color')
             color $-white-color
     .kd-btn-{type}.kd-btn-disabled
         background $-button-disabled-background-color
-        border-color $-button-border-color
+        border-color $-button-disabled-border-color
         color $-button-disabled-color
         &:hover
         &:focus
         &:active
-            color $-disabled-color 
-            border-color $-button-border-color
+            color $-button-disabled-color
+            border-color $-button-disabled-border-color
 
 //  text types
 for textItem in $-btn-text-types
@@ -120,7 +120,7 @@ for textItem in $-btn-text-types
         &:active
             color lookup('$-button-'+ textItem +'-active-color')
     .kd-btn-{textItem}.kd-btn-disabled
-        color $-disabled-color
+        color $-button-disabled-color
         border 0 none
 .kd-btn-text
     display inline-block
@@ -171,7 +171,7 @@ for s in $-btn-size-types
     
     
 .kd-btn-disabled
-  color $-disabled-color
+  color $-button-disabled-color
   cursor not-allowed
   .kd-spin-circle
     stroke #9a9797

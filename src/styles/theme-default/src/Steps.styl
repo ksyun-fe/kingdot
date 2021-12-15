@@ -69,43 +69,43 @@
         cursor default
         margin-top 1px
         &.kd-step-index-default
-            border 1px solid $-step-index-default-border-color
-            color $-step-index-default-color
+            border 1px solid $-steps-step-index-default-border-color
+            color $-steps-step-index-default-color
         &.kd-step-index-active
-            border $-step-index-active-border-color
-            background $-step-index-active-background-color
+            border $-steps-step-index-active-border-color
+            background $-steps-step-index-active-background-color
             color  #ffff
         &.kd-step-index-done
             box-sizing: border-box;
-            border $-step-index-done-border-color
-            background $-step-index-done-background-color
-            color $-step-index-done-color
+            border $-steps-step-index-done-border-color
+            background $-steps-step-index-done-background-color
+            color $-steps-step-index-done-color
         &.kd-step-custom-status-error
             box-sizing border-box
-            border $-step-custom-status-error-border-color
-            background $-step-custom-status-error-background-color
+            border $-steps-step-custom-status-error-border-color
+            background $-steps-step-custom-status-error-background-color
             color $-step-custom-status-error-color
             line-height 25px
         &.kd-step-custom-status-wait
-            border 1px solid $-step-index-default-border-color
-            color $-step-index-default-color
+            border 1px solid $-steps-step-index-default-border-color
+            color $-steps-step-index-default-color
             background $-steps-container-background-color
         &.kd-step-custom-status-finished
             box-sizing border-box
-            border $-step-index-done-border-color
-            background $-step-index-done-background-color
-            color $-step-index-done-color
+            border $-steps-step-index-done-border-color
+            background $-steps-step-index-done-background-color
+            color $-steps-step-index-done-color
             line-height 25px
             i
-                color $-step-index-done-color
+                color $-steps-step-index-done-color
         &.kd-step-custom-status-active
-            border 1px solid $-step-index-active-background-color
-            background $-step-index-active-background-color
+            border 1px solid $-steps-step-index-active-background-color
+            background $-steps-step-index-active-background-color
             color  #ffff
         &.kd-step-index-icon
             border 0 none
             background transparent
-            color $-step-index-icon-color
+            color $-steps-step-index-icon-color
             line-height 32px
         &.kd-step-index-small,&.kd-step-index-simple
             width 26px
@@ -119,22 +119,22 @@
             font-size 26px
             vertical-align middle
             &.kd-step-icon-active
-                color $-step-icon-active-color
+                color $-steps-step-icon-active-color
             &.kd-step-icon-done
-                color $-step-icon-done-color
+                color $-steps-step-icon-done-color
     .kd-step-index-spot
         display inline-block
         width 7px
         height 7px
         border-radius 50%
         &.kd-step-spot-default
-            background $-step-spot-default-background-color
+            background $-steps-step-spot-default-background-color
         &.kd-step-spot-active
             width 8px
             height 8px
-            background-color $-step-spot-active-background-color
+            background-color $-steps-step-spot-active-background-color
         &.kd-step-spot-done
-            background-color $-step-spot-done-background-color
+            background-color $-steps-step-spot-done-background-color
     .kd-step-spot-line
         display flex
         justify-content center
@@ -143,13 +143,13 @@
         width 14px
         height 14px
         border-radius 50%
-        border 1px solid $-step-spot-line-border-color
+        border 1px solid $-steps-step-spot-line-border-color
         background-color $-steps-container-background-color
     .kd-step-line
         display flex
         flex 1
         height 1px
-        background-color $-step-line-background-color
+        background-color $-steps-step-line-background-color
         transform translate(6px,16px)
         &.kd-step-line-active
             animation changeColor 1s ease-in-out infinite
@@ -168,9 +168,9 @@
         line-height 32px
         padding 0 0 0 8px
         font-size 16px
-        color $-step-title-color
+        color $-steps-title-color
         &.kd-step-title-active
-            color $-step-title-active-color
+            color $-steps-title-active-color
         &.kd-step-title-small
             left 32px
     .kd-step-title-bottom
@@ -183,11 +183,11 @@
         max-width 140px
         height auto
         font-size 14px
-        color $-step-description-color
+        color $-steps-description-color
         text-align left
         line-height 20px
         &.kd-step-desc-active
-            color $-step-description-active-color
+            color $-steps-description-active-color
         &.kd-step-desc-notitle
             margin-left 5px
     .kd-step-description-vertical-small
@@ -207,18 +207,18 @@
     &.kd-step-simple
         display inline-block
         height 40px
-        background-color $-step-simple-background-color
+        background-color $-steps-step-simple-background-color
         overflow: hidden
         &:last-child
             flex-basis 20%
         &:not(:last-child)
             .kd-step-line
-                background-color: $-step-simple-background-color
+                background-color: $-steps-step-simple-background-color
                 position absolute
                 top: 0px;
                 right: 7px;
                 width 0px !important
-                border: solid $-step-simple-border-color;
+                border: solid $-steps-step-simple-border-color;
                 border-width: 0 8px 8px 0;
                 display: inline-block;
                 padding: 16px;
@@ -266,7 +266,7 @@
         width 1px
         flex 1
         height 100%
-        background-color $-step-line-background-color
+        background-color $-steps-step-line-background-color
     .kd-step-title-vertical
         left 35px
         top 9px
@@ -298,9 +298,9 @@
         cursor pointer
 @keyframes changeColor {
     0%{
-        background-color $-step-line-active-background-color
+        background-color $-steps-step-line-active-background-color
     }
     100%{
-        background-color $-step-line-active-background-color
+        background-color $-steps-step-line-active-background-color
     }
 }
