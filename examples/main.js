@@ -7,7 +7,9 @@ import SideNav from './components/side-nav';
 import ComponentDemo from './components/component-demo';
 import components from '../src/index.js';
 import Highlight from './directives/highlight.js';
-
+import resource from 'vue-resource';
+import mixin from './js/mixin.js';
+Vue.use(resource);
 // Vue.use(components);
 Vue.use(components, {
     setButtonLink: (href) => {
@@ -15,7 +17,7 @@ Vue.use(components, {
     }
 });
 Vue.use(Highlight);
-
+Vue.mixin(mixin);
 Vue.component('header-area', HeaderArea);
 Vue.component('side-nav', SideNav);
 Vue.component('component-demo', ComponentDemo);

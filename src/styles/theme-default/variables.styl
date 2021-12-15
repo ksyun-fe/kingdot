@@ -1,22 +1,20 @@
-
-/******************************
-                media
-*******************************/
+// media
 use('../../utils/media.js')
 
-/******************************
-                Colors
-*******************************/
 $-white-color := #FFF
 $-black-color := #000
-
-/******************************
-                Page
-*******************************/
-// let height be odd 20 / 14
-$-line-height := 1
 $-font-family := PingFangSC-Light, 'helvetica neue', arial, 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif
 $-font-path := '../fonts';
+$-size-array = mini, small, default, large
+
+$-link-color := $-primary-color
+$-link-underline := none
+$-link-hover-color := palette($-link-color, -1)
+$-link-hover-underline := $-link-underline
+$-link-font-family := $-font-family
+/******************************
+                common
+*******************************/
 // font size
 $-font-large-size := 16px
 $-font-default-size := 14px
@@ -51,8 +49,8 @@ $-split-line-color := #E5E5E5 //区域分割线
 // background color
 $-light-bg-color := #FFF
 $-bg-base-color := #fff //基础内容背景样式
-$-table-header-bg-color := #F3F6FB //table,title等头部背景
-$-table-content-bg-color := #F4F7FC //内容区
+$-header-bg-color := #F3F6FB //table,title等头部背景
+$-content-bg-color := #F4F7FC //内容区
 // disable color
 $-disabled-color := #CCC
 $-disabled-bg-color := #F2F2F2
@@ -66,41 +64,8 @@ $-box-shadow := 0 0 15px 0 rgba(0, 0, 0, 0.15);
 // border-radius
 $-border-radius := 4px
 $-border-base-radius := 2px
-// size arr
-$-size-array = mini, small, default, large
-/******************************
-        Headers
-*******************************/
 
-$-header-font-family := 'PingFangSC-Medium' !important
-$-header-margin := 0
-$-header-font-weight := bold
-$-h1 := 36px
-$-h2 := 30px
-$-h3 := 24px
-$-h4 := 18px
-$-h5 := 14px
-$-h6 := 12px
-
-/******************************
-        Link
-*******************************/
-
-$-link-color := $-primary-color
-$-link-underline := none
-$-link-hover-color := palette($-link-color, -1)
-$-link-hover-underline := $-link-underline
-$-link-font-family := $-font-family
-
-/******************************
-        Code
-*******************************/
-
-$-code-font-family := Consolas, Menlo, Courier, monospace
-
-/******************************
-        Transition
-*******************************/
+// transition
 
 $-transition := .25s ease-in-out
 
@@ -126,7 +91,7 @@ $-spin-mini-font-size := 12px
 
 
 /******************************
-        ButtonGroup Button
+        Button
 *******************************/
 //btn disabled
 $-btn-type := 'default'
@@ -459,9 +424,9 @@ $-step-index-active-background-color := $-primary-color;
 $-step-index-done-color := $-primary-color
 $-step-index-done-border-color := 2px solid $-primary-color
 $-step-index-done-background-color := #DBE1F5
-$-step-simple-background-color := $-table-header-bg-color
+$-step-simple-background-color := $-header-bg-color
 $-step-simple-border-color := $-bg-base-color //和主题色保持一直
-$-kd-step-simple-bgc := $-table-header-bg-color
+$-kd-step-simple-bgc := $-header-bg-color
 $-step-index-icon-color := $-border-base-color
 $-step-icon-active-color := $-primary-color
 $-step-icon-done-color := $-primary-color
@@ -621,7 +586,7 @@ $-dropdown-item-disabled-hover := $-white-color
 *******************************/
 $-transfer-base-color := $-text-light-color
 $-transfer-radius := $-border-radius
-$-transfer-header-bg := $-table-header-bg-color
+$-transfer-header-bg := $-header-bg-color
 $-transfer-width := 198
 $-transfer-row-height := 39
 $-transfer-row-padding := 0 15px

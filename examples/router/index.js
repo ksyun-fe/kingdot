@@ -101,7 +101,11 @@ const navRoutes = (lang) => {
         }]
 
     };
-    return [indexRoute, designRoute];
+    const themeRoute = {
+        path: `/${lang}/custom-theme`,
+        component: load_file(lang, 'customTheme')
+    };
+    return [indexRoute, designRoute, themeRoute];
 };
 defaultI18n.forEach(item => {
     routes = routes.concat(navRoutes(item.lang));

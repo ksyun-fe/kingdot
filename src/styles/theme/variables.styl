@@ -1,12 +1,19 @@
-/******************************
-             media
-*******************************/
+// media
 use('../../utils/media.js')
-/******************************
-             Theme
-*******************************/
+
+$-white-color := #fff
+$-black-color := #000
 $-font-family := PingFangSC-Light, 'helvetica neue', arial, 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif
 $-font-path := '../fonts';
+$-size-array = mini, small, default, large
+$-link-color := $-primary-color
+$-link-underline := none
+$-link-hover-color := palette($-link-color, -1)
+$-link-hover-underline := $-link-underline
+$-link-font-family := $-font-family
+/******************************
+                common
+*******************************/
 // font size
 $-font-large-size := 16px
 $-font-default-size := 14px
@@ -44,8 +51,8 @@ $-split-line-color := #2F374F //区域分割线
 // background color
 $-light-bg-color := #2C314E
 $-bg-base-color := #2C314E //基础内容背景样式
-$-table-header-bg-color := #2C324D //table,title等头部背景
-$-table-content-bg-color := #1E253D //内容区
+$-header-bg-color := #2C324D //table,title等头部背景
+$-content-bg-color := #1E253D //内容区
 // disable color
 $-disabled-color := #4F576E
 $-disabled-bg-color := #222A41
@@ -59,41 +66,8 @@ $-box-shadow := none
 // border-radius
 $-border-radius := 4px
 $-border-base-radius := 2px
-// size arr
-$-size-array = mini, small, default, large
-/******************************
-            Headers
-*******************************/
 
-$-header-font-family := 'PingFangSC-Medium' !important
-$-header-margin := 0
-$-header-font-weight := bold
-$-h1 := 36px
-$-h2 := 30px
-$-h3 := 24px
-$-h4 := 18px
-$-h5 := 14px
-$-h6 := 12px
-
-/******************************
-            Link
-*******************************/
-
-$-link-color := $-primary-color
-$-link-underline := none
-$-link-hover-color := palette($-link-color, -1)
-$-link-hover-underline := $-link-underline
-$-link-font-family := $-font-family
-
-/******************************
-            Code
-*******************************/
-
-$-code-font-family := Consolas, Menlo, Courier, monospace
-
-/******************************
-            Transition
-*******************************/
+// transition
 
 $-transition := .25s ease-in-out
 
@@ -119,11 +93,9 @@ $-icon-mini-font-size := 12px
 
 
 /******************************
-        ButtonGroup Button
+        Button
 *******************************/
 $-btn-type := 'gradient'
-$-white-color := #fff
-$-black-color := #000
 $-btn-disabled-color := $-border-base-color
 $-btn-disabled-bg-color := $-disabled-bg-color
 $-btn-disabled-border-color := $-disabled-border-color
@@ -369,10 +341,10 @@ $-input-err := $-danger-color
 $-input-err-border := 1px solid $-danger-color
 $-input-clear-color := $-icon-default-color
 
-$-textarea-default-padding-top-bottom := 8px
-$-textarea-count-font-size := $-font-second-size
-$-textarea-count-bottom := 6px
-$-textarea-count-right := 10px
+$-input-textarea-default-padding-top-bottom := 8px
+$-input-textarea-count-font-size := $-font-second-size
+$-input-textarea-count-bottom := 6px
+$-input-textarea-count-right := 10px
 
 
 /******************************
@@ -458,34 +430,34 @@ $-pagination-goto-border-color := #525C77
         steps
 *******************************/
 $-steps-container-background-color := $-disabled-bg-color //主题色
-$-step-spot-done-background-color := $-danger-color
-$-step-spot-line-border-color := $-danger-color
-$-step-spot-line-background-color := transparent
-$-step-spot-active-background-color := $-danger-color;
-$-step-spot-default-background-color := $-border-base-color
-$-step-line-background-color := $-border-base-color
-$-step-line-active-background-color := $-danger-color;
-$-step-title-color := $-text-dark-color
-$-step-title-active-color := $-text-dark-color
-$-step-description-color :=  $-text-light-color
-$-step-description-active-color := $-text-light-color
-$-step-index-default-border-color := $-border-base-color
-$-step-index-default-color := $-text-dark-color
-$-step-index-active-border-color := transparent
-$-step-index-active-background-color := $-primary-linear-color
-$-step-index-done-color := $-text-dark-color
-$-step-index-done-border-color := none
-$-step-index-done-background-color := $-primary-linear-color
-$-step-simple-background-color :=$-table-header-bg-color
-$-step-simple-border-color := $-disabled-bg-color //和主题色保持一直
-$-kd-step-simple-bgc := transparent
-$-step-index-icon-color := $-border-base-color
-$-step-icon-active-color := $-danger-color
-$-step-icon-done-color := $-danger-color
-$-step-custom-status-error-border-color := none
-$-step-custom-status-error-background-color := $-primary-linear-color
-$-step-custom-status-error-color := $-text-dark-color
-$-step-custom-status-wait-background-color := transparent
+$-steps-spot-done-background-color := $-danger-color
+$-steps-spot-line-border-color := $-danger-color
+$-steps-spot-line-background-color := transparent
+$-steps-spot-active-background-color := $-danger-color;
+$-steps-spot-default-background-color := $-border-base-color
+$-steps-line-background-color := $-border-base-color
+$-steps-line-active-background-color := $-danger-color;
+$-steps-title-color := $-text-dark-color
+$-steps-title-active-color := $-text-dark-color
+$-steps-description-color :=  $-text-light-color
+$-steps-description-active-color := $-text-light-color
+$-steps-index-default-border-color := $-border-base-color
+$-steps-index-default-color := $-text-dark-color
+$-steps-index-active-border-color := transparent
+$-steps-index-active-background-color := $-primary-linear-color
+$-steps-index-done-color := $-text-dark-color
+$-steps-index-done-border-color := none
+$-steps-index-done-background-color := $-primary-linear-color
+$-steps-simple-background-color :=$-header-bg-color
+$-steps-simple-border-color := $-disabled-bg-color //和主题色保持一直
+$-steps-simple-bgc := transparent
+$-steps-index-icon-color := $-border-base-color
+$-steps-icon-active-color := $-danger-color
+$-steps-icon-done-color := $-danger-color
+$-steps-custom-status-error-border-color := none
+$-steps-custom-status-error-background-color := $-primary-linear-color
+$-steps-custom-status-error-color := $-text-dark-color
+$-steps-custom-status-wait-background-color := transparent
 
 /******************************
         breadcrumb
@@ -642,7 +614,7 @@ $-tree-node-bg-color ?= #2c324e
 *******************************/
 $-transfer-base-color :=  #FFF
 $-transfer-radius := $-border-radius
-$-transfer-header-bg := $-table-header-bg-color
+$-transfer-header-bg := $-header-bg-color
 $-transfer-width := 198
 $-transfer-row-height := 39
 $-transfer-row-padding := 0 15px
