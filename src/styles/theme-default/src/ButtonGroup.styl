@@ -2,39 +2,39 @@
 @import '../../common/mixin.styl';
 
 $-btn-types = primary success warning danger
-$-btn-gradient := $-btn-type == 'gradient'
+$-btn-gradient := $-button-type == 'gradient'
 .kd-btn-group
     display flex
     justify-content start
     .kd-btn-default
         margin-left -1px
         border-radius 0
-        // background $-btn-group-default-color
+        // background $-button-group-default-color
         &:focus:not(.kd-btn-active)
         &:hover:not(.kd-btn-active)
             z-index 2
-            background $-btn-group-default-hover-color
+            background $-button-group-default-hover-color
             if $-btn-gradient
                 border: none
                 span
                     display: inline-block
                     padding 1px
         &:active:not(.kd-btn-active)
-            background $-btn-group-default-active-color
+            background $-button-group-default-active-color
     .kd-btn-default:first-child
         margin-left 0
-        border-radius $-btn-border-radius 0 0 $-btn-border-radius
+        border-radius $-button-border-radius 0 0 $-button-border-radius
     .kd-btn-default:last-child
-        border-radius 0 $-btn-border-radius $-btn-border-radius 0
+        border-radius 0 $-button-border-radius $-button-border-radius 0
     
     for type in $-btn-types
         .kd-btn-{type}
             border 1px
             border-radius 0
         .kd-btn-{type}:first-child
-            border-radius $-btn-border-radius 0 0 $-btn-border-radius
+            border-radius $-button-border-radius 0 0 $-button-border-radius
         .kd-btn-{type}:last-child
-            border-radius 0 $-btn-border-radius $-btn-border-radius 0
+            border-radius 0 $-button-border-radius $-button-border-radius 0
         .kd-btn-{type}+.kd-btn-{type}
             &:before
                 content ""
@@ -43,7 +43,7 @@ $-btn-gradient := $-btn-type == 'gradient'
                 top 5px
                 width 1px
                 height calc(100% - 10px)
-                background $-btn-group-line-color
+                background $-button-group-line-color
                 border-radius 2px
 
 .kd-btn-group-radio
@@ -51,18 +51,18 @@ $-btn-gradient := $-btn-type == 'gradient'
     position relative
     .kd-btn-default
         &:hover
-            color $-btn-primary-color
+            color $-button-primary-color
     .kd-btn-active
-        background $-btn-primary-color
-        color $-btn-active-color
-        border-color $-btn-primary-color
+        background $-button-primary-color
+        color $-button-group-active-color
+        border-color $-button-primary-color
         if $-btn-gradient
             border: none
             span
                 display: inline-block
                 padding 1px
         &:hover
-            color $-btn-active-color
+            color $-button-group-active-color
         &:before
             content:''
             width: 1px 
@@ -70,29 +70,29 @@ $-btn-gradient := $-btn-type == 'gradient'
             left -1px
             top 5px
             bottom 5px
-            background: $-btn-active-line-color
+            background: $-button-group-active-line-color
     .kd-btn-active:first-child
         &:before
             display: none
     .kd-btn-disabled
-        background $-btn-disabled-bg-color
-        border-color $-btn-border-color
-        color $-btn-disabled-color
+        background $-button-disabled-background-color
+        border-color $-button-border-color
+        color $-button-disabled-color
         &:hover
         &:focus
         &:active
-            background $-btn-disabled-bg-color !important
+            background $-button-disabled-background-color !important
             color $-disabled-color  !important
-            border-color $-btn-border-color !important
+            border-color $-button-border-color !important
             cursor: not-allowed
         &.kd-btn-active
-            background $-btn-primary-color
-            color $-btn-active-color
-            border-color $-btn-primary-color
+            background $-button-primary-color
+            color $-button-group-active-color
+            border-color $-button-primary-color
             opacity 0.5
             &:hover
             &:focus
             &:active
-                background $-btn-primary-color !important
-                color $-btn-active-color !important
-                border-color $-btn-primary-color !important
+                background $-button-primary-color !important
+                color $-button-group-active-color !important
+                border-color $-button-primary-color !important

@@ -1,6 +1,19 @@
 <template>
     <div class="demo-preview-wrap flex-row">
         <div class="flex-grow">
+            <h4>Breadcrumb</h4>
+            <div class="">
+                <kd-breadcrumb separator="/">
+                    <kd-breadcrumb-item>一级菜单</kd-breadcrumb-item>
+                    <kd-breadcrumb-item>二级菜单</kd-breadcrumb-item>
+                    <kd-breadcrumb-item>三级菜单</kd-breadcrumb-item>
+                </kd-breadcrumb>
+                <kd-breadcrumb>
+                    <kd-breadcrumb-item to="/">一级菜单</kd-breadcrumb-item>
+                    <kd-breadcrumb-item href="/">二级菜单</kd-breadcrumb-item>
+                    <kd-breadcrumb-item>三级菜单</kd-breadcrumb-item>
+                </kd-breadcrumb>
+            </div>
             <h4>Button</h4>
             <div class="preview-demo">
                 <kd-button>defult</kd-button>
@@ -9,6 +22,7 @@
                 <kd-button type="info">Info</kd-button>
                 <kd-button type="warning">Warning</kd-button>
                 <kd-button type="danger">Danger</kd-button>
+                <kd-button type="none">文字按钮</kd-button>
             </div>
             <h4>Checkbox</h4>
             <div class="">
