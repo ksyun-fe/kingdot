@@ -20,6 +20,24 @@
                 <kd-radio>radio</kd-radio>
                 <kd-radio disabled>radio</kd-radio>
             </div>
+            <h4>Switch</h4>
+            <div>
+                <kd-switch
+                        v-model="switchVal"
+                        size="default"
+                ></kd-switch>
+                <kd-switch
+                        v-model="switchVal"
+                        size="default"
+                        disabled
+                ></kd-switch>
+                <kd-switch
+                        v-model="switchVal"
+                        active-text="开"
+                        inactive-text="关"
+                        font-size="14"
+                ></kd-switch>
+            </div>
         </div>
     </div>
 </template>
@@ -29,7 +47,7 @@
         name: 'ComponentPreview',
         data() {
             return {
-
+                switchVal: false
             };
         },
         computed: {
@@ -46,7 +64,7 @@
         }
     };
 </script>
-<style lang="stylus" scoped type="text/stylus">
+<style lang="stylus" scoped>
 .flex-row
     display flex
     flex-direction row
@@ -65,7 +83,6 @@
 .editor-var
     width 300px
 .demo-preview-wrap >>>
-    .kd-btn, .kd-checkbox, .kd-radio
+    .kd-btn, .kd-checkbox, .kd-radio, .kd-switch
         margin-right 10px
-
 </style>
