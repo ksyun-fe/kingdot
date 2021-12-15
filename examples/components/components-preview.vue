@@ -185,6 +185,39 @@
                 <kd-checkbox>checkbox</kd-checkbox>
                 <kd-checkbox disabled>checkbox</kd-checkbox>
             </div>
+            <h4>Dialog</h4>
+            <div class="dialog-section">
+                <kd-button @click="openDialog">点击打开默认Dialog</kd-button>
+                <kd-button @click="openMessageDialog">提示信息Dialog</kd-button>
+                <kd-button @click="openMessageConfirmDialog">二次确认Dialog</kd-button>
+                <kd-dialog
+                        v-model="showDialog"
+                        :disableOk="disableOk"
+                        :ok="OK"
+                        width="800"
+                        height="800"
+                >
+
+                </kd-dialog>
+                <kd-dialog
+                        v-model="showMessageDialog"
+                        type="tips"
+                        :showTitle="false"
+                        icon="success"
+                        tipsTitle="操作成功"
+                        :tipsMessage="additionalTips"
+                        :tipsIsCenter="true"
+                ></kd-dialog>
+                <kd-dialog
+                        v-model="showConfirmDialog"
+                        type="confirm"
+                        :showTitle="false"
+                        icon="failed"
+                        :confirmTips="confirmTips"
+                        :confirmTitle="confirmTitle"
+                >
+                </kd-dialog>
+            </div>
             <h4>Radio</h4>
             <div class="">
                 <kd-radio>radio</kd-radio>
@@ -495,9 +528,9 @@
                     </kd-upload>
                 </div>
             </div>
-
         </div>
-    </div></template>
+    </div>
+</template>
 
 <script>
     export default {
@@ -515,7 +548,13 @@
                 checkboxValue: [1],
                 disabled: true,
                 stepIndex1: 2,
-                description: 'description'
+                description: 'description',
+                showDialog: false,
+                disableOk: true,
+                showMessageDialog: false,
+                confirmTitle: '二次确认标题',
+                confirmTips: '还可以自定义底部哟！！！',
+                showConfirmDialog: false
             };
         },
         computed: {
@@ -559,6 +598,23 @@
                     this.headImage = URL.createObjectURL(file);
                 }
                 return rules;
+            },
+            // Dialog
+            openDialog() {
+                this.showDialog = true;
+            },
+            OK(dialog) {
+                dialog.showLoading();
+                this.num++;
+                setTimeout(function () {
+                    dialog.hideLoading();
+                }, 2000);
+            },
+            openMessageDialog() {
+                this.showMessageDialog = true;
+            },
+            openMessageConfirmDialog() {
+                this.showConfirmDialog = true;
             }
         }
     };
@@ -598,4 +654,7 @@
     height: 45px
 .steps-section
     width calc(100% - 310px)
+.dialog-section
+    .kd-btn
+        margin-right 10px
 </style>
