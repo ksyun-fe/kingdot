@@ -946,7 +946,51 @@
                     </kd-upload>
                 </div>
             </div>
-
+            <h4>Tooltip</h4>
+            <div>
+                <kd-tooltip
+                        placement="top"
+                        :width-limit="true"
+                >
+                    <template slot="content">
+                        <div>light-dark-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width</div>
+                    </template>
+                    <kd-button class="btn">width-limint</kd-button>
+                </kd-tooltip>
+                <kd-tooltip
+                        placement="top"
+                        effect="dark"
+                        :width-limit="true"
+                >
+                    <template slot="content">
+                        <div>dark-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width</div>
+                    </template>
+                    <kd-button>width-limint</kd-button>
+                </kd-tooltip>
+            </div>
+            <h4>Popover</h4>
+            <div>
+                <kd-popover
+                        placement="top-end"
+                        title="标题"
+                        content="通常用来显示完整信息、注释信息；通常用来显示完整信息、注释信息；"
+                >
+                    <kd-button>light</kd-button>
+                </kd-popover>
+                <kd-popover
+                        placement="top-start"
+                        effect="dark"
+                        trigger="hover"
+                >
+                    <kd-button type="primary">dark</kd-button>
+                    <template slot="title">
+                        <span>标题</span>
+                    </template>
+                    <template slot="content">
+                        <span>通常用来显示完整信息、注释信息；通常用来显示完整信息、注释信息；</span>
+                    </template>
+                </kd-popover>
+            </div>
         </div>
     </div>
 </template>
