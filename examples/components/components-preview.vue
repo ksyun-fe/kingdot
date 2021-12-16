@@ -218,6 +218,13 @@
                 >
                 </kd-dialog>
             </div>
+            <h4>Drawer</h4>
+            <div class="drawer-section">
+                <kd-button @click="openDrawer">打开Drawer</kd-button>
+                <kd-drawer v-model="showConfirmDrawer">
+
+                </kd-drawer>
+            </div>
             <h4>Radio</h4>
             <div class="">
                 <kd-radio>radio</kd-radio>
@@ -377,6 +384,25 @@
                         :progressTextSize="12"
                 />
             </div>
+            <h4>Skeleton</h4>
+            <div class="skeleton-section">
+                <kd-skeleton
+                        v-model="SkeletonValue"
+                        :active="SkeletonValue"
+                />
+                <kd-skeleton v-model="flag">
+                    <div
+                            slot="skeleton"
+                            class="skeleton-box"
+                    >
+                        <kd-skeleton-item type="button"/>
+                        <kd-skeleton-item type="box"/>
+                        <kd-skeleton-item type="round"/>
+                        <kd-skeleton-item type="title"/>
+                        <kd-skeleton-item type="img"/>
+                    </div>
+                </kd-skeleton>
+            </div>
             <h4>Steps</h4>
             <div class="steps-section">
                 <kd-steps
@@ -489,6 +515,81 @@
                         font-size="14"
                 ></kd-switch>
             </div>
+            <h4>Tabs</h4>
+            <div>
+                <kd-tabs v-model="tabsValue">
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab value="3">3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="block"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab value="3">3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="card"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab value="3">3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="pagination"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab value="3">3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="vertical"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab
+                            value="3"
+                    >3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab
+                            value="2"
+                            disabled
+                    >2</kd-tab>
+                    <kd-tab
+                            value="3"
+                            disabled
+                    >3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="vertical"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab
+                            value="2"
+                            disabled
+                    >2</kd-tab>
+                    <kd-tab
+                            value="3"
+                            disabled
+                    >3</kd-tab>
+                </kd-tabs>
+            </div>
             <h4>Upload</h4>
             <div>
                 <div>
@@ -554,7 +655,10 @@
                 showMessageDialog: false,
                 confirmTitle: '二次确认标题',
                 confirmTips: '还可以自定义底部哟！！！',
-                showConfirmDialog: false
+                showConfirmDialog: false,
+                showConfirmDrawer: false,
+                tabsValue: '1',
+                SkeletonValue: true
             };
         },
         computed: {
@@ -602,6 +706,9 @@
             // Dialog
             openDialog() {
                 this.showDialog = true;
+            },
+            openDrawer() {
+                this.showConfirmDrawer = true;
             },
             OK(dialog) {
                 dialog.showLoading();
@@ -657,4 +764,11 @@
 .dialog-section
     .kd-btn
         margin-right 10px
+.skeleton-section
+    max-width 1050px
+.skeleton-box
+    display:flex;
+    margin-top 20px
+    div
+     margin-left 20px
 </style>
