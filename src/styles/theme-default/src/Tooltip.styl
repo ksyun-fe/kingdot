@@ -41,8 +41,8 @@ for theme in $-tooltip-theme
     position absolute
     display block
     visibility visible
-    font-size $-font-size-base
-    line-height $-line-height-base
+    font-size $-tooltip-font-size-base
+    line-height $-tooltip-line-height-base
     &[data-popper-reference-hidden]
         visibility hidden
         pointer-events none
@@ -60,9 +60,9 @@ for theme in $-tooltip-theme
         max-width $-tooltip-max-width
 .kd-tooltip-inner
     padding 14px
-    border-radius $-border-radius-base
+    border-radius $-tooltip-border-radius-base
     background-color $-tooltip-light-bg
-    box-shadow $-box-shadow-base
+    box-shadow $-tooltip-box-shadow-base
     color $-tooltip-light-color
     text-align left
     text-decoration none
