@@ -528,6 +528,73 @@
                     </kd-upload>
                 </div>
             </div>
+            <h4>Slider</h4>
+            <div style="width:800px;">
+                <kd-slider
+                        v-model="slider1"
+                        showEnd
+                ></kd-slider>
+                <kd-slider
+                        v-model="slider1"
+                        showEnd
+                        showStop
+                ></kd-slider>
+                <kd-slider
+                        v-model="slider1"
+                        showEnd
+                        disabled
+                ></kd-slider>
+                <kd-slider
+                        v-model="slider2"
+                        range
+                        showInput
+                        showEnd
+                        always
+                ></kd-slider>
+                <kd-slider
+                        :min="1"
+                        :max="12"
+                        :value="3"
+                        :marks="marks"
+                ></kd-slider>
+            </div>
+            <h4>Select</h4>
+            <div>
+                <kd-select
+                        v-model="select1"
+                        placeholder="请选择内容"
+                        filterable
+                >
+                    <kd-option value="">空数据</kd-option>
+                    <kd-option
+                            v-for="item in options"
+                            :key="item.value"
+                            :title="item.label"
+                            :value="item.value"
+                    >{{ item.label }}</kd-option>
+                </kd-select>
+            </div>
+            <h4>Tree</h4>
+            <kd-tree
+                    ref="tree1"
+                    :canDeleteRoot="true"
+                    :data="treeData1"
+                    :draggable="draggable"
+                    :halfcheck="halfcheck"
+                    :checkbox="checkbox"
+                    :radio="radio"
+                    selectAlone
+                    :showLine="showLine"
+                    :expandedKeys="expandedKeys"
+                    :checkedKeys="checkedKeys"
+                    :chkDisabledKeys="['node-1-1']"
+                    :nocheckKeys="['node-1-1-2']"
+                    @node-click="nodeClick"
+            >
+                <span>
+                    ??? <kd-button size="mini">test</kd-button>
+                </span>
+            </kd-tree>
         </div>
     </div>
 </template>
@@ -554,7 +621,77 @@
                 showMessageDialog: false,
                 confirmTitle: '二次确认标题',
                 confirmTips: '还可以自定义底部哟！！！',
-                showConfirmDialog: false
+                showConfirmDialog: false,
+                additionalTips: '附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。',
+                // slider
+                slider1: 10,
+                slider2: [10, 80],
+                marks: {
+                    '1': '1',
+                    '2': '2',
+                    '3': '3',
+                    '4': '4',
+                    '5': '5',
+                    '6': '6月',
+                    '7': '7',
+                    '8': '8',
+                    '9': '9',
+                    '10': '1年',
+                    '11': '2年',
+                    '12': '3年'
+                },
+                // select
+                select1: 'item1',
+                options: [
+                    { value: 'item1', label: 'item option 1item option 1item option 1item option 1item option 1' },
+                    { value: 'item2', label: 'item option 2'},
+                    { value: 'item3', label: 'item option 3' }
+                ],
+                // tree
+                showLine: false,
+                checkbox: true,
+                draggable: true,
+                halfcheck: true,
+                radio: true,
+                search: '',
+                expandedKeys: ['node1'],
+                checkedKeys: ['node-1-1-1', 'node-1-1-3'],
+                treeData1: [
+                    {
+                        title: 'Node1',
+                        // expanded: true,
+                        selDisabled: true,
+                        id: 'node1',
+                        children: [
+                            {
+                                title: 'Node 1-1',
+                                id: 'node-1-1',
+                                // expanded: true,
+                                children: [
+                                    { title: 'Node 1-1-1', id: 'node-1-1-1' },
+                                    { title: 'Node 1-1-2', id: 'node-1-1-2' },
+                                    { title: 'Node 1-1-3', id: 'node-1-1-3' }
+                                ]
+                            },
+                            {
+                                title: 'Node 1-2',
+                                id: 'node-1-2',
+                                children: [
+                                    { title: 'Node 1-2-1', id: 'node-1-2-1' },
+                                    { title: 'Node 1-2-2', id: 'node-1-2-2' }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Node 2',
+                        id: 'node-2',
+                        children: [
+                            { title: 'Node 2-1-1', id: 'node-2-1-1' },
+                            { title: 'Node 2-1-2', id: 'node-2-1-2' }
+                        ]
+                    }
+                ]
             };
         },
         computed: {
@@ -615,6 +752,9 @@
             },
             openMessageConfirmDialog() {
                 this.showConfirmDialog = true;
+            },
+            nodeClick() {
+                this.$message.success('node-click');
             }
         }
     };
