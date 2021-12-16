@@ -185,6 +185,72 @@
                 <kd-checkbox>checkbox</kd-checkbox>
                 <kd-checkbox disabled>checkbox</kd-checkbox>
             </div>
+            <h4>Collapse</h4>
+            <div class="">
+                <kd-collapse
+                >
+                    <kd-collapse-item
+                            title="季风气候"
+                            value="climate"
+                            disabled
+                    >
+                        <ul>
+                            <li>亚热带大陆东岸因地处回归线附近，故形成亚热带气候。</li>
+                            <li>地处副热带沿海一带，夏季受海陆气温差异影响，吹东南风，冬季受来自西伯利亚的寒风影响，吹西北风，这二者轮流控制，季节性交替，偏角超过120度，形成了季风；</li>
+                            <li>降水受行星风带和巨大地形影响显著，天气的非周期性变化和降水季节变化都很显著，因而形成季风气候。</li>
+                        </ul>
+                    </kd-collapse-item>
+                    <kd-collapse-item
+                            title="气候特性"
+                            value="features"
+                    >
+                        <ul>
+                            <li>季风气候总体气候特征为夏热冬温，四季分明，雨热同期，季风发达；</li>
+                            <li>季风气候热量丰富，年平均气温为15-22摄氏度，最冷月平均气温在0-15摄氏度之间，温暖指数为135摄氏度·月至240摄氏度·月之间；</li>
+                            <li>季风气候降水充沛，但季风性特征明显；从地域来看，降水总量从东南沿海向西北内陆递减，东南沿海可达2000毫米，而长江流域为1000毫米；从时间来看，春季降水约占全年降水总量的20-45%，夏季为30-50%，秋季为15-20%，冬季仅有10-15%；</li>
+                        </ul>
+                    </kd-collapse-item>
+                    <kd-collapse-item
+                            title="自然景观"
+                            value="landscape"
+                    >
+                        季风气候的地带性植被为亚热带常绿阔叶林，亦称之为副热带季风林。
+                        壳斗科、樟科、山茶科、木兰科和金缕梅科等是常绿阔叶林中的主要树种。典型的亚热带常绿阔叶林中的树木通常具有樟科植物的特征，叶片革质全缘、表面光亮，叶面常迎向阳光照射的方向，因此，常绿阔叶林又有照叶林之称。典型的有樟树、茶树、柑橘树、甘蔗等。
+                    </kd-collapse-item>
+                </kd-collapse>
+                <kd-collapse concise>
+                    <kd-collapse-item title="季风气候">
+                        <ul>
+                            <li>亚热带大陆东岸因地处回归线附近，故形成亚热带气候。</li>
+                            <li>地处副热带沿海一带，夏季受海陆气温差异影响，吹东南风，冬季受来自西伯利亚的寒风影响，吹西北风，这二者轮流控制，季节性交替，偏角超过120度，形成了季风；</li>
+                            <li>降水受行星风带和巨大地形影响显著，天气的非周期性变化和降水季节变化都很显著，因而形成季风气候。</li>
+                        </ul>
+                    </kd-collapse-item>
+                    <kd-collapse-item title="气候特性">
+                        <ul>
+                            <li>季风气候总体气候特征为夏热冬温，四季分明，雨热同期，季风发达；</li>
+                            <li>季风气候热量丰富，年平均气温为15-22摄氏度，最冷月平均气温在0-15摄氏度之间，温暖指数为135摄氏度·月至240摄氏度·月之间；</li>
+                            <li>季风气候降水充沛，但季风性特征明显；从地域来看，降水总量从东南沿海向西北内陆递减，东南沿海可达2000毫米，而长江流域为1000毫米；从时间来看，春季降水约占全年降水总量的20-45%，夏季为30-50%，秋季为15-20%，冬季仅有10-15%；</li>
+                        </ul>
+                    </kd-collapse-item>
+                    <kd-collapse-item title="自然景观">
+                        季风气候的地带性植被为亚热带常绿阔叶林，亦称之为副热带季风林。
+                        壳斗科、樟科、山茶科、木兰科和金缕梅科等是常绿阔叶林中的主要树种。典型的亚热带常绿阔叶林中的树木通常具有樟科植物的特征，叶片革质全缘、表面光亮，叶面常迎向阳光照射的方向，因此，常绿阔叶林又有照叶林之称。典型的有樟树、茶树、柑橘树、甘蔗等。
+                    </kd-collapse-item>
+                </kd-collapse>
+            </div>
+            <h4>DatePicker</h4>
+            <div class="">
+                <div class="mb-small">
+                    <kd-date-picker range></kd-date-picker>
+                </div>
+            </div>
+            <h4>DatetimePicker</h4>
+            <div class="">
+                <kd-date-time-picker
+                        range
+                > </kd-date-time-picker>
+            </div>
             <h4>Dialog</h4>
             <div class="dialog-section">
                 <kd-button @click="openDialog">点击打开默认Dialog</kd-button>
@@ -218,10 +284,35 @@
                 >
                 </kd-dialog>
             </div>
-            <h4>Radio</h4>
+            <h4>Drawer</h4>
+            <div class="drawer-section">
+                <kd-button @click="openDrawer">打开Drawer</kd-button>
+                <kd-drawer v-model="showConfirmDrawer">
+
+                </kd-drawer>
+            </div>
+            <h4>Dropdown</h4>
             <div class="">
-                <kd-radio>radio</kd-radio>
-                <kd-radio disabled>radio</kd-radio>
+                <kd-dropdown type="primary">
+                    <kd-button type="text">下拉菜单<i class="kdicon kd-icon-right kd-icon-arrow-down"></i></kd-button>
+                    <kd-dropdown-menu slot="dropdown">
+                        <kd-dropdown-item> 1 item </kd-dropdown-item>
+                        <kd-dropdown-item> 2 item </kd-dropdown-item>
+                        <kd-dropdown-item> 3 item </kd-dropdown-item>
+                    </kd-dropdown-menu>
+                </kd-dropdown>
+                <kd-dropdown split-button>
+                    菜单
+                    <kd-dropdown-menu slot="dropdown">
+                        <kd-dropdown-item value="1 menu item"> 1 item test button </kd-dropdown-item>
+                        <kd-dropdown-item value="2 menu item"> 2 item </kd-dropdown-item>
+                        <kd-dropdown-item
+                                value="3 menu item"
+                                disabled
+                                dividedLine
+                        > 3 item </kd-dropdown-item>
+                    </kd-dropdown-menu>
+                </kd-dropdown>
             </div>
             <h4>Input</h4>
             <div class="input-area">
@@ -325,6 +416,113 @@
                     ></kd-input>
                 </div>
             </div>
+            <h4>Menu</h4>
+            <div>
+                <kd-menu
+                        class="demo-menu-block"
+                        :selectedMenu.sync="selectedMenu"
+                        :defaultOpeneds="defaultOpeneds"
+                >
+                    <kd-menu-item
+                            v-for="(item, index) in menuList"
+                            :key="index"
+                            :tips="item.name"
+                            :disabled="item.disabled"
+                            :name="item.key"
+                    >
+                        <i :class="item.icon"></i>
+                        <span>{{ item.name }}</span>
+                    </kd-menu-item>
+                    <kd-submenu name="2">
+                        <template slot="title">
+                            <i class="kd-icon-menu-more"></i>
+                            <span slot="title">子菜单</span>
+                        </template>
+                        <kd-menu-item
+                                name="2-1"
+                                tips="子菜单1"
+                        >
+                            <i class="kd-icon-menu-more"></i>
+                            <span>子菜单1</span>
+                        </kd-menu-item>
+                        <kd-menu-item
+                                disabled
+                                name="2-2"
+                                tips="子菜单2"
+                        >
+                            <i class="kd-icon-menu-more"></i>
+                            <span>子菜单2</span>
+                        </kd-menu-item>
+                        <kd-submenu
+                                popperAppendToBody
+                                trigger="click"
+                                name="3"
+                        >
+                            <template slot="title">
+                                <i class="kd-icon-menu-more"></i>
+                                <span slot="title">子子菜单</span>
+                            </template>
+                            <kd-menu-item
+                                    name="2-3-1"
+                                    tips="子菜单1"
+                            >
+                                <i class="kd-icon-menu-more"></i>
+                                <span>子菜单1</span>
+                            </kd-menu-item>
+                            <kd-menu-item
+                                    disabled
+                                    name="2-3-2"
+                                    tips="子菜单2"
+                            >
+                                <i class="kd-icon-menu-more"></i>
+                                <span>子菜单2</span>
+                            </kd-menu-item>
+                            <kd-menu-item
+                                    name="2-3-3"
+                                    tips="子菜单3"
+                            >
+                                <i class="kd-icon-menu-more"></i>
+                                <span>子菜单3</span>
+                            </kd-menu-item>
+                        </kd-submenu>
+                    </kd-submenu>
+                </kd-menu>
+            </div>
+            <h4>Message</h4>
+            <div>
+                <KdButton
+                        v-for="type in messageTypeList"
+                        :key="type"
+                        style="margin-right: 10px"
+                        @click="showMessage(type)"
+                >{{ type || '默认提示' }}</KdButton>
+            </div>
+            <h4>Pagination</h4>
+            <div>
+                <div class="mb-small">
+                    <kd-pagination
+                            prevText="上一页"
+                            nextText="下一页"
+                            :total="120"
+                            :limit="10"
+                            :current="1"
+                            :limits="[5, 10, 20, 50]"
+                    />
+                </div>
+                <kd-pagination
+                        prevText="kd-icon-arrow-left"
+                        nextText="kd-icon-arrow-right"
+                        noBorder
+                        :total="120"
+                        :limit="10"
+                        :current="1"
+                        :limits="[5, 10, 20, 50]"
+                        :showGoto="false"
+                        :showTotal="false"
+                        :showPageCount="false"
+                        :showLimits="false"
+                />
+            </div>
             <h4>Progress</h4>
             <div class="progress-area">
                 <kd-progress
@@ -376,6 +574,109 @@
                         :showText="true"
                         :progressTextSize="12"
                 />
+            </div>
+            <h4>Radio</h4>
+            <div class="">
+                <kd-radio>radio</kd-radio>
+                <kd-radio disabled>radio</kd-radio>
+            </div>
+            <h4>Scrollselect</h4>
+            <div class="">
+                <kd-scroll-select
+                        v-model="scrollSelectVal"
+                        :disable="scrollSelectDisable"
+                ></kd-scroll-select>
+            </div>
+            <h4>Select</h4>
+            <div>
+                <kd-select
+                        v-model="select1"
+                        placeholder="请选择内容"
+                        filterable
+                >
+                    <kd-option value="">空数据</kd-option>
+                    <kd-option
+                            v-for="item in options"
+                            :key="item.value"
+                            :title="item.label"
+                            :value="item.value"
+                    >{{ item.label }}</kd-option>
+                </kd-select>
+            </div>
+            <h4>Skeleton</h4>
+            <div class="skeleton-section">
+                <kd-skeleton
+                        v-model="SkeletonValue"
+                        :active="SkeletonValue"
+                />
+                <kd-skeleton v-model="SkeletonValue">
+                    <div
+                            slot="skeleton"
+                            class="skeleton-box"
+                    >
+                        <kd-skeleton-item type="button"/>
+                        <kd-skeleton-item type="box"/>
+                        <kd-skeleton-item type="round"/>
+                        <kd-skeleton-item type="title"/>
+                        <kd-skeleton-item type="img"/>
+                    </div>
+                </kd-skeleton>
+            </div>
+            <h4>Slider</h4>
+            <div style="width:800px;">
+                <kd-slider
+                        v-model="slider1"
+                        showEnd
+                ></kd-slider>
+                <kd-slider
+                        v-model="slider1"
+                        showEnd
+                        showStop
+                ></kd-slider>
+                <kd-slider
+                        v-model="slider1"
+                        showEnd
+                        disabled
+                ></kd-slider>
+                <kd-slider
+                        v-model="slider2"
+                        range
+                        showInput
+                        showEnd
+                        always
+                ></kd-slider>
+                <kd-slider
+                        :min="1"
+                        :max="12"
+                        :value="3"
+                        :marks="marks"
+                ></kd-slider>
+            </div>
+            <h4>Spin</h4>
+            <div>
+                <kd-spin
+                        v-for="item in ['large','default','small','mini']"
+                        :key="item"
+                        :size="item"
+                        :overlay="false"
+                        class="spin-margin-right"
+                ></kd-spin>
+            </div>
+            <h4>Spinner</h4>
+            <div>
+                <kd-spinner
+                        v-model="spinnerValue"
+                        class="mr-mini"
+                ></kd-spinner>
+                <kd-spinner
+                        v-model="spinnerValue"
+                        button-position="right"
+                        class="mr-mini"
+                ></kd-spinner>
+                <kd-spinner
+                        :value="1"
+                        disabled
+                ></kd-spinner>
             </div>
             <h4>Steps</h4>
             <div class="steps-section">
@@ -489,6 +790,123 @@
                         font-size="14"
                 ></kd-switch>
             </div>
+            <h4>Tabs</h4>
+            <div>
+                <kd-tabs v-model="tabsValue">
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab value="3">3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="block"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab value="3">3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="card"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab value="3">3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="pagination"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab value="3">3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="vertical"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab value="2">2</kd-tab>
+                    <kd-tab
+                            value="3"
+                    >3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab
+                            value="2"
+                            disabled
+                    >2</kd-tab>
+                    <kd-tab
+                            value="3"
+                            disabled
+                    >3</kd-tab>
+                </kd-tabs>
+                <br/>
+                <kd-tabs
+                        v-model="tabsValue"
+                        type="vertical"
+                >
+                    <kd-tab value="1">1</kd-tab>
+                    <kd-tab
+                            value="2"
+                            disabled
+                    >2</kd-tab>
+                    <kd-tab
+                            value="3"
+                            disabled
+                    >3</kd-tab>
+                </kd-tabs>
+            </div>
+            <h4>Timepicker</h4>
+            <div>
+                <div class="mb-small">
+                    <kd-time-picker class="mr-mini"></kd-time-picker>
+                    <kd-time-picker
+                            mode="steptime"
+                    ></kd-time-picker>
+                </div>
+                <kd-time-picker range></kd-time-picker>
+            </div>
+            <h4>Transfer</h4>
+            <div>
+                <kd-transfer
+                        :data="transferData"
+                        showFilter
+                        :filter-placeholder="['请输入','请输入']"
+                >
+                </kd-transfer>
+            </div>
+            <h4>Tree</h4>
+            <div>
+                <kd-tree
+                        ref="tree1"
+                        :canDeleteRoot="true"
+                        :data="treeData1"
+                        :draggable="draggable"
+                        :halfcheck="halfcheck"
+                        :checkbox="checkbox"
+                        :radio="radio"
+                        selectAlone
+                        :showLine="showLine"
+                        :expandedKeys="expandedKeys"
+                        :checkedKeys="checkedKeys"
+                        :chkDisabledKeys="['node-1-1']"
+                        :nocheckKeys="['node-1-1-2']"
+                        @node-click="nodeClick"
+                >
+                    <span>
+                        ??? <kd-button size="mini">test</kd-button>
+                    </span>
+                </kd-tree>
+            </div>
             <h4>Upload</h4>
             <div>
                 <div>
@@ -528,15 +946,76 @@
                     </kd-upload>
                 </div>
             </div>
+            <h4>Tooltip</h4>
+            <div>
+                <kd-tooltip
+                        placement="top"
+                        :width-limit="true"
+                >
+                    <template slot="content">
+                        <div>light-dark-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width</div>
+                    </template>
+                    <kd-button class="btn">width-limint</kd-button>
+                </kd-tooltip>
+                <kd-tooltip
+                        placement="top"
+                        effect="dark"
+                        :width-limit="true"
+                >
+                    <template slot="content">
+                        <div>dark-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width</div>
+                    </template>
+                    <kd-button>width-limint</kd-button>
+                </kd-tooltip>
+            </div>
+            <h4>Popover</h4>
+            <div>
+                <kd-popover
+                        placement="top-end"
+                        title="标题"
+                        content="通常用来显示完整信息、注释信息；通常用来显示完整信息、注释信息；"
+                >
+                    <kd-button>light</kd-button>
+                </kd-popover>
+                <kd-popover
+                        placement="top-start"
+                        effect="dark"
+                        trigger="hover"
+                >
+                    <kd-button type="primary">dark</kd-button>
+                    <template slot="title">
+                        <span>标题</span>
+                    </template>
+                    <template slot="content">
+                        <span>通常用来显示完整信息、注释信息；通常用来显示完整信息、注释信息；</span>
+                    </template>
+                </kd-popover>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    const transferData = () => {
+        const data = [];
+        for (let i = 0; i < 12; i++) {
+            data.push({
+                key: i,
+                label: `item${i}`,
+                disabled: i % 5 === 1,
+                checked: false
+            });
+        }
+        return data;
+    };
     export default {
         name: 'ComponentPreview',
+        // eslint-disable-next-line max-lines-per-function
         data() {
             return {
+                transferData: transferData(),
+                spinnerValue: 1,
+                scrollSelectVal: 2,
                 isFileList: false,
                 headImage: '',
                 inputType: 'password',
@@ -554,7 +1033,97 @@
                 showMessageDialog: false,
                 confirmTitle: '二次确认标题',
                 confirmTips: '还可以自定义底部哟！！！',
-                showConfirmDialog: false
+                showConfirmDialog: false,
+                showConfirmDrawer: false,
+                tabsValue: '1',
+                SkeletonValue: true,
+                additionalTips: '附加提示。此成功提示出现在一系列任务之后，比如在弹窗中操作了分步表单任务，完成最后一步后提示。简单的弹窗任务直接使用 Message 提示。',
+                // slider
+                slider1: 10,
+                slider2: [10, 80],
+                marks: {
+                    '1': '1',
+                    '2': '2',
+                    '3': '3',
+                    '4': '4',
+                    '5': '5',
+                    '6': '6月',
+                    '7': '7',
+                    '8': '8',
+                    '9': '9',
+                    '10': '1年',
+                    '11': '2年',
+                    '12': '3年'
+                },
+                // select
+                select1: 'item1',
+                options: [
+                    { value: 'item1', label: 'item option 1item option 1item option 1item option 1item option 1' },
+                    { value: 'item2', label: 'item option 2'},
+                    { value: 'item3', label: 'item option 3' }
+                ],
+                // tree
+                showLine: false,
+                checkbox: true,
+                draggable: true,
+                halfcheck: true,
+                radio: true,
+                search: '',
+                expandedKeys: ['node1'],
+                checkedKeys: ['node-1-1-1', 'node-1-1-3'],
+                treeData1: [
+                    {
+                        title: 'Node1',
+                        // expanded: true,
+                        selDisabled: true,
+                        id: 'node1',
+                        children: [
+                            {
+                                title: 'Node 1-1',
+                                id: 'node-1-1',
+                                // expanded: true,
+                                children: [
+                                    { title: 'Node 1-1-1', id: 'node-1-1-1' },
+                                    { title: 'Node 1-1-2', id: 'node-1-1-2' },
+                                    { title: 'Node 1-1-3', id: 'node-1-1-3' }
+                                ]
+                            },
+                            {
+                                title: 'Node 1-2',
+                                id: 'node-1-2',
+                                children: [
+                                    { title: 'Node 1-2-1', id: 'node-1-2-1' },
+                                    { title: 'Node 1-2-2', id: 'node-1-2-2' }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        title: 'Node 2',
+                        id: 'node-2',
+                        children: [
+                            { title: 'Node 2-1-1', id: 'node-2-1-1' },
+                            { title: 'Node 2-1-2', id: 'node-2-1-2' }
+                        ]
+                    }
+                ],
+                selectedMenu: '',
+                defaultOpeneds: [],
+                menuList: [{
+                    name: '菜单1',
+                    icon: 'kd-icon-menu-more',
+                    key: '1'
+                }, {
+                    name: '菜单2',
+                    disabled: true,
+                    icon: 'kd-icon-menu-more',
+                    key: '2'
+                }, {
+                    name: '菜单3',
+                    icon: 'kd-icon-menu-more',
+                    key: '3'
+                }],
+                messageTypeList: ['success', 'error', 'info', 'warning', '']
             };
         },
         computed: {
@@ -578,6 +1147,12 @@
             }, 60);
         },
         methods: {
+            scrollSelectDisable(value) {
+                return !!(value % 2);
+            },
+            showMessage(type) {
+                this.$message[type] ? this.$message[type](type) : this.$message('默认提示');
+            },
             formatPercentage(percentage) {
                 return percentage === 100 ? 'fulfill' : `${percentage}%`;
             },
@@ -603,6 +1178,9 @@
             openDialog() {
                 this.showDialog = true;
             },
+            openDrawer() {
+                this.showConfirmDrawer = true;
+            },
             OK(dialog) {
                 dialog.showLoading();
                 this.num++;
@@ -615,6 +1193,9 @@
             },
             openMessageConfirmDialog() {
                 this.showConfirmDialog = true;
+            },
+            nodeClick() {
+                this.$message.success('node-click');
             }
         }
     };
@@ -637,6 +1218,8 @@
     flex-direction row
 .editor-var
     width 300px
+.mb-small
+    margin-bottom 10px
 .demo-preview-wrap >>>
     .kd-checkbox, .kd-radio, .kd-switch
         margin-right 10px
@@ -657,4 +1240,15 @@
 .dialog-section
     .kd-btn
         margin-right 10px
+.skeleton-section
+    max-width 1050px
+.skeleton-box
+    display:flex;
+    margin-top 20px
+    div
+     margin-left 20px
+.demo-menu-block
+    width 400px
+    margin-top 10px
+    border-right 1px solid #ddd
 </style>

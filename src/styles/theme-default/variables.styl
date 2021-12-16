@@ -389,7 +389,7 @@ $-message-error-border-color := $-message-error-background-color;
 $-message-info-border-color := $-message-info-background-color;
 
 /******************************
-        pgination
+        pagination
 *******************************/
 $-pagination-font-size := 12px
 $-pagination-margin := 16px
@@ -459,7 +459,8 @@ $-tabs-color-font := $-text-light-color
 $-tabs-after-backgroundColor := $-split-line-color //#e5e5e5
 $-tabs-after-borderColor := $-split-line-color
 $-tabs-after-borderColor-card := $-split-line-color
-$-kd-add-tab :=$-split-line-color//#e5e5e5
+$-tabs-addButton-backgroundColor :=$-split-line-color//#e5e5e5
+$-tabs-addButton-activeColor :=$-split-line-color//#e5e5e5
 $-tabs-font-size :=$-font-default-size// 14px
 $-tabs-color-background := $-white-color//#ffffff
 $-tabs-card-color-background := $-white-color//#ffffff
@@ -664,11 +665,11 @@ $-upload-progress-text-top := -28px
         tooltip
 *******************************/
 // tooltip base
-$-font-size-base ?= 12px
-$-line-height-base ?= 1.5
-$-border-radius-base ?= 4px
-$-shadow-color ?= rgba(0, 0, 0, 0.15)
-$-box-shadow-base ?= 0 0 15px 0 $-shadow-color
+$-tooltip-font-size-base ?= 12px
+$-tooltip-line-height-base ?= 1.5
+$-tooltip-border-radius-base ?= 4px
+$-tooltip-shadow-color ?= rgba(0, 0, 0, 0.15)
+$-tooltip-box-shadow-base ?= 0 0 15px 0 $-tooltip-shadow-color
 $-tooltip-max-width ?= calc(240px - 14px - 14px)
 $-tooltip-arrow-width ?= 5px
 $-tooltip-distance ?= $-tooltip-arrow-width - 1px + 4px
@@ -676,10 +677,14 @@ $-tooltip-distance ?= $-tooltip-arrow-width - 1px + 4px
 $-tooltip-theme = 'dark' 'light'
 $-tooltip-light-bg ?= #fff
 $-tooltip-light-color ?= #737373
-$-popover-content-light-color ?= #737373
-$-popover-titleline-light-color ?= #E5E5E5
 $-tooltip-dark-bg ?= #2C324D
 $-tooltip-dark-color ?= #fff
+
+/******************************
+        popover
+*******************************/
+$-popover-content-light-color ?= #737373
+$-popover-titleline-light-color ?= #E5E5E5
 $-popover-content-dark-color ?= #8D919B
 $-popover-titleline-dark-color ?= #414760
 
