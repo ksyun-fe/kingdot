@@ -185,22 +185,25 @@ $-button-dashed-border-style := dashed
 $-button-shape-round := 40px
 $-button-shape-circle := 50%
 //size
-
 $-button-large-padding := 13px 24px
-$-button-large-circle-padding := 14px
+$-button-large-circle-padding := 12px
 $-button-large-font-size := 14px
+$-button-large-height := 40px
 
-$-button-default-padding := 9px 16px
-$-button-default-circle-padding := 12px
-$-button-default-font-size := $-font-base-size
+$-button-middle-padding := 9px 16px
+$-button-middle-circle-padding := 8px
+$-button-middle-font-size := $-font-base-size
+$-button-middle-height := 32px
 
 $-button-small-padding := 7px 12px
-$-button-small-circle-padding := 8px
+$-button-small-circle-padding := 6px
 $-button-small-font-size := 12px
+$-button-small-height := 28px
 
 $-button-mini-padding := 5px 8px
-$-button-mini-circle-paddingg := 6px
+$-button-mini-circle-paddingg := 4px
 $-button-mini-font-size := 12px
+$-button-mini-height := 24px
 //icon
 $-button-icon-text-gutter := 8px
 
@@ -556,8 +559,8 @@ $-progress-text-marginLeft := 16px
 
 $-spinner-fill-bg := #2c314e
 $-spinner-border-color := $-border-base-color
-$-spinnter-disable-bg := #222A41
-$-spinnter-disable-color := #2f374f
+$-spinner-disable-background := #222A41
+$-spinner-disable-color := #2f374f
 $-spinner-primary-color := $-primary-color
 $-spinner-input-padding := 8
 
@@ -750,16 +753,16 @@ $-datepicker-day-disabled-color := #4c4c4c
             ScrollSelect
 *******************************/
 
-$-scroll-select-height := unit(210 / 14, rem)
-$-scroll-select-item-height := unit(30 / 14, rem)
-$-scroll-select-item-color := $-text-light-color
-$-scroll-select-item-active-color := $-scroll-active-color
-$-scroll-select-item-active-font-weight := 700
-$-scroll-select-item-disabled-color := $-scroll-disabled-color
+$-scrollselect-height := unit(210 / 14, rem)
+$-scrollselect-item-height := unit(30 / 14, rem)
+$-scrollselect-item-color := $-text-light-color
+$-scrollselect-item-active-color := $-scrollselect-active-color
+$-scrollselect-item-active-font-weight := 700
+$-scrollselect-item-disabled-color := $-scrollselect-disabled-color
 
-$-scroll-select-border := 1px solid #e5e5e5
-$-scroll-active-color := #318EFA // blue
-$-scroll-disabled-color := #999
+$-scrollselect-border := 1px solid #e5e5e5
+$-scrollselect-active-color := #318EFA // blue
+$-scrollselect-disabled-color := #999
 
 
 
@@ -805,10 +808,10 @@ $-menu-item-horizontal-active-background := none
 $-menu-item-horizontal-active-background-image := none
 $-menu-item-horizontal-active-color := #fff
 
-$-submenu-popper-content-width := 200px
-$-submenu-popper-content-background := #2C324D
-$-submenu-popper-content-color := #fff
-$-submenu-popper-horizontal-content-width := 200px
+$-menu-submenu-popper-content-width := 200px
+$-menu-submenu-popper-content-background := #2C324D
+$-menu-submenu-popper-content-color := #fff
+$-menu-submenu-popper-horizontal-content-width := 200px
 /******************************
             DateTimePicker
 *******************************/
