@@ -1,27 +1,40 @@
 <template>
-    <div class="editor-theme-wrap flex-row">
-        <div class="flex-grow">
-            <ComponentsPreview></ComponentsPreview>
+    <div
+            ref="editorThemeWrap"
+            class="editor-theme-wrap flex-row"
+    >
+        <div class="preview-main">
+            <div class="preview-wrap">
+                <ComponentsPreview></ComponentsPreview>
+            </div>
         </div>
-        <div class="flex-col editor-var">
+        <div
+                ref="editorVar"
+                :class="{
+                    'flex-col': true,
+                    'editor-var': true,
+                    'fixed': true
+                }"
+                :style="editorVarStyle"
+        >
             <div class="flex-row-end mb-small">
                 <kd-button
                         type="primary"
                         class="mr-mini"
-                        :disabled="loadingTheme || uploading"
+                        :disabled="loadingTheme || uploading || gettingVariable"
                         @click="resetTheme"
                 >重置</kd-button>
                 <kd-button
                         type="primary"
                         class="mr-mini"
                         :loading="loadingTheme"
-                        :disabled="uploading"
+                        :disabled="uploading || gettingVariable"
                         @click="loadTheme()"
                 >加载</kd-button>
                 <kd-button
                         type="primary"
                         :loading="uploading"
-                        :disabled="loadingTheme"
+                        :disabled="loadingTheme || gettingVariable"
                         @click="uploadTheme"
                 >下载</kd-button>
             </div>
@@ -46,7 +59,7 @@
                         v-for="c in selectedItem.config"
                         :key="c.name"
                 >
-                    <div>{{ c.name }}</div>
+                    <div class="var-config-name">{{ c.name }}</div>
                     <div
                             v-if="c.type === 'color'"
                             class="flex-row"
@@ -83,7 +96,8 @@
     const uuidv4 = require('uuid/v4');
     import kingdot from '../../src/index.js';
     import ComponentsPreview from './components-preview.vue';
-    const kingDotKey = 'KINGDOT_THEME_VAR_CONFIG';
+    export const kingDotKey = 'KINGDOT_THEME_VAR_CONFIG';
+    import {throttle} from 'lodash';
     export default {
         name: 'ComponentDemo',
         components: {
@@ -91,16 +105,20 @@
             ComponentsPreview: ComponentsPreview
         },
         props: {
-
+            themeUuid: {
+                type: String
+            }
         },
         data() {
             return {
+                editorVarStyle: {},
+                gettingVariable: false,
                 uploading: false,
                 loadingTheme: false,
-                currentItem: 'button',
-                color: '#ff0',
+                currentItem: 'common',
                 componentVarList: [],
-                uuid: localStorage.getItem('kingDotKey') && localStorage.getItem('kingDotKey').uuid || uuidv4()
+                version: kingdot.version,
+                uuid: this.themeUuid || uuidv4()
             };
         },
         computed: {
@@ -108,33 +126,95 @@
                 return this.componentVarList.find(item => {
                     return item.name === this.currentItem;
                 });
+            },
+            windowResizeFn() {
+                return throttle(this.resizeFn, 50);
             }
         },
         watch: {
-
+            themeUuid: {
+                immediate: true,
+                handler(v) {
+                    let themeList, currentTheme;
+                    if (v) {
+                        themeList = window.localStorage.getItem(kingDotKey);
+                        themeList = themeList ? JSON.parse(themeList) : [];
+                        currentTheme = themeList.find(item => {
+                            return item.uuid === this.themeUuid;
+                        });
+                    }
+                    if (currentTheme) {
+                        this.componentVarList = currentTheme.variable;
+                        this.uuid = currentTheme.uuid;
+                        this.version = currentTheme.version;
+                        this.loadTheme();
+                    } else {
+                        this.componentVarList = [];
+                        this.uuid = uuidv4();
+                        this.version = kingdot.version;
+                    }
+                }
+            },
+            componentVarList: {
+                deep: true,
+                handler(v) {
+                    let themeList = window.localStorage.getItem(kingDotKey);
+                    themeList = themeList ? JSON.parse(themeList) : [];
+                    const currentTheme = themeList && themeList.find(item => {
+                        return item.uuid === this.uuid;
+                    });
+                    if (currentTheme) {
+                        currentTheme.variable = v;
+                    } else {
+                        themeList.push({
+                            uuid: this.uuid,
+                            version: this.version,
+                            variable: v
+                        });
+                        if (themeList.length > 7) {
+                            themeList = themeList.slice(-7);
+                        }
+                    }
+                    window.localStorage.setItem(kingDotKey, JSON.stringify(themeList));
+                }
+            }
         },
         created() {
-            this.getVariable();
+            if (!this.themeUuid) {
+                this.getVariable();
+            }
+        },
+        mounted() {
+            this.setEditorVarStyle();
+            window.addEventListener('resize', this.windowResizeFn);
+        },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.windowResizeFn);
         },
         methods: {
             getVariable() {
+                this.gettingVariable = true;
                 this._request({
                     url: requstConfig.host + requstConfig.getVariable,
+                    before(request) {
+                        this.axiosCancel('getVariableACTF');
+                        this.getVariableACTF = request;
+                    },
                     params: {
-                        version: kingdot.version,
+                        version: this.version,
                         uuid: this.uuid
                     }
                 }).then((res) => {
                     if (res.body.status === 200) {
                         this.componentVarList = res.body.result;
-                        window.localStorage.setItem(kingDotKey, {
-                            uuid: this.uuid,
-                            version: kingdot.version,
-                            variable: res.body.result
-                        });
                     }
+                    this.gettingVariable = false;
                 }).catch(e => {
-                    // console.log(e);
+                    if (e.status == 0) {
+                        // console.log(e);
+                    } else {
+                        this.gettingVariable = false;
+                    }
                 });
             },
             openColorpicker() {
@@ -159,7 +239,7 @@
                     url: requstConfig.host + requstConfig.uploadTheme,
                     method: 'post',
                     data: {
-                        version: kingdot.version,
+                        version: this.version,
                         uuid: this.uuid,
                         vars: this.componentVarList
                     },
@@ -184,7 +264,7 @@
                     url: requstConfig.host + requstConfig.loadTheme,
                     method: 'post',
                     data: {
-                        version: kingdot.version,
+                        version: this.version,
                         uuid: this.uuid,
                         vars: vars || this.componentVarList
                     }
@@ -202,13 +282,29 @@
                 });
             },
             resetTheme() {
-                const config = window.localStorage.getItem(kingDotKey);
-                if (config && config.version === kingdot.version) {
-                    this.componentVarList = config.variable;
-                } else {
-                    this.getVariable();
-                }
+                this.getVariable();
                 this.loadTheme([]);
+            },
+            setEditorVarStyle() {
+                const wrapRect = this.$refs.editorThemeWrap.getBoundingClientRect();
+                const rect = this.$refs.editorVar.getBoundingClientRect();
+                const innerWidth = window.innerWidth;
+                this.editorVarStyle = {
+                    left: (innerWidth - wrapRect.width) / 2 + wrapRect.width - rect.width + 'px'
+                };
+            },
+            resizeFn() {
+                this.setEditorVarStyle();
+            },
+            axiosCancel(CancelProp) {
+                if (!this[CancelProp]) return;
+                if (Array.isArray(this[CancelProp])) {
+                    this[CancelProp].forEach(fn => fn.abort());
+                    this[CancelProp] = [];
+                } else {
+                    this[CancelProp].abort();
+                    this[CancelProp] = null;
+                }
             }
         }
     };
@@ -235,15 +331,24 @@
 .editor-theme-wrap
     display flex
     flex-direction row
+    width 1200px
+.preview-main
+
+.preview-wrap
+    height 100%
+    overflow auto
 .editor-var
     width 300px
-    position fixed
-    top 90px
-    bottom 10px
-    right 0
     overflow auto
     padding 10px
-    background #F2F6FC
+    background #F7F8FA
+    position fixed
+    top 94px
+    bottom 10px
+.preview-main
+    width 840px
 .selected-item-name
     font-size 16px
+.var-config-name
+    margin 10px
 </style>
