@@ -81,6 +81,7 @@
                         <kd-input
                                 v-model="c.value"
                                 fluid
+                                @change="varChange(c, ...arguments)"
                         ></kd-input>
                     </div>
                 </div>
@@ -97,7 +98,48 @@
     import kingdot from '../../src/index.js';
     import ComponentsPreview from './components-preview.vue';
     export const kingDotKey = 'KINGDOT_THEME_VAR_CONFIG';
-    import {throttle} from 'lodash';
+    import {throttle, cloneDeep} from 'lodash';
+    export const mergeConfig = (...res) => {
+        const arg1 = cloneDeep(res[0]);
+        const args = res.slice(1);
+        const arg1Obj = arg1.reduce((obj, item) => {
+            obj[item.name] = {
+                configObj: item.config.reduce((obj, item) => {
+                    obj[item.key] = item;
+                    return obj;
+                }, {}),
+                item
+            };
+            return obj;
+        }, {});
+        args.forEach(arg => {
+            arg.forEach(cItem => {
+                if (arg1Obj[cItem.name]) {
+                    cItem.config.forEach(config => {
+                        const cloneConfig = cloneDeep(config);
+
+                        if (arg1Obj[cItem.name].configObj[cloneConfig.key]) {
+                            arg1Obj[cItem.name].configObj[cloneConfig.key].value = cloneConfig.value;
+                        } else {
+                            arg1Obj[cItem.name].configObj[cloneConfig.key] = cloneConfig;
+                            arg1Obj[cItem.name].item.config.push(cloneConfig);
+                        }
+                    });
+                } else {
+                    const cloneItem = cloneDeep(cItem);
+                    arg1Obj[cloneItem.name] = {
+                        configObj: cloneItem.config.reduce((obj, item) => {
+                            obj[item.key] = item;
+                            return obj;
+                        }, {}),
+                        item: cloneItem
+                    };
+                    arg1.push(cloneItem);
+                }
+            });
+        });
+        return arg1;
+    };
     export default {
         name: 'ComponentDemo',
         components: {
@@ -111,12 +153,14 @@
         },
         data() {
             return {
+                currentTheme: null,
                 editorVarStyle: {},
                 gettingVariable: false,
                 uploading: false,
                 loadingTheme: false,
                 currentItem: 'common',
                 componentVarList: [],
+                changedVars: [],
                 version: kingdot.version,
                 uuid: this.themeUuid || uuidv4()
             };
@@ -143,19 +187,18 @@
                             return item.uuid === this.themeUuid;
                         });
                     }
-                    if (currentTheme) {
-                        this.componentVarList = currentTheme.variable;
-                        this.uuid = currentTheme.uuid;
-                        this.version = currentTheme.version;
-                        this.loadTheme();
-                    } else {
-                        this.componentVarList = [];
-                        this.uuid = uuidv4();
-                        this.version = kingdot.version;
-                    }
+                    this.currentTheme = currentTheme;
+                    this.getVariable().then(data => {
+                        if (!data) {
+                            return;
+                        }
+                        if (this.currentTheme) {
+                            this.loadTheme();
+                        }
+                    });
                 }
             },
-            componentVarList: {
+            changedVars: {
                 deep: true,
                 handler(v) {
                     let themeList = window.localStorage.getItem(kingDotKey);
@@ -165,24 +208,45 @@
                     });
                     if (currentTheme) {
                         currentTheme.variable = v;
+                        currentTheme.time = Date.now();
                     } else {
                         themeList.push({
                             uuid: this.uuid,
                             version: this.version,
+                            time: Date.now(),
                             variable: v
                         });
-                        if (themeList.length > 7) {
-                            themeList = themeList.slice(-7);
+                        if (themeList.length > 6) {
+                            themeList = themeList.slice(-6);
                         }
                     }
                     window.localStorage.setItem(kingDotKey, JSON.stringify(themeList));
                 }
             }
-        },
-        created() {
-            if (!this.themeUuid) {
-                this.getVariable();
-            }
+            // componentVarList: {
+            //     deep: true,
+            //     handler(v) {
+            //         let themeList = window.localStorage.getItem(kingDotKey);
+            //         themeList = themeList ? JSON.parse(themeList) : [];
+            //         const currentTheme = themeList && themeList.find(item => {
+            //             return item.uuid === this.uuid;
+            //         });
+            //         if (currentTheme) {
+            //             currentTheme.variable = v;
+            //         } else {
+            //             themeList.push({
+            //                 uuid: this.uuid,
+            //                 version: this.version,
+            //                 time: Date.now(),
+            //                 variable: v
+            //             });
+            //             if (themeList.length > 7) {
+            //                 themeList = themeList.slice(-7);
+            //             }
+            //         }
+            //         window.localStorage.setItem(kingDotKey, JSON.stringify(themeList));
+            //     }
+            // }
         },
         mounted() {
             this.setEditorVarStyle();
@@ -194,7 +258,7 @@
         methods: {
             getVariable() {
                 this.gettingVariable = true;
-                this._request({
+                return this._request({
                     url: requstConfig.host + requstConfig.getVariable,
                     before(request) {
                         this.axiosCancel('getVariableACTF');
@@ -206,7 +270,18 @@
                     }
                 }).then((res) => {
                     if (res.body.status === 200) {
-                        this.componentVarList = res.body.result;
+                        if (this.currentTheme) {
+                            this.changedVars = this.currentTheme ? this.currentTheme.variable : [];
+                            this.version = this.currentTheme.version;
+                        } else {
+                            this.changedVars = [];
+                            this.version = kingdot.version;
+                        }
+                        this.componentVarList = mergeConfig([], res.body.result, this.changedVars);
+                        this.gettingVariable = false;
+                        return res.body.result;
+                    } else {
+                        this.$message.error(res.body.message);
                     }
                     this.gettingVariable = false;
                 }).catch(e => {
@@ -222,6 +297,7 @@
             },
             colorChange(item) {
                 item.value = tinycolor(item.value).toHexString();
+                this.varChange(item, item.value);
             },
             currentSelectChange(item) {
                 const els = Array.from(document.querySelectorAll('h4'));
@@ -241,7 +317,7 @@
                     data: {
                         version: this.version,
                         uuid: this.uuid,
-                        vars: this.componentVarList
+                        vars: this.changedVars
                     },
                     responseType: 'arraybuffer'
                 }).then((res) => {
@@ -266,7 +342,7 @@
                     data: {
                         version: this.version,
                         uuid: this.uuid,
-                        vars: vars || this.componentVarList
+                        vars: vars || this.changedVars
                     }
                 }).then((res) => {
                     if (res.body.status === 200) {
@@ -284,6 +360,24 @@
             resetTheme() {
                 this.getVariable();
                 this.loadTheme([]);
+            },
+            varChange(item, value) {
+                const component = this.changedVars.find(i => {
+                    return i.name === this.selectedItem.name;
+                });
+                if (component) {
+                    const configItem = component.config.find(i => i.key === item.key);
+                    if (configItem) {
+                        configItem.value = value;
+                    } else {
+                        component.config.push({...item});
+                    }
+                } else {
+                    this.changedVars.push({
+                        ...this.selectedItem,
+                        config: [{...item}]
+                    });
+                }
             },
             setEditorVarStyle() {
                 const wrapRect = this.$refs.editorThemeWrap.getBoundingClientRect();
