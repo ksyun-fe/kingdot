@@ -17,7 +17,7 @@
                 }"
                 :style="editorVarStyle"
         >
-            <div class="flex-row-end mb-small">
+            <div class="flex-row-end mb-small btn-wrap">
                 <kd-button
                         type="primary"
                         class="mr-mini"
@@ -38,51 +38,53 @@
                         @click="uploadTheme"
                 >下载</kd-button>
             </div>
-
-            <div class="flex-shrink">
-                <kd-select
-                        v-model="currentItem"
-                        @change="currentSelectChange"
-                >
-                    <kd-option
-                            v-for="item in componentVarList"
-                            :key="item.name"
-                            :value="item.name"
-                    >{{ item.name }}</kd-option>
-                </kd-select>
-            </div>
-            <div
-                    v-if="selectedItem"
-                    class="flex-grow"
-            >
-                <div
-                        v-for="c in selectedItem.config"
-                        :key="c.name"
-                >
-                    <div class="var-config-name">{{ c.name }}</div>
-                    <div
-                            v-if="c.type === 'color'"
-                            class="flex-row"
-                            @click="openColorpicker"
+            <div class="config-wrap">
+                <div class="flex-shrink">
+                    <kd-select
+                            v-model="currentItem"
+                            fluid
+                            @change="currentSelectChange"
                     >
-                        <kd-input
-                                :value="c.value"
-                                fluid
-                                readonly
-                                class="mr-mini"
-                        ></kd-input>
-                        <color-picker
-                                ref="Colorpicker"
-                                v-model="c.value"
-                                @change="colorChange(c)"
-                        ></color-picker>
-                    </div>
-                    <div v-else>
-                        <kd-input
-                                v-model="c.value"
-                                fluid
-                                @change="varChange(c, ...arguments)"
-                        ></kd-input>
+                        <kd-option
+                                v-for="item in componentVarList"
+                                :key="item.name"
+                                :value="item.name"
+                        >{{ item.name }}</kd-option>
+                    </kd-select>
+                </div>
+                <div
+                        v-if="selectedItem"
+                        class="flex-grow"
+                >
+                    <div
+                            v-for="c in selectedItem.config"
+                            :key="c.name"
+                    >
+                        <div class="var-config-name">{{ c.name }}</div>
+                        <div
+                                v-if="c.type === 'color'"
+                                class="flex-row"
+                                @click="openColorpicker"
+                        >
+                            <kd-input
+                                    :value="c.value"
+                                    fluid
+                                    readonly
+                                    class="mr-mini"
+                            ></kd-input>
+                            <color-picker
+                                    ref="Colorpicker"
+                                    v-model="c.value"
+                                    @change="colorChange(c)"
+                            ></color-picker>
+                        </div>
+                        <div v-else>
+                            <kd-input
+                                    v-model="c.value"
+                                    fluid
+                                    @change="varChange(c, ...arguments)"
+                            ></kd-input>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -256,7 +258,7 @@
             window.removeEventListener('resize', this.windowResizeFn);
         },
         methods: {
-            getVariable() {
+            getVariable(reset) {
                 this.gettingVariable = true;
                 return this._request({
                     url: requstConfig.host + requstConfig.getVariable,
@@ -270,7 +272,7 @@
                     }
                 }).then((res) => {
                     if (res.body.status === 200) {
-                        if (this.currentTheme) {
+                        if (this.currentTheme && !reset) {
                             this.changedVars = this.currentTheme ? this.currentTheme.variable : [];
                             this.version = this.currentTheme.version;
                         } else {
@@ -339,6 +341,10 @@
                 this._request({
                     url: requstConfig.host + requstConfig.loadTheme,
                     method: 'post',
+                    before(request) {
+                        this.axiosCancel('loadThemeACTF');
+                        this.loadThemeACTF = request;
+                    },
                     data: {
                         version: this.version,
                         uuid: this.uuid,
@@ -351,14 +357,17 @@
                         styleEl.textContent = res.data.result;
                         document.head.appendChild(styleEl);
                     }
-                }).catch(e => {
-                    // console.log(e);
-                }).finally(() => {
                     this.loadingTheme = false;
+                }).catch(e => {
+                    if (e.status == 0) {
+                        // console.log(e);
+                    } else {
+                        this.loadingTheme = false;
+                    }
                 });
             },
             resetTheme() {
-                this.getVariable();
+                this.getVariable(true);
                 this.loadTheme([]);
             },
             varChange(item, value) {
@@ -378,6 +387,7 @@
                         config: [{...item}]
                     });
                 }
+                this.loadTheme();
             },
             setEditorVarStyle() {
                 const wrapRect = this.$refs.editorThemeWrap.getBoundingClientRect();
@@ -434,7 +444,7 @@
 .editor-var
     width 300px
     overflow auto
-    padding 10px
+    /*padding 10px*/
     background #F7F8FA
     position fixed
     top 94px
@@ -445,4 +455,17 @@
     font-size 16px
 .var-config-name
     margin 10px
+.btn-wrap
+    position absolute
+    padding-top 10px
+    top 0
+    left: 0
+    right 16px
+    z-index 1
+    background #F7F8FA
+.config-wrap
+    padding 10px
+    height 100%
+    overflow auto
+    padding-top 52px
 </style>
