@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <Progress ref="progress"></Progress>
         <div class="custom-theme">
             <div
                     v-if="!showEditTheme"
@@ -115,12 +116,14 @@
     import {expandMenu} from 'examples/js/mixin';
     import EtitorTheme from 'examples/components/editorTheme.vue';
     import { kingDotKey, mergeConfig } from 'examples/components/editorTheme.vue';
+    import Progress from 'examples/components/progress.vue';
     import requstConfig from '../../../js/backInterfaceConfig';
     const uuidv4 = require('uuid/v4');
     export default {
         name: 'CustomTheme',
         components: {
-            EtitorTheme
+            EtitorTheme,
+            Progress
         },
         mixins: [expandMenu],
         data() {
@@ -138,20 +141,23 @@
                     // '$-text-light-color': '#4c4c4c',
                     // '$-primary-color': '#557dfc',
                     // '$-success-color': '#38c482'
-                    '$-border-base-color': '#3678F1',
-                    '$-text-light-color': '#528EFF',
-                    '$-primary-color': '#9EC6FF',
-                    '$-success-color': '#C4DFFF'
+                    '$-border-base-color': 'rgb(204, 204, 204)',
+                    '$-text-light-color': 'rgb(76, 76, 76)',
+                    '$-primary-color': 'rgb(85, 125, 252)',
+                    '$-success-color': 'rgb(56, 196, 130)'
                 };
             }
         },
         created() {
             const themeStorage = window.localStorage.getItem(kingDotKey);
             this.custumThemes = themeStorage ? JSON.parse(themeStorage) : [];
+        },
+        mounted() {
             this.getVariable();
         },
         methods: {
             getVariable() {
+                this.$refs.progress.start();
                 return this._request({
                     url: requstConfig.host + requstConfig.getVariable,
                     params: {
@@ -168,9 +174,9 @@
                         this.$message.error(res.body.message);
                     }
                 }).catch(e => {
-                    if (e.status == 0) {
-                        // console.log(e);
-                    }
+                    this.$message.error('获取主题变量失败');
+                }).finally(() => {
+                    this.$refs.progress.finish();
                 });
             },
             editTheme(theme) {

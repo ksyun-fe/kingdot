@@ -89,6 +89,7 @@
                 </div>
             </div>
         </div>
+        <Progress ref="progress"></Progress>
     </div>
 </template>
 
@@ -99,6 +100,7 @@
     const uuidv4 = require('uuid/v4');
     import kingdot from '../../src/index.js';
     import ComponentsPreview from './components-preview.vue';
+    import Progress from './progress.vue';
     export const kingDotKey = 'KINGDOT_THEME_VAR_CONFIG';
     import {throttle, cloneDeep} from 'lodash';
     export const mergeConfig = (...res) => {
@@ -146,6 +148,7 @@
         name: 'ComponentDemo',
         components: {
             'color-picker': VueColorpicker,
+            Progress,
             ComponentsPreview: ComponentsPreview
         },
         props: {
@@ -178,28 +181,6 @@
             }
         },
         watch: {
-            themeUuid: {
-                immediate: true,
-                handler(v) {
-                    let themeList, currentTheme;
-                    if (v) {
-                        themeList = window.localStorage.getItem(kingDotKey);
-                        themeList = themeList ? JSON.parse(themeList) : [];
-                        currentTheme = themeList.find(item => {
-                            return item.uuid === this.themeUuid;
-                        });
-                    }
-                    this.currentTheme = currentTheme;
-                    this.getVariable().then(data => {
-                        if (!data) {
-                            return;
-                        }
-                        if (this.currentTheme) {
-                            this.loadTheme();
-                        }
-                    });
-                }
-            },
             changedVars: {
                 deep: true,
                 handler(v) {
@@ -225,41 +206,38 @@
                     window.localStorage.setItem(kingDotKey, JSON.stringify(themeList));
                 }
             }
-            // componentVarList: {
-            //     deep: true,
-            //     handler(v) {
-            //         let themeList = window.localStorage.getItem(kingDotKey);
-            //         themeList = themeList ? JSON.parse(themeList) : [];
-            //         const currentTheme = themeList && themeList.find(item => {
-            //             return item.uuid === this.uuid;
-            //         });
-            //         if (currentTheme) {
-            //             currentTheme.variable = v;
-            //         } else {
-            //             themeList.push({
-            //                 uuid: this.uuid,
-            //                 version: this.version,
-            //                 time: Date.now(),
-            //                 variable: v
-            //             });
-            //             if (themeList.length > 7) {
-            //                 themeList = themeList.slice(-7);
-            //             }
-            //         }
-            //         window.localStorage.setItem(kingDotKey, JSON.stringify(themeList));
-            //     }
-            // }
         },
         mounted() {
             this.setEditorVarStyle();
             window.addEventListener('resize', this.windowResizeFn);
+            this.initTheme();
         },
         beforeDestroy() {
             window.removeEventListener('resize', this.windowResizeFn);
         },
         methods: {
+            initTheme(v) {
+                let themeList, currentTheme;
+                if (v) {
+                    themeList = window.localStorage.getItem(kingDotKey);
+                    themeList = themeList ? JSON.parse(themeList) : [];
+                    currentTheme = themeList.find(item => {
+                        return item.uuid === this.themeUuid;
+                    });
+                }
+                this.currentTheme = currentTheme;
+                this.getVariable().then(data => {
+                    if (!data) {
+                        return;
+                    }
+                    if (this.currentTheme) {
+                        this.loadTheme();
+                    }
+                });
+            },
             getVariable(reset) {
                 this.gettingVariable = true;
+                this.$refs.progress.start();
                 return this._request({
                     url: requstConfig.host + requstConfig.getVariable,
                     before(request) {
@@ -281,16 +259,21 @@
                         }
                         this.componentVarList = mergeConfig([], res.body.result, this.changedVars);
                         this.gettingVariable = false;
+                        this.$refs.progress.finish();
                         return res.body.result;
                     } else {
                         this.$message.error(res.body.message);
+                        this.gettingVariable = false;
+                        this.$refs.progress.fail();
+                        this.$refs.progress.hide();
                     }
-                    this.gettingVariable = false;
                 }).catch(e => {
                     if (e.status == 0) {
                         // console.log(e);
                     } else {
                         this.gettingVariable = false;
+                        this.$refs.progress.fail();
+                        this.$refs.progress.hide();
                     }
                 });
             },
@@ -313,6 +296,7 @@
             },
             uploadTheme() {
                 this.uploading = true;
+                this.$refs.progress.start();
                 this._request({
                     url: requstConfig.host + requstConfig.uploadTheme,
                     method: 'post',
@@ -334,10 +318,12 @@
                     // console.log(e);
                 }).finally(() => {
                     this.uploading = false;
+                    this.$refs.progress.finish();
                 });
             },
             loadTheme(vars) {
                 this.loadingTheme = true;
+                this.$refs.progress.start();
                 this._request({
                     url: requstConfig.host + requstConfig.loadTheme,
                     method: 'post',
@@ -358,11 +344,14 @@
                         document.head.appendChild(styleEl);
                     }
                     this.loadingTheme = false;
+                    this.$refs.progress.finish();
                 }).catch(e => {
                     if (e.status == 0) {
                         // console.log(e);
                     } else {
                         this.loadingTheme = false;
+                        this.$refs.progress.fail();
+                        this.$refs.progress.hide();
                     }
                 });
             },
