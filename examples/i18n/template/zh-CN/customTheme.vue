@@ -115,8 +115,9 @@
 <script>
     import {expandMenu} from 'examples/js/mixin';
     import EtitorTheme from 'examples/components/editorTheme.vue';
-    import { kingDotKey, mergeConfig } from 'examples/components/editorTheme.vue';
+    import { kingDotCustomConfig, kingDotThemeConfig, mergeConfig } from 'examples/components/editorTheme.vue';
     import Progress from 'examples/components/progress.vue';
+    import kingdot from '../../../../src/index.js';
     import requstConfig from '../../../js/backInterfaceConfig';
     const uuidv4 = require('uuid/v4');
     export default {
@@ -149,14 +150,26 @@
             }
         },
         created() {
-            const themeStorage = window.localStorage.getItem(kingDotKey);
+            const themeStorage = window.localStorage.getItem(kingDotCustomConfig);
             this.custumThemes = themeStorage ? JSON.parse(themeStorage) : [];
         },
         mounted() {
             this.getVariable();
         },
         methods: {
+            setBaseVariable(variable) {
+                this.baseVariable = variable;
+                this.custumThemes.forEach(item => {
+                    item.variable = mergeConfig([], variable, item.variable);
+                });
+            },
             getVariable() {
+                let kingDotTheme = window.localStorage.getItem(kingDotThemeConfig);
+                kingDotTheme = kingDotTheme && JSON.parse(kingDotTheme);
+                if (kingDotTheme && kingDotTheme.version === kingdot.version) {
+                    this.setBaseVariable(kingDotTheme.variable);
+                    return Promise.resolve(kingDotTheme.variable);
+                }
                 this.$refs.progress.start();
                 return this._request({
                     url: requstConfig.host + requstConfig.getVariable,
@@ -165,10 +178,11 @@
                     }
                 }).then((res) => {
                     if (res.body.status === 200) {
-                        this.baseVariable = res.body.result;
-                        this.custumThemes.forEach(item => {
-                            item.variable = mergeConfig([], res.body.result, item.variable);
-                        });
+                        this.setBaseVariable(res.body.result);
+                        window.localStorage.setItem(kingDotThemeConfig, JSON.stringify({
+                            version: kingdot.version,
+                            variable: res.body.result
+                        }));
                         return res.body.result;
                     } else {
                         this.$message.error(res.body.message);
@@ -210,7 +224,7 @@
                         this.$message.error('文件解析失败');
                     }
                     if (config) {
-                        let themeList = window.localStorage.getItem(kingDotKey);
+                        let themeList = window.localStorage.getItem(kingDotCustomConfig);
                         const theme = {
                             uuid: uuidv4(),
                             time: Date.now(),
@@ -221,7 +235,7 @@
                         if (themeList.length > 6) {
                             themeList = themeList.slice(-6);
                         }
-                        window.localStorage.setItem(kingDotKey, JSON.stringify(themeList));
+                        window.localStorage.setItem(kingDotCustomConfig, JSON.stringify(themeList));
                         this.editTheme(theme);
                     }
                 };
@@ -281,9 +295,9 @@
         /*flex-direction column*/
         /*justify-content center*/
         /*align-items center*/
-        width 100%
-        height 32px
-        line-height 32px
+        /*width 100%*/
+        /*height 32px*/
+        /*line-height 32px*/
         text-align center
         /*border-radius 50% 50% 50% 50%*/
         /*padding 10px*/
@@ -297,6 +311,12 @@
         // transform translate(-50%, -50%)
         // transform-origin -5% -5%
         // transition all 0.5s
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: #ffffff;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
     .info-btn
         padding 0
     /*&:hover*/

@@ -14,8 +14,8 @@
     export default {
         data() {
             return {
-                percent: 50,
-                show: true,
+                percent: 0,
+                show: false,
                 success: true
             };
         },

@@ -101,8 +101,9 @@
     import kingdot from '../../src/index.js';
     import ComponentsPreview from './components-preview.vue';
     import Progress from './progress.vue';
-    export const kingDotKey = 'KINGDOT_THEME_VAR_CONFIG';
     import {throttle, cloneDeep} from 'lodash';
+    export const kingDotCustomConfig = 'KINGDOT_THEME_CUSTOM_CONFIG';
+    export const kingDotThemeConfig = 'KINGDOT_THEME_CONFIG';
     export const mergeConfig = (...res) => {
         const arg1 = cloneDeep(res[0]);
         const args = res.slice(1);
@@ -184,7 +185,7 @@
             changedVars: {
                 deep: true,
                 handler(v) {
-                    let themeList = window.localStorage.getItem(kingDotKey);
+                    let themeList = window.localStorage.getItem(kingDotCustomConfig);
                     themeList = themeList ? JSON.parse(themeList) : [];
                     const currentTheme = themeList && themeList.find(item => {
                         return item.uuid === this.uuid;
@@ -203,7 +204,7 @@
                             themeList = themeList.slice(-6);
                         }
                     }
-                    window.localStorage.setItem(kingDotKey, JSON.stringify(themeList));
+                    window.localStorage.setItem(kingDotCustomConfig, JSON.stringify(themeList));
                 }
             }
         },
@@ -219,7 +220,7 @@
             initTheme(v) {
                 let themeList, currentTheme;
                 if (v) {
-                    themeList = window.localStorage.getItem(kingDotKey);
+                    themeList = window.localStorage.getItem(kingDotCustomConfig);
                     themeList = themeList ? JSON.parse(themeList) : [];
                     currentTheme = themeList.find(item => {
                         return item.uuid === this.themeUuid;
@@ -235,7 +236,23 @@
                     }
                 });
             },
+            setBaseVariable(variable, reset) {
+                if (this.currentTheme && !reset) {
+                    this.changedVars = this.currentTheme ? this.currentTheme.variable : [];
+                    this.version = this.currentTheme.version;
+                } else {
+                    this.changedVars = [];
+                    this.version = kingdot.version;
+                }
+                this.componentVarList = mergeConfig([], variable, this.changedVars);
+            },
             getVariable(reset) {
+                let kingDotTheme = window.localStorage.getItem(kingDotThemeConfig);
+                kingDotTheme = kingDotTheme && JSON.parse(kingDotTheme);
+                if (kingDotTheme && kingDotTheme.version === kingdot.version) {
+                    this.setBaseVariable(kingDotTheme.variable, reset);
+                    return Promise.resolve(kingDotTheme.variable);
+                }
                 this.gettingVariable = true;
                 this.$refs.progress.start();
                 return this._request({
@@ -250,16 +267,13 @@
                     }
                 }).then((res) => {
                     if (res.body.status === 200) {
-                        if (this.currentTheme && !reset) {
-                            this.changedVars = this.currentTheme ? this.currentTheme.variable : [];
-                            this.version = this.currentTheme.version;
-                        } else {
-                            this.changedVars = [];
-                            this.version = kingdot.version;
-                        }
-                        this.componentVarList = mergeConfig([], res.body.result, this.changedVars);
+                        this.setBaseVariable(res.body.result, reset);
                         this.gettingVariable = false;
                         this.$refs.progress.finish();
+                        window.localStorage.setItem(kingDotThemeConfig, JSON.stringify({
+                            version: kingdot.version,
+                            variable: res.body.result
+                        }));
                         return res.body.result;
                     } else {
                         this.$message.error(res.body.message);

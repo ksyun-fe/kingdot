@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <Progress ref="progress"></Progress>
         <div class="custom-theme">
             <div
                     v-if="!showEditTheme"
@@ -114,13 +115,16 @@
 <script>
     import {expandMenu} from 'examples/js/mixin';
     import EtitorTheme from 'examples/components/editorTheme.vue';
-    import { kingDotKey, mergeConfig } from 'examples/components/editorTheme.vue';
+    import { kingDotCustomConfig, kingDotThemeConfig, mergeConfig } from 'examples/components/editorTheme.vue';
+    import Progress from 'examples/components/progress.vue';
+    import kingdot from '../../../../src/index.js';
     import requstConfig from '../../../js/backInterfaceConfig';
     const uuidv4 = require('uuid/v4');
     export default {
         name: 'CustomTheme',
         components: {
-            EtitorTheme
+            EtitorTheme,
+            Progress
         },
         mixins: [expandMenu],
         data() {
@@ -138,20 +142,35 @@
                     // '$-text-light-color': '#4c4c4c',
                     // '$-primary-color': '#557dfc',
                     // '$-success-color': '#38c482'
-                    '$-border-base-color': '#3678F1',
-                    '$-text-light-color': '#528EFF',
-                    '$-primary-color': '#9EC6FF',
-                    '$-success-color': '#C4DFFF'
+                    '$-border-base-color': 'rgb(204, 204, 204)',
+                    '$-text-light-color': 'rgb(76, 76, 76)',
+                    '$-primary-color': 'rgb(85, 125, 252)',
+                    '$-success-color': 'rgb(56, 196, 130)'
                 };
             }
         },
         created() {
-            const themeStorage = window.localStorage.getItem(kingDotKey);
+            const themeStorage = window.localStorage.getItem(kingDotCustomConfig);
             this.custumThemes = themeStorage ? JSON.parse(themeStorage) : [];
+        },
+        mounted() {
             this.getVariable();
         },
         methods: {
+            setBaseVariable(variable) {
+                this.baseVariable = variable;
+                this.custumThemes.forEach(item => {
+                    item.variable = mergeConfig([], variable, item.variable);
+                });
+            },
             getVariable() {
+                let kingDotTheme = window.localStorage.getItem(kingDotThemeConfig);
+                kingDotTheme = kingDotTheme && JSON.parse(kingDotTheme);
+                if (kingDotTheme && kingDotTheme.version === kingdot.version) {
+                    this.setBaseVariable(kingDotTheme.variable);
+                    return Promise.resolve(kingDotTheme.variable);
+                }
+                this.$refs.progress.start();
                 return this._request({
                     url: requstConfig.host + requstConfig.getVariable,
                     params: {
@@ -159,18 +178,19 @@
                     }
                 }).then((res) => {
                     if (res.body.status === 200) {
-                        this.baseVariable = res.body.result;
-                        this.custumThemes.forEach(item => {
-                            item.variable = mergeConfig([], res.body.result, item.variable);
-                        });
+                        this.setBaseVariable(res.body.result);
+                        window.localStorage.setItem(kingDotThemeConfig, JSON.stringify({
+                            version: kingdot.version,
+                            variable: res.body.result
+                        }));
                         return res.body.result;
                     } else {
                         this.$message.error(res.body.message);
                     }
                 }).catch(e => {
-                    if (e.status == 0) {
-                        // console.log(e);
-                    }
+                    this.$message.error('获取主题变量失败');
+                }).finally(() => {
+                    this.$refs.progress.finish();
                 });
             },
             editTheme(theme) {
@@ -204,7 +224,7 @@
                         this.$message.error('文件解析失败');
                     }
                     if (config) {
-                        let themeList = window.localStorage.getItem(kingDotKey);
+                        let themeList = window.localStorage.getItem(kingDotCustomConfig);
                         const theme = {
                             uuid: uuidv4(),
                             time: Date.now(),
@@ -215,7 +235,7 @@
                         if (themeList.length > 6) {
                             themeList = themeList.slice(-6);
                         }
-                        window.localStorage.setItem(kingDotKey, JSON.stringify(themeList));
+                        window.localStorage.setItem(kingDotCustomConfig, JSON.stringify(themeList));
                         this.editTheme(theme);
                     }
                 };
@@ -275,9 +295,9 @@
         /*flex-direction column*/
         /*justify-content center*/
         /*align-items center*/
-        width 100%
-        height 32px
-        line-height 32px
+        /*width 100%*/
+        /*height 32px*/
+        /*line-height 32px*/
         text-align center
         /*border-radius 50% 50% 50% 50%*/
         /*padding 10px*/
@@ -291,6 +311,12 @@
         // transform translate(-50%, -50%)
         // transform-origin -5% -5%
         // transition all 0.5s
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: #ffffff;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
     .info-btn
         padding 0
     /*&:hover*/
