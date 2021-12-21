@@ -3,6 +3,25 @@
             ref="editorThemeWrap"
             class="editor-theme-wrap flex-row"
     >
+        <div
+                ref="demoGuide"
+                class="demo-component-guide"
+                :style="demoGuideStyle"
+        >
+            <kd-timeline>
+                <kd-timeline-item
+                        v-for="(item, index) in componentVarList"
+                        :key="item.name"
+                        :type="['success', 'primary', 'danger'][index % 3]"
+                        :color="['orange', 'blue', '#38c482', 'green', 'yellow', '#333'][index % 6]"
+                >
+                    <div
+                            :class="item.name === currentItem ? 'active' : ''"
+                            @click="currentSelectChange(item)"
+                    >{{ item.name }}</div>
+                </kd-timeline-item>
+            </kd-timeline>
+        </div>
         <div class="preview-main">
             <div class="preview-wrap">
                 <ComponentsPreview></ComponentsPreview>
@@ -17,7 +36,7 @@
                 }"
                 :style="editorVarStyle"
         >
-            <div class="flex-row-end mb-small btn-wrap">
+            <div class="flex-row-end btn-wrap">
                 <kd-button
                         type="primary"
                         class="mr-mini"
@@ -39,18 +58,21 @@
                 >下载</kd-button>
             </div>
             <div class="config-wrap">
+                <!--<div class="flex-shrink">-->
+                <!--    <kd-select-->
+                <!--            v-model="currentItem"-->
+                <!--            fluid-->
+                <!--            @change="currentSelectChange"-->
+                <!--    >-->
+                <!--        <kd-option-->
+                <!--                v-for="item in componentVarList"-->
+                <!--                :key="item.name"-->
+                <!--                :value="item.name"-->
+                <!--        >{{ item.name }}</kd-option>-->
+                <!--    </kd-select>-->
+                <!--</div>-->
                 <div class="flex-shrink">
-                    <kd-select
-                            v-model="currentItem"
-                            fluid
-                            @change="currentSelectChange"
-                    >
-                        <kd-option
-                                v-for="item in componentVarList"
-                                :key="item.name"
-                                :value="item.name"
-                        >{{ item.name }}</kd-option>
-                    </kd-select>
+                    <div class="title">{{ currentItem }}</div>
                 </div>
                 <div
                         v-if="selectedItem"
@@ -161,6 +183,7 @@
             return {
                 currentTheme: null,
                 editorVarStyle: {},
+                demoGuideStyle: {},
                 gettingVariable: false,
                 uploading: false,
                 loadingTheme: false,
@@ -299,9 +322,10 @@
                 this.varChange(item, item.value);
             },
             currentSelectChange(item) {
+                this.currentItem = item.name;
                 const els = Array.from(document.querySelectorAll('h4'));
                 const selectElement = els.find((el) => {
-                    return el.innerText.toLowerCase() === item.value;
+                    return el.innerText.toLowerCase() === this.currentTheme;
                 });
                 if (selectElement) {
                     const top = selectElement.getBoundingClientRect().top;
@@ -394,10 +418,14 @@
             },
             setEditorVarStyle() {
                 const wrapRect = this.$refs.editorThemeWrap.getBoundingClientRect();
+                const guideRect = this.$refs.demoGuide.getBoundingClientRect();
                 const rect = this.$refs.editorVar.getBoundingClientRect();
                 const innerWidth = window.innerWidth;
                 this.editorVarStyle = {
                     left: (innerWidth - wrapRect.width) / 2 + wrapRect.width - rect.width + 'px'
+                };
+                this.demoGuideStyle = {
+                    left: (innerWidth - wrapRect.width) / 2 - guideRect.width + 'px'
                 };
             },
             resizeFn() {
@@ -460,7 +488,7 @@
     margin 10px
 .btn-wrap
     position absolute
-    padding-top 10px
+    padding 10px 0
     top 0
     left: 0
     right 16px
@@ -471,4 +499,22 @@
     height 100%
     overflow auto
     padding-top 52px
+    .title
+        padding 10px 0
+        font-weight bold
+        border-bottom 1px solid #E5E5E5;
+.demo-component-guide >>>
+    position fixed
+    top 94px
+    left 0
+    bottom 0
+    overflow auto
+    padding: 16px;
+    width 120px
+    .kd-timeline-item
+        padding-bottom 16px
+        cursor pointer
+        & .active
+            font-weight bold
+            color #0a5eee
 </style>

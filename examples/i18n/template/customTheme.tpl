@@ -8,7 +8,7 @@
                     :style="{padding: '20px'}"
             >
                 <div>
-                    <H2>官方主题</H2>
+                    <H2 class="title">官方主题</H2>
                     <ul
                             class="custom-item-wrap"
                     >
@@ -23,7 +23,7 @@
                             ></div>
                             <div
                                     class="color-bg bg3"
-                                    :style="{background: getVarColor('$-text-light-color', baseVariable)}"
+                                    :style="{background: getVarColor('$-warning-color', baseVariable)}"
                             ></div>
                             <div
                                     class="color-bg bg2"
@@ -45,7 +45,7 @@
                     </ul>
                 </div>
                 <div>
-                    <H2>我的主题</H2>
+                    <H2 class="title">我的主题</H2>
                     <ul
                             class="custom-item-wrap"
                     >
@@ -72,7 +72,7 @@
                             ></div>
                             <div
                                     class="color-bg bg3"
-                                    :style="{background: getVarColor('$-text-light-color', item.variable)}"
+                                    :style="{background: getVarColor('$-warning-color', item.variable)}"
                             ></div>
                             <div
                                     class="color-bg bg2"
@@ -143,7 +143,7 @@
                     // '$-primary-color': '#557dfc',
                     // '$-success-color': '#38c482'
                     '$-border-base-color': 'rgb(204, 204, 204)',
-                    '$-text-light-color': 'rgb(76, 76, 76)',
+                    '$-warning-color': 'rgb(255, 154, 66)',
                     '$-primary-color': 'rgb(85, 125, 252)',
                     '$-success-color': 'rgb(56, 196, 130)'
                 };
@@ -251,17 +251,19 @@
     display flex
     flex-direction row
     flex-wrap wrap
+    .custom-item
+        margin-right 16px
+        margin-bottom 16px
 .custom-item
     width 300px
     /*height 200px*/
     display flex
     flex-direction column
-    margin-right 10px
-    margin-bottom 10px
     /*background #F0F2F5*/
     position relative
     cursor pointer
     overflow hidden
+    border-radius 4px
     .preview
         display flex
         flex-grow 1
@@ -280,7 +282,7 @@
         top 0
         width 150px
         height 150px
-        border-radius 50% 50%
+        /*border-radius 50% 50%*/
         /*background #3678F1*/
         &.bg1
             left -75px
@@ -344,4 +346,7 @@
     transform-origin center center
     transform rotate(90deg)
     margin-right 10px
+.title
+    padding-top: 24px;
+    padding-bottom: 16px;
 </style>

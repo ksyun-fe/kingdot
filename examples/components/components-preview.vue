@@ -88,8 +88,6 @@
                             icon="kd-icon-plus"
                     >图标在前</kd-button>
                     <kd-button type="danger">图标在后<i class="kd-icon-right kd-icon-more"></i></kd-button>
-                </div>
-                <div class="button-section">
                     <kd-button
                             icon="kd-icon-arrow-right"
                             shape="circle"
@@ -104,69 +102,68 @@
                             shape="round"
                     >按钮</kd-button>
                 </div>
-                <div class="button-section">
-                    <kd-button
-                            type="primary"
-                            size="large"
-                    >大按钮</kd-button>
-                    <kd-button
-                            type="primary"
-                            size="small"
-                    >小按钮</kd-button>
-                    <kd-button
-                            type="primary"
-                            size="mini"
-                    >mini按钮</kd-button>
-                </div>
-                <div class="button-section">
-                    <kd-button
-                            type="primary"
-                            size="large"
-                            shape="round"
-                    >大按钮</kd-button>
-                    <kd-button
-                            type="primary"
-                            size="small"
-                            shape="round"
-                    >小按钮</kd-button>
-                    <kd-button
-                            type="primary"
-                            size="mini"
-                            shape="round"
-                    >mini按钮</kd-button>
-                </div>
-                <div class="button-section">
-                    <kd-button
-                            type="primary"
-                            size="large"
-                            icon="kd-icon-arrow-right"
-                            shape="circle"
-                    ></kd-button>
-                    <kd-button
-                            type="primary"
-                            size="small"
-                            icon="kd-icon-arrow-right"
-                            shape="circle"
-                    ></kd-button>
-                    <kd-button
-                            type="primary"
-                            size="mini"
-                            icon="kd-icon-arrow-right"
-                            shape="circle"
-                    ></kd-button>
-                </div>
-                <div class="button-section">
+                <!--<div class="button-section">-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="large"-->
+                <!--    >大按钮</kd-button>-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="small"-->
+                <!--    >小按钮</kd-button>-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="mini"-->
+                <!--    >mini按钮</kd-button>-->
+                <!--</div>-->
+                <!--<div class="button-section">-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="large"-->
+                <!--            shape="round"-->
+                <!--    >大按钮</kd-button>-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="small"-->
+                <!--            shape="round"-->
+                <!--    >小按钮</kd-button>-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="mini"-->
+                <!--            shape="round"-->
+                <!--    >mini按钮</kd-button>-->
+                <!--</div>-->
+                <!--<div class="button-section">-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="large"-->
+                <!--            icon="kd-icon-arrow-right"-->
+                <!--            shape="circle"-->
+                <!--    ></kd-button>-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="small"-->
+                <!--            icon="kd-icon-arrow-right"-->
+                <!--            shape="circle"-->
+                <!--    ></kd-button>-->
+                <!--    <kd-button-->
+                <!--            type="primary"-->
+                <!--            size="mini"-->
+                <!--            icon="kd-icon-arrow-right"-->
+                <!--            shape="circle"-->
+                <!--    ></kd-button>-->
+                <!--</div>-->
+                <div class="button-section flex-row">
                     <kd-button-group
                             v-model="checkboxValue"
                             checkType="checkbox"
                             :disabled="disabled"
+                            class="mr-mini"
                     >
                         <kd-button value="1">按钮1</kd-button>
                         <kd-button value="2">按钮2</kd-button>
                         <kd-button value="3">按钮3</kd-button>
                     </kd-button-group>
-                </div>
-                <div class="button-section">
                     <kd-button-group>
                         <kd-button type="primary">按钮1</kd-button>
                         <kd-button
@@ -659,7 +656,7 @@
                         :key="item"
                         :size="item"
                         :overlay="false"
-                        class="spin-margin-right"
+                        class="spin-margin-right mr-mini"
                 ></kd-spin>
             </div>
             <h4>Spinner</h4>
@@ -690,47 +687,47 @@
                     <kd-step title="步骤三"></kd-step>
                     <kd-step title="完成"></kd-step>
                 </kd-steps>
-                <kd-steps
-                        v-model="stepIndex1"
-                        size="small"
-                >
-                    <kd-step title="步骤一"></kd-step>
-                    <kd-step title="步骤二"></kd-step>
-                    <kd-step title="步骤三"></kd-step>
-                    <kd-step title="完成完成完成完成"></kd-step>
-                </kd-steps>
-                <kd-steps v-model="stepIndex1">
-                    <kd-step
-                            title=""
-                            :description="description"
-                    ></kd-step>
-                    <kd-step
-                            title=""
-                            :description="description"
-                    ></kd-step>
-                    <kd-step
-                            title="步骤三"
-                            :description="description"
-                    ></kd-step>
-                    <kd-step
-                            title="完成"
-                            :description="description"
-                    ></kd-step>
-                </kd-steps>
-                <kd-steps v-model="stepIndex1">
-                    <kd-step
-                            title="步骤一"
-                            icon="kd-icon-upload-file"
-                    ></kd-step>
-                    <kd-step
-                            title="步骤二"
-                            icon="kd-icon-menu-more"
-                    ></kd-step>
-                    <kd-step
-                            title="步骤三"
-                            icon="kd-icon-success-circle"
-                    ></kd-step>
-                </kd-steps>
+                <!--<kd-steps-->
+                <!--        v-model="stepIndex1"-->
+                <!--        size="small"-->
+                <!--&gt;-->
+                <!--    <kd-step title="步骤一"></kd-step>-->
+                <!--    <kd-step title="步骤二"></kd-step>-->
+                <!--    <kd-step title="步骤三"></kd-step>-->
+                <!--    <kd-step title="完成完成完成完成"></kd-step>-->
+                <!--</kd-steps>-->
+                <!--<kd-steps v-model="stepIndex1">-->
+                <!--    <kd-step-->
+                <!--            title=""-->
+                <!--            :description="description"-->
+                <!--    ></kd-step>-->
+                <!--    <kd-step-->
+                <!--            title=""-->
+                <!--            :description="description"-->
+                <!--    ></kd-step>-->
+                <!--    <kd-step-->
+                <!--            title="步骤三"-->
+                <!--            :description="description"-->
+                <!--    ></kd-step>-->
+                <!--    <kd-step-->
+                <!--            title="完成"-->
+                <!--            :description="description"-->
+                <!--    ></kd-step>-->
+                <!--</kd-steps>-->
+                <!--<kd-steps v-model="stepIndex1">-->
+                <!--    <kd-step-->
+                <!--            title="步骤一"-->
+                <!--            icon="kd-icon-upload-file"-->
+                <!--    ></kd-step>-->
+                <!--    <kd-step-->
+                <!--            title="步骤二"-->
+                <!--            icon="kd-icon-menu-more"-->
+                <!--    ></kd-step>-->
+                <!--    <kd-step-->
+                <!--            title="步骤三"-->
+                <!--            icon="kd-icon-success-circle"-->
+                <!--    ></kd-step>-->
+                <!--</kd-steps>-->
                 <kd-steps
                         v-model="stepIndex1"
                         type="simple"
@@ -755,7 +752,7 @@
                             title="步骤三"
                             status="active"
                     ></kd-step>
-                    <kd-step title="完成完成完成完成"></kd-step>
+                    <kd-step title="完成"></kd-step>
                 </kd-steps>
                 <div style="height:300px;">
                     <kd-steps
@@ -793,27 +790,36 @@
             <h4>Tabs</h4>
             <div>
                 <kd-tabs v-model="tabsValue">
-                    <kd-tab value="1">1</kd-tab>
-                    <kd-tab value="2">2</kd-tab>
-                    <kd-tab value="3">3</kd-tab>
+                    <kd-tab value="1">tab1</kd-tab>
+                    <kd-tab value="2">tab2</kd-tab>
+                    <kd-tab
+                            value="3"
+                            disabled
+                    >tab3</kd-tab>
                 </kd-tabs>
                 <br/>
                 <kd-tabs
                         v-model="tabsValue"
                         type="block"
                 >
-                    <kd-tab value="1">1</kd-tab>
-                    <kd-tab value="2">2</kd-tab>
-                    <kd-tab value="3">3</kd-tab>
+                    <kd-tab value="1">tab1</kd-tab>
+                    <kd-tab value="2">tab2</kd-tab>
+                    <kd-tab
+                            value="3"
+                            disabled
+                    >tab3</kd-tab>
                 </kd-tabs>
                 <br/>
                 <kd-tabs
                         v-model="tabsValue"
                         type="card"
                 >
-                    <kd-tab value="1">1</kd-tab>
-                    <kd-tab value="2">2</kd-tab>
-                    <kd-tab value="3">3</kd-tab>
+                    <kd-tab value="1">tab1</kd-tab>
+                    <kd-tab value="2">tab2</kd-tab>
+                    <kd-tab
+                            value="3"
+                            disabled
+                    >tab3</kd-tab>
                 </kd-tabs>
                 <br/>
                 <kd-tabs
@@ -822,34 +828,37 @@
                 >
                     <kd-tab value="1">1</kd-tab>
                     <kd-tab value="2">2</kd-tab>
-                    <kd-tab value="3">3</kd-tab>
-                </kd-tabs>
-                <br/>
-                <kd-tabs
-                        v-model="tabsValue"
-                        type="vertical"
-                >
-                    <kd-tab value="1">1</kd-tab>
-                    <kd-tab value="2">2</kd-tab>
-                    <kd-tab
-                            value="3"
-                    >3</kd-tab>
-                </kd-tabs>
-                <br/>
-                <kd-tabs
-                        v-model="tabsValue"
-                >
-                    <kd-tab value="1">1</kd-tab>
-                    <kd-tab
-                            value="2"
-                            disabled
-                    >2</kd-tab>
                     <kd-tab
                             value="3"
                             disabled
                     >3</kd-tab>
                 </kd-tabs>
                 <br/>
+                <!--<kd-tabs-->
+                <!--        v-model="tabsValue"-->
+                <!--        type="vertical"-->
+                <!--&gt;-->
+                <!--    <kd-tab value="1">1</kd-tab>-->
+                <!--    <kd-tab value="2">2</kd-tab>-->
+                <!--    <kd-tab-->
+                <!--            value="3"-->
+                <!--    >3</kd-tab>-->
+                <!--</kd-tabs>-->
+                <!--<br/>-->
+                <!--<kd-tabs-->
+                <!--        v-model="tabsValue"-->
+                <!--&gt;-->
+                <!--    <kd-tab value="1">1</kd-tab>-->
+                <!--    <kd-tab-->
+                <!--            value="2"-->
+                <!--            disabled-->
+                <!--    >2</kd-tab>-->
+                <!--    <kd-tab-->
+                <!--            value="3"-->
+                <!--            disabled-->
+                <!--    >3</kd-tab>-->
+                <!--</kd-tabs>-->
+                <!--<br/>-->
                 <kd-tabs
                         v-model="tabsValue"
                         type="vertical"
@@ -857,7 +866,6 @@
                     <kd-tab value="1">1</kd-tab>
                     <kd-tab
                             value="2"
-                            disabled
                     >2</kd-tab>
                     <kd-tab
                             value="3"
@@ -951,6 +959,7 @@
                 <kd-tooltip
                         placement="top"
                         :width-limit="true"
+                        class="mr-mini"
                 >
                     <template slot="content">
                         <div>light-dark-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width-width</div>
@@ -974,6 +983,7 @@
                         placement="top-end"
                         title="标题"
                         content="通常用来显示完整信息、注释信息；通常用来显示完整信息、注释信息；"
+                        class="mr-mini"
                 >
                     <kd-button>light</kd-button>
                 </kd-popover>
@@ -1221,6 +1231,9 @@
 .mb-small
     margin-bottom 10px
 .demo-preview-wrap >>>
+    h4
+        border-top: 1px solid #E5E5E5;
+        padding-top: 16px;
     .kd-checkbox, .kd-radio, .kd-switch
         margin-right 10px
 .input-area, .progress-area
