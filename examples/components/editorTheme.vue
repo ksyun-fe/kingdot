@@ -184,6 +184,8 @@
                 currentTheme: null,
                 editorVarStyle: {},
                 demoGuideStyle: {},
+                unLoadChangedVars: [],
+                loadChangedCommonVars: [],
                 gettingVariable: false,
                 uploading: false,
                 loadingTheme: false,
@@ -325,11 +327,11 @@
                 this.currentItem = item.name;
                 const els = Array.from(document.querySelectorAll('h4'));
                 const selectElement = els.find((el) => {
-                    return el.innerText.toLowerCase() === this.currentTheme;
+                    return el.innerText.toLowerCase() === this.currentItem;
                 });
                 if (selectElement) {
                     const top = selectElement.getBoundingClientRect().top;
-                    window.scrollTo(0, window.pageYOffset + top - 90);
+                    window.scrollTo(0, window.pageYOffset + top - 72);
                 }
             },
             uploadTheme() {
@@ -362,6 +364,8 @@
             loadTheme(vars) {
                 this.loadingTheme = true;
                 this.$refs.progress.start();
+                const isCommonChanged = !!this.unLoadChangedVars.find(i => i.name === 'common');
+                const mergedVars = vars || isCommonChanged ? this.changedVars : mergeConfig([], this.loadChangedCommonVars, this.unLoadChangedVars);
                 this._request({
                     url: requstConfig.host + requstConfig.loadTheme,
                     method: 'post',
@@ -372,7 +376,8 @@
                     data: {
                         version: this.version,
                         uuid: this.uuid,
-                        vars: vars || this.changedVars
+                        isCommonChanged: isCommonChanged,
+                        vars: mergedVars
                     }
                 }).then((res) => {
                     if (res.body.status === 200) {
@@ -380,6 +385,8 @@
                         const styleEl = document.createElement('style');
                         styleEl.textContent = res.data.result;
                         document.head.appendChild(styleEl);
+                        this.unLoadChangedVars = [];
+                        this.loadChangedCommonVars = mergedVars.filter(i => i.name === 'common');
                     }
                     this.loadingTheme = false;
                     this.$refs.progress.finish();
@@ -398,7 +405,7 @@
                 this.loadTheme([]);
             },
             varChange(item, value) {
-                const component = this.changedVars.find(i => {
+                let component = this.changedVars.find(i => {
                     return i.name === this.selectedItem.name;
                 });
                 if (component) {
@@ -409,11 +416,13 @@
                         component.config.push({...item});
                     }
                 } else {
-                    this.changedVars.push({
+                    component = {
                         ...this.selectedItem,
                         config: [{...item}]
-                    });
+                    };
+                    this.changedVars.push(component);
                 }
+                this.unLoadChangedVars = mergeConfig([], this.unLoadChangedVars, [component]);
                 this.loadTheme();
             },
             setEditorVarStyle() {
