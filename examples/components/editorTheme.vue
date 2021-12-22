@@ -242,16 +242,13 @@
             window.removeEventListener('resize', this.windowResizeFn);
         },
         methods: {
-            initTheme(v) {
-                let themeList, currentTheme;
-                if (v) {
-                    themeList = window.localStorage.getItem(kingDotCustomConfig);
-                    themeList = themeList ? JSON.parse(themeList) : [];
-                    currentTheme = themeList.find(item => {
-                        return item.uuid === this.themeUuid;
-                    });
-                }
-                this.currentTheme = currentTheme;
+            initTheme() {
+                let themeList;
+                themeList = window.localStorage.getItem(kingDotCustomConfig);
+                themeList = themeList ? JSON.parse(themeList) : [];
+                this.currentTheme = themeList.find(item => {
+                    return item.uuid === this.themeUuid;
+                });
                 this.getVariable().then(data => {
                     if (!data) {
                         return;
@@ -264,9 +261,13 @@
             setBaseVariable(variable, reset) {
                 if (this.currentTheme && !reset) {
                     this.changedVars = this.currentTheme ? this.currentTheme.variable : [];
+                    this.unLoadChangedVars = [...this.changedVars];
+                    this.loadChangedCommonVars = [];
                     this.version = this.currentTheme.version;
                 } else {
                     this.changedVars = [];
+                    this.unLoadChangedVars = [];
+                    this.loadChangedCommonVars = [];
                     this.version = kingdot.version;
                 }
                 this.componentVarList = mergeConfig([], variable, this.changedVars);
