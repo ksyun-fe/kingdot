@@ -10,10 +10,9 @@
         >
             <kd-timeline>
                 <kd-timeline-item
-                        v-for="(item, index) in componentVarList"
+                        v-for="(item) in componentVarList"
                         :key="item.name"
-                        :type="['success', 'primary', 'danger'][index % 3]"
-                        :color="['orange', 'blue', '#38c482', 'green', 'yellow', '#333'][index % 6]"
+                        :color="item.name === currentItem ? '#557dfc' : '#b2b2b2'"
                 >
                     <div
                             :class="item.name === currentItem ? 'active' : ''"
