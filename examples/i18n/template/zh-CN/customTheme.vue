@@ -4,8 +4,7 @@
         <div class="custom-theme">
             <div
                     v-if="!showEditTheme"
-                    class=""
-                    :style="{padding: '20px'}"
+                    class="custom-theme-guid"
             >
                 <div>
                     <H2 class="title">官方主题</H2>
@@ -97,7 +96,6 @@
             <div
                     v-if="showEditTheme"
                     class="edit-theme-wrap"
-                    :style="{padding: '20px'}"
             >
                 <kd-button
                         type="none"
@@ -244,9 +242,15 @@
     };
 </script>
 <style lang="stylus" scoped type="text/stylus">
-.custom-theme
+/*.custom-theme*/
+    /*width 1200px*/
+    /*margin 0 auto*/
+.custom-theme-guid
     width 1200px
     margin 0 auto
+    padding: 20px
+.edit-theme-wrap
+    padding 20px 340px 20px 190px
 .custom-item-wrap
     display flex
     flex-direction row

@@ -1,7 +1,7 @@
 <template>
     <div
             ref="editorThemeWrap"
-            class="editor-theme-wrap flex-row"
+            class="editor-theme-wrap"
     >
         <div
                 ref="demoGuide"
@@ -233,12 +233,12 @@
             }
         },
         mounted() {
-            this.setEditorVarStyle();
-            window.addEventListener('resize', this.windowResizeFn);
+            // this.setEditorVarStyle();
+            // window.addEventListener('resize', this.windowResizeFn);
             this.initTheme();
         },
         beforeDestroy() {
-            window.removeEventListener('resize', this.windowResizeFn);
+            // window.removeEventListener('resize', this.windowResizeFn);
         },
         methods: {
             initTheme() {
@@ -364,8 +364,14 @@
             loadTheme(vars) {
                 this.loadingTheme = true;
                 this.$refs.progress.start();
-                const isCommonChanged = !!this.unLoadChangedVars.find(i => i.name === 'common');
-                const mergedVars = vars || isCommonChanged ? this.changedVars : mergeConfig([], this.loadChangedCommonVars, this.unLoadChangedVars);
+                let isCommonChanged, mergedVars;
+                if (vars && vars.length === 0) {
+                    isCommonChanged = true;
+                    mergedVars = [];
+                } else {
+                    isCommonChanged = !!this.unLoadChangedVars.find(i => i.name === 'common');
+                    mergedVars = vars || isCommonChanged ? this.changedVars : mergeConfig([], this.loadChangedCommonVars, this.unLoadChangedVars);
+                }
                 this._request({
                     url: requstConfig.host + requstConfig.loadTheme,
                     method: 'post',
@@ -472,11 +478,10 @@
     margin-right 10px
 .mb-small
     margin-bottom 10px
-.editor-theme-wrap
-    display flex
-    flex-direction row
-    width 1200px
-.preview-main
+/*.editor-theme-wrap*/
+    /*display flex*/
+    /*flex-direction row*/
+    /*width 1200px*/
 
 .preview-wrap
     height 100%
@@ -489,8 +494,9 @@
     position fixed
     top 94px
     bottom 10px
-.preview-main
-    width 840px
+    right 20px
+/*.preview-main*/
+/*    width 840px*/
 .selected-item-name
     font-size 16px
 .var-config-name
@@ -515,7 +521,7 @@
 .demo-component-guide >>>
     position fixed
     top 94px
-    left 0
+    left 20px
     bottom 0
     overflow auto
     padding: 16px;
