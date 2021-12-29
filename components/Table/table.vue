@@ -13,6 +13,7 @@
             trigger='hover'
             v-if="columnFilter"
             class="kd-table-column-content"
+            :clickHide="false"
             stype=""
             type='text'>
             <div class="kd-table-column-btn-outer">
@@ -538,7 +539,7 @@ export default {
         //重置showColumns参数key value
         updateColumnData() {
             let _columnsData = {}
-            this.store.states._columns.forEach(item => _columnsData[item.key] = true)
+            this.store.states._columns.forEach(item => _columnsData[item.key] = item.defaultShow)
             this.showColumns = _columnsData;
         },
         toggleSelection(flag){

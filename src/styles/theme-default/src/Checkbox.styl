@@ -10,8 +10,8 @@
     cursor pointer
     &.kd-is-indeterminate, &.kd-is-checked
         .kd-checkbox-wrap
-            border-color $-checkbox-checked-input-border-color
-            background $-checkbox-checked-input-background-color
+            border-color $-checkbox-checked-border-color
+            background $-checkbox-checked-background-color
     &.kd-is-indeterminate
         .kd-checkbox-wrap:before
                 border-bottom none
@@ -22,8 +22,8 @@
     &.kd-is-disabled
         cursor not-allowed
         .kd-checkbox-wrap
-            border-color $-checkbox-disabled-input-border-color
-            background-color $-checkbox-disabled-input-background-color
+            border-color $-checkbox-disabled-border-color
+            background-color $-checkbox-disabled-background-color
             &:before
                 border-color $-checkbox-disabled-icon-color
 
@@ -35,11 +35,11 @@
     flex: 0 0 auto;
     line-height 1
     outline none
-    width $-checkbox-input-width
-    height $-checkbox-input-height
-    border 1px solid $-checkbox-default-input-border-color
+    width $-checkbox-width
+    height $-checkbox-height
+    border 1px solid $-checkbox-default-border-color
     border-radius $-border-base-radius
-    background $-checkbox-default-input-background-color
+    background $-checkbox-default-background-color
     transition all $-transition
     &:before
         content: ''

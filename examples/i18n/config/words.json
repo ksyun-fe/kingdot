@@ -4,7 +4,8 @@
         "header": {
             "design": "设计",
             "components": "组件",
-            "theme": ["深色","明亮"]
+            "theme": ["深色","明亮"],
+            "custom-theme": "主题"
         }
     },
     {
@@ -12,7 +13,8 @@
         "header": {
             "design": "design",
             "components": "components",
-            "theme": ["dark","light"]
+            "theme": ["dark","light"],
+            "custom-theme": "theme"
         }
     }
 ]

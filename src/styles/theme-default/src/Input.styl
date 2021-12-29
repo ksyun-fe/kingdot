@@ -89,7 +89,7 @@
         &.kd-input-{size}.kd-textarea
             font-size 0
             .kd-input-inner
-                padding lookup('$-textarea-' + size + '-padding-top-bottom') lookup('$-input-' + size + '-padding-left-right')
+                padding lookup('$-input-textarea-' + size + '-padding-top-bottom') lookup('$-input-' + size + '-padding-left-right')
                 height auto
                 line-height 1.5
         &.kd-with-prefix.kd-input-{size}
@@ -127,9 +127,9 @@
         color $-text-light-color
         background $-input-bg-color
         position absolute
-        font-size $-textarea-count-font-size
-        bottom $-textarea-count-bottom
-        right $-textarea-count-right
+        font-size $-input-textarea-count-font-size
+        bottom $-input-textarea-count-bottom
+        right $-input-textarea-count-right
         z-index 1
 
 input::-ms-clear, input::-ms-reveal

@@ -5,7 +5,7 @@ $-btn-border-types := default dashed
 $-btn-types := primary success warning danger
 $-btn-size-types := large middle small mini
 $-btn-text-types := none text
-$-btn-gradient := $-btn-type == 'gradient'
+$-btn-gradient := $-button-type == 'gradient'
 
 width = 6
 r = 120 - 60 - (width / 2)
@@ -14,59 +14,59 @@ c = round(2 * 3.14 * r)
 //     display inline-block
 .kd-btn
   position relative
-  padding $-btn-default-padding
-  font-size $-btn-default-font-size
+  padding $-button-default-padding
+  font-size $-button-default-font-size
   cursor pointer
-  border-radius $-btn-border-radius
+  border-radius $-button-border-radius
   line-height 1
-  border 1px solid $-btn-default-border-color
-  color $-btn-default-color
+  border 1px solid $-button-default-border-color
+  color $-button-default-color
   flex-shrink 0
 //  border的类型
 for border in $-btn-border-types
     .kd-btn-{border}
-        background $-btn-default-bg
-        color $-btn-default-color 
-        border-style lookup('$-btn-'+ border +'-border-style')
+        background $-button-default-background-color
+        color $-button-default-color 
+        border-style lookup('$-button-'+ border +'-border-style')
         &:hover
         &:focus
-            color $-btn-default-hover-color
-            background $-btn-default-hover-bg-color
-            border-color $-btn-default-hover-border-color
+            color $-button-default-hover-color
+            background $-button-default-hover-background-color
+            border-color $-button-default-hover-border-color
         &:active
-            border-color $-btn-default-active-border-color
-            background $-btn-default-active-bg-color
-            color $-btn-default-active-color
+            border-color $-button-default-active-border-color
+            background $-button-default-active-background-color
+            color $-button-default-active-color
 
     .kd-btn-{border}.kd-btn-hollow
         background transparent
-        border 1px solid $-btn-border-color
-        color $-btn-default-color
+        border 1px solid $-button-border-color
+        color $-button-default-color
         &:hover
         &:focus
-            border 1px solid $-btn-hollow-hover-border-color
-            color $-btn-hollow-hover-color
+            border 1px solid $-button-hollow-hover-border-color
+            color $-button-hollow-hover-color
             if $-btn-gradient
-                background $-btn-default-hover-bg-color
+                background $-button-default-hover-background-color
         &:active
-            color $-btn-hollow-active-color
+            color $-button-hollow-active-color
             if $-btn-gradient
-                background $-btn-default-active-bg-color
+                background $-button-default-active-background-color
     .kd-btn-{border}.kd-btn-disabled
-        background $-btn-disabled-bg-color
-        border-color $-btn-border-color
-        color $-btn-disabled-color
+        background $-button-disabled-background-color
+        border-color $-button-disabled-border-color
+        color $-button-disabled-color
         &:hover
         &:focus
         &:active
-            color $-disabled-color 
-            border-color $-btn-border-color
+            color $-button-disabled-color
+            border-color $-button-disabled-border-color
 
     
 //4种状态
 for type in $-btn-types
     .kd-btn-{type}
-        background lookup('$-btn-'+ type +'-color')
+        background lookup('$-button-'+ type +'-color')
         color $-white-color
         if $-btn-gradient && type == "primary"
             border none
@@ -75,37 +75,37 @@ for type in $-btn-types
                 display inline-block
                 padding 1px
         else
-            border 1px solid lookup('$-btn-'+ type +'-color')
+            border 1px solid lookup('$-button-'+ type +'-color')
         &:hover
         &:focus
-            background lookup('$-btn-'+ type +'-hover-bg')
-            border-color lookup('$-btn-'+ type +'-hover-border')
+            background lookup('$-button-'+ type +'-hover-background-color')
+            border-color lookup('$-button-'+ type +'-hover-border-color')
         &:active
-            background lookup('$-btn-'+ type +'-active-bg')
-            border-color lookup('$-btn-'+ type +'-active-border')
+            background lookup('$-button-'+ type +'-active-background-color')
+            border-color lookup('$-button-'+ type +'-active-border-color')
     //空心
     .kd-btn-{type}.kd-btn-hollow
         background transparent
-        color lookup('$-btn-'+ type +'-color')
+        color lookup('$-button-'+ type +'-color')
         if $-btn-gradient && type == 'primary'
-            border 1px solid $-btn-default-border-color
+            border 1px solid $-button-default-border-color
         else
-            border 1px solid lookup('$-btn-'+ type +'-color')
+            border 1px solid lookup('$-button-'+ type +'-color')
         &:hover
         &:focus
-            background lookup('$-btn-hollow-'+ type +'-hover-bg')
+            background lookup('$-btn-hollow-'+ type +'-hover-background-color')
         &:active
-            background lookup('$-btn-'+ type +'-color')
+            background lookup('$-button-'+ type +'-color')
             color $-white-color
     .kd-btn-{type}.kd-btn-disabled
-        background $-btn-disabled-bg-color
-        border-color $-btn-border-color
-        color $-btn-disabled-color
+        background $-button-disabled-background-color
+        border-color $-button-disabled-border-color
+        color $-button-disabled-color
         &:hover
         &:focus
         &:active
-            color $-disabled-color 
-            border-color $-btn-border-color
+            color $-button-disabled-color
+            border-color $-button-disabled-border-color
 
 //  text types
 for textItem in $-btn-text-types
@@ -113,14 +113,14 @@ for textItem in $-btn-text-types
         padding 0
         background transparent
         border-color transparent
-        color lookup('$-btn-'+ textItem +'-color')
+        color lookup('$-button-'+ textItem +'-color')
         &:hover
         &:focus
-            color lookup('$-btn-'+ textItem +'-hover-color')
+            color lookup('$-button-'+ textItem +'-hover-color')
         &:active
-            color lookup('$-btn-'+ textItem +'-active-color')
+            color lookup('$-button-'+ textItem +'-active-color')
     .kd-btn-{textItem}.kd-btn-disabled
-        color $-disabled-color
+        color $-button-disabled-color
         border 0 none
 .kd-btn-text
     display inline-block
@@ -135,7 +135,7 @@ for textItem in $-btn-text-types
         left -1px
         bottom -1px
         right -1px
-        border-radius $-btn-border-radius
+        border-radius $-button-border-radius
         background rgba(255,255,255,0.3)
 .kd-btn-loading-icon
     display: inline-block
@@ -154,42 +154,42 @@ for textItem in $-btn-text-types
     r r
 //size
 for s in $-btn-size-types
-    $-btn-loading-size = lookup('$-btn-'+ s +'-font-size')
-    height lookup('$-btn-'+ s +'-height')
+    $-btn-loading-size = lookup('$-button-'+ s +'-font-size')
+    height lookup('$-button-'+ s +'-height')
     .kd-btn-{s}
-        padding lookup('$-btn-'+ s +'-padding')
-        font-size lookup('$-btn-'+ s +'-font-size')
-        height lookup('$-btn-'+ s +'-height')
+        padding lookup('$-button-'+ s +'-padding')
+        font-size lookup('$-button-'+ s +'-font-size')
+        height lookup('$-button-'+ s +'-height')
         [class*=kd-icon]
-            font-size lookup('$-btn-'+ s +'-font-size')
+            font-size lookup('$-button-'+ s +'-font-size')
         .kd-btn-loading-icon
             width unit($-btn-loading-size - 2, 'px')
             height unit($-btn-loading-size - 2, 'px')
     .kd-btn-circle.kd-btn-{s}
-        padding lookup('$-btn-'+ s +'-circle-padding')
-        width lookup('$-btn-'+ s +'-height')
+        padding lookup('$-button-'+ s +'-circle-padding')
+        width lookup('$-button-'+ s +'-height')
     
     
 .kd-btn-disabled
-  color $-disabled-color
+  color $-button-disabled-color
   cursor not-allowed
   .kd-spin-circle
     stroke #9a9797
 
 .kd-icon-left
-    margin-right $-btn-icon-text-gutter
+    margin-right $-button-icon-text-gutter
 .kd-icon-right
-    margin-left $-btn-icon-text-gutter
+    margin-left $-button-icon-text-gutter
 
 //shape
 .kd-btn-circle
-    border-radius $-btn-shape-circle
-    padding: $-btn-default-circle-padding
+    border-radius $-button-shape-circle
+    padding: $-button-middle-circle-padding
 .kd-btn-round
-    border-radius $-btn-shape-round
+    border-radius $-button-shape-round
 
 .kd-btn-split
-    padding $-btn-split-padding
+    padding $-button-split-padding
 
 @keyframes kd-spin-dash
     0%

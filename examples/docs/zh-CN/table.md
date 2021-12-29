@@ -580,7 +580,6 @@
 ```
 :::
 
-:::
 
 ### 筛选列用法
 
@@ -592,9 +591,9 @@
         
         <kd-table :data="data" columnFilter checkboxType="none" :overFlowAuto="false">
             <kd-table-column width="300" title="ID" props="id" />
-            <kd-table-column width="200" title="名称" props="name" />
-            <kd-table-column title="规划" props="tbl" />
-            <kd-table-column title="内容" props="abc" />
+            <kd-table-column width="200" title="名称" props="name" :default-show="false" />
+            <kd-table-column title="规划" props="tbl" :default-show="false" />
+            <kd-table-column title="内容" props="abc" :default-show="false" />
             <kd-table-column title="邮编" props="def" />
             <kd-table-column width="400" title="地址1" props="efg" />
             <kd-table-column title="操作">
@@ -1109,7 +1108,7 @@
 | group  | 数据过滤的选项，数组格式，数组中的元素需要有 text 和 value 属性。   | Array[{ label, value }]  |    —      |    —   |
 | filter  | 数据过滤回调   | function  |     —     |    —   |
 | type  | 对应列的类型，如果设置了 expand 则显示为一个可展开的按钮   | string  |     default / expand     |    default   |
-
+| defaultShow  | 和kd-table属性columnFilter配合使用   | boolean  |     true / false     |    true   |
 
 
 

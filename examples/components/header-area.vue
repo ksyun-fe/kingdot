@@ -49,6 +49,18 @@
             >
                 {{ themeText }}
             </li>
+            <li
+                    class="nav-item"
+                    :class="{'active' : activeIndex === 3 }"
+                    @click="activeIndex = 3"
+            >
+                <router-link
+                        :to="`/${currentLang}/custom-theme`"
+                        tag="div"
+                >
+                    {{ words['header']['custom-theme'] }}
+                </router-link>
+            </li>
             <!--     切换语言       -->
             <!--<li-->
             <!--        class="nav-item"-->

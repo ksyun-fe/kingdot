@@ -5,10 +5,10 @@
     text-align center
     overflow hidden
     max-height 100%
-    height $-scroll-select-height
+    height $-scrollselect-height
     user-select none
     .kd-wrapper
-        transition transform $-scroll-transition
+        transition transform $-scrollseelect-transition
     &.kd-dragging
         .kd-wrapper
             transition none
@@ -16,18 +16,18 @@
     // disabled
     &.kd-disabled
         .kd-scroll-item
-            color $-scroll-select-item-disabled-color
+            color $-scrollselect-item-disabled-color
 
     .kd-scroll-item
-        line-height $-scroll-select-item-height
-        color $-scroll-select-item-color
+        line-height $-scrollselect-item-height
+        color $-scrollselect-item-color
         cursor pointer
         white-space nowrap
         &.kd-scroll-item-active
-            color $-scroll-select-item-active-color
-            font-weight $-scroll-select-item-active-font-weight
+            color $-scrollselect-item-active-color
+            font-weight $-scrollselect-item-active-font-weight
         &.kd-scroll-item-disabled
-            color $-scroll-select-item-disabled-color
+            color $-scrollselect-item-disabled-color
             font-weight normal
 
     // border
@@ -36,9 +36,9 @@
         width 100%
         top 50%
         transform translateY(-50%)
-        // margin-top -($-scroll-select-item-height / 2)
-        height $-scroll-select-item-height
+        // margin-top -($-scrollselect-item-height / 2)
+        height $-scrollselect-item-height
         border none
-        border-top $-scroll-select-border
-        border-bottom $-scroll-select-border
+        border-top $-scrollselect-border
+        border-bottom $-scrollselect-border
         pointer-events none

@@ -7,11 +7,12 @@ const defaults = {
     renderColumnFn: null,
     renderColumnHeaderFn: null,
     isShow: true,
-    checked: true
+    checked: true,
+    defaultShow: true
 };
 
 //遍历数据
-const getColumnData = function (props) {
+const getColumnData = function (props, table) {
     let scopeDefault = Object.assign({}, defaults);
     for (let keyStr in props) {
         props.hasOwnProperty(keyStr) && (scopeDefault[keyStr] = props[keyStr]);
@@ -19,6 +20,11 @@ const getColumnData = function (props) {
 
     scopeDefault.fixedLeft = props.fixed === true;
     scopeDefault.fixedRight = props.fixed === "right";
+
+    // 设置默认是否显示，配合columnFilter使用
+    if (table.$props.columnFilter) {
+        scopeDefault.isShow = props.defaultShow;
+    }
     //td拖拽偏移量
     scopeDefault.deviation = 0;
     let unshiftFlag = scopeDefault.group.some(item => {
@@ -64,6 +70,10 @@ export default {
         type: {
             type: String,
             default: 'default'
+        },
+        defaultShow: {
+            type: Boolean,
+            default: true
         }
     },
     data() {
@@ -103,7 +113,7 @@ export default {
             //     (propsData.renderColumnFn = (h, data) =>
             //         this.$vnode.data.scopedSlots.default(data)));
         }
-        this.data = getColumnData(propsData);
+        this.data = getColumnData(propsData, this.table);
         //区分tablecolumn的类型，如果是default
         if (this.data.type === 'default') {
             //获取index

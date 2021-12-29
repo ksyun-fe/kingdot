@@ -48,7 +48,8 @@
                         "text":"用于内容、表头背景。" 
                     }]
             },
-            "component": {}
+            "component": {},
+            "customTheme": {}
         }
     },
     {
