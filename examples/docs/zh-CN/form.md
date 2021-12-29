@@ -75,14 +75,21 @@
                     >{{item.text}}
                 </kd-radio>
             </kd-form-item>
-            <kd-form-item>
+            <kd-form-item
+                    :rules="{
+                        required: true,
+                        minLength: 500
+                    }"
+                    model="desc"
+            >
                  <template slot="label"> 自我介绍：</template>
                 <kd-input
                         type="textarea"
-                        placeholder="最大输入长度10"
+                        placeholder="最大输入长度1000"
+                        show-count
                         v-model="desc"
                         name="ten"
-                        maxlength="10"
+                        maxlength="1000"
                         size="large"
                 ></kd-input>
             </kd-form-item>
@@ -146,6 +153,7 @@
 </script>
 <style scoped>
     .submit-btn {
+        margin-top: 10px;
         margin-left: 240px;
     }
     .required {
