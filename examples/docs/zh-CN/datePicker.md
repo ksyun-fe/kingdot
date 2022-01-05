@@ -22,6 +22,31 @@
 ```
 :::
 
+### 拾取其他日期单位
+:::demo #拾取其他日期单位 ## 通过设置 `pick-type` 属性，可以选择月、年单位的时间
+
+```html
+<template>
+    <div>
+        <kd-date-picker v-model="dateString" pick-type="year"/> 选中值: {{ dateString }}
+        <br>
+        <br>
+        <kd-date-picker v-model="dateString1" pick-type="month"/> 选中值: {{ dateString1 }}
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                dateString: '',
+                dateString1: ''
+            }
+        }
+    }
+</script>
+```
+:::
+
 ### 自定义输出格式
 :::demo #自定义输出格式 ## 可以通过配置格式字符串来指定绑定值输出格式
 
@@ -229,6 +254,7 @@
 |---------- |-------- |---------- |-------------  |-------- |
 | value / v-model  | 绑定值   | string, array    | - | - |
 | format-string  | 日期格式字符串   | string    | - | 'YYYY-MM-DD' |
+| pickType |  设置拾取的日期单位  | String   | 'year', 'month', 'day' | 'day' |
 | range  | 是否为范围选择   | bool    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期' |
 | shortcuts  | 设置快捷选项   | Object[]    | - | - |

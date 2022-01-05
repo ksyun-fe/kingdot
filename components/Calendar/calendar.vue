@@ -89,35 +89,35 @@
             </div>
             <div
                     v-show="mode==='select-year'"
-                    class="kd-calendar-table"
+                    class="kd-calendar-table year"
             >
                 <div
                         v-for="(row,index) in yearLists"
                         :key="index"
-                        class="kd-calendar-row"
+                        class="kd-calendar-row wide"
                 >
                     <span
                             v-for="(item,k) in row"
                             :key="k"
                             :class="{
                                 'kd-year': true,
-                                'kd-blue':item === now.year,
-                                'kd-selected': year === item,
+                                'kd-blue':item.year === now.year,
+                                'kd-selected': year === item.year,
                             }"
-                            @click="selectYear(item)"
+                            @click="selectYear(item.dateStr)"
                     >
-                        {{ item }}
+                        {{ item.year }}
                     </span>
                 </div>
             </div>
             <div
                     v-show="mode==='select-month'"
-                    class="kd-calendar-table"
+                    class="kd-calendar-table month"
             >
                 <div
                         v-for="(row,index) in monthLists"
                         :key="index"
-                        class="kd-calendar-row"
+                        class="kd-calendar-row wide"
                 >
                     <span
                             v-for="(item,k) in row"
@@ -127,7 +127,7 @@
                                 'kd-blue': item.isCurrentMonth,
                                 'kd-selected': selectedDate[0] && selectedDate[0].indexOf(item.dateStr) > -1,
                             }"
-                            @click="selectMonth(item.month)"
+                            @click="selectMonth(item.dateStr)"
                     >
                         {{ item.month }} 月
                     </span>
@@ -135,7 +135,7 @@
             </div>
             <div
                     v-show="mode==='select-day'"
-                    class="kd-calendar-table"
+                    class="kd-calendar-table day"
             >
                 <div
                         v-for="(row,index) in dayLists"
@@ -235,6 +235,9 @@
             },
             maxDate: {
                 type: String
+            },
+            pickType: {
+                type: String
             }
         },
         data() {
@@ -250,7 +253,7 @@
                 selectedDate: this.value,
                 maxDateValue: this.maxDate,
                 minDateValue: this.minDate,
-                mode: 'select-day'
+                mode: ['year', 'month'].indexOf(this.pickType) > -1 ? `select-${this.pickType}` : 'select-day'
             };
         },
         computed: {
@@ -271,7 +274,10 @@
                 const tmpArr = [];
                 let tmpYear = Math.floor(this.moment.year() / 10) * 10;
                 for (let j = 0; j < 10; j++) {
-                    tmpArr.push(tmpYear);
+                    tmpArr.push({
+                        year: tmpYear,
+                        dateStr: String(tmpYear)
+                    });
                     tmpYear++;
                 }
                 for (let i = 0; i < 3; i++) {
@@ -400,13 +406,23 @@
                 this.moment = this.moment.add(v, unit);
             },
 
-            selectYear(y) {
-                this.moment = Moment(this.moment).set('year', y);
+            selectYear(yearStr) {
+                if (this.pickType === 'year') {
+                    this.selectedDate.splice(0, this.selectedDate.length, yearStr); // 清空, 然后第一位赋值
+                    this.$emit('select', this.selectedDate, 'calendar');
+                    return;
+                }
+                this.moment = Moment(yearStr);
                 this.mode = 'select-month';
             },
 
-            selectMonth(m) {
-                this.moment = Moment(this.moment).set('month', m - 1);
+            selectMonth(monStr) {
+                if (this.pickType === 'month') {
+                    this.selectedDate.splice(0, this.selectedDate.length, monStr); // 清空, 然后第一位赋值
+                    this.$emit('select', this.selectedDate, 'calendar');
+                    return;
+                }
+                this.moment = Moment(monStr);
                 this.mode = 'select-day';
             },
 
