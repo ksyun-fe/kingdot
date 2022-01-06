@@ -38,6 +38,7 @@
                 </kd-button>
                 <kd-button
                         ref="trigger"
+                        :size="size"
                         type="primary"
                         split
                         icon="kd-icon-arrow-down"
