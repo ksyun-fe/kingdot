@@ -102,7 +102,7 @@
                             :class="{
                                 'kd-year': true,
                                 'kd-blue':item.year === now.year,
-                                'kd-selected': year === item.year,
+                                'kd-selected': selectedDate[0] && selectedDate[0].indexOf(item.dateStr) > -1,
                             }"
                             @click="selectYear(item.dateStr)"
                     >
