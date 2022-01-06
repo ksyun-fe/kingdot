@@ -305,7 +305,7 @@ export default {
             if (!this.childRenKey) return [];
             let trList = [];
             let nextLevel = [];
-            step = step ? step : 0;
+            step = step ? step += 1 : 0;
             let Items = rowsItem.originData || rowsItem;
             if (!Items[this.childRenKey]) return [];
             Items[this.childRenKey].map((item, nCount) => {
@@ -355,7 +355,7 @@ export default {
                                                             class="kd-table-tree-placeholder"
                                                             style={
                                                                 {
-                                                                    "width": 24 * (step + 1) + 'px'
+                                                                    "width": 24 * step + 'px'
                                                                 }
                                                             }></span>
                                                     )
@@ -417,7 +417,7 @@ export default {
                 );
                 //如果有children
                 if (item[this.childRenKey] && item[this.childRenKey].length) {
-                    nextLevel = this.renderTreeTr(item, nCount, step += 1);
+                    nextLevel = this.renderTreeTr(item, nCount, step);
                 }
                 trList = trList.concat(nextLevel);
             });
@@ -426,7 +426,7 @@ export default {
         renderTree() {
             let renderTr = this.rowsData.map((rowsItem, index) => {
                 let normal = [this.renderTr(rowsItem, index)];
-                let tree = this.renderTreeTr(rowsItem, index);
+                let tree = this.renderTreeTr(rowsItem, index, 1);
                 return normal.concat(tree);
             });
             return renderTr;
