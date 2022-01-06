@@ -283,7 +283,7 @@
                         dateStr: tmpYear.format('YYYY'),
                         isDisabled: this.checkDisabled(tmpYear.format('YYYY'), this.selectedDate[0]) ||
                             this.maxDateValue && tmpYear.isAfter(Moment(this.maxDateValue), 'year') ||
-                            this.minDateValue && tmpYear.isBefore(Moment(this.minDateValue), 'year'),
+                            this.minDateValue && tmpYear.isBefore(Moment(this.minDateValue), 'year')
                         // isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpYear.isBetween(this.selectedDate[0], rangeEndDate, 'year', '()') || false
                     });
                     tmpYear = tmpYear.add(1, 'year');
