@@ -28,10 +28,10 @@
 ```html
 <template>
     <div>
-        <kd-date-picker v-model="dateString" pick-type="year"/> 选中值: {{ dateString }}
+        <kd-date-picker v-model="dateString" pick-type="year" minDate="2021" maxDate="2028" :disabled-date="disabledDate"/> 选中值: {{ dateString }}
         <br>
         <br>
-        <kd-date-picker v-model="dateString1" pick-type="month"/> 选中值: {{ dateString1 }}
+        <kd-date-picker v-model="dateString1" pick-type="month" minDate="2021-9" maxDate="2022-9" :disabled-date="dateArr1"/> 选中值: {{ dateString1 }}
     </div>
 </template>
 <script>
@@ -39,8 +39,17 @@
         data() {
             return {
                 dateString: '',
-                dateString1: ''
+                dateString1: '',
+                dateArr: ['2022', '2023'],
+                dateArr1: ['2022-06', '2022-08']
             }
+        },
+        methods: {
+            disabledDate(dateStr) {
+                if (dateStr === '2024') {
+                    return true
+                }
+            },
         }
     }
 </script>
