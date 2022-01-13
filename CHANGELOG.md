@@ -4,16 +4,18 @@
 ### doc
 * Form
     * 增加自定义规则描述
-
+### fix
+* Tree
+    * 将节点根元素由span改为div
 ## v1.0.36
 *2022-01-06*
 ### Bugfix
   * datepicker
     * 修复拾取其他日期单位,时间限制失效问题
-    
+
   * Table
-     修复tree模式下折叠bug    
-     
+     修复tree模式下折叠bug
+
 ## v1.0.35
 *2022-01-06*
 
@@ -21,10 +23,10 @@
   * Button
       * 增加height,解决父元素设置flex布局时，高度随这个父元素变的问题
   * Table
-      * 增加筛选列用法中是否默认选中功能      
+      * 增加筛选列用法中是否默认选中功能
   * Datepicker
       * 日期选择器支持拾取年, 月单位时间
-### Bugfix 
+### Bugfix
   * Dropdown
       * 修复按钮size样式
 
