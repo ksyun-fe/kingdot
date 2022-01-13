@@ -15,6 +15,7 @@
             <kd-form-item
                 model="age"
                 ref="age"
+                :fluid="true"
                 :messages="messages"
                 :rules="rules"
             >
@@ -23,6 +24,25 @@
                         :fluid="true"
                         placeholder="请输入年龄"
                         v-model.trim="age"/>
+            </kd-form-item>
+            <kd-form-item
+                    model="gender"
+                    ref="gender"
+                    :rules="{
+                        required: true,
+                        unique(val) {
+                            return /^(fe)?male$/.test(val)
+                        }
+                    }"
+                    :messages="{
+                        unique: '暂时可填项仅为 male 或 female'
+                    }"
+            >
+                <template v-slot:label><i class="required">* </i> 请输入性别：</template>
+                <kd-input
+                        :fluid="true"
+                        placeholder="性别暂时可填项仅为 male 或 female"
+                        v-model.trim="gender"/>
             </kd-form-item>
             <kd-form-item
                     model="word"
@@ -78,7 +98,7 @@
             <kd-form-item
                     :rules="{
                         required: true,
-                        minLength: 500
+                        minLength: 5
                     }"
                     model="desc"
             >
@@ -111,6 +131,7 @@
                 babel: '精度',
                 age: 20,
                 positiveInteger: 10,
+                gender: '',
                 rules: {
                     required: true,
                     digits: true,
@@ -156,6 +177,32 @@
         margin-top: 10px;
         margin-left: 240px;
     }
+    .required {
+        color: red;
+    }
+</style>
+```
+:::
+
+:::demo #自定义规则及相应错误提示 ##通过设置`rules`和`messages`来自定义规则及对应规则的错误提示
+```html
+<template>
+    <kd-form
+        ref="form"
+    >
+        
+    </kd-form>
+</template>
+<script >
+export default {
+    data() {
+        return {
+            gender: ''
+        }   
+    }
+}
+</script>
+<style scoped>
     .required {
         color: red;
     }
@@ -219,6 +266,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .required {
+        color: red;
+    }
+</style>
 ```
 :::
 
@@ -276,6 +328,11 @@ export default {
     }
 }
 </script>
+<style scoped>
+    .required {
+        color: red;
+    }
+</style>
 ```
 :::
 
@@ -334,4 +391,4 @@ export default {
 | max | 不大于 n 的数 | -
 | rangeLength | 长度为 n 到 m 的数组或字符串 | -
 | range | n 到 m 之间的数 | -
-
+| 自定义 | 函数 | 当前Item的值,需要指定相应规则的 message
