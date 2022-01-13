@@ -357,7 +357,7 @@ export default{
 <template>
     <div class="md-select-row">
         <kd-select v-model="defaultValue" placeholder="请选择内容" filterable multiple clearAll size="large">
-            <kd-option v-for="item in options" :key="item.value" :value="item.value" >{{item.label}}</kd-option>
+            <kd-option v-for="item in options" :label="item.label" :key="item.value" :value="item.value" >{{item.label}}</kd-option>
         </kd-select>
         <kd-select v-model="defaultValue" placeholder="请选择内容" filterable multiple clearAll >
             <kd-option v-for="item in options" :key="item.value" :value="item.value" >{{item.label}}</kd-option>
