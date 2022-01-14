@@ -7,6 +7,8 @@
 ### fix
 * Tree
     * 将节点根元素由span改为div
+* Select
+    * 优化兼容multiple下value为string的用法
 ## v1.0.36
 *2022-01-06*
 ### Bugfix

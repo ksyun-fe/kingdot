@@ -218,9 +218,14 @@
             value: {
                 immediate: true,
                 handler(v) {
-                    this.selected = v;
+                    let val = v;
+                    if (this.multiple && !Array.isArray(v)) {
+                        val = [];
+                        console.error('select value should be Array while is multiple!')
+                    }
+                    this.selected = val;
                     this.$nextTick(() => {
-                        this.initData(v);
+                        this.initData(val);
                     });
                 }
             },

@@ -53,7 +53,8 @@
                 //  初始化是否为选择状态
                 const parent = this.getParent('kd-select-dropdown');
                 if (parent.multiple) {
-                    return parent.value.some(item => {
+                    let value = Array.isArray(parent.value) ? parent.value : [];
+                    return value.some(item => {
                         return item === this.value;
                     });
                 } else {
