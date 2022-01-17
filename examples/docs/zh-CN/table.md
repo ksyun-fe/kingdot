@@ -1099,8 +1099,8 @@
 | scrollBarHeight  | 横向滚动条高度   | string / number  |     —     |    12   |
 | disableRow  | 设置不可选的列   | function  |    —      |    —   |
 | spanMethod  | 合并行列方法   | function  |    —      |    -   |
-| stored  | 是否存储选中的历史   | boolean  |     true / false     |    false   |
-| nodeKey  | 行数据的唯一标识   | string  |     —     |    —   |
+| stored  | 是否存储选中的历史，和nodeKey搭配使用   | boolean  |     true / false     |    false   |
+| nodeKey  | 行数据的唯一标识，和store搭配使用   | string  |     —     |    —   |
 | treeProps  | 渲染嵌套tree数据的配置选项   | object  |     —     |    —   |
 | treeLoad  | 加载tree子节点数据的函数   | function  |     —     |    —   |
 | disableCache  | 是否清除加载tree子节点缓存   | boolean  |     true / false     |    false   |
