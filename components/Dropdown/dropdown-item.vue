@@ -36,7 +36,6 @@
         methods: {
             handleClick(e) {
                 e.stopPropagation();
-                e.preventDefault();
                 if (this.disabled) return;
                 bus.$emit('item-click');
                 this.$emit('click', this.value);
