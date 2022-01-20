@@ -12,6 +12,7 @@ describe('drawer', () => {
             value: true
         })
         expect(vm.$el.classList.contains('kd-drawer')).to.be.ok;
+        expect(vm.$el.querySelector('.kd-drawer-main').style.right).to.equal('0px')
         expect(vm.$el.querySelector('.kd-drawer-main').style.height).to.equal('')
         expect(vm.$el.querySelector('.kd-drawer-main').style.width).to.equal('480px')
     });
@@ -32,6 +33,7 @@ describe('drawer', () => {
                 value: true,
                 position: 'bottom'
             })
+            expect(vm.$el.querySelector('.kd-drawer-main').style.bottom).to.equal('0px')
             expect(vm.$el.querySelector('.kd-drawer-main').style.height).to.equal('300px')
             expect(vm.$el.querySelector('.kd-drawer-main').style.width).to.equal('100%')
         })

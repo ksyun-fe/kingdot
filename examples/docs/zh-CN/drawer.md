@@ -49,13 +49,11 @@
 ```html
 <template>
  <div class='box'>
-    <kd-button @click="show('left',0,0,200,0)">点我打开距离左侧200px</kd-button>
-    <kd-button @click="show('right',0,0,0,200)">点我打开距离右侧200px</kd-button>
-    <kd-button @click="show('left',20,20,200,0)">点我打开距离左200px上下20px</kd-button>
-    <kd-button @click="show('right',20,20,0,200)">点我打开距离右200px上下20px</kd-button>
+    <kd-button @click="show(20,0)">点我打开距离上侧20px</kd-button>
+    <kd-button @click="show(0,20)">点我打开距离下侧20px</kd-button>
+    <kd-button @click="show(20,20)">点我打开距离上下20px</kd-button>
     <kd-drawer 
             v-model='flag' 
-            :position='position'
             :top='top'
             :left='left'
             :bottom='bottom'
@@ -69,21 +67,15 @@
         data(){
             return{
                 flag:false,
-                position:'right',
-                left:'',
-                right:'',
                 top:'',
                 bottom:'',
             }
         },
         methods:{
-            show(value,top,bottom,left,right){
-                this.position=value;
+            show(top,bottom){
                 this.flag=true;
                 this.top=top;
                 this.bottom=bottom;
-                this.left=left;
-                this.right=right;
             }
         }
    }
@@ -251,8 +243,6 @@
 | height       | 抽屉高度(只有上方弹出，下方弹出时可设置) | string / number | —                           | 300    |
 | top       | 抽屉出现位置距离可视区上方距离 | string / number | —                           | 0    |
 | bottom       | 抽屉出现位置距离可视区下方距离 | string / number | —                           | 0    |
-| let      | 抽屉出现位置距离可视区左方距离 | string / number | —                           | 0    |
-| right      | 抽屉出现位置距离可视区右方距离 | string / number | —                           | 0    |
 | position     | 抽屉弹出位置                             | string          | lest / bottom / right / top | right  |
 
 
