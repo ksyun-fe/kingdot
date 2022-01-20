@@ -3,6 +3,7 @@
             v-transfer-dom
             class="kd-drawer"
             :data-transfer="true"
+            :style="kdDrawerStyles"
     >
         <!-- 遮罩 -->
         <transition name="mask">
@@ -13,7 +14,9 @@
             ></div>
         </transition>
         <!-- //滑块 -->
-        <transition :name="MainName">
+        <transition
+                :name="MainName"
+        >
             <div
                     v-if="flag"
                     class="kd-drawer-main"
@@ -138,19 +141,36 @@
             cancel: {
                 type: Function,
                 default: undefined
+            },
+            // 可视区上侧弹出位置
+            top: {
+                type: [String, Number],
+                default: 0
+            },
+            // 可视区下侧弹出位置
+            bottom: {
+                type: [String, Number],
+                default: 0
+            },
+            // 可视区左侧弹出位置
+            left: {
+                type: [String, Number],
+                default: 0
+            },
+            // 可视区右侧弹出位置
+            right: {
+                type: [String, Number],
+                default: 0
             }
         },
         data() {
             return {
                 flag: false,
-                visible: this.value
+                visible: this.value,
+                MainName: ''
             };
         },
         computed: {
-            MainName() {
-                const name = `main-${this.position}`;
-                return name;
-            },
             showMask() {
                 return this.mask;
             },
@@ -159,19 +179,48 @@
                 if (this.mask) {
                     style.border = '1px solid #e5e5e5';
                 }
-                if (this.position === 'right') {
-                    style.width = `${this.width > 800 ? '800' : this.width}px`;
-                    style.right = 0;
-                } else if (this.position === 'left') {
-                    style.width = `${this.width > 800 ? '800' : this.width}px`;
-                } else if (this.position === 'top') {
-                    style.width = '100%';
-                    style.height = `${this.height}px`;
-                    style.top = 0;
-                } else if (this.position === 'bottom') {
-                    style.width = '100%';
-                    style.height = `${this.height}px`;
-                    style.bottom = 0;
+                switch (this.position) {
+                    default:
+                        style.width = `${this.width}px`;
+                        style.right = `calc(-1 * (100% - ${this.width}px )`;
+                        if (this.top || this.bottom) {
+                            style.top = this.top + 'px';
+                            style.marginBottom = this.bottom + 'px';
+                            style.height = `calc(100vh - ${this.top + this.bottom}px)`;
+                        }
+                        break;
+                    case 'left':
+                        style.width = `${this.width}px`;
+                        if (this.top || this.bottom) {
+                            style.top = this.top + 'px';
+                            style.marginBottom = this.bottom + 'px';
+                            style.height = `calc(100vh - ${this.top + this.bottom}px)`;
+                        }
+                        break;
+                    case 'top':
+                        style.width = '100%';
+                        style.height = `${this.height}px`;
+                        style.top = 0;
+                        break;
+                    case 'bottom':
+                        style.width = '100%';
+                        style.height = `${this.height}px`;
+                        style.bottom = 0;
+                        break;
+                }
+                this.MainNameFun();
+                return style;
+            },
+            kdDrawerStyles() {
+                const style = {};
+                switch (this.position) {
+                    default:
+                        style.width = `calc(100% - ${this.right}px)`;
+                        break;
+                    case 'left':
+                        style.width = `calc(100% - ${this.left}px)`;
+                        style.left = `${this.left}px`;
+                        break;
                 }
                 return style;
             }
@@ -191,6 +240,10 @@
             }
         },
         methods: {
+            MainNameFun() {
+                const name = `main-${this.position}`;
+                this.MainName = name;
+            },
             cancelCloseMask(value) {
                 if (value) {
                     if (typeof this.cancel === 'function') {
@@ -212,6 +265,9 @@
             running() {
                 if (typeof this.ok === 'function') {
                     this.ok(this);
+                } else {
+                    this.flag = false;
+                    this.$emit('ok');
                 }
             }
         }

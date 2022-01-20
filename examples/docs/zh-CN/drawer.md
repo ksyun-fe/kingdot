@@ -39,6 +39,58 @@
 ```
 :::
 
+### 更改出现位置
+:::demo #更改出现位置 ##可自定义上下左右的出现位置
+
+```html
+<template>
+ <div class='box'>
+    <kd-button @click="show('left',0,0,200,0)">点我打开距离左侧200px</kd-button>
+    <kd-button @click="show('right',0,0,0,200)">点我打开距离右侧200px</kd-button>
+    <kd-button @click="show('left',20,20,200,0)">点我打开距离左200px上下20px</kd-button>
+    <kd-button @click="show('right',20,20,0,200)">点我打开距离右200px上下20px</kd-button>
+    <kd-drawer 
+            v-model='flag' 
+            :position='position'
+            :top='top'
+            :left='left'
+            :bottom='bottom'
+            :right='right'
+             >
+    </kd-drawer>
+ </div>   
+</template>   
+<script>
+   export default {
+        data(){
+            return{
+                flag:false,
+                position:'right',
+                left:'',
+                right:'',
+                top:'',
+                bottom:'',
+            }
+        },
+        methods:{
+            show(value,top,bottom,left,right){
+                this.position=value;
+                this.flag=true;
+                this.top=top;
+                this.bottom=bottom;
+                this.left=left;
+                this.right=right;
+            }
+        }
+   }
+</script>
+<style scoped lang="stylus">
+    .box .kd-btn{
+        margin-left: 10px
+    }
+</style>
+```
+:::
 ### 自定义header
 :::demo #自定义header ##title可以根据具体需求进行具体设置。
 
