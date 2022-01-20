@@ -1,0 +1,338 @@
+<template>
+    <div
+            ref="kdCascader"
+            class="kd-cascader"
+            :class="[{
+                'kd-cascader-disabled': disabled
+            }]"
+            :style="{'width': inputWidth}"
+    >
+        <kd-tooltip
+                v-model="dropDownVisible"
+                placement="bottom-start"
+                trigger="click"
+                :showArrow="false"
+                :content-class="tooltipClass"
+                :width-limit="false"
+                :disabled="disabled"
+        >
+            <div
+                    ref="kdCascaderInput"
+                    class="kd-cascader-input"
+                    @mouseenter="inputHovering = true"
+                    @mouseleave="inputHovering = false"
+            >
+                <i
+                        v-if="clearBtnVisible"
+                        key="clear"
+                        class="kd-icon-close kd-cascader-clear-icon"
+                        @click.stop="handleClear"
+                ></i>
+                <i
+                        v-else
+                        key="arrow-down"
+                        class="kd-icon-arrow-down kd-cascader-arrow-icon"
+                        :class="{'kd-cascader-arrow-icon-rotate': dropDownVisible}"
+                ></i>
+                <input
+                        ref="kdCascaderInputInner"
+                        v-model="inputLabel"
+                        class="kd-cascader-input-inner"
+                        :class="{'kd-cascader-input-disabled': disabled}"
+                        type="text"
+                        :placeholder="inputPlaceholder"
+                        :readonly="!filterable"
+                        :disabled="disabled"
+                        @input="handleInput"
+                        @focus="handleFocus"
+                        @blur="handleBlur"
+                />
+            </div>
+            <template slot="content">
+                <div>
+                    <ul
+                            v-if="filterable"
+                            v-show="filtering"
+                            ref="kdCascaderSuggest"
+                            class="kd-cascader-suggest"
+                            :style="{'width': suggestWidth}"
+                    >
+                        <li
+                                v-for="(item, index) in suggestions"
+                                :key="index"
+                                class="kd-cascader-suggest-li"
+                                :class="[{
+                                    'is-active': item.checked
+                                }]"
+                                @click="handleClickSuggest(item)"
+                        >
+                            <span>{{ item.labelText }}</span>
+                            <i
+                                    v-if="item.checked"
+                                    class="kd-icon-success kd-cascader-checked-icon"
+                            ></i>
+                        </li>
+                        <li
+                                v-if="suggestions.length==0"
+                                class="kd-cascader-suggest-no-data"
+                        >无数据</li>
+                    </ul>
+                    <kd-cascader-panel
+                            v-show="!filtering"
+                            ref="kdPopperPanel"
+                            v-model="checkedValue"
+                            :options="options"
+                            :expandTrigger="expandTrigger"
+                            :cascader="this"
+                            :lazy="lazy"
+                            :lazyMethod="lazyMethod"
+                            :filterable="filterable"
+                            @setValue="setValue"
+                            @menuUnvisible="toggleDropDownVisible"
+                    ></kd-cascader-panel>
+                </div>
+            </template>
+        </kd-tooltip>
+    </div>
+</template>
+<script>
+    import Lang from 'src/mixin/lang.js';
+
+    export default {
+        name: 'KdCascader',
+        components: {
+        },
+        mixins: [Lang],
+        props: {
+            value: {
+                type: Array,
+                default() { []; }
+            },
+            options: {
+                type: Array
+            },
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            width: {
+                type: String,
+                default: ''
+            },
+            filterable: {
+                type: Boolean,
+                default: false
+            },
+            clearable: {
+                type: Boolean,
+                default: false
+            },
+            placeholder: {
+                type: String,
+                default: '请选择'
+            },
+            // 次级菜单的展开方式
+            expandTrigger: {
+                type: String,
+                default: 'click'
+            },
+            showAllLevels: {
+                type: Boolean,
+                default: true
+            },
+            lazy: {
+                type: Boolean,
+                default: false
+            },
+            lazyMethod: {
+                type: Function
+            },
+            filterMethod: {
+                type: Function
+            }
+        },
+        data() {
+            return {
+                checkedValue: this.value,
+                inputLabel: null,
+                inputPlaceholder: this.placeholder,
+                dropDownVisible: false,
+                inputHovering: false,
+                filtering: false,
+                suggestions: [],
+                nodeOptions: [],
+                flatOpt: [],
+                suggestWidth: ''
+            };
+        },
+        computed: {
+            tooltipClass() {
+                return `kd-cascader-tooltip`;
+            },
+            inputWidth() {
+                const width = this.width;
+                if (width.indexOf('px') > -1 || width.indexOf('%') > -1) {
+                    return width;
+                } else {
+                    return width + 'px';
+                }
+            },
+            clearBtnVisible() {
+                return this.clearable && this.isNotEmptyArr(this.checkedValue) && this.inputHovering;
+            }
+        },
+        watch: {
+            filtering(val) {
+                if (val) {
+                    this.suggestWidth = this.$refs.kdCascader.clientWidth + 'px';
+                    this.updateSuggestList();
+                }
+            },
+            dropDownVisible: {
+                handler(val) {
+                    if (val) {
+                        this.filtering = false;
+                    } else {
+                        if (this.filterable && this.inputLabel && this.filtering) {
+                            this.setLabel();
+                        }
+                    }
+                }
+            },
+            inputLabel(val) {
+                if (!val && this.filterable) this.filtering = false;
+            }
+        },
+        mounted() {
+            this.options && this.initOptions();
+            this.initData();
+        },
+        methods: {
+            initData() {
+                if (!this.lazy) {
+                    this.setLabel();
+                    return;
+                }
+                if (!this.isNotEmptyArr(this.options)) {
+                    this.$nextTick(() => {
+                        this.$refs.kdPopperPanel.lazyLoadFn();
+                        return;
+                    });
+                }
+            },
+            setLabel() {
+                if (this.isNotEmptyArr(this.checkedValue)) {
+                    this.$nextTick(() => {
+                        const presentPath = this.$refs.kdPopperPanel.getPresentPath();
+                        this.inputLabel = this.getPresentLabel(presentPath);
+                    });
+                } else {
+                    this.inputLabel = '';
+                }
+            },
+            getPresentLabel(path) {
+                let label = '';
+                if (this.showAllLevels) {
+                    path.forEach((item, index) => {
+                        label += (index ? ' / ' : '') + item.label;
+                    });
+                } else {
+                    const item = path.slice(-1);
+                    label = item[0].label;
+                }
+                return label;
+            },
+            setValue() {
+                this.setLabel();
+                this.$emit('input', this.checkedValue);
+                this.$emit('change', this.checkedValue);
+            },
+            handleClear() {
+                this.checkedValue.splice(0);
+                this.inputLabel = '';
+                this.suggestions = [];
+                this.$emit('input', this.checkedValue);
+                this.$emit('change', this.checkedValue);
+            },
+            toggleDropDownVisible() {
+                this.dropDownVisible = !this.dropDownVisible;
+            },
+            isNotEmptyArr(arr) {
+                return arr && arr.length;
+            },
+            handleInput() {
+                this.filtering = this.inputLabel || false;
+            },
+            updateSuggestList() {
+                let method = function (node, label) {
+                    return node.labelText.includes(label);
+                };
+                if (this.isFunction(this.filterMethod)) {
+                    method = this.filterMethod;
+                }
+                this.suggestions = this.flatOpt.filter(item => {
+                    if (item.disabled) return false;
+                    return method(item, this.inputLabel) && item.isLeaf;
+                });
+
+                if (this.isNotEmptyArr(this.checkedValue)) {
+                    this.suggestions.forEach(node => {
+                        node.checked = JSON.stringify(this.checkedValue) === JSON.stringify(node.valuePath);
+                    });
+                }
+            },
+            // 扁平化所有数据
+            flatNodes(data) {
+                if (!data || data.length < 1) return [];
+                return data.reduce((res, node) => {
+                    res.push(node);
+                    if (node.children && node.children.length) {
+                        res = res.concat(this.flatNodes(node.children));
+                    }
+                    return res;
+                }, []);
+            },
+            // 给所有数据加上nodePath, labelPath, valuePath, labelText, 并扁平化数组
+            initOptions() {
+                this.nodeOptions = this.options.slice();
+                this.formatNodes(this.nodeOptions);
+                this.flatOpt = this.flatNodes(this.nodeOptions);
+            },
+            formatNodes(data) {
+                data.forEach(node => {
+                    node.nodePath = node.nodePath ? node.nodePath.concat([node]) : [node];
+                    node.valuePath = node.valuePath ? node.valuePath.concat([node.value]) : [node.value];
+                    node.labelPath = node.labelPath ? node.labelPath.concat([node.label]) : [node.label];
+                    node.labelText = node.labelText ? (node.labelText + ' / ' + node.label) : node.label;
+                    if (node.children && node.children.length) {
+                        node.isLeaf = false;
+                        node.children.forEach(child => {
+                            child.nodePath = child.nodePath ? child.nodePath.concat(node.nodePath) : node.nodePath;
+                            child.valuePath = child.valuePath ? child.valuePath.concat(node.valuePath) : node.valuePath;
+                            child.labelPath = child.labelPath ? child.labelPath.concat(node.labelPath) : node.labelPath;
+                            child.labelText = child.labelText ? (child.labelText + ' / ' + node.labelText) : node.labelText;
+                        });
+                        this.formatNodes(node.children);
+                    } else {
+                        node.isLeaf = true;
+                    }
+                });
+            },
+            handleClickSuggest(node) {
+                this.checkedValue = node.valuePath;
+                this.inputLabel = node.labelText;
+                this.filtering = false;
+                this.toggleDropDownVisible();
+            },
+            isFunction(fn) {
+                return fn && Object.toString.call(fn) === '[object Function]';
+            },
+            handleFocus(e) {
+                this.$emit('focus', e);
+            },
+            handleBlur(e) {
+                this.$emit('blur', e);
+            }
+        }
+    };
+</script>

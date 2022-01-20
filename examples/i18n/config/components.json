@@ -75,6 +75,10 @@
                             "name": "Select 选择框"
                         },
                         {
+                            "path": "/cascader",
+                            "name": "Cascader 级联选择框"
+                        },
+                        {
                             "path": "/upload",
                             "name": "Upload 上传"
                         },

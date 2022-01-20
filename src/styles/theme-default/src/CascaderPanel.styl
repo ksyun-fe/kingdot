@@ -1,0 +1,28 @@
+@import "../variables.styl";
+
+.kd-cascader-panel
+.kd-cascader-menu
+    display flex
+    flex-direction row
+.kd-cascader-menu__list
+    min-width 180px
+    border-right 1px solid $-cascader-node-bg-color
+    max-height 200px
+    overflow-y auto
+.kd-cascader-panel-node
+    padding 8px 32px 8px 16px
+    position relative
+    display flex
+    cursor pointer
+    &:hover
+        background-color $-cascader-node-bg-color
+    .kd-icon-arrow-right, .kd-icon-loading1
+        position absolute
+        right 10px
+    &.is-active
+        color $-cascader-active-color
+        font-weight 500
+    &.is-disabled
+        color $-cascader-disabled-text
+        cursor not-allowed
+        background-color $-cascader-bg
