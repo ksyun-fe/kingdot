@@ -11,6 +11,7 @@
     <kd-drawer 
             v-model='flag' 
             :position='position'
+            @ok='ok()'
              >
     </kd-drawer>
  </div>   
@@ -27,6 +28,9 @@
             show(value){
                 this.position=value;
                 this.flag=true;
+            },
+            ok(){
+                alert('ok');
             }
         }
    }

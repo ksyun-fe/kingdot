@@ -4,9 +4,11 @@ $-drawer-position := 'left' 'top' 'bottom' 'right';
 .kd-drawer
   position: fixed;
   width: $-drawer-main-width;
+  height: 100%
   top: 0;
   left: 0;
   overflow hidden
+  pointer-events: none
 .kd-drawer-overlay
   position: fixed;
   top: 0;
@@ -16,6 +18,7 @@ $-drawer-position := 'left' 'top' 'bottom' 'right';
   background-color: $-drawer-overlay-backgroundColor;
   opacity: 0.3;
   transition: all $-drawer-animation-time;
+  pointer-events: initial
 .kd-drawer-main
   position: relative;
   display: flex;
@@ -23,6 +26,7 @@ $-drawer-position := 'left' 'top' 'bottom' 'right';
   flex-direction: column;
   background: $-drawer-mian-backgroundColor;
   height: 100vh
+  pointer-events: initial
 .main-left-enter-active
   animation: drawer-fade-left-in $-drawer-animation-time;
 .main-left-leave-active

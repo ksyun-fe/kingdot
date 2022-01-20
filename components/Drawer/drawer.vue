@@ -205,7 +205,7 @@
                     case 'bottom':
                         style.width = '100%';
                         style.height = `${this.height}px`;
-                        style.bottom = 0;
+                        style.bottom = `calc(-1 * (100% - ${this.height}px )`;
                         break;
                 }
                 this.MainNameFun();
