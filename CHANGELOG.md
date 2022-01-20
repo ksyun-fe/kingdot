@@ -1,22 +1,18 @@
 ## 更新日志
 
-## v1.0.38
+## v1.0.37
 *2022-01-20*
 ### New features
-* Drawer
+  * Drawer
     * 解除最大宽度限制，可以更改出现位置
-### fix
-* tabs
-    * vertical类型tabs，伪类高度自适应    
-## v1.0.37
-*2022-01-13*
-### doc
-* Form
+  * Form
     * 增加自定义规则描述
 ### fix
-* Tree
+  * tabs
+    * vertical类型tabs，伪类高度自适应    
+  * Tree
     * 将节点根元素由span改为div
-* Select
+  * Select
     * 优化兼容multiple下value为string的用法
 ## v1.0.36
 *2022-01-06*
