@@ -1,22 +1,20 @@
-
-/******************************
-                media
-*******************************/
+// media
 use('../../utils/media.js')
 
-/******************************
-                Colors
-*******************************/
 $-white-color := #FFF
 $-black-color := #000
-
-/******************************
-                Page
-*******************************/
-// let height be odd 20 / 14
-$-line-height := 1
 $-font-family := PingFangSC-Light, 'helvetica neue', arial, 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif
 $-font-path := '../fonts';
+$-size-array = mini, small, default, large
+
+$-link-color := $-primary-color
+$-link-underline := none
+$-link-hover-color := palette($-link-color, -1)
+$-link-hover-underline := $-link-underline
+$-link-font-family := $-font-family
+/******************************
+                common
+*******************************/
 // font size
 $-font-large-size := 16px
 $-font-default-size := 14px
@@ -51,8 +49,8 @@ $-split-line-color := #E5E5E5 //区域分割线
 // background color
 $-light-bg-color := #FFF
 $-bg-base-color := #fff //基础内容背景样式
-$-table-header-bg-color := #F3F6FB //table,title等头部背景
-$-table-content-bg-color := #F4F7FC //内容区
+$-header-bg-color := #F3F6FB //table,title等头部背景
+$-content-bg-color := #F4F7FC //内容区
 // disable color
 $-disabled-color := #CCC
 $-disabled-bg-color := #F2F2F2
@@ -66,41 +64,8 @@ $-box-shadow := 0 0 15px 0 rgba(0, 0, 0, 0.15);
 // border-radius
 $-border-radius := 4px
 $-border-base-radius := 2px
-// size arr
-$-size-array = mini, small, default, large
-/******************************
-        Headers
-*******************************/
 
-$-header-font-family := 'PingFangSC-Medium' !important
-$-header-margin := 0
-$-header-font-weight := bold
-$-h1 := 36px
-$-h2 := 30px
-$-h3 := 24px
-$-h4 := 18px
-$-h5 := 14px
-$-h6 := 12px
-
-/******************************
-        Link
-*******************************/
-
-$-link-color := $-primary-color
-$-link-underline := none
-$-link-hover-color := palette($-link-color, -1)
-$-link-hover-underline := $-link-underline
-$-link-font-family := $-font-family
-
-/******************************
-        Code
-*******************************/
-
-$-code-font-family := Consolas, Menlo, Courier, monospace
-
-/******************************
-        Transition
-*******************************/
+// transition
 
 $-transition := .25s ease-in-out
 
@@ -126,119 +91,123 @@ $-spin-mini-font-size := 12px
 
 
 /******************************
-        ButtonGroup Button
+        Button
 *******************************/
 //btn disabled
-$-btn-type := 'default'
-$-btn-disabled-color := $-border-base-color
-$-btn-disabled-bg-color := $-disabled-bg-color
-$-btn-disabled-border-color := $-disabled-border-color
+$-button-type := 'default'
+$-button-disabled-color := $-border-base-color
+$-button-disabled-background-color := $-disabled-bg-color
+$-button-disabled-border-color := $-disabled-border-color
 
-$-btn-default-border-color := $-border-base-color
-$-btn-default-bg := #fff
-$-btn-default-color := $-text-light-color
+$-button-default-border-color := $-border-base-color
+$-button-default-background-color := #fff
+$-button-default-color := $-text-light-color
 
-$-btn-default-hover-color := #557DFC
-$-btn-default-hover-border-color := #557DFC
-$-btn-default-hover-bg-color := #fff
-$-btn-default-active-color :=  #4165D7
-$-btn-default-active-bg-color :=  #E5ECFF
-$-btn-default-active-border-color :=  #557DFC
+$-button-default-hover-color := #557DFC
+$-button-default-hover-border-color := #557DFC
+$-button-default-hover-background-color := #fff
+$-button-default-active-color :=  #4165D7
+$-button-default-active-background-color :=  #E5ECFF
+$-button-default-active-border-color :=  #557DFC
 
-$-btn-hollow-hover-color :=  #557DFC
-$-btn-hollow-hover-border-color :=  #557DFC
-$-btn-hollow-active-color :=  #4165D7
+$-button-hollow-hover-color :=  #557DFC
+$-button-hollow-hover-border-color :=  #557DFC
+$-button-hollow-active-color :=  #4165D7
 
-$-btn-primary-hover-bg := #7999FF
-$-btn-primary-hover-border := #7999FF
-$-btn-primary-active-bg := #557DFC
-$-btn-primary-active-border := #557DFC
+$-button-primary-hover-background := #7999FF
+$-button-primary-hover-border-color := #7999FF
+$-button-primary-active-background-color := #557DFC
+$-button-primary-active-border-color := #557DFC
 
-$-btn-success-hover-bg := #5ED79E
-$-btn-success-hover-border := #5ED79E
-$-btn-success-active-bg := #39B67A
-$-btn-success-active-border := #39B67A
+$-button-success-hover-background-color := #5ED79E
+$-button-success-hover-border-color := #5ED79E
+$-button-success-active-background-color := #39B67A
+$-button-success-active-border-color := #39B67A
 
-$-btn-warning-hover-bg := #FFAF6A
-$-btn-warning-hover-border := #FFAF6A
-$-btn-warning-active-bg := #F68E35
-$-btn-warning-active-border := #F68E35
+$-button-warning-hover-background-color := #FFAF6A
+$-button-warning-hover-border-color := #FFAF6A
+$-button-warning-active-background-color := #F68E35
+$-button-warning-active-border-color := #F68E35
 
-$-btn-danger-hover-bg := #FF7F91
-$-btn-danger-hover-border := #FF7F91
-$-btn-danger-active-bg := #CB2C42
-$-btn-danger-active-border := #CB2C42
+$-button-danger-hover-background-color := #FF7F91
+$-button-danger-hover-border-color := #FF7F91
+$-button-danger-active-background-color := #CB2C42
+$-button-danger-active-border-color := #CB2C42
 
-$-btn-hollow-primary-hover-bg := #e5edff
-$-btn-hollow-primary-active-bg := #557DFC
-$-btn-hollow-success-hover-bg := #e5fff1
-$-btn-hollow-success-active-bg := #38C482
-$-btn-hollow-warning-hover-bg := #fff0e5
-$-btn-hollow-warning-active-bg := #e5fff1
-$-btn-hollow-danger-hover-bg := #ffe5ee
-$-btn-hollow-danger-active-bg := #EF4E76
+$-button-hollow-primary-hover-background-color := #e5edff
+$-button-hollow-primary-active-background-color := #557DFC
+$-button-hollow-success-hover-background-color := #e5fff1
+$-button-hollow-success-active-background-color := #38C482
+$-button-hollow-warning-hover-background-color := #fff0e5
+$-button-hollow-warning-active-background-color := #e5fff1
+$-button-hollow-danger-hover-background-color := #ffe5ee
+$-button-hollow-danger-active-background-color := #EF4E76
 
 //type
-$-btn-primary-color := $-primary-color
-$-btn-success-color := $-success-color
-$-btn-warning-color := $-warning-color
-$-btn-danger-color := $-danger-color
-$-btn-text-color := $-primary-color
-$-btn-none-color := $-black-color
+$-button-primary-color := $-primary-color
+$-button-success-color := $-success-color
+$-button-warning-color := $-warning-color
+$-button-danger-color := $-danger-color
+$-button-text-color := $-primary-color
+$-button-none-color := $-black-color
 
-$-btn-text-hover-color := #7999FF
-$-btn-text-active-color := #4165D7
-$-btn-none-hover-color := #7999FF
-$-btn-none-active-color := #4165D7
+$-button-text-hover-color := #7999FF
+$-button-text-active-color := #4165D7
+$-button-none-hover-color := #7999FF
+$-button-none-active-color := #4165D7
 
 // group
-$-btn-group-default-color := #fff
-$-btn-group-default-hover-color := #fff
-$-btn-group-default-active-color := #fff
-$-btn-active-line-color := #7999FF
-$-btn-active-color := #fff
+$-button-group-default-color := #fff
+$-button-group-default-hover-color := #fff
+$-button-group-default-active-color := #fff
+$-button-group-active-line-color := #7999FF
+$-button-group-active-color := #fff
 
 //btn default
-$-btn-default-padding := 9px 16px
-$-btn-default-font-size := 12px
+$-button-default-padding := 9px 16px
+$-button-default-font-size := 12px
 
 //loading
-$-btn-stroke-width := 6
+$-button-stroke-width := 6
 //split
-$-btn-split-padding := 5px 10px
+$-button-split-padding := 5px 10px
 
 //border
-$-btn-border-radius := $-border-radius
-$-btn-border-color := $-border-base-color
-$-btn-default-border-style := solid
-$-btn-dashed-border-style := dashed
+$-button-border-radius := $-border-radius
+$-button-border-color := $-border-base-color
+$-button-default-border-style := solid
+$-button-dashed-border-style := dashed
 //shape
-$-btn-shape-round := 40px
-$-btn-shape-circle := 50%
+$-button-shape-round := 40px
+$-button-shape-circle := 50%
 //size
 
-$-btn-large-padding := 13px 24px
-$-btn-large-circle-padding := 14px
-$-btn-large-font-size := 14px
+$-button-large-padding := 13px 24px
+$-button-large-circle-padding := 12px
+$-button-large-font-size := 14px
+$-button-large-height := 40px
 
-$-btn-default-padding := 9px 16px
-$-btn-default-circle-padding := 12px
-$-btn-default-font-size := $-font-base-size
+$-button-middle-padding := 9px 16px
+$-button-middle-circle-padding := 8px
+$-button-middle-font-size := $-font-base-size
+$-button-middle-height := 32px
 
-$-btn-small-padding := 7px 12px
-$-btn-small-circle-padding := 8px
-$-btn-small-font-size := 12px
+$-button-small-padding := 7px 12px
+$-button-small-circle-padding := 6px
+$-button-small-font-size := 12px
+$-button-small-height := 28px
 
-$-btn-mini-padding := 5px 8px
-$-btn-mini-circle-padding := 6px
-$-btn-mini-font-size := 12px
+$-button-mini-padding := 5px 8px
+$-button-mini-circle-paddingg := 4px
+$-button-mini-font-size := 12px
+$-button-mini-height := 24px
 //icon
-$-btn-icon-text-gutter := 8px
+$-button-icon-text-gutter := 8px
 
-$-btn-loading-r := 120 - 60 - ($-btn-stroke-width / 2)
-$-btn-loading-c := round(2 * 3.14 * $-btn-loading-r)
+$-button-loading-r := 120 - 60 - ($-button-stroke-width / 2)
+$-button-loading-c := round(2 * 3.14 * $-button-loading-r)
 
-$-btn-group-line-color := #7999FF
+$-button-group-line-color := #7999FF
 /******************************
         Radio
 *******************************/
@@ -346,35 +315,38 @@ $-input-err := $-danger-color
 $-input-err-border := 1px solid $-danger-color
 $-input-clear-color := $-icon-default-color
 
-$-textarea-default-padding-top-bottom := 8px
-$-textarea-count-font-size := $-font-second-size
-$-textarea-count-bottom := 6px
-$-textarea-count-right := 10px
+$-input-textarea-mini-padding-top-bottom := 4px
+$-input-textarea-small-padding-top-bottom := 6px
+$-input-textarea-default-padding-top-bottom := 8px
+$-input-textarea-large-padding-top-bottom := 10px
+$-input-textarea-count-font-size := $-font-second-size
+$-input-textarea-count-bottom := 6px
+$-input-textarea-count-right := 10px
 
 /******************************
         checkbox
 *******************************/
-$-checkbox-input-width := 14px;
-$-checkbox-input-height := 14px;
+$-checkbox-width := 14px;
+$-checkbox-height := 14px;
 $-checkbox-font-size := $-font-small-size;
-$-checkbox-default-input-border-color := $-border-base-color;
-$-checkbox-default-input-background-color := $-light-bg-color;
+$-checkbox-default-border-color := $-border-base-color;
+$-checkbox-default-background-color := $-light-bg-color;
 
 $-checkbox-disabled-icon-color := $-border-base-color;
-$-checkbox-disabled-input-border-color := $-border-base-color;
-$-checkbox-disabled-input-background-color := $-disabled-bg-color;
+$-checkbox-disabled-border-color := $-border-base-color;
+$-checkbox-disabled-background-color := $-disabled-bg-color;
 
 $-checkbox-checked-icon-color := $-light-bg-color;
-$-checkbox-checked-input-border-color := $-primary-color;
-$-checkbox-checked-input-background-color := $-primary-color;
+$-checkbox-checked-border-color := $-primary-color;
+$-checkbox-checked-background-color := $-primary-color;
 
 /******************************
-        progressbar
+        progress
 *******************************/
 $-progress-outBar-bgc := #ECECEC
 $-progress-bar-marginRight := -58px
 $-progress-bar-paddingRight := 50px
-$-pregress-text-marginLeft := 16px
+$-progress-text-marginLeft := 16px
 
 /******************************
         collapse
@@ -417,7 +389,7 @@ $-message-error-border-color := $-message-error-background-color;
 $-message-info-border-color := $-message-info-background-color;
 
 /******************************
-        pgination
+        pagination
 *******************************/
 $-pagination-font-size := 12px
 $-pagination-margin := 16px
@@ -441,34 +413,33 @@ $-pagination-goto-border-color := #d1d5de
         steps
 *******************************/
 $-steps-container-background-color := $-light-bg-color  //主题色
-$-step-spot-done-background-color := $-primary-color
-$-step-spot-line-border-color := $-split-line-color
-$-step-spot-line-background-color := transparent
-$-step-spot-active-background-color := $-primary-color ;
-$-step-spot-default-background-color := $-split-line-color
-$-step-line-background-color := $-split-line-color
-$-step-line-active-background-color := $-primary-color;
-$-step-title-color := $-text-light-color
-$-step-title-active-color := $-text-dark-color
-$-step-description-color :=  $-text-placeholder-color
-$-step-description-active-color := $-text-light-color
-$-step-index-default-border-color := $-border-base-color
-$-step-index-default-color := $-text-regular-color
-$-step-index-active-border-color := transparent
-$-step-index-active-background-color := $-primary-color;
-$-step-index-done-color := $-primary-color
-$-step-index-done-border-color := 2px solid $-primary-color
-$-step-index-done-background-color := #DBE1F5
-$-step-simple-background-color := $-table-header-bg-color
-$-step-simple-border-color := $-bg-base-color //和主题色保持一直
-$-kd-step-simple-bgc := $-table-header-bg-color
-$-step-index-icon-color := $-border-base-color
-$-step-icon-active-color := $-primary-color
-$-step-icon-done-color := $-primary-color
-$-step-custom-status-error-border-color := 2px solid #ED3351
-$-step-custom-status-error-background-color := #EFCECE
-$-step-custom-status-error-color := #ED3351
-$-step-custom-status-wait-background-color := transparent
+$-steps-step-spot-done-background-color := $-primary-color
+$-steps-step-spot-line-border-color := $-split-line-color
+$-steps-step-spot-line-background-color := transparent
+$-steps-step-spot-active-background-color := $-primary-color ;
+$-steps-step-spot-default-background-color := $-split-line-color
+$-steps-step-line-background-color := $-split-line-color
+$-steps-step-line-active-background-color := $-primary-color;
+$-steps-title-color := $-text-light-color
+$-steps-title-active-color := $-text-dark-color
+$-steps-description-color :=  $-text-placeholder-color
+$-steps-description-active-color := $-text-light-color
+$-steps-step-index-default-border-color := $-border-base-color
+$-steps-step-index-default-color := $-text-regular-color
+$-steps-step-index-active-border-color := transparent
+$-steps-step-index-active-background-color := $-primary-color;
+$-steps-step-index-done-color := $-primary-color
+$-steps-step-index-done-border := 2px solid $-primary-color
+$-steps-step-index-done-background-color := #DBE1F5
+$-steps-step-simple-background-color := $-header-bg-color
+$-steps-step-simple-border-color := $-bg-base-color //和主题色保持一直
+$-steps-step-index-icon-color := $-border-base-color
+$-steps-step-icon-active-color := $-primary-color
+$-steps-step-icon-done-color := $-primary-color
+$-steps-step-custom-status-error-border := 2px solid #ED3351
+$-steps-step-custom-status-error-background-color := #EFCECE
+$-steps-step-custom-status-error-color := #ED3351
+$-steps-step-custom-status-wait-background-color := transparent
 
 /******************************
         breadcrumb
@@ -488,7 +459,8 @@ $-tabs-color-font := $-text-light-color
 $-tabs-after-backgroundColor := $-split-line-color //#e5e5e5
 $-tabs-after-borderColor := $-split-line-color
 $-tabs-after-borderColor-card := $-split-line-color
-$-kd-add-tab :=$-split-line-color//#e5e5e5
+$-tabs-addButton-backgroundColor :=$-split-line-color//#e5e5e5
+$-tabs-addButton-activeColor :=$-split-line-color//#e5e5e5
 $-tabs-font-size :=$-font-default-size// 14px
 $-tabs-color-background := $-white-color//#ffffff
 $-tabs-card-color-background := $-white-color//#ffffff
@@ -545,9 +517,9 @@ $-dialog-scrollbar-thumb-color := $-border-base-color
 /******************************
         spinner
 *******************************/
-$-spinnter-border-color := $-border-base-color
-$-spinnter-disable-bg := #f2f2f2
-$-spinnter-disable-color := #ccc
+//$-spinnter-border-color := $-border-base-color
+$-spinner-disable-background := #f2f2f2
+$-spinner-disable-color := #ccc
 $-spinner-primary-color := $-primary-color
 $-spinner-fill-bg := #fff
 $-spinner-input-padding := 8
@@ -621,7 +593,7 @@ $-dropdown-item-disabled-hover := $-white-color
 *******************************/
 $-transfer-base-color := $-text-light-color
 $-transfer-radius := $-border-radius
-$-transfer-header-bg := $-table-header-bg-color
+$-transfer-header-bg := $-header-bg-color
 $-transfer-width := 198
 $-transfer-row-height := 39
 $-transfer-row-padding := 0 15px
@@ -678,7 +650,6 @@ $-upload-drag-bg := #fff
 $-upload-drag-icon := #ccc
 $-upload-drag-tip-color := #666
 $-upload-default-text := #404040
-$-upload-text-hover-color := $-content-bg-hover-color
 $-upload-success-color := $-success-color
 $-upload-error-color := $-warning-color
 $-upload-primary-color := $-primary-color
@@ -694,11 +665,11 @@ $-upload-progress-text-top := -28px
         tooltip
 *******************************/
 // tooltip base
-$-font-size-base ?= 12px
-$-line-height-base ?= 1.5
-$-border-radius-base ?= 4px
-$-shadow-color ?= rgba(0, 0, 0, 0.15)
-$-box-shadow-base ?= 0 0 15px 0 $-shadow-color
+$-tooltip-font-size-base ?= 12px
+$-tooltip-line-height-base ?= 1.5
+$-tooltip-border-radius-base ?= 4px
+$-tooltip-shadow-color ?= rgba(0, 0, 0, 0.15)
+$-tooltip-box-shadow-base ?= 0 0 15px 0 $-tooltip-shadow-color
 $-tooltip-max-width ?= calc(240px - 14px - 14px)
 $-tooltip-arrow-width ?= 5px
 $-tooltip-distance ?= $-tooltip-arrow-width - 1px + 4px
@@ -706,15 +677,19 @@ $-tooltip-distance ?= $-tooltip-arrow-width - 1px + 4px
 $-tooltip-theme = 'dark' 'light'
 $-tooltip-light-bg ?= #fff
 $-tooltip-light-color ?= #737373
-$-popover-content-light-color ?= #737373
-$-popover-titleline-light-color ?= #E5E5E5
 $-tooltip-dark-bg ?= #2C324D
 $-tooltip-dark-color ?= #fff
+
+/******************************
+        popover
+*******************************/
+$-popover-content-light-color ?= #737373
+$-popover-titleline-light-color ?= #E5E5E5
 $-popover-content-dark-color ?= #8D919B
 $-popover-titleline-dark-color ?= #414760
 
 /******************************
-        Datapicker
+        Datepicker
 *******************************/
 $-datepicker-bg-color := $-white-color // 亮色背景色
 $-datepicker-disabled-color := $-border-base-color
@@ -740,17 +715,17 @@ $-datepicker-day-disabled-color := #4c4c4c
                 ScrollSelect
 *******************************/
 
-$-scroll-select-height := unit(210 / 14, rem)
-$-scroll-select-item-height := unit(30 / 14, rem)
-$-scroll-select-item-color := $-text-light-color
-$-scroll-select-item-active-color := $-scroll-active-color
-$-scroll-select-item-active-font-weight := 700
-$-scroll-select-item-disabled-color := $-scroll-disabled-color
+$-scrollselect-height := unit(210 / 14, rem)
+$-scrollselect-item-height := unit(30 / 14, rem)
+$-scrollselect-item-color := $-text-light-color
+$-scrollselect-item-active-color := $-scrollselect-active-color
+$-scrollselect-item-active-font-weight := 700
+$-scrollselect-item-disabled-color := $-scrollselect-disabled-color
 
-$-scroll-select-border := 1px solid #e5e5e5
-$-scroll-active-color := #318EFA // blue
-$-scroll-disabled-color := #999
-$-scroll-transition := .25s ease-in-out
+$-scrollselect-border := 1px solid #e5e5e5
+$-scrollselect-active-color := #318EFA // blue
+$-scrollselect-disabled-color := #999
+$-scrollseelect-transition := .25s ease-in-out
 
 
 /******************************
@@ -792,10 +767,10 @@ $-menu-item-horizontal-active-background := #fff
 $-menu-item-horizontal-active-background-image := none
 $-menu-item-horizontal-active-color := $-primary-color
 
-$-submenu-popper-content-width := 200px
-$-submenu-popper-content-background := #fff
-$-submenu-popper-content-color := #778088
-$-submenu-popper-horizontal-content-width := 200px
+$-menu-submenu-popper-content-width := 200px
+$-menu-submenu-popper-content-background := #fff
+$-menu-submenu-popper-content-color := #778088
+$-menu-submenu-popper-horizontal-content-width := 200px
 /******************************
                 DateTimePicker
 *******************************/

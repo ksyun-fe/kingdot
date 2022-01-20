@@ -138,6 +138,14 @@
             cancel: {
                 type: Function,
                 default: undefined
+            },
+            top: {
+                type: [String, Number],
+                default: '0'
+            },
+            bottom: {
+                type: [String, Number],
+                default: '0'
             }
         },
         data() {
@@ -160,10 +168,16 @@
                     style.border = '1px solid #e5e5e5';
                 }
                 if (this.position === 'right') {
-                    style.width = `${this.width > 800 ? '800' : this.width}px`;
+                    style.width = `${this.width}px`;
                     style.right = 0;
+                    style.top = this.top + 'px';
+                    style.bottom = this.bottom + 'px';
+                    style.height = `calc(100vh - ${this.top - 0 + this.bottom - 0}px)`;
                 } else if (this.position === 'left') {
-                    style.width = `${this.width > 800 ? '800' : this.width}px`;
+                    style.width = `${this.width}px`;
+                    style.top = this.top + 'px';
+                    style.marginBottom = this.bottom + 'px';
+                    style.height = `calc(100vh - ${this.top - 0 + this.bottom - 0}px)`;
                 } else if (this.position === 'top') {
                     style.width = '100%';
                     style.height = `${this.height}px`;
@@ -212,6 +226,9 @@
             running() {
                 if (typeof this.ok === 'function') {
                     this.ok(this);
+                } else {
+                    this.flag = false;
+                    this.$emit('ok');
                 }
             }
         }

@@ -94,6 +94,7 @@
                                 :min-date="min"
                                 :is-range="true"
                                 :range-end-date="rangeEndDate"
+                                :pick-type="pickType"
                                 @select="popDateValue"
                                 @pageChange="pageChange"
                                 @onDayMouseenter="onDayMouseenter"
@@ -108,6 +109,7 @@
                                 :min-date="min"
                                 :is-range="true"
                                 :range-end-date="rangeEndDate"
+                                :pick-type="pickType"
                                 @select="popDateValue"
                                 @pageChange="pageChange"
                                 @onDayMouseenter="onDayMouseenter"
@@ -145,6 +147,7 @@
                                 :disabled-date="disabledDate"
                                 :max-date="max"
                                 :min-date="min"
+                                :pick-type="pickType"
                                 @pageChange="pageChange"
                                 @select="popDateValue"
                         ></Calendar>
@@ -256,6 +259,13 @@
                 type: [String, Array],
                 default: function () {
                     return [];
+                }
+            },
+            // 拾取类型  year month day
+            pickType: {
+                type: String,
+                default() {
+                    return 'day';
                 }
             }
         },

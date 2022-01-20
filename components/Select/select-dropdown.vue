@@ -142,7 +142,7 @@
                     }
                 });
                 this.allHide = allHide;
-                console.log('xxxx', allHide);
+                // console.log('xxxx', allHide);
             },
             dropdownMenu(val) {
                 if(!val){
@@ -193,7 +193,7 @@
                     this.end = this.start + this.visibleCount;
                     //此时的偏移量
                     this.startOffset = scrollTop - (scrollTop % this.itemSize);
-                    console.log(this.start, this.end);
+                    // console.log(this.start, this.end);
                 }
             }
         }

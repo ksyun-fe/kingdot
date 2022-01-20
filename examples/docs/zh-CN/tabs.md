@@ -94,7 +94,7 @@
 :::demo #基础用法 ##纵向的标签页。
 ```html
 <template>
- <div>
+ <div class="verticalBox">
  <kd-tabs  v-model='key' type='vertical'>
     <kd-tab value='1'>标签页一</kd-tab>
     <kd-tab value='2'>标签页二</kd-tab>
@@ -111,6 +111,11 @@
         }
    }
 </script>
+<style scope>
+   .verticalBox{
+      height:400px
+   }
+</style>   
 ```
 :::
 ### 标签页的禁用

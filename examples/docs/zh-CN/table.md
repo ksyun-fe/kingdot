@@ -580,7 +580,6 @@
 ```
 :::
 
-:::
 
 ### 筛选列用法
 
@@ -592,9 +591,9 @@
         
         <kd-table :data="data" columnFilter checkboxType="none" :overFlowAuto="false">
             <kd-table-column width="300" title="ID" props="id" />
-            <kd-table-column width="200" title="名称" props="name" />
-            <kd-table-column title="规划" props="tbl" />
-            <kd-table-column title="内容" props="abc" />
+            <kd-table-column width="200" title="名称" props="name" :default-show="false" />
+            <kd-table-column title="规划" props="tbl" :default-show="false" />
+            <kd-table-column title="内容" props="abc" :default-show="false" />
             <kd-table-column title="邮编" props="def" />
             <kd-table-column width="400" title="地址1" props="efg" />
             <kd-table-column title="操作">
@@ -954,6 +953,25 @@
                                                     }
                                                 ]
                                             },
+                                            {
+                                                id: 303, name: 'name62', msg: 'msg42', tbl: 'kafka', abc: 'ccc', def: 'test', efg: 'xdf',
+                                                children: [
+                                                    {
+                                                        id: 3031, name: 'name63', msg: 'msg43', tbl: 'kafka', abc: 'ccc', def: 'test', efg: 'xdf',
+                                                    },
+                                                    {
+                                                        id: 3032, name: 'name63', msg: 'msg43', tbl: 'kafka', abc: 'ccc', def: 'test', efg: 'xdf',
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                id: 304, name: 'name62', msg: 'msg42', tbl: 'kafka', abc: 'ccc', def: 'test', efg: 'xdf',
+                                                children: [
+                                                    {
+                                                        id: 3041, name: 'name63', msg: 'msg43', tbl: 'kafka', abc: 'ccc', def: 'test', efg: 'xdf',
+                                                    }
+                                                ]
+                                            },
                                         ]
                                  },
                                  {
@@ -1081,8 +1099,8 @@
 | scrollBarHeight  | 横向滚动条高度   | string / number  |     —     |    12   |
 | disableRow  | 设置不可选的列   | function  |    —      |    —   |
 | spanMethod  | 合并行列方法   | function  |    —      |    -   |
-| stored  | 是否存储选中的历史   | boolean  |     true / false     |    false   |
-| nodeKey  | 行数据的唯一标识   | string  |     —     |    —   |
+| stored  | 是否存储选中的历史，和nodeKey搭配使用   | boolean  |     true / false     |    false   |
+| nodeKey  | 行数据的唯一标识，和store搭配使用   | string  |     —     |    —   |
 | treeProps  | 渲染嵌套tree数据的配置选项   | object  |     —     |    —   |
 | treeLoad  | 加载tree子节点数据的函数   | function  |     —     |    —   |
 | disableCache  | 是否清除加载tree子节点缓存   | boolean  |     true / false     |    false   |
@@ -1109,7 +1127,7 @@
 | group  | 数据过滤的选项，数组格式，数组中的元素需要有 text 和 value 属性。   | Array[{ label, value }]  |    —      |    —   |
 | filter  | 数据过滤回调   | function  |     —     |    —   |
 | type  | 对应列的类型，如果设置了 expand 则显示为一个可展开的按钮   | string  |     default / expand     |    default   |
-
+| defaultShow  | 和kd-table属性columnFilter配合使用   | boolean  |     true / false     |    true   |
 
 
 

@@ -89,35 +89,37 @@
             </div>
             <div
                     v-show="mode==='select-year'"
-                    class="kd-calendar-table"
+                    class="kd-calendar-table year"
             >
                 <div
                         v-for="(row,index) in yearLists"
                         :key="index"
-                        class="kd-calendar-row"
+                        class="kd-calendar-row wide"
                 >
                     <span
                             v-for="(item,k) in row"
                             :key="k"
                             :class="{
                                 'kd-year': true,
-                                'kd-blue':item === now.year,
-                                'kd-selected': year === item,
+                                'kd-blue':item.year === now.year,
+                                'kd-disabled': item.isDisabled,
+                                'kd-in-range': item.isInRange,
+                                'kd-selected': selectedDate[0] && selectedDate[0].indexOf(item.dateStr) > -1,
                             }"
                             @click="selectYear(item)"
                     >
-                        {{ item }}
+                        {{ item.year }}
                     </span>
                 </div>
             </div>
             <div
                     v-show="mode==='select-month'"
-                    class="kd-calendar-table"
+                    class="kd-calendar-table month"
             >
                 <div
                         v-for="(row,index) in monthLists"
                         :key="index"
-                        class="kd-calendar-row"
+                        class="kd-calendar-row wide"
                 >
                     <span
                             v-for="(item,k) in row"
@@ -125,9 +127,11 @@
                             :class="{
                                 'kd-month': true,
                                 'kd-blue': item.isCurrentMonth,
+                                'kd-disabled': item.isDisabled,
+                                'kd-in-range': item.isInRange,
                                 'kd-selected': selectedDate[0] && selectedDate[0].indexOf(item.dateStr) > -1,
                             }"
-                            @click="selectMonth(item.month)"
+                            @click="selectMonth(item)"
                     >
                         {{ item.month }} 月
                     </span>
@@ -135,7 +139,7 @@
             </div>
             <div
                     v-show="mode==='select-day'"
-                    class="kd-calendar-table"
+                    class="kd-calendar-table day"
             >
                 <div
                         v-for="(row,index) in dayLists"
@@ -235,6 +239,9 @@
             },
             maxDate: {
                 type: String
+            },
+            pickType: {
+                type: String
             }
         },
         data() {
@@ -250,7 +257,7 @@
                 selectedDate: this.value,
                 maxDateValue: this.maxDate,
                 minDateValue: this.minDate,
-                mode: 'select-day'
+                mode: ['year', 'month'].indexOf(this.pickType) > -1 ? `select-${this.pickType}` : 'select-day'
             };
         },
         computed: {
@@ -269,10 +276,17 @@
             yearLists() {
                 const rows = [];
                 const tmpArr = [];
-                let tmpYear = Math.floor(this.moment.year() / 10) * 10;
+                let tmpYear = Moment(String(Math.floor(this.moment.year() / 10) * 10));
                 for (let j = 0; j < 10; j++) {
-                    tmpArr.push(tmpYear);
-                    tmpYear++;
+                    tmpArr.push({
+                        year: tmpYear.year(),
+                        dateStr: tmpYear.format('YYYY'),
+                        isDisabled: this.checkDisabled(tmpYear.format('YYYY'), this.selectedDate[0]) ||
+                            this.maxDateValue && tmpYear.isAfter(Moment(this.maxDateValue), 'year') ||
+                            this.minDateValue && tmpYear.isBefore(Moment(this.minDateValue), 'year')
+                        // isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpYear.isBetween(this.selectedDate[0], rangeEndDate, 'year', '()') || false
+                    });
+                    tmpYear = tmpYear.add(1, 'year');
                 }
                 for (let i = 0; i < 3; i++) {
                     rows.push(tmpArr.slice(i * 4, (i + 1) * 4));
@@ -283,12 +297,22 @@
                 const rows = [];
                 const tmpArr = [];
                 let tmpTime = this.moment.set('month', 0);
+                let rangeEndDate;
+
+                if (this.isRange) {
+                    rangeEndDate = this.selectedDate[1] || !!this.hoverDate && this.hoverDate || this.selectedDate[0];
+                }
+                // console.log('min, max', this.minDateValue, this.maxDateValue, this.selectedDate[0])
                 for (let j = 1; j <= 12; j++) {
                     tmpArr.push({
                         dateStr: tmpTime.format('YYYY-MM'), // 日期字符串
                         month: tmpTime.month() + 1, // 当前第几月. 渲染用
                         isCurrentMonth: tmpTime.month() === Moment().month() &&
-                            tmpTime.year() === Moment().year()
+                            tmpTime.year() === Moment().year(),
+                        isDisabled: this.checkDisabled(tmpTime.format('YYYY-MM'), this.selectedDate[0]) ||
+                            this.maxDateValue && tmpTime.isAfter(Moment(this.maxDateValue), 'month') ||
+                            this.minDateValue && tmpTime.isBefore(Moment(this.minDateValue), 'month'),
+                        isInRange: this.selectedDate.length > 0 && !!rangeEndDate && tmpTime.isBetween(this.selectedDate[0], rangeEndDate, 'day', '()') || false
                     });
 
                     tmpTime = tmpTime.add(1, 'month');
@@ -400,13 +424,27 @@
                 this.moment = this.moment.add(v, unit);
             },
 
-            selectYear(y) {
-                this.moment = Moment(this.moment).set('year', y);
+            selectYear(yearItem) {
+                if (yearItem.isDisabled) return;
+
+                if (this.pickType === 'year') {
+                    this.selectedDate.splice(0, this.selectedDate.length, yearItem.dateStr); // 清空, 然后第一位赋值
+                    this.$emit('select', this.selectedDate, 'calendar');
+                    return;
+                }
+                this.moment = Moment(yearItem.dateStr);
                 this.mode = 'select-month';
             },
 
-            selectMonth(m) {
-                this.moment = Moment(this.moment).set('month', m - 1);
+            selectMonth(monthItem) {
+                if (monthItem.isDisabled) return;
+
+                if (this.pickType === 'month') {
+                    this.selectedDate.splice(0, this.selectedDate.length, monthItem.dateStr); // 清空, 然后第一位赋值
+                    this.$emit('select', this.selectedDate, 'calendar');
+                    return;
+                }
+                this.moment = Moment(monthItem.dateStr);
                 this.mode = 'select-day';
             },
 

@@ -11,6 +11,7 @@
     <kd-drawer 
             v-model='flag' 
             :position='position'
+            @ok='ok()'
              >
     </kd-drawer>
  </div>   
@@ -27,6 +28,9 @@
             show(value){
                 this.position=value;
                 this.flag=true;
+            },
+            ok(){
+                alert('ok');
             }
         }
    }
@@ -39,6 +43,50 @@
 ```
 :::
 
+### 更改出现位置
+:::demo #更改出现位置 ##可自定义上下左右的出现位置
+
+```html
+<template>
+ <div class='box'>
+    <kd-button @click="show(20,0)">点我打开距离上侧20px</kd-button>
+    <kd-button @click="show(0,20)">点我打开距离下侧20px</kd-button>
+    <kd-button @click="show(20,20)">点我打开距离上下20px</kd-button>
+    <kd-drawer 
+            v-model='flag' 
+            :top='top'
+            :left='left'
+            :bottom='bottom'
+            :right='right'
+             >
+    </kd-drawer>
+ </div>   
+</template>   
+<script>
+   export default {
+        data(){
+            return{
+                flag:false,
+                top:'',
+                bottom:'',
+            }
+        },
+        methods:{
+            show(top,bottom){
+                this.flag=true;
+                this.top=top;
+                this.bottom=bottom;
+            }
+        }
+   }
+</script>
+<style scoped lang="stylus">
+    .box .kd-btn{
+        margin-left: 10px
+    }
+</style>
+```
+:::
 ### 自定义header
 :::demo #自定义header ##title可以根据具体需求进行具体设置。
 
@@ -191,8 +239,10 @@
 | okText       | 确认按钮文字                             | string          | —                           | —      |
 | mask         | 是否显示遮罩层                           | boolean         | true / false                | true   |
 | maskClosable | 是否点击遮罩关闭抽屉                     | boolean         | true / false                | false  |
-| width        | 抽屉宽度(最大800px，默认480px)           | string / number | —                           | 480    |
+| width        | 抽屉宽度                               | string / number | —                           | 480    |
 | height       | 抽屉高度(只有上方弹出，下方弹出时可设置) | string / number | —                           | 300    |
+| top       | 抽屉出现位置距离可视区上方距离 | string / number | —                           | 0    |
+| bottom       | 抽屉出现位置距离可视区下方距离 | string / number | —                           | 0    |
 | position     | 抽屉弹出位置                             | string          | lest / bottom / right / top | right  |
 
 

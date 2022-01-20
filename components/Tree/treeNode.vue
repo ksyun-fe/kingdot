@@ -55,7 +55,7 @@
             return tpl
                 ? tpl(node, ctx, parent, index, ctx.props)
                 : _tree.$scopedSlots.default
-                    ? <span>{nodeItem()}{_tree.$scopedSlots.default && _tree.$scopedSlots.default(node)}</span>
+                    ? <div class={'kd-tree-node'}>{nodeItem()}{_tree.$scopedSlots.default && _tree.$scopedSlots.default(node)}</div>
                     : nodeItem()
             ;
         }

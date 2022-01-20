@@ -1,6 +1,6 @@
 {
     "name": "kingdot",
-    "version": "1.0.34",
+    "version": "1.0.37",
     "description": "A UI Components Library For Vue",
     "author": "kingsoft",
     "main": "lib/kingdot.js",
@@ -62,6 +62,7 @@
         "lodash": "^4.17.4",
         "normalize-wheel": "^1.0.1",
         "promise-polyfill": "8.2.0",
+        "tinycolor2": "^1.4.2",
         "ulid": "^2.3.0"
     },
     "devDependencies": {
@@ -164,6 +165,8 @@
         "vue": "^2.6.11",
         "vue-i18n": "^8.18.2",
         "vue-loader": "^15.9.2",
+        "vue-pop-colorpicker": "^1.0.2",
+        "vue-resource": "^1.5.3",
         "vue-router": "^3.3.2",
         "vue-style-loader": "^4.1.2",
         "vue-template-compiler": "^2.6.11",
