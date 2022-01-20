@@ -243,8 +243,12 @@
 | okText       | 确认按钮文字                             | string          | —                           | —      |
 | mask         | 是否显示遮罩层                           | boolean         | true / false                | true   |
 | maskClosable | 是否点击遮罩关闭抽屉                     | boolean         | true / false                | false  |
-| width        | 抽屉宽度(最大800px，默认480px)           | string / number | —                           | 480    |
+| width        | 抽屉宽度                               | string / number | —                           | 480    |
 | height       | 抽屉高度(只有上方弹出，下方弹出时可设置) | string / number | —                           | 300    |
+| top       | 抽屉出现位置距离可视区上方距离 | string / number | —                           | 0    |
+| bottom       | 抽屉出现位置距离可视区下方距离 | string / number | —                           | 0    |
+| let      | 抽屉出现位置距离可视区左方距离 | string / number | —                           | 0    |
+| right      | 抽屉出现位置距离可视区右方距离 | string / number | —                           | 0    |
 | position     | 抽屉弹出位置                             | string          | lest / bottom / right / top | right  |
 
 
