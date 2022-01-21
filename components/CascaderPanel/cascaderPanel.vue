@@ -109,7 +109,7 @@
                 handler(val) {
                     this.checkedValue = val;
                     if (this.filterable) {
-                        this.menus = this.initOptions(this.options);
+                        this.menus = this.initMenus(this.options);
                     }
                 }
             },
@@ -120,9 +120,8 @@
             },
             options: {
                 deep: true,
-                immediate: true,
                 handler(val) {
-                    if (val.length) this.menus = this.initOptions(val);
+                    if (val.length) this.menus = this.initMenus(val);
                 }
             }
         },
@@ -132,7 +131,7 @@
             generateId() {
                 return Math.floor(Math.random() * 10000);
             },
-            initOptions(option = []) {
+            initMenus(option = []) {
                 const menus = [];
                 let options = option.slice();
                 menus.push(options);
@@ -168,16 +167,18 @@
                         // 有默认值时的初始化
                         if (this.checkedValue.length && !type) {
                             const nodeValue = this.checkedValue[this.loadCount];
-                            const flatOpt = this.initOptions(this.menus[0]);
-                            const node = flatOpt[this.loadCount].find(i => i.value === nodeValue);
-                            this.loadCount++;
-                            if (node && !node.isLeaf) {
-                                this.lazyLoadFn(node, () => {
-                                    this.handleExpand(node, this.loadCount);
-                                });
-                            }
-                            if (this.loadCount === this.checkedValue.length) {
-                                this.$emit('setValue');
+                            const flatOpt = this.initMenus(this.menus[0]);
+                            if (flatOpt[this.loadCount]) {
+                                const node = flatOpt[this.loadCount].find(i => i.value === nodeValue);
+                                this.loadCount++;
+                                if (node && !node.isLeaf) {
+                                    this.lazyLoadFn(node, () => {
+                                        this.handleExpand(node, this.loadCount);
+                                    });
+                                }
+                                if (this.loadCount === this.checkedValue.length) {
+                                    this.$emit('setValue');
+                                }
                             }
                         }
                         fn && fn(list);
@@ -212,7 +213,7 @@
                     this.$emit('setValue');
                 });
             },
-            // 根据当前选项获取node的路径
+            // 根据当前选项获取路径
             getPresentPath() {
                 const {checkedValue, menus} = this;
                 const activePath = [];
@@ -232,9 +233,7 @@
             // 是否是叶子节点
             isLeaf(node) {
                 // 懒加载情况
-                if (this.lazy) return node.isLeaf;
-                if (node.children && node.children.length) return false;
-                return true;
+                return node.isLeaf;
             },
             scrollIntoView() {}
         }

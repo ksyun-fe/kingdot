@@ -248,3 +248,22 @@ export function isIe() {
     }
     return result;
 }
+
+export function isEmpty(val) {
+    // val 为 null、undefined 时
+    if (val == null) return true;
+    if (typeof val === 'number') return isNaN(val);
+    if (typeof val === 'boolean' || val instanceof RegExp) return false;
+    if (typeof val === 'string') return val.trim().length === 0;
+
+    if (typeof val === 'object') {
+        if (Object.prototype.toString.call(val) === '[object Array]') return !val.length;
+        if (Object.prototype.toString.call(val) === '[object Object]') return !Object.keys(val).length;
+    }
+
+    return false;
+}
+
+export function isFunction(fn) {
+    return fn && Object.toString.call(fn) === '[object Function]';
+}

@@ -19,14 +19,13 @@
                 expandTrigger="hover"
             >
             </kd-cascader>
-            {{defaultValue}}
         </div>
 </template>
 <script>
 export default{
     data() {
         return{
-            defaultValue: [1, 7, 9],
+            defaultValue: [],
             options: [
                 {
                     label: 'option 1',
@@ -40,23 +39,7 @@ export default{
                         value: 5,
                         children: [{
                             label: 'option 6',
-                            value: 6,
-                            children: [{
-                                label: 'option 6-1',
-                                value: '6-1',
-                                children: [{
-                                    label: 'option 6-2',
-                                    value: '6-2',
-                                    children: [{
-                                        label: 'option 6-3',
-                                        value: '6-3',
-                                        children: [{
-                                            label: 'option 6-4',
-                                            value: '6-4'
-                                        }]
-                                    }]
-                                }]
-                            }]
+                            value: 6
                         }]
                     }, {
                         label: 'option 7',
@@ -77,30 +60,6 @@ export default{
                 {
                     label: 'option 3',
                     value: 3
-                },
-                {
-                    label: 'option 21',
-                    value: 21
-                },
-                {
-                    label: 'option 31',
-                    value: 31
-                },
-                {
-                    label: 'option 22',
-                    value: 22
-                },
-                {
-                    label: 'option 32',
-                    value: 32
-                },
-                {
-                    label: 'option 23',
-                    value: 23
-                },
-                {
-                    label: 'option 33',
-                    value: 33
                 }
             ]
         }
@@ -443,7 +402,6 @@ export default {
                 :lazyMethod="lazyMethod"
             >
             </kd-cascader>
-            {{ defaultValue }}
         </div>
 </template>
 <script>

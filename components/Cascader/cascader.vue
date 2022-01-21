@@ -81,7 +81,7 @@
                             v-show="!filtering"
                             ref="kdPopperPanel"
                             v-model="checkedValue"
-                            :options="options"
+                            :options="nodeOptions"
                             :expandTrigger="expandTrigger"
                             :cascader="this"
                             :lazy="lazy"
@@ -97,6 +97,7 @@
 </template>
 <script>
     import Lang from 'src/mixin/lang.js';
+    import { isEmpty, isFunction } from '../../src/utils/utils.js';
 
     export default {
         name: 'KdCascader',
@@ -178,7 +179,7 @@
                 }
             },
             clearBtnVisible() {
-                return this.clearable && this.isNotEmptyArr(this.checkedValue) && this.inputHovering;
+                return this.clearable && !isEmpty(this.checkedValue) && this.inputHovering;
             }
         },
         watch: {
@@ -213,7 +214,7 @@
                     this.setLabel();
                     return;
                 }
-                if (!this.isNotEmptyArr(this.options)) {
+                if (isEmpty(this.options)) {
                     this.$nextTick(() => {
                         this.$refs.kdPopperPanel.lazyLoadFn();
                         return;
@@ -221,7 +222,7 @@
                 }
             },
             setLabel() {
-                if (this.isNotEmptyArr(this.checkedValue)) {
+                if (!isEmpty(this.checkedValue)) {
                     this.$nextTick(() => {
                         const presentPath = this.$refs.kdPopperPanel.getPresentPath();
                         this.inputLabel = this.getPresentLabel(presentPath);
@@ -257,9 +258,6 @@
             toggleDropDownVisible() {
                 this.dropDownVisible = !this.dropDownVisible;
             },
-            isNotEmptyArr(arr) {
-                return arr && arr.length;
-            },
             handleInput() {
                 this.filtering = this.inputLabel || false;
             },
@@ -267,7 +265,7 @@
                 let method = function (node, label) {
                     return node.labelText.includes(label);
                 };
-                if (this.isFunction(this.filterMethod)) {
+                if (isFunction(this.filterMethod)) {
                     method = this.filterMethod;
                 }
                 this.suggestions = this.flatOpt.filter(item => {
@@ -275,11 +273,33 @@
                     return method(item, this.inputLabel) && item.isLeaf;
                 });
 
-                if (this.isNotEmptyArr(this.checkedValue)) {
+                if (!isEmpty(this.checkedValue)) {
                     this.suggestions.forEach(node => {
                         node.checked = JSON.stringify(this.checkedValue) === JSON.stringify(node.valuePath);
                     });
                 }
+            },
+            // 给所有数据加上valuePath, labelText属性，并扁平化数组
+            initOptions() {
+                this.nodeOptions = this.options.slice();
+                this.formatNodes(this.nodeOptions);
+                this.flatOpt = this.flatNodes(this.nodeOptions.slice());
+            },
+            formatNodes(data) {
+                data.forEach(node => {
+                    node.valuePath = node.valuePath ? node.valuePath.concat([node.value]) : [node.value];
+                    node.labelText = node.labelText ? (node.labelText + ' / ' + node.label) : node.label;
+                    if (node.children && node.children.length) {
+                        node.isLeaf = false;
+                        node.children.forEach(child => {
+                            child.valuePath = child.valuePath ? child.valuePath.concat(node.valuePath) : node.valuePath;
+                            child.labelText = child.labelText ? (child.labelText + ' / ' + node.labelText) : node.labelText;
+                        });
+                        this.formatNodes(node.children);
+                    } else {
+                        node.isLeaf = true;
+                    }
+                });
             },
             // 扁平化所有数据
             flatNodes(data) {
@@ -292,40 +312,11 @@
                     return res;
                 }, []);
             },
-            // 给所有数据加上nodePath, labelPath, valuePath, labelText, 并扁平化数组
-            initOptions() {
-                this.nodeOptions = this.options.slice();
-                this.formatNodes(this.nodeOptions);
-                this.flatOpt = this.flatNodes(this.nodeOptions);
-            },
-            formatNodes(data) {
-                data.forEach(node => {
-                    node.nodePath = node.nodePath ? node.nodePath.concat([node]) : [node];
-                    node.valuePath = node.valuePath ? node.valuePath.concat([node.value]) : [node.value];
-                    node.labelPath = node.labelPath ? node.labelPath.concat([node.label]) : [node.label];
-                    node.labelText = node.labelText ? (node.labelText + ' / ' + node.label) : node.label;
-                    if (node.children && node.children.length) {
-                        node.isLeaf = false;
-                        node.children.forEach(child => {
-                            child.nodePath = child.nodePath ? child.nodePath.concat(node.nodePath) : node.nodePath;
-                            child.valuePath = child.valuePath ? child.valuePath.concat(node.valuePath) : node.valuePath;
-                            child.labelPath = child.labelPath ? child.labelPath.concat(node.labelPath) : node.labelPath;
-                            child.labelText = child.labelText ? (child.labelText + ' / ' + node.labelText) : node.labelText;
-                        });
-                        this.formatNodes(node.children);
-                    } else {
-                        node.isLeaf = true;
-                    }
-                });
-            },
             handleClickSuggest(node) {
                 this.checkedValue = node.valuePath;
                 this.inputLabel = node.labelText;
                 this.filtering = false;
                 this.toggleDropDownVisible();
-            },
-            isFunction(fn) {
-                return fn && Object.toString.call(fn) === '[object Function]';
             },
             handleFocus(e) {
                 this.$emit('focus', e);

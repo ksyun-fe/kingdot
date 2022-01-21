@@ -4,6 +4,9 @@
         functional: true,
         inject: ['panel', 'expandTrigger', 'cascader', 'lazy'],
         props: {
+            nodeId: {
+                type: String
+            },
             node: {
                 type: Object,
                 default() {
@@ -18,7 +21,7 @@
         methods: {
         },
         render(h, ctx) {
-            const { node, level } = ctx.props;
+            const { node, level, nodeId } = ctx.props;
             const { expandTrigger, panel, cascader, lazy } = ctx.injections;
             const isChecked = panel.isActiveNode(node);
 
@@ -61,6 +64,7 @@
                         }
                     }
                     value={node.value}
+                    id={nodeId}
                     on-click={() => {
                         if (expandTrigger === 'click' || panel.isLeaf(node)) selectNode(node, 'click');
                     }}
