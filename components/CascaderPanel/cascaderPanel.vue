@@ -218,7 +218,7 @@
                 const {checkedValue, menus} = this;
                 const activePath = [];
                 if (checkedValue && checkedValue.length) {
-                    let optionsArr = menus && menus.length && menus[0].slice();
+                    let optionsArr = menus && menus.length ? menus[0].slice() : [];
                     checkedValue.forEach(item => {
                         const node = optionsArr.find(i => i.value === item);
                         if (node) {

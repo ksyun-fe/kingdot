@@ -84,6 +84,13 @@ export default{
             <kd-cascader
                 v-model="defaultValue"
                 :options="options"
+                class="trigger-type-demo"
+            >
+            </kd-cascader>
+            <kd-cascader
+                v-model="defaultValue"
+                :options="options"
+                disabled
             >
             </kd-cascader>
         </div>
@@ -137,6 +144,11 @@ export default{
     mounted() {}
 }
 </script>
+<style>
+    .trigger-type-demo {
+        margin-right: 20px;
+    }
+</style>
 
 :::
 
@@ -445,7 +457,7 @@ export default {
 | filterable | 是否可搜索选项 | boolean | - | false
 | filter-method | 自定义搜索方法，第一个参数为节点，第二个参数是搜索值，filterable为true时生效 | function | - | -
 | expand-trigger | 菜单展开方式	 | string | click, hover | click
-| show-all-levels | 是否显示选完整路径 | boolean | - | false
+| show-all-levels | 是否显示选项完整路径 | boolean | - | true
 | lazy | 是否支持动态加载 | boolean | - | false
 | lazy-method | 动态加载方法，第一个参数为当前节点，第二个参数为数据加载完成的回调(必须调用)，lazy为true时生效 | function | - | -
 

@@ -49,48 +49,46 @@
                 />
             </div>
             <template slot="content">
-                <div>
-                    <ul
-                            v-if="filterable"
-                            v-show="filtering"
-                            ref="kdCascaderSuggest"
-                            class="kd-cascader-suggest"
-                            :style="{'width': suggestWidth}"
+                <ul
+                        v-if="filterable"
+                        v-show="filtering"
+                        ref="kdCascaderSuggest"
+                        class="kd-cascader-suggest"
+                        :style="{'width': suggestWidth}"
+                >
+                    <li
+                            v-for="(item, index) in suggestions"
+                            :key="index"
+                            class="kd-cascader-suggest-li"
+                            :class="[{
+                                'is-active': item.checked
+                            }]"
+                            @click="handleClickSuggest(item)"
                     >
-                        <li
-                                v-for="(item, index) in suggestions"
-                                :key="index"
-                                class="kd-cascader-suggest-li"
-                                :class="[{
-                                    'is-active': item.checked
-                                }]"
-                                @click="handleClickSuggest(item)"
-                        >
-                            <span>{{ item.labelText }}</span>
-                            <i
-                                    v-if="item.checked"
-                                    class="kd-icon-success kd-cascader-checked-icon"
-                            ></i>
-                        </li>
-                        <li
-                                v-if="suggestions.length==0"
-                                class="kd-cascader-suggest-no-data"
-                        >无数据</li>
-                    </ul>
-                    <kd-cascader-panel
-                            v-show="!filtering"
-                            ref="kdPopperPanel"
-                            v-model="checkedValue"
-                            :options="nodeOptions"
-                            :expandTrigger="expandTrigger"
-                            :cascader="this"
-                            :lazy="lazy"
-                            :lazyMethod="lazyMethod"
-                            :filterable="filterable"
-                            @setValue="setValue"
-                            @menuUnvisible="toggleDropDownVisible"
-                    ></kd-cascader-panel>
-                </div>
+                        <span>{{ item.labelText }}</span>
+                        <i
+                                v-if="item.checked"
+                                class="kd-icon-success kd-cascader-checked-icon"
+                        ></i>
+                    </li>
+                    <li
+                            v-if="suggestions.length==0"
+                            class="kd-cascader-suggest-no-data"
+                    >无数据</li>
+                </ul>
+                <kd-cascader-panel
+                        v-show="!filtering"
+                        ref="kdPopperPanel"
+                        v-model="checkedValue"
+                        :options="nodeOptions"
+                        :expandTrigger="expandTrigger"
+                        :cascader="this"
+                        :lazy="lazy"
+                        :lazyMethod="lazyMethod"
+                        :filterable="filterable"
+                        @setValue="setValue"
+                        @menuUnvisible="toggleDropDownVisible"
+                ></kd-cascader-panel>
             </template>
         </kd-tooltip>
     </div>
@@ -232,6 +230,7 @@
                 }
             },
             getPresentLabel(path) {
+                if (!path || !path.length) return '';
                 let label = '';
                 if (this.showAllLevels) {
                     path.forEach((item, index) => {
