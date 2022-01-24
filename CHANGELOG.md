@@ -1,5 +1,14 @@
 ## 更新日志
 
+### Optimization
+  * Button
+    * type为none ,text height设为unset
+
+## v1.0.38
+*2022-01-21*
+### New features
+  * Drawer
+    * 解除最大宽度限制，可以更改出现位置
 ## v1.0.37
 *2022-01-20*
 ### New features

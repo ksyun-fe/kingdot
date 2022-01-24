@@ -33,20 +33,41 @@
             季风气候的地带性植被为亚热带常绿阔叶林，亦称之为副热带季风林。
             壳斗科、樟科、山茶科、木兰科和金缕梅科等是常绿阔叶林中的主要树种。典型的亚热带常绿阔叶林中的树木通常具有樟科植物的特征，叶片革质全缘、表面光亮，叶面常迎向阳光照射的方向，因此，常绿阔叶林又有照叶林之称。典型的有樟树、茶树、柑橘树、甘蔗等。
         </kd-collapse-item>
+        <kd-collapse-item>
+            <kd-select v-model="defaultValue" placeholder="请选择内容" filterable>
+                <kd-option value="">空数据</kd-option>
+                <kd-option v-for="item in options" :key="item.value" :title="item.label" :value="item.value">{{ item.label }}
+                </kd-option>
+            </kd-select>
+        </kd-collapse-item>
     </kd-collapse>
 </template>
 <script>
     export default {
         data() {
             return {
-                value: 'features'
+                value: 'features',
+                defaultValue:'',
+                options:[]
             };
         },
         methods: {
             change(value) {
                 console.log(value);
             }
-        }     
+        } ,
+        mounted(){
+            let data = []
+            for(let i = 0; i <= 1000; i++){
+                data.push(
+                    {
+                        value:"item" + i,
+                        label:"item option " + i
+                    }
+                )
+            }
+            this.options = data;
+        }   
     }   
 </script>
 ```
