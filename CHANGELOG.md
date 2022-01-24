@@ -1,5 +1,9 @@
 ## 更新日志
 
+### Optimization
+  * Button
+    * type为none ,text height设为unset
+
 ## v1.0.38
 *2022-01-21*
 ### New features
