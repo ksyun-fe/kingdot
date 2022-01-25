@@ -105,7 +105,9 @@
         props: {
             value: {
                 type: Array,
-                default() { []; }
+                default() {
+                    return [];
+                }
             },
             options: {
                 type: Array
@@ -181,6 +183,14 @@
             }
         },
         watch: {
+            value: {
+                deep: true,
+                immediate: true,
+                handler(val) {
+                    this.checkedValue = val;
+                    this.setLabel();
+                }
+            },
             filtering(val) {
                 if (val) {
                     this.suggestWidth = this.$refs.kdCascader.clientWidth + 'px';
@@ -278,6 +288,10 @@
                 if (!isEmpty(this.checkedValue)) {
                     this.suggestions.forEach(node => {
                         node.checked = JSON.stringify(this.checkedValue) === JSON.stringify(node.valuePath);
+                    });
+                } else {
+                    this.suggestions.forEach(node => {
+                        node.checked = false;
                     });
                 }
             },

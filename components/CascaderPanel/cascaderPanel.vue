@@ -63,7 +63,9 @@
             },
             value: {
                 type: Array,
-                default() { []; }
+                default() {
+                    return [];
+                }
             },
             cascader: {
                 type: Object
@@ -108,7 +110,7 @@
                 immediate: true,
                 handler(val) {
                     this.checkedValue = val;
-                    if (this.filterable) {
+                    if (!this.lazy) {
                         this.menus = this.initMenus(this.options);
                     }
                 }
