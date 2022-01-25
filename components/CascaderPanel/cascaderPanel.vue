@@ -14,7 +14,7 @@
                     class="kd-cascader-menu__list"
                     :index="index"
             >
-                <div v-if="menu.length">
+                <template v-if="menu.length">
                     <cascader-node
                             v-for="(node, idx) in menu"
                             :key="node.uid"
@@ -23,12 +23,13 @@
                             :level="index"
                     >
                     </cascader-node>
-                </div>
+                </template>
             </ul>
         </div>
         <div
                 v-else
                 class="kd-cascader-menu_empty"
+                :style="{width: emptyWidth}"
         >
             暂无数据
         </div>
@@ -50,10 +51,6 @@
                 default() {
                     return [];
                 }
-            },
-            noData: {
-                type: String,
-                default: '暂无数据'
             },
             // 次级菜单的展开方式
             expandTrigger: {
@@ -101,6 +98,9 @@
             };
         },
         computed: {
+            emptyWidth() {
+                return this.cascader.$refs.kdCascader.clientWidth + 'px';
+            }
         },
         watch: {
             value: {
@@ -235,7 +235,32 @@
                 // 懒加载情况
                 return node.isLeaf;
             },
-            scrollIntoView() {}
+            scrollToView() {
+                const menu = this.$refs.menu || [];
+                menu.forEach(item => {
+                    const activeNode = item.querySelector('.kd-cascader-panel-node.is-active');
+                    this.scrollToViewFn(item, activeNode);
+                });
+            },
+            scrollToViewFn(container, target) {
+                if (!target) {
+                    container.scrollTop = 0;
+                    return;
+                }
+                // 计算当前可视区的上下界限值；
+                const viewTop = container.scrollTop;
+                const viewBottom = viewTop + container.clientHeight;
+
+                // 计算当前选择元素的上下高度值
+                const top = target.offsetTop;
+                const bottom = top + target.offsetHeight;
+
+                if (top < viewTop) {
+                    container.scrollTop = top;
+                } else if (bottom > viewBottom) {
+                    container.scrollTop = bottom - container.clientHeight;
+                }
+            }
         }
     };
 </script>

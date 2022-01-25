@@ -44,7 +44,7 @@
             // 右侧图标
             const iconNode = () => {
                 if (!panel.isLeaf(node)) {
-                    if (lazy && node.loading) return <i class='kd-icon-loading1'></i>;
+                    if (lazy && node.loading) return <i class='kd-icon-loading1 kd-cascader-loading'></i>;
                     return <i class='kd-icon-arrow-right'></i>;
                 }
             };

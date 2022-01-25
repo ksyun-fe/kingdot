@@ -191,6 +191,9 @@
                 handler(val) {
                     if (val) {
                         this.filtering = false;
+                        this.$nextTick(() => {
+                            this.$refs.kdPopperPanel.scrollToView();
+                        });
                     } else {
                         if (this.filterable && this.inputLabel && this.filtering) {
                             this.setLabel();

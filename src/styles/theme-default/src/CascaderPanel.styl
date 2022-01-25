@@ -7,7 +7,7 @@
 .kd-cascader-menu__list
     min-width 180px
     border-right 1px solid $-cascader-node-bg-color
-    max-height 200px
+    max-height 216px
     overflow-y auto
 .kd-cascader-panel-node
     padding 8px 32px 8px 16px
@@ -26,3 +26,15 @@
         color $-cascader-disabled-text
         cursor not-allowed
         background-color $-cascader-bg
+.kd-cascader-menu_empty
+    display flex
+    justify-content center
+    align-items center
+    height 36px
+.kd-cascader-loading
+    animation loadingRote 1.2s linear infinite
+@keyframes loadingRote
+    from
+        transform rotate(0)
+    to
+        transform rotate(360deg)
