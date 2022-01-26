@@ -1,5 +1,9 @@
 ## 更新日志
 
+*2022-01-26*
+### bugfix
+  * Select
+    * clearAll重置后的值未根据是否多选
 ### Optimization
   * Button
     * type为none ,text height设为unset
@@ -18,7 +22,7 @@
     * 增加自定义规则描述
 ### fix
   * tabs
-    * vertical类型tabs，伪类高度自适应    
+    * vertical类型tabs，伪类高度自适应
   * Tree
     * 将节点根元素由span改为div
   * Select

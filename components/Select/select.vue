@@ -394,9 +394,10 @@
                 this.$refs.input.focus();
             },
             clear() {
-                this.$emit('input', []);
+                let val = this.multiple ? [] : '';
+                this.$emit('input', val);
                 this.$emit('clear');
-                this.$emit('change', []);
+                this.$emit('change', val);
             },
             handleFocus() {
                 this.$emit('focus');
