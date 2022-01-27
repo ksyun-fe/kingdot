@@ -7,6 +7,8 @@
 ### Optimization
   * Button
     * type为none ,text height设为auto
+  * Docs
+      * Input 修改密码框示例
 
 ## v1.0.38
 *2022-01-21*
