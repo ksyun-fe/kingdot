@@ -6,7 +6,7 @@
     * clearAll重置后的值未根据是否多选
 ### Optimization
   * Button
-    * type为none ,text height设为unset
+    * type为none ,text height设为auto
 
 ## v1.0.38
 *2022-01-21*
