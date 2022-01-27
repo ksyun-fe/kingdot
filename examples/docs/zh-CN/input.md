@@ -114,7 +114,7 @@
         },
         computed: {
             iconClass() {
-                return this.type === 'password' ? 'kd-icon-view' : 'kd-icon-hide'
+                return this.type === 'password' ? 'kd-icon-hide' : 'kd-icon-view';
             }   
         },
         methods: {
