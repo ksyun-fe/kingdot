@@ -27,7 +27,6 @@
                 class="kd-spinner-input"
                 :placeholder="placeholder"
                 :size="size || 'default'"
-                @input="handleChange"
                 @blur="handleBlur"
                 @focus="handleFocus"
                 @keydown.up="addNum"
@@ -224,6 +223,16 @@
                     this.valueFilter(this.value);
                     return;
                 }
+                // 去掉input输入时即刻变化，改为失焦
+                if (value < this.min && this.min !== null) {
+                    value = this.min;
+                }
+                if (value > this.max && this.max !== null) {
+                    value = this.max;
+                }
+                this.valueFilter(value);
+                this.inputValue = value;
+
                 // 输入精准
                 if (this.inputStep && step !== null) {
                     const num = value / step;
@@ -234,7 +243,9 @@
                 if (this.precision !== null) {
                     this.inputValue = this.addPoint(value);
                 }
-                this.$emit('input', this.inputValue);
+                // this.$emit('input', this.inputValue);
+                this.$emit('input', value);
+                this.$emit('change', value, this.value);
                 this.$emit('blur', e);
             },
             addPoint(value) {
