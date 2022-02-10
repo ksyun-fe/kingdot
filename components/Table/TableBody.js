@@ -58,6 +58,9 @@ export default {
         myColgroup
     },
     methods: {
+        clickRow(v,index) {
+            this.table.clickRow(v.originData, index);
+        },
         getCols(item) {
             let columns = [
                 item.props || item.renderColumnFn
@@ -175,6 +178,9 @@ export default {
                             'kd-disabled': rowsItem.disabled
                         }
                     }
+                    on-click={v => {
+                        v.target.tagName == 'TD' && this.clickRow(rowsItem, index)
+                    }}
                 >
                     {
                         this.columns.map((columnItem, cellIndex) => {
