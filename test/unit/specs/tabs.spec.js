@@ -271,7 +271,7 @@ describe('tabs', () => {
         setTimeout(() => {
             expect(
                 vm.$el.querySelector('.kd-tabs-content').style.marginLeft
-            ).to.equal('-121px')
+            ).to.equal('-122px')
             done();
         }, 200);
 
