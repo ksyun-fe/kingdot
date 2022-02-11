@@ -351,7 +351,7 @@ export default {
 ### Form Events {.component__content}
 | 事件名称      | 说明    | 回调参数 |
 |---------- |-------- |---------- |
-| submit | 表单验证通过之后的处理函数 | -
+| submit | 表单验证通过之后的处理函数 (如果希望阻止 form 中 submit 的默认行为，可以在 <kd-form> 标签上添加 @submit.native.prevent) | -
 | validateFail | 表单验证失败之后的处理函数 | -
 
 ### FormItem Attributes {.component__content}
