@@ -1,4 +1,9 @@
 ## 更新日志
+*2022-02-11*
+### Optimization
+* Docs
+    * Form submit事件说明更新
+
 *2022-02-08*
 ### bugfix
   * Spinner
