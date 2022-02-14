@@ -235,8 +235,10 @@
             setLabel() {
                 if (!isEmpty(this.checkedValue)) {
                     this.$nextTick(() => {
-                        const presentPath = this.$refs.kdPopperPanel.getPresentPath();
-                        this.inputLabel = this.getPresentLabel(presentPath);
+                        if (this.$refs.kdPopperPanel) {
+                            const presentPath = this.$refs.kdPopperPanel.getPresentPath();
+                            this.inputLabel = this.getPresentLabel(presentPath);
+                        }
                     });
                 } else {
                     this.inputLabel = '';
@@ -332,6 +334,7 @@
                 this.checkedValue = node.valuePath;
                 this.inputLabel = node.labelText;
                 this.filtering = false;
+                this.$emit('input', this.checkedValue);
                 this.toggleDropDownVisible();
             },
             handleFocus(e) {

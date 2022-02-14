@@ -48,12 +48,12 @@ describe("cascader", () => {
                 value: 3
             }
         ];
-        let defaultValue = [1, 7, 9];
+        let value = [1, 7, 9];
         vm = createVue({
             template: `
                 <kd-cascader
                     ref="cascader"
-                    v-model="defaultValue"
+                    v-model="value"
                     width="300"
                     :options="options"
                     :disabled="disabled"
@@ -66,7 +66,7 @@ describe("cascader", () => {
             data() {
                 return {
                     options,
-                    defaultValue,
+                    value,
                     ...datas,
                 };
             },
@@ -77,60 +77,62 @@ describe("cascader", () => {
         destroyVM(vm);
         destroyVM(tooltip);
     });
-    it("base cascader", () => {
+    it("base cascader", done => {
         vm = createVm();
-        let el = vm.$el.querySelector(".kd-cascader-input");
+        let el = document.querySelector(".kd-cascader-input");
         el.click();
         setTimeout(() => {
             let menu = document.querySelector(".kd-cascader-tooltip");
             expect(menu).to.ok;
-        }, 1000);
+            done();
+        }, 0);
     });
     it("width", () => {
         vm = createVm();
         let width = vm.$refs.cascader.width
         expect(width).to.eql("300");
     });
-    it("default value", () => {
+    it("default value", async () => {
         vm = createVm({showAllLevels: true});
-        setTimeout(() => {
-            const menus = vm.$el.querySelector(".kd-cascader-menu");
-            expect(menus.length).to.equal(3);
-            expect(vm.$el.querySelector("input").value).to.equal("option 1 / option 7 / option 9");
-        }, 1000)
+        await vm.$nextTick().then(() => {
+            expect(document.querySelector("input").value).to.equal("option 1 / option 7 / option 9");
+        })
     });
-    it("disabled", () => {
+    it("disabled", done => {
         vm = createVm({disabled: true});
         let el = document.querySelector(".kd-cascader");
-        el.click();
         expect(el.className).to.includes("kd-cascader-disabled");
+        document.querySelector(".kd-cascader-input").click();
         setTimeout(() => {
             let menu = document.querySelector(".kd-cascader-tooltip");
-            expect(menu.style.display).to.includes("none");
-        }, 1000)
+            expect(menu).to.not.be.ok;
+            done();
+        }, 0);
     });
-    it("clearable", () => {
+    it("clearable", done => {
         vm = createVm({clearable: true});
-        triggerEvent(vm.$el, "mouseenter");
+        let el = document.querySelector(".kd-cascader-input");
+        triggerEvent(el, "mouseenter");
         setTimeout(() => {
-            const clearBtn = vm.$el.querySelector(".kd-cascader-clear-icon");
-            if (vm.value) expect(clearBtn).to.exist;
+            const clearBtn = document.querySelector(".kd-cascader-clear-icon");
+            const input = document.querySelector("input");
+            if (input.value && vm.value) expect(clearBtn).to.exist;
             clearBtn.click();
             setTimeout(() => {
+                expect(input.value).to.equal('');
                 expect(vm.value).to.deep.equal([]);
-                expect(vm.$el.querySelector(".kd-cascader-arrow-icon")).to.exist;
-            }, 1000)
-        }, 1000)
+                expect(document.querySelector(".kd-cascader-arrow-icon")).to.exist;
+                done();
+            }, 0)
+        }, 0)
     });
-    it("just show leaf node", () => {
+    it("just show leaf node", async () => {
         vm = createVm({showAllLevels: false});
-        setTimeout(() => {
-            const menus = vm.$el.querySelector(".kd-cascader-menu");
-            expect(menus.length).to.equal(3);
-            expect(vm.$el.querySelector("input").value).to.equal("option 9");
-        }, 1000)
+        await vm.$nextTick().then(() => {
+            expect(document.querySelector("input").value).to.equal("option 9");
+        })
     });
-    it("filterable", () => {
+    it("filterable", done => {
         vm = createVm({filterable: true});
         const input = vm.$el.querySelector('.kd-cascader-input-inner');
         input.click();
@@ -142,7 +144,8 @@ describe("cascader", () => {
             document.querySelectorAll('.kd-cascader-suggest-li')[0].click();
             setTimeout(() => {
                 expect(vm.value).to.deep.equal([1, 7, 8]);
-            }, 1000);
-        }, 1000)
+                done();
+            }, 0);
+        }, 0)
     });
 });
