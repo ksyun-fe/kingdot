@@ -118,7 +118,7 @@
           <kd-skeleton-item type="button" class="button" />
         </div>
         <div class="table">
-          <kd-skeleton-item type="p" class="tablecolumn" v-for="i in rows" />
+          <kd-skeleton-item type="p" class="tablecolumn" v-for="i in rows" :key="i"/>
         </div>
       </div>
     </div>
