@@ -3,14 +3,13 @@
 .kd-cascader
     position relative
     cursor pointer
-    width 300px
+    width $-cascader-default-width
     display inline-block
-    border-radius $-cascader-radius
-    background $-cascader-bg
-    color $-cascader-base-color
+    background $-cascader-bg-color
 .kd-cascader-input
     position relative
     border 1px solid $-cascader-border-color
+    border-radius 2px
     padding 0 32px 0 16px
     display flex
     align-items center
@@ -26,7 +25,7 @@
     font-size 12px
     border none
     color $-cascader-input-color
-    background $-cascader-bg
+    background $-cascader-bg-color
     cursor pointer        
 .kd-cascader-arrow-icon
     position absolute

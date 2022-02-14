@@ -177,6 +177,14 @@
                     </kd-button-group>
                 </div>
             </div>
+            <h4>Cascader</h4>
+            <div class="">
+                <kd-cascader
+                        v-model="cascaderValue"
+                        :options="cascaderOptions"
+                >
+                </kd-cascader>
+            </div>
             <h4>Checkbox</h4>
             <div class="">
                 <kd-checkbox>checkbox</kd-checkbox>
@@ -184,8 +192,7 @@
             </div>
             <h4>Collapse</h4>
             <div class="">
-                <kd-collapse
-                >
+                <kd-collapse>
                     <kd-collapse-item
                             title="季风气候"
                             value="climate"
@@ -1133,7 +1140,45 @@
                     icon: 'kd-icon-menu-more',
                     key: '3'
                 }],
-                messageTypeList: ['success', 'error', 'info', 'warning', '']
+                messageTypeList: ['success', 'error', 'info', 'warning', ''],
+                cascaderValue: [1, 5, 6],
+                cascaderOptions: [
+                    {
+                        label: 'option 1',
+                        value: 1,
+                        children: [{
+                            label: 'option 4',
+                            value: 4,
+                            children: []
+                        }, {
+                            label: 'option 5',
+                            value: 5,
+                            children: [{
+                                label: 'option 6',
+                                value: 6
+                            }]
+                        }, {
+                            label: 'option 7',
+                            value: 7,
+                            children: [{
+                                label: 'option 8',
+                                value: 8
+                            }, {
+                                label: 'option 9',
+                                value: 9
+                            }]
+                        }]
+                    },
+                    {
+                        label: 'option 2',
+                        value: 2,
+                        disabled: true
+                    },
+                    {
+                        label: 'option 3',
+                        value: 3
+                    }
+                ]
             };
         },
         computed: {
