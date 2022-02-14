@@ -553,7 +553,10 @@ export default {
         //checkbox选中回调
         selectCallback(data){
             this.$emit('select', data)
-        }
+        },
+        clickRow(v, index) {
+            this.$emit("clickRow", v, index);
+        },
     }
 }
 </script>

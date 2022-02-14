@@ -107,24 +107,6 @@ for type in $-btn-types
             color $-button-disabled-color
             border-color $-button-disabled-border-color
 
-//  text types
-for textItem in $-btn-text-types
-    .kd-btn-{textItem}
-        padding 0
-        height unset
-        background transparent
-        border-color transparent
-        color lookup('$-button-'+ textItem +'-color')
-        &:hover
-        &:focus
-            color lookup('$-button-'+ textItem +'-hover-color')
-        &:active
-            color lookup('$-button-'+ textItem +'-active-color')
-    .kd-btn-{textItem}.kd-btn-disabled
-        color $-button-disabled-color
-        border 0 none
-.kd-btn-text
-    display inline-block
 //  加载
 .kd-btn-loading
     pointer-events none
@@ -169,14 +151,31 @@ for s in $-btn-size-types
     .kd-btn-circle.kd-btn-{s}
         padding lookup('$-button-'+ s +'-circle-padding')
         width lookup('$-button-'+ s +'-height')
-    
+
+//  text types
+for textItem in $-btn-text-types
+    .kd-btn-{textItem}
+        padding 0
+        height auto
+        background transparent
+        border-color transparent
+        color lookup('$-button-'+ textItem +'-color')
+        &:hover
+        &:focus
+            color lookup('$-button-'+ textItem +'-hover-color')
+        &:active
+            color lookup('$-button-'+ textItem +'-active-color')
+    .kd-btn-{textItem}.kd-btn-disabled
+        color $-button-disabled-color
+        border 0 none
+.kd-btn-text
+    display inline-block   
     
 .kd-btn-disabled
   color $-button-disabled-color
   cursor not-allowed
   .kd-spin-circle
     stroke #9a9797
-
 .kd-icon-left
     margin-right $-button-icon-text-gutter
 .kd-icon-right

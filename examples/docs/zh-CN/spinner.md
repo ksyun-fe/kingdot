@@ -14,9 +14,9 @@
 export default{
     data(){
         return{
-            value: 1,
-            min: 0,
-            max: 13
+            value: 9,
+            min: 8,
+            max: 22
         }
     },
     methods:{

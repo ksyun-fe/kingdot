@@ -257,7 +257,7 @@
             },
             slect(data){
                 console.log(data)
-            }   
+            }     
         }
     }
 </script>
@@ -272,7 +272,11 @@
 <template>
     <div>
         
-        <kd-table :data="data" :overFlowAuto="false">
+        <kd-table 
+            :data="data"
+            :overFlowAuto="false"
+            @clickRow="clickRow"
+        >
             <kd-table-column width="300" title="ID" props="id" />
             <kd-table-column width="200" title="名称" props="name" />
             <kd-table-column title="规划" props="tbl" />
@@ -310,7 +314,10 @@
         methods: {
             btn(scope){
                 console.log(scope.row, scope.$index)
-            }
+            },
+            clickRow(data, index){
+                console.log(data, index);
+            }   
         }
     }
 </script>
@@ -1104,6 +1111,7 @@
 | treeProps  | 渲染嵌套tree数据的配置选项   | object  |     —     |    —   |
 | treeLoad  | 加载tree子节点数据的函数   | function  |     —     |    —   |
 | disableCache  | 是否清除加载tree子节点缓存   | boolean  |     true / false     |    false   |
+| clickRow  | 点击tr回调   | function  |     -     |    -   |
 
 ### kd-table事件
 | 属性      | 说明    | 参数      |

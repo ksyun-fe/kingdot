@@ -1,8 +1,23 @@
 ## 更新日志
+*2022-02-11*
+### Optimization
+* Docs
+    * Form submit事件说明更新
 
+*2022-02-08*
+### bugfix
+  * Spinner
+    * 修改手动输入时候，同步处理数据，改为失焦后处理数据（问题：存最大最小值时，输入2位数可能会引起数值变化异常）
+## v1.0.39
+*2022-01-27*
+### bugfix
+  * Select
+    * clearAll重置后的值未根据是否多选
 ### Optimization
   * Button
-    * type为none ,text height设为unset
+    * type为none ,text height设为auto
+  * Docs
+      * Input 修改密码框示例
 
 ## v1.0.38
 *2022-01-21*
@@ -18,7 +33,7 @@
     * 增加自定义规则描述
 ### fix
   * tabs
-    * vertical类型tabs，伪类高度自适应    
+    * vertical类型tabs，伪类高度自适应
   * Tree
     * 将节点根元素由span改为div
   * Select
