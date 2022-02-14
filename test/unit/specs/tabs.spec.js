@@ -22,6 +22,7 @@ describe('tabs', () => {
         let classList = vm.$el.classList;
         expect(classList.contains('kd-tabs-default')).to.be.true;
     })
+    
     //创建一个block标签Tabs
     it('create Tabs Tab of block', () => {
         vm = createVue({
