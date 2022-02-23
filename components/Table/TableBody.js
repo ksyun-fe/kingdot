@@ -424,8 +424,8 @@ export default {
                 //如果有children
                 if (item[this.childRenKey] && item[this.childRenKey].length) {
                     nextLevel = this.renderTreeTr(item, nCount, step);
+                    trList = trList.concat(nextLevel);
                 }
-                trList = trList.concat(nextLevel);
             });
             return trList;
         },
