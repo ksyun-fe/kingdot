@@ -12,7 +12,7 @@
                     v-if="!calendar"
                     v-model="inputDateString"
                     :placeholder="placeholder"
-                    :readonly="range"
+                    :readonly="false"
                     :disabled="disabled"
                     :class="{
                         'kd-datepicker-input': true,
@@ -347,9 +347,30 @@
                     this.isTooltipShow = false;
                 }
             },
+            parseDateStr(dateStr) {
+                let dateArr = [];
+                const separatorList = ['~', '-', '/', '.', ' '];
+                const tmpArr = dateStr.split(' ').filter(x => !!x && separatorList.indexOf(x) === -1);
+
+                dateArr = tmpArr.filter(x => Moment(x).isValid()).map(date => {
+                    return Moment(date).format(this.formatString);
+                });
+                // 排序
+                if (Moment(dateArr[0]).isAfter(Moment(dateArr[1]))) {
+                    [dateArr[0], dateArr[1]] = [dateArr[1], dateArr[0]];
+                }
+                return dateArr;
+            },
             // input 回车和blur事件触发
             setDate(inputValue) {
                 if (this.range) {
+                    const dateArr = this.parseDateStr(inputValue);
+                    if (dateArr.filter(x => x === 'Invalid Date').length > 0) {
+                        this.$message.error('无法解析范围日期字符串');
+                        return;
+                    }
+                    this.dateValue = dateArr;
+                    this.emitChange();
                     return;
                 }
                 if (!inputValue.trim()) {
@@ -361,11 +382,9 @@
                     this.inputDateString = 'Invalid Date';
                     return;
                 }
-                // 都验证通过了
+                // 验证通过了
                 this.dateValue = [inputValue];
                 this.emitChange();
-                // this.$refs.calendar.jumpToDate(inputValue, 'input');
-                // this.$emit('input', inputValue); // 通过 input 改变时间.
             },
             rapidSelect(aimDate) { // value, unit
                 aimDate = typeof aimDate === 'function' ? aimDate() : aimDate;
