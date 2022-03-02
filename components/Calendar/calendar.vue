@@ -399,8 +399,9 @@
 
         methods: {
             refreshCalendar() {
-                this.moment = this.value[0]
-                    ? this.isEndCalendar ? Moment(this.value[0]).add(1, 'month') : Moment(this.value[0]) // 第二日历 默认渲染下个月的日期
+                const lastDate = this.value[this.value.length - 1];
+                this.moment = lastDate
+                    ? this.isEndCalendar ? Moment(lastDate).add(1, 'month') : Moment(lastDate) // 第二日历 默认渲染下个月的日期
                     : this.isEndCalendar ? Moment().add(1, 'month') : Moment();
             },
             setMode(mode) {

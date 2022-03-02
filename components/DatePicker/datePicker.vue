@@ -143,6 +143,7 @@
                         <Calendar
                                 ref="calendar"
                                 v-model="dateValue"
+                                :is-multiple="multiple"
                                 :format-string="formatString"
                                 :disabled-date="disabledDate"
                                 :max-date="max"
@@ -197,6 +198,13 @@
             },
             // 是否是范围区间
             range: {
+                type: Boolean,
+                default() {
+                    return false;
+                }
+            },
+            // 是否为多选模式
+            multiple: {
                 type: Boolean,
                 default() {
                     return false;
@@ -294,11 +302,15 @@
                         }
                         this.inputDateString = v;
                         this.dateValue = [v];
-                    } else if (Array.isArray(v)) {
+                    } else if (this.range && !this.multiple) {
                         const tmpArr = v.filter(timeStr => Moment(timeStr).isValid());
                         v = tmpArr.length > 2 ? tmpArr.slice(0, 2) : tmpArr;
                         this.inputDateString = v.join(' ~ ');
                         this.dateValue = v;
+                    } else if (!this.range && this.multiple) {
+                        const tmpArr = v.filter(timeStr => Moment(timeStr).isValid());
+                        this.inputDateString = tmpArr.join(',');
+                        this.dateValue = tmpArr;
                     }
                 }
             },
@@ -340,30 +352,41 @@
             // 应该用 watch 监听value, 然后改变 inputDateString. 就没有select 的事情了 吗??
             popDateValue(dateArr, source = 'calendar') {
                 if (this.range && dateArr.length < 2) return;
+
                 this.dateValue = dateArr;
                 this.emitChange();
 
-                if (source !== 'shortcuts') {
+                if (source !== 'shortcuts' && !this.multiple) {
                     this.isTooltipShow = false;
                 }
             },
             parseDateStr(dateStr) {
                 let dateArr = [];
-                const separatorList = ['~', '-', '/', '.', ' '];
-                const tmpArr = dateStr.split(' ').filter(x => !!x && separatorList.indexOf(x) === -1);
+                const separatorList = ['~', '-', ',', '/', '.', ' '];
 
-                dateArr = tmpArr.filter(x => Moment(x).isValid()).map(date => {
-                    return Moment(date).format(this.formatString);
-                });
-                // 排序
-                if (Moment(dateArr[0]).isAfter(Moment(dateArr[1]))) {
-                    [dateArr[0], dateArr[1]] = [dateArr[1], dateArr[0]];
+                if (this.range) {
+                    const tmpArr = dateStr.split(' ').filter(x => !!x && separatorList.indexOf(x) === -1);
+
+                    dateArr = tmpArr.filter(x => Moment(x).isValid()).map(date => {
+                        return Moment(date).format(this.formatString);
+                    });
+                    // 排序
+                    if (Moment(dateArr[0]).isAfter(Moment(dateArr[1]))) {
+                        [dateArr[0], dateArr[1]] = [dateArr[1], dateArr[0]];
+                    }
+                    return dateArr;
+                } else if (this.multiple) {
+                    const tmpArr = dateStr.split(',').filter(x => !!x && separatorList.indexOf(x) === -1);
+
+                    dateArr = tmpArr.filter(x => Moment(x).isValid()).map(date => {
+                        return Moment(date).format(this.formatString);
+                    });
+                    return dateArr;
                 }
-                return dateArr;
             },
             // input 回车和blur事件触发
             setDate(inputValue) {
-                if (this.range) {
+                if (this.range || this.multiple) {
                     const dateArr = this.parseDateStr(inputValue);
                     if (dateArr.filter(x => x === 'Invalid Date').length > 0) {
                         this.$message.error('无法解析范围日期字符串');
@@ -420,7 +443,7 @@
                 let v = this.dateValue;
                 if (this.range) {
                     v = (v && v.length < 2) ? [] : v;
-                } else {
+                } else if (!this.multiple) {
                     v = v[0] || '';
                 }
 
