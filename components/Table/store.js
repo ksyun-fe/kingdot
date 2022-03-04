@@ -37,7 +37,7 @@ const parseData = function (
             originData: item,
             checked: _checked,
             showExpand: false,
-            showTree: false,
+            showTree: item.showTree || false,
             key: ulid(),
             disabled: disableRow(item, index)
         });

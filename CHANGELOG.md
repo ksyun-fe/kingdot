@@ -1,10 +1,16 @@
 ## 更新日志
 
 ## v1.0.43
-*2022-02-24*
+*2022-03-04*
+### New features
+  * Table
+    * 增加table tree 默认展开功能
+    
 ### bugfix
   * Table
     * fixHeader 修复计算动态高度bug
+    * 零时key导致slot插入别的组件更新状态导致 tr重新渲染
+      
 
 ## v1.0.42
 *2022-02-23*
