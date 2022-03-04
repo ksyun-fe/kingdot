@@ -308,7 +308,6 @@ export default {
         },
         //包含tree的tr
         renderTreeTr(rowsItem, index, step) {
-            console.log(rowsItem)
             if (!this.childRenKey) return [];
             let trList = [];
             let nextLevel = [];
