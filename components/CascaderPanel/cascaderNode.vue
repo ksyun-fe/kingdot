@@ -2,7 +2,7 @@
     export default {
         name: 'KdCascaderNode',
         functional: true,
-        inject: ['panel', 'expandTrigger', 'cascader', 'lazy'],
+        inject: ['panel', 'expandTrigger', 'cascader', 'lazy', 'labelName', 'valueName'],
         props: {
             nodeId: {
                 type: String
@@ -22,9 +22,8 @@
         },
         render(h, ctx) {
             const { node, level, nodeId } = ctx.props;
-            const { expandTrigger, panel, cascader, lazy } = ctx.injections;
+            const { expandTrigger, panel, cascader, lazy, labelName, valueName } = ctx.injections;
             const isChecked = panel.isActiveNode(node, level);
-
             // 点击节点
             const selectNode = (node, type) => {
                 if (node.disabled || node.loading) return;
@@ -52,7 +51,7 @@
             const labelNode = () => {
                 return cascader.$scopedSlots.default
                     ? <span class='kd-cascader-node__label'>{ cascader.$scopedSlots.default && cascader.$scopedSlots.default(node) }</span>
-                    : <span class='kd-cascader-node__label'>{ node.label }</span>;
+                    : <span class='kd-cascader-node__label'>{ node[labelName] }</span>;
             };
             return (
                 <li
@@ -63,7 +62,7 @@
                             'is-disabled': node.disabled
                         }
                     }
-                    value={node.value}
+                    value={node[valueName]}
                     id={nodeId}
                     on-click={() => {
                         if (expandTrigger === 'click' || panel.isLeaf(node)) selectNode(node, 'click');

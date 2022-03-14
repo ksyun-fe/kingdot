@@ -36,7 +36,6 @@
     </div>
 </template>
 <script>
-    import Lang from 'src/mixin/lang.js';
     import CascaderNode from './cascaderNode.vue';
 
     export default {
@@ -44,7 +43,7 @@
         components: {
             CascaderNode
         },
-        mixins: [Lang],
+        mixins: [],
         props: {
             options: {
                 type: Array,
@@ -70,6 +69,16 @@
             },
             lazyMethod: {
                 type: Function
+            },
+            // 展示字段name
+            labelName: {
+                type: String,
+                default: 'label'
+            },
+            // 取值字段name
+            valueName: {
+                type: String,
+                default: 'value'
             }
         },
         provide() {
@@ -77,7 +86,9 @@
                 panel: this,
                 cascader: this.cascader,
                 expandTrigger: this.expandTrigger,
-                lazy: this.lazy
+                lazy: this.lazy,
+                labelName: this.labelName,
+                valueName: this.valueName
             };
         },
         data() {
@@ -130,7 +141,7 @@
                 menus.push(options);
                 if (this.value.length) {
                     this.value.forEach(item => {
-                        const node = options.find(i => i.value === item);
+                        const node = options.find(i => i[this.valueName] === item);
                         options = node && node.children || [];
                         if (options.length) menus.push(options);
                     });
@@ -168,7 +179,7 @@
                             const nodeValue = this.checkedValue[this.loadCount];
                             const flatOpt = this.initMenus(this.menus[0]);
                             if (flatOpt[this.loadCount]) {
-                                const node = flatOpt[this.loadCount].find(i => i.value === nodeValue);
+                                const node = flatOpt[this.loadCount].find(i => i[this.valueName] === nodeValue);
                                 this.loadCount++;
                                 if (node && !node.isLeaf) {
                                     this.lazyLoadFn(node, () => {
@@ -205,7 +216,7 @@
                 path.push(node);
                 this.activePath = path;
                 // 更新当前被选择列表
-                const val = this.activePath.map(i => i.value);
+                const val = this.activePath.map(i => i[this.valueName]);
                 this.checkedValue = val;
                 this.$nextTick(() => {
                     this.$emit('menuUnvisible');
@@ -219,7 +230,7 @@
                 if (checkedValue && checkedValue.length) {
                     let optionsArr = menus && menus.length ? menus[0].slice() : [];
                     checkedValue.forEach(item => {
-                        const node = optionsArr.find(i => i.value === item);
+                        const node = optionsArr.find(i => i[this.valueName] === item);
                         if (node) {
                             activePath.push(node);
                             optionsArr = node.children || [];

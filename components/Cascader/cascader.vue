@@ -85,6 +85,8 @@
                         :cascader="this"
                         :lazy="lazy"
                         :lazyMethod="lazyMethod"
+                        :labelName="labelName"
+                        :valueName="valueName"
                         @setValue="setValue"
                         @menuUnvisible="toggleDropDownVisible"
                 ></kd-cascader-panel>
@@ -93,15 +95,14 @@
     </div>
 </template>
 <script>
-    import Lang from 'src/mixin/lang.js';
     import { isEmpty, isFunction } from '../../src/utils/utils.js';
-    import { cloneDeep } from 'lodash';
+    import cloneDeep from 'lodash/cloneDeep';
 
     export default {
         name: 'KdCascader',
         components: {
         },
-        mixins: [Lang],
+        mixins: [],
         props: {
             value: {
                 type: Array,
@@ -150,6 +151,16 @@
             },
             filterMethod: {
                 type: Function
+            },
+            // 展示字段name
+            labelName: {
+                type: String,
+                default: 'label'
+            },
+            // 取值字段name
+            valueName: {
+                type: String,
+                default: 'value'
             }
         },
         data() {
@@ -256,11 +267,11 @@
                 let label = '';
                 if (this.showAllLevels) {
                     path.forEach((item, index) => {
-                        label += (index ? ' / ' : '') + item.label;
+                        label += (index ? ' / ' : '') + item[this.labelName];
                     });
                 } else {
                     const item = path.slice(-1);
-                    label = item[0].label;
+                    label = item[0][this.labelName];
                 }
                 return label;
             },
@@ -312,8 +323,8 @@
             },
             formatNodes(data) {
                 data.forEach(node => {
-                    node.valuePath = node.valuePath ? node.valuePath.concat([node.value]) : [node.value];
-                    node.labelText = node.labelText ? (node.labelText + ' / ' + node.label) : node.label;
+                    node.valuePath = node.valuePath ? node.valuePath.concat([node[this.valueName]]) : [node[this.valueName]];
+                    node.labelText = node.labelText ? (node.labelText + ' / ' + node[this.labelName]) : node[this.labelName];
                     node.uid = Math.floor(Math.random() * 10000);
                     if (node.children && node.children.length) {
                         node.isLeaf = false;
