@@ -1,5 +1,10 @@
 ## 更新日志
 
+*2022-03-14*
+### bugfix
+  * Tooltip
+    * popper增加点击阻止冒泡
+
 *2022-03-04*
 ### bugfix
   * Tree
