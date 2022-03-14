@@ -85,7 +85,6 @@
                         :cascader="this"
                         :lazy="lazy"
                         :lazyMethod="lazyMethod"
-                        :filterable="filterable"
                         @setValue="setValue"
                         @menuUnvisible="toggleDropDownVisible"
                 ></kd-cascader-panel>
@@ -96,6 +95,7 @@
 <script>
     import Lang from 'src/mixin/lang.js';
     import { isEmpty, isFunction } from '../../src/utils/utils.js';
+    import { cloneDeep } from 'lodash';
 
     export default {
         name: 'KdCascader',
@@ -216,7 +216,7 @@
             }
         },
         mounted() {
-            this.options && this.initOptions();
+            if (!isEmpty(this.options)) this.initOptions();
             this.initData();
         },
         methods: {
@@ -225,6 +225,7 @@
                     this.setLabel();
                     return;
                 }
+                // 懒加载情况
                 if (isEmpty(this.options)) {
                     this.$nextTick(() => {
                         this.$refs.kdPopperPanel.lazyLoadFn();
@@ -240,6 +241,12 @@
                             this.inputLabel = this.getPresentLabel(presentPath);
                         }
                     });
+                    // const present = this.flatOpt.find(i => arrayEquels(i.valuePath, this.checkedValue)) || {};
+                    // if (this.showAllLevels) {
+                    //     this.inputLabel = present.labelText;
+                    // } else {
+                    //     this.inputLabel = present.label;
+                    // }
                 } else {
                     this.inputLabel = '';
                 }
@@ -299,14 +306,15 @@
             },
             // 给所有数据加上valuePath, labelText属性，并扁平化数组
             initOptions() {
-                this.nodeOptions = this.options.slice();
+                this.nodeOptions = cloneDeep(this.options);
                 this.formatNodes(this.nodeOptions);
-                this.flatOpt = this.flatNodes(this.nodeOptions.slice());
+                this.flatOpt = this.flatNodes(cloneDeep(this.nodeOptions));
             },
             formatNodes(data) {
                 data.forEach(node => {
                     node.valuePath = node.valuePath ? node.valuePath.concat([node.value]) : [node.value];
                     node.labelText = node.labelText ? (node.labelText + ' / ' + node.label) : node.label;
+                    node.uid = Math.floor(Math.random() * 10000);
                     if (node.children && node.children.length) {
                         node.isLeaf = false;
                         node.children.forEach(child => {
@@ -335,6 +343,7 @@
                 this.inputLabel = node.labelText;
                 this.filtering = false;
                 this.$emit('input', this.checkedValue);
+                this.$emit('change', this.checkedValue);
                 this.toggleDropDownVisible();
             },
             handleFocus(e) {

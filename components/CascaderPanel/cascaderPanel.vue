@@ -52,14 +52,8 @@
                     return [];
                 }
             },
-            // 次级菜单的展开方式
             expandTrigger: {
                 type: String
-            },
-            // 是否显示选中值的完整路径
-            showAllLevels: {
-                type: Boolean,
-                default: true
             },
             value: {
                 type: Array,
@@ -76,10 +70,6 @@
             },
             lazyMethod: {
                 type: Function
-            },
-            filterable: {
-                type: Boolean,
-                default: false
             }
         },
         provide() {
@@ -107,7 +97,6 @@
         watch: {
             value: {
                 deep: true,
-                immediate: true,
                 handler(val) {
                     this.checkedValue = val;
                     if (!this.lazy) {
@@ -115,10 +104,12 @@
                     }
                 }
             },
-            checkedValue(val) {
-                this.getPresentPath();
-                this.$emit('input', val);
-                this.$emit('change', val);
+            checkedValue: {
+                deep: true,
+                handler(val) {
+                    this.getPresentPath();
+                    this.$emit('input', val);
+                }
             },
             options: {
                 deep: true,
@@ -146,8 +137,9 @@
                 }
                 return menus;
             },
-            isActiveNode(node) {
-                return this.activePath.includes(node);
+            isActiveNode(node, level) {
+                if (!this.activePath.length || !this.activePath[level]) return false;
+                return this.activePath[level].uid === node.uid;
             },
             lazyLoadFn(node, fn, type) {
                 if (!node) {
@@ -158,6 +150,11 @@
                 const resolve = list => {
                     if (list && list.length) {
                         const parent = node.root ? null : node;
+                        list.forEach(i => {
+                            i.uid = Math.floor(Math.random() * 10000);
+                            i.level = parent ? parent.level + 1 : 1;
+                            i.loaded = i.loaded || i.isLeaf;
+                        });
                         if (parent) {
                             parent.children = list;
                         } else {
@@ -234,7 +231,6 @@
             },
             // 是否是叶子节点
             isLeaf(node) {
-                // 懒加载情况
                 return node.isLeaf;
             },
             scrollToView() {

@@ -23,7 +23,7 @@
         render(h, ctx) {
             const { node, level, nodeId } = ctx.props;
             const { expandTrigger, panel, cascader, lazy } = ctx.injections;
-            const isChecked = panel.isActiveNode(node);
+            const isChecked = panel.isActiveNode(node, level);
 
             // 点击节点
             const selectNode = (node, type) => {
