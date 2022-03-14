@@ -321,7 +321,7 @@ export default {
         tableBodyHeight() {
             return this.isUseOutHeight
                 ?
-                this.useHeight - this.headerHeight - this.scrollBarHeight - 2 + 'px'
+                parseInt(this.useHeight) - this.headerHeight - this.scrollBarHeight - 2 + 'px'
                 :
                 '';
         }

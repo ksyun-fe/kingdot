@@ -13,7 +13,6 @@
                     v-model="inputDateString"
                     :placeholder="placeholder"
                     :disabled="disabled"
-                    readonly
                     :class="{
                         'kd-datetime-picker-input': true,
                         'range': range
@@ -440,44 +439,35 @@
                     this.dateTimeValue = [];
                 }
             },
+            parseDatetimeStr(datetimeStr) {
+                // const separatorList = ['~', '-', '/', '.', ' '];
+                let datetimeArr = [];
+                const delimiter = '~';
+                const tmpArr = datetimeStr.split(delimiter);
+
+                datetimeArr = tmpArr.map(date => {
+                    if (Moment(date).isValid() === false) {
+                        return 'Invalid Date';
+                    }
+                    return Moment(date).format('YYYY-MM-DD HH:mm:ss');
+                });
+                // 排序
+                if (Moment(datetimeArr[0]).isAfter(Moment(datetimeArr[1]))) {
+                    [datetimeArr[0], datetimeArr[1]] = [datetimeArr[1], datetimeArr[0]];
+                }
+                return datetimeArr;
+            },
             // input 回车和blur事件触发
             setDate(inputValue) {
                 if (this.range) {
-                    const charArr = ['~', '-'];
-                    let delimiter = '';
-                    // 解析范围的日期时间字符串
-                    // ['~', '-', ' '].forEach(char => {
-                    for (let i = 0; i < charArr.length; i++) {
-                        const char = charArr[i];
-                        // 分隔符只有一个
-                        if (inputValue.indexOf(char) > -1 && inputValue.indexOf(char) === inputValue.lastIndexOf(char)) {
-                            delimiter = char;
-                            break;
-                        }
-                    }
-                    // console.log('delimiter', delimiter);
-                    if (!delimiter) {
-                        return this.$message.error("无法解析范围时间字符串, 建议以'~', '-'作为时间点分隔符");
-                    }
-                    let isValid = true;
-                    const dateTimeArr = inputValue.split(delimiter).map(x => {
-                        if (Moment(x).isValid() === false) {
-                            isValid = false;
-                        }
-                        return Moment(x).format('YYYY-MM-DD hh:mm:ss');
-                    });
-                    if (!isValid) {
-                        this.dateTimeValue = [];
-                        this.emitChange(); // 是否需要清空
-                        this.inputDateString = 'Invalid Date';
+                    const dateTimeArr = this.parseDatetimeStr(inputValue);
+                    if (dateTimeArr.filter(x => x === 'Invalid Date').length > 0) {
+                        this.$message.error('无法解析范围日期字符串');
+                        return;
                     }
 
-                    if (Moment(dateTimeArr[0]).isAfter(Moment(dateTimeArr[1]))) { // 左时间晚于右时间
-                        const tmp = dateTimeArr.pop();
-                        dateTimeArr.unshift(tmp);
-                    }
                     this.dateTimeValue = dateTimeArr;
-                    this.emitChange();  // TODO:需要日历翻页
+                    this.emitChange();
                 } else { // 单点时间
                     if (!inputValue.trim()) {
                         this.inputDateString = '';
@@ -579,7 +569,7 @@
                             aimDateTime.unshift(tmp);
                         }
                         newDates = aimDateTime.map(x => {
-                            return Moment(x).format('YYYY-MM-DD hh:mm:ss'); // TODO: 加上精度之后, formatStr 格式变化
+                            return Moment(x).format('YYYY-MM-DD HH:mm:ss'); // TODO: 加上精度之后, formatStr 格式变化
                         });
                         this.mergeDateTime(newDates, 'date');
                     }
@@ -587,10 +577,10 @@
                 } else { // 时间点模式
                     let newDateTime = '';
                     if (!!aimDateTime && typeof aimDateTime === 'string') { // 空字符串? 需要单独逻辑
-                        newDateTime = Moment(aimDateTime).format('YYYY-MM-DD hh:mm:ss');
+                        newDateTime = Moment(aimDateTime).format('YYYY-MM-DD HH:mm:ss');
                     }
                     if (Array.isArray(aimDateTime) && aimDateTime.length === 1) {
-                        newDateTime = Moment(aimDateTime[0]).format('YYYY-MM-DD hh:mm:ss');
+                        newDateTime = Moment(aimDateTime[0]).format('YYYY-MM-DD HH:mm:ss');
                     }
                     this.dateTimeValue = [newDateTime];
                 }

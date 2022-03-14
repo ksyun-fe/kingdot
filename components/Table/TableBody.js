@@ -320,13 +320,14 @@ export default {
                 item[this.childRenKey] == undefined && this.$set(item, this.childRenKey, []);
                 item.showTree == undefined && this.$set(item, "showTree", false);
                 item.disabled == undefined && this.$set(item, "disabled", rowsItem.disabled);
+                item.key == undefined && this.$set(item, "key", rowsItem.key + '_' + nCount);
 
                 let hasChildren = item[this.childRenKey] && item[this.childRenKey].length;
                 trList.push(
                     rowsItem.showTree || item.showTree
                         ?
                         (
-                            <tr key={Math.random()}
+                            <tr key={item.key}
                                 class={
                                     {
                                         'kd-disabled': item.disabled
@@ -424,8 +425,8 @@ export default {
                 //如果有children
                 if (item[this.childRenKey] && item[this.childRenKey].length) {
                     nextLevel = this.renderTreeTr(item, nCount, step);
+                    trList = trList.concat(nextLevel);
                 }
-                trList = trList.concat(nextLevel);
             });
             return trList;
         },

@@ -160,22 +160,20 @@
             },
             emitEventToParent(eventName, ...args) {
                 if (!eventName) return;
-                if (eventName !== 'node-mouse-over') {
-                    switch (eventName) {
-                        case 'node-click':
-                        case 'node-select':
-                        case 'node-check':
-                        case 'node-mouse-over':
-                        case 'drag-node-end':
-                        case 'del-node':
-                        case 'node-expand':
-                            this.$emit(eventName, ...args);
-                            break;
-                        default:
-                            throw new ReferenceError(
-                                `the event of ${eventName} is not effective`
-                            );
-                    }
+                switch (eventName) {
+                    case 'node-click':
+                    case 'node-select':
+                    case 'node-check':
+                    case 'node-mouse-over':
+                    case 'drag-node-end':
+                    case 'del-node':
+                    case 'node-expand':
+                        this.$emit(eventName, ...args);
+                        break;
+                    default:
+                        throw new ReferenceError(
+                            `the event of ${eventName} is not effective`
+                        );
                 }
             },
             // set node attr
