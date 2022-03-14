@@ -5,6 +5,7 @@
                 'kd-dragging': moveFlag,
                 'kd-disabled': disabled
             }"
+            @click.stop
     >
         <div
                 class="kd-wrapper"
@@ -24,7 +25,7 @@
                         'kd-scroll-item-active': value === item.value,
                         'kd-scroll-item-disabled': isItemDisabled(item)
                     }"
-                    @click="clickHandler(item, index)"
+                    @click.stop="clickHandler(item, index)"
             >
                 {{ item.label }}
             </div>

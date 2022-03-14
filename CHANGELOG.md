@@ -1,5 +1,9 @@
 ## 更新日志
 
+### Optimization
+* TimePicker & DatePicker
+    * click 事件 阻止事件冒泡
+
 *2022-03-04*
 ### bugfix
   * Tree

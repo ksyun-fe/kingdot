@@ -1,5 +1,8 @@
 <template>
-    <div class="kd-calendar-wrapper">
+    <div
+            class="kd-calendar-wrapper"
+            @click.stop
+    >
         <!-- 头部放置翻页按钮, 展示当前月份 -->
         <div
                 v-show="mode==='select-year' || mode==='select-month'"
@@ -8,12 +11,12 @@
             <i
                     v-show="mode==='select-year'"
                     class="kd-icon-date-forward page-left-icon"
-                    @click="setMonthOrYear('Year', -10)"
+                    @click.stop="setMonthOrYear('Year', -10)"
             ></i>
             <i
                     v-show="mode==='select-month'"
                     class="kd-icon-date-forward page-left-icon"
-                    @click="setMonthOrYear('Year', -1)"
+                    @click.stop="setMonthOrYear('Year', -1)"
             ></i>
             <span
                     v-show="mode==='select-year'"
@@ -25,18 +28,18 @@
                     :class="{
                         'kd-calendar-text-btn': !isRange,
                     }"
-                    @click="setMode('select-year')"
+                    @click.stop="setMode('select-year')"
             >{{ year }} 年
             </span>
             <i
                     v-show="mode==='select-year'"
                     class="kd-icon-date-forward page-right-icon"
-                    @click="setMonthOrYear('Year',10)"
+                    @click.stop="setMonthOrYear('Year',10)"
             ></i>
             <i
                     v-show="mode==='select-month'"
                     class="kd-icon-date-forward page-right-icon"
-                    @click="setMonthOrYear('Year',1)"
+                    @click.stop="setMonthOrYear('Year',1)"
             ></i>
         </div>
         <div
@@ -46,34 +49,34 @@
             <i
                     v-if="!isRange || isRange && !isEndCalendar"
                     class="kd-icon-skip-forward page-left-icon"
-                    @click="setMonthOrYear('Year', -1)"
+                    @click.stop="setMonthOrYear('Year', -1)"
             ></i>
             <i
                     v-if="!isRange || isRange && !isEndCalendar"
                     class="kd-icon-date-forward page-left-icon"
-                    @click="setMonthOrYear('Month', -1)"
+                    @click.stop="setMonthOrYear('Month', -1)"
             ></i>
             <span
                     :class="{
                         'kd-calendar-text-btn': !isRange,
                     }"
-                    @click="setMode('select-year')"
+                    @click.stop="setMode('select-year')"
             >{{ year }} 年 </span>
             <span
                     :class="{
                         'kd-calendar-text-btn': !isRange,
                     }"
-                    @click="setMode('select-month')"
+                    @click.stop="setMode('select-month')"
             >{{ month }} 月</span>
             <i
                     v-if="!isRange || isRange && isEndCalendar"
                     class="kd-icon-skip-forward page-right-icon"
-                    @click="setMonthOrYear('Year',1)"
+                    @click.stop="setMonthOrYear('Year',1)"
             ></i>
             <i
                     v-if="!isRange || isRange && isEndCalendar"
                     class="kd-icon-date-forward page-right-icon"
-                    @click="setMonthOrYear('Month',1)"
+                    @click.stop="setMonthOrYear('Month',1)"
             ></i>
         </div>
         <div class="kd-calendar-default">
@@ -106,7 +109,7 @@
                                 'kd-in-range': item.isInRange,
                                 'kd-selected': selectedDate[0] && selectedDate[0].indexOf(item.dateStr) > -1,
                             }"
-                            @click="selectYear(item)"
+                            @click.stop="selectYear(item)"
                     >
                         {{ item.year }}
                     </span>
@@ -131,7 +134,7 @@
                                 'kd-in-range': item.isInRange,
                                 'kd-selected': selectedDate[0] && selectedDate[0].indexOf(item.dateStr) > -1,
                             }"
-                            @click="selectMonth(item)"
+                            @click.stop="selectMonth(item)"
                     >
                         {{ item.month }} 月
                     </span>
@@ -165,7 +168,7 @@
                                     'kd-in-range': item.isInRange,
                                     'kd-selected': selectedDate.indexOf(item.dateStr) > -1
                                 }"
-                                @click="selectDate(item)"
+                                @click.stop="selectDate(item)"
                                 @mouseenter="onDayMouseenter(item)"
                         >
                             {{ item.day }}
