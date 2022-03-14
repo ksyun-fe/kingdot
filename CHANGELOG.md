@@ -4,6 +4,9 @@
 ### bugfix
   * Tooltip
     * popper增加点击阻止冒泡
+### Optimization
+* TimePicker & DatePicker
+    * click 事件 阻止事件冒泡
 
 *2022-03-04*
 ### bugfix
