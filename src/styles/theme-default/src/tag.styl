@@ -1,0 +1,52 @@
+@import "../variables.styl";
+@import '../../common/mixin.styl'
+$-tag-type := success warning danger info
+$-tag-size := large small
+.kd-tag
+    padding 6px 16px
+    border 1px solid $-tag-border-color
+    border-radius 4px 
+    background-color $-tag-background-color
+    color $-tag-border-color
+    text-align center
+    font-size 12px
+// 类型
+for type in $-tag-type
+    .kd-tag-{type}
+        background lookup('$-tag-'+ type +'-background-color')
+        border 1px solid lookup('$-tag-'+ type +'-border-color')
+        color lookup('$-tag-'+ type +'-color')
+    .kd-tag-{type}.kd-tag-solid
+        background lookup('$-tag-solid-'+ type +'-background-color')
+        border 1px solid lookup('$-tag-solid-'+ type +'-background-color')
+        color $-tag-solid-color
+
+// 大小
+for size in $-tag-size
+    .kd-tag-{size}
+        padding lookup('$-tag-'+ size +'-padding')
+.kd-tag
+    .kd-tag-close
+        display inline-block
+        margin-left 6px
+        &:hover
+            cursor pointer
+    &.kd-tag-disabled
+        background $-tag-disabled-background-color
+        border 1px solid $-tag-disabled-border-color
+        color $-tag-disabled-color
+        cursor not-allowed
+        .kd-tag-close
+            &:hover
+                cursor not-allowed
+    
+
+.kd-tag-zoom-in-center-enter-active,
+.kd-tag-zoom-in-center-leave-active {
+  transition: all 0.5s cubic-bezier(.55,0,.1,1);
+}
+.kd-tag-zoom-in-center-enter,
+.kd-tag-zoom-in-center-leave-active {
+  opacity: 0;
+  transform: scaleX(0);
+}
