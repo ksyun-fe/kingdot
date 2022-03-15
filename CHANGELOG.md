@@ -1,6 +1,9 @@
 ## 更新日志
 
 *2022-03-14*
+### New features
+  * Tag
+    * 新增Tag组件
 ### bugfix
   * Tooltip
     * popper增加点击阻止冒泡
