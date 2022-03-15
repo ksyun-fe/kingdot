@@ -1,6 +1,6 @@
 ## 更新日志
-
-*2022-03-14*
+## v1.0.44
+*2022-03-15*
 ### New features
   * Tag
     * 新增Tag组件
@@ -8,10 +8,9 @@
   * Tooltip
     * popper增加点击阻止冒泡
 ### Optimization
-* TimePicker & DatePicker
+  * TimePicker & DatePicker
     * click 事件 阻止事件冒泡
 
-*2022-03-04*
 ### bugfix
   * Tree
     * 触发node-mouse-over鼠标滑过节点事件
