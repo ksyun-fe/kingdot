@@ -1,8 +1,12 @@
 ## 更新日志
 
+## v1.0.45
+*2022-03-25*
 ### bugfix
   * Dialog
     * 多个Dialog时，移动问题修复
+  * Form
+    * submit事件增加preventDefault
 
 ## v1.0.44
 *2022-03-15*
