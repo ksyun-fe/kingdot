@@ -1,4 +1,9 @@
 ## 更新日志
+
+### bugfix
+  * Dialog
+    * 多个Dialog时，移动问题修复
+
 ## v1.0.44
 *2022-03-15*
 ### New features
