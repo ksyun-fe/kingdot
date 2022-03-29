@@ -102,7 +102,7 @@
         },
         computed: {
             emptyWidth() {
-                return this.cascader.$refs.kdCascader.clientWidth + 'px';
+                return this.cascader.$refs.kdCascader && (this.cascader.$refs.kdCascader.clientWidth + 'px') || '300px';
             }
         },
         watch: {
