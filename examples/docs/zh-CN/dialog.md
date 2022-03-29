@@ -15,6 +15,9 @@
             这是一个基础的Dialog{{num}}
             <kd-button @click="changeNum">改变确认按钮状态</kd-button>
         </kd-dialog>
+        <kd-dialog v-model="showDialog2" :disableOk="disableOk" :ok="OK" width="800" height="800">
+            xxx
+        </kd-dialog>
     </div>
 </template>
 <script>
@@ -22,6 +25,7 @@
         data(){
             return{
                 showDialog:false,
+                showDialog2:false,
                 disableOk:true,
                 num:1,
                 stepIndex1:1
@@ -31,6 +35,7 @@
             changeNum(){
                 this.disableOk = this.disableOk === false;
                 this.num++
+                this.showDialog2= true
             },
             openDialog(){
                 this.showDialog = true;

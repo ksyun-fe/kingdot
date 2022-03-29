@@ -1,6 +1,25 @@
 ## 更新日志
 
-*2022-03-04*
+## v1.0.45
+*2022-03-25*
+### bugfix
+  * Dialog
+    * 多个Dialog时，移动问题修复
+  * Form
+    * submit事件增加preventDefault
+
+## v1.0.44
+*2022-03-15*
+### New features
+  * Tag
+    * 新增Tag组件
+### bugfix
+  * Tooltip
+    * popper增加点击阻止冒泡
+### Optimization
+  * TimePicker & DatePicker
+    * click 事件 阻止事件冒泡
+
 ### bugfix
   * Tree
     * 触发node-mouse-over鼠标滑过节点事件

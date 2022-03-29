@@ -122,7 +122,7 @@ export default {
     },
     render(h) {
         this.popperVM.vnode = (
-            <div v-show={this.visible} ref='popper' class={this.popperCls} style={{ zIndex: nextZIndex() }}>
+            <div v-show={this.visible} ref='popper' class={this.popperCls} style={{ zIndex: nextZIndex() }} onClick={this.popperClick}>
                 <div class={['kd-tooltip-content', this.contentClass, {'kd-tooltip-limit': this.widthLimit}]}>
                     <kd-tooltip-content {...this}></kd-tooltip-content>
                 </div>
@@ -193,6 +193,9 @@ export default {
         document.removeEventListener('click', this.clickDocument);
     },
     methods: {
+        popperClick(e) {
+            e.stopPropagation();
+        },
         toggle() {
             return this.visible ? this.closePopper() : this.showPopper();
         },

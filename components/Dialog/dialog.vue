@@ -398,7 +398,7 @@
             },
             mousedown(e) {
                 var event = e || window.event;
-                var _target = document.getElementById('kd-dialog');
+                var _target = this.$el.childNodes[1].childNodes[0];
                 var _targetW = _target.clientWidth;
                 var _targetH = _target.clientHeight;
                 var startx = event.clientX;

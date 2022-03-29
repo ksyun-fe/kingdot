@@ -30,7 +30,7 @@
                     <i
                             v-if="clearable && !disabled && !!timeString"
                             class="kd-icon-close kd-timepicker-close-icon kdicon"
-                            @click="onClear"
+                            @click.stop="onClear"
                     ></i>
                 </template>
                 <template
@@ -40,12 +40,12 @@
                     <i
                             v-if="clearable && !disabled && !!timeString"
                             class="kd-icon-close kd-timepicker-close-icon kdicon"
-                            @click="onClear"
+                            @click.stop="onClear"
                     ></i>
                     <i
                             v-if="clearable && !disabled && !!timeString"
                             class="kd-icon-time kd-timepicker-time-icon kdicon"
-                            @click="onClear"
+                            @click.stop="onClear"
                     ></i>
                     <i
                             v-else
@@ -70,7 +70,7 @@
                                             'kd-disabled': checkDisabled(item),
                                             'kd-active': timeValue[0] == item
                                         }"
-                                        @click="selectTimeValue(item)"
+                                        @clic.stop="selectTimeValue(item)"
                                 >
                                     {{ item }}
                                 </div>

@@ -40,6 +40,7 @@
         },
         methods: {
             submit(e) {
+                e && e.preventDefault();
                 this.validate()
                     .then((isValid) => {
                         isValid ? this.$emit('submit', e, this) : this.$emit('validateFail', e, this);

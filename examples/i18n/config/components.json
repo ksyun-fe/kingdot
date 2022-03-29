@@ -178,6 +178,10 @@
                         {
                             "path": "/menu",
                             "name": "Menu 菜单"
+                        },
+                        {
+                            "path": "/tag",
+                            "name": "Tag 标签"
                         }
                     ]
                 },
@@ -368,6 +372,10 @@
                     {
                         "path": "/menu",
                         "name": "Menu"
+                    },
+                    {
+                        "path": "/tag",
+                        "name": "Tag"
                     }
                 ]
                 },
