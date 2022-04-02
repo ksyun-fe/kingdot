@@ -1,5 +1,10 @@
 ## 更新日志
-
+*2022-04-02*
+## bugfix
+  * Select
+    * Option增加属性：opIndex，优化在开启大数据量优化的时候，动态改变Option时候，造成下拉框展示空白
+    * 开启大数据量优化时候，option数量过少造成的样式问题
+    * Option属性label兼容number类型
 ## v1.0.45
 *2022-03-25*
 ### bugfix

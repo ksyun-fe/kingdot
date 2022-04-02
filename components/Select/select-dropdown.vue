@@ -5,7 +5,10 @@
                 'kd-select-dropdown': true,
                 'kd-select-optimize': optimizeScroll
             }"
-            :style="{ width:defaultWidth }"
+            :style="{
+                width:defaultWidth,
+                height: `${listHeight >= 290 ? 290 : listHeight}px`
+            }"
             @scroll="scroll"
     >
         <div
@@ -157,8 +160,9 @@
         },
         updated() {
             if(this.dropdownMenu && this.scrollInitFlag) {
-                this.screenHeight = this.$el.clientHeight;
+                // this.screenHeight = this.$el.clientHeight;
                 this.listHeight =  this.itemSize * this.$children.length;
+                this.screenHeight = this.listHeight >= 290 ? 290 : this.listHeight;
                 this.start = 0;
                 this.end = this.start + this.visibleCount;
                 this.scrollInitFlag = false;

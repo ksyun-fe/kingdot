@@ -406,10 +406,16 @@ export default{
 <template>
         <div>
             <kd-select optimize-scroll v-model="defaultValue" placeholder="请选择内容">
-                <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.value }}
-                </kd-option>
+                <kd-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :opIndex="item.opIndex"
+                    :label="item.opIndex"
+                    :value="item.value"
+                >{{ item.value }}</kd-option>
             </kd-select>
-
+            <br />
+            <kd-button @click="setOp">change</kd-button>
         </div>
 </template>
 <script>
@@ -427,15 +433,28 @@ export default{
 
     },
     methods:{
-
+        setOp() {
+            let data = []
+            for(let i = 0; i <= 100; i++){
+                data.push(
+                    {
+                        value:"new_item" + i,
+                        label:"new_item option " + i,
+                        opIndex: i
+                    }
+                )
+            }
+            this.options = data;
+        },
     },
     mounted(){
         let data = []
-        for(let i = 0; i <= 1000; i++){
+        for(let i = 0; i <= 4; i++){
             data.push(
                 {
                     value:"item" + i,
-                    label:"item option " + i
+                    label:"item option " + i,
+                    opIndex: i
                 }
             )
         }
@@ -493,3 +512,4 @@ export default{
 | label     | 选项的别名(有过滤搜索的必须加上)   | string  | — | —
 | value     | 选项值   | string  / object  | — | —
 | disabled     | 是否禁用该选项   | boolean  | — |  false
+| opIndex     | 开启大数据量优化，同时还会动态改变Option时候需要加上   | number  | — |  null

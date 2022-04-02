@@ -28,7 +28,7 @@
             // eslint-disable-next-line vue/require-prop-type-constructor
             value: '',
             label: {
-                type: String,
+                type: [String, Number],
                 default: ''
             },
             disabled: {
@@ -38,11 +38,27 @@
             activeIcon: {
                 type: Boolean,
                 default: true
+            },
+            opIndex: {
+                type: Number,
+                default: null
+            }
+        },
+        watch: {
+            // label() {
+            //     this._label = this.label.toString();
+            // },
+            label: {
+                immediate: true,
+                handler(v) {
+                    this._label = this.label.toString();
+                }
             }
         },
         data() {
             return {
                 optionShow: true,
+                _label: '',
                 labelText: '',
                 optionIndex: null
                 // active: false
@@ -97,8 +113,13 @@
         },
         mounted() {
             const parent = this.getParent('kd-select-dropdown');
-            if (parent.getOptionIndex) this.optionIndex = parent.getOptionIndex();
-            this.labelText = this.label || this.labelFomat(this.$slots.default[0].text);
+            // if (parent.getOptionIndex) this.optionIndex = parent.getOptionIndex();
+            if (this.opIndex !== null) {
+                this.optionIndex = this.opIndex;
+            } else {
+                this.optionIndex = parent.getOptionIndex();
+            }
+            this.labelText = this._label || this.labelFomat(this.$slots.default[0].text);
             if (typeof parent.value === 'object') {
                 const value = parent.value.find(item => item === this.value);
                 value && parent.updateLabel({label: this.labelText, value: this.value});
@@ -114,7 +135,7 @@
                 const data = {
                     scope: {
                         value: this.value,
-                        label: this.label || this.labelText
+                        label: this._label || this.labelText
                     },
                     active: this.active
                 };
@@ -145,10 +166,10 @@
                 if (method) {
                     this.optionShow = method(value, {
                         value: this.value,
-                        label: this.label || this.labelText
+                        label: this._label || this.labelText
                     });
                 } else {
-                    this.optionShow = this.label.indexOf(value) > -1;
+                    this.optionShow = this._label.indexOf(value) > -1;
                 }
                 return this.optionShow;
             },
