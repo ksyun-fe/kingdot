@@ -248,10 +248,13 @@
                             this.inputLabel = '';
                         }
                     } else {
-                        if (this.multiple && this.multipleSerach) {
+                        if (this.multiple) {
                             this.multipleSerach = '';
-                        } else if (!this.multiple && this.filterable) {
-                            if (this.value !== null) {
+                        } else if (this.filterable) {
+                            if (this.value !== null
+                                && this.value !== ''
+                                && this.value !== undefined
+                            ) {
                                 this.inputLabel = this.inputPlaceholder;
                             }
                             this.inputPlaceholder = this.placeholder;

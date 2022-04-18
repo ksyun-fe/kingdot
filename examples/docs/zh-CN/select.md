@@ -7,8 +7,9 @@
 ```html
 <template>
         <div>
-            <kd-select v-model="defaultValue" placeholder="请选择内容" filterable>
-                <kd-option value="">空数据</kd-option>
+            <kd-select v-model="defaultValue" placeholder="请选择内容" filterable clearAll>
+                <kd-option value="0">空数据'0'</kd-option>
+                <kd-option :value="0">空数据0</kd-option>
                 <kd-option v-for="item in options" :key="item.value" :title="item.label" :value="item.value">{{ item.label }}
                 </kd-option>
             </kd-select>
@@ -24,7 +25,7 @@ export default{
     data(){
         return{
             options: [],
-            defaultValue: "",
+            defaultValue: 0,
             defaultValue1: ['item1'],
 
         }
@@ -61,7 +62,7 @@ export default{
 ```html
 <template>
         <div>
-            <kd-select lazy lazy-load-count="10" v-model="defaultValue" placeholder="请选择内容">
+            <kd-select lazy lazy-load-count="10" v-model="defaultValue" filterable placeholder="请选择内容">
                 <kd-option v-for="item in options" :key="item.value" :value="item.value">{{ item.value }}
                 </kd-option>
             </kd-select>
@@ -242,7 +243,7 @@ export default{
 ```html
 <template>
     <kd-select v-model="defaultValue" placeholder="请选择内容" filterable multiple clearAll>
-        <kd-option v-for="item in options" :key="item.value" :value="item.value" >{{item.label}}</kd-option>
+        <kd-option v-for="item in options" :key="item.value" :value="item.value" :label="item.label" >{{item.label}}</kd-option>
     </kd-select>
 </template>
 <script>
@@ -510,6 +511,6 @@ export default{
 | 属性      | 说明    | 类型      | 可选值      | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
 | label     | 选项的别名(有过滤搜索的必须加上)   | string  | — | —
-| value     | 选项值   | string  / object  | — | —
+| value     | 选项值   | `string | number (不可为空字符串)` | — | —
 | disabled     | 是否禁用该选项   | boolean  | — |  false
 | opIndex     | 开启大数据量优化，同时还会动态改变Option时候需要加上   | number  | — |  null
