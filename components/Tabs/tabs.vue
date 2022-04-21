@@ -1,5 +1,6 @@
 <template>
     <div
+            v-resize="Recapture"
             :class="[
                 mainClass,
                 { 'kd-tabs-default': type === 'default'}
@@ -66,8 +67,12 @@
 </template>
 
 <script>
+    import resize from './resize';
     export default {
         name: 'KdTabs',
+        directives: {
+            resize
+        },
         props: {
             value: {
                 type: [String, Number],
@@ -141,6 +146,9 @@
         updated() {
             this.Recapture();
         },
+        mounted() {
+            this.Recapture();
+        },
         methods: {
             Recapture() {
                 this.contentWidth = this.$refs.tabs.querySelector(
@@ -153,8 +161,9 @@
                 }
             },
             setMoveBarPosition({marginLeft = '', marginTop = '', width = 0, height = 0}) {
+                // debugger
                 this.marginTop = marginTop;
-                this.activeMarginLeft = marginLeft;
+                this.activeMarginLeft = this.handleTabMove ? 20 : marginLeft;
                 this.activeWidth = width;
                 this.activeHeight = height;
             },
@@ -166,9 +175,14 @@
             },
 
             tabHandelMove({ marginLeft = '', event = '' }) {
-                this.marginLeft = this.marginLeft - marginLeft + 20;
+                if (this.type === 'default') {
+                    this.marginLeft = -marginLeft + 20;
+                } else {
+                    this.marginLeft = this.marginLeft - marginLeft + 20;
+                }
             },
             moveLeft() {
+                if (this.movedisabledRight) { return; }
                 this.calculateTravelDistance();
                 if (
                     this.marginLeft - this.singleWidth + this.contentWidth <
@@ -180,6 +194,7 @@
                 }
             },
             moveRight() {
+                if (this.movedisabledLeft) { return; }
                 this.calculateTravelDistance();
                 if (this.marginLeft + this.singleWidth > 0) {
                     this.marginLeft = 0;
