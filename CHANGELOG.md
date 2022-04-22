@@ -1,5 +1,11 @@
 ## 更新日志
 
+## v1.0.49
+*2022-04-22*
+### New features
+  * dialog
+    * dialog add open method;
+
 ## v1.0.48
 *2022-04-22*
 ### New features
