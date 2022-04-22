@@ -1,4 +1,13 @@
 ## 更新日志
+
+## v1.0.48
+*2022-04-22*
+### New features
+  * Tabs
+    * 新增resize动态显示左右切换button;
+### bugfix
+  * Tabs
+    * 修复handleTabMove属性在 default tabs上失效问题
 ## v1.0.47
 *2022-04-21*
 ## bugfix

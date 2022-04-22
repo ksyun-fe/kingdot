@@ -259,6 +259,7 @@
 | handleTabMove   | tab是否移动到最前面 | boolean | —                                    | false          |
 | movingDistance  | 左右移动距离        |         | —                                    | Tabs可视区宽度 |
 | addable         | Tab是否可添加       | boolean | —                                    | false          |
+| input           | 表单事件获取当前点击tab的value           | function | —                                    | —          |
 ### Tab属性
 | 属性     | 说明               | 类型    | 可选值 | 默认值 |
 | -------- | ------------------ | ------- | ------ | ------ |

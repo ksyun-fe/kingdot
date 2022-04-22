@@ -271,8 +271,8 @@ describe('tabs', () => {
         vm.$el.querySelector('.kd-tabs-content').childNodes[2].click();
         setTimeout(() => {
             expect(
-                vm.$el.querySelector('.kd-tabs-content').style.marginLeft
-            ).to.equal('-122px')
+                vm.$el.querySelector('.kd-move-bar').style.left
+            ).to.equal('20px')
             done();
         }, 200);
 
