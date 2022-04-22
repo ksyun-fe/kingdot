@@ -7,7 +7,7 @@
         <!-- 遮罩层 -->
         <transition name="kd-dialog-mask">
             <div
-                    v-if="visible && modal"
+                    v-if="visible && mask"
                     class="kd-dialog-mask"
                     @click="handleModalClick"
             ></div>
@@ -380,6 +380,12 @@
                     this.visible = false;
                     this.mask = false;
                     this.$emit('cancel', this);
+                }
+            },
+            open() {
+                this.visible = true;
+                if (this.modal) {
+                    this.mask = true;
                 }
             },
             // 展示和隐藏加载图标
