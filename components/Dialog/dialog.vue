@@ -368,7 +368,7 @@
                 } else {
                     this.visible = false;
                     this.mask = false;
-                    this.$emit('ok');
+                    this.$emit('ok', this);
                 }
             },
             // 取消按钮回调 关闭Dialog
@@ -379,7 +379,7 @@
                 } else {
                     this.visible = false;
                     this.mask = false;
-                    this.$emit('cancel');
+                    this.$emit('cancel', this);
                 }
             },
             // 展示和隐藏加载图标
