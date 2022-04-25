@@ -341,6 +341,7 @@
                 immediate: true,
                 handler(newValue) {
                     this.visible = newValue;
+                    this.mask = this.modal ? newValue : false;
                 }
             },
             visible(newValue) {

@@ -1,5 +1,9 @@
 ## 更新日志
 
+### bugfix
+  * Dialog
+    * dialog fix 遮罩层失效问题
+
 ## v1.0.49
 *2022-04-22*
 ### New features
