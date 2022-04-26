@@ -1,8 +1,11 @@
 ## 更新日志
-
+## v1.0.50
+*2022-04-26*
 ### bugfix
   * Dialog
     * dialog fix 遮罩层失效问题
+  * Tabs
+    * 修复handleTabMove属性在default tabs上伪类元素失效问题
 
 ## v1.0.49
 *2022-04-22*

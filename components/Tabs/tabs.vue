@@ -161,9 +161,8 @@
                 }
             },
             setMoveBarPosition({marginLeft = '', marginTop = '', width = 0, height = 0}) {
-                // debugger
                 this.marginTop = marginTop;
-                this.activeMarginLeft = this.handleTabMove ? 20 : marginLeft;
+                this.activeMarginLeft = marginLeft;
                 this.activeWidth = width;
                 this.activeHeight = height;
             },
