@@ -50,7 +50,7 @@
         watch: {
             innerValue: function () {
                 if (this.checked) {
-                    this.autoMove();
+                    this.autoMove(false);
                 }
             }
         },
@@ -73,20 +73,22 @@
             },
             clickTab() {
                 if (this.disabled) return;
+                const cliclFlag = true;
                 if (this.$parent.handleTabMove) {
                     this.$parent.tabHandelMove({
                         marginLeft: this.$el.offsetLeft
                     });
                 }
-                this.autoMove();
+                this.autoMove(cliclFlag);
             },
-            autoMove() {
+            autoMove(cliclFlag) {
                 this.$parent.tabsActive({
                     val: this.value,
                     marginLeft: this.$el.offsetLeft,
                     marginTop: this.$el.offsetTop,
                     width: this.$el.offsetWidth,
-                    height: this.$el.offsetHeight
+                    height: this.$el.offsetHeight,
+                    cliclFlag
                 });
             },
             closTab(v) {

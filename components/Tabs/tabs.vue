@@ -166,11 +166,13 @@
                 this.activeWidth = width;
                 this.activeHeight = height;
             },
-            tabsActive({ val = '', marginLeft = '', marginTop = '', width = 0, height = 0}) {
+            tabsActive({ val = '', marginLeft = '', marginTop = '', width = 0, height = 0, cliclFlag}) {
                 this.innerValue = val;
                 this.setMoveBarPosition({marginLeft, marginTop, width, height});
-                this.$emit('click', val);
-                this.$emit('input', val);
+                if (cliclFlag) {
+                    this.$emit('input', val);
+                    this.$emit('click', val);
+                }
             },
 
             tabHandelMove({ marginLeft = '', event = '' }) {
