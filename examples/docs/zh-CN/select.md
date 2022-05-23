@@ -406,7 +406,7 @@ export default{
 ```html
 <template>
         <div>
-            <kd-select optimize-scroll v-model="defaultValue" placeholder="请选择内容">
+            <kd-select optimize-scroll v-model="defaultValue" placeholder="请选择内容" filterable>
                 <kd-option
                     v-for="item in options"
                     :key="item.value"

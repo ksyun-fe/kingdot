@@ -109,9 +109,13 @@
         },
         watch: {
             'filterData': function (v) {
+                let count = 0;
                 this.$children.forEach(item => {
                     if (item.$options._componentTag === 'kd-option') {
                         item.isShow(v);
+                        if (item.isShow(v)) {
+                            count++;
+                        };
                     }
                     if (item.$options._componentTag === 'kd-option-group') {
                         // only one level options in group
@@ -129,6 +133,9 @@
                         item.isGroup = !hideGroup;
                     }
                 });
+                // fix: 重新计算搜索后的弹层高度
+                this.listHeight =  this.itemSize * count;
+                this.screenHeight = this.listHeight >= 290 ? 290 : this.listHeight;
                 // fix: 全部不显示时候
                 let allHide = this.$children.every(item => {
                     if (item.$options._componentTag === 'kd-option') {
