@@ -62,7 +62,7 @@
         },
         data() {
             return {
-                timeValue: ['00', '00', '00'], // 设定 time 面板被框选的默认值
+                timeValue: [], // 设定 time 面板被框选的默认值
                 disabledItems: this.disabled || [false, false, false],
                 baseDate: '',
                 maxTime: this.max, // 完整的时间日期字符串, 或者 "00:00:00"

@@ -12,6 +12,7 @@
                     :placeholder="placeholder"
                     :value="timeString"
                     :disabled="disabled"
+                    readonly
                     :class="{
                         'kd-timepicker-input': true,
                         'range': range
@@ -68,9 +69,9 @@
                                         :class="{
                                             'kd-steptime-item': true,
                                             'kd-disabled': checkDisabled(item),
-                                            'kd-active': timeValue[0] == item
+                                            'kd-active': timeValue.includes(item)
                                         }"
-                                        @clic.stop="selectTimeValue(item)"
+                                        @click.stop="selectTimeValue(item)"
                                 >
                                     {{ item }}
                                 </div>
@@ -83,6 +84,18 @@
                     >
                         <div class="kd-common-selector-container">
                             <Time
+                                    v-if="multiple"
+                                    :value="timeValue[timeValue.length - 1]"
+                                    :min="minTime"
+                                    :max="maxTime"
+                                    :disabled="disabledColumn"
+                                    :disabled-list="disabledTime"
+                                    :accuracy="accuracy"
+                                    @change="timeValueChange"
+                            >
+                            </Time>
+                            <Time
+                                    v-else
                                     v-model="timeValue[0]"
                                     :min="minTime"
                                     :max="maxTime"
@@ -207,6 +220,10 @@
                 type: Boolean,
                 default: false
             },
+            multiple: {
+                type: Boolean,
+                default: false
+            },
             placeholder: {
                 type: String,
                 default: '选择时间'
@@ -248,6 +265,7 @@
                 }),
                 timeValue: [], // innervalue
                 timeString: '', // input value
+                tooltipShowFlag: false,
                 isTooltipShow: false
             };
         },
@@ -285,22 +303,32 @@
                         this.timeString = v;
                         this.timeValue = [v];
                     } else if (Array.isArray(v)) { // 范围
-                        if (v.length < 2) return;
+                        if (!this.multiple && v.length < 2) return;
                         this.timeValue = v;
-                        this.timeString = v.join(' - ');
+                        this.timeString = v.join(this.multiple ? ',' : ' - ');
                     }
                 }
             },
             timeValue: {
                 deep: true,
                 handler(v) {
-                    if (!this.range) {
-                        this.timeString = this.timeValue[0];
-                        this.$emit('input', this.timeValue[0]);
-                    } else {
+                    if (this.range) {
                         this.timeString = this.timeValue.join(' - ');
                         this.$emit('input', this.timeValue);
+                    } else if (this.multiple) {
+                        this.timeString = this.timeValue.join(',');
+                        this.$emit('input', this.timeValue);
+                    } else {
+                        this.timeString = this.timeValue[0];
+                        this.$emit('input', this.timeValue[0]);
                     }
+                }
+            },
+            isTooltipShow(v) {
+                if (v) {
+                    this.tooltipShowFlag = true;
+                } else {
+                    this.tooltipShowFlag = false;
                 }
             }
         },
@@ -313,7 +341,7 @@
 
                 this.$emit('clear');
                 // this.$emit('change', this.dateValue, 'clear');
-                if (this.range) {
+                if (this.range || this.multiple) {
                     // inner value
                     this.timeValue = [];
                     this.$emit('change', [], 'clear');
@@ -324,7 +352,17 @@
             },
             selectTimeValue(item) {
                 if (this.checkDisabled(item)) return;
-                if (this.timeString !== item) {
+                if (this.multiple) {
+                    if (!this.timeValue.includes(item)) {
+                        if (this.tooltipShowFlag) {
+                            this.timeValue.push(item);
+                            this.tooltipShowFlag = false;
+                        } else {
+                            this.timeValue.splice(this.timeValue.length - 1, 1, item);
+                        }
+                        this.$emit('change', this.timeValue, 'select');
+                    }
+                } else if (this.timeString !== item) {
                     this.timeValue = [item];
                     // this.timeString = item;
 
@@ -346,7 +384,19 @@
             },
 
             timeValueChange(value) {
-                this.$emit('change', value, 'scroll'); // 通过滚动选的时间
+                if (this.multiple) {
+                    if (!this.timeValue.includes(value)) {
+                        if (this.tooltipShowFlag) {
+                            this.timeValue.push(value);
+                            this.tooltipShowFlag = false;
+                        } else {
+                            this.timeValue.splice(this.timeValue.length - 1, 1, value);
+                        }
+                        this.$emit('change', this.timeValue, 'scroll'); // 通过滚动选的时间
+                    }
+                } else if (this.timeString !== value) {
+                    this.$emit('change', value, 'scroll'); // 通过滚动选的时间
+                }
             },
             checkDisabled(timeStr) {
                 let disable = false;

@@ -56,6 +56,37 @@
 ```
 :::
 
+### 多选
+
+:::demo #多选 ## 可以通过 `multiple` 属性设置
+
+```html
+<template>
+    <div>
+        <kd-time-picker 
+            v-model="time" 
+            mode="steptime"
+            multiple
+        ></kd-time-picker> 选中值: {{ time }}
+        <br>
+        <br>
+        <kd-time-picker v-model="time1" multiple ></kd-time-picker>
+        选中值: {{ time1 }}
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                time: [],
+                time1: []
+            }
+        }
+    }
+</script>
+```
+:::
+
 ### 设置边界值
 
 :::demo #设置边界值 ## 可以通过 `minTime` `maxTime` 属性设置边界值
@@ -193,6 +224,7 @@
 | step | 步长  | number, string  |     —     |    -   |
 | optional-times | 可选时间列表  | array  |     —     |    -   |
 | range | 是否是时间范围  | boolean  |     —     |    false   |
+| multiple | 多选  | boolean  |     —     |    false   |
 | clearable | 是否能清空当前值   | Boolean   | true, false | true |
 | iconPosition | 图标在input中的位置   | String   | 'prefix', 'suffix' | 'prefix' |
 

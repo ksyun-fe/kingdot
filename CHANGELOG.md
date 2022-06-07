@@ -1,13 +1,17 @@
 ## 更新日志
-*2022-05-23*
-## bugfix
+
+## v1.0.51
+*2022-06-09*
+
+### New features
+  * TimePicker
+    * add multiple prop
+### bugfix
   * Select
     * 修复搜索过滤后显示数量较少时，弹层高度异常的问题
-## v1.0.51
-*2022-04-26*
-### bugfix
-* Tabs
-  * 修复Tabs click事件执行两次问题
+  * Tabs
+    * 修复Tabs click事件执行两次问题
+  
 ## v1.0.50
 *2022-04-26*
 ### bugfix
