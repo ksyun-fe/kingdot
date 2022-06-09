@@ -429,7 +429,7 @@
                 this.abort(file);
                 this.fileList.splice(index, 1);
                 if (this.onRemove) {
-                    this.onRemove(this.fileList);
+                    this.onRemove(file, this.fileList);
                 }
             }
         }
