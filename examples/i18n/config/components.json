@@ -219,6 +219,10 @@
                         {
                             "path":"/skeleton",
                             "name":"Skeleton 骨架屏"
+                        },
+                        {
+                            "path":"/virtualList",
+                            "name":"VirtualList 虚拟列表"
                         }
                     ]
                 }
