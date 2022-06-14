@@ -158,6 +158,7 @@
 ```html
 <template> 
 <div>
+   
  <kd-tabs  
       v-model='editableTabsValue'
       type='block'

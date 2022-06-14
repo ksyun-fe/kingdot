@@ -31,12 +31,13 @@
             </div>
 
             <div
+                    ref="kdTabsContent"
                     class="kd-tabs-content"
                     :style="{ 'margin-left': marginLeft + 'px' }"
             >
                 <slot></slot>
                 <div
-                        v-if="type === 'default'"
+                        v-if="type === 'default' && activeBarFlag"
                         class="kd-move-bar"
                         :style="{
                             width: activeWidth + 'px',
@@ -130,7 +131,8 @@
                 regionWidth: 0,
                 contentWidth: 0,
                 singleWidth: '',
-                activeHeight: ''
+                activeHeight: '',
+                activeBarFlag: true
             };
         },
         watch: {
@@ -151,6 +153,7 @@
         },
         methods: {
             Recapture() {
+                this.activeBarFlag = this.$refs.kdTabsContent.querySelector('.kd-tab');
                 this.contentWidth = this.$refs.tabs.querySelector(
                     '.kd-tabs-content'
                 ).scrollWidth;

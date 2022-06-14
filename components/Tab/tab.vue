@@ -1,7 +1,8 @@
 <template>
     <div
-            class="kd-tab"
+            ref="tab"
             :class="{
+                'kd-tab':true,
                 'kd-tab-active':checked,
                 'kd-disabled':disabled,
             }"
