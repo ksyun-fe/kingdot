@@ -69,10 +69,13 @@
                             "path": "/slider",
                             "name": "Slider 滑块"
                         },
-
                         {
                             "path": "/select",
                             "name": "Select 选择框"
+                        },
+                        {
+                            "path":"/selectv2",
+                            "name":"Select-V2 虚拟选择框"
                         },
                         {
                             "path": "/cascader",

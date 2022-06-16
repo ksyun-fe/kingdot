@@ -5,7 +5,6 @@
             :class="[{
                 'kd-select-disabled':disabled,
                 'kd-select-clear-hover': clearAll && !disabled,
-                'kd-select-active': clickOption,
                 'kd-select-fluid': fluid
             }]"
             :style="{'width': inputWidth}"
@@ -92,18 +91,15 @@
             <template slot="content">
                 <kd-select-dropdown
                         v-model="value"
+                        :data="innerData"
                         :multiple="multiple"
                         :default-width="defaultWidth"
-                        :filter-data="filterData"
-                        :lazy="lazy"
-                        :lazy-load-count="lazyLoadCount"
-                        :optimize-scroll="optimizeScroll"
                         :dropdownMenu="dropdownMenu"
+                        :activeIcon="activeIcon"
+                        :valueKey="valueKey"
+                        :labelKey="labelKey"
                         @setValue="setValue"
-                        @updateLabel="updateLabel"
-                >
-                    <slot/>
-                </kd-select-dropdown>
+                />
             </template>
         </kd-tooltip>
     </div>
@@ -119,6 +115,18 @@
         },
         mixins: [Lang],
         props: {
+            data: {
+                type: Array,
+                default: () => []
+            },
+            valueKey: {
+                type: String,
+                default: 'value'
+            },
+            labelKey: {
+                type: String,
+                default: 'label'
+            },
             width: {
                 type: String,
                 default: ''
@@ -133,9 +141,6 @@
                 type: Boolean,
                 default: false
             },
-            filterMethod: {
-                type: Function
-            },
             disabled: {
                 type: Boolean,
                 default: false
@@ -144,22 +149,11 @@
                 type: Boolean,
                 default: false
             },
-            ellipsisTags: {
-                type: Boolean,
-                default: false
-            },
             clearAll: {
                 type: Boolean,
                 default: false
             },
-            remoteMethod: {
-                type: Function
-            },
             size: {
-                type: String,
-                default: ''
-            },
-            contentClass: {
                 type: String,
                 default: ''
             },
@@ -167,41 +161,33 @@
                 type: Boolean,
                 default: false
             },
-            lazy: {
-                type: Boolean,
-                default: false
-            },
-            lazyLoadCount: {
-                type: [String, Number],
-                default: 10
-            },
-            optimizeScroll: {
-                type: Boolean,
-                default: false
-            },
             fluid: {
+                type: Boolean,
+                default: false
+            },
+            activeIcon: {
                 type: Boolean,
                 default: false
             }
         },
         data() {
             return {
-                isFocus: false,
+                // isFocus: false,
                 inputLabel: '',
                 tagList: [],
                 inputPlaceholder: '',
-                clickOption: false,
+                // clickOption: false,
                 dropdownMenu: false,
-                isDropdown: false,
-                searchTime: 200,
-                serachTimeout: {},
+                // isDropdown: false,
+                // searchTime: 200,
+                // serachTimeout: {},
                 multipleSerach: '',
-                init: true,
-                options: [],
+                // init: true,
+                // options: [],
+                innerData: [],
                 selected: [],
-                scope: {},
-                defaultWidth: '',
-                filterData: {}
+                // scope: {},
+                defaultWidth: ''
             };
         },
         computed: {
@@ -218,6 +204,12 @@
             }
         },
         watch: {
+            data: {
+                immediate: true,
+                handler(v) {
+                    this.innerData = v;
+                }
+            },
             value: {
                 immediate: true,
                 handler(v) {
@@ -273,43 +265,20 @@
         },
         methods: {
             initData(v) {
-                const defSlot = this.$slots.default || [];
                 if (this.multiple) {
-                    const tagList = [];
                     // 多选初始化添加tags
-                    v.forEach((vItem) => {
-                        defSlot.forEach((item) => {
-                            const options = item.componentOptions;
-                            if (options) {
-                                const value = options.propsData.value;
-                                if (value === vItem) {
-                                    const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
-                                    tagList.push({
-                                        value: value,
-                                        label: label
-                                    });
-                                }
-                            }
-                        });
+                    const tagList = this.data.filter(item => {
+                        return v.includes(item[this.valueKey]);
                     });
                     this.selected = v;
                     this.tagList = tagList;
                     this.inputPlaceholder = v.length > 0 ? '' : this.placeholder;
                 } else {
                     // 获取label
-                    this.inputLabel = '';
-                    defSlot.forEach((item) => {
-                        if (item.componentOptions) {
-                            if (item.componentOptions.tag === 'kd-option') {
-                                this.initLabel(item, v);
-                            } else {
-                                // 如果是group在遍历一遍
-                                item.componentOptions.children.forEach((item) => {
-                                    this.initLabel(item, v);
-                                });
-                            }
-                        }
+                    const selectItem = this.data.find(item => {
+                        return v === item[this.valueKey];
                     });
+                    this.inputLabel = selectItem ? selectItem[this.labelKey] : '';
                     this.inputPlaceholder = this.inputLabel || this.placeholder;
                     this.dropdownMenu = false;
                 }
@@ -321,38 +290,19 @@
                     this.optionFilter(this.multipleSerach);
                 }
             },
-            initLabel(item, v) {
-                const options = item.componentOptions;
-                const value = options.propsData.value;
-                const label = options.propsData.label || (item.componentInstance && this.labelFomat(item.componentInstance.labelText));
-                if (value === v) {
-                    this.inputLabel = label;
-                }
-            },
-            labelFomat(label) {
-                if (!label) return '';
-                return label.replace(/\n/g, '').trim();
-            },
             optionFilter(v) {
-                clearTimeout(this.serachTimeout);
-                this.serachTimeout = setTimeout(() => {
-                    //  远程搜索
-                    if (typeof this.remoteMethod === 'function') {
-                        this.remoteMethod(v);
-                    } else {
-                        this.filterData = { value: v, method: this.filterMethod };
-                    }
-                }, this.searchTime);
+                this.innerData = this.data.filter(item => {
+                    return item[[this.labelKey]].includes(v);
+                });
             },
             selectClick(e) {
                 if (this.disabled) return;
-                if (typeof this.remoteMethod === 'function') return;
-                if (this.filterable || this.remoteMethod) {
+                if (this.filterable) {
                     this.$refs.input.focus();
                 }
             },
             setValue({ scope, active }) {
-                if (scope.value === this.value) {
+                if (scope[this.valueKey] === this.value) {
                     this.dropdownMenu = false;
                     return;
                 }
@@ -361,33 +311,26 @@
                         this.deleteTag(scope);
                     } else {
                         this.tagList.push(scope);
-                        this.$emit('input', [...this.selected, scope.value]);
+                        this.$emit('input', [...this.selected, scope[this.valueKey]]);
                     }
                     this.inputPlaceholder = this.tagList.length > 0 ? '' : this.placeholder;
                     this.$refs.kdDropdownTooltip.updatePopper();
                     this.$refs.input.focus();
                 } else {
-                    this.inputPlaceholder = scope.label;
+                    this.inputPlaceholder = scope[this.labelKey];
                     this.dropdownMenu = false;
-                    this.$emit('input', scope.value);
+                    this.$emit('input', scope[this.valueKey]);
                 }
                 this.$emit('change', scope);
             },
-            updateLabel(v) {
-                if (this.multiple) {
-                    this.tagList.push(v);
-                } else {
-                    this.inputLabel = v.label;
-                }
-            },
             deleteTag(scope) {
                 this.selected.forEach((item, index) => {
-                    if (item === scope.value) {
+                    if (item === scope[this.valueKey]) {
                         this.selected.splice(index, 1);
                     }
                 });
                 this.tagList.forEach((item, index) => {
-                    if (item.value === scope.value) {
+                    if (item.value === scope[this.valueKey]) {
                         this.tagList.splice(index, 1);
                     }
                 });
@@ -396,6 +339,10 @@
                 this.$refs.kdDropdownTooltip.updatePopper();
                 this.inputFocus();
                 this.$emit('change', scope);
+                if (this.tagList.length === 0) {
+                    this.inputPlaceholder = this.placeholder;
+                    this.inputLabel = this.inputPlaceholder;
+                }
             },
             inputFocus() {
                 this.$refs.input.focus();
@@ -405,6 +352,9 @@
                 this.$emit('input', val);
                 this.$emit('clear');
                 this.$emit('change', val);
+                this.tagList = [];
+                this.inputPlaceholder = this.placeholder;
+                this.inputLabel = this.inputPlaceholder;
             },
             handleFocus() {
                 this.$emit('focus');

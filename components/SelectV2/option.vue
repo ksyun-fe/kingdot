@@ -1,9 +1,8 @@
 <template>
     <li
-            v-show="optionShow"
-            v-if="ifLoadOption && ifShowOption"
             class="kd-option"
-            :class="{'kd-option-active': active,'kd-option-disabled': disabled}"
+            :class="{'kd-option-active': active,'kd-option-disabled': !!source.disabled}"
+            :style="{'height': '32px'}"
             @click.stop="optionClick"
     >
         <i
@@ -11,7 +10,7 @@
                 class="kd-option-icon kd-icon-success"
         />
         <slot>
-            {{ label }}
+            {{ source[labelKey] }}
         </slot>
     </li>
 </template>
@@ -19,162 +18,55 @@
     export default {
         name: 'KdOption',
         props: {
-            scope: {
-                type: Object,
-                default() {
-                    return {};
-                }
-            },
-            // eslint-disable-next-line vue/require-prop-type-constructor
-            value: '',
-            label: {
-                type: [String, Number],
-                default: ''
-            },
-            disabled: {
+            activeIcon: {
                 type: Boolean,
                 default: false
             },
-            activeIcon: {
-                type: Boolean,
-                default: true
+            source: {
+                type: Object,
+                default: () => {
+                    return {};
+                }
             },
-            opIndex: {
-                type: Number,
-                default: null
+            parent: {
+                type: Object,
+                default: () => {
+                    return {};
+                }
+            },
+            valueKey: {
+                type: String,
+                default: 'value'
+            },
+            labelKey: {
+                type: String,
+                default: 'label'
             }
-        },
-        data() {
-            return {
-                optionShow: true,
-                // eslint-disable-next-line vue/no-reserved-keys
-                _label: '',
-                labelText: '',
-                optionIndex: null
-                // active: false
-            };
         },
         computed: {
             active() {
                 // 初始化是否为选择状态
-                const parent = this.getParent('kd-select-dropdown');
+                const parent = this.parent;
                 if (parent.multiple) {
                     const value = Array.isArray(parent.value) ? parent.value : [];
                     return value.some(item => {
-                        return item === this.value;
+                        return item === this.source[this.valueKey];
                     });
                 } else {
-                    return parent.value === this.value;
+                    return parent.value === this.source[this.valueKey];
                 }
-            },
-            // 懒加载相关
-            lazy() {
-                const parent = this.$parent || this.$root;
-                return parent.lazy;
-            },
-            loadCount() {
-                const parent = this.$parent || this.$root;
-                return parent.loadCount;
-            },
-            ifLoadOption() {
-                if (this.lazy) {
-                    return this.lazy && this.optionShow && this.optionIndex <= this.loadCount;
-                } else {
-                    return true;
-                }
-            },
-            // 大数据量scroll优化相关
-            optimizeScroll() {
-                const parent = this.$parent || this.$root;
-                return parent.optimizeScroll;
-            },
-            getShowIndex() {
-                const parent = this.$parent || this.$root;
-                return parent.getShowIndex;
-            },
-            ifShowOption() {
-                if (this.optimizeScroll) {
-                    return this.optionIndex >= this.getShowIndex.start && this.optionIndex <= this.getShowIndex.end && this.optionShow;
-                } else {
-                    return true;
-                }
-            }
-        },
-        watch: {
-            // label() {
-            //     this._label = this.label.toString();
-            // },
-            label: {
-                immediate: true,
-                handler(v) {
-                    this._label = this.label.toString();
-                }
-            }
-        },
-        mounted() {
-            const parent = this.getParent('kd-select-dropdown');
-            // if (parent.getOptionIndex) this.optionIndex = parent.getOptionIndex();
-            if (this.opIndex !== null) {
-                this.optionIndex = this.opIndex;
-            } else {
-                this.optionIndex = parent.getOptionIndex();
-            }
-            this.labelText = this._label || this.labelFomat(this.$slots.default[0].text);
-            if (typeof parent.value === 'object') {
-                const value = parent.value.find(item => item === this.value);
-                value && parent.updateLabel({label: this.labelText, value: this.value});
-            } else {
-                parent.value === this.value && parent.updateLabel({label: this.labelText, value: this.value});
             }
         },
         methods: {
             optionClick() {
-                if (this.disabled) {
+                if (this.source.disabled) {
                     return;
                 }
                 const data = {
-                    scope: {
-                        value: this.value,
-                        label: this._label || this.labelText
-                    },
+                    scope: this.source,
                     active: this.active
                 };
-                this.dispatch('kd-select-dropdown', 'setValue', data);
-            },
-            labelFomat(label) {
-                if (!label) return '';
-                return label.replace(/\n/g, '').trim();
-            },
-            getParent(componentName) {
-                let parent = this.$parent || this.$root;
-                let name = parent.$options._componentTag;
-                while (parent && (!name || name !== componentName)) {
-                    parent = parent.$parent;
-                    if (parent) {
-                        name = parent.$options._componentTag;
-                    }
-                }
-                return parent;
-            },
-            dispatch(componentName, eventName, params) {
-                const parent = this.getParent(componentName);
-                if (parent) {
-                    parent[eventName](params);
-                }
-            },
-            isShow({value, method}) {
-                if (method) {
-                    this.optionShow = method(value, {
-                        value: this.value,
-                        label: this._label || this.labelText
-                    });
-                } else {
-                    this.optionShow = this._label.indexOf(value) > -1;
-                }
-                return this.optionShow;
-            },
-            emitLabel() {
-                return this.labelText;
+                this.parent.setValue(data);
             }
         }
     };
