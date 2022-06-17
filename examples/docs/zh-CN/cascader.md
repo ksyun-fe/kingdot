@@ -340,7 +340,7 @@ export default {
 
 :::
 
-:::demo #可搜索 ##可以快捷地搜索选项并选择。
+:::demo #可搜索 ##可以快捷地搜索选项并选择
 
 ```html
 <template>
@@ -446,7 +446,72 @@ export default {
 
 :::
 
-:::demo #多选 ##可通过 multiple = true 开启多选模式, 通过 collapseTags = true 开启折叠展示
+:::demo #多选 ##可通过 multiple = true 开启多选模式
+
+```html
+<template>
+        <div>
+            <kd-cascader
+                v-model="defaultValue"
+                :options="options"
+                class="trigger-type-demo"
+                :multiple="true"
+                clearable
+            >
+            </kd-cascader>
+        </div>
+</template>
+<script>
+export default{
+    data() {
+        return{
+            defaultValue: [],
+            options: [
+                {
+                    label: 'option 1',
+                    value: 1,
+                    children: [{
+                        label: 'option 4',
+                        value: 4,
+                        children: []
+                    }, {
+                        label: 'option 5',
+                        value: 5,
+                        children: [{
+                            label: 'option 6',
+                            value: 6
+                        }]
+                    }, {
+                        label: 'option 7',
+                        value: 7,
+                        children: [{
+                            label: 'option 8',
+                            value: 8
+                        },{
+                            label: 'option 9',
+                            value: 9
+                        }]
+                    }]
+                }, 
+                {
+                    label: 'option 2',
+                    value: 2
+                },
+                {
+                    label: 'option 3',
+                    value: 3
+                }
+            ]
+        }
+    },
+    mounted() {
+    }
+}
+</script>
+```
+:::
+
+:::demo #多选可筛选 ##可通过 multiple = true 开启多选模式, 通过 filterable = true 开启筛选, 通过 collapseTags = true 开启折叠展示
 
 ```html
 <template>
@@ -511,7 +576,6 @@ export default{
 }
 </script>
 ```
-
 :::
 
 :::demo #单选选择任一级选项 ##设置 checkStrictly = true 可选择任一级选项

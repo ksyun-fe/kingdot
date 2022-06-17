@@ -92,7 +92,8 @@
                             :key="index"
                             class="kd-cascader-suggest-li"
                             :class="[{
-                                'is-active': item.checked
+                                'is-active': item.checked,
+                                'is-disabled': item.isDisabled
                             }]"
                             @click="handleClickSuggest(item)"
                     >
@@ -278,7 +279,7 @@
                     if (val) {
                         this.filtering = false;
                         this.$nextTick(() => {
-                            this.panel.scrollToView();
+                            this.panel && this.panel.scrollToView();
                         });
                     } else {
                         if (this.filterable && this.inputLabel && this.filtering) {
@@ -298,6 +299,9 @@
             }
         },
         mounted() {
+            if (!isEmpty(this.value)) {
+                this.setLabel();
+            }
         },
         methods: {
             setLabel() {
@@ -314,7 +318,7 @@
                 const { checkedValue, checkStrictly } = this;
 
                 if (!isEmpty(checkedValue)) {
-                    const node = this.panel.getNodeByValue(checkedValue);
+                    const node = this.panel && this.panel.getNodeByValue(checkedValue);
                     if (node && (checkStrictly || node.isLeaf)) {
                         this.inputLabel = this.showAllLevels ? node.labelText : node.label;
                         return;
@@ -349,8 +353,8 @@
                 if (isFunction(this.filterMethod)) {
                     method = this.filterMethod;
                 }
-                this.suggestions = this.panel.flatOpt.filter(item => {
-                    if (item.disabled) return false;
+                const flatOpt = this.panel ? this.panel.flatOpt : [];
+                this.suggestions = flatOpt.filter(item => {
                     return method(item, this.inputLabel) && item.isLeaf;
                 });
 
@@ -369,8 +373,10 @@
                 }
             },
             handleClickSuggest(node) {
+                if (node.isDisabled) return;
                 if (this.multiple) {
                     const { checked } = node;
+                    if (checked) return;
                     node.multiCheck(!checked);
                     this.panel.calcMultiCheckedValue();
                 } else {

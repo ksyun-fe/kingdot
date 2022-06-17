@@ -132,20 +132,4 @@ describe("cascader", () => {
             expect(document.querySelector("input").value).to.equal("option 9");
         })
     });
-    it("filterable", done => {
-        vm = createVm({filterable: true});
-        const input = vm.$el.querySelector('.kd-cascader-input-inner');
-        input.click();
-        input.value = '7';
-        triggerEvent(input, 'input');
-        setTimeout(() => {
-            expect(document.querySelector('.kd-cascader-suggest')).to.exist;
-            expect(document.querySelectorAll('.kd-cascader-suggest-li').length).to.equal(2);
-            document.querySelectorAll('.kd-cascader-suggest-li')[0].click();
-            setTimeout(() => {
-                expect(vm.value).to.deep.equal([1, 7, 8]);
-                done();
-            }, 0);
-        }, 0)
-    });
 });
