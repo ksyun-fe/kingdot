@@ -68,3 +68,32 @@
     position absolute
     right 10px
     color $-cascader-active-color
+.kd-cascader-tags
+    display flex
+    flex-wrap wrap
+    text-align left
+    margin 1px 0
+    width 95%
+    .kd-tag
+        text-overflow ellipsis
+        max-width 100%
+        display inline-flex
+        align-items center
+        margin 2px 0 2px 6px
+        span
+            overflow hidden
+            text-overflow ellipsis
+            white-space nowrap
+    .kd-tag-small
+        padding 2px 10px !important
+.kd-cascader-multi-input-inner
+    display inline-block
+    width 100%
+    padding 0
+    height 28px
+    line-height 28px
+    font-size 12px
+    border none
+    color $-cascader-input-color
+    background $-cascader-bg-color
+    cursor pointer     

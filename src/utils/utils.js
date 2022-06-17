@@ -268,14 +268,14 @@ export function isFunction(fn) {
     return fn && Object.toString.call(fn) === '[object Function]';
 }
 
-export function arrayEquels(arr1, arr2) {
+export function arrayEquals(arr1, arr2) {
     if (!(arr1 || arr2)) return false;
 
     if (arr1.length !== arr2.length) return false;
 
     for (let i = 0; i < arr1.length; i++) {
         if (arr1[i] instanceof Array && arr2[i] instanceof Array) {
-            return arrayEquels(arr1[i], arr2[i]);
+            return arrayEquals(arr1[i], arr2[i]);
         } else {
             if (arr1[i] !== arr2[i]) return false;
         }

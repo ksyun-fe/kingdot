@@ -34,13 +34,44 @@
                         class="kd-icon-arrow-down kd-cascader-arrow-icon"
                         :class="{'kd-cascader-arrow-icon-rotate': dropDownVisible}"
                 ></i>
+                <div
+                        v-if="multiple"
+                        class="kd-cascader-tags"
+                >
+                    <kd-tag
+                            v-for="tag in presentTags"
+                            :key="tag.key"
+                            size="small"
+                            color="#909399"
+                            backgroundColor="#f0f2f5"
+                            borderColor="#e9e9eb"
+                            isSolid
+                            :closable="tag.closable"
+                            @close.stop="deleteTag(tag)"
+                    ><span>{{ tag.text }}</span></kd-tag>
+                    <input
+                            v-if="filterable || presentTags.length === 0"
+                            ref="kdCascaderInputInnerMulti"
+                            v-model="inputLabel"
+                            class="kd-cascader-multi-input-inner"
+                            :class="{'kd-cascader-input-disabled': disabled}"
+                            type="text"
+                            :placeholder="presentTags.length ? '' : inputPlaceholder"
+                            :readonly="!filterable"
+                            :disabled="disabled"
+                            @input="handleInput"
+                            @focus="handleFocus"
+                            @blur="handleBlur"
+                    />
+                </div>
                 <input
+                        v-else
                         ref="kdCascaderInputInner"
                         v-model="inputLabel"
                         class="kd-cascader-input-inner"
                         :class="{'kd-cascader-input-disabled': disabled}"
                         type="text"
-                        :placeholder="inputPlaceholder"
+                        :placeholder="presentTags.length ? '' : inputPlaceholder"
                         :readonly="!filterable"
                         :disabled="disabled"
                         @input="handleInput"
@@ -80,14 +111,16 @@
                         v-show="!filtering"
                         ref="kdPopperPanel"
                         v-model="checkedValue"
-                        :options="nodeOptions"
+                        :options="options"
                         :expandTrigger="expandTrigger"
                         :cascader="this"
                         :lazy="lazy"
                         :lazyMethod="lazyMethod"
                         :labelName="labelName"
                         :valueName="valueName"
-                        @setValue="setValue"
+                        :multiple="multiple"
+                        :checkStrictly="checkStrictly"
+                        @setLabel="setLabel"
                         @menuUnvisible="toggleDropDownVisible"
                 ></kd-cascader-panel>
             </template>
@@ -95,9 +128,7 @@
     </div>
 </template>
 <script>
-    import { isEmpty, isFunction } from '../../src/utils/utils.js';
-    import cloneDeep from 'lodash/cloneDeep';
-
+    import { isEmpty, isFunction, arrayEquals } from '../../src/utils/utils.js';
     export default {
         name: 'KdCascader',
         components: {
@@ -161,6 +192,21 @@
             valueName: {
                 type: String,
                 default: 'value'
+            },
+            // 多选
+            multiple: {
+                type: Boolean,
+                default: false
+            },
+            // 多选时是否折叠展示
+            collapseTags: {
+                type: Boolean,
+                default: false
+            },
+            // 选择任意一级选项
+            checkStrictly: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
@@ -172,9 +218,9 @@
                 inputHovering: false,
                 filtering: false,
                 suggestions: [],
-                nodeOptions: [],
-                flatOpt: [],
-                suggestWidth: ''
+                suggestWidth: '',
+                presentTags: [],
+                multiCheckedNodes: []
             };
         },
         computed: {
@@ -191,15 +237,34 @@
             },
             clearBtnVisible() {
                 return this.clearable && !isEmpty(this.checkedValue) && this.inputHovering;
+            },
+            panel() {
+                return this.$refs.kdPopperPanel;
             }
         },
         watch: {
             value: {
                 deep: true,
-                immediate: true,
                 handler(val) {
-                    this.checkedValue = val;
-                    this.setLabel();
+                    if (!arrayEquals(val, this.checkedValue)) {
+                        this.checkedValue = val;
+                        this.setLabel();
+                    }
+                }
+            },
+            checkedValue: {
+                deep: true,
+                handler(val) {
+                    const { value, dropDownVisible, checkStrictly, multiple } = this;
+
+                    if (val === void 0 || !arrayEquals(val, value)) {
+                        this.setLabel();
+                        if (!multiple && !checkStrictly && dropDownVisible) {
+                            this.toggleDropDownVisible();
+                        }
+                        this.$emit('input', val);
+                        this.$emit('change', val);
+                    }
                 }
             },
             filtering(val) {
@@ -213,7 +278,7 @@
                     if (val) {
                         this.filtering = false;
                         this.$nextTick(() => {
-                            this.$refs.kdPopperPanel.scrollToView();
+                            this.panel.scrollToView();
                         });
                     } else {
                         if (this.filterable && this.inputLabel && this.filtering) {
@@ -224,72 +289,56 @@
             },
             inputLabel(val) {
                 if (!val && this.filterable) this.filtering = false;
+            },
+            options: {
+                handler() {
+                    this.$nextTick(this.setLabel);
+                },
+                deep: true
             }
         },
         mounted() {
-            if (!isEmpty(this.options)) this.initOptions();
-            this.initData();
         },
         methods: {
-            initData() {
-                if (!this.lazy) {
-                    this.setLabel();
-                    return;
-                }
-                // 懒加载情况
-                if (isEmpty(this.options)) {
-                    this.$nextTick(() => {
-                        this.$refs.kdPopperPanel.lazyLoadFn();
-                        return;
-                    });
-                }
-            },
             setLabel() {
-                if (!isEmpty(this.checkedValue)) {
-                    this.$nextTick(() => {
-                        if (this.$refs.kdPopperPanel) {
-                            const presentPath = this.$refs.kdPopperPanel.getPresentPath();
-                            this.inputLabel = this.getPresentLabel(presentPath);
-                        }
-                    });
-                    // const present = this.flatOpt.find(i => arrayEquels(i.valuePath, this.checkedValue)) || {};
-                    // if (this.showAllLevels) {
-                    //     this.inputLabel = present.labelText;
-                    // } else {
-                    //     this.inputLabel = present.label;
-                    // }
-                } else {
-                    this.inputLabel = '';
+                this.$nextTick(() => {
+                    if (this.multiple) {
+                        this.computePresentTags();
+                        this.inputLabel = this.presentTags.length ? '' : null;
+                    } else {
+                        this.getPresentLabel();
+                    }
+                });
+            },
+            getPresentLabel() {
+                const { checkedValue, checkStrictly } = this;
+
+                if (!isEmpty(checkedValue)) {
+                    const node = this.panel.getNodeByValue(checkedValue);
+                    if (node && (checkStrictly || node.isLeaf)) {
+                        this.inputLabel = this.showAllLevels ? node.labelText : node.label;
+                        return;
+                    }
                 }
+                this.inputLabel = null;
             },
-            getPresentLabel(path) {
-                if (!path || !path.length) return '';
-                let label = '';
-                if (this.showAllLevels) {
-                    path.forEach((item, index) => {
-                        label += (index ? ' / ' : '') + item[this.labelName];
-                    });
-                } else {
-                    const item = path.slice(-1);
-                    label = item[0][this.labelName];
-                }
-                return label;
-            },
-            setValue() {
-                this.setLabel();
-                this.$emit('input', this.checkedValue);
-                this.$emit('change', this.checkedValue);
-            },
+            // 可清除
             handleClear() {
-                this.checkedValue.splice(0);
-                this.inputLabel = '';
-                this.suggestions = [];
+                if (this.multiple) {
+                    this.presentTags = [];
+                    this.checkedValue = [];
+                } else {
+                    this.checkedValue.splice(0);
+                    this.inputLabel = '';
+                    this.suggestions = [];
+                }
                 this.$emit('input', this.checkedValue);
                 this.$emit('change', this.checkedValue);
             },
             toggleDropDownVisible() {
                 this.dropDownVisible = !this.dropDownVisible;
             },
+            // 可搜索
             handleInput() {
                 this.filtering = this.inputLabel || false;
             },
@@ -300,14 +349,18 @@
                 if (isFunction(this.filterMethod)) {
                     method = this.filterMethod;
                 }
-                this.suggestions = this.flatOpt.filter(item => {
+                this.suggestions = this.panel.flatOpt.filter(item => {
                     if (item.disabled) return false;
                     return method(item, this.inputLabel) && item.isLeaf;
                 });
 
                 if (!isEmpty(this.checkedValue)) {
                     this.suggestions.forEach(node => {
-                        node.checked = JSON.stringify(this.checkedValue) === JSON.stringify(node.valuePath);
+                        if (this.multiple) {
+                            node.checked = node.isContainNode(this.checkedValue);
+                        } else {
+                            node.checked = arrayEquals(this.checkedValue, node.pathValue);
+                        }
                     });
                 } else {
                     this.suggestions.forEach(node => {
@@ -315,46 +368,16 @@
                     });
                 }
             },
-            // 给所有数据加上valuePath, labelText属性，并扁平化数组
-            initOptions() {
-                this.nodeOptions = cloneDeep(this.options);
-                this.formatNodes(this.nodeOptions);
-                this.flatOpt = this.flatNodes(cloneDeep(this.nodeOptions));
-            },
-            formatNodes(data) {
-                data.forEach(node => {
-                    node.valuePath = node.valuePath ? node.valuePath.concat([node[this.valueName]]) : [node[this.valueName]];
-                    node.labelText = node.labelText ? (node.labelText + ' / ' + node[this.labelName]) : node[this.labelName];
-                    node.uid = Math.floor(Math.random() * 10000);
-                    if (node.children && node.children.length) {
-                        node.isLeaf = false;
-                        node.children.forEach(child => {
-                            child.valuePath = child.valuePath ? child.valuePath.concat(node.valuePath) : node.valuePath;
-                            child.labelText = child.labelText ? (child.labelText + ' / ' + node.labelText) : node.labelText;
-                        });
-                        this.formatNodes(node.children);
-                    } else {
-                        node.isLeaf = true;
-                    }
-                });
-            },
-            // 扁平化所有数据
-            flatNodes(data) {
-                if (!data || data.length < 1) return [];
-                return data.reduce((res, node) => {
-                    res.push(node);
-                    if (node.children && node.children.length) {
-                        res = res.concat(this.flatNodes(node.children));
-                    }
-                    return res;
-                }, []);
-            },
             handleClickSuggest(node) {
-                this.checkedValue = node.valuePath;
-                this.inputLabel = node.labelText;
+                if (this.multiple) {
+                    const { checked } = node;
+                    node.multiCheck(!checked);
+                    this.panel.calcMultiCheckedValue();
+                } else {
+                    this.checkedValue = node.pathValue;
+                    this.inputLabel = node.labelText;
+                }
                 this.filtering = false;
-                this.$emit('input', this.checkedValue);
-                this.$emit('change', this.checkedValue);
                 this.toggleDropDownVisible();
             },
             handleFocus(e) {
@@ -362,6 +385,42 @@
             },
             handleBlur(e) {
                 this.$emit('blur', e);
+            },
+            // 多选
+            computePresentTags() {
+                const tags = [];
+                const nodes = this.panel.calcMultiCheckedNodes();
+                const {showAllLevels, collapseTags, disabled} = this;
+                const genTag = node => ({
+                    node,
+                    key: node.uid,
+                    text: showAllLevels ? node.labelText : node.label,
+                    closable: !disabled && !node.isDisabled
+                });
+
+                const len = nodes.length;
+                if (len) {
+                    tags.push(genTag(nodes[0]));
+                    if (len > 1) {
+                        if (collapseTags) {
+                            tags.push({
+                                key: -1,
+                                text: `+ ${len - 1}`,
+                                closable: false
+                            });
+                        } else {
+                            nodes.slice(1).forEach(node => tags.push(genTag(node)));
+                        }
+                    }
+                }
+                this.multiCheckedNodes = nodes;
+                this.presentTags = tags;
+            },
+            deleteTag(tag) {
+                const { checkedValue } = this;
+                this.checkedValue = checkedValue.filter(n => !arrayEquals(n, tag.node.pathValue));
+                const node = checkedValue.find(n => arrayEquals(n, tag.node.pathValue));
+                this.$emit('removeTag', node);
             }
         }
     };

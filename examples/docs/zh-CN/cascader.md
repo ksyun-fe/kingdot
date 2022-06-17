@@ -424,7 +424,9 @@ export default {
             id: 0
         }
     },
-    mounted(){},
+    mounted(){
+        this.defaultValue = [1, 2, 3]
+    },
     methods: {
         lazyMethod(node, resolve) {
             setTimeout(() => {
@@ -432,7 +434,7 @@ export default {
                     .map(item => ({
                         value: ++this.id,
                         label: `选项${this.id}`,
-                        isLeaf: this.id >= 3
+                        leaf: this.id >= 3
                     }));
                 // 通过调用resolve将子节点数据返回，通知组件数据加载完成
                 resolve(nodes);
@@ -442,6 +444,137 @@ export default {
 }
 </script>
 
+:::
+
+:::demo #多选 ##可通过 multiple = true 开启多选模式, 通过 collapseTags = true 开启折叠展示
+
+```html
+<template>
+        <div>
+            <kd-cascader
+                v-model="defaultValue"
+                :options="options"
+                class="trigger-type-demo"
+                :multiple="true"
+                clearable
+                collapseTags
+                filterable
+            >
+            </kd-cascader>
+        </div>
+</template>
+<script>
+export default{
+    data() {
+        return{
+            defaultValue: [],
+            options: [
+                {
+                    label: 'option 1',
+                    value: 1,
+                    children: [{
+                        label: 'option 4',
+                        value: 4,
+                        children: []
+                    }, {
+                        label: 'option 5',
+                        value: 5,
+                        children: [{
+                            label: 'option 6',
+                            value: 6
+                        }]
+                    }, {
+                        label: 'option 7',
+                        value: 7,
+                        children: [{
+                            label: 'option 8',
+                            value: 8
+                        },{
+                            label: 'option 9',
+                            value: 9
+                        }]
+                    }]
+                }, 
+                {
+                    label: 'option 2',
+                    value: 2
+                },
+                {
+                    label: 'option 3',
+                    value: 3
+                }
+            ]
+        }
+    },
+    mounted() {
+    }
+}
+</script>
+```
+
+:::
+
+:::demo #单选选择任一级选项 ##设置 checkStrictly = true 可选择任一级选项
+
+```html
+<template>
+        <div>
+            <kd-cascader
+                v-model="defaultValue"
+                :options="options"
+                class="trigger-type-demo"
+                checkStrictly
+            >
+            </kd-cascader>
+        </div>
+</template>
+<script>
+export default{
+    data() {
+        return{
+            defaultValue: [],
+            options: [
+                {
+                    label: 'option 1',
+                    value: 1,
+                    children: [{
+                        label: 'option 4',
+                        value: 4,
+                        children: []
+                    }, {
+                        label: 'option 5',
+                        value: 5,
+                        disabled: true,
+                        children: [{
+                            label: 'option 6',
+                            value: 6
+                        }]
+                    }, {
+                        label: 'option 7',
+                        value: 7,
+                        children: [{
+                            label: 'option 8',
+                            value: 8
+                        },{
+                            label: 'option 9',
+                            value: 9
+                        }]
+                    }]
+                }, 
+                {
+                    label: 'option 2',
+                    value: 2
+                },
+                {
+                    label: 'option 3',
+                    value: 3
+                }
+            ]
+        }
+    },
+    mounted() {}
+}
+</script>
 ```
 :::
 
@@ -460,6 +593,11 @@ export default {
 | show-all-levels | 是否显示选项完整路径 | boolean | - | true
 | lazy | 是否支持动态加载 | boolean | - | false
 | lazy-method | 动态加载方法，第一个参数为当前节点，第二个参数为数据加载完成的回调(必须调用)，lazy为true时生效 | function | - | -
+| multiple | 是否启用多选 | boolean | - | false
+| collapseTags | 多选时是否折叠展示选中项 | boolean | - | false
+| valueName | 取值字段别名 | string | - | 'value'
+| labelName | 展示字段别名 | string | - | 'label'
+| checkStrictly | 是否可选择任一级选项 | boolean | - | false
 
 ### Slots {.component__content}
 | 事件名称      | 说明   
@@ -473,3 +611,4 @@ export default {
 | change | 选中值发生变化时触发	 | 选中值
 | blur | 当失去焦点时触发 | (event: Event)
 | focus | 当获得焦点时触发 | (event: Event)
+| removeTag | 在多选模式下，移除Tag时触发 | 移除的Tag对应节点的值
