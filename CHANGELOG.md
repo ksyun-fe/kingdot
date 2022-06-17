@@ -1,5 +1,9 @@
 ## 更新日志
 
+### bugfix
+  * FormItem
+    * 修复FormItem 自定义labelWidth不生效问题
+
 ## v1.0.52
 *2022-06-16*
 ### bugfix
