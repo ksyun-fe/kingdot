@@ -1,7 +1,6 @@
 <template>
     <div
-            class="kd-step"
-            :class="`kd-step-${type}`"
+            :class="allClassList"
             :style="handleFlex"
     >
         <span
@@ -10,9 +9,6 @@
                 class="kd-step-line"
                 :class="{
                     'kd-step-line-active': index < activeIndex,
-                    'kd-step-line-vertical': direction == 'vertical',
-                    'kd-step-line-vertical-small':direction == 'vertical'&&size=='small',
-                    'kd-step-line-spot': type == 'spot',
                 }"
                 :style="stepLineStyle"
         ></span>
@@ -33,21 +29,12 @@
                                 :class="[
                                     {
                                         'kd-step-index-active': index == activeIndex,
-                                        'kd-step-index-done': index < activeIndex,
-                                        'kd-step-index-small': size == 'small',
-                                        'kd-step-index-simple': type == 'simple',
                                         'kd-step-index-icon': icon != '',
                                         'kd-step-cursor':isClick,
-                                        'kd-step-icon-lh':size == 'small'&& icon == '' && (_status == 'finished' || _status == 'error' )
                                     },
                                     _status != '' ? customStatusClass : '',
                                 ]"
                         >
-                            <span v-if="icon == '' && _status != 'error' && _status != 'finished'">{{ index }}</span>
-                            <i
-                                    v-if="icon == ''"
-                                    :class="iconObj"
-                            ></i>
                             <i
                                     v-if="icon != ''"
                                     :class="[
@@ -60,11 +47,16 @@
                                         },
                                     ]"
                             ></i>
+                            <i
+                                    v-if="icon == '' && (_status == 'wrong' || (_status == 'finished' && finishedStyle=='icon'))"
+                                    :class="iconObj"
+                            ></i>
+                            <span v-else-if="icon == '' || finishedStyle=='number'">{{ index }}</span>
                         </span>
                         <!-- spot类型 -->
                         <span
                                 v-if="type == 'spot'"
-                                :class="{ 'kd-step-spot-line': index == activeIndex }"
+                                :class="{ 'kd-step-spot-line': index == activeIndex, 'kd-step-cursor':isClick,}"
                         >
                             <span
                                     v-if="type == 'spot'"
@@ -80,8 +72,9 @@
                 <!-- 标题和描述 -->
                 <div
                         v-if="title != ''||description != ''"
+                        ref="stepMain"
                         class="kd-step-main"
-                        :class="`kd-step-main-${size}`"
+                        :class="[`kd-step-main-${size}`, `kd-step-main-${position}`]"
                 >
                     <span
                             v-if="title != ''"
@@ -89,28 +82,18 @@
                             class="kd-step-title"
                             :class="{
                                 'kd-step-title-active': index == activeIndex,
-                                'kd-step-title-bottom': position == 'bottom',
-                                'kd-step-title-simple': type == 'simple',
-                                'kd-step-title-spot': type == 'spot',
-                                'kd-step-title-vertical':direction == 'vertical',
                                 'kd-step-cursor':isClick,
-                                'kd-step-title-small':size == 'small'&& position == 'left',
                                 'kd-step-title-spot-active':index == activeIndex && type == 'spot'
                             }"
                             @click="_click"
                     >{{ title }}</span>
                     <p
                             v-if="description != ''"
+                            ref="stepDesc"
                             class="kd-step-description"
                             :class="{
-                                'kd-step-desc-notitle': title == '' && position == 'left'&&direction != 'vertical',
-                                'kd-step-desc-notitle-spot': title == '' && type == 'spot',
+                                'kd-step-desc-notitle': title == '',
                                 'kd-step-desc-active': index == activeIndex,
-                                'kd-step-desc-bottom': position == 'bottom',
-                                'kd-step-desc-spot': type == 'spot',
-                                'kd-step-desc-vertical-notitle':title==''&&direction == 'vertical',
-                                'kd-step-desc-vertical':direction == 'vertical',
-                                'kd-step-desc-small':size == 'small' && position == 'left'&&direction != 'vertical'
                             }"
                     >
                         {{ description }}
@@ -151,18 +134,33 @@
             return {
                 index: 0,
                 size: this.$parent.size,
-                position: 'left',
                 direction: 'horizontal',
                 type: '',
                 isClick: this.$parent.isClick
             };
         },
         computed: {
+            finishedStyle() {
+                return this.$parent.finishedStyle;
+            },
             activeIndex() {
                 return this.$parent.stepIndex;
             },
             _status() {
                 return this.getStatus();
+            },
+            position() {
+                let position = this.$parent.position;
+                if (this.direction == 'vertical') {
+                    position = 'right';
+                }
+                if (this.type == 'spot') {
+                    position = 'bottom';
+                }
+                if (this.type == 'simple') {
+                    position = 'right';
+                }
+                return position;
             },
             customStatusClass() {
                 return 'kd-step-custom-status-' + this._status;
@@ -181,25 +179,23 @@
             iconObj() {
                 return {
                     'kd-icon-success': this._status === 'finished',
-                    'kd-icon-error': this._status === 'error'
+                    'kd-icon-error': this._status === 'wrong'
                 };
             },
             stepLineStyle() {
                 if (this.type === 'simple') return;
                 const style = {};
                 const headW = this.$refs.stepHead.clientWidth;
-                let headH = this.$refs.stepHead.clientHeight;
-                if (this.size === 'small') {
-                    headH = headH + 4;
-                }
+                const headH = this.$refs.stepHead.clientHeight;
                 if (this.type === 'spot') {
                     let diff = 0; const spotLineLH = this.$el.children[0].children[0].children[0].offsetHeight;
                     diff = spotLineLH % 2 === 0 ? 4 : 5;
                     const _tranlateY = Math.round(((spotLineLH + diff) / 2) * 100) / 100;
                     style.transform = `translate(6px, ${_tranlateY}px)`;
+                    style.width = '100%';
                 } else if (this.$parent.direction === 'horizontal') {
-                    const _tranlateY = Math.ceil((headH + 1) / 2);
-                    if (this.$parent.position === 'left') {
+                    const _tranlateY = Math.ceil((headH) / 2);
+                    if (this.$parent.position === 'right') {
                         const titleW = this.$refs.stepTitle ? this.$refs.stepTitle.clientWidth : 0;
                         const _tranlateX = headW + titleW;
                         style.transform = `translate(${_tranlateX}px, ${_tranlateY}px)`;
@@ -220,6 +216,7 @@
                 const style = {};
                 if (this.title === '') {
                     if (!this.isLast()) {
+                        // debugger;
                         if (this.$parent.children.length === 2) {
                             style['flex-basis'] = 98 + '%';
                         } else {
@@ -229,12 +226,19 @@
                     }
                 }
                 return style;
+            },
+            allClassList() {
+                return [
+                    'kd-step',
+                    `kd-step-type-${this.type}`,
+                    `kd-step-size-${this.size}`
+                ];
             }
         },
         watch: {},
         created() {
             this.$parent.children.push(this);
-            this.position = this.$parent.position;
+            // this.position = this.getPosition();
             this.direction = this.$parent.orientation;
             this.type = this.getType();
         },
@@ -278,17 +282,17 @@
                 } else {
                     status = this.status;
                 }
-                return status;
+                return status == 'error' ? 'wrong' : status;
+                // return status;
             },
             getType() {
                 const v = this.$parent.type;
                 if (v === 'spot') {
-                    this.position = 'bottom';
                     this.direction = 'horizontal';
+                    this.size = 'small';
                     this.status = '';
                 } else if (v === 'simple') {
                     this.description = '';
-                    this.position = 'left';
                     this.size = 'small';
                     this.direction = 'horizontal';
                 }

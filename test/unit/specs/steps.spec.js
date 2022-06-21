@@ -34,15 +34,80 @@ describe("Steps", () => {
     vm._next();
     await vm.$nextTick().then((_) => {
       expect(
-        vm.$el.querySelector('.kd-step').classList.contains("kd-step-spot")
+        vm.$el.querySelector('.kd-step').classList.contains("kd-step-type-spot")
       ).to.be.true;
     });
   });
+  // 创建一个默认的steps
+  it('create default step', () => {
+    vm = createVue({
+      template: `
+        <div>
+          <kd-steps v-model="stepIndex1">
+              <kd-step title="步骤一" ></kd-step>
+              <kd-step title="步骤二" ></kd-step>
+          </kd-steps>
+          <kd-steps v-model="stepIndex1">
+              <kd-step title=""></kd-step>
+              <kd-step title=""></kd-step>
+          </kd-steps>
+          <kd-steps v-model="stepIndex1">
+              <kd-step title=""></kd-step>
+              <kd-step title=""></kd-step>
+              <kd-step title=""></kd-step>
+          </kd-steps>
+        </div>
+                `,
+      data() {
+        return {
+          stepIndex1: 1,
+        };
+      },
+    });
+    expect(
+      vm.$el.querySelector('.kd-step').classList.contains(
+        "kd-step-type-default"
+      )
+    ).to.be.true;
+    expect(
+      vm.$el.querySelectorAll('.kd-step')[1].classList.contains(
+        "kd-step-type-default"
+      )
+    ).to.be.true;
+    expect(
+      vm.$el.querySelectorAll('.kd-step')[2].classList.contains(
+        "kd-step-type-default"
+      )
+    ).to.be.true;
+  });
+  // 创建一个 描述在下面的steps
+  it('create position is bottom', () => {
+    vm = createVue({
+      template: `
+        <kd-steps v-model="stepIndex1" position="bottom">
+            <kd-step title="步骤一"></kd-step>
+            <kd-step title="步骤二"></kd-step>
+            <kd-step title="步骤三"></kd-step>
+            <kd-step title="完成完成完成完成"></kd-step>
+        </kd-steps>
+                `,
+      data() {
+        return {
+          stepIndex1: 1,
+        };
+      },
+    });
+    expect(
+      vm.$el.querySelector('.kd-step-main').classList.contains(
+        "kd-step-main-bottom"
+      )
+    ).to.be.true;
+  })
   //创建一个有状态的steps
   it("steps has status", async () => {
     vm = createVue({
       template: `
-        <kd-steps v-model="stepIndex1" finishStatus='finished'>
+        <kd-steps v-model="stepIndex1">
             <kd-step title="步骤一" status="wait"></kd-step>
             <kd-step title="步骤二" status="error"></kd-step>
             <kd-step title="步骤三" status="active"></kd-step>
@@ -63,7 +128,7 @@ describe("Steps", () => {
       ).to.be.true;
       expect(
         vm.$el.querySelectorAll('.kd-step-index')[1].classList.contains(
-          "kd-step-custom-status-error"
+          "kd-step-custom-status-wrong"
         )
       ).to.be.true;
       expect(
@@ -92,7 +157,7 @@ describe("Steps", () => {
     });
 
     await vm.$nextTick().then((_) => {
-      expect(vm.$el.querySelector('.kd-step').classList.contains("kd-step-simple")).to.be
+      expect(vm.$el.querySelector('.kd-step').classList.contains("kd-step-type-simple")).to.be
         .true;
     });
   });
@@ -124,13 +189,24 @@ describe("Steps", () => {
   it("steps vertical", async () => {
     vm = createVue({
       template: `
-        <div style="height:300px">
-            <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
-                <kd-step title="步骤一"></kd-step>
-                <kd-step title="步骤二"></kd-step>
-                <kd-step title="步骤三" :description="description"></kd-step>
-            </kd-steps>
+        <div>
+          <div style="height:300px">
+              <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
+                  <kd-step title="步骤一"></kd-step>
+                  <kd-step title="步骤二" :description="description"></kd-step>
+                  <kd-step></kd-step>
+              </kd-steps>
+              
+          </div>
+          <div  style="height:300px">
+              <kd-steps v-model="stepIndex1" style="margin-bottom:40px" direction="vertical">
+                  <kd-step title="步骤一"></kd-step>
+                  <kd-step title="步骤二" ></kd-step>
+                  <kd-step title="步骤三"></kd-step>
+              </kd-steps>
+          </div>
         </div>
+
                 `,
       data() {
         return {
@@ -142,7 +218,7 @@ describe("Steps", () => {
 
     await vm.$nextTick().then((_) => {
       expect(
-        vm.$el.querySelector('.kd-steps-container').classList.contains("kd-steps-container-vertical")
+        vm.$el.querySelector('.kd-steps-container').classList.contains("kd-steps-vertical")
       ).to.be.true;
     });
   });

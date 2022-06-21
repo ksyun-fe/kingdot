@@ -2,8 +2,7 @@
     <div
             id="kd-steps"
             ref="kdSteps"
-            class="kd-steps-container"
-            :class="{ 'kd-steps-container-vertical': orientation === 'vertical' }"
+            :class="allClassList"
             :style="stepsStyle"
     >
         <slot></slot>
@@ -25,7 +24,7 @@
             },
             position: {
                 type: String,
-                default: 'left'
+                default: 'right'
             },
             size: {
                 type: String,
@@ -49,6 +48,10 @@
             currentStatus: {
                 type: String,
                 default: 'active' // error,wait,finished,active
+            },
+            finishedStyle: {
+                type: String,
+                default: 'icon' // icon number
             }
         },
         data() {
@@ -60,6 +63,13 @@
             };
         },
         computed: {
+            allClassList() {
+                const allClassAry = [
+                    'kd-steps-container',
+                    this.direction ? `kd-steps-${this.direction}` : ''
+                ];
+                return allClassAry;
+            },
             stepsStyle() {
                 const style = {};
                 if (this.width) {
@@ -97,88 +107,44 @@
                 const childNum = this.children.length;
                 const precent = 100;
                 const lastChildWidth = precent / childNum + '%';
-                const leftStyle = (precent / childNum) + 5 + '%';
-                const parent = this.$el;
+                const parent = this;
+                const childrenList = Array.from(parent.children);
+                const lastChild = childrenList[childNum - 1];
                 if (childNum === 2) {
-                    Array.from(parent.children)[0].style[
-                        'flex-basis'
-                    ] = 90 + '%';
+                    childrenList[0].$el.style['flex-basis'] = 90 + '%';
                 }
                 if (this.type === 'default' && this.direction === 'vertical') {
-                    const lastChild = Array.from(parent.children)[childNum - 1];
-                    const headH = lastChild.children[0].children[0].children[0].clientHeight;
-                    const mainElement = lastChild.children[0].children[0].children[1];
-                    lastChild.style['max-height'] = lastChildWidth;
+                    const headH = lastChild.$refs.stepHead.clientHeight;
+                    const mainElement = lastChild.$refs.stepMain;
+                    lastChild.$el.style['max-height'] = lastChildWidth;
                     if (!mainElement) {
-                        lastChild.style.height = headH + 'px';
+                        lastChild.$el.style.height = headH + 'px';
                     } else {
-                        if (!mainElement.children[1]) {
-                            if (Array.from(mainElement.children[0].classList).indexOf('kd-step-title') !== -1) {
-                                lastChild.style.height = headH + 'px';
-                            }
+                        if (!lastChild.$refs.stepDesc && lastChild.$refs.stepTitle) {
+                            lastChild.$el.style.height = headH + 'px';
                         }
                     }
-                } else {
-                    Array.from(parent.children)[childNum - 1].style[
-                        'max-width'
-                    ] = lastChildWidth;
-                    Array.from(parent.children).forEach((item, index) => {
-                        // debugger;
-                        const headWidth = isIe() ? item.children[0].children[0].children[0].clientWidth : item.children[0].children[0].children[0].offsetWidth;
-                        const mainElement = item.children[0].children[0].children[1];
-                        const firstChild = mainElement ? item.children[0].children[0].children[1].children[0] : null;
-                        const titleWidth = firstChild ? isIe() ? firstChild.clientWidth : firstChild.offsetWidth : 0;
-                        const secondChild = mainElement ? item.children[0].children[0].children[1].children[1] : null;
-                        if (!secondChild && firstChild) {
-                            item.children[0].children[0].children[1].style.width = titleWidth + headWidth + 'px';
+                } else if (this.type === 'default' && this.direction === 'horizontal') {
+                    lastChild.$el.style['max-width'] = lastChildWidth;
+                    childrenList.forEach((item, index) => {
+                        const stepHead = item.$refs.stepHead;
+                        const headWidth = stepHead ? isIe() ? stepHead.clientWidth : stepHead.offsetWidth : 0;
+                        const mainElement = item.$refs.stepMain;
+                        const stepTitle = mainElement ? item.$refs.stepTitle : null;
+                        const titleWidth = stepTitle ? isIe() ? stepTitle.clientWidth : stepTitle.offsetWidth : 0;
+                        const stepDesc = mainElement ? item.$refs.stepDesc : null;
+                        if (!stepDesc && stepTitle) {
+                            item.$refs.stepMain.style.width = titleWidth + headWidth + 'px';
                         }
-                        if (this.type === 'default' && this.direction === 'horizontal' && index === Array.from(parent.children).length - 1) {
+                        if (index === childrenList.length - 1) {
                             if (!mainElement) {
-                                item.style.width = headWidth + 'px';
+                                item.$el.style.width = headWidth + 'px';
                             }
                         }
                     });
                 }
-
                 if (this.type === 'simple') {
-                    Array.from(parent.children)[childNum - 1].style[
-                        'flex-basis'
-                    ] = lastChildWidth;
-                    Array.from(parent.children).forEach(item => {
-                        const head = item.children[0].children[0].children[0].children[0];
-                        if (head && head.className === 'kd-step-head') {
-                            item.children[0].children[0].children[0].style.left = leftStyle;
-                        }
-                    });
-                }
-                if (this.type === 'spot') {
-                    Array.from(parent.children).forEach((item, index) => {
-                        const headHeight = isIe() ? item.children[0].children[0].children[0].clientHeight : item.children[0].children[0].children[0].offsetHeight;
-                        const mainSection = item.children[0].children[0].children[1];
-                        if (mainSection) {
-                            const firstChild = item.children[0].children[0].children[1].children[0];
-                            const secondChild = item.children[0].children[0].children[1].children[1];
-                            const titleHeight = firstChild ? isIe() ? firstChild.clientHeight : firstChild.offsetHeight : 0;
-                            const descHeight = secondChild ? isIe() ? secondChild.clientHeight : secondChild.offsetHeight : 0;
-                            if (firstChild && secondChild) {
-                                item.children[0].children[0].children[1].style.height = titleHeight + descHeight + 'px';
-                                item.children[0].children[0].style.height = headHeight + titleHeight + descHeight + 'px';
-                            } else if (firstChild && !secondChild) {
-                                item.children[0].children[0].children[1].style.height = titleHeight + 'px';
-                                item.children[0].children[0].style.height = headHeight + titleHeight + 'px';
-                            } else {
-                                item.children[0].children[0].children[1].style.height = 'auto';
-                                item.children[0].children[0].style.height = headHeight + 'px';
-                            }
-                        }
-                        if (index === Array.from(parent.children).length - 1) {
-                            if (mainSection) {
-                                item.style.width = mainSection.style.width;
-                            } else {
-                                item.style.width = 16 + 'px';
-                            }
-                        }
-                    });
+                    lastChild.$el.style['flex-basis'] = lastChildWidth;
                 }
             }
         }
