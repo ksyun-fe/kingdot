@@ -216,6 +216,8 @@
 
                 this.activePath = path;
                 this.menus = menus;
+                // 在更新面板时更新tooltip 的 updatePopper方法
+                this.$emit('handleExpand');
             },
             handleClickNode(pathValue) {
                 this.checkedValue = pathValue;

@@ -8,6 +8,7 @@
             :style="{'width': inputWidth}"
     >
         <kd-tooltip
+                ref="kdCasacderTooltip"
                 v-model="dropDownVisible"
                 placement="bottom-start"
                 trigger="click"
@@ -122,7 +123,7 @@
                         :multiple="multiple"
                         :checkStrictly="checkStrictly"
                         @setLabel="setLabel"
-                        @menuUnvisible="toggleDropDownVisible"
+                        @handleExpand="handleExpandChange"
                 ></kd-cascader-panel>
             </template>
         </kd-tooltip>
@@ -341,6 +342,9 @@
             },
             toggleDropDownVisible() {
                 this.dropDownVisible = !this.dropDownVisible;
+            },
+            handleExpandChange() {
+                if (this.dropDownVisible && this.$refs.kdCasacderTooltip) this.$refs.kdCasacderTooltip.updatePopper();
             },
             // 可搜索
             handleInput() {
