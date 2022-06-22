@@ -171,6 +171,21 @@
                             </div>
                         </div>
                     </div>
+                    <div
+                            v-if="showFooter"
+                            class="kd-time-picker-footer"
+                    >
+                        <kd-button
+                                hollow
+                                size="mini"
+                                @click="cancelChange"
+                        >取消</kd-button>
+                        <kd-button
+                                hollow
+                                size="mini"
+                                @click="confirmChange"
+                        >确认</kd-button>
+                    </div>
                 </div>
             </template>
         </kd-tooltip>
@@ -249,6 +264,12 @@
                     return 'secend';
                 }
             },
+            hideConfirmBtn: {
+                type: Boolean,
+                default() {
+                    return false;
+                }
+            },
             // prefix, suffix
             iconPosition: {
                 type: String,
@@ -266,10 +287,14 @@
                 timeValue: [], // innervalue
                 timeString: '', // input value
                 tooltipShowFlag: false,
+                onShowValue: Array.isArray(this.value) ? [...this.value] : this.value,
                 isTooltipShow: false
             };
         },
         computed: {
+            showFooter() {
+                return !this.hideConfirmBtn && this.mode === 'anytime';
+            },
             timeList() {
                 if (!!this.optionalTimes && Array.isArray(this.optionalTimes)) { // 传入不规则的时间列表
                     return this.optionalTimes;
@@ -325,6 +350,7 @@
                 }
             },
             isTooltipShow(v) {
+                this.onShowValue = Array.isArray(this.value) ? [...this.value] : this.value;
                 if (v) {
                     this.tooltipShowFlag = true;
                 } else {
@@ -335,6 +361,16 @@
         created() {
         },
         methods: {
+            cancelChange() {
+                this.isTooltipShow = false;
+                if (this.onShowValue.toString() !== this.value.toString()) {
+                    this.$emit('input', this.onShowValue);
+                    this.$emit('change', this.onShowValue);
+                }
+            },
+            confirmChange() {
+                this.isTooltipShow = false;
+            },
             onClear(e) {
                 e.stopPropagation();
                 this.timeString = '';
@@ -353,7 +389,15 @@
             selectTimeValue(item) {
                 if (this.checkDisabled(item)) return;
                 if (this.multiple) {
-                    if (!this.timeValue.includes(item)) {
+                    if (!this.range && this.mode === 'steptime') {
+                        const index = this.timeValue.findIndex(i => i === item);
+                        if (~index) {
+                            this.timeValue.splice(index, 1);
+                        } else {
+                            this.timeValue.push(item);
+                        }
+                        this.$emit('change', this.timeValue, 'select');
+                    } else if (!this.timeValue.includes(item)) {
                         if (this.tooltipShowFlag) {
                             this.timeValue.push(item);
                             this.tooltipShowFlag = false;
