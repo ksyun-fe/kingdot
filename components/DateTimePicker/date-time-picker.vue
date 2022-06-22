@@ -282,7 +282,12 @@
                         class="kd-datetime-footer"
                 >
                     <kd-button
-                            type="primary"
+                            hollow
+                            size="mini"
+                            @click="cancelChange"
+                    >取消</kd-button>
+                    <kd-button
+                            hollow
                             size="mini"
                             @click="confirmDateTime"
                     >确认</kd-button>
@@ -307,6 +312,12 @@
                 type: [String, Array],
                 default: function () {
                     return [];
+                }
+            },
+            multiple: {
+                type: Boolean,
+                default() {
+                    return false;
                 }
             },
             // 是否是范围区间
@@ -395,6 +406,8 @@
                 // 时间范围模式专用变量
                 rangeEndDate: '', // 选中第一个日期后, hover 的第二个日期, 用于 isInRange 状态计算
                 isTooltipShow: false,
+                tooltipShowFlag: false,
+                onShowValue: Array.isArray(this.value) ? [...this.value] : this.value,
                 tabDateText: '0000-00-00',
                 tabTimeText: this.accuracy === 'minute' ? '00:00' : '00:00:00',
                 tabSelectValue: 'date' // 默认是 date 的 tab 页面
@@ -402,10 +415,18 @@
         },
         computed: {
             tabDateArr() {
-                return this.dateTimeValue.map(x => x && x.split(' ')[0]) || [this.tabDateText];
+                let dateTimeValue = this.dateTimeValue;
+                if (this.multiple) {
+                    dateTimeValue = dateTimeValue.length > 0 ? [dateTimeValue[dateTimeValue.length - 1]] : [];
+                }
+                return dateTimeValue.map(x => x && x.split(' ')[0]) || [this.tabDateText];
             },
             tabTimeArr() {
-                return this.dateTimeValue.map(x => x && x.split(' ')[1]) || [this.tabTimeText];
+                let dateTimeValue = this.dateTimeValue;
+                if (this.multiple) {
+                    dateTimeValue = dateTimeValue.length > 0 ? [dateTimeValue[dateTimeValue.length - 1]] : [];
+                }
+                return dateTimeValue.map(x => x && x.split(' ')[1]) || [this.tabTimeText];
             }
         },
         watch: {
@@ -423,12 +444,26 @@
                         }
                         this.inputDateString = v;
                         this.dateTimeValue = [v];
+                    } else if (this.multiple) {
+                        if (!Array.isArray(v)) {
+                            v = [v];
+                        }
+                        this.inputDateString = v.join(',');
+                        this.dateTimeValue = v;
                     } else if (Array.isArray(v)) {
                         const tmpArr = v.filter(timeStr => Moment(timeStr).isValid());
                         v = tmpArr.length > 2 ? tmpArr.slice(0, 2) : tmpArr;
                         this.inputDateString = v.join(' ~ ');
                         this.dateTimeValue = v;
                     }
+                }
+            },
+            isTooltipShow(v) {
+                this.onShowValue = Array.isArray(this.value) ? [...this.value] : this.value;
+                if (v) {
+                    this.tooltipShowFlag = true;
+                } else {
+                    this.tooltipShowFlag = false;
                 }
             }
         },
@@ -442,7 +477,7 @@
             parseDatetimeStr(datetimeStr) {
                 // const separatorList = ['~', '-', '/', '.', ' '];
                 let datetimeArr = [];
-                const delimiter = '~';
+                const delimiter = this.range ? '~' : ',';
                 const tmpArr = datetimeStr.split(delimiter);
 
                 datetimeArr = tmpArr.map(date => {
@@ -452,7 +487,7 @@
                     return Moment(date).format('YYYY-MM-DD HH:mm:ss');
                 });
                 // 排序
-                if (Moment(datetimeArr[0]).isAfter(Moment(datetimeArr[1]))) {
+                if (this.range && Moment(datetimeArr[0]).isAfter(Moment(datetimeArr[1]))) {
                     [datetimeArr[0], datetimeArr[1]] = [datetimeArr[1], datetimeArr[0]];
                 }
                 return datetimeArr;
@@ -466,6 +501,10 @@
                         return;
                     }
 
+                    this.dateTimeValue = dateTimeArr;
+                    this.emitChange();
+                } else if (this.multiple) {
+                    const dateTimeArr = this.parseDatetimeStr(inputValue).filter(x => x !== 'Invalid Date');
                     this.dateTimeValue = dateTimeArr;
                     this.emitChange();
                 } else { // 单点时间
@@ -486,6 +525,13 @@
                 this.mergeDateTime(this.tabTimeArr, 'time');
                 if (this.hideConfirmBtn) {
                     this.emitChange();
+                }
+            },
+            cancelChange() {
+                this.isTooltipShow = false;
+                if (this.onShowValue.toString() !== this.value.toString()) {
+                    this.$emit('input', this.onShowValue);
+                    this.$emit('change', this.onShowValue);
                 }
             },
             confirmDateTime() {
@@ -512,7 +558,24 @@
             },
 
             mergeDateTime(arr, type) { // 改变日期的时候, 不改已选中的时间
-                if (this.dateTimeValue.length === 0) {
+                if (this.multiple) {
+                    let dateTimeValue;
+                    if (type === 'date') {
+                        dateTimeValue = `${arr[0]} ${this.tabTimeText}`;
+                    }
+                    if (type === 'time') {
+                        dateTimeValue = `${this.tabDateArr[0] || Moment().format(this.formatString)} ${arr[0]}`;
+                    }
+                    if (!this.dateTimeValue.includes(dateTimeValue)) {
+                        if (this.tooltipShowFlag) {
+                            this.dateTimeValue = [...this.dateTimeValue, dateTimeValue];
+                            this.tooltipShowFlag = false;
+                        } else {
+                            this.dateTimeValue = [...this.dateTimeValue];
+                            this.dateTimeValue.splice(-1, 1, dateTimeValue);
+                        }
+                    }
+                } else if (this.dateTimeValue.length === 0) {
                     if (type === 'date') {
                         this.dateTimeValue = arr.map(date => {
                             return `${date} ${this.tabTimeText}`;
@@ -593,7 +656,7 @@
                 let v = this.dateTimeValue;
                 if (this.range) {
                     v = (v && v.length < 2) ? [] : v;
-                } else {
+                } else if (!this.multiple) {
                     v = v[0] || '';
                 }
 

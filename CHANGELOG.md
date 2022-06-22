@@ -1,22 +1,24 @@
 ## 更新日志
 
-### bugfix
-  * FormItem
-    * 修复FormItem 自定义labelWidth不生效问题
-
 ## v1.0.52
-*2022-06-16*
+*2022-06-22*
+### New features
+  * TimePicker
+    * add confirm/cancel features
+  * DateTimePicker
+    * add confirm/cancel features
 ### bugfix
   * Tabs
     * 修复默认Tabs close事件执行时，当tab被删除为空，伪类元素不消失问题
-
+  * FormItem
+    * 修复FormItem 自定义labelWidth不生效问题
 
 ## v1.0.51
 *2022-06-09*
 
 ### New features
   * TimePicker
-    * add multiple prop
+    * add multiple features
 ### bugfix
   * Select
     * 修复搜索过滤后显示数量较少时，弹层高度异常的问题

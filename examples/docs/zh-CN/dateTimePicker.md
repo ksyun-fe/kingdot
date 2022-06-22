@@ -28,6 +28,32 @@
 ```
 :::
 
+### 多选
+:::demo #多选 ## 可以使用属性 `multiple` 
+
+```html
+<template>
+    <div>
+        <kd-date-time-picker v-model="dateTimeString" multiple /> 选中值: {{ dateTimeString }}
+        <br>
+        <br>
+        <kd-date-time-picker v-model="dateTimeString1" multiple hideConfirmBtn />  选中值: {{ dateTimeString1 }}
+    </div>
+</template>
+<script>
+    export default {
+        data() {
+            return {
+                dateTimeString: [],
+                dateTimeString1: []
+            }
+        },
+        
+    }
+</script>
+```
+:::
+
 ### 禁用组件
 :::demo #禁用组件 ## 组件级别的禁用
 
@@ -196,6 +222,7 @@
 |---------- |-------- |---------- |-------------  |-------- |
 | value / v-model  | 绑定值   | string, array    | - | - |
 | range  | 是否为范围选择   | Boolean    | - | false |
+| multiple  | 是否为范围选择   | Boolean    | - | false |
 | placeholder  | 非范围选择时的占位内容   | string    | - | '请选择日期时间' |
 | disabled-column    | 设置内部滚动选择器的禁用状态  | array |  -  |    [false, false, false]   
 | accuracy    | 精度   | string |     'minute', 'second'     |    'second'   |
