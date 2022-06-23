@@ -4,23 +4,46 @@
 <template>
 <div class="lists">
     <kd-draggable 
-                :list="items"
-                :options="{
-                    group: 'listGroup',
-                    animation: 100,
-                    filter: '.list-value'
-                }"
-                @start="drag=true" 
-                @end="drag=false"
+        :list="items"
+        :options="{
+            group: 'listGroup',
+            animation: 100,
+            filter: '.list-value'
+        }"
+        @start="drag=true" 
+        @end="drag=false"
     >
-            <div 
-                class="list" 
-                v-for="item in items" 
-                :key="'num_' + item"
-            >
+        <div 
+            class="list" 
+            v-for="item in items" 
+            :key="'num_' + item"
+        >
+            <div v-if="typeof(item) == 'object'">
+                <div class="second-content">
+                    <kd-draggable
+                        :list="item"
+                        :options="{
+                            group: 'innerGroup',
+                            animation: 100,
+                            filter: '.list-value'
+                        }"
+                    >
+                        <div
+                            class="second-level"
+                            v-for="inner in item"
+                            
+                        >
+                            <span class="list-drag  kd-icon-checkbox-disabled"></span>
+                            <span class="list-value">I am NO.{{ inner }}</span>
+                        </div>
+                    </kd-draggable>
+                </div>
+            </div>
+            <div class="first-level" v-else>
                 <span class="list-drag  kd-icon-checkbox-disabled"></span>
                 <span class="list-value">I am NO.{{ item }}</span>
             </div>
+        </div>
     </kd-draggable>
     </div>
 </template>   
@@ -29,7 +52,7 @@
         data(){
             return{
               drag: false,
-              items: [1, 2, 3, 4, 5]
+              items: [1, 2, 3, [31, 32, 33, 34], 4, 5]
             }
         }
    }
@@ -42,13 +65,6 @@
     .list
         display flex
         width 560px
-        height 40px
-        border 1px solid #ececec
-        padding-left 20px
-        margin-bottom 10px
-        background-color #fff
-        align-items center
-
         .list-drag
             display flex
             margin-right 40px
@@ -59,6 +75,31 @@
             flex 1
             padding-right 20px
             line-height 40px
+        .first-level
+            width: 560px;
+            display: flex;
+            align-items: center;
+            height 40px
+            border 1px solid #ececec
+            padding-left 20px
+            margin-bottom 10px
+            background-color #fff
+        .second-level
+            width: 400px;
+            display: flex;
+            align-items: center;
+            height 40px
+            border 1px solid #ececec
+            padding-left 20px
+            margin-bottom 10px
+            background-color #fff    
+        .second-content
+            width 540px
+            padding: 10px
+            min-height 100px
+            height auto
+            background-color rgba(0, 0, 0, .05)
+            margin-bottom 10px
 </style>
 ```
 
