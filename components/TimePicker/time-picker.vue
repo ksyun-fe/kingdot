@@ -264,7 +264,7 @@
                     return 'secend';
                 }
             },
-            hideConfirmBtn: {
+            hideFooter: {
                 type: Boolean,
                 default() {
                     return false;
@@ -293,7 +293,7 @@
         },
         computed: {
             showFooter() {
-                return !this.hideConfirmBtn && this.mode === 'anytime';
+                return !this.hideFooter && this.mode === 'anytime';
             },
             timeList() {
                 if (!!this.optionalTimes && Array.isArray(this.optionalTimes)) { // 传入不规则的时间列表

@@ -224,6 +224,7 @@
 | step | 步长  | number, string  |     —     |    -   |
 | optional-times | 可选时间列表  | array  |     —     |    -   |
 | range | 是否是时间范围  | boolean  |     —     |    false   |
+| hideFooter | 隐藏底部确定取消按钮  | boolean  |     —     |    false   |
 | multiple | 多选  | boolean  |     —     |    false   |
 | clearable | 是否能清空当前值   | Boolean   | true, false | true |
 | iconPosition | 图标在input中的位置   | String   | 'prefix', 'suffix' | 'prefix' |

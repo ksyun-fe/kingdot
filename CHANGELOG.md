@@ -1,5 +1,11 @@
 ## 更新日志
 
+## v1.0.53
+*2022-06-24*
+### Optimization
+  * TimePicker
+    * optimize footer style 
+
 ## v1.0.52
 *2022-06-22*
 ### New features
@@ -7,7 +13,7 @@
     * add confirm/cancel features
   * DateTimePicker
     * add confirm/cancel features
-### bugfix
+### bug fix
   * Tabs
     * 修复默认Tabs close事件执行时，当tab被删除为空，伪类元素不消失问题
   * FormItem
@@ -19,7 +25,7 @@
 ### New features
   * TimePicker
     * add multiple features
-### bugfix
+### bug fix
   * Select
     * 修复搜索过滤后显示数量较少时，弹层高度异常的问题
   * Tabs
@@ -29,7 +35,7 @@
 
 ## v1.0.50
 *2022-04-26*
-### bugfix
+### bug fix
   * Dialog
     * dialog fix 遮罩层失效问题
   * Tabs
@@ -46,24 +52,24 @@
 ### New features
   * Tabs
     * 新增resize动态显示左右切换button;
-### bugfix
+### bug fix
   * Tabs
     * 修复handleTabMove属性在 default tabs上失效问题
 ## v1.0.47
 *2022-04-21*
-## bugfix
+## bug fix
   * Select
     * 优化搜索过滤情况下，placholder样式问题
 ## v1.0.46
 *2022-04-15*
-## bugfix
+## bug fix
   * Select
     * Option增加属性：opIndex，优化在开启大数据量优化的时候，动态改变Option时候，造成下拉框展示空白
     * 开启大数据量优化时候，option数量过少造成的样式问题
     * Option属性label兼容number类型
 ## v1.0.45
 *2022-03-25*
-### bugfix
+### bug fix
   * Dialog
     * 多个Dialog时，移动问题修复
   * Form
@@ -74,14 +80,14 @@
 ### New features
   * Tag
     * 新增Tag组件
-### bugfix
+### bug fix
   * Tooltip
     * popper增加点击阻止冒泡
 ### Optimization
   * TimePicker & DatePicker
     * click 事件 阻止事件冒泡
 
-### bugfix
+### bug fix
   * Tree
     * 触发node-mouse-over鼠标滑过节点事件
 ## v1.0.43
@@ -90,7 +96,7 @@
   * Table
     * 增加table tree 默认展开功能
 
-### bugfix
+### bug fix
   * Table
     * fixHeader 修复计算动态高度bug
     * 零时key导致slot插入别的组件更新状态导致 tr重新渲染
@@ -98,13 +104,13 @@
 
 ## v1.0.42
 *2022-02-23*
-### bugfix
+### bug fix
   * Table
     * tree 展开层级错误
 
 ## v1.0.41
 *2022-02-14*
-### bugfix
+### bug fix
   * Tabs
     * Tabs测试用例&样式优化
 ## v1.0.40
@@ -112,12 +118,12 @@
 ### Optimization
 * Docs
     * Form submit事件说明更新
-### bugfix
+### bug fix
   * Spinner
     * 修改手动输入时候，同步处理数据，改为失焦后处理数据（问题：存最大最小值时，输入2位数可能会引起数值变化异常）
 ## v1.0.39
 *2022-01-27*
-### bugfix
+### bug fix
   * Select
     * clearAll重置后的值未根据是否多选
 ### Optimization
@@ -147,7 +153,7 @@
     * 优化兼容multiple下value为string的用法
 ## v1.0.36
 *2022-01-06*
-### Bugfix
+### bug fix
   * datepicker
     * 修复拾取其他日期单位,时间限制失效问题
 
@@ -164,13 +170,13 @@
       * 增加筛选列用法中是否默认选中功能
   * Datepicker
       * 日期选择器支持拾取年, 月单位时间
-### Bugfix
+### bug fix
   * Dropdown
       * 修复按钮size样式
 
 ## v1.0.34
 *2021-12-03*
-### Bugfix
+### bug fix
   * tabs
     * 修复tab自定义文字变换时伪类元素不自动跟随更新
 ### New features
@@ -186,7 +192,7 @@
 ### Optimization
   * Button
     * type为text时，a标签改为行内块
-### Bugfix
+### bug fix
   * Radio
     * 修改样式
   * checkbox
@@ -194,7 +200,7 @@
 
 *2021-11-19*
 ## v1.0.32
-### Bugfix
+### bug fix
   * Form
     * hideLabel场景下,fix content样式 bug
   * Radio
@@ -205,7 +211,7 @@
 ## v1.0.31
 *2021-11-19*
 
-### Bugfix
+### bug fix
   * Form
     * hideLabel场景下,fix content样式 bug
 
@@ -213,7 +219,7 @@
 ## v1.0.30
 *2021-11-19*
 
-### Bugfix
+### bug fix
   * Select
     * 修复内部input的值导致的样式问题
 ### New features
@@ -236,14 +242,14 @@
 
 ## v1.0.28
 *2021-11-17*
-### Bugfix
+### bug fix
   * Button
     * 回滚：去掉href相关功能，下一版重新开发
 
 
 ## v1.0.27
 *2021-11-17*
-### Bugfix
+### bug fix
   * Button
     * 链接类型button增加click事件
 
@@ -257,7 +263,7 @@
   * checkbox
     * 修改默认字体大小
 
-### Bugfix
+### bug fix
   * tooltip
     * model可直接操作弹层显示，不受disabled影响
 
@@ -278,21 +284,21 @@
 
 ## v1.0.25
 *2021-11-04*
-### Bugfix
+### bug fix
   * Drawer
     * 修复drawer自定义footer插槽层级问题
 
 
 ## v1.0.24
 *2021-11-01*
-### Bugfix
+### bug fix
   * Transfer
     * fix filter list bug
 
 
 ## v1.0.23
 *2021-11-01*
-### Bugfix
+### bug fix
   * Spinner
     * 修复触发blur事件时，value值未更新的问题
   * Select
@@ -301,7 +307,7 @@
 
 ## v1.0.22
 *2021-10-27*
-### Bugfix
+### bug fix
   * Select
     * 修复宽度问题
 
@@ -316,7 +322,7 @@
     * disableTime 条件禁用支持 Array 类型参数
   * Datepicker
     * disableDate 条件禁用支持 Array 类型参数
-### Bugfix
+### bug fix
   * Timepicker
     * 修复 disableTime 对于滚动选择器未生效问题
     * 修复首次选时间可以选中被禁止的时间
@@ -338,14 +344,14 @@
 ### New features
   * Table
     * 支持表头自定义
-### Bugfix
+### bug fix
   * Radio
     * 修复单选按钮禁用状态下，光标的形状
 
 
 ## v1.0.18
 *2021-09-17*
-### Bugfix
+### bug fix
   * Select
     * 修复单选可过滤条件下，placeholder错误赋值的问题
 
