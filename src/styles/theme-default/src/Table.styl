@@ -1,8 +1,6 @@
 @import "../variables.styl";
 @import '../../common/mixin.styl'
 
-$-table-border-color := #edeff4
-
 .kd-table
   box-sizing border-box
   border 1px solid $-table-border-color
@@ -12,16 +10,16 @@ $-table-border-color := #edeff4
     height 0px !important
     width 0px !important
   table
-    font-size 12px
+    font-size $-table-font-size
     table-layout fixed
     width 100%
     border-collapse collapse
     border-spacing 0
-    color #343957
+    color $-table-color
     text-align left
     thead
-      color #343957
-      background #f7f8fa
+      color $-table-color
+      background $-table-head-background-color
       border-bottom 1px solid $-table-border-color
       z-index 1
       overflow hidden
@@ -30,7 +28,7 @@ $-table-border-color := #edeff4
         border-bottom 1px solid $-table-border-color
         th
           padding 7px 6px
-          font-size 14px
+          font-size $-table-head-font-size
           font-weight 400
           position relative
           text-align left
@@ -63,7 +61,7 @@ $-table-border-color := #edeff4
           &:hover
             background-color #efefef !important
         td
-          color #343957
+          color $-table-color
           padding 15px 6px
           word-break break-all
           background-color #fff
@@ -129,14 +127,14 @@ $-table-border-color := #edeff4
         display inline-block
         cursor pointer
         height 12px
-        font-size 14px
+        font-size $-table-head-font-size
         line-height 1
   .kd-table-move-line
     left 0
     top 0
     height 100%
     width 1px
-    background: rgba(0,0,0,.2)
+    background: $-table-guide-color
     position: absolute
     cursor col-resize
   .kd-table-btn
@@ -199,7 +197,7 @@ $-table-border-color := #edeff4
   width 100%
   overflow hidden
   .kd-table-drag-th
-    isplay inline-block
+    display inline-block
     width 6px
     height 100%
     position absolute
