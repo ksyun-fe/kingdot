@@ -24,7 +24,7 @@
     export default {
         data(){
             return{
-                stepIndex1:2,
+                stepIndex1:1,
                 description:'这里是描述文案，超出折行显示',
             }
         },

@@ -36,8 +36,6 @@ $-step-line-vertical := 1
         position absolute
         flex 1
         padding 0 8px 0 8px
-        &:first-child
-            padding-left: 4px
     .kd-step-index
         display inline-block
         border-radius 50%
@@ -77,7 +75,9 @@ $-step-line-vertical := 1
             color: $-steps-description-active-color
     .kd-step-cursor
         cursor pointer
-
+    &:first-child
+        .kd-step-head
+            padding-left: 4px
 // direction
 for direction in $-steps-direction
     .kd-steps-{direction}
@@ -132,11 +132,14 @@ for direction in $-steps-direction
                         else
                             if p == 'right'
                                 .kd-step-title
-                                    top 0
                                     if size == 'small'
-                                        left 28px
-                                    else
+                                        top 0px
                                         left 34px
+                                        height 28px
+                                        line-height: 28px
+                                    else
+                                        top 0px
+                                        left 42px
                                 .kd-step-description
                                     margin-left: 36px;
                                     &.kd-step-desc-notitle
@@ -152,6 +155,7 @@ for direction in $-steps-direction
                                     margin 69px 0 0 8px
                                     &.kd-step-desc-notitle
                                         margin-left 5px
+                    
                                                                      
 // size
 for size in $-steps-size
@@ -170,12 +174,14 @@ for size in $-steps-size
                     .kd-step-icon
                         font-size: 26px
         .kd-step-custom-status-wrong,.kd-step-custom-status-finished
-            width unit(lookup('$-step-size-'+ size) + 2, 'px') 
-            height unit(lookup('$-step-size-'+ size) + 2, 'px')
-            if size == 'small'
-                line-height 23px
-            else
-                line-height 25px
+            line-height unit(lookup('$-step-size-'+ size) - 5, 'px')
+        &:first-child
+            .kd-step-main-right
+                .kd-step-title
+                    if size == 'small'
+                        left 30px
+                    else
+                        left 34px
 
 // custom status
 for customStatus in $-step-status
