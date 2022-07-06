@@ -93,9 +93,9 @@ for type in $-btn-types
             border 1px solid lookup('$-button-'+ type +'-color')
         &:hover
         &:focus
-            background lookup('$-btn-hollow-'+ type +'-hover-background-color')
+            background lookup('$-button-hollow-'+ type +'-hover-background-color')
         &:active
-            background lookup('$-button-'+ type +'-color')
+            background lookup('$-button-hollow-'+ type +'-active-background-color')
             color $-white-color
     .kd-btn-{type}.kd-btn-disabled
         background $-button-disabled-background-color
