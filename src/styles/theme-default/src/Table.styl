@@ -20,7 +20,6 @@
     thead
       color $-table-color
       background $-table-head-background-color
-      border-bottom 1px solid $-table-border-color
       z-index 1
       overflow hidden
       width 100%
@@ -57,14 +56,15 @@
         &:last-child
           border none
         &.kd-disabled
-          background-color #efefef
+          background-color $-table-tr-disabled
+          td
+            background-color $-table-tr-disabled
           &:hover
-            background-color #efefef !important
+            background-color $-table-tr-disabled !important
         td
           color $-table-color
           padding $-table-td-padding
           word-break break-all
-          background-color #fff
   .kd-table-fixed
     position absolute
     top 0
