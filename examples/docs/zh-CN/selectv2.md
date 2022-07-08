@@ -87,6 +87,8 @@ export default{
         margin-right 20px
 .kd-select
     margin-right 5px
+.types
+    margin 10px 0
 </style>
 ```
 
@@ -96,12 +98,31 @@ export default{
 
 ```html
 <template>
-    <kd-select-v2
-        v-model="defaultValue"
-        placeholder="请选择内容"
-        :data="dataSources"
-        multiple
-    />
+    <div>
+        <kd-select-v2
+            v-model="defaultValue"
+            placeholder="请选择内容"
+            :data="dataSources"
+            multiple
+        />
+        <div class="types">开启collapseTags</div>
+        <kd-select-v2
+            v-model="defaultValue"
+            placeholder="请选择内容"
+            :data="dataSources"
+            multiple
+            collapseTags
+        />
+        <div class="types">开启collapseTagsTooltip</div>
+        <kd-select-v2
+            v-model="defaultValue"
+            placeholder="请选择内容"
+            :data="dataSources"
+            multiple
+            collapseTags
+            collapseTagsTooltip
+        />
+    </div>
 </template>
 <script>
 export default{
@@ -309,6 +330,8 @@ export default{
 | fluid    | 宽度是否100%   |  boolean    | —  | false
 | width    | 宽度   |  string    |  —  | — |
 | hideDestroy    | 弹层隐藏后是否销毁dom   |  Boolean    |  —  | false |
+| collapseTags    | 多选时是否将选中值按数字的形式展示   |  Boolean    |  —  | false |
+| collapseTagsTooltip    | 当鼠标悬停于折叠标签的文本时，是否显示所有选中的标签。 要使用此属性，collapseTags属性必须设定为true   |  Boolean    |  —  | false |
 
 ### Select-V2 Events {.component__content}
 

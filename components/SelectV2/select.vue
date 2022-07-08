@@ -41,20 +41,60 @@
                 >
                     <span class="kd-select-tags-content">
                         <span
-                                v-for="item in tagList"
-                                :key="item.value"
+                                v-for="item in (collapseTags ? (tagList.length > 0 ? [tagList[0]] : []) : tagList)"
+                                :key="item[valueKey]"
                                 class="kd-select-tags-item"
                         >
                             <span
                                     class="kd-select-tag-label"
-                                    :title="item.label"
-                            >{{ item.label }}</span>
+                                    :title="item[labelKey]"
+                            >{{ item[labelKey] }}</span>
                             <span
                                     v-if="!disabled"
                                     class="kd-select-tag-close kd-icon-close"
                                     @click.stop="deleteTag(item)"
                             ></span>
                         </span>
+                        <template v-if="!dropdownMenu && collapseTags && collapseTagsTooltip && tagList.length > 1">
+                            <kd-tooltip
+                                    can-hover
+                                    :width-limit="false"
+                                    placement="top-start"
+                            >
+                                <div
+                                        v-if="collapseTags && tagList.length > 1"
+                                        class="kd-select-tags-item"
+                                >+{{ tagList.length - 1 }}</div>
+                                <template slot="content">
+                                    <div
+                                            class="kd-select-tag-tip kd-select-tags"
+                                            :style="{maxWidth: defaultWidth, maxHeight: '200px', overflow: 'auto'}"
+                                    >
+                                        <span
+                                                v-for="item in tagList"
+                                                :key="item[valueKey]"
+                                                class="kd-select-tags-item"
+                                        >
+                                            <span
+                                                    class="kd-select-tag-label"
+                                                    :title="item[labelKey]"
+                                            >{{ item[labelKey] }}</span>
+                                            <span
+                                                    v-if="!disabled"
+                                                    class="kd-select-tag-close kd-icon-close"
+                                                    @click.stop="deleteTag(item)"
+                                            ></span>
+                                        </span>
+                                    </div>
+                                </template>
+                            </kd-tooltip>
+                        </template>
+                        <template v-else>
+                            <span
+                                    v-if="collapseTags && tagList.length > 1"
+                                    class="kd-select-tags-item"
+                            >+{{ tagList.length - 1 }}</span>
+                        </template>
                     </span>
                     <!-- 多选 -->
                     <input
@@ -168,25 +208,25 @@
             activeIcon: {
                 type: Boolean,
                 default: false
+            },
+            collapseTags: {
+                type: Boolean,
+                default: false
+            },
+            collapseTagsTooltip: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
             return {
-                // isFocus: false,
                 inputLabel: '',
                 tagList: [],
                 inputPlaceholder: '',
-                // clickOption: false,
                 dropdownMenu: false,
-                // isDropdown: false,
-                // searchTime: 200,
-                // serachTimeout: {},
                 multipleSerach: '',
-                // init: true,
-                // options: [],
                 innerData: [],
                 selected: [],
-                // scope: {},
                 defaultWidth: ''
             };
         },
@@ -261,6 +301,7 @@
             }
         },
         mounted() {
+            // console.log('xxxxxx2', this.$refs.kdSelect);
             this.defaultWidth = this.$refs.kdSelect.clientWidth + 'px';
         },
         methods: {
@@ -330,7 +371,7 @@
                     }
                 });
                 this.tagList.forEach((item, index) => {
-                    if (item.value === scope[this.valueKey]) {
+                    if (item[this.valueKey] === scope[this.valueKey]) {
                         this.tagList.splice(index, 1);
                     }
                 });
