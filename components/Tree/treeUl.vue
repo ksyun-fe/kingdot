@@ -2,7 +2,7 @@
     <ul :class="ulClass">
         <treeLi
                 v-for="(item, index) in data"
-                :key="item.id ? item.id : index"
+                :key="item[TREE.nodeKey] ? item[TREE.nodeKey] : index"
                 :item="item"
                 :index="index"
                 v-bind="childBind"
