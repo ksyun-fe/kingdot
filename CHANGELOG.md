@@ -1,14 +1,21 @@
 ## 更新日志
+*2022-07-08*
+### New features
+  * VirtualList 虚拟列表
+  * SelectV2 虚拟化选择器
+### Bugfix
+  * Tree
+    * 修复treeul未使用nodeKey作为key
 
 ### Optimization
   * Steps
-    * 优化 steps style 
+    * 优化 steps style
 
 ## v1.0.53
 *2022-06-24*
 ### Optimization
   * TimePicker
-    * optimize footer style 
+    * optimize footer style
 
 ## v1.0.52
 *2022-06-22*
