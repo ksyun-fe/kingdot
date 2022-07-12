@@ -17,7 +17,7 @@ $-step-line-vertical := 1
     flex-wrap nowrap
     min-height 32px
     padding  20px 0
-    line-height normal
+    // line-height normal
     
 .kd-step
     position relative
@@ -285,7 +285,6 @@ for type in $-steps-type
 // spot 类
 .kd-step-type-spot
     .kd-step-index-spot
-        display inline-block
         width 7px
         height 7px
         border-radius 50%
@@ -297,13 +296,23 @@ for type in $-steps-type
             background $-steps-step-spot-active-background-color
         &.kd-step-spot-done
             background $-steps-step-spot-done-background-color
+
+    .kd-step-head
+        &>div:not(.kd-step-spot-line)
+            position relative
+            height: 14px
+            .kd-step-spot-default
+                position absolute
+                top: 50%
+                margin-top -1px
     .kd-step-spot-line
         display flex
         justify-content center
         align-items: center;
-        margin-top 1px
+        margin-top 2px
         width 14px
         height 14px
+        box-sizing: border-box
         border-radius 50%
         border 1px solid $-steps-step-spot-line-border-color
         background $-steps-container-background-color

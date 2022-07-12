@@ -15,7 +15,7 @@
         <kd-steps v-model="stepIndex1" type="spot" :isClick="true">
             <kd-step title="" :description="description"></kd-step>
             <kd-step title="" ></kd-step>
-            <kd-step title=""></kd-step>
+            <kd-step title="完成"></kd-step>
         </kd-steps>
         <kd-button @click="_next">下一步</kd-button>
     </div>

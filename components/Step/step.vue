@@ -54,19 +54,21 @@
                             <span v-else-if="icon == '' || finishedStyle=='number'">{{ index }}</span>
                         </span>
                         <!-- spot类型 -->
-                        <span
+                        <div
                                 v-if="type == 'spot'"
+                                ref="spotCircle"
                                 :class="{ 'kd-step-spot-line': index == activeIndex, 'kd-step-cursor':isClick,}"
                         >
-                            <span
+                            <div
                                     v-if="type == 'spot'"
-                                    class="kd-step-index-spot kd-step-spot-default"
+                                    class="kd-step-index-spot"
                                     :class="{
+                                        'kd-step-spot-default': index > activeIndex,
                                         'kd-step-spot-active': index == activeIndex,
                                         'kd-step-spot-done': index < activeIndex,
                                     }"
-                            ></span>
-                        </span>
+                            ></div>
+                        </div>
                     </slot>
                 </div>
                 <!-- 标题和描述 -->
@@ -188,7 +190,7 @@
                 const headW = this.$refs.stepHead.clientWidth;
                 const headH = this.$refs.stepHead.clientHeight;
                 if (this.type === 'spot') {
-                    let diff = 0; const spotLineLH = headH;
+                    let diff = 0; const spotLineLH = this.$refs.spotCircle.offsetHeight;
                     diff = spotLineLH % 2 === 0 ? 4 : 5;
                     const _tranlateY = Math.round(((spotLineLH + diff) / 2) * 100) / 100;
                     style.transform = `translate(6px, ${_tranlateY}px)`;
