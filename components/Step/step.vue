@@ -188,7 +188,7 @@
                 const headW = this.$refs.stepHead.clientWidth;
                 const headH = this.$refs.stepHead.clientHeight;
                 if (this.type === 'spot') {
-                    let diff = 0; const spotLineLH = this.$el.children[0].children[0].children[0].offsetHeight;
+                    let diff = 0; const spotLineLH = headH;
                     diff = spotLineLH % 2 === 0 ? 4 : 5;
                     const _tranlateY = Math.round(((spotLineLH + diff) / 2) * 100) / 100;
                     style.transform = `translate(6px, ${_tranlateY}px)`;
