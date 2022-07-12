@@ -137,8 +137,13 @@
             <kd-step title="" :description="description"></kd-step>
             <kd-step title="" :description="description"></kd-step>
         </kd-steps>
+        <kd-steps v-model="stepIndex1" size="small">
+            <kd-step title="" :description="description"></kd-step>
+            <kd-step title="" :description="description"></kd-step>
+        </kd-steps>
         <kd-steps v-model="stepIndex1">
             <kd-step title="步骤一" :description="description"></kd-step>
+            <kd-step title="步骤二" :description="description"></kd-step>
             <kd-step title="步骤二" :description="description"></kd-step>
         </kd-steps>
         <kd-steps v-model="stepIndex1" size="small">

@@ -70,7 +70,7 @@ $-step-line-vertical := 1
         color $-steps-description-color
         text-align: left
         line-height: 20px
-        margin: 37px 0 0 48px;
+        margin: 30px 0 0 48px;
         &.kd-step-desc-active
             color: $-steps-description-active-color
     .kd-step-cursor
@@ -141,9 +141,14 @@ for direction in $-steps-direction
                                         top 0px
                                         left 42px
                                 .kd-step-description
-                                    margin-left: 36px;
+                                    if size == 'small'
+                                        margin-left: 42px;
+                                        margin-top 27px
+                                    else
+                                        margin-left: 50px;
                                     &.kd-step-desc-notitle
                                         margin-left 5px
+                                        margin-top 35px
                             else
                                 .kd-step-title
                                     left 0
@@ -182,6 +187,11 @@ for size in $-steps-size
                         left 30px
                     else
                         left 34px
+                .kd-step-description
+                    if size == 'small'
+                        margin-left 36px
+                    else
+                        margin-left 43px
 
 // custom status
 for customStatus in $-step-status

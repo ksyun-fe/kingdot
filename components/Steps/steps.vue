@@ -124,7 +124,8 @@
                             lastChild.$el.style.height = headH + 'px';
                         }
                     }
-                } else if (this.type === 'default' && this.direction === 'horizontal') {
+                } else if (this.direction === 'horizontal') {
+                    // debugger;
                     lastChild.$el.style['max-width'] = lastChildWidth;
                     childrenList.forEach((item, index) => {
                         const stepHead = item.$refs.stepHead;
