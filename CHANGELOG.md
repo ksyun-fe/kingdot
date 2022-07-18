@@ -1,8 +1,12 @@
 ## 更新日志
-*2022-07-08*
+
+## v1.0.54
+*2022-07-19*
 ### New features
-  * VirtualList 虚拟列表
-  * SelectV2 虚拟化选择器
+  * VirtualList
+    * add VirtualList(虚拟列表)
+  * SelectV2 
+    * add SelectV2(虚拟化选择器)
 ### Bugfix
   * Tree
     * 修复treeul未使用nodeKey作为key
