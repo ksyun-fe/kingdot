@@ -85,7 +85,8 @@
         },
         computed: {
             labelStyle() {
-                return {width: this.labelWidth ? this.labelWidth + 'px' : this.form.labelStyle};
+                const labelWidth = this.labelWidth ? this.labelWidth.indexOf('px') !== -1 ? this.labelWidth : this.labelWidth + 'px' : '';
+                return {width: labelWidth || this.form.labelStyle};
             },
             isFluid() {
                 return this.form.fluid;

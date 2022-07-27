@@ -1,5 +1,12 @@
 ## 更新日志
 
+### Bugfix
+  * Button
+    * 修复primary Button Hover时backgroundColor
+  * FormItem
+    * 修复labelWidth 是否有单位问题
+
+
 ## v1.0.54
 *2022-07-19*
 ### New features
