@@ -170,7 +170,7 @@
                 }
                 this.$refs.progress.start();
                 return this._request({
-                    url: requstConfig.host + requstConfig.getVariable,
+                    url: requstConfig.getVariable,
                     params: {
                         uuid: uuidv4()
                     }

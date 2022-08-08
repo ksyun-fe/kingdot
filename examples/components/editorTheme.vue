@@ -281,7 +281,7 @@
                 this.gettingVariable = true;
                 this.$refs.progress.start();
                 return this._request({
-                    url: requstConfig.host + requstConfig.getVariable,
+                    url: requstConfig.getVariable,
                     before(request) {
                         this.axiosCancel('getVariableACTF');
                         this.getVariableACTF = request;
@@ -338,7 +338,7 @@
                 this.uploading = true;
                 this.$refs.progress.start();
                 this._request({
-                    url: requstConfig.host + requstConfig.uploadTheme,
+                    url: requstConfig.uploadTheme,
                     method: 'post',
                     data: {
                         version: this.version,
@@ -373,7 +373,7 @@
                     mergedVars = vars || isCommonChanged ? this.changedVars : mergeConfig([], this.loadChangedCommonVars, this.unLoadChangedVars);
                 }
                 this._request({
-                    url: requstConfig.host + requstConfig.loadTheme,
+                    url: requstConfig.loadTheme,
                     method: 'post',
                     before(request) {
                         this.axiosCancel('loadThemeACTF');

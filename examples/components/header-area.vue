@@ -50,6 +50,7 @@
                 {{ themeText }}
             </li>
             <li
+                    v-if="hasCustomTheme"
                     class="nav-item"
                     :class="{'active' : activeIndex === 3 }"
                     @click="activeIndex = 3"
@@ -74,6 +75,7 @@
 </template>
 
 <script>
+    import requstConfig from '../js/backInterfaceConfig.js';
     import wordsConfig from '../i18n/config/words.json';
     const themes = require('../../src/styles/themes.js');
     const getThemeCss = (theme) => {
@@ -89,6 +91,7 @@
                     'en-US': 'English'
                 },
                 nextLang: 'English',
+                hasCustomTheme: false,
                 // eslint-disable-next-line no-undef
                 firstTheme: isProd ? 0 : themes.findIndex(i => i === devTheme),
                 activeIndex: 0
@@ -139,6 +142,18 @@
                     };
                 }
             }
+        },
+        created() {
+            this._request({
+                url: requstConfig.getVersion,
+                params: {}
+            }).then((res) => {
+                if (res.body.status === 200) {
+                    this.hasCustomTheme = true;
+                }
+            }).catch(e => {
+                // console.log(e);
+            });
         },
         methods: {
             switchLang(targetLang) {
