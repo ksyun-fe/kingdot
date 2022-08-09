@@ -252,9 +252,7 @@
                     if (!data) {
                         return;
                     }
-                    if (this.currentTheme) {
-                        this.loadTheme();
-                    }
+                    this.loadTheme(this.changedVars);
                 });
             },
             setBaseVariable(variable, reset) {
