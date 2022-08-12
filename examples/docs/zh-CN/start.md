@@ -8,7 +8,7 @@
 
 ### 引入King Dot
 
-在引入 king Dot 时，可以传入一个全局配置对象。该对象目前支持 zIndex 与 getEnabledStatus 字段。zIndex 设置弹框的初始 z-index（默认值：2000）；部分组件可通过getEnabledStatus方法的返回值（Boolean）来判断启用还是禁用。
+在引入 king Dot 时，可以传入一个全局配置对象。该对象目前支持 zIndex 、 getEnabledStatus、setButtonLink、setBtnEnableType 字段。zIndex 设置弹框的初始 z-index（默认值：2000）；部分组件可通过getEnabledStatus方法的返回值（Boolean）来判断启用还是禁用，setBtnEnableType方法则是控制组件禁用的表现形式（隐藏hide或置灰disabled），setButtonLink用于设置Button组件的type属性为text时的href属性。
 
 #### 全部引入
 
@@ -23,6 +23,12 @@ Vue.use(kingdot, {
   getEnabledStatus: (authid)=>{
     ...
     return true;
+  },
+  setButtonLink: (href) => {
+        return href;
+  },
+  setBtnEnableType: () => {
+      return 'disabled'; // hide or disabled
   }
 });
 
@@ -89,6 +95,12 @@ Vue.prototype.$KD = {
   getEnabledStatus: (authid)=>{
     ...
     return true;
+  },
+  setButtonLink: (href) => {
+        return href;
+  },
+  setBtnEnableType: () => {
+      return 'disabled'; // hide or disabled
   }
 }
 new Vue({

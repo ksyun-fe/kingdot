@@ -5,7 +5,12 @@
     <div class='row'>
         <kd-button>默认按钮</kd-button>
         <kd-button type='dashed' clickDelay>默认按钮</kd-button>
-        <kd-button type='primary' :authid="authid" disabled>主要按钮</kd-button>
+        <!-- 有权限 -->
+        <kd-button type='primary' :authid="authid">有权限按钮</kd-button>
+        <!-- 有权限 但是禁用-->
+        <kd-button type='primary' :authid="authid" disabled>有权限但被禁用按钮</kd-button>
+        <!-- 无权限 -->
+        <kd-button type='primary' :authid="authid1">无权限按钮</kd-button>
         <kd-button hollow>空心按钮</kd-button>
         <kd-button type='none'>文字按钮</kd-button>
         <kd-button type='text' href="#/zh-CN/component/installation" target="_blank">链接按钮</kd-button>
@@ -17,7 +22,8 @@
     export default {
         data(){
             return{
-                authid:'zzz',
+                authid:'primary_btn',
+                authid1: 'primary_btn1'
             }
         },
         methods:{

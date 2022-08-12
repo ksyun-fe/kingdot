@@ -70,7 +70,8 @@ export default {
             authAbled: true,
             delayDisable: false,
             link: 'javascript:;',
-            linkTarget: '_self'
+            linkTarget: '_self',
+            isShow: true
         };
     },
     computed: {
@@ -90,6 +91,16 @@ export default {
                 }
             ];
             return allClassAry;
+        },
+        enableStatus() {
+            if (this.authid) {
+                return this.$KD && this.$KD.getEnabledStatus ? this.$KD.getEnabledStatus(this.authid) : true;
+            } else {
+                return true;
+            }
+        },
+        btnShowStatus() {
+            return this.$KD && this.$KD.setBtnEnableType ? this.$KD.setBtnEnableType() === 'disabled' : true;
         }
     },
     watch: {
@@ -102,7 +113,9 @@ export default {
             }
         },
         authid() {
-            this.checkAuth();
+            this.$nextTick(() => {
+                this.checkAuth();
+            });
         },
         href: {
             immediate: true,
@@ -124,11 +137,17 @@ export default {
     },
     methods: {
         checkAuth() {
-            if (!this.authid || this.disabled) return;
-            if (this.$KD && this.$KD.getEnabledStatus && this.$KD.getEnabledStatus(this.authid)) {
-                this.authAbled = true;
+            if (!this.authid) return;
+            if (this.enableStatus) {
+                this.isShow = true;
+                this.authAbled = !this.disabled;
             } else {
-                this.authAbled = false;
+                if (this.btnShowStatus) {
+                    this.authAbled = false;
+                    this.isShow = true;
+                } else {
+                    this.isShow = false;
+                }
             }
         },
         handleHerf() {
@@ -180,43 +199,45 @@ export default {
         }
     },
     render(h, ctx) {
-        if (this.type !== 'text') {
-            return (
-                <button
-                    class={ this.allClassList }
-                    type={ this.nativeType }
-                    onClick={ this.handleClick }
-                >
-                    {
-                        this.loading
-                            ? <span
-                                class={ ['kd-btn-loading-icon', {'kd-icon-left': this.$slots.default}] }
-                            >
-                                <svg viewBox='0 0 120 120'>
-                                    <circle
-                                        cx='60'
-                                        cy='60'
-                                        class='kd-spin-circle'
-                                        r='57'
-                                    ></circle>
-                                </svg>
-                            </span> : ''
-                    }
-                    { this.icon ? <i class={ this.icon }/> : '' }
-                    { this.$slots.default
-                        ? <span class={ [{'kd-icon-right': this.icon && this.$slots.default[0].text}] }>{ this.$slots.default }</span>
-                        : '' }
-                </button>
-            );
-        } else {
-            return (
-                <a
-                    href={ this.link }
-                    class={ this.allClassList }
-                    target={ this.linkTarget }
-                    onClick={ this.handleClick }
-                >{ this.$slots.default }</a>
-            );
+        if (this.isShow) {
+            if (this.type !== 'text') {
+                return (
+                    <button
+                        class={ this.allClassList }
+                        type={ this.nativeType }
+                        onClick={ this.handleClick }
+                    >
+                        {
+                            this.loading
+                                ? <span
+                                    class={ ['kd-btn-loading-icon', {'kd-icon-left': this.$slots.default}] }
+                                >
+                                    <svg viewBox='0 0 120 120'>
+                                        <circle
+                                            cx='60'
+                                            cy='60'
+                                            class='kd-spin-circle'
+                                            r='57'
+                                        ></circle>
+                                    </svg>
+                                </span> : ''
+                        }
+                        { this.icon ? <i class={ this.icon }/> : '' }
+                        { this.$slots.default
+                            ? <span class={ [{'kd-icon-right': this.icon && this.$slots.default[0].text}] }>{ this.$slots.default }</span>
+                            : '' }
+                    </button>
+                );
+            } else {
+                return (
+                    <a
+                        href={ this.link }
+                        class={ this.allClassList }
+                        target={ this.linkTarget }
+                        onClick={ this.handleClick }
+                    >{ this.$slots.default }</a>
+                );
+            }
         }
     }
 };

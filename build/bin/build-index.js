@@ -13,6 +13,7 @@ const template =
 `{{import}}
 import enable from './utils/enabled.js';
 import handleButtonLink from './utils/handleButtonLink.js';
+import handleBtnEnableType from './util/handleBtnEnableType.js'
 const components = [
     {{components}}
 ];
@@ -22,6 +23,7 @@ const install = (Vue, opts = {}) => {
     $KD.zIndex = opts.zIndex || 2000;
     $KD.getEnabledStatus = enable.createEnabled(opts.getEnabledStatus);
     $KD.setButtonLink = handleButtonLink.createLink(opts.setButtonLink);
+    $KD.setBtnEnableType= handleBtnEnableType.createBtnEnableType(opts.setBtnEnableType)
     Vue.prototype.$message = Message.creators;
     components.forEach(c => {
         Vue.component(c.name, c);
@@ -39,6 +41,8 @@ export default {
     changeAuthList: enable.changeAuthList,
     getLink: handleButtonLink.getLink,
     changeLink: handleButtonLink.changeLink,
+    getBtnEnableType: handleBtnEnableType.getBtnEnableType,
+    changeBtnEnableType: handleBtnEnableType.changeBtnEnableType
     {{components}}
 };
 `;
