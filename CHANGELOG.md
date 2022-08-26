@@ -5,6 +5,8 @@
     * 修复primary Button Hover时backgroundColor
   * FormItem
     * 修复labelWidth 是否有单位问题
+  * Tooltip
+    * 修复 tooltips 提示不消失异常
 ### New features
   * Button 
     * add setBtnEnableType全局方法，用于设置没有权限的按钮的表现形式（隐藏hide或置灰disabled）

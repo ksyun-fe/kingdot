@@ -163,8 +163,17 @@ export default {
                     this.reference.addEventListener('mouseout', this.closePopper);
                 }
             } else {
-                this.reference.addEventListener('mouseenter', this.showPopper);
-                this.reference.addEventListener('mouseleave', this.closePopper);
+                this.reference.addEventListener('mouseenter', (e) => {
+                    e.stopPropagation();
+                    this.showPopper(e);
+                });
+                this.reference.addEventListener('mouseleave', (e) => {
+                    e.stopPropagation();
+                    this.closePopper();
+                });
+                this.reference.addEventListener('mousemove', (e) => {
+                    e.stopPropagation();
+                });
             }
             this.$nextTick(() => {
                 this.popper = this.$refs.popper;
@@ -214,6 +223,7 @@ export default {
             this.timeout = setTimeout(() => {
                 const hasContent = !!(this.$slots.content || this.content);
                 this.visible = !this.disabled && hasContent;
+                document.addEventListener('mousemove', this.closePopper, false);
                 this.$emit('input', this.visible);
             }, this.currentMouseEnterDelay);
         },
@@ -223,6 +233,7 @@ export default {
             clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
                 this.visible = false;
+                document.removeEventListener('mousemove', this.closePopper);
                 this.$emit('input', this.visible);
             }, this.currentMouseLeaveDelay);
         },
