@@ -64,6 +64,10 @@ export default {
             default() {
                 return [];
             }
+        },
+        mouseLeaveClosePopper: {
+            type: Boolean,
+            default: false
         }
     },
     data() {
@@ -223,7 +227,9 @@ export default {
             this.timeout = setTimeout(() => {
                 const hasContent = !!(this.$slots.content || this.content);
                 this.visible = !this.disabled && hasContent;
-                document.addEventListener('mousemove', this.closePopper, false);
+                if (this.mouseLeaveClosePopper) {
+                    document.addEventListener('mousemove', this.closePopper, false);
+                }
                 this.$emit('input', this.visible);
             }, this.currentMouseEnterDelay);
         },
@@ -233,7 +239,9 @@ export default {
             clearTimeout(this.timeout);
             this.timeout = setTimeout(() => {
                 this.visible = false;
-                document.removeEventListener('mousemove', this.closePopper);
+                if (this.mouseLeaveClosePopper) {
+                    document.removeEventListener('mousemove', this.closePopper);
+                }
                 this.$emit('input', this.visible);
             }, this.currentMouseLeaveDelay);
         },

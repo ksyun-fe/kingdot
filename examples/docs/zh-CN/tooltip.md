@@ -6,6 +6,13 @@
 ```html
 <template>
     <div>
+        <kd-tooltip placement="top" content="图标用法">
+            <span class="kd-icon-path" style="font-size: 16px"></span>
+        </kd-tooltip>
+        <br />
+        <br />
+        <br />
+        <br />
         <kd-tooltip placement="top" content="">
             <span>don't show anything if content is empty</span>
         </kd-tooltip>
