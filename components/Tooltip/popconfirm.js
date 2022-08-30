@@ -86,7 +86,7 @@ export default {
                                 : (
                                     <div class='kd-popover-footer'>
                                         <Button class='btn-cancel' onClick={data._cancel} size='mini'>{data.cancelText}</Button>
-                                        <Button class='btn-confirm' onClick={data._confirm} size='mini' type={data.okType} disableOk={data.disableOk}>{data.okText}</Button>
+                                        <Button class='btn-confirm' onClick={data._confirm} size='mini' type={data.okType} disabled={data.disableOk}>{data.okText}</Button>
                                     </div>
                                 )
                         }
