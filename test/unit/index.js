@@ -13,7 +13,11 @@ describe('use component', () => {
         }
     });
 });
-Vue.use(kingdot);
+Vue.use(kingdot, {
+    setBtnEnableType: () => {
+        return 'disabled'; // hide or disabled
+    }
+});
 kingdot.changeAuthList(['xxx']);//测试用例button,权限功能点
 const testsContext = require.context('./specs', true, /\.spec$/);
 

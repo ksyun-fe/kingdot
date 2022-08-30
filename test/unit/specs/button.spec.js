@@ -156,9 +156,10 @@ describe('Button', () => {
         })
     });
     it('button has authid,but no Authority', async () => {
-        vm = createCons(Button, {
-            type: 'primary',
-            authid:'zzz'
+        vm = createVue({
+            template: `
+                <kd-button type='primary' authid="zzz">主要按钮</kd-button>
+            `,
         });
         await vm.$nextTick().then((_) => {
             expect(vm.$el.classList.contains('kd-btn-disabled')).true;
@@ -172,15 +173,6 @@ describe('Button', () => {
         });
         await vm.$nextTick().then((_) => {
             expect(vm.$el.classList.contains('kd-btn-disabled')).false;
-        });
-    });
-    it('button has authid,but no Authority',async () => {
-        vm = createCons(Button, {
-            type: 'primary',
-            authid:'zzz'
-        });
-        await vm.$nextTick().then((_) => {
-            expect(vm.$el.classList.contains('kd-btn-disabled')).true;
         });
     });
     it('button has clickDelay', async () => {
