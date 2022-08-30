@@ -1,5 +1,7 @@
 ## 更新日志
 
+## v1.0.55
+*2022-08-30*
 ### Bugfix
   * Button
     * 修复primary Button Hover时backgroundColor
@@ -7,6 +9,10 @@
     * 修复labelWidth 是否有单位问题
   * Tooltip
     * 修复 tooltips 提示不消失异常
+  * Popconfirm
+    * fix confirm Button disabled
+  * FormItem
+    * fix the validate error border color for select
 ### Optimization
   * input
     * modify suffix icon style
