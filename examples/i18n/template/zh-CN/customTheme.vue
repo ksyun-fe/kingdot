@@ -194,7 +194,6 @@
                 const common = theme && theme.find(item => item.name === 'common');
                 const config = common && common.config.find(item => item.key === key);
                 return config && config.value || this.defaultKeyColor[key];
-                // return this.defaultKeyColor[key];
             },
             hanleFileChange(file) {
                 if (!file) {

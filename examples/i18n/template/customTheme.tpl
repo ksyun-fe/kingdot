@@ -34,11 +34,6 @@
                             ></div>
                             <div class="info">
                                 <div>默认主题</div>
-                                <!--<kd-button-->
-                                <!--        type="none"-->
-                                <!--        class="info-btn"-->
-                                <!--        @click="editTheme()"-->
-                                <!--&gt;查看</kd-button>-->
                             </div>
                         </li>
                     </ul>
@@ -83,11 +78,6 @@
                             ></div>
                             <div class="info">
                                 <div>主题-{{ index + 1 }}</div>
-                                <!--<kd-button-->
-                                <!--        type="none"-->
-                                <!--        class="info-btn"-->
-                                <!--        @click="editTheme(item)"-->
-                                <!--&gt;查看</kd-button>-->
                             </div>
                         </li>
                     </ul>
@@ -147,19 +137,20 @@
                 };
             }
         },
-        created() {
-            const themeStorage = window.localStorage.getItem(kingDotCustomConfig);
-            this.custumThemes = themeStorage ? JSON.parse(themeStorage) : [];
-        },
         mounted() {
             this.getVariable();
         },
         methods: {
+            setCustumThemes() {
+                const themeStorage = window.localStorage.getItem(kingDotCustomConfig);
+                this.custumThemes = themeStorage ? JSON.parse(themeStorage) : [];
+                this.custumThemes.forEach(item => {
+                    item.variable = mergeConfig([], this.baseVariable, item.variable);
+                });
+            },
             setBaseVariable(variable) {
                 this.baseVariable = variable;
-                this.custumThemes.forEach(item => {
-                    item.variable = mergeConfig([], variable, item.variable);
-                });
+                this.setCustumThemes();
             },
             getVariable() {
                 let kingDotTheme = window.localStorage.getItem(kingDotThemeConfig);
@@ -197,12 +188,12 @@
             },
             goback() {
                 this.showEditTheme = false;
+                this.setCustumThemes();
             },
             getVarColor(key, theme) {
                 const common = theme && theme.find(item => item.name === 'common');
                 const config = common && common.config.find(item => item.key === key);
                 return config && config.value || this.defaultKeyColor[key];
-                // return this.defaultKeyColor[key];
             },
             hanleFileChange(file) {
                 if (!file) {

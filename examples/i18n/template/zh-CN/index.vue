@@ -39,7 +39,8 @@
         },
         data() {
             return {
-                material: null,
+                camera: null,
+                renderer: null,
                 changeCanvasTheme: null,
                 componentRouter: ''
             };
@@ -64,103 +65,109 @@
             this.componentRouter = '/' + this.$route.meta.lang + '/component';
         },
         mounted() {
-            const SEPARATION = 80;
-            const AMOUNTX = 50;
-            const AMOUNTY = 30;
-            let renderer;
-            let scene;
-            let container;
-            let camera;
-            let material;
-            let particles;
-            let count = 0;
-            const mouseX = -30;
-            const mouseY = -200;
-            const wrapWidth = this.$refs.container.offsetWidth;
-            const wrapHeight = this.$refs.container.offsetHeight;
-
-            const init = () => {
-                container = this.$refs.canvas;
-
-                camera = new THREE.PerspectiveCamera(12000, wrapWidth / wrapHeight, 2, 10000);
-                camera.position.z = 1000;
-
-                scene = new THREE.Scene();
-
-                particles = [];
-
-                material = new THREE.SpriteCanvasMaterial({
-                    color: this.canvasColor.materialColor,
-                    program: function (context) {
-                        context.beginPath();
-                        context.arc(0, 0, 0.6, 0, Math.PI * 2, true);
-                        context.fill();
-                    }
-                });
-
-                let i = 0;
-                let particle = 0;
-                for (let ix = 0; ix < AMOUNTX; ix++) {
-                    for (let iy = 0; iy < AMOUNTY; iy++) {
-                        particle = particles[i++] = new THREE.Sprite(material);
-                        particle.position.x = ix * SEPARATION - ((AMOUNTX * SEPARATION) / 2);
-                        particle.position.z = iy * SEPARATION - ((AMOUNTY * SEPARATION) / 2);
-                        scene.add(particle);
-                    }
-                }
-                renderer = new THREE.CanvasRenderer();
-                renderer.setPixelRatio(window.devicePixelRatio);
-                renderer.setSize(wrapWidth, wrapHeight);
-                renderer.setClearColor(this.canvasColor.renderColor, 1);
-                container.appendChild(renderer.domElement);
-                window.addEventListener('resize', onWindowResize, false);
-            };
-            const onWindowResize = () => {
+            this.spriteBackground();
+        },
+        beforeDestroy() {
+            window.removeEventListener('resize', this.repaintBackground);
+        },
+        methods: {
+            spriteBackground() {
+                const SEPARATION = 80;
+                const AMOUNTX = 50;
+                const AMOUNTY = 30;
+                let renderer;
+                let scene;
+                let container;
+                let camera;
+                let material;
+                let particles;
+                let count = 0;
+                const mouseX = -30;
+                const mouseY = -200;
                 const wrapWidth = this.$refs.container.offsetWidth;
                 const wrapHeight = this.$refs.container.offsetHeight;
 
-                camera.aspect = wrapWidth / wrapHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(wrapWidth, wrapHeight);
-            };
-            const animate = () => {
-                requestAnimationFrame(animate);
-                render();
-            };
-            const render = () => {
-                camera.position.x += (mouseX - camera.position.x) * 0.05;
-                camera.position.y += (-mouseY - camera.position.y) * 0.05;
-                camera.lookAt(scene.position);
+                const init = () => {
+                    container = this.$refs.canvas;
 
-                let i = 0;
-                let particle = 0;
+                    this.camera = camera = new THREE.PerspectiveCamera(12000, wrapWidth / wrapHeight, 2, 10000);
+                    camera.position.z = 1000;
 
-                for (let ix = 0; ix < AMOUNTX; ix++) {
-                    for (let iy = 0; iy < AMOUNTY; iy++) {
-                        particle = particles[i++];
-                        particle.position.y = (
-                            Math.sin((ix + count) * 0.3) * 50) + (Math.sin((iy + count) * 0.5) * 50
-                        );
-                        particle.scale.x = particle.scale.y =
-                            (Math.sin((ix + count) * 0.3) + 1) * 2 + (Math.sin((iy + count) * 0.5) + 1) * 2;
+                    scene = new THREE.Scene();
+
+                    particles = [];
+
+                    material = new THREE.SpriteCanvasMaterial({
+                        color: this.canvasColor.materialColor,
+                        program: function (context) {
+                            context.beginPath();
+                            context.arc(0, 0, 0.6, 0, Math.PI * 2, true);
+                            context.fill();
+                        }
+                    });
+
+                    let i = 0;
+                    let particle = 0;
+                    for (let ix = 0; ix < AMOUNTX; ix++) {
+                        for (let iy = 0; iy < AMOUNTY; iy++) {
+                            particle = particles[i++] = new THREE.Sprite(material);
+                            particle.position.x = ix * SEPARATION - ((AMOUNTX * SEPARATION) / 2);
+                            particle.position.z = iy * SEPARATION - ((AMOUNTY * SEPARATION) / 2);
+                            scene.add(particle);
+                        }
                     }
-                }
+                    this.renderer = renderer = new THREE.CanvasRenderer();
+                    renderer.setPixelRatio(window.devicePixelRatio);
+                    renderer.setSize(wrapWidth, wrapHeight);
+                    renderer.setClearColor(this.canvasColor.renderColor, 1);
+                    container.appendChild(renderer.domElement);
+                    window.addEventListener('resize', this.repaintBackground, false);
+                };
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    render();
+                };
+                const render = () => {
+                    camera.position.x += (mouseX - camera.position.x) * 0.05;
+                    camera.position.y += (-mouseY - camera.position.y) * 0.05;
+                    camera.lookAt(scene.position);
 
-                renderer.render(scene, camera);
+                    let i = 0;
+                    let particle = 0;
 
-                count += 0.05;
-            };
-            this.changeCanvasTheme = () => {
-                material.setValues({
-                    color: this.canvasColor.materialColor
-                });
-                renderer.setClearColor(this.canvasColor.renderColor, 1);
-                onWindowResize();
-            };
-            init();
-            animate();
-        },
-        methods: {
+                    for (let ix = 0; ix < AMOUNTX; ix++) {
+                        for (let iy = 0; iy < AMOUNTY; iy++) {
+                            particle = particles[i++];
+                            particle.position.y = (
+                                Math.sin((ix + count) * 0.3) * 50) + (Math.sin((iy + count) * 0.5) * 50
+                            );
+                            particle.scale.x = particle.scale.y =
+                                (Math.sin((ix + count) * 0.3) + 1) * 2 + (Math.sin((iy + count) * 0.5) + 1) * 2;
+                        }
+                    }
+
+                    renderer.render(scene, camera);
+
+                    count += 0.05;
+                };
+                this.changeCanvasTheme = () => {
+                    material.setValues({
+                        color: this.canvasColor.materialColor
+                    });
+                    renderer.setClearColor(this.canvasColor.renderColor, 1);
+                    this.repaintBackground();
+                };
+                init();
+                animate();
+            },
+            repaintBackground() {
+                const wrapWidth = this.$refs.container.offsetWidth;
+                const wrapHeight = this.$refs.container.offsetHeight;
+
+                this.camera.aspect = wrapWidth / wrapHeight;
+                this.camera.updateProjectionMatrix();
+                this.renderer.setSize(wrapWidth, wrapHeight);
+            },
             openGithub() {
                 window.open('https://github.com/ksyun-fe/kingdot', '_blank');
             }
