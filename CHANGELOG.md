@@ -9,8 +9,10 @@
     * 修复labelWidth 是否有单位问题
   * Tooltip
     * 修复 tooltips 提示不消失异常
-  * popconfirm
+  * Popconfirm
     * fix confirm Button disabled
+  * FormItem
+    * fix the validate error border color for select
 ### Optimization
   * input
     * modify suffix icon style
