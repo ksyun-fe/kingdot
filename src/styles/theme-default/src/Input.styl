@@ -111,7 +111,7 @@
                 border lookup('$-input-' + status + '-border')
             .kd-icon-{status}-solid
                 color lookup('$-input-' + status)
-.kd-input-clearable
+.kd-input .kd-input-clearable
     color $-input-clear-color
     cursor pointer
 
@@ -134,3 +134,6 @@
 
 input::-ms-clear, input::-ms-reveal
     display none
+
+.kd-input-suffix > [class*=kd-icon]
+    margin-left: 4px

@@ -69,6 +69,7 @@
                     v-if="$slots.suffix || clearable || success || warning || error"
                     class="kd-input-suffix"
             >
+                <slot name="suffix"></slot>
                 <i
                         v-if="success || warning || error"
                         :class="{
@@ -85,7 +86,6 @@
                         @click.stop="clear"
                 >
                 </i>
-                <slot name="suffix"></slot>
             </div>
             <span
                     v-if="isShowCount"
