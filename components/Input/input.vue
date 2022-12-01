@@ -11,7 +11,8 @@
                     'kd-input-fluid': fluid,
                     ['kd-input-status-' + (status === 'error' ? 'err' : status)]: success || warning || error,
                     'kd-textarea-show-count': showCount,
-                    'kd-is-exceed': isExceed
+                    'kd-is-exceed': isExceed,
+                    'kd-textarea-resize-vertical': type === 'textarea' && resize === 'vertical'
                 }
             ]"
             :style="{width: parseInt(width) + 'px'}"
@@ -158,6 +159,10 @@
             lengthLimit: {
                 type: Boolean,
                 default: false
+            },
+            maxVerticalResizeHeight: {
+                type: [Number, String],
+                default: 200
             }
         },
         data() {
@@ -169,7 +174,12 @@
         },
         computed: {
             textareaStyle() {
-                return Object.assign({}, this.currentTextareaStyle, {resize: this.resize, width: parseInt(this.width) + 'px'});
+                return Object.assign({}, this.currentTextareaStyle, {
+                    resize: this.resize,
+                    width: parseInt(this.width) + 'px'
+                }, this.resize === 'vertical' ? {
+                    maxHeight: this.maxVerticalResizeHeight + 'px'
+                } : {});
             },
             success() {
                 return this.status === 'success';

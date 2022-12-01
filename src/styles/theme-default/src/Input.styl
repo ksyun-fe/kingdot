@@ -132,6 +132,12 @@
         right $-input-textarea-count-right
         z-index 1
 
+.kd-textarea-resize-vertical
+    for size in $-input-size-list
+        &.kd-input-{size}
+            .kd-input-inner
+                min-height lookup('$-input-' + size + '-inner-height')
+
 input::-ms-clear, input::-ms-reveal
     display none
 

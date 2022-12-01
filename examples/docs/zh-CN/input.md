@@ -393,6 +393,34 @@
 ```
 :::
 
+:::demo #扩展高度限制 ##在设置resize 为 vertical 时，可通过maxVerticalResizeHeight设置可扩展的最大高度。
+```html
+<template>
+<div>
+    <kd-input
+            type="textarea"
+            v-model="info"
+            name="intro"
+            width="300px"
+            resize="vertical"
+            maxVerticalResizeHeight="300"
+    ></kd-input>
+</div>
+</template>
+<script>
+    export default{
+        data() {
+            return {
+                info: '请输入内容'
+            }   
+        }
+    }   
+</script>
+<style scoped>
+</style>
+```
+:::
+
 ### 属性 {.component__content}
 | 属性      | 说明    | 类型      | 可选值       | 默认值   |
 |---------- |-------- |---------- |-------------  |-------- |
@@ -415,7 +443,7 @@
 | resize | 控制是否能被用户缩放 | string | none, both, horizontal, vertical | -
 | autofocus | 原生属性，自动获取焦点 | boolean | true/false | false
 | tabindex | 输入框的tabindex | string | - | -
-
+| maxVerticalResizeHeight | resize 为 vertical 时，可扩展的最大高度 | number / string | - | 200
 ### Slots {.component__content}
 | 事件名称      | 说明   
 |---------- |-------- 
