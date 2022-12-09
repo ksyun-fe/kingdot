@@ -7,14 +7,14 @@
             }"
             :style="{
                 width:defaultWidth,
-                height: `${listHeight >= 290 ? 290 : listHeight}px`
+                'max-height': `290px`
             }"
             @scroll="scroll"
     >
         <div
                 v-if="optimizeScroll"
                 class="kd-select-phantom"
-                :style="{ height: listHeight + 'px' }"
+                :style="{ 'max-height': '290px' }"
         ></div>
         <ul
                 ref="kdDropdownContent"
@@ -122,6 +122,9 @@
                         item.$children.forEach(c => {
                             if (c.$options._componentTag === 'kd-option') {
                                 c.isShow(v);
+                                if (c.isShow(v)) {
+                                    count++;
+                                };
                             }
                         });
                         const hideGroup = item.$children.every(c => {
