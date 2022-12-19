@@ -238,13 +238,18 @@ export default{
 
 :::
 
-:::demo #多选 ##可以重复点击菜单，多次选择值。使用multiple属性控制。
+:::demo #多选 ##可以重复点击菜单，多次选择值。使用`multiple`属性控制。默认选中值会以 Tag 的形式展现，也可以设置`collapse-tags`属性合并展示。
 
 ```html
 <template>
-    <kd-select v-model="defaultValue" placeholder="请选择内容" filterable multiple clearAll>
-        <kd-option v-for="item in options" :key="item.value" :value="item.value" :label="item.label" >{{item.label}}</kd-option>
-    </kd-select>
+    <div>
+        <kd-select v-model="defaultValue" placeholder="请选择内容" filterable multiple clearAll>
+            <kd-option v-for="item in options" :key="item.value" :value="item.value" :label="item.label" >{{item.label}}</kd-option>
+        </kd-select>
+        <kd-select v-model="defaultValue" placeholder="请选择内容" filterable multiple clearAll collapse-tags class="select-ml">
+            <kd-option v-for="item in options" :key="item.value" :value="item.value" :label="item.label" >{{item.label}}</kd-option>
+        </kd-select>
+    </div>
 </template>
 <script>
 export default{
@@ -266,6 +271,11 @@ export default{
     }
 }
 </script>
+<style>
+.select-ml{
+    margin-left:20px
+}
+</style>
 ```
 
 :::
@@ -481,6 +491,7 @@ export default{
 | filterable    | 是否可以搜索   |  boolean    | —  | false
 | filter-method    | 自定义搜索方法   |  function    | —  | —
 | multiple    | 多选   |  boolean    | —  | false
+| collapse-tags    | 多选时是否将选中值按文字的形式展示   |  boolean    | —  | false
 | clearAll    | 全部清除按钮   |  boolean    | —  | false
 | remote    | 是否远程   |  boolean    | —  | false
 | remote-method    | 远程搜索方法   |  function    | —  | —

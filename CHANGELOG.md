@@ -1,5 +1,19 @@
 ## 更新日志
 
+## v1.0.56
+
+*2022-12-19*
+
+### New features
+
+  * Select
+    * add collapseTags prop
+
+### Bug fixes
+
+  * Select
+    * 懒加载动态计算高度影响group分组的高度计算
+
 ## v1.0.55
 *2022-08-30*
 ### Bugfix

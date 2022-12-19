@@ -40,7 +40,31 @@
                         v-if="multiple"
                         class="kd-select-tags"
                 >
-                    <span class="kd-select-tags-content">
+                    <span
+                            v-if="collapseTags && tagList.length"
+                            class="kd-select-tags-content"
+                    >
+                        <span
+                                class="kd-select-tags-item"
+                        >
+                            <span class="kd-select-tag-label" :title="tagList[0].label">{{ tagList[0].label }}</span>
+                            <span
+                                    v-if="!disabled"
+                                    class="kd-select-tag-close kd-icon-close"
+                                    @click.stop="deleteTag(tagList[0])"
+                            ></span>
+                        </span>
+                        <span
+                                v-if="tagList.length > 1"
+                                class="kd-select-tags-item"
+                        >
+                            <span class="kd-select-tag-label">+ {{ tagList.length - 1 }}</span>
+                        </span>
+                    </span>
+                    <span 
+                            v-else
+                            class="kd-select-tags-content"
+                    >
                         <span
                                 v-for="item in tagList"
                                 :key="item.value"
@@ -173,6 +197,10 @@
                 default: 10
             },
             optimizeScroll: {
+                type: Boolean,
+                default: false
+            },
+            collapseTags: {
                 type: Boolean,
                 default: false
             },
