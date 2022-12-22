@@ -42,7 +42,7 @@
                             {label: '完全托管', value: 32767}
                          ]" 
                          :filter="filter" />
-            <kd-table-column title="规划" props="tbl" />
+            <kd-table-column title="规划规划规划规划规划规划" props="tbl" />
             <kd-table-column title="内容" props="abc" />
             <kd-table-column title="邮编" props="def" />
             <kd-table-column width="400" title="地址1" props="efg" />

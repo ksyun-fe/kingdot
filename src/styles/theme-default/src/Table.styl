@@ -34,6 +34,7 @@
           user-select none
           text-overflow ellipsis
           white-space nowrap
+          overflow hidden
           &:after
             content ''
             background-color $-table-border-color
@@ -41,11 +42,14 @@
             width 1px
             position absolute
             top 50%
-            right -1px
+            right 0px
             margin-top -7px
 
           &.kd-th-noborder:after
             content none
+          &:last-child
+            &:after
+              width 0
 
     tbody
       display table-row-group
@@ -185,11 +189,23 @@
         &:after
           top 7px
           height 100%
+        &:last-child
+            &:after
+              width 1px
     tbody
       td
-        border-right 1px solid $-table-border-color
+        // border-right 1px solid $-table-border-color
+        position relative
         &:last-child
           border: none
+        &:after
+          content ''
+          background-color $-table-border-color
+          height 100%
+          width 1px
+          position absolute
+          top 0px
+          right 0px
 
 
 
