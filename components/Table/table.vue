@@ -17,7 +17,8 @@
             stype=""
             type='text'>
             <div class="kd-table-column-btn-outer">
-                <span class="kd-table-column-btn"></span>
+                <!-- <span class="kd-table-column-btn"></span> -->
+                <span class="kd-icon-em-xitongshezhi"></span>
             </div>
             <kd-dropdown-menu slot="dropdown">
                 <kd-dropdown-item
