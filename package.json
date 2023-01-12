@@ -26,7 +26,6 @@
         "url": "https://github.com/ksyun-fe/kingdot/issues"
     },
     "scripts": {
-        "update:icon": "rimraf src/styles/common/iconfont.styl && node build/bin/updateicon.js",
         "build:entry": "node build/bin/build-index.js & node build/bin/iconInit.js",
         "dev": "npm run build:entry && cross-env NODE_ENV=development THEME=theme-default webpack-dev-server  --config build/webpack.demo.conf.js",
         "dev:theme": "npm run build:entry && cp-cli src/styles/theme-default/src src/styles/theme/src && cross-env NODE_ENV=development THEME=theme webpack-dev-server  --config build/webpack.demo.conf.js",
@@ -115,6 +114,7 @@
         "gulp-autoprefixer": "^7.0.1",
         "gulp-cssmin": "^0.2.0",
         "gulp-rename": "^2.0.0",
+        "gulp-replace": "^1.1.4",
         "gulp-stylus": "^2.7.0",
         "hash-sum": "^2.0.0",
         "highlight.js": "^10.6.0",

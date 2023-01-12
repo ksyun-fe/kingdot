@@ -13,6 +13,7 @@ const cssmin = require('gulp-cssmin');
 const version = require('../../package.json').version;
 const themes = require('../../src/styles/themes.js');
 const rename = require('gulp-rename');
+const replace = require('gulp-replace');
 const tasks = [];
 
 task('copyfont', () => {
@@ -26,7 +27,7 @@ themes.forEach(theme => {
     const taskName = `compile-${theme}`;
     task(taskName, () => {
         return src(`../../src/styles/${theme}/index.styl`)
-            .pipe(stylus({ rawDefine: { '$-font-path': '/kingdot/fonts' }}))
+            .pipe(stylus())
             .pipe(autoprefixer({
                 overrideBrowserslist: [
                     'Chrome > 31',
@@ -35,6 +36,7 @@ themes.forEach(theme => {
                 ]
             }))
             .pipe(cssmin())
+            .pipe(replace('../fonts/', '/kingdot/fonts/'))
             .pipe(rename(function (path) {
                 return {
                     dirname: path.dirname,

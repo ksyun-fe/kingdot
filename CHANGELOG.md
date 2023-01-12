@@ -2,7 +2,10 @@
 
 ## v1.0.57
 
-*2022-12-22*
+*2023-01-12*
+### Optimization
+  * iconfont
+    * modify iconfont build
 ### Bug fixes
 
   * Table
