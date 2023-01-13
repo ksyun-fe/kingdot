@@ -56,7 +56,7 @@ export default {
         },
         href: {
             type: String,
-            default: 'javascript:;'
+            default: null
         },
         target: {
             type: String,
@@ -69,7 +69,7 @@ export default {
             disabledStatus: this.disabled,
             authAbled: true,
             delayDisable: false,
-            link: 'javascript:;',
+            link: null,
             linkTarget: '_self',
             isShow: true
         };
@@ -152,7 +152,7 @@ export default {
         },
         handleHerf() {
             if (!this.authAbled || this.disabled) {
-                this.link = 'javascript:;';
+                this.link = null;
                 this.linkTarget = '_self';
                 this.disabledStatus = true;
             } else {
@@ -196,6 +196,14 @@ export default {
         },
         active() {
             this.isActive = true;
+        },
+        showLoading() {
+            this.loading = true;
+            this.disabled = true;
+        },
+        hideLoading() {
+            this.loading = false;
+            this.disabled = false;
         }
     },
     render(h, ctx) {

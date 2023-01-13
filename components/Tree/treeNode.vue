@@ -20,11 +20,13 @@
             const { node, parent, tpl, index, nodeMouseOver, level } = ctx.props;
             const { selected, selDisabled = false } = node;
 
-            let titleClass;
+            let titleClass; let nodeClass = 'kd-tree-node';
             if (selDisabled) {
                 titleClass = 'node-title-disabled';
+                nodeClass = 'kd-tree-node kd-tree-node-disabled';
             } else {
                 titleClass = selected ? 'node-title node-selected' : 'node-title';
+                nodeClass = selected ? 'kd-tree-node kd-tree-node-selected' : 'kd-tree-node';
             }
             if (node.searched) titleClass += ' node-searched';
 
@@ -55,7 +57,7 @@
             return tpl
                 ? tpl(node, ctx, parent, index, ctx.props)
                 : _tree.$scopedSlots.default
-                    ? <div class={'kd-tree-node'}>{nodeItem()}{_tree.$scopedSlots.default && _tree.$scopedSlots.default(node)}</div>
+                    ? <div class={nodeClass}>{nodeItem()}{_tree.$scopedSlots.default && _tree.$scopedSlots.default(node)}</div>
                     : nodeItem()
             ;
         }

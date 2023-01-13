@@ -76,12 +76,13 @@
 ```html
 <template>
     <div class='row'>
+        <kd-button @click="handleDisabledText">默认禁用按钮</kd-button>
         <kd-button disabled>默认禁用按钮</kd-button>
         <kd-button disabled type='dashed'>默认禁用按钮</kd-button>
         <kd-button disabled type='primary'>主要禁用按钮</kd-button>
         <kd-button disabled type='text'>text禁用按钮</kd-button>
         <kd-button disabled type='none'>none禁用按钮</kd-button>
-        <kd-button disabled type='text' href="#/zh-CN/component/installation" target="_blank">链接按钮</kd-button>
+        <kd-button :disabled="disabledText" type='text' href="#/zh-CN/component/installation" target="_blank">链接按钮</kd-button>
     </div>
 </template>
 <style scoped>
@@ -89,16 +90,33 @@
     margin-left:20px
 }
 </style>
+<script>
+    export default {
+        data(){
+            return{
+                disabledText: false
+            }
+        },
+        methods:{
+            handleDisabledText(){
+                this.disabledText = !this.disabledText
+            }
+        }
+    }
+</script>
 ```
 :::
 
-:::demo #图标按钮 ##使用icon属性给按钮添加图标。
+:::demo #Loading按钮 & 图标按钮 ##使用icon属性给按钮添加图标。
 
 ```html
 <template>
     <div class='row'>
         <kd-button type='primary' loading></kd-button>
         <kd-button type='primary' loading>加载中</kd-button>
+        <kd-button type='none' loading>文字按钮</kd-button>
+        <!-- showLoading & hideLoading -->
+        <kd-button type='primary' ref='loadingButon' @click="handleLoading">{{loadingText}}</kd-button>
         <kd-button type='primary' icon='kd-icon-more'></kd-button>
         <kd-button type='primary' icon='kd-icon-plus'>图标在前</kd-button>
         <kd-button type='danger'>图标在后<i class="kd-icon-right kd-icon-more"></i></kd-button>
@@ -109,6 +127,25 @@
     margin-left:20px
 }
 </style>
+<script>
+    export default {
+        data(){
+            return{
+                loadingText:'按钮',
+            }
+        },
+        methods:{
+            handleLoading(){
+                this.$refs.loadingButon.showLoading();
+                this.loadingText = '加载中。。。'
+                setTimeout(() => {
+                    this.$refs.loadingButon.hideLoading();
+                    this.loadingText = '加载完成'
+                }, 3000)
+            }
+        }
+    }
+</script>
 ```
 
 :::

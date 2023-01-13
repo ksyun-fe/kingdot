@@ -5,6 +5,7 @@
     >
         <div
                 class="kd-tree-node-el"
+                :class="{'kd-tree-node-el-selected': item.selected}"
                 :draggable="draggable"
                 @dragstart="drag(item, $event)"
                 @dragend="dragEnd(item, $event)"
