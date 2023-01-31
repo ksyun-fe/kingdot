@@ -19,8 +19,9 @@
 
             const { node, parent, tpl, index, nodeMouseOver, level } = ctx.props;
             const { selected, selDisabled = false } = node;
+            const _tree = ctx.injections.TREE;
 
-            let titleClass; let nodeClass = 'kd-tree-node';
+            let titleClass, nodeTitleTextClass; let nodeClass = 'kd-tree-node';
             if (selDisabled) {
                 titleClass = 'node-title-disabled';
                 nodeClass = 'kd-tree-node kd-tree-node-disabled';
@@ -29,7 +30,12 @@
                 nodeClass = selected ? 'kd-tree-node kd-tree-node-selected' : 'kd-tree-node';
             }
             if (node.searched) titleClass += ' node-searched';
-
+            if (!_tree.$scopedSlots.default) {
+                titleClass = titleClass + ' kd-tree-node-title';
+            }
+            if (_tree.$scopedSlots.icon) {
+                nodeTitleTextClass = 'node-title-text';
+            }
             // postponed
             // if (
             //     mode &&
@@ -38,8 +44,6 @@
             // ) {
             //     titleClass += ` kd-tree-insert-${mode}`;
             // }
-
-            const _tree = ctx.injections.TREE;
             const nodeItem = () => (
                 <span
                     title={node[_tree.titleKey]}
@@ -49,9 +53,14 @@
                         if (selDisabled) return;
                         _tree.nodeSelected(node, { level, index });
                     }}
+                    onDblclick={(e) => {
+                        e.stopPropagation();
+                        if (selDisabled) return;
+                        _tree.nodedblclick(node, { level, index });
+                    }}
                 >
                 {_tree.$scopedSlots.icon && _tree.$scopedSlots.icon(node)}
-                {node[_tree.titleKey]}
+                <span class={nodeTitleTextClass}>{node[_tree.titleKey]}</span>
                 </span>
             );
             return tpl

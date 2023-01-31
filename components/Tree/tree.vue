@@ -17,6 +17,7 @@
                 parentChecked: this.parentCheckedHandle,
                 emitEventToTree: this.emitEventToParent,
                 nodeSelected: this.nodeSelected,
+                nodedblclick: this.nodedblclick,
                 setAttr: this.setAttr,
                 TREE: this,
                 chkDisabledKeys: this.chkDisabledKeys
@@ -90,8 +91,10 @@
             return {
                 // test: true,
                 radioNode: null,
+                previousDbclickNode: null,
                 mode: null,
-                dragInfo: {}
+                dragInfo: {},
+                selectNodeTimer: null
             };
         },
         computed: {
@@ -105,6 +108,9 @@
             this.$defVal = {
                 visible: true
             };
+        },
+        beforeDestroy() {
+            clearTimeout(this.selectTableTimer);
         },
         methods: {
             // leaf node or not
@@ -162,6 +168,7 @@
                 if (!eventName) return;
                 switch (eventName) {
                     case 'node-click':
+                    case 'node-dblclick':
                     case 'node-select':
                     case 'node-check':
                     case 'node-mouse-over':
@@ -203,20 +210,35 @@
                 }
                 this.radioNode = node;
             },
+            // node dbclick
+            nodedblclick(node) {
+                clearTimeout(this.selectNodeTimer);
+                const dbclickSelect = !node.dbClickSelect;
+                this.$set(node, 'dbclickSelect', dbclickSelect);
+                const previousNode = this.previousDbclickNode;
+                if (previousNode) {
+                    this.setNodeAttr(previousNode, 'dbclickSelect', !dbclickSelect);
+                }
+                this.previousDbclickNode = node;
+                this.emitEventToParent('node-dblclick', node);
+            },
             // change node selected
             nodeSelected(node, position) {
-                const selected = !node.selected;
-                const changeCheck = this.checkbox && !this.selectAlone;
-                if (changeCheck) {
-                    this.$set(node, 'checked', selected);
-                    this.childCheckedHandle(node, selected, this.halfcheck);
-                }
-                if (this.radio) {
-                    this.updateRadioNode(node, selected);
-                }
-                this.$set(node, 'selected', selected);
-                this.emitEventToParent('node-click', node, selected, position);
-                this.emitEventToParent('node-select', node, selected, position);
+                clearTimeout(this.selectNodeTimer);
+                this.selectNodeTimer = setTimeout(() => {
+                    const selected = !node.selected;
+                    const changeCheck = this.checkbox && !this.selectAlone;
+                    if (changeCheck) {
+                        this.$set(node, 'checked', selected);
+                        this.childCheckedHandle(node, selected, this.halfcheck);
+                    }
+                    if (this.radio) {
+                        this.updateRadioNode(node, selected);
+                    }
+                    this.$set(node, 'selected', selected);
+                    this.emitEventToParent('node-click', node, selected, position);
+                    this.emitEventToParent('node-select', node, selected, position);
+                }, 300);
             },
             // node: add, delete
             addNode(parent, newNode) {

@@ -1,4 +1,13 @@
 ## 更新日志
+
+### Optimization
+  * editable
+    * add size attribute
+  * tree
+    * 选中时增加class & 结构微调
+    * add dblclick 事件
+
+
 ## v1.0.58
 
 *2023-01-13*

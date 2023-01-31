@@ -82,13 +82,17 @@ describe('Tree', () => {
         expect(ckeckedNodes.length).to.equal(1);
         expect(ckeckedNodes[0].id).to.equal(11);
     });
-    it('node: click', () => {
+    it('node: click', function(done){
         vm = getTreeVm(':expandedKeys="expandedKeys"');
-        let firstNode = document.querySelectorAll('.kd-tree-node-el > .node-title')[0];
+        let firstNode = document.querySelectorAll('.kd-tree-node-content > .node-title')[0];
         firstNode.click();
-        let selectedNodes = vm.$refs.tree.getSelectedNodes();
-        expect(selectedNodes.length).to.equal(1);
-        expect(selectedNodes[0].id).to.equal(1);
+        setTimeout(() => {
+            let selectedNodes = vm.$refs.tree.getSelectedNodes();
+            expect(selectedNodes.length).to.equal(1);
+            expect(selectedNodes[0].id).to.equal(1);
+            done();
+        }, 400)
+        
     });
     // search
     it('search', function(done) {

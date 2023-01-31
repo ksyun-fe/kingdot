@@ -5,7 +5,7 @@
     >
         <div
                 class="kd-tree-node-el"
-                :class="{'kd-tree-node-el-selected': item.selected}"
+                :class="{'kd-tree-node-el-selected': item.selected, 'kd-tree-node-el-dbclick': item.dbclickSelect}"
                 :draggable="draggable"
                 @dragstart="drag(item, $event)"
                 @dragend="dragEnd(item, $event)"
@@ -20,41 +20,44 @@
                         :class="switcherClass"
                 />
             </span>
-            <!-- checkbox -->
-            <kd-checkbox
-                    v-if="checkbox && !item.nocheck && !TREE.nocheckKeys.includes(item[TREE.nodeKey])"
-                    v-model="item.checked"
-                    :disabled="item.chkDisabled || TREE.chkDisabledKeys.includes(item[TREE.nodeKey])"
-                    :indeterminate="item.halfcheck"
-                    class="kd-tree-checkbox"
-                    @change="changeNodeCheckStatus(item, $event)"
-            />
-            <!-- loading -->
-            <span
-                    v-if="item.loading && item.expanded"
-                    class="kd-tree-loading"
-            >
-                <svg
-                        viewBox="0 0 120 120"
-                        class="kd-tree-loading-svg"
+            <div class="kd-tree-node-content">
+                <!-- checkbox -->
+                <kd-checkbox
+                        v-if="checkbox && !item.nocheck && !TREE.nocheckKeys.includes(item[TREE.nodeKey])"
+                        v-model="item.checked"
+                        :disabled="item.chkDisabled || TREE.chkDisabledKeys.includes(item[TREE.nodeKey])"
+                        :indeterminate="item.halfcheck"
+                        class="kd-tree-checkbox"
+                        @change="changeNodeCheckStatus(item, $event)"
+                />
+                <!-- loading -->
+                <span
+                        v-if="item.loading && item.expanded"
+                        class="kd-tree-loading"
                 >
-                    <circle
-                            cx="60"
-                            cy="60"
-                            class="kd-tree-loading-circle"
-                            r="57"
-                    ></circle>
-                </svg>
-            </span>
-            <!-- node -->
-            <TreeNode
-                    :node="item"
-                    :parent="parent"
-                    :index="index"
-                    :tpl="tpl"
-                    :node-mouse-over="nodeMouseOver"
-                    :level="level"
-            />
+                    <svg
+                            viewBox="0 0 120 120"
+                            class="kd-tree-loading-svg"
+                    >
+                        <circle
+                                cx="60"
+                                cy="60"
+                                class="kd-tree-loading-circle"
+                                r="57"
+                        ></circle>
+                    </svg>
+                </span>
+                <!-- node -->
+                <TreeNode
+                        :node="item"
+                        :parent="parent"
+                        :index="index"
+                        :tpl="tpl"
+                        :node-mouse-over="nodeMouseOver"
+                        :level="level"
+                />
+            </div>
+
         </div>
         <kd-transition
                 v-if="item.children && item.children.length"
@@ -146,6 +149,7 @@
             'childChecked',
             'parentChecked',
             'nodeSelected',
+            'nodedblclick',
             'emitEventToTree',
             'setAttr',
             'TREE'

@@ -126,6 +126,9 @@
             __test() {
                 this.$message.success('node-click');
             },
+            _dbclicktest() {
+                this.$message.success('node-dblclick');
+            },
             searchFn(node) {
                 // return node.id === this.search;
                 return node.title.includes(this.search);
@@ -302,6 +305,7 @@
 | 事件名 | 说明               | 参数    |
 | ----  | ------------------| ------- |
 | `node-click` | `单击节点触发的事件` | `Function(node: Object)` |
+| `node-dblclick` | `双击节点触发的事件` | `Function(node: Object)` |
 | `node-select` | `选择节点后触发的事件(和node-click一样)；position: 位置信息level：层级` | `Function(node: Object, selected: boolean, position: {level, index})` |
 | `node-check` | `点击checkbox触发事件` | `Function(node: Object, checked: boolean, position: {level, index})` |
 | `node-mouse-over` | `鼠标滑过节点触发事件` | `Function(node: Object, index: Number, parentNode: node, position: {level, index})` |

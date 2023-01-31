@@ -10,10 +10,13 @@
     .kd-tree-node
         display inline-block
     .kd-tree-node-el
+        display: flex
         margin-bottom 12px
         height 24px
         &:hover
             background-color $-tree-node-bg-color
+    .kd-tree-node-content
+        flex auto
     .kd-tree-switcher, .kd-tree-loading
         margin-right 8px
         display inline-block

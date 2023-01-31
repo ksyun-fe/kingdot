@@ -5,10 +5,12 @@
 ```html
 <template>
 <div>
+    <kd-button @click="getFoucus">聚焦</kd-button>
     <kd-input
             placeholder="请输入内容"
             v-model="age"
             length-limit
+            ref="ageInput"
     ></kd-input>
     <kd-input
             class="input-gap1"
@@ -30,6 +32,9 @@
         methods: {
             enterHandler(e) {
                 this.$message.success('entering')
+            },
+            getFoucus(){
+                this.$refs.ageInput.focus()
             }
         }   
     }
