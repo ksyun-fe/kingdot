@@ -1,5 +1,8 @@
 <template>
-    <div class="kd-editable">
+    <div
+            class="kd-editable"
+            :class="['kd-editable-'+size]"
+    >
         <div
                 v-if="!editStatus"
                 :title="value"
@@ -13,6 +16,7 @@
                     v-model="inputValue"
                     :class="['kd-editable-input', { 'kd-editable-invalid': invalid }]"
                     :placeholder="placeholder"
+                    :size="size"
                     @blur="_onBlur($event)"
                     @focus="_onFocus($event)"
                     @keydown="_onKeydown($event)"
@@ -20,7 +24,7 @@
             />
         </div>
         <kd-button
-                v-show="!editStatus"
+                v-show="!editStatus && !disabled"
                 :class="{
                     'kd-editable-icon': true,
                     'kd-editable-hover': hover,
@@ -30,10 +34,9 @@
                 :authid="authid"
                 @click="_edit"
         >
-            <i
-                    v-if="!disabled && !editStatus"
-                    class="edit-icon kd-icon-edit"
-            ></i>
+            <slot name="icon">
+                <i class="edit-icon kd-icon-edit"></i>
+            </slot>
         </kd-button>
     </div>
 </template>
@@ -71,6 +74,10 @@
             follow: {
                 type: Boolean,
                 default: false
+            },
+            size: {
+                type: String,
+                default: 'default'
             }
         },
         data() {

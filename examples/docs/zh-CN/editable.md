@@ -5,11 +5,11 @@
     <div class='e-test'>
         <kd-editable v-model="model1"></kd-editable>
         <kd-editable value="disabled" disabled></kd-editable>
-        <kd-editable v-model="model2" follow>
+        <kd-editable v-model="model2" follow size='large'>
             <i class="kd-icon-date" />
             {{ model2 }}
         </kd-editable>
-        <kd-editable v-model="model3" hover></kd-editable>
+        <kd-editable v-model="model3" hover size='mini'></kd-editable>
         <kd-editable
             v-model="model4"
             hover
@@ -17,7 +17,13 @@
             placeholder="长度不小于5"
             @change="change"
             @error="error"
+            size='small'
         ></kd-editable>
+        <kd-editable v-model="model1">
+            <template slot='icon'>
+                <i class='kd-icon-em-xitongshezhi'></i>
+            </template>
+        </kd-editable>
     </div>
 </template>
 <script>
@@ -54,16 +60,17 @@
 :::
 
 ### 属性 {.component__content}
-| 属性      | 说明    | 类型      | 默认值   |
-|---------- |-------- |---------- |-------------  |
-| value/v-model | `绑定的值`   | `Number| String`    |     `—`    |
-| disabled  |  `是否禁用编辑`   | `Boolean`  |    `false`  |
-| editing  |  `是否为编辑状`   | `Boolean`  |    `false`  |
-| validate  | `验证规则，可以为函数/正则/正则字符串，若为字符串将转为正则表达式；函数则会传入当前编辑框的值来调用函数验证，返回true则验证通过，否则验证失败（验证通过后，不会直接改变model，需要自行监听change事件）` | `Function | RegExp | String` |    `undefined`     |
-| authid  | `权限属性`   | `String`  |    `-`     |    `-`   |
-| hover  | `隐藏编辑图标，hover时候显示`   | `Boolean`  |    `false`  |
-| follow  | `图标跟随`   | `Boolean`  |    `false`  |
-| placeholder  | 输入框占位符  | `String`    |     ``    |
+| 属性      | 说明    | 类型      | 可选值   | 默认值   |
+|---------- |-------- |---------- |-------------  |-------------  |
+| value/v-model | `绑定的值`   | `Number| String`    |      `—`    |    `—`    |
+| disabled  |  `是否禁用编辑`   | `Boolean`  |      `true|false`    |   `false`  |
+| editing  |  `是否为编辑状`   | `Boolean`  |      `true|false`    |   `false`  |
+| validate  | `验证规则，可以为函数/正则/正则字符串，若为字符串将转为正则表达式；函数则会传入当前编辑框的值来调用函数验证，返回true则验证通过，否则验证失败（验证通过后，不会直接改变model，需要自行监听change事件）` | `Function | RegExp | String` |         `—`    |`undefined`     |
+| authid  | `权限属性`   | `String`  |    `-`     |     `—`    |    `-`   |
+| size    | `大小`      | `String`  |    `default|small|mini|large`     |    `default`   |
+| hover  | `隐藏编辑图标，hover时候显示`   | `Boolean`  |     `true|false`    |    `false`  |
+| follow  | `图标跟随`   | `Boolean`  |     `true|false`    |    `false`  |
+| placeholder  | 输入框占位符  | `String`    |     ``    |     ``    |
 
 
 ### 事件 {.component__content}
@@ -77,3 +84,4 @@
 | 事件名称      | 说明 |
 |---------- |-------- |
 | default | 展示内容 |
+| icon | 自定义icon,若icon大小需要和字体保持一致，需要增加class`'edit-icon'` |
