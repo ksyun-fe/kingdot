@@ -1,5 +1,6 @@
+@import "../variables.styl"
+$-editable-size-types := large default small mini
 .kd-editable
-    height 32px
     min-width 40px
     &:hover
         .edit-icon
@@ -11,12 +12,8 @@
     white-space nowrap
     text-overflow ellipsis
     cursor pointer
-    height 32px
-    line-height 32px
     float left
 .kd-editable-icon
-    height 32px
-    line-height 32px
     float right
 .kd-editable-icon-follow
     float left !important
@@ -29,3 +26,13 @@
 .kd-editable-hover
     .edit-icon
         display none
+for s in $-editable-size-types
+    .kd-editable-{s}
+        height lookup('$-editable-'+ s +'-height')
+        .kd-editable-txt,.kd-editable-icon
+            height lookup('$-editable-'+ s +'-height')
+            line-height lookup('$-editable-'+ s +'-height')
+            font-size lookup('$-editable-'+ s +'-font-size')
+        .kd-editable-icon
+            .edit-icon
+                font-size lookup('$-editable-'+ s +'-font-size')
