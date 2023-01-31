@@ -8,7 +8,8 @@
             tpl: Function,
             index: Number,
             nodeMouseOver: Function,
-            level: Number
+            level: Number,
+            checkbox: Boolean
         },
         inject: ['TREE'],
         render(h, ctx) {
@@ -17,7 +18,7 @@
             // const dragNodeKey = dragInfo.dragKey;
             // const targetKey = dragInfo.targetKey;
 
-            const { node, parent, tpl, index, nodeMouseOver, level } = ctx.props;
+            const { node, parent, tpl, index, nodeMouseOver, level, checkbox } = ctx.props;
             const { selected, selDisabled = false } = node;
             const _tree = ctx.injections.TREE;
 
@@ -25,9 +26,13 @@
             if (selDisabled) {
                 titleClass = 'node-title-disabled';
                 nodeClass = 'kd-tree-node kd-tree-node-disabled';
-            } else {
+            }
+            if (selected) {
                 titleClass = selected ? 'node-title node-selected' : 'node-title';
                 nodeClass = selected ? 'kd-tree-node kd-tree-node-selected' : 'kd-tree-node';
+            }
+            if (checkbox) {
+                nodeClass += ' kd-tree-node-checkbox';
             }
             if (node.searched) titleClass += ' node-searched';
             if (!_tree.$scopedSlots.default) {

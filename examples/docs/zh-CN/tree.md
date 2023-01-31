@@ -43,7 +43,7 @@
         data() {
             return {
                 showLine: false,
-                checkbox: true,
+                checkbox: false,
                 draggable: true,
                 halfcheck: true,
                 radio: true,

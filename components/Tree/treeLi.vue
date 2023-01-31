@@ -55,6 +55,7 @@
                         :tpl="tpl"
                         :node-mouse-over="nodeMouseOver"
                         :level="level"
+                        :checkbox="checkbox"
                 />
             </div>
 
