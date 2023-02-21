@@ -27,10 +27,8 @@
                 titleClass = 'node-title-disabled';
                 nodeClass = 'kd-tree-node kd-tree-node-disabled';
             }
-            if (selected) {
-                titleClass = selected ? 'node-title node-selected' : 'node-title';
-                nodeClass = selected ? 'kd-tree-node kd-tree-node-selected' : 'kd-tree-node';
-            }
+            titleClass = selected ? 'node-title node-selected' : 'node-title';
+            nodeClass = selected ? 'kd-tree-node kd-tree-node-selected' : 'kd-tree-node';
             if (checkbox) {
                 nodeClass += ' kd-tree-node-checkbox';
             }
