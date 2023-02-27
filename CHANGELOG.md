@@ -1,6 +1,12 @@
 ## 更新日志
 
 ### Optimization
+  * tree
+    * 异步加载时样式且自定义插槽时样式调整
+
+## v1.0.59
+
+### Optimization
   * editable
     * add size attribute
   * tree

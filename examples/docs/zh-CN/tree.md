@@ -169,14 +169,18 @@
             ref="tree2"
             :canDeleteRoot="true"
             :data="treeData2"
+            :checkbox="checkbox"
             :radio="radio"
             selectAlone
             @node-expand="_nodeExpand"
-            :tpl="tpl"
             draggable
             async
             :asyncFn="asyncFn"
-        />
+        >
+            <span slot-scope="node">
+                ??? <kd-button size="mini">test</kd-button>
+            </span>
+        </kd-tree>
     </div>
 </template>
 <script>
@@ -214,7 +218,7 @@
                         { title: "Node3" },
                     ];
                     resolve(data);
-                }, 500);
+                }, 500000);
             },
             _nodeExpand(node, expand, position) {
                 if (!expand) {
