@@ -19,7 +19,7 @@
             // const targetKey = dragInfo.targetKey;
 
             const { node, parent, tpl, index, nodeMouseOver, level, checkbox } = ctx.props;
-            const { selected, selDisabled = false } = node;
+            const { selected, selDisabled = false, loading, expanded } = node;
             const _tree = ctx.injections.TREE;
 
             let titleClass, nodeTitleTextClass; let nodeClass = 'kd-tree-node';
@@ -27,8 +27,11 @@
                 titleClass = 'node-title-disabled';
                 nodeClass = 'kd-tree-node kd-tree-node-disabled';
             }
-            titleClass = selected ? 'node-title node-selected' : 'node-title';
-            nodeClass = selected ? 'kd-tree-node kd-tree-node-selected' : 'kd-tree-node';
+            if (expanded && loading) {
+                nodeClass += ' kd-tree-node-loading';
+            }
+            titleClass += selected ? ' node-selected' : '';
+            nodeClass += selected ? ' kd-tree-node-selected' : '';
             if (checkbox) {
                 nodeClass += ' kd-tree-node-checkbox';
             }
