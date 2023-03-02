@@ -3,6 +3,12 @@
 ### Optimization
   * tree
     * 异步加载时样式且自定义插槽时样式调整
+<<<<<<< HEAD
+=======
+  * iconfont
+    * update iconfont
+  
+>>>>>>> dev
 
 ## v1.0.59
 
