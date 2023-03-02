@@ -22,7 +22,7 @@
             const { selected, selDisabled = false, loading, expanded } = node;
             const _tree = ctx.injections.TREE;
 
-            let titleClass, nodeTitleTextClass; let nodeClass = 'kd-tree-node';
+            let titleClass = 'node-title'; let nodeTitleTextClass; let nodeClass = 'kd-tree-node';
             if (selDisabled) {
                 titleClass = 'node-title-disabled';
                 nodeClass = 'kd-tree-node kd-tree-node-disabled';
