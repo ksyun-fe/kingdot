@@ -31,6 +31,7 @@
             :chkDisabledKeys="['node-1-1']"
             :nocheckKeys="['node-1-1-2']"
             @node-click="__test"
+            @node-contextmenu="__context"
         >
             <span slot-scope="node">
                 ??? <kd-button size="mini">test</kd-button>
@@ -128,6 +129,9 @@
             },
             _dbclicktest() {
                 this.$message.success('node-dblclick');
+            },
+            __context(e, node) {
+                this.$message.success('node-contextmenu');
             },
             searchFn(node) {
                 // return node.id === this.search;
@@ -316,6 +320,7 @@
 | `drag-node-end` | `节点拖拽结束后触发事件` | `Function({dragNode: Object, targetNode: Object})` |
 | `del-node` | `删除节点后触发事件` | `Function({ parentNode: Object/null, delNode: Object })` |
 | `node-expand` | `节点展开触发事件` | `Function(node: Object, expand: boolean, position: {level, index})` |
+| `node-contextmenu` | `元素中右击鼠标时触发并打开上下文菜单` | `Function(e: $event, node: Object)` |
 
 ### Tree方法 {.component__content}
 
