@@ -20,7 +20,10 @@
                         :class="switcherClass"
                 />
             </span>
-            <div class="kd-tree-node-content">
+            <div
+                    class="kd-tree-node-content"
+                    @contextmenu="nodeContextmenu($event, item)"
+            >
                 <!-- checkbox -->
                 <kd-checkbox
                         v-if="checkbox && !item.nocheck && !TREE.nocheckKeys.includes(item[TREE.nodeKey])"
@@ -151,6 +154,7 @@
             'parentChecked',
             'nodeSelected',
             'nodedblclick',
+            'nodeContextmenu',
             'emitEventToTree',
             'setAttr',
             'TREE'

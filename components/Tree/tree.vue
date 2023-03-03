@@ -18,6 +18,7 @@
                 emitEventToTree: this.emitEventToParent,
                 nodeSelected: this.nodeSelected,
                 nodedblclick: this.nodedblclick,
+                nodeContextmenu: this.nodeContextmenu,
                 setAttr: this.setAttr,
                 TREE: this,
                 chkDisabledKeys: this.chkDisabledKeys
@@ -169,6 +170,7 @@
                 switch (eventName) {
                     case 'node-click':
                     case 'node-dblclick':
+                    case 'node-contextmenu':
                     case 'node-select':
                     case 'node-check':
                     case 'node-mouse-over':
@@ -221,6 +223,10 @@
                 }
                 this.previousDbclickNode = node;
                 this.emitEventToParent('node-dblclick', node);
+            },
+            nodeContextmenu(e, node) {
+                clearTimeout(this.selectNodeTimer);
+                this.emitEventToParent('node-contextmenu', e, node);
             },
             // change node selected
             nodeSelected(node, position) {

@@ -3,6 +3,7 @@
             class="kd-option"
             :class="{'kd-option-active': active,'kd-option-disabled': !!source.disabled}"
             :style="{'height': '32px'}"
+            :title="source[labelKey]"
             @click.stop="optionClick"
     >
         <i
