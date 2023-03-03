@@ -1,5 +1,13 @@
 ## 更新日志
 
+## v1.0.62
+### Optimization
+  * tree
+    * add oncontextmenu方法
+  * selectV2
+    * option 增加 title
+
+
 ## v1.0.60 & v1.0.61
 ### Optimization
   * tree
