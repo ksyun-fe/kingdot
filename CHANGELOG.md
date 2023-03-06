@@ -4,6 +4,8 @@
 ### Optimization
   * table
     * add 无数据时不显示header的全选
+  * dialog
+    * okText 默认值调整为确定
 ### Bug fixes
   * form
     * fix 组件存在data及props时校验props失败
