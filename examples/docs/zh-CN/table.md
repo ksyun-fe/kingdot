@@ -307,9 +307,14 @@
     export default {
         data() {
             return {
-                data: data,
+                data: [],
                 clickCount: 1,
             }
+        },
+        mounted() {
+            setTimeout(() => {
+                this.data = data;
+            }, 2000)
         },
         methods: {
             btn(scope){

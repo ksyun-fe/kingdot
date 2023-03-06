@@ -257,7 +257,7 @@ export default {
                                                     }
                                                 >
                                                     {
-                                                        item._slotHeader
+                                                        item._slotHeader && this.rowsData.length > 0
                                                             ?
                                                             item.renderHeaderFn.call(
                                                                 this._renderProxy,
