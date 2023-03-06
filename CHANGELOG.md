@@ -1,5 +1,13 @@
 ## 更新日志
 
+## v1.0.63
+### Optimization
+  * table
+    * add 无数据时不显示header的全选
+### Bug fixes
+  * form
+    * fix 组件存在data及props时校验props失败
+
 ## v1.0.62
 ### Optimization
   * tree
