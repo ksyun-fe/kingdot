@@ -153,6 +153,12 @@
                     }
                 }, 200);
             },
+            // 修复组件不存在data，只存在props的校验
+            getValidateValue(code) {
+                const $data = this.$vnode.context[`$${code}`];
+                const value = this.deepGetValue($data, this.model).value;
+                return value;
+            },
             validate() {
                 if (!(this.model && this.form)) {
                     return;
@@ -162,8 +168,12 @@
                 const rules = this.getRules();
                 const promises = [];
                 const keys = [];
-                const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
-                const value = this.deepGetValue($data, this.model).value;
+                // const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
+                // const value = this.deepGetValue($data, this.model).value;
+                let value = this.getValidateValue('data');
+                if (value === undefined) {
+                    value = this.getValidateValue('props');
+                }
                 // check value
                 const valueIsExist = _ruleHandlers.required(value);
                 // check required rule isTrue
