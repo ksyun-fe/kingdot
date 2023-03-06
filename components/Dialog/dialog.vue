@@ -270,7 +270,7 @@
             },
             okText: {
                 type: String,
-                default: '确认'
+                default: '确定'
             },
             // 确认按钮是否禁用
             disableOk: {
