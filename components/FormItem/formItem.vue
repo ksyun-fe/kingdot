@@ -145,8 +145,12 @@
                     clearTimeout(this.timerForValidate);
                 }
                 this.timerForValidate = setTimeout(() => {
-                    const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
-                    const newValue = this.deepGetValue($data, this.model).value;
+                    // const $data = Object.keys(this.$vnode.context.$data).length ? this.$vnode.context.$data : this.$vnode.context.$props;
+                    // const newValue = this.deepGetValue($data, this.model).value;
+                    let newValue = this.getValidateValue('data');
+                    if (newValue === undefined) {
+                        newValue = this.getValidateValue('props');
+                    }
                     if (this.oldValue !== newValue) {
                         this.oldValue = newValue;
                         this.validate();
