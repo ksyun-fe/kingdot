@@ -4,7 +4,7 @@
 ### Bug fixes
   * form
     * fix 组件存在data及props时输入框value改变时校验props失败
-  *table
+  * table
     * fix scrollbar功能 在firefox中显示系统的滚动条
 
 ## v1.0.63
