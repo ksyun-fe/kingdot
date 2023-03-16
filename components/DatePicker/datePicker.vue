@@ -19,6 +19,7 @@
                         'range': range
                     }"
                     @keyup.enter="setDate(inputDateString)"
+                    @blur="setDate(inputDateString)"
             >
                 <template
                         v-if="iconPosition==='prefix'"

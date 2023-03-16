@@ -4,6 +4,9 @@
 ### Bug fixes
   * table
     * fix 无hover行状态
+  * DateTimePicker & Datepicker
+    * fix 用户手动输入时间，选中时间未联动变化，输入框增加blur事件
+
 ## v1.0.64
 ### Bug fixes
   * form
