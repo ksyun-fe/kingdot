@@ -37,8 +37,13 @@
         </kd-dropdown>
 
         <!--   核心table     -->
-        <div class="kd-table-main"
-             ref="mainTable">
+        <div
+            :class="{
+                'kd-table-main': true,
+                'kd-table-no-fixed': !hasFiexLeft && !hasFiexRight && !spanMethod
+            }"
+            ref="mainTable"
+        >
             <table-header
                 ref="mainHeader"
                 :store="store"
@@ -51,6 +56,8 @@
                 :width="tableWidth"
                 :treeProps="treeProps"
                 :style="{ width: bodyWidthUnit, maxHeight: tableBodyHeight }"
+                :hover-index="hoverIndex"
+                @setHover="setHover"
             ></table-body>
         </div>
 
@@ -71,6 +78,8 @@
                 :width="tableWidth"
                 :treeProps="treeProps"
                 :style="{maxHeight: tableBodyHeight }"
+                :hover-index="hoverIndex"
+                @setHover="setHover"
             ></table-body>
         </div>
 
@@ -95,6 +104,8 @@
                 :width="tableWidth"
                 :treeProps="treeProps"
                 :style="{maxHeight: tableBodyHeight }"
+                :hover-index="hoverIndex"
+                @setHover="setHover"
             ></table-body>
         </div>
 
@@ -264,6 +275,7 @@ export default {
             //拖拽td辅助线 位置
             moveLeft: 0,
             showColumns: {},
+            hoverIndex: null,
         }
     },
     computed: {
@@ -557,6 +569,11 @@ export default {
         },
         clickRow(v, index) {
             this.$emit("clickRow", v, index);
+        },
+        setHover(index) {
+            if((this.hasFiexLeft || this.hasFiexRight) && !this.spanMethod) {
+                this.hoverIndex = index
+            }
         },
     }
 }

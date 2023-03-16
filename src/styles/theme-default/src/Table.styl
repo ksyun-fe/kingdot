@@ -57,6 +57,8 @@
       border-color inherit
       tr
         border-bottom 1px solid $-table-border-color
+        &.kd-tr-hover
+          background-color: #F7F8FA
         &:last-child
           border none
         &.kd-disabled
@@ -69,6 +71,10 @@
           color $-table-color
           padding $-table-td-padding
           word-break break-all
+  .kd-table-no-fixed
+    tr
+      &:hover
+        background-color: #F7F8FA
   .kd-table-fixed
     position absolute
     top 0

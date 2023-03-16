@@ -14,7 +14,8 @@ export default {
         width: [String],
         treeProps: {
             type: Object
-        }
+        },
+        hoverIndex: {}
     },
     computed: {
         columns() {
@@ -163,6 +164,10 @@ export default {
             }
             return {rowspan, colspan};
         },
+        // hover
+        hoverTr(index) {
+            this.$emit('setHover', index)
+        },
         //普通tr
         renderTr(rowsItem, index) {
             let data = rowsItem.originData;
@@ -175,12 +180,15 @@ export default {
                     key={rowsItem.key}
                     class={
                         {
-                            'kd-disabled': rowsItem.disabled
+                            'kd-disabled': rowsItem.disabled,
+                            'kd-tr-hover': this.hoverIndex == index
                         }
                     }
                     on-click={v => {
                         v.target.tagName == 'TD' && this.clickRow(rowsItem, index)
                     }}
+                    on-mousemove={v => {this.hoverTr(index)}}
+                    on-mouseout={v => {this.hoverTr(null)}}
                 >
                     {
                         this.columns.map((columnItem, cellIndex) => {
