@@ -342,24 +342,12 @@ export default {
                                                             ?
                                                             (
                                                                 <kd-dropdown
+                                                                    class="kd-table-dropdown"
                                                                     trigger='click'
                                                                     type='text'
                                                                     stype=""
                                                                 >
                                                                     <span style="cursor: pointer;">
-                                                                        {
-                                                                            this.groupSelect[item.key]
-                                                                                ?
-                                                                                (
-                                                                                    <span style="color:rgba(0,0,0,.5)">
-                                                                                        ({this.groupSelect[item.key]})
-                                                                                    </span>
-                                                                                )
-                                                                                :
-                                                                                (
-                                                                                    ""
-                                                                                )
-                                                                        }
                                                                         <i class="kd-icon-arrow-down" style="margin-left: 4px;"></i>
                                                                     </span>
                                                                     <kd-dropdown-menu slot="dropdown">
@@ -367,6 +355,7 @@ export default {
                                                                             item.group.map(groupItem => {
                                                                                 return (
                                                                                     <kd-dropdown-item
+                                                                                        class={{ 'kd-table-dropdown-active': this.groupSelect[item.key] === groupItem.label }}
                                                                                         key={Math.random()}
                                                                                         value={groupItem.value}
                                                                                         on-click={() => {
