@@ -89,6 +89,41 @@
    }
 </script>
 ```
+
+:::
+### super-card标签 
+:::demo #基础用法 ##卡片标签页。
+```html
+<template>
+ <div>
+  <kd-tabs  v-model='key' type='super-card'>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2'>标签页二</kd-tab>
+    <kd-tab value='3'>标签页三</kd-tab>
+  </kd-tabs>
+   <br/>
+  <kd-tabs  v-model='key' type='super-card' size="small">
+    <kd-tab value='1' >可视化</kd-tab>
+    <kd-tab value='2'>DDL</kd-tab>
+  </kd-tabs>
+  <br/>
+  <kd-tabs  v-model='key' type='super-card' fluid>
+    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='2' disabled>标签页二</kd-tab>
+    <kd-tab value='3'>标签页三</kd-tab>
+  </kd-tabs>
+ </div>   
+</template>   
+<script>
+   export default {
+        data(){
+            return{
+              key:'1',
+            }
+        }
+   }
+</script>
+```
 :::
 ### 纵向标签页
 :::demo #基础用法 ##纵向的标签页。
@@ -255,12 +290,14 @@
 | --------------- | ------------------- | ------- | ------------------------------------ | -------------- |
 | value / v-model | 当前tabs的绑定值    | —       | —                                    | —              |
 | isVertical      | tabs是否竖直        | boolean | —                                    | false          |
-| type            | tabs的类型          | string  | pagination / block / card / vertical |
+| type            | tabs的类型          | string  | pagination / block / card / vertical / super-card |
 | closable        | tab是否可关闭       | boolean | —                                    | false          |
 | handleTabMove   | tab是否移动到最前面 | boolean | —                                    | false          |
 | movingDistance  | 左右移动距离        |         | —                                    | Tabs可视区宽度 |
 | addable         | Tab是否可添加       | boolean | —                                    | false          |
-| input           | 表单事件获取当前点击tab的value           | function | —                                    | —          |
+| input           | 表单事件获取当前点击tab的value           | function | —                | —          |
+| size           | tab的大小 仅支持super-card          | String |  default/small           | —          |
+| fluid           | tab的宽度是否100% 仅支持super-card          | Boolean |  -          | false      |
 ### Tab属性
 | 属性     | 说明               | 类型    | 可选值 | 默认值 |
 | -------- | ------------------ | ------- | ------ | ------ |

@@ -1,6 +1,9 @@
 ## 更新日志
 
 ## v1.0.65
+### New features
+  * tabs
+    * add a type of super-card
 ### Optimization
   * table
     * 优化filter筛选交互

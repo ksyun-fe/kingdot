@@ -83,6 +83,35 @@
          background:  $-tabs-card-color-background !important;
          .kd-tab-text  
             color: $-tabs-color-active;
+.kd-tabs-super-card
+   .kd-tab  
+      display: inline-block;
+      padding: 0px 8px
+      background-color: $-tabs-super-card-background-color
+      border-radius: 2px;
+      height: 28px
+      line-height: 27px
+      .kd-tab-text 
+         font-size: 12px
+   .kd-tabs-content  
+      display: inline-block;
+      white-space: nowrap;
+      border-radius: 2px;
+      padding: 2px
+      background-color: $-tabs-super-card-background-color
+      .kd-tab-active  
+         background: $-tabs-card-color-background
+         .kd-tab-text  
+            color: $-tabs-color-active
+      &.kd-tab-content-fluid
+         display: flex
+         flex-grow 1
+         .kd-tab  
+            flex 1
+   &.kd-tabs-small
+      .kd-tab  
+         height: 24px
+         line-height: 23px
 .kd-tabs-block  
    .kd-tabs-content  
       display: inline-block;

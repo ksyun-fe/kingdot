@@ -33,6 +33,7 @@
             <div
                     ref="kdTabsContent"
                     class="kd-tabs-content"
+                    :class="{'kd-tab-content-fluid': fluid}"
                     :style="{ 'margin-left': marginLeft + 'px' }"
             >
                 <slot></slot>
@@ -87,7 +88,7 @@
                 type: Boolean,
                 default: false
             },
-            // large default small
+            // default small 仅支持 super-card
             size: {
                 type: String,
                 default: 'default'
@@ -109,6 +110,11 @@
             movingDistance: {
                 type: [String, Number],
                 default: null
+            },
+            // 仅适用于 super-card
+            fluid: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
