@@ -226,6 +226,10 @@
                         {
                             "path":"/virtualList",
                             "name":"VirtualList 虚拟列表"
+                        },
+                        {
+                            "path": "/contextMenu",
+                            "name": "ContextMenu 右键点击"
                         }
                     ]
                 }

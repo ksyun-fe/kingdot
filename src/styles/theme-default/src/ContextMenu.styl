@@ -1,0 +1,37 @@
+@import "../variables.styl";
+.kd-context-menu-wrap
+    position fixed
+    background-color $-light-bg-color
+    box-shadow $-box-shadow
+    color $-text-light-color
+    overflow auto
+    z-index 101
+    min-width 100px
+
+.kd-context-menu-dropdown-li
+    padding 0px 15px
+    cursor pointer
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+    word-wrap normal
+    line-height 30px
+    height 30px
+    font-size $-font-small-size
+    &:hover
+        background-color $-primary-color
+        color $-white-color
+    &.is-disabled
+        color $-disabled-color
+        cursor not-allowed
+    &.is-disabled:hover
+        background-color $-light-bg-color
+
+.kd-context-menu-group-li
+    border-bottom 1px solid $-split-line-color
+    &:last-child
+        border-bottom none
+
+.kd-context-menu-drop-icon 
+    font-size $-font-small-size
+    margin-right 5px
