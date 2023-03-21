@@ -7,6 +7,7 @@
                 v-if="visiable"
                 class="kd-context-menu-wrap"
                 :style="positionStyle"
+                @mouseleave="closeMenu"
         >
             <ul class="kd-context-menu-dropdown">
                 <template v-for="(item, index) in menus">
@@ -99,7 +100,7 @@
                     maxWidth: this.maxWidth + 'px',
                     maxHeight: this.maxHeight + 'px',
                     [topOrBottom]: topOrBottom === 'bottom' ? `${clientHeight - y}px` : `${y}px`,
-                    [leftOrRight]: leftOrRight === 'left' ? `${x + 5}px` : `${clientWidth - x + 5}px`
+                    [leftOrRight]: leftOrRight === 'left' ? `${x}px` : `${clientWidth - x}px`
                 };
             },
             menus() {
