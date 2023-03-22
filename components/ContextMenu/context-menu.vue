@@ -9,7 +9,10 @@
                 :style="positionStyle"
                 @mouseleave="closeMenu"
         >
-            <ul class="kd-context-menu-dropdown">
+            <ul
+                    v-if="menus && menus.length"
+                    class="kd-context-menu-dropdown"
+            >
                 <template v-for="(item, index) in menus">
                     <template v-if="group">
                         <div
@@ -49,10 +52,15 @@
                     </li>
                 </template>
             </ul>
+            <div
+                    v-else
+                    class="kd-context-menu-no-text"
+            >无数据</div>
         </div>
     </kd-transition>
 </template>
 <script>
+    import nextZIndex from '../../src/utils/zIndex.js';
     export default {
         name: 'KdContextMenu',
         props: {
@@ -86,7 +94,17 @@
         computed: {
             positionStyle() {
                 const offsetWidth = this.maxWidth;
-                const offsetHeight = this.menus.length * 30 > this.maxHeight ? this.maxHeight : this.menus.length * 30;
+                let height = 0;
+                if (this.group) {
+                    const num = this.menus.reduce((len, item) => {
+                        len += item.length;
+                        return len;
+                    }, 0);
+                    height = num * 30 + (this.menus.length - 1) * 1;
+                } else {
+                    height = this.menus.length * 30;
+                }
+                const offsetHeight = height > this.maxHeight ? this.maxHeight : height;
                 const clientWidth = window.innerWidth ||
                     document.documentElement.clientWidth ||
                     document.body.clientWidth;
@@ -97,6 +115,7 @@
                 const leftOrRight = clientWidth - x > offsetWidth ? 'left' : 'right';
                 const topOrBottom = clientHeight - y > offsetHeight ? 'top' : 'bottom';
                 return {
+                    zIndex: nextZIndex(),
                     maxWidth: this.maxWidth + 'px',
                     maxHeight: this.maxHeight + 'px',
                     [topOrBottom]: topOrBottom === 'bottom' ? `${clientHeight - y}px` : `${y}px`,
