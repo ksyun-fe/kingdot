@@ -4,6 +4,11 @@
 ### New features
   * tabs
     * add a type of super-card
+    * add contextmenu event
+  * draggablePanel
+    * add draggablePanel component
+  * contextMenu
+    * add contextMenu component
 ### Optimization
   * table
     * 优化filter筛选交互
@@ -11,7 +16,7 @@
   * table
     * fix 无hover行状态
   * DateTimePicker & Datepicker
-    * fix 用户手动输入时间，选中时间未联动变化，输入框增加blur事件
+    * fix 用户手动输入时间，输入框失焦时选中时间未联动变化，输入框增加blur事件
 
 ## v1.0.64
 ### Bug fixes

@@ -1,0 +1,41 @@
+.kd-draggable
+    position relative
+    display flex
+    flex-direction column
+    flex-shrink 0
+    user-select none
+    .kd-drag-horizontal
+        position absolute
+        top 0
+        bottom 0
+        width 4px
+        z-index 1
+        border-right 1px solid #DADADA
+        cursor col-resize
+        &.kd-drag-horizontal-right
+            right 0
+         &.kd-drag-horizontal-left
+            left 0
+    .kd-drag-vertical
+        position absolute
+        width 100%
+        z-index 1
+        border-top 1px solid #DADADA
+        cursor row-resize
+        &.kd-drag-vertical-top
+            top 4px
+        &.kd-drag-vertical-bottom
+            bottom 4px
+.kd-draggable-content
+    display flex
+    flex-grow 1
+    position relative
+.kd-draggable-content-main
+    position absolute
+    top 0
+    left 0
+    width 100%
+    height 100%
+    padding: 16px
+    overflow auto
+    user-select text

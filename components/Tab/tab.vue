@@ -7,6 +7,7 @@
                 'kd-disabled':disabled,
             }"
             @click="clickTab"
+            @contextmenu.prevent="contextmenu"
     >
         <span class="kd-tab-text">
             <slot>标签页</slot>
@@ -81,6 +82,9 @@
                     });
                 }
                 this.autoMove(cliclFlag);
+            },
+            contextmenu(e) {
+                this.$emit('contextmenu', e);
             },
             autoMove(cliclFlag) {
                 this.$parent.tabsActive({

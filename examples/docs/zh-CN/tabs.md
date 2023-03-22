@@ -4,10 +4,16 @@
 <template>
  <div>
  <kd-tabs  v-model='key'>
-    <kd-tab value='1'>标签页一</kd-tab>
+    <kd-tab value='1' @contextmenu="showMenu">标签页一</kd-tab>
     <kd-tab value='2'>标签页二</kd-tab>
     <kd-tab value='3'>标签页三</kd-tab>
  </kd-tabs>  
+ <kd-context-menu
+      ref="contextMenu"
+      :options="contextMenus"
+      :group="true"
+      @select="contextClick"
+  ></kd-context-menu>
  </div>   
 </template>   
 <script>
@@ -15,8 +21,50 @@
         data(){
             return{
               key:'1',
+              contextMenus: [[
+                {
+                    label: '新建',
+                    type: 'add',
+                    icon: 'ksicon-xinjian',
+                    authid: ''
+                },
+                {
+                    label: '编辑',
+                    type: 'edit',
+                    icon: 'ksicon-bianji1',
+                    authid: '',
+                    disabled: true
+                }],
+                [{
+                    label: '删除',
+                    type: 'delete',
+                    icon: 'ksicon-delete',
+                    authid: 'xxxx'
+                },
+                {
+                    label: '上移',
+                    type: 'moveUp',
+                    icon: 'ksicon-shangyi',
+                    authid: ''
+                },
+                {
+                    label: '下移',
+                    type: 'moveDown',
+                    icon: 'ksicon-xiayi',
+                    authid: '',
+                    disabled: true
+                }]
+            ],
             }
-        }
+        },
+        methods: {
+          contextClick(type) {
+              console.log(type);
+          },
+          showMenu(event) {
+              this.$refs.contextMenu.show(event.clientX, event.clientY);
+          }
+      }
    }
 </script>
 ```
@@ -307,6 +355,7 @@
 | 属性  | 说明         | 类型     | 可选值 | 默认值 |
 | ----- | ------------ | -------- | ------ | ------ |
 | close | 关闭tabs回调 | function | —      | —      |
+| contextmenu | 右键 | function | —      | —      |
 ### Slot
 | 属性    | 说明           | 类型 | 可选值 | 默认值 |
 | ------- | -------------- | ---- | ------ | ------ |
