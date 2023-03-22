@@ -106,11 +106,14 @@
             menus() {
                 if (this.group) {
                     return this.options.map(item => {
-                        return item.filter(i => this.authid(i.authid));
+                        return this.getMenus(item);
                     });
                 } else {
-                    return this.options.filter(i => this.authid(i.authid));
+                    return this.getMenus(this.options);
                 }
+            },
+            btnShowStatus() {
+                return this.$KD && this.$KD.setBtnEnableType ? this.$KD.setBtnEnableType() === 'disabled' : true;
             }
         },
         mounted() {
@@ -120,9 +123,24 @@
             document.querySelector('body').removeEventListener('click', this.closeMenu);
         },
         methods: {
+            getMenus(item) {
+                return item.reduce((pre, cur) => {
+                    const {show} = cur;
+                    const canShow = show !== undefined ? show : true;
+                    if (canShow) {
+                        if (this.btnShowStatus) {
+                            cur.disabled = this.authid(cur.authid) ? cur.disabled : true;
+                            pre.push(cur);
+                        } else {
+                            if (this.authid(cur.authid)) pre.push(cur);
+                        }
+                    }
+                    return pre;
+                }, []);
+            },
             authid(code) {
                 if (!code) return true;
-                return (window.Header && window.Header.getButtonType) ? window.Header.getButtonType(code) : false;
+                return this.$KD && this.$KD.getEnabledStatus ? this.$KD.getEnabledStatus(code) : true;
             },
             show(x, y) {
                 this.$set(this.menuPosition, 'x', x);
@@ -132,9 +150,9 @@
             closeMenu() {
                 this.visiable = false;
             },
-            menuClick({disabled, type}) {
-                if (disabled) return;
-                this.$emit('select', type);
+            menuClick(item) {
+                if (item.disabled) return;
+                this.$emit('select', item);
             }
         }
     };

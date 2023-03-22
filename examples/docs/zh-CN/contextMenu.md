@@ -28,19 +28,21 @@ export default{
                     label: '编辑',
                     type: 'edit',
                     icon: 'kd-icon-edit',
-                    authid: ''
+                    authid: '',
+                    disabled: false
                 },
                 {
                     label: '删除',
                     type: 'delete',
                     icon: 'kd-icon-delete',
-                    authid: 'xxxx'
+                    authid: ''
                 },
                 {
                     label: '上移',
                     type: 'moveUp',
                     icon: 'kd-icon-arrow-top',
-                    authid: ''
+                    authid: '',
+                    show: false
                 },
                 {
                     label: '下移',
@@ -101,19 +103,20 @@ export default{
                     type: 'edit',
                     icon: 'ksicon-bianji1',
                     authid: '',
-                    disabled: true
+                    disabled: false
                 }],
                 [{
                     label: '删除',
                     type: 'delete',
                     icon: 'ksicon-delete',
-                    authid: 'xxxx'
+                    authid: ''
                 },
                 {
                     label: '上移',
                     type: 'moveUp',
                     icon: 'ksicon-shangyi',
-                    authid: ''
+                    authid: '',
+                    show: false
                 },
                 {
                     label: '下移',
@@ -156,5 +159,5 @@ export default{
 ### Events {.component__content}
 | 事件名称      | 说明    | 回调参数 |
 |---------- |-------- |---------- |
-| select | 选中列表项时触发	 | 选中项的type
+| select | 选中列表项时触发	 | 选中项
 
