@@ -5,7 +5,11 @@
     >
         <div
                 class="kd-tree-node-el"
-                :class="{'kd-tree-node-el-selected': item.selected, 'kd-tree-node-el-dbclick': item.dbclickSelect}"
+                :class="{
+                    'kd-tree-node-el-selected': item.selected,
+                    'kd-tree-node-el-dbclick': item.dbclickSelect,
+                    'kd-tree-node-el-rightclick': item.rightclickSelect
+                }"
                 :draggable="draggable"
                 @dragstart="drag(item, $event)"
                 @dragend="dragEnd(item, $event)"

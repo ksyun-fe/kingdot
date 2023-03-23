@@ -1,5 +1,13 @@
 <template>
-    <TreeUl v-bind="childBind"/>
+    <div>
+        <TreeUl v-bind="childBind"/>
+        <kd-context-menu
+                ref="contextMenu"
+                :options="contextMenus"
+                @select="contextClick"
+                @closeContext="closeContext"
+        ></kd-context-menu>
+    </div>
 </template>
 
 <script>
@@ -86,13 +94,22 @@
                 type: Boolean,
                 default: false
             },
-            asyncFn: Function
+            asyncFn: Function,
+            allowContextMenu: {
+                type: Boolean,
+                default: false
+            },
+            contextMenus: {
+                type: Array,
+                default: () => []
+            }
         },
         data() {
             return {
                 // test: true,
                 radioNode: null,
                 previousDbclickNode: null,
+                currentRightclickNode: null,
                 mode: null,
                 dragInfo: {},
                 selectNodeTimer: null
@@ -223,10 +240,6 @@
                 }
                 this.previousDbclickNode = node;
                 this.emitEventToParent('node-dblclick', node);
-            },
-            nodeContextmenu(e, node) {
-                clearTimeout(this.selectNodeTimer);
-                this.emitEventToParent('node-contextmenu', e, node);
             },
             // change node selected
             nodeSelected(node, position) {
@@ -537,6 +550,20 @@
                 };
 
                 this.asyncFn && this.asyncFn(node, resolve);
+            },
+            nodeContextmenu(event, node) {
+                if (!this.allowContextMenu || node.selDisabled) return;
+                event.preventDefault();
+                this.$refs.contextMenu.show(event.clientX, event.clientY);
+                this.$set(node, 'rightclickSelect', true);
+                this.currentRightclickNode = node;
+            },
+            contextClick(item) {
+                this.emitEventToParent('node-contextmenu', item, this.currentRightclickNode);
+            },
+            closeContext() {
+                const node = this.currentRightclickNode;
+                if (node) this.$set(node, 'rightclickSelect', false);
             }
         }
     };

@@ -8,6 +8,7 @@
                 class="kd-context-menu-wrap"
                 :style="positionStyle"
                 @mouseleave="closeMenu"
+                @contextmenu.prevent="() => {}"
         >
             <ul
                     v-if="menus && menus.length"
@@ -168,6 +169,7 @@
             },
             closeMenu() {
                 this.visiable = false;
+                this.$emit('closeContext');
             },
             menuClick(item) {
                 if (item.disabled) return;

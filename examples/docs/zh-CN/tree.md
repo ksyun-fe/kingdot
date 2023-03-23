@@ -30,6 +30,8 @@
             :checkedKeys="checkedKeys"
             :chkDisabledKeys="['node-1-1']"
             :nocheckKeys="['node-1-1-2']"
+            :contextMenus="contextMenus"
+            :allowContextMenu="true"
             @node-click="__test"
             @node-contextmenu="__context"
         >
@@ -115,6 +117,41 @@
                         async: true,
                     },
                 ],
+                contextMenus: [
+                    {
+                        label: '新建',
+                        type: 'add',
+                        icon: 'kd-icon-circle-plus-outline',
+                        authid: ''
+                    },
+                    {
+                        label: '编辑',
+                        type: 'edit',
+                        icon: 'kd-icon-edit',
+                        authid: '',
+                        disabled: false
+                    },
+                    {
+                        label: '删除',
+                        type: 'delete',
+                        icon: 'kd-icon-delete',
+                        authid: ''
+                    },
+                    {
+                        label: '上移',
+                        type: 'moveUp',
+                        icon: 'kd-icon-arrow-top',
+                        authid: '',
+                        show: false
+                    },
+                    {
+                        label: '下移',
+                        type: 'moveDown',
+                        icon: 'kd-icon-arrow-down1',
+                        authid: '',
+                        disabled: true
+                    }
+                ],
             }
         },
         watch: {
@@ -130,7 +167,7 @@
             _dbclicktest() {
                 this.$message.success('node-dblclick');
             },
-            __context(e, node) {
+            __context(menuItem, node) {
                 this.$message.success('node-contextmenu');
             },
             searchFn(node) {
@@ -308,6 +345,8 @@
 | `tpl` | `自定义Node模版` | `JSX` | `--` | `--` |
 | `async` | `是否开启懒加载，与asyncFn配合使用` | `Boolean` | `true | false` | `false` |
 | `asyncFn` | `加载子树数据的方法，懒加载时候生效` | `Function` | `--` | `--` |
+| `allowContextMenu` | `是否开启右键自定义菜单，与contextMenus配合使用` | `Boolean` | `true | false` | `false` |
+| `contextMenus` | `右键自定义菜单展示数据，allowContextMenu为true时生效` | `Array` | `[]` | `[]` |
 
 ### Tree事件 {.component__content}
 
@@ -321,7 +360,7 @@
 | `drag-node-end` | `节点拖拽结束后触发事件` | `Function({dragNode: Object, targetNode: Object})` |
 | `del-node` | `删除节点后触发事件` | `Function({ parentNode: Object/null, delNode: Object })` |
 | `node-expand` | `节点展开触发事件` | `Function(node: Object, expand: boolean, position: {level, index})` |
-| `node-contextmenu` | `元素中右击鼠标时触发并打开上下文菜单` | `Function(e: $event, node: Object)` |
+| `node-contextmenu` | `选择右键自定义菜单项时触发` | `Function(menuItem: Object, node: Object)` |
 
 ### Tree方法 {.component__content}
 
