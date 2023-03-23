@@ -8,24 +8,19 @@
     ul, li
         list-style none
     .kd-tree-node
-        display inline-block
-        width: 100%
-    .kd-tree-node-checkbox
-        width calc(100% - 24px)
-    .kd-tree-node-loading
-        width calc(100% - 15px)
-        &.kd-tree-node-checkbox
-            width calc(100% - 45px)
+        display flex
     .kd-tree-node-el
         display: flex
         margin-bottom 12px
         height 24px
+        padding-right 5px
+        width: fit-content
         &:hover
             background-color $-tree-node-bg-color
     .kd-tree-node-content
-        display: inline-block
+        display: flex
         flex auto
-        width 100%
+        white-space: nowrap
     .kd-tree-switcher, .kd-tree-loading
         margin-right 8px
         display inline-block
@@ -55,6 +50,8 @@
         transition all $-animation-duration-base $-ease-in-out
     .node-title
         cursor pointer
+        white-space: nowrap;
+        padding-right: 10px;
     // .node-searched
     //     border 1px solid #ff8247
     .node-title-disabled
@@ -100,6 +97,8 @@
             content ' '
     li.leaf:before
         display none
+    .kd-tree-node-el
+        padding-left: 5px 
 // insert mode: before inner after
 .kd-tree-insert-inner
     background $-primary-color

@@ -34,7 +34,7 @@
             @node-contextmenu="__context"
         >
             <span slot-scope="node">
-                ??? <kd-button size="mini">test</kd-button>
+                ??? <kd-button size="mini" type="none">test</kd-button>
             </span>
         </kd-tree>
     </div>
@@ -154,6 +154,8 @@
 </script>
 <style lang="stylus" scoped>
     .tree-demo-1
+        width 130px
+        overflow auto
         .demo-props
             margin-bottom 20px
 </style>
