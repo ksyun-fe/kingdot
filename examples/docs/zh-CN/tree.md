@@ -154,7 +154,6 @@
 </script>
 <style lang="stylus" scoped>
     .tree-demo-1
-        width 130px
         overflow auto
         .demo-props
             margin-bottom 20px
