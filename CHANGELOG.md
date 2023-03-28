@@ -1,5 +1,12 @@
 ## 更新日志
 
+## v1.0.66
+### Optimization
+  * tree
+    * 优化contextmenu功能
+    * 优化 样式
+
+
 ## v1.0.65
 ### New features
   * tabs
