@@ -361,7 +361,7 @@
 | `del-node` | `删除节点后触发事件` | `Function({ parentNode: Object/null, delNode: Object })` |
 | `node-expand` | `节点展开触发事件` | `Function(node: Object, expand: boolean, position: {level, index})` |
 | `node-contextmenu` | `选择右键自定义菜单项时触发` | `Function(menuItem: Object, node: Object)` |
-
+| `node-rightclick` | `右键点击节点触发的事件` | `Function(node: Object)` |
 ### Tree方法 {.component__content}
 
 | 方法名      | 说明    | 参数      | 返回值      |

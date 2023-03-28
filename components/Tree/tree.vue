@@ -194,6 +194,7 @@
                     case 'drag-node-end':
                     case 'del-node':
                     case 'node-expand':
+                    case 'node-rightclick':
                         this.$emit(eventName, ...args);
                         break;
                     default:
@@ -552,6 +553,7 @@
                 this.asyncFn && this.asyncFn(node, resolve);
             },
             nodeContextmenu(event, node) {
+                this.emitEventToParent('node-rightclick', node);
                 if (!this.allowContextMenu || node.selDisabled) return;
                 event.preventDefault();
                 this.$refs.contextMenu.show(event.clientX, event.clientY);
