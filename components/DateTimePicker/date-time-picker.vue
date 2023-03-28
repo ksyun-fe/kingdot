@@ -496,6 +496,7 @@
             // input 回车和blur事件触发
             setDate(inputValue) {
                 if (this.range) {
+                    if (!inputValue) return;
                     const dateTimeArr = this.parseDatetimeStr(inputValue);
                     if (dateTimeArr.filter(x => x === 'Invalid Date').length > 0) {
                         this.$message.error('无法解析范围日期字符串');
