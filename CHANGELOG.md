@@ -1,5 +1,13 @@
 ## 更新日志
 
+## v1.0.67
+### Bug fixes
+  * dateTimePicker
+    * fix 日期范围输入框失焦报错
+### New features
+  * tree
+    * add rightclick事件
+
 ## v1.0.66
 ### Optimization
   * tree
