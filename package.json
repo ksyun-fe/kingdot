@@ -1,6 +1,6 @@
 {
     "name": "kingdot",
-    "version": "1.0.68",
+    "version": "1.0.67",
     "description": "A UI Components Library For Vue",
     "author": "kingsoft",
     "main": "lib/kingdot.js",
@@ -69,7 +69,6 @@
         "@commitlint/config-angular": "^8.3.4",
         "ajv": "^5.5.2",
         "autoprefixer": "^7.2.6",
-        "babel": "^6.23.0",
         "babel-cli": "^6.26.0",
         "babel-core": "^6.26.3",
         "babel-eslint": "^10.1.0",
