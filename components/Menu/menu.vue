@@ -111,12 +111,10 @@
             }
         },
         created() {
-            this.$on('clickSelectedItem', this.clickSelectedItem);
             this.$on('changeSelectedItem', this.changeSelectedItem);
             this.$on('toggleSubOpened', this.toggleSubOpened);
         },
         beforeDestroy() {
-            this.$off('clickSelectedItem', this.clickSelectedItem);
             this.$off('changeSelectedItem', this.changeSelectedItem);
             this.$off('toggleSubOpened', this.toggleSubOpened);
         },
@@ -139,9 +137,6 @@
                 }
             },
             changeSelectedItem(item) {
-                this.activeItem = item;
-            },
-            clickSelectedItem(item) {
                 this.activeItem = item;
             }
         }
