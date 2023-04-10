@@ -121,7 +121,9 @@
                 }
             },
             clickItemHandler() {
-                if (this.isActive || this.disabled) return;
+                if (this.disabled) return;
+                this.menu.$emit('clickSelectedItem', this.name);
+                if (this.isActive) return;
                 this.menu.$emit('changeSelectedItem', this.name);
                 this.subMenu && this.subMenu.hidePopper();
                 this.hover = false;

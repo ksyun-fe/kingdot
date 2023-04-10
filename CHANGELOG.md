@@ -1,5 +1,9 @@
 ## 更新日志
 
+## v1.0.68
+### New features
+  * menu
+    * add clickSelectedItem事件
 ## v1.0.67
 ### Bug fixes
   * dateTimePicker

@@ -89,7 +89,7 @@
         methods: {
             collapseChange() {
                 this.collapse = !this.collapse;
-            }   
+            },
         }
     }
 </script>
