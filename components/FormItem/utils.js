@@ -93,3 +93,20 @@ export function _$(key, data) {
 
     return value;
 }
+
+function isNativeStringType(type) {
+    return type === 'string' || type === 'url' || type === 'hex' || type === 'email' || type === 'pattern';
+}
+
+export function isEmptyValue(value, type) {
+    if (value === undefined || value === null) {
+        return true;
+    }
+    if (type === 'array' && Array.isArray(value) && !value.length) {
+        return true;
+    }
+    if (isNativeStringType(type) && typeof value === 'string' && !value) {
+        return true;
+    }
+    return false;
+}

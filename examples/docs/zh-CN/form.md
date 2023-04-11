@@ -76,7 +76,12 @@
             </kd-form-item>
             <kd-form-item
                     label="是否喜欢水果:"
-                    model="isLikeFruit">
+                    model="isLikeFruit"
+                    :rules="{
+                        required: true
+                    }"
+            >
+                <template slot="label"><i class="required">* </i> 是否喜欢水果：</template>
                 <kd-switch v-model="isLikeFruit"/>
             </kd-form-item>
             <kd-form-item

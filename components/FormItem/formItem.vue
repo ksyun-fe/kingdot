@@ -257,11 +257,7 @@
             deepGetValue(data, path) {
                 const result = (!Array.isArray(path) ? path.replace(/\[/g, '.').replace(/]/g, '').split('.') : path)
                     .reduce((o, k) => (o || {})[k], data);
-                if (result === false) {
-                    return {value: ''};
-                } else {
-                    return {value: result};
-                }
+                return {value: result};
             }
         }
     };

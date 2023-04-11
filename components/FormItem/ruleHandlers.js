@@ -1,4 +1,5 @@
-import {_$, isNumber} from './utils.js';
+import {_$, isNumber, isEmptyValue} from './utils.js';
+import _typeof from 'babel-runtime/helpers/typeof';
 
 function count(num) {
     return num === 2 ? _$('两') : num;
@@ -6,8 +7,8 @@ function count(num) {
 
 export const methods = {
     required(value) {
-        return value != null &&
-            ((typeof value === 'string' || Array.isArray(value)) ? value.length > 0 : true);
+        var type = Array.isArray(value) ? 'array' : typeof value === 'undefined' ? 'undefined' : _typeof(value);
+        return !isEmptyValue(value, type);
     },
 
     digits(value) {
