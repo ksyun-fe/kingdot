@@ -233,6 +233,10 @@
                         },{
                             "path": "/draggablePanel",
                             "name": "DraggablePanel 可拖拽面板"
+                        },
+                        {
+                            "path": "/ellipsis",
+                            "name": "Ellipsis 文本溢出"
                         }
                     ]
                 }

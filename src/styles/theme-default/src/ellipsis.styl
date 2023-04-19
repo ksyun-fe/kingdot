@@ -1,0 +1,46 @@
+@import '../../common/mixin.styl'
+
+.kd-ellipsis-wrap
+    position relative
+    line-height 2
+    overflow hidden
+    height 2em
+    background #fff
+    .kd-ellipsis-txt
+        display block
+        max-height 4em
+    .kd-ellipsis-title
+        display block
+        position relative
+        background inherit
+        text-align justify
+        overflow hidden
+        height 2em
+        top -4em
+        &::before
+            content attr(data-title)
+            width 50%
+            float right
+            white-space nowrap
+            overflow hidden
+            text-overflow ellipsis
+            direction rtl
+            cursor text
+
+.kd-ellipsis-wrap-move
+    &:hover
+        .kd-ellipsis-title
+            white-space nowrap
+            display inline-block
+            animation: move 10s .3s linear infinite
+            &::before
+                display none
+            &::after
+                content attr(data-title)
+                padding 0 5em
+
+@keyframes move {
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}

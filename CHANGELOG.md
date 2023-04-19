@@ -10,10 +10,13 @@
 ## v1.0.69
 
 *2023-04-10*
+### New features
+  * ellipsis
+    * 新增文本溢出组件
 ### Bug fixes
   * menu
     * 修复 clickSelectedItem事件不执行问题
-    
+
 ## v1.0.68
 
 *2023-04-10*
