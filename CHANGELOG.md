@@ -1,5 +1,12 @@
 ## 更新日志
 
+### New features
+  * selectV2
+    * add optionClick事件
+### Optimization
+  * selectV2
+    * 优化数据回显
+
 ## v1.0.69
 
 *2023-04-10*

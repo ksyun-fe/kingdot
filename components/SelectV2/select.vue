@@ -139,6 +139,7 @@
                         :valueKey="valueKey"
                         :labelKey="labelKey"
                         @setValue="setValue"
+                        @optionClick="optionClick"
                 />
             </template>
         </kd-tooltip>
@@ -248,6 +249,9 @@
                 immediate: true,
                 handler(v) {
                     this.innerData = v;
+                    this.$nextTick(function () {
+                        this.initData(this.selected);
+                    });
                 }
             },
             value: {
@@ -350,6 +354,7 @@
                 if (this.multiple) {
                     if (active) {
                         this.deleteTag(scope);
+                        return;
                     } else {
                         this.tagList.push(scope);
                         this.$emit('input', [...this.selected, scope[this.valueKey]]);
@@ -363,6 +368,9 @@
                     this.$emit('input', scope[this.valueKey]);
                 }
                 this.$emit('change', scope);
+            },
+            optionClick(data) {
+                this.$emit('optionClick', data);
             },
             deleteTag(scope) {
                 this.selected.forEach((item, index) => {

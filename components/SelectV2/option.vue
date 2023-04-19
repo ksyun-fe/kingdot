@@ -68,6 +68,7 @@
                     active: this.active
                 };
                 this.parent.setValue(data);
+                this.parent.optionClick(data);
             }
         }
     };

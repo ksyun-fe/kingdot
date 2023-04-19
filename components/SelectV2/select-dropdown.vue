@@ -17,7 +17,7 @@
                 :estimate-size="20"
                 :data-component="itemComponent"
                 :extra-props="{
-                    parent: {value, multiple, setValue},
+                    parent: {value, multiple, setValue,optionClick},
                     activeIcon,
                     valueKey, labelKey
                 }"
@@ -84,6 +84,9 @@
         methods: {
             setValue(v) {
                 this.$emit('setValue', v);
+            },
+            optionClick(v) {
+                this.$emit('optionClick', v);
             }
         }
     };
