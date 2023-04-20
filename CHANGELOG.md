@@ -1,21 +1,19 @@
 ## 更新日志
 
-### New features
-  * selectV2
-    * add optionClick事件
-### Optimization
-  * selectV2
-    * 优化数据回显
-
 ## v1.0.69
 
-*2023-04-10*
+*2023-04-20*
 ### New features
   * ellipsis
     * 新增文本溢出组件
+  * selectV2
+    * add optionClick事件
 ### Bug fixes
   * menu
     * 修复 clickSelectedItem事件不执行问题
+### Optimization
+  * selectV2
+    * 优化数据回显
 
 ## v1.0.68
 
