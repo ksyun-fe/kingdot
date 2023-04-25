@@ -501,6 +501,8 @@ TableStore.prototype.checkboxAllAction = function (v) {
     states.checkboxIndeterminate = false;
     states.data.forEach(item => {
         if (item.disabled) return;
+        // 如果item之前已选中的 且 触发全选中
+        if(item.checked && v) return;
         item.checked = v;
         //如果开启了存储选中状态
         if (states.stored) {
