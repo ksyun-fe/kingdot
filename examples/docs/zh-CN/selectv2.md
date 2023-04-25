@@ -23,6 +23,7 @@
       width="200px"
       label-key="name"
       activeIcon
+      :optionDisabledFn="optionDisabledFn"
       @optionClick="optionClick"
     />
     <kd-select-v2
@@ -82,6 +83,11 @@
       optionClick(v) {
         console.log("optionClick", v);
       },
+      optionDisabledFn(v) {
+        console.log('v',v)
+        return this.defaultValue === 'a10' && v.value != this.defaultValue
+        
+      }
     },
   };
 </script>
@@ -226,6 +232,7 @@
       :data="dataSources"
       multiple
       filterable
+      :optionDisabledFn="optionDisabledFn"
     />
   </div>
 </template>
@@ -252,10 +259,13 @@
         let arr = Array.from({ length: length }).map((_, idx) => ({
           value: `${initials[idx % 10]}${idx}`,
           label: `${initials[idx % 10]}${idx}`,
-          disabled: idx % 10 === 0,
+          // disabled: idx % 10 === 0,
         }));
         this.dataSources = arr;
       },
+      optionDisabledFn(v) {
+        return (!this.defaultValue.includes(v.value)) && this.defaultValue.length > 0
+      }
     },
   };
 </script>
@@ -337,12 +347,14 @@
 | hideDestroy         | 弹层隐藏后是否销毁 dom                                                                                | Boolean        | —                              | false   |
 | collapseTags        | 多选时是否将选中值按数字的形式展示                                                                    | Boolean        | —                              | false   |
 | collapseTagsTooltip | 当鼠标悬停于折叠标签的文本时，是否显示所有选中的标签。 要使用此属性，collapseTags 属性必须设定为 true | Boolean        | —                              | false   |
+| optionDisabledFn     | option 通过外部设置禁用状态，返回true/false                                                                                               | Function  | —                              | —       |
 
 ### Select-V2 Events {.component\_\_content}
 
 | 事件       | 说明                       | 回调参数      |
 | ---------- | -------------------------- | ------------- |
 | change     | 选中值发生变化时触发       | 选中值        |
+| optionClick| option的点击事件         | -        |
 | remove-tag | 多选移除 tag 触发          | 移除的 tag 值 |
 | clear      | 单选清空内容，多选清空 tag | —             |
 | focus      | 当 input 获得焦点时触发    | —             |

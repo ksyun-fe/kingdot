@@ -19,7 +19,8 @@
                 :extra-props="{
                     parent: {value, multiple, setValue,optionClick},
                     activeIcon,
-                    valueKey, labelKey
+                    valueKey, labelKey,
+                    disabledFn: optionDisabled
                 }"
         >
         </kd-virtual-list>
@@ -62,6 +63,9 @@
             labelKey: {
                 type: String,
                 default: 'label'
+            },
+            optionDisabled: {
+                type: Function
             }
         },
         data() {

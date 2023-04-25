@@ -138,6 +138,7 @@
                         :activeIcon="activeIcon"
                         :valueKey="valueKey"
                         :labelKey="labelKey"
+                        :optionDisabled="optionDisabledFn"
                         @setValue="setValue"
                         @optionClick="optionClick"
                 />
@@ -217,6 +218,9 @@
             collapseTagsTooltip: {
                 type: Boolean,
                 default: false
+            },
+            optionDisabledFn: {
+                type: Function
             }
         },
         data() {

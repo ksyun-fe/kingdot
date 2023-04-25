@@ -1,7 +1,7 @@
 <template>
     <li
             class="kd-option"
-            :class="{'kd-option-active': active,'kd-option-disabled': !!source.disabled}"
+            :class="{'kd-option-active': active,'kd-option-disabled': !!source.disabled || disable}"
             :style="{'height': '32px'}"
             :title="source[labelKey]"
             @click.stop="optionClick"
@@ -42,6 +42,9 @@
             labelKey: {
                 type: String,
                 default: 'label'
+            },
+            disabledFn: {
+                type: Function
             }
         },
         computed: {
@@ -56,11 +59,14 @@
                 } else {
                     return parent.value === this.source[this.valueKey];
                 }
+            },
+            disable() {
+                return this.getDisabledStatus();
             }
         },
         methods: {
             optionClick() {
-                if (this.source.disabled) {
+                if (this.source.disabled || this.getDisabledStatus()) {
                     return;
                 }
                 const data = {
@@ -69,6 +75,14 @@
                 };
                 this.parent.setValue(data);
                 this.parent.optionClick(data);
+            },
+            getDisabledStatus() {
+                const callback = this.disabledFn;
+                let flag = false;
+                if (callback && typeof callback === 'function') {
+                    flag = callback.call(this, this.source);
+                }
+                return flag;
             }
         }
     };
