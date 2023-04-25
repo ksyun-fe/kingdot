@@ -1,5 +1,10 @@
 ## 更新日志
 
+
+### New features
+  * selectV2
+    * add optionDisabledFn属性，通过外部传入函数的方式设置option的disabled状态
+
 ## v1.0.69
 
 *2023-04-20*
