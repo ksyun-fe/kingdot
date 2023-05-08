@@ -193,10 +193,66 @@
         }
     }
 </script>
+```
+:::
+
+:::demo #虚拟列表 ##在大数据量情况下仅展示可视区域内数据,通过设置virtualScroll属性开启虚拟列表方式加载。
+
+```html
+<template>
+    <div>
+        <div class="btn">
+            <kd-button @click="randomData(1000)">1k</kd-button>
+            <kd-button @click="randomData(30000)">30k</kd-button>
+            <kd-button @click="randomData(100000)">10w</kd-button>
+            <kd-button @click="randomData(300000)">30w</kd-button>
+            length: {{ length }}
+        </div>
+        <kd-transfer v-model="value" showFilter :filter-method="filterMethod" :filter-placeholder="['请输入','请输入']" :data="defaultData" :virtualScroll="true">
+        </kd-transfer>
+    </div>
+</template>
+<script>
+    export default{
+        data(){
+            return{
+                defaultData:[],
+                value:[],
+                length:0
+            }
+        },
+        created() {
+            this.randomData(100);
+        },
+        methods: {
+            filterMethod(item, serachText){
+                return item.label.indexOf(serachText) > -1;
+            },
+            randomData(value){
+                let data = [];
+                for(let i = 0;i<value;i++){
+                    data.push({
+                        key:i,
+                        label:`item${i}`,
+                    })
+                }
+                this.defaultData = data
+                this.length = value
+            }
+        }
+
+    }
+</script>
 <style>
 .icon{
     marign-left: 5px
 }
+.btn{
+    margin-bottom: 20px
+}
+.btn .kd-btn{
+    margin-right: 20px
+}   
 </style>
 ```
 :::
@@ -216,6 +272,7 @@
 |   select-all  |	是否显示全选勾选框    |	boolean |   —  |  true
 |   buttonLevel |   按钮横向排序    |   boolean |   —   |   false
 |   selectedKeys |  哪些选择项被选中    |   array   |   —   |   []
+|   virtualScroll |  开启虚拟列表    |   boolean   |   —   |   false
 
 ### slot属性 {.component__content}
 | 属性      | 说明    |

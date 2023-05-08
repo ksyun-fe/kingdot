@@ -30,7 +30,10 @@
                 />
             </div>
             <!-- 内容 -->
-            <div class="kd-transfer-content-wrap">
+            <div
+                    v-if="!virtualScroll"
+                    class="kd-transfer-content-wrap"
+            >
                 <!-- 无数据 -->
                 <p
                         v-show="panelData.length <= 0"
@@ -61,6 +64,55 @@
                         </div>
 
                     </li>
+                </ul>
+            </div>
+            <div
+                    v-if="virtualScroll"
+                    class="kd-transfer-content-wrap"
+            >
+                <!-- 无数据 -->
+                <p
+                        v-show="panelData.length <= 0"
+                        class="kd-transfer-content-nonedata"
+                >无数据</p>
+                <ul
+                        v-show="panelData.length > 0"
+                        ref="list"
+                        style="height:100%"
+                >
+                    <kd-virtual-list
+                            :data-key="dataKey.key"
+                            :data-sources="panelData"
+                            :estimate-size="30"
+                            class="kd-transfer-content-virtual"
+                    >
+                        <template #item="{item, index}">
+                            <li
+                                    :key="item[dataKey.key]"
+                                    ref="contentItem"
+                                    class="kd-transfer-content-item"
+                                    :class="{'kd-transfer-active':item.checked}"
+                            >
+                                <kd-checkbox
+                                        :key="keyValue"
+                                        v-model="item.checked"
+                                        :disabled="item.disabled"
+                                        @change="itemCheckboxChange(item,index)"
+                                ></kd-checkbox>
+                                <div
+                                        class="kd-transfer-content-temp"
+                                        @click="itemHandleClick(item,index)"
+                                >
+                                    <content-label
+                                            class="kd-transfer-content-label"
+                                            :class="{'kd-transfer-label-disabled':item.disabled}"
+                                            :scope="item"
+                                            :data-key="dataKey"
+                                    ></content-label>
+                                </div>
+                            </li>
+                        </template>
+                    </kd-virtual-list>
                 </ul>
             </div>
 
@@ -100,6 +152,10 @@
             }
         },
         props: {
+            virtualScroll: {
+                type: Boolean,
+                defautl: false
+            },
             dataKey: {
                 type: Object,
                 default() {
@@ -143,15 +199,22 @@
         },
         data() {
             return {
+                keyValue: null,
                 panelData: [],
                 serachText: '',
-                allChecked: false
+                allChecked: false,
+                timer: null
             };
         },
         computed: {
             checkedList() {
                 return this.panelData.filter(
                     (item) => !item.disabled && item.checked
+                );
+            },
+            checkedListNone() {
+                return this.panelData.filter(
+                    (item) => !item.checked
                 );
             },
             isCheckedAll() {
@@ -186,40 +249,64 @@
         methods: {
             handleChange() {
                 //  是否执行自定义过滤
-                this.panelData = this.data.filter((item) => {
-                    if (this.filterMethod) {
-                        const result = this.filterMethod(item, this.serachText);
-                        return result;
-                    } else {
-                        return (
-                            item[this.dataKey.label].indexOf(this.serachText) > -1
-                        );
-                    }
-                });
+                if (this.virtualScroll == true) {
+                    if (this.timer !== null)clearTimeout(this.timer);
+                    this.timer = setTimeout(() => {
+                        this.panelData = this.data.filter((item) => {
+                            if (this.filterMethod) {
+                                const result = this.filterMethod(item, this.serachText);
+                                return result;
+                            } else {
+                                return (
+                                    item[this.dataKey.label].indexOf(this.serachText) > -1
+                                );
+                            }
+                        });
+                    }, 500);
+                } else {
+                    this.panelData = this.data.filter((item) => {
+                        if (this.filterMethod) {
+                            const result = this.filterMethod(item, this.serachText);
+                            return result;
+                        } else {
+                            return (
+                                item[this.dataKey.label].indexOf(this.serachText) > -1
+                            );
+                        }
+                    });
+                }
             },
             // 顶部checked值改变
             inputChange() {
                 const allSelect = [];
                 this.panelData.forEach((item, index) => {
                     if (!item.disabled) {
+                        if (this.allChecked == true && item.checked == false) {
+                            this.keyValue = `${item.label}_${this.allChecked}`;
+                        } else {
+                            this.keyValue = `${index}_${this.allChecked}`;
+                        }
                         allSelect.push(item[this.dataKey.key]);
                         item.checked = this.allChecked;
                         this.$set(this.panelData, index, item);
                     }
                 });
-                this.$emit('checkChange', this.checkedList, allSelect);
+                this.$emit('checkChange', this.checkedList, this.checkedListNone, allSelect);
             },
             //  内容input改变
             itemInputChange(item) {
                 const changeKeys = [item[this.dataKey.key]];
-                this.$emit('checkChange', this.checkedList, changeKeys);
+                this.$emit('checkChange', this.checkedList, this.checkedListNone, changeKeys);
             },
             //  内容一行的点击 事件
             itemHandleClick(data, index) {
                 if (data.disabled) return;
-                data.checked = !data.checked;
-                this.$set(this.panelData, index, data);
-                this.itemInputChange(data);
+                this.$nextTick(() => {
+                    this.keyValue = `${data.label}_${!data.checked}`;
+                    data.checked = !data.checked;
+                    this.$set(this.panelData, index, data);
+                    this.itemInputChange(data);
+                });
             },
             itemCheckboxChange(data, index) {
                 this.$set(this.panelData, index, data);

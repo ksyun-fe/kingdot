@@ -11,6 +11,7 @@
                 :placeholder="leftPlaceholder"
                 :disabled="disabled"
                 :data-key="dataKey"
+                :virtual-scroll="virtualScroll"
                 @checkChange="sourceCheckChange"
         >
 
@@ -62,6 +63,7 @@
                 :filter-method="filterMethod"
                 :data-key="dataKey"
                 :disabled="disabled"
+                :virtual-scroll="virtualScroll"
                 @checkChange="targetCheckChange"
         >
             <template slot="children-label">
@@ -83,6 +85,10 @@
             KdButton
         },
         props: {
+            virtualScroll: {
+                type: Boolean,
+                defautl: false
+            },
             dataKey: {
                 type: Object,
                 default() {
@@ -150,6 +156,10 @@
         },
         data() {
             return {
+                leftcheck: [],
+                leftcheckedData: [],
+                rightcheck: [],
+                rightcheckedData: [],
                 //  左侧初始化选中checkbox
                 toTargetDisabled: true,
                 toSourceDisabled: true
@@ -170,13 +180,20 @@
             },
             //  左侧初始化数据
             sourceData() {
-                return this.data.filter(item => this.value.indexOf(item[this.dataKey.key]) === -1);
+                return this.leftcheckedData;
             },
             targetData() {
-                return this.data.filter(item => this.value.indexOf(item[this.dataKey.key]) > -1);
+                return this.rightcheckedData;
             }
         },
         watch: {
+            data: {
+                immediate: true,
+                handler(v) {
+                    this.leftcheckedData = this.data.filter(item => this.value.indexOf(item[this.dataKey.key]) === -1);
+                    this.rightcheckedData = this.data.filter(item => this.value.indexOf(item[this.dataKey.key]) > -1);
+                }
+            },
             //  初始化所有选中的key
             selectedKeys: {
                 immediate: true,
@@ -196,12 +213,16 @@
         },
         methods: {
             //  左侧选中状态检查
-            sourceCheckChange(checkedData, currentKey) {
+            sourceCheckChange(checkedData, checkedNoneData, currentKey) {
+                this.leftcheck = checkedNoneData;
+                this.rightcheck = checkedData;
                 this.toSourceDisabled = checkedData.length === 0;
                 this.$emit('checkChange', 'left', checkedData);
             },
             //  右侧选中状态检查
-            targetCheckChange(checkedData, currentKey) {
+            targetCheckChange(checkedData, checkedNoneData, currentKey) {
+                this.leftcheck = checkedData;
+                this.rightcheck = checkedNoneData;
                 this.toTargetDisabled = checkedData.length === 0;
                 this.$emit('checkChange', 'right', checkedData);
             },
@@ -209,19 +230,26 @@
             toSourceClick() {
                 this.toTargetDisabled = true;
                 const selectedData = this.$refs.targetPanel.getSelectedData();
-                selectedData.forEach((item) => {
-                    const index = this.value.indexOf(item);
-                    if (index > -1) {
-                        this.value.splice(index, 1);
-                    }
+                this.leftcheck.map(item => {
+                    this.leftcheckedData.push(item);
+                });
+                this.value.length = 0;
+                this.rightcheckedData = this.rightcheck;
+                this.rightcheckedData.map(item => {
+                    this.value.push(item[this.dataKey.key]);
                 });
                 this.$emit('change', 'left', selectedData, this.value);
             },
             toTargetClick() {
+                this.leftcheckedData = this.leftcheck;
+                this.rightcheck.map(item => {
+                    this.rightcheckedData.push(item);
+                });
                 this.toSourceDisabled = true;
                 const selectedData = this.$refs.sourcePanel.getSelectedData();
-                this.value.push(...selectedData);
-                this.$emit('input', this.value);
+                selectedData.map((item) => {
+                    this.value.push(item);
+                });
                 this.$emit('change', 'right', selectedData, this.value);
             },
             leftItemClick(data, index) {

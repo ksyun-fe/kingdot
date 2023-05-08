@@ -1,5 +1,9 @@
 ## 更新日志
 
+### New features
+  * transfer
+    * add virtualScroll属性，通过设置virtualScroll属性使用虚拟列表方式加载，支持大数据量
+
 ## v1.0.70
 
 *2023-04-25*
