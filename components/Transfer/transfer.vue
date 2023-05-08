@@ -208,6 +208,8 @@
                             }
                         }
                     });
+                    this.leftcheck = this.data.filter((item) => !item.checked);
+                    this.rightcheck = this.data.filter((item) => !item.disabled && item.checked);
                 }
             }
         },

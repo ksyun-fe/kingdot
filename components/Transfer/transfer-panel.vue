@@ -225,7 +225,7 @@
             //  panelData初始化数据
             data: {
                 handler() {
-                    this.handleChange();
+                    this.handleChanges();
                 },
                 immediate: true
             },
@@ -247,6 +247,19 @@
             }
         },
         methods: {
+            handleChanges() {
+                // 初始化
+                this.panelData = this.data.filter((item) => {
+                    if (this.filterMethod) {
+                        const result = this.filterMethod(item, this.serachText);
+                        return result;
+                    } else {
+                        return (
+                            item[this.dataKey.label].indexOf(this.serachText) > -1
+                        );
+                    }
+                });
+            },
             handleChange() {
                 //  是否执行自定义过滤
                 if (this.virtualScroll == true) {
@@ -281,8 +294,8 @@
                 const allSelect = [];
                 this.panelData.forEach((item, index) => {
                     if (!item.disabled) {
-                        if (this.allChecked == true && item.checked == false) {
-                            this.keyValue = `${item.label}_${this.allChecked}`;
+                        if (this.allChecked === true && item.checked === false) {
+                            this.keyValue = `${item[this.dataKey.label]}_${this.allChecked}`;
                         } else {
                             this.keyValue = `${index}_${this.allChecked}`;
                         }
@@ -302,7 +315,7 @@
             itemHandleClick(data, index) {
                 if (data.disabled) return;
                 this.$nextTick(() => {
-                    this.keyValue = `${data.label}_${!data.checked}`;
+                    this.keyValue = `${data[this.dataKey.label]}_${!data.checked}`;
                     data.checked = !data.checked;
                     this.$set(this.panelData, index, data);
                     this.itemInputChange(data);
