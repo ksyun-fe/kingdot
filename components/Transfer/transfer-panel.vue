@@ -212,10 +212,14 @@
                     (item) => !item.disabled && item.checked
                 );
             },
-            checkedListNone() {
-                return this.panelData.filter(
-                    (item) => !item.checked
-                );
+            checkedListNone: {
+                cache: false,
+                get: function () {
+                    return this.data.filter(
+                        (item) => item.checked == false || !item.checked
+                    );
+                }
+
             },
             isCheckedAll() {
                 return this.panelData.length > 0 && this.panelData.every(i => i.checked || i.disabled);
@@ -318,11 +322,21 @@
                     this.keyValue = `${data[this.dataKey.label]}_${!data.checked}`;
                     data.checked = !data.checked;
                     this.$set(this.panelData, index, data);
+                    this.data.map((item, indexs) => {
+                        if (item[this.dataKey.label] == data[this.dataKey.label]) {
+                            this.$set(this.data, indexs, data);
+                        }
+                    });
                     this.itemInputChange(data);
                 });
             },
             itemCheckboxChange(data, index) {
                 this.$set(this.panelData, index, data);
+                this.data.map((item, indexs) => {
+                    if (item[this.dataKey.label] == data[this.dataKey.label]) {
+                        this.$set(this.data, indexs, data);
+                    }
+                });
                 this.itemInputChange(data);
             },
             //  获取当前点击的数据
