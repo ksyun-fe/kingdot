@@ -1,18 +1,14 @@
 ## 更新日志
 
-### New features
-  * transfer
-    * add virtualScroll属性，通过设置virtualScroll属性使用虚拟列表方式加载，支持大数据量
 
-## v1.0.70
-
-*2023-04-25*
 ### Bug fixes
   * table
     * 修复 store模式下单选和全选bug
 ### New features
   * selectV2
     * add optionDisabledFn属性，通过外部传入函数的方式设置option的disabled状态
+  * transfer
+    * add virtualScroll属性，通过设置virtualScroll属性使用虚拟列表方式加载，支持大数据
 
 ## v1.0.69
 
